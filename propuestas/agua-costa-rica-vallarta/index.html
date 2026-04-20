@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta Estratégica · Agua Costa Rica Vallarta</title>
+<meta name="description" content="Propuesta estratégica de Sentido Branding & Advertising para Agua Costa Rica Vallarta." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --surface: #0D0D11;
+    --surface-elevated: #15151B;
+    --surface-ghost: #0A0A0E;
+    --border: #1F1F26;
+    --border-strong: #2A2A33;
+    --text: #EDEAE4;
+    --text-dim: #8B8680;
+    --text-faint: #55524E;
+    --accent: #5B9BBD;
+    --accent-dim: #2D4E5E;
+    --accent-glow: rgba(91, 155, 189, 0.08);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+  section { scroll-margin-top: 64px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ================= NAV ================= */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+  }
+
+  .site-nav.hidden { transform: translateY(-100%); }
+  .site-nav.scrolled { background: rgba(5, 5, 5, 0.88); }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-mark {
+    height: 22px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-brand:hover .nav-mark { opacity: 1; }
+
+  .nav-wordmark {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 0;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nav-link:hover { color: var(--text); }
+  .nav-link.active {
+    color: var(--accent);
+  }
+  .nav-link.active::after { width: 100%; }
+
+  /* ================= LAYOUT ================= */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .container-narrow {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section {
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  /* ================= TYPOGRAPHY ================= */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); }
+  h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+  h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  h4 { font-size: 1.375rem; }
+
+  .display-italic { font-style: italic; font-weight: 300; color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--text-faint);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 700px;
+  }
+
+  p { color: var(--text); font-size: 1.0625rem; line-height: 1.75; }
+  p + p { margin-top: 1.25rem; }
+  p.dim { color: var(--text-dim); }
+
+  strong { font-weight: 500; color: var(--text); }
+  em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+  /* ================= HERO ================= */
+  .hero {
+    min-height: 100vh;
+    padding: 48px 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  .sentido-logo-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .sentido-mark {
+    height: 28px;
+    opacity: 0.9;
+  }
+
+  .sentido-wordmark {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    margin-bottom: 40px;
+    max-width: 900px;
+  }
+
+  .hero h1 .first-line { display: block; color: var(--text-dim); font-size: 0.7em; margin-bottom: 12px; }
+  .hero h1 .second-line { display: block; }
+
+  .hero-divider {
+    width: 64px;
+    height: 1px;
+    background: var(--accent);
+    margin: 48px 0;
+  }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .hero-meta-label { color: var(--text-faint); display: block; margin-bottom: 8px; font-size: 0.6875rem; }
+  .hero-meta-value { color: var(--text); }
+
+  /* ================= DIAGNÓSTICO ================= */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .pullquote {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.4;
+    color: var(--text);
+    padding: 32px 0 32px 32px;
+    border-left: 2px solid var(--accent);
+    margin: 48px 0;
+  }
+
+  .pullquote .attribution {
+    display: block;
+    margin-top: 24px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* Data showcase — the 100/104 number */
+  .stat-showcase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    margin: 48px 0;
+    position: relative;
+  }
+
+  .stat-showcase::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; width: 48px; height: 1px;
+    background: var(--accent);
+  }
+  .stat-showcase::after {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; width: 1px; height: 48px;
+    background: var(--accent);
+  }
+
+  .stat-header {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 32px;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+  }
+
+  .stat-big {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+
+  .stat-big.accent { color: var(--accent); }
+  .stat-big.dim { color: var(--text-dim); }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-top: 12px;
+    display: block;
+  }
+
+  .stat-arrow {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--text-faint);
+    text-align: center;
+    padding-bottom: 12px;
+  }
+
+  .stat-caption {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+
+  /* Audit findings list */
+  .findings {
+    margin-top: 48px;
+  }
+
+  .finding {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .finding:last-child { border-bottom: 1px solid var(--border); }
+
+  .finding-num {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .finding-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--text);
+  }
+
+  .finding-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  /* ================= CONTEXTO ================= */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 64px 0 48px;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+
+  .market-cell {
+    padding: 40px 32px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-ghost);
+  }
+
+  .market-number {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .market-number .unit {
+    font-size: 0.5em;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+
+  .market-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .market-desc {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .source-note {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+
+  /* ================= ESTRATEGIA ================= */
+  .layer-stack {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .layer {
+    background: var(--surface);
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: 80px 240px 1fr;
+    gap: 40px;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+
+  .layer:hover { background: var(--surface-elevated); }
+
+  .layer-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--accent-dim);
+    line-height: 1;
+  }
+
+  .layer-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+
+  .layer-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  /* ================= AUDIENCIAS ================= */
+  .audiences {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .audience {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    transition: border-color 0.3s ease;
+  }
+
+  .audience:hover { border-color: var(--accent-dim); }
+
+  .audience-priority {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .audience-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .audience-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  /* ================= SERVICIOS ================= */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .service {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .service:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
+
+  .service-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+  }
+
+  .service-letter {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent-dim);
+  }
+
+  .service-price-head {
+    text-align: right;
+  }
+
+  .service-price {
+    font-family: var(--font-mono);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .service-period {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .service-lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .service-items {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-items li {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.5;
+    padding: 8px 0 8px 20px;
+    position: relative;
+  }
+
+  .service-items li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 17px;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+
+  .service-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border: 1px solid var(--accent-dim);
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  /* ================= WEB TABS ================= */
+  .web-tabs {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 40px;
+    min-height: 540px;
+  }
+
+  .web-tabs-nav {
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .web-tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 22px 28px;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-dim);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+    align-items: center;
+    transition: background 0.25s ease, color 0.25s ease;
+    position: relative;
+    width: 100%;
+  }
+
+  .web-tab-btn:last-child { border-bottom: none; }
+
+  .web-tab-btn:hover {
+    background: var(--surface-elevated);
+    color: var(--text);
+  }
+
+  .web-tab-btn.active {
+    background: var(--surface-elevated);
+    color: var(--text);
+  }
+
+  .web-tab-btn.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent);
+  }
+
+  .web-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .web-tab-label {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .web-tabs-content {
+    background: var(--surface);
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .web-tab-panel {
+    display: none;
+  }
+
+  .web-tab-panel.active {
+    display: block;
+    animation: fadeInPanel 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeInPanel {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .web-tab-panel-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .web-tab-panel-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.625rem, 2.5vw, 2.125rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .web-tab-panel-lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+
+  .web-tab-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .web-tab-panel-list li {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.7;
+    padding: 11px 0 11px 22px;
+    position: relative;
+  }
+
+  .web-tab-panel-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 21px;
+    width: 10px; height: 1px;
+    background: var(--accent);
+  }
+
+  /* Hint arriba de los tabs */
+  .web-tabs-hint {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 48px;
+    padding: 16px 24px;
+    background: var(--accent-glow);
+    border-left: 2px solid var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  .hint-arrow {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--accent);
+    animation: nudgeRight 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes nudgeRight {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(6px); opacity: 1; }
+  }
+
+  .hint-text {
+    line-height: 1.5;
+  }
+
+  /* Footer de navegación dentro del panel */
+  .web-tab-nav-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    gap: 16px;
+  }
+
+  .web-tab-arrow {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 12px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .web-tab-arrow:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .web-tab-arrow:hover:not(:disabled) .arrow-symbol {
+    transform: translateX(4px);
+  }
+
+  .web-tab-prev:hover:not(:disabled) .arrow-symbol {
+    transform: translateX(-4px);
+  }
+
+  .web-tab-arrow:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  .arrow-symbol {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    transition: transform 0.25s ease;
+    display: inline-block;
+  }
+
+  .web-tab-indicator {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.125rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .indicator-current {
+    color: var(--accent);
+    font-weight: 400;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .indicator-sep {
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  .indicator-total {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ================= TABLES ================= */
+  .table-wrap {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin: 32px 0;
+    overflow: hidden;
+  }
+
+  .table-label {
+    padding: 20px 32px;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 20px 32px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem;
+  }
+
+  th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  td { color: var(--text); font-weight: 300; }
+
+  td.num {
+    font-family: var(--font-mono);
+    text-align: right;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr.total td {
+    background: var(--accent-glow);
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 1rem;
+    border-top: 1px solid var(--accent-dim);
+  }
+
+  tr.included td.num {
+    color: var(--accent);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .savings-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 6px 12px;
+    border: 1px solid var(--accent-dim);
+    background: var(--accent-glow);
+  }
+
+  /* Compare box — paquete vs individual */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 48px;
+    border: 1px solid var(--border);
+  }
+
+  .compare-box {
+    background: var(--surface);
+    padding: 40px;
+  }
+
+  .compare-box.featured { background: var(--surface-elevated); }
+
+  .compare-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+  }
+
+  .compare-box.featured .compare-label { color: var(--accent); }
+
+  .compare-price {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .compare-box.featured .compare-price { color: var(--accent); }
+
+  .compare-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .compare-note {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* Single-price card */
+  .single-price {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .single-price-info { flex: 1; min-width: 280px; }
+
+  .single-price-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .single-price-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .single-price-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  .single-price-num small {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+  }
+
+  /* ================= PAUTA ================= */
+  .pauta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .pauta-box {
+    background: var(--surface);
+    border: 1px dashed var(--border-strong);
+    padding: 32px;
+  }
+
+  .pauta-channel {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  .pauta-range {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.875rem;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .pauta-desc {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .pauta-disclaimer {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--surface-ghost);
+    border-left: 1px solid var(--accent);
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+
+  /* ================= CIERRE ================= */
+  .closing {
+    padding: 160px 0;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--bg) 0%, var(--surface-ghost) 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .closing-tesis {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+
+  .closing-tesis em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .closing-mark {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 48px auto;
+  }
+
+  .closing-sig {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .closing-sig strong {
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  /* ================= REVEAL ANIMATIONS ================= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 900px) {
+    .nav-inner { padding: 0 20px; gap: 16px; height: 56px; }
+    .nav-mark { height: 18px; }
+    .nav-wordmark { font-size: 0.9375rem; }
+    .nav-links { gap: 18px; }
+    .nav-link { font-size: 0.625rem; letter-spacing: 0.14em; }
+    html { scroll-padding-top: 56px; }
+    section { scroll-margin-top: 56px; }
+    section { padding: 80px 0; }
+    .two-col { grid-template-columns: 1fr; gap: 48px; }
+    .stat-row { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+    .stat-arrow { display: none; }
+    .market-grid { grid-template-columns: 1fr; }
+    .layer { grid-template-columns: 60px 1fr; gap: 24px; padding: 28px 24px; }
+    .layer-name { font-size: 1.25rem; grid-column: 2 / 3; }
+    .layer-desc { grid-column: 2 / 3; }
+    .audiences { grid-template-columns: 1fr; }
+    .services { grid-template-columns: 1fr; }
+
+    /* Tabs → horizontal scroll en móvil */
+    .web-tabs {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+    .web-tabs-nav {
+      flex-direction: row;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .web-tabs-nav::-webkit-scrollbar { display: none; }
+    .web-tab-btn {
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      padding: 16px 20px;
+      flex-shrink: 0;
+      min-width: 200px;
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+    }
+    .web-tab-btn:last-child { border-right: none; }
+    .web-tab-btn.active::before {
+      width: 100%;
+      height: 2px;
+      top: auto;
+      bottom: 0;
+    }
+    .web-tab-label {
+      font-size: 0.9375rem;
+    }
+    .web-tabs-content {
+      padding: 32px 24px;
+    }
+    .web-tab-panel-title {
+      padding-bottom: 18px;
+    }
+    .web-tabs-hint {
+      padding: 14px 20px;
+      font-size: 0.6875rem;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .web-tab-nav-footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      gap: 8px;
+    }
+    .web-tab-arrow {
+      padding: 10px 14px;
+      font-size: 0.625rem;
+      letter-spacing: 0.14em;
+      gap: 8px;
+    }
+    .arrow-label {
+      display: none;
+    }
+    .web-tab-arrow .arrow-symbol {
+      font-size: 1.25rem;
+    }
+    .compare { grid-template-columns: 1fr; }
+    .pauta-grid { grid-template-columns: 1fr; }
+    .finding { grid-template-columns: 1fr; gap: 12px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+    th, td { padding: 16px 20px; font-size: 0.875rem; }
+    .stat-showcase, .compare-box, .service, .single-price { padding: 28px 24px; }
+    .container, .container-narrow { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <span class="nav-wordmark">Sentido</span>
+    </a>
+    <div class="nav-links">
+      <a href="#diagnostico" class="nav-link" data-section="diagnostico">Diagnóstico</a>
+      <a href="#contexto" class="nav-link" data-section="contexto">Mercado</a>
+      <a href="#estrategia" class="nav-link" data-section="estrategia">Estrategia</a>
+      <a href="#servicios" class="nav-link" data-section="servicios">Servicios</a>
+      <a href="#inversion-mensual" class="nav-link" data-section="inversion-mensual">Inversión</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-top">
+      <div class="sentido-logo-wrap">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido" class="sentido-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+        <span class="sentido-wordmark">Sentido</span>
+      </div>
+      <span class="status-pill">
+        <span class="status-dot"></span>
+        Propuesta Activa
+      </span>
+    </div>
+  </div>
+
+  <div class="container hero-center">
+    <span class="eyebrow reveal">Agua Costa Rica · Vallarta — Riviera Nayarit</span>
+    <h1 class="reveal" style="margin-top: 24px;">
+      <span class="first-line">No les falta contenido.</span>
+      <span class="second-line">Les falta el <span class="display-italic">sistema</span> que lo convierte en negocio.</span>
+    </h1>
+    <div class="hero-divider reveal"></div>
+    <p class="hero-sub reveal">
+      Una propuesta estratégica para transformar una marca con producto diferenciado en un motor de captación, conversión y retención recurrente en Bahía de Banderas.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="hero-bottom">
+      <div>
+        <span class="hero-meta-label">Preparada por</span>
+        <span class="hero-meta-value">Sentido Branding & Advertising</span>
+      </div>
+      <div style="text-align: right;">
+        <span class="hero-meta-label">Documento</span>
+        <span class="hero-meta-value">Propuesta Estratégica Integral</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 01 · DIAGNÓSTICO ================= -->
+<section id="diagnostico">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">01 — DIAGNÓSTICO</span>
+        <h2>Qué encontramos<br />al investigar.</h2>
+      </div>
+    </div>
+
+    <div class="two-col reveal">
+      <div>
+        <p>Agua Costa Rica Vallarta no parte de cero. Eso es lo primero que hay que reconocer. Hay un producto con diferenciación real — el sistema <em>AQUApunch</em> —, hay branding cuidado, hay una app en Google Play y App Store, hay contenido en redes con dirección editorial, y hay ubicación privilegiada en una de las zonas con mayor poder adquisitivo de occidente mexicano.</p>
+        <p class="dim">Lo que no hay es un sistema que conecte esos ingredientes. La producción de contenido existe. La estrategia que lo distribuye, convierte y retiene — no.</p>
+      </div>
+      <div>
+        <blockquote class="pullquote">
+          El trabajo creativo está pasando, pero se publica al vacío. La inversión se hace, pero no construye activo.
+          <span class="attribution">Lectura inicial del equipo</span>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- THE STAT SHOWCASE: 100 / 104 -->
+    <div class="stat-showcase reveal">
+      <div class="stat-header">El síntoma más claro — Instagram @aguacostarica.vallarta</div>
+      <div class="stat-row">
+        <div>
+          <div class="stat-big">100</div>
+          <span class="stat-label">Publicaciones producidas</span>
+        </div>
+        <div class="stat-arrow">→</div>
+        <div>
+          <div class="stat-big accent">104</div>
+          <span class="stat-label">Seguidores alcanzados</span>
+        </div>
+      </div>
+      <div class="stat-caption">
+        Cien piezas de contenido — con dirección editorial, fotografía lifestyle, gráficos diseñados — produciendo un seguidor por cada publicación. Eso no es un problema de contenido. Es la ausencia de un sistema de distribución pagado, captura automatizada y seguimiento que convierta el alcance en pedidos.
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 96px;">Auditoría punto por punto</h3>
+    <div class="findings">
+      <div class="finding reveal">
+        <div class="finding-num">01</div>
+        <div class="finding-title">Sitio web sin función comercial</div>
+        <div class="finding-desc">Desarrollado en 2021. Tarjeta de presentación digital sin formularios inteligentes, sin SEO técnico, sin captura de leads, sin diferenciación por audiencia (familia vs. negocio). El tráfico que llegue no se convierte.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">02</div>
+        <div class="finding-title">Redes sin motor de distribución</div>
+        <div class="finding-desc">Contenido consistente en Instagram y Facebook sin pauta estratégica ni segmentación. El algoritmo entrega el contenido solo a quien ya sigue la cuenta — un universo de 104 personas.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">03</div>
+        <div class="finding-title">Sin captura de intención en Google</div>
+        <div class="finding-desc">Nadie está capturando a quien teclea "agua purificada Nuevo Vallarta" o "pedido agua bolsa Bucerías" en el momento exacto en que decide comprar. Esa intención está siendo entregada a dieciséis competidores locales que sí aparecen en Maps.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">04</div>
+        <div class="finding-title">Google Business Profile sin construir</div>
+        <div class="finding-desc">No hay perfil optimizado visible en búsquedas locales. En una categoría saturada donde las decisiones de compra se toman a 500 metros del domicilio, esto es un gap crítico.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">05</div>
+        <div class="finding-title">App móvil infrautilizada</div>
+        <div class="finding-desc">Existe una app funcional de pedidos con monedero electrónico, sin estrategia de descargas, sin campañas de reactivación para clientes inactivos, sin integración con remarketing. Un activo tecnológico sin activación comercial.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">06</div>
+        <div class="finding-title">Sin sistema de seguimiento ni retención</div>
+        <div class="finding-desc">Sin CRM, sin automatización de pedidos recurrentes, sin gestión de reseñas. Para un producto de consumo semanal, esto es tráfico que se escurre entre los dedos cada mes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 · CONTEXTO ================= -->
+<section id="contexto">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">02 — MERCADO</span>
+        <h2>Dónde opera el prospecto,<br />y por qué importa.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal" style="margin-bottom: 32px;">
+      Bahía de Banderas es, estructuralmente, uno de los mercados más atractivos de México para un producto de consumo doméstico premium recurrente. El tamaño del pastel está documentado. La oportunidad no requiere convencimiento — requiere sistema.
+    </p>
+
+    <div class="market-grid reveal">
+      <div class="market-cell">
+        <span class="market-label">Turismo · Puerto Vallarta 2025</span>
+        <div class="market-number">6.26<span class="unit">M</span></div>
+        <div class="market-desc">Visitantes en el año, récord histórico. Derrama económica de $40,924 millones de pesos.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Ocupación hotelera · Riviera Nayarit</span>
+        <div class="market-number">74.7<span class="unit">%</span></div>
+        <div class="market-desc">Promedio enero–agosto 2025. Tercer centro turístico nacional por ocupación sostenida.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Rentas vacacionales · PV + Nuevo Vallarta</span>
+        <div class="market-number">7,200<span class="unit">+</span></div>
+        <div class="market-desc">Propiedades Airbnb activas. Cada una hospeda huéspedes que compran agua durante su estancia.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Mercado mexicano de agua embotellada</span>
+        <div class="market-number">$17.2<span class="unit">B USD</span></div>
+        <div class="market-desc">Valor 2024. México es el mayor consumidor per cápita del mundo. Crecimiento proyectado 3.9% anual.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Gasto del hogar mexicano</span>
+        <div class="market-number">5–10<span class="unit">%</span></div>
+        <div class="market-desc">Del ingreso mensual se destina a agua embotellada. 4 litros por día por hogar en promedio.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Competencia local</span>
+        <div class="market-number">16<span class="unit"></span></div>
+        <div class="market-desc">Purificadoras activas en radio de 7 km. Todas operan el modelo tradicional de garrafón de 19 litros.</div>
+      </div>
+    </div>
+
+    <div class="pullquote reveal">
+      En la categoría completa del área — dieciséis purificadoras activas —, Agua Costa Rica es la única propuesta que no vende un garrafón, sino un sistema. Esa diferenciación existe. Hoy está enterrada en una cuenta de redes con cien seguidores.
+    </div>
+
+    <p class="source-note reveal">
+      Fuentes · Fideicomiso de Turismo Puerto Vallarta · Datatur/Sectur · CBRE México · Informes de Expertos 2025 · BID · Directorio de Unidades Económicas INEGI
+    </p>
+  </div>
+</section>
+
+<!-- ================= 03 · AUDIENCIAS ================= -->
+<section id="audiencias">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">03 — AUDIENCIAS</span>
+        <h2>Tres mercados claros.<br />Un mismo producto.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      El sistema AQUApunch resuelve tres dolores distintos para tres audiencias distintas. La estrategia los atiende en secuencia, priorizando donde la fricción de entrada es menor y el ticket recurrente más predecible.
+    </p>
+
+    <div class="audiences">
+      <div class="audience reveal">
+        <div class="audience-priority">Prioridad 01 · B2C</div>
+        <h4 class="audience-title">Familias locales de NSE medio–alto</h4>
+        <p class="audience-desc">Fraccionamientos de Nuevo Vallarta, Flamingos, Bucerías, Jarretaderas, Valle Dorado, Mezcales. Ya consumen agua embotellada de forma recurrente. El argumento <em>adiós al peso, a la higiene dudosa, al espacio perdido</em> tiene tracción directa.</p>
+      </div>
+      <div class="audience reveal">
+        <div class="audience-priority">Prioridad 02 · B2B</div>
+        <h4 class="audience-title">Airbnbs y rentas vacacionales</h4>
+        <p class="audience-desc">Property managers con 5 a 20 propiedades. El argumento <em>cada bolsa es nueva para cada huésped</em> es un upgrade documentable en el listing. El sistema cabe en 33×33 cm — donde un garrafón no. Mejora reviews y reduce fricción operativa.</p>
+      </div>
+      <div class="audience reveal">
+        <div class="audience-priority">Prioridad 03 · B2B</div>
+        <h4 class="audience-title">Restaurantes, oficinas, consultorios</h4>
+        <p class="audience-desc">Ticket más grande, ciclo de venta más largo. Se activa en segunda ola una vez que el sistema de prioridades 01 y 02 está produciendo pedidos y reseñas que funcionen como prueba social.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 · ESTRATEGIA ================= -->
+<section id="estrategia">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">04 — ESTRATEGIA</span>
+        <h2>El sistema que falta,<br />en cuatro capas.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Un producto de consumo recurrente como el agua no se vende con una sola capa de marketing. Se necesita un sistema donde cada capa pasa el lead a la siguiente. Cuatro capas funcionando juntas, no cuatro servicios sueltos.
+    </p>
+
+    <div class="layer-stack reveal">
+      <div class="layer">
+        <div class="layer-num">01</div>
+        <div class="layer-name">Alcance activo</div>
+        <div class="layer-desc">Redes Meta con pauta optimizada. Pone el producto frente a quien aún no lo busca, construye reconocimiento de marca y alimenta audiencias de remarketing para las otras capas.</div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">02</div>
+        <div class="layer-name">Captura de intención</div>
+        <div class="layer-desc">Google Ads + Google Business Profile. Atiende a quien ya está tecleando "agua purificada Nuevo Vallarta", "bolsa de agua Bucerías", "water delivery Jarretaderas" — la demanda activa que hoy va a otros.</div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">03</div>
+        <div class="layer-name">Conversión automatizada</div>
+        <div class="layer-desc">CRM con pipeline dual (hogar vs. negocio), respuesta inmediata por WhatsApp, asignación automática, seguimiento por etapas. El lead se captura y se convierte sin fricción, aunque llegue a medianoche.</div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">04</div>
+        <div class="layer-name">Retención y reputación</div>
+        <div class="layer-desc">Automatización de pedidos recurrentes, reactivación de clientes inactivos, solicitud inteligente de reseñas, filtrado de insatisfechos. El nervio del producto semanal: que el cliente no se pierda y que los satisfechos construyan prueba social.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · SERVICIOS ================= -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">05 — SERVICIOS PROPUESTOS</span>
+        <h2>Cómo se implementa cada capa.</h2>
+      </div>
+    </div>
+
+    <div class="services">
+      <!-- A · Redes Meta -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">A</div>
+          <div class="service-price-head">
+            <div class="service-price">$7,500 + IVA</div>
+            <span class="service-period">Mensual</span>
+          </div>
+        </div>
+        <h3 class="service-title">Gestión de Redes Meta</h3>
+        <p class="service-lede">Instagram + Facebook. Contenido que distribuye, pauta que alcanza, comunidad que se construye.</p>
+        <ul class="service-items">
+          <li>15 publicaciones mensuales: 6 reels, 3 carruseles, 6 posts fijos + adaptación a historias</li>
+          <li>Planeación estratégica por segmento (60% B2C / 40% B2B)</li>
+          <li>Producción gráfica, edición de video, copywriting de marca</li>
+          <li>Contenido con IA para escala visual sin depender de sesiones constantes</li>
+          <li>Configuración, segmentación y optimización de campañas Meta Ads <strong>(incluido)</strong></li>
+          <li>Administración de perfiles, primer contacto automatizado, redirección a WhatsApp/CRM</li>
+          <li>Reporte mensual de alcance, engagement y leads generados</li>
+        </ul>
+        <span class="service-tag">Meta Ads · Incluido</span>
+      </div>
+
+      <!-- B · Google Ads -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">B</div>
+          <div class="service-price-head">
+            <div class="service-price">$4,000 + IVA</div>
+            <span class="service-period">Mensual</span>
+          </div>
+        </div>
+        <h3 class="service-title">Google Ads</h3>
+        <p class="service-lede">Captura de intención de búsqueda en el momento exacto en que el mercado local teclea lo que Agua Costa Rica resuelve.</p>
+        <ul class="service-items">
+          <li>Investigación de keywords por intención (hogar, Airbnb, oficina, restaurante)</li>
+          <li>Creación de campañas Search + Performance Max</li>
+          <li>Segmentación geográfica por fraccionamientos de mayor densidad</li>
+          <li>Landing pages específicas por audiencia conectadas al sitio</li>
+          <li>Optimización semanal de pujas, palabras y anuncios</li>
+          <li>Reporte mensual con CPL, conversiones y ROI estimado</li>
+        </ul>
+      </div>
+
+      <!-- C · CRM -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">C</div>
+          <div class="service-price-head">
+            <div class="service-price">$4,000 + IVA</div>
+            <span class="service-period">Mensual</span>
+          </div>
+        </div>
+        <h3 class="service-title">CRM + Automatización + Reputación</h3>
+        <p class="service-lede">El nervio del sistema. Donde cada lead que entra se convierte, y cada cliente se retiene.</p>
+        <ul class="service-items">
+          <li>Pipeline dual configurado: Hogar y Negocio, con etapas específicas</li>
+          <li>Captura automática de leads desde redes, sitio, WhatsApp y app</li>
+          <li>Respuesta inicial automatizada en &lt;60 segundos</li>
+          <li>Recordatorios de pedido recurrente, reactivación de inactivos</li>
+          <li>Monitoreo y respuesta a reseñas, campañas para clientes recurrentes</li>
+          <li>Filtrado estratégico de reseñas negativas hacia formulario privado</li>
+          <li>1 número WhatsApp, mensajes ilimitados, correos ilimitados</li>
+          <li>Implementación inicial <strong>sin costo</strong> con mantenimiento mensual activo</li>
+        </ul>
+        <span class="service-tag">Implementación · Sin costo</span>
+      </div>
+
+      <!-- D · GBP -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">D</div>
+          <div class="service-price-head">
+            <div class="service-price" style="color: var(--accent);">Incluido</div>
+            <span class="service-period">En paquete integral</span>
+          </div>
+        </div>
+        <h3 class="service-title">Google Business Profile</h3>
+        <p class="service-lede">La hoja en blanco a convertir en activo de posicionamiento local. Cada búsqueda en Maps cerca del domicilio debe encontrar a Agua Costa Rica antes que a la competencia.</p>
+        <ul class="service-items">
+          <li>Optimización inicial del perfil y verificación</li>
+          <li>6 publicaciones mensuales derivadas del calendario de redes</li>
+          <li>Actualización de información, horarios, fotos, promociones</li>
+          <li>Gestión activa de preguntas y reseñas desde el CRM</li>
+          <li>Estrategia de posicionamiento en Maps por zona</li>
+          <li>Reporte mensual de visitas, clics y solicitudes de ruta</li>
+        </ul>
+        <span class="service-tag">Valor individual · $4,500/mes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 · PAUTA (junto a servicios que la requieren) ================= -->
+<section id="pauta">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">06 — PAUTA RECOMENDADA</span>
+        <h2>Presupuesto de plataformas.<br /><span style="color: var(--text-dim); font-style: italic;">Separado del paquete.</span></h2>
+      </div>
+    </div>
+
+    <p class="lede reveal" style="margin-bottom: 24px;">
+      Dos de los servicios anteriores requieren presupuesto de pauta adicional — Gestión de Redes Meta (con Meta Ads incluido) y Google Ads. Este presupuesto va directo a cada plataforma con medio de pago del cliente; no es parte del paquete de servicios de Sentido, pero es lo que alimenta el motor de alcance y captura de intención.
+    </p>
+
+    <div class="pauta-grid reveal">
+      <div class="pauta-box">
+        <div class="pauta-channel">Meta Ads — Instagram + Facebook</div>
+        <div class="pauta-range">$5,000 – $15,000</div>
+        <p class="pauta-desc">Mensuales. Segmentación a familias de NSE medio-alto en fraccionamientos clave + retargeting a property managers y hospitalidad.</p>
+      </div>
+      <div class="pauta-box">
+        <div class="pauta-channel">Google Ads</div>
+        <div class="pauta-range">$3,000 – $8,000</div>
+        <p class="pauta-desc">Mensuales. Rango calibrado para mercado local de Bahía de Banderas — intención calificada, CPC accesible, volumen capturable sin saturar.</p>
+      </div>
+    </div>
+
+    <div class="pauta-disclaimer reveal">
+      La pauta no está incluida en el paquete de servicios. Se paga directo a cada plataforma con medio de pago del cliente. Arrancar en el piso del rango combinado ($8,000 mensuales) y escalar conforme el sistema muestre tracción es la ruta recomendada.
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 · INVERSIÓN MENSUAL ================= -->
+<section id="inversion-mensual">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">07 — INVERSIÓN MENSUAL</span>
+        <h2>El paquete integral,<br />y lo que ahorra vs. contratar suelto.</h2>
+      </div>
+    </div>
+
+    <!-- Tabla paquete integral -->
+    <div class="table-wrap reveal">
+      <div class="table-label">
+        <span>Paquete Integral Sentido</span>
+        <span class="savings-badge">Ahorro · $9,000/mes</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Servicio</th>
+            <th style="text-align: right;">Inversión mensual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gestión de Redes Meta <span style="color: var(--text-faint); font-size: 0.8125rem;">— incluye Meta Ads</span></td>
+            <td class="num">$7,500</td>
+          </tr>
+          <tr>
+            <td>Google Ads</td>
+            <td class="num">$4,000</td>
+          </tr>
+          <tr>
+            <td>CRM + Automatización + Reputación</td>
+            <td class="num">$4,000</td>
+          </tr>
+          <tr class="included">
+            <td>Google Business Profile <span style="color: var(--text-faint); font-size: 0.8125rem;">— preferencial por paquete</span></td>
+            <td class="num">Incluido</td>
+          </tr>
+          <tr class="total">
+            <td>Total mensual</td>
+            <td class="num">$15,500 + IVA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Comparativa tarifas individuales -->
+    <h3 class="reveal" style="margin-top: 80px; margin-bottom: 24px;">Comparativa · Contratación individual</h3>
+    <p class="reveal" style="color: var(--text-dim); margin-bottom: 32px;">La referencia de lo que costaría cada servicio contratado por separado, sin las preferencias que genera el paquete.</p>
+
+    <div class="table-wrap reveal">
+      <div class="table-label">
+        <span>Tarifas individuales — solo referencia</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Servicio</th>
+            <th style="text-align: right;">Si se contrata suelto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gestión de Redes Meta</td>
+            <td class="num" style="color: var(--text-dim);">$7,500</td>
+          </tr>
+          <tr>
+            <td>Meta Ads (individual)</td>
+            <td class="num" style="color: var(--text-dim);">$4,000</td>
+          </tr>
+          <tr>
+            <td>Google Ads</td>
+            <td class="num" style="color: var(--text-dim);">$4,000</td>
+          </tr>
+          <tr>
+            <td>CRM + Automatización + Reputación</td>
+            <td class="num" style="color: var(--text-dim);">$4,000</td>
+          </tr>
+          <tr>
+            <td>Google Business Profile</td>
+            <td class="num" style="color: var(--text-dim);">$4,500</td>
+          </tr>
+          <tr class="total">
+            <td>Total contratando por separado</td>
+            <td class="num">$24,000 + IVA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Side by side comparison -->
+    <div class="compare reveal">
+      <div class="compare-box">
+        <div class="compare-label">Individual</div>
+        <div class="compare-price">$24,000</div>
+        <div class="compare-sub">+ IVA / mes</div>
+        <p class="compare-note">Contratación por separado, sin descuentos ni bundles.</p>
+      </div>
+      <div class="compare-box featured">
+        <div class="compare-label">Paquete Integral Sentido</div>
+        <div class="compare-price">$15,500</div>
+        <div class="compare-sub">+ IVA / mes</div>
+        <p class="compare-note">Meta Ads incluido, GBP incluido, implementación CRM sin costo. Ahorro mensual de <strong style="color: var(--accent);">$9,000</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 · INVERSIÓN ÚNICA ================= -->
+<section id="inversion-unica">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">08 — INVERSIÓN ÚNICA</span>
+        <h2>Sitio Web Estratégico.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      El hub digital donde todo el sistema converge. Las campañas, los anuncios, las automatizaciones, los pedidos — todo necesita un destino que convierta, no una tarjeta de presentación. El sitio se construye en seis dimensiones coordinadas; explora cada una a continuación.
+    </p>
+
+    <div class="pullquote reveal">
+      Un sitio web no es una página — es infraestructura. Si las campañas mandan tráfico a un destino que no convierte, la pauta se desperdicia. Por eso el sitio se entrega antes de que el sistema de alcance arranque a máxima potencia.
+    </div>
+
+    <!-- Hint de navegación -->
+    <div class="web-tabs-hint reveal">
+      <span class="hint-arrow">→</span>
+      <span class="hint-text">Seis dimensiones coordinadas. Navega con las flechas o selecciona desde el índice.</span>
+    </div>
+
+    <!-- Tabs interactivos -->
+    <div class="web-tabs reveal">
+      <!-- Navegación de tabs -->
+      <div class="web-tabs-nav" role="tablist" aria-label="Componentes del Sitio Web Estratégico">
+        <button class="web-tab-btn active" role="tab" aria-selected="true" data-tab="arquitectura">
+          <span class="web-tab-num">01</span>
+          <span class="web-tab-label">Arquitectura y diseño</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="rutas">
+          <span class="web-tab-num">02</span>
+          <span class="web-tab-label">Rutas por audiencia</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="captacion">
+          <span class="web-tab-num">03</span>
+          <span class="web-tab-label">Captación y conversión</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="integracion">
+          <span class="web-tab-num">04</span>
+          <span class="web-tab-label">Integración del sistema</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="seo">
+          <span class="web-tab-num">05</span>
+          <span class="web-tab-label">SEO técnico y rendimiento</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="escalabilidad">
+          <span class="web-tab-num">06</span>
+          <span class="web-tab-label">Base preparada para crecer</span>
+        </button>
+      </div>
+
+      <!-- Contenido de cada tab -->
+      <div class="web-tabs-content">
+        <div class="web-tab-panel active" role="tabpanel" data-panel="arquitectura">
+          <span class="web-tab-panel-num">01 — Fundación del sitio</span>
+          <h4 class="web-tab-panel-title">Arquitectura y diseño</h4>
+          <p class="web-tab-panel-lede">La estructura visual y funcional sobre la que se construye todo lo demás.</p>
+          <ul class="web-tab-panel-list">
+            <li>Estructura estratégica por audiencia: rutas diferenciadas para hogar, Airbnb y negocio</li>
+            <li>Diseño visual alineado al branding del prospecto, con elevación editorial para destacar en un sector visualmente saturado</li>
+            <li>Desarrollo responsivo mobile-first, optimizado para la experiencia de pedido desde teléfono</li>
+            <li>Jerarquía de conversión clara en cada página: mensaje, prueba, acción</li>
+            <li>Sistema de componentes reutilizable para futuras actualizaciones sin dependencia total del desarrollo</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="rutas">
+          <span class="web-tab-panel-num">02 — Segmentación de tráfico</span>
+          <h4 class="web-tab-panel-title">Rutas diferenciadas por audiencia</h4>
+          <p class="web-tab-panel-lede">Cada audiencia llega a una experiencia diseñada específicamente para ella, no a un mensaje genérico.</p>
+          <ul class="web-tab-panel-list">
+            <li>Landing de hogar con enfoque <em>"adiós al garrafón"</em> — higiene, peso, espacio, ecología</li>
+            <li>Landing de hospitalidad con argumentos B2B: cada bolsa nueva para cada huésped, logística ágil, imagen premium</li>
+            <li>Landing de negocio (restaurantes, oficinas, consultorios) con propuesta de volumen y facturación</li>
+            <li>Cada ruta con su propio formulario, su propio CTA y su propia narrativa visual</li>
+            <li>Las campañas de Google Ads y Meta Ads envían tráfico directo a la ruta correcta, no a una home genérica</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="captacion">
+          <span class="web-tab-panel-num">03 — De visitante a lead</span>
+          <h4 class="web-tab-panel-title">Herramientas de captación y conversión</h4>
+          <p class="web-tab-panel-lede">Cada visita al sitio tiene una oportunidad clara para convertirse en pedido o en prospecto calificado.</p>
+          <ul class="web-tab-panel-list">
+            <li>Formularios inteligentes con campos condicionales según la audiencia detectada</li>
+            <li>Integración directa con WhatsApp Business para pedido inmediato desde cualquier sección</li>
+            <li>Botones de descarga de la app (iOS + Android) con tracking de fuente para medir efectividad</li>
+            <li>Módulo de cotización para pedidos recurrentes de negocio</li>
+            <li>Sección de preguntas frecuentes orientada a disminuir fricción de compra</li>
+            <li>Pop-ups estratégicos de captura (no invasivos) para visitantes con intención pero sin acción</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="integracion">
+          <span class="web-tab-panel-num">04 — El sitio conectado al sistema</span>
+          <h4 class="web-tab-panel-title">Integración del sistema</h4>
+          <p class="web-tab-panel-lede">El sitio no vive aislado: es una pieza del sistema donde cada interacción alimenta las demás capas.</p>
+          <ul class="web-tab-panel-list">
+            <li>Conexión directa con CRM: cada formulario alimenta el pipeline correcto con asignación automática</li>
+            <li>Meta Pixel configurado para remarketing y optimización de campañas</li>
+            <li>Google Ads conversion tracking para medir rentabilidad real de la pauta</li>
+            <li>Google Analytics 4 para comportamiento, embudos y atribución</li>
+            <li>Preparado para email marketing y automatizaciones de seguimiento</li>
+            <li>Enlace con Google Business Profile para reforzar el ecosistema de búsqueda local</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="seo">
+          <span class="web-tab-panel-num">05 — Visibilidad orgánica</span>
+          <h4 class="web-tab-panel-title">SEO técnico y rendimiento</h4>
+          <p class="web-tab-panel-lede">Construido para aparecer en las búsquedas locales relevantes y cargar rápido en el móvil del cliente.</p>
+          <ul class="web-tab-panel-list">
+            <li>Estructura de URLs optimizada para búsquedas locales relevantes</li>
+            <li>Meta tags, schema markup y datos estructurados para mejor visibilidad en Google</li>
+            <li>Imágenes optimizadas, carga rápida en móvil, Core Web Vitals cuidados</li>
+            <li>Certificado SSL activo, sitemap, robots.txt y configuración técnica estándar</li>
+            <li>Enlace con Google Business Profile para reforzar posicionamiento local</li>
+            <li>Base preparada para contenido SEO de largo plazo (blog, artículos de autoridad)</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="escalabilidad">
+          <span class="web-tab-panel-num">06 — Infraestructura de crecimiento</span>
+          <h4 class="web-tab-panel-title">Base preparada para crecer</h4>
+          <p class="web-tab-panel-lede">Lo que hoy atiende a Bahía de Banderas debe poder crecer contigo sin rehacerse.</p>
+          <ul class="web-tab-panel-list">
+            <li>CMS administrable para actualizar contenido sin depender del desarrollo</li>
+            <li>Base preparada para expansión bilingüe cuando se decida activar el mercado expat</li>
+            <li>Arquitectura compatible con módulo de pedidos web en fase posterior</li>
+            <li>Estructura para blog y contenido de autoridad (SEO de largo plazo)</li>
+            <li>Analítica configurada para medir qué funciona y qué ajustar mes a mes</li>
+            <li>Escalable a más sucursales o líneas de producto sin rediseño completo</li>
+          </ul>
+        </div>
+
+        <!-- Navegación prev/next + indicador -->
+        <div class="web-tab-nav-footer">
+          <button class="web-tab-arrow web-tab-prev" aria-label="Dimensión anterior" disabled>
+            <span class="arrow-symbol">←</span>
+            <span class="arrow-label">Anterior</span>
+          </button>
+          <div class="web-tab-indicator">
+            <span class="indicator-current">01</span>
+            <span class="indicator-sep">/</span>
+            <span class="indicator-total">06</span>
+          </div>
+          <button class="web-tab-arrow web-tab-next" aria-label="Dimensión siguiente">
+            <span class="arrow-label">Siguiente</span>
+            <span class="arrow-symbol">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 96px; margin-bottom: 24px;">Cronograma estimado</h3>
+    <p class="reveal" style="color: var(--text-dim); margin-bottom: 32px;">El desarrollo se ejecuta en cuatro semanas con entregables intermedios. La puesta en marcha del sitio marca el arranque pleno del sistema de alcance y captura.</p>
+
+    <div class="table-wrap reveal">
+      <div class="table-label">
+        <span>Fases del desarrollo</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th>Fase</th>
+            <th>Entregable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">1</td>
+            <td>Arquitectura y estrategia de contenido</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Wireframes, mapa de rutas, copys por audiencia</td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">2</td>
+            <td>Diseño visual y producción gráfica</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Mockups aprobados, sistema visual completo</td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">3</td>
+            <td>Desarrollo e integraciones</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Sitio funcional en staging, CRM y pixels conectados</td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">4</td>
+            <td>Pruebas, ajustes y lanzamiento</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Sitio en vivo, SEO técnico validado, handoff al equipo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="single-price reveal" style="margin-top: 48px;">
+      <div class="single-price-info">
+        <h3 class="single-price-title">Sitio Web Estratégico</h3>
+        <p class="single-price-desc">
+          Inversión única, pago en dos parcialidades: 60% al iniciar el desarrollo y 40% contra entrega final. Incluye las seis dimensiones descritas arriba y el cronograma de cuatro semanas.
+        </p>
+        <p class="single-price-desc" style="margin-top: 12px; color: var(--text-faint); font-size: 0.875rem;">
+          No incluye: hosting y dominio (se manejan con la cuenta del cliente), fotografía y video de producto (se cotizan aparte como servicio eventual), pauta publicitaria.
+        </p>
+      </div>
+      <div class="single-price-num">
+        $20,000 <small>+ IVA</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CIERRE ================= -->
+<section class="closing">
+  <div class="container-narrow">
+    <p class="closing-tesis reveal">
+      El producto ya está diferenciado.<br />
+      El contenido ya se está haciendo.<br />
+      <em>Falta el sistema que lo convierte en negocio.</em>
+    </p>
+    <div class="closing-mark"></div>
+    <div class="closing-sig">
+      Propuesta preparada por <strong>Sentido</strong>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger children of reveal groups slightly
+  document.querySelectorAll('.findings .reveal, .audiences .reveal, .services .reveal, .market-grid .reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+
+  // ================= NAV BEHAVIOR =================
+  const nav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // Scroll spy — highlight active section
+  const sectionMap = {
+    'diagnostico': document.getElementById('diagnostico'),
+    'contexto': document.getElementById('contexto'),
+    'audiencias': document.getElementById('audiencias'),
+    'estrategia': document.getElementById('estrategia'),
+    'servicios': document.getElementById('servicios'),
+    'inversion-mensual': document.getElementById('inversion-mensual'),
+    'inversion-unica': document.getElementById('inversion-unica'),
+    'pauta': document.getElementById('pauta')
+  };
+
+  // Map sections to nav items (grouping audiencias under estrategia, pauta under servicios, inversion-unica under inversion-mensual)
+  const sectionToNav = {
+    'diagnostico': 'diagnostico',
+    'contexto': 'contexto',
+    'audiencias': 'estrategia',
+    'estrategia': 'estrategia',
+    'servicios': 'servicios',
+    'pauta': 'servicios',
+    'inversion-mensual': 'inversion-mensual',
+    'inversion-unica': 'inversion-mensual'
+  };
+
+  const setActiveLink = (sectionId) => {
+    const targetNav = sectionToNav[sectionId];
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === targetNav);
+    });
+  };
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActiveLink(entry.target.id);
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+  Object.values(sectionMap).forEach(section => {
+    if (section) spyObserver.observe(section);
+  });
+
+  // Scroll direction — hide nav on scroll down, show on scroll up
+  let lastScroll = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        // Background intensify after scrolling
+        nav.classList.toggle('scrolled', currentScroll > 40);
+
+        // Hide on scroll down, show on scroll up (but only after 200px)
+        if (currentScroll > 200) {
+          if (currentScroll > lastScroll + 6) {
+            nav.classList.add('hidden');
+          } else if (currentScroll < lastScroll - 6) {
+            nav.classList.remove('hidden');
+          }
+        } else {
+          nav.classList.remove('hidden');
+        }
+
+        lastScroll = currentScroll;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // ================= WEB TABS =================
+  const tabBtns = Array.from(document.querySelectorAll('.web-tab-btn'));
+  const tabPanels = Array.from(document.querySelectorAll('.web-tab-panel'));
+  const prevBtn = document.querySelector('.web-tab-prev');
+  const nextBtn = document.querySelector('.web-tab-next');
+  const indicatorCurrent = document.querySelector('.indicator-current');
+  const totalTabs = tabBtns.length;
+  let currentTabIdx = 0;
+
+  function activateTabIndex(idx) {
+    idx = Math.max(0, Math.min(totalTabs - 1, idx));
+    currentTabIdx = idx;
+
+    tabBtns.forEach((b, i) => {
+      const isActive = i === idx;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    tabPanels.forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+
+    // Update indicator "01" / "02" / ...
+    if (indicatorCurrent) {
+      indicatorCurrent.textContent = String(idx + 1).padStart(2, '0');
+    }
+
+    // Toggle disabled state on prev/next
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === totalTabs - 1;
+  }
+
+  // Click en un tab del índice
+  tabBtns.forEach((btn, idx) => {
+    btn.addEventListener('click', () => activateTabIndex(idx));
+  });
+
+  // Botones prev/next
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentTabIdx > 0) activateTabIndex(currentTabIdx - 1);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentTabIdx < totalTabs - 1) activateTabIndex(currentTabIdx + 1);
+    });
+  }
+
+  // Keyboard navigation (arrow keys) when focus is within the tabs component
+  tabBtns.forEach((btn, idx) => {
+    btn.addEventListener('keydown', (e) => {
+      let newIdx = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        newIdx = Math.min(idx + 1, totalTabs - 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        newIdx = Math.max(idx - 1, 0);
+      }
+      if (newIdx !== null && newIdx !== idx) {
+        e.preventDefault();
+        activateTabIndex(newIdx);
+        tabBtns[newIdx].focus();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
