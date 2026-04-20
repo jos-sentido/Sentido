@@ -826,9 +826,94 @@
     text-transform: uppercase;
     margin-bottom: 2rem;
   }
+
+  /* Top nav */
+  .topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(10, 10, 10, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+  .topnav.visible { transform: translateY(0); }
+  .topnav-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1.5rem;
+    height: 56px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .topnav-inner::-webkit-scrollbar { display: none; }
+  @media (min-width: 768px) { .topnav-inner { padding: 0 3rem; } }
+  @media (min-width: 1024px) { .topnav-inner { padding: 0 5rem; } }
+  .topnav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .topnav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    padding: 20px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+  }
+  .topnav-links a:hover { color: var(--text); }
+  .topnav-links a.active { color: var(--accent); }
+  .topnav-links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--accent);
+  }
+  .topnav-num { color: var(--accent-dim); font-weight: 500; }
+  .topnav-links a:hover .topnav-num,
+  .topnav-links a.active .topnav-num { color: var(--accent); }
+
+  /* Anchors land below the fixed nav */
+  section[id] { scroll-margin-top: 56px; }
 </style>
 </head>
 <body>
+
+<!-- TOP NAV -->
+<nav class="topnav" aria-label="Secciones de la propuesta">
+  <div class="topnav-inner">
+    <ul class="topnav-links">
+      <li><a href="#contexto"><span class="topnav-num">01</span>Contexto</a></li>
+      <li><a href="#momento"><span class="topnav-num">02</span>El momento</a></li>
+      <li><a href="#angulo"><span class="topnav-num">03</span>El ángulo</a></li>
+      <li><a href="#propuesta"><span class="topnav-num">04</span>La propuesta</a></li>
+      <li><a href="#inversion"><span class="topnav-num">05</span>Inversión</a></li>
+      <li><a href="#horizonte"><span class="topnav-num">06</span>Horizonte</a></li>
+    </ul>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -869,7 +954,7 @@
 </section>
 
 <!-- CONTEXTO -->
-<section class="section">
+<section id="contexto" class="section">
   <div class="section-inner">
     <div class="reveal section-label">
       <span>01</span>
@@ -912,7 +997,7 @@
 </section>
 
 <!-- EL MOMENTO -->
-<section class="section section-surface">
+<section id="momento" class="section section-surface">
   <div class="section-inner">
     <div class="reveal section-label">
       <span>02</span>
@@ -981,7 +1066,7 @@
 </section>
 
 <!-- EL ÁNGULO -->
-<section class="section">
+<section id="angulo" class="section">
   <div class="section-inner">
     <div class="reveal section-label">
       <span>03</span>
@@ -1038,7 +1123,7 @@
 </section>
 
 <!-- LA PROPUESTA -->
-<section class="section section-surface">
+<section id="propuesta" class="section section-surface">
   <div class="section-inner">
     <div class="reveal section-label">
       <span>04</span>
@@ -1169,7 +1254,7 @@
 </section>
 
 <!-- INVERSIÓN -->
-<section class="section">
+<section id="inversion" class="section">
   <div class="section-inner">
     <div class="reveal section-label">
       <span>05</span>
@@ -1345,7 +1430,7 @@
 </section>
 
 <!-- HORIZONTE -->
-<section class="section section-surface">
+<section id="horizonte" class="section section-surface">
   <div class="section-inner">
     <div class="reveal section-label">
       <span>06</span>
@@ -1423,6 +1508,31 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
   revealElements.forEach(el => observer.observe(el));
+
+  // Top nav: show after scrolling past hero, track active section
+  const topnav = document.querySelector('.topnav');
+  const navLinks = Array.from(document.querySelectorAll('.topnav-links a'));
+  const linkById = new Map(navLinks.map(a => [a.getAttribute('href').slice(1), a]));
+  const navSections = Array.from(document.querySelectorAll('section[id]'));
+
+  function updateNavVisibility() {
+    const threshold = window.innerHeight * 0.7;
+    topnav.classList.toggle('visible', window.scrollY > threshold);
+  }
+  window.addEventListener('scroll', updateNavVisibility, { passive: true });
+  updateNavVisibility();
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = linkById.get(entry.target.id);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  navSections.forEach(s => sectionObserver.observe(s));
 
   // Plan toggle
   function switchPlan(planName) {
