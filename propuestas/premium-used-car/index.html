@@ -897,6 +897,32 @@
 
   /* Anchors land below the fixed nav */
   section[id] { scroll-margin-top: 56px; }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    /* Breakdown: stack label on top, price aligned right below */
+    .plan-breakdown-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      padding: 1.25rem 1.25rem;
+    }
+    .plan-breakdown-head { padding: 1.25rem; }
+    .plan-breakdown-price { justify-content: flex-end; }
+    .plan-breakdown-label { font-size: 14px; }
+
+    /* Top nav: tighter spacing, left-aligned so first items are visible */
+    .topnav-inner {
+      justify-content: flex-start;
+      padding: 0 1rem;
+    }
+    .topnav-links { gap: 1.25rem; }
+    .topnav-links a {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      gap: 0.375rem;
+    }
+  }
 </style>
 </head>
 <body>
