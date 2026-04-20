@@ -240,9 +240,11 @@
 
   .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
 
+  .hero > .container { width: 100%; }
+
   .hero-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding-top: 24px;
   }
@@ -250,11 +252,13 @@
   .sentido-logo-wrap {
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
   }
 
   .sentido-mark {
-    height: 28px;
-    opacity: 0.9;
+    height: 96px;
+    opacity: 0.95;
+    display: block;
   }
 
   .sentido-wordmark {
@@ -1372,6 +1376,8 @@
     .pauta-grid { grid-template-columns: 1fr; }
     .finding { grid-template-columns: 1fr; gap: 12px; }
     .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+    .sentido-mark { height: 72px; }
+    .sentido-logo-wrap { margin-bottom: 28px; }
     th, td { padding: 16px 20px; font-size: 0.875rem; }
     .stat-showcase, .compare-box, .service, .single-price { padding: 28px 24px; }
     .container, .container-narrow { padding: 0 24px; }
@@ -1401,10 +1407,6 @@
 <header class="hero" id="top">
   <div class="container">
     <div class="hero-top">
-      <div class="sentido-logo-wrap">
-        <img src="/assets/logo-sentido-light.png" alt="Sentido" class="sentido-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
-        <span class="sentido-wordmark">Sentido</span>
-      </div>
       <span class="status-pill">
         <span class="status-dot"></span>
         Propuesta Activa
@@ -1413,6 +1415,10 @@
   </div>
 
   <div class="container hero-center">
+    <div class="sentido-logo-wrap">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="sentido-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <span class="sentido-wordmark">Sentido</span>
+    </div>
     <span class="eyebrow reveal">Agua Costa Rica · Vallarta — Riviera Nayarit</span>
     <h1 class="reveal" style="margin-top: 24px;">
       <span class="first-line">No les falta contenido.</span>
