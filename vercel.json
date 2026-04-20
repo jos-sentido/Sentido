@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/:prospecto",
-      "destination": "/propuestas/:prospecto/index.html"
+      "destination": "/propuestas/:prospecto"
     }
   ],
   "headers": [
