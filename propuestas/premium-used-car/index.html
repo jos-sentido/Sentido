@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Premium Used Car</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --surface: #121212;
+    --surface-elevated: #1A1A1A;
+    --border: #252525;
+    --border-accent: #2F2F2F;
+    --accent: #C5A572;
+    --accent-dim: #8B7548;
+    --accent-bright: #D9BC8A;
+    --text: #EDEAE4;
+    --text-dim: #9A9590;
+    --text-muted: #6B6661;
+    --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* Section */
+  .section {
+    width: 100%;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 7rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+
+  /* Section label */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    color: var(--accent);
+  }
+  .section-label span { font-size: 11px; letter-spacing: 0.25em; font-weight: 500; text-transform: uppercase; }
+  .section-label .divider { height: 1px; width: 3rem; background-color: var(--accent); opacity: 0.5; }
+
+  /* Display headings */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 3rem;
+  }
+  .display-heading.xl { font-size: 2.25rem; }
+  @media (min-width: 768px) { .display-heading.xl { font-size: 3rem; } }
+  @media (min-width: 1024px) { .display-heading.xl { font-size: 3.75rem; } }
+  .display-heading .accent-italic { font-style: italic; color: var(--accent); }
+
+  /* Paragraphs */
+  .paragraph {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 300;
+    color: var(--text);
+  }
+  .paragraph.muted { color: var(--text-dim); }
+  .paragraph .inline-accent {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+  .max-w-5xl { max-width: 64rem; }
+  .max-w-2xl { max-width: 42rem; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 1.5rem;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 3rem 3rem; } }
+  @media (min-width: 1024px) { .hero { padding: 3rem 5rem; } }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 25% 30%, var(--accent) 0%, transparent 45%),
+      radial-gradient(circle at 80% 70%, var(--accent) 0%, transparent 40%);
+  }
+
+  .hero-top, .hero-bottom {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .hero-bottom { align-items: flex-end; }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 64rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .brand-logo {
+    height: 48px;
+    width: auto;
+    display: block;
+    margin-bottom: 0;
+  }
+  .footer-brand-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+  .brand-tagline {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .meta-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .meta-value {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+  }
+
+  .para-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+  }
+  .para-label .line { height: 1px; width: 4rem; background-color: var(--accent); }
+  .para-label span { font-size: 12px; letter-spacing: 0.3em; font-weight: 500; text-transform: uppercase; }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 9vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+  h1.hero-title .italic-accent {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+
+  .hero-subcopy {
+    max-width: 42rem;
+    font-size: 18px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-footer-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+  }
+
+  /* Animated bounce arrow */
+  .bounce {
+    display: inline-block;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+
+  /* Stat cards */
+  .grid-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-left: 1px solid var(--border-accent);
+  }
+  @media (min-width: 768px) { .grid-stats { grid-template-columns: repeat(3, 1fr); } }
+
+  .stat-card {
+    padding: 2rem;
+    border-top: 1px solid var(--border-accent);
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .stat-label {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .stat-source {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Observation cards */
+  .observation {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border-accent);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .observation { flex-direction: row; gap: 2.5rem; }
+  }
+  .observation-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--accent);
+    font-style: italic;
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) { .observation-num { width: 5rem; } }
+  .observation-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.875rem;
+    line-height: 1.25;
+  }
+
+  /* Angle grid */
+  .angle-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--border-accent);
+    border-bottom: 1px solid var(--border-accent);
+  }
+  @media (min-width: 768px) { .angle-grid { grid-template-columns: repeat(5, 1fr); } }
+
+  .angle-card {
+    padding: 2rem;
+    border-right: 1px solid var(--border-accent);
+  }
+  .angle-card:last-child { border-right: none; }
+  @media (max-width: 767px) {
+    .angle-card { border-right: none; border-bottom: 1px solid var(--border-accent); }
+    .angle-card:last-child { border-bottom: none; }
+  }
+  .angle-num {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .angle-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.625rem;
+    line-height: 1.2;
+  }
+  .angle-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .big-quote {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--text);
+    margin-top: 5rem;
+    max-width: 56rem;
+  }
+  .big-quote .quote-highlight {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Service cards grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .service-card {
+    padding: 2rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.875rem;
+    line-height: 1.25;
+  }
+  .service-desc {
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .service-list {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .service-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .service-bullet {
+    width: 5px;
+    height: 5px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+  .service-list-text {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  /* Production block */
+  .production-block {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background-color: var(--surface-elevated);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .production-block { flex-direction: row; }
+  }
+  .production-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .production-badge {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .production-title {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .production-prices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1.5rem;
+  }
+  .production-price-number {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .production-price-label {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .production-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  /* Investment toggle */
+  .plan-toggle {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    padding: 0.375rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .plan-btn {
+    padding: 0.75rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: var(--text-dim);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .plan-btn.active {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+
+  .plan-panel {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .plan-panel.hidden {
+    display: none;
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) { .plan-grid { grid-template-columns: 1fr 1fr; } }
+
+  .plan-label {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .plan-tagline {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .plan-price-box {
+    padding: 2.5rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .plan-price-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .plan-price-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .plan-price-big {
+    font-family: var(--font-display);
+    font-size: 72px;
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+  }
+  .plan-price-currency {
+    font-size: 16px;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .plan-price-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .plan-setup {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .plan-setup-title {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-bottom: 0.375rem;
+  }
+  .plan-setup-note {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .plan-breakdown {
+    background-color: var(--surface-elevated);
+    border: 1px solid var(--border);
+  }
+  .plan-breakdown-head {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-breakdown-head-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .plan-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-breakdown-row:last-child { border-bottom: none; }
+  .plan-breakdown-label {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .plan-breakdown-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .plan-breakdown-amount {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .plan-breakdown-amount.included {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .plan-breakdown-nota {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .pauta-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .pauta-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .pauta-title {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.375rem;
+  }
+  .pauta-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .pauta-body strong { color: var(--text); font-weight: 500; }
+
+  /* Horizonte */
+  .horizon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--border-accent);
+  }
+  @media (min-width: 768px) { .horizon-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .horizon-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border-accent);
+    border-bottom: 1px solid var(--border-accent);
+  }
+  .horizon-card:last-child { border-right: none; }
+  @media (max-width: 767px) {
+    .horizon-card { border-right: none; }
+  }
+  .horizon-period {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .horizon-title {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .horizon-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* Cierre */
+  .cierre {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .cierre-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 50% 50%, var(--accent) 0%, transparent 60%);
+  }
+  .cierre-inner {
+    position: relative;
+    z-index: 10;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 5rem 0;
+  }
+  .cierre-label {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+  }
+  .cierre-statement {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.15;
+    color: var(--text);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+  }
+  .cierre-statement .italic-accent {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .cierre-line {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+  }
+  .cierre-line-el {
+    height: 1px;
+    width: 6rem;
+    background-color: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    padding: 3rem 1.5rem;
+    border-top: 1px solid var(--border-accent);
+    background-color: var(--surface);
+  }
+  @media (min-width: 768px) { footer { padding: 3rem 3rem; } }
+  @media (min-width: 1024px) { footer { padding: 3rem 5rem; } }
+  .footer-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  @media (min-width: 768px) {
+    .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .footer-meta {
+    text-align: left;
+  }
+  @media (min-width: 768px) { .footer-meta { text-align: right; } }
+  .footer-meta-title {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 0.375rem;
+  }
+  .footer-meta-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* Utility */
+  .text-right { text-align: right; }
+  .mb-12 { margin-bottom: 3rem; }
+  .mb-16 { margin-bottom: 4rem; }
+  .mb-20 { margin-bottom: 5rem; }
+  .mb-8 { margin-bottom: 2rem; }
+  .mb-6 { margin-bottom: 1.5rem; }
+  .mt-6 { margin-top: 1.5rem; }
+  .mt-20 { margin-top: 5rem; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+  }
+  @media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+
+  .subtle-label {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-top reveal">
+    <div>
+      <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="brand-logo" />
+    </div>
+    <div class="text-right">
+      <div class="meta-label">Propuesta Estratégica</div>
+      <div class="meta-value">Abril 2026</div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="reveal reveal-delay-2">
+      <div class="para-label">
+        <div class="line"></div>
+        <span>Para</span>
+      </div>
+
+      <h1 class="hero-title">
+        Premium<br>
+        <span class="italic-accent">Used Car</span>
+      </h1>
+
+      <p class="hero-subcopy">
+        Una propuesta para transformar cuarenta años de curación automotriz premium en dominio digital — desde la puerta única en Puerta de Hierro hasta cada búsqueda que hace un comprador calificado a las diez de la noche.
+      </p>
+    </div>
+  </div>
+
+  <div class="hero-bottom reveal reveal-delay-4">
+    <div class="hero-footer-label">PROPUESTA · DIGITAL · ESTRATÉGICA</div>
+    <div class="bounce" style="color: var(--accent); font-size: 20px;">⌄</div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section class="section">
+  <div class="section-inner">
+    <div class="reveal section-label">
+      <span>01</span>
+      <div class="divider"></div>
+      <span>Contexto</span>
+    </div>
+
+    <h2 class="reveal display-heading xl max-w-4xl">
+      El mercado se mueve.<br>
+      <span class="accent-italic">Y el comprador premium vive en digital.</span>
+    </h2>
+
+    <div class="two-col max-w-5xl">
+      <p class="reveal paragraph">
+        El mercado mexicano de autos seminuevos cerró 2025 con crecimiento sostenido mientras los nuevos se contrajeron 6.1%. El comprador de auto premium no decide rápido: investiga un promedio de dos meses antes del primer contacto físico, y la mayor parte de ese recorrido ocurre en digital.
+      </p>
+      <p class="reveal reveal-delay-1 paragraph">
+        Para un negocio con cuatro décadas vendiendo unidades que van de quinientos mil a más de seis millones de pesos, el terreno se juega en otro lugar: quien capture esa ventana de investigación con experiencia profesional, curada y con trazabilidad, gana la conversación antes de que el comprador pise el lote.
+      </p>
+    </div>
+
+    <div class="grid-stats">
+      <div class="reveal stat-card">
+        <div class="stat-number">+2.4%</div>
+        <p class="stat-label">Crecimiento anual del mercado de seminuevos en México 2025</p>
+        <p class="stat-source">AMDA / SimIndex</p>
+      </div>
+      <div class="reveal reveal-delay-1 stat-card">
+        <div class="stat-number">97%</div>
+        <p class="stat-label">Del journey de compra de auto premium ocurre en digital antes del primer contacto físico</p>
+        <p class="stat-source">Think with Google</p>
+      </div>
+      <div class="reveal reveal-delay-2 stat-card">
+        <div class="stat-number">2+ meses</div>
+        <p class="stat-label">Ciclo promedio de decisión del comprador premium — donde se gana o se pierde</p>
+        <p class="stat-source">Google Automotive Insights</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EL MOMENTO -->
+<section class="section section-surface">
+  <div class="section-inner">
+    <div class="reveal section-label">
+      <span>02</span>
+      <div class="divider"></div>
+      <span>El momento</span>
+    </div>
+
+    <h2 class="reveal display-heading xl max-w-5xl">
+      Premium Used Car tiene un producto<br>
+      <span class="accent-italic">que excede su presencia digital.</span>
+    </h2>
+
+    <div class="max-w-3xl mb-16" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <p class="reveal paragraph">
+        La trayectoria, la ubicación en Puerta de Hierro, el inventario real — autos, camionetas, motos, yates, lanchas — y una reputación física de cuatro estrellas y ocho décimas son activos que la mayoría de los competidores en Guadalajara no tiene.
+      </p>
+      <p class="reveal reveal-delay-1 paragraph">
+        El terreno digital, sin embargo, cuenta otra historia. Y no es una historia de falta de actividad. Es una historia de falta de <em class="inline-accent">estrategia visible</em> — en un mercado donde independientes con menos años ya construyen audiencias considerablemente mayores, y donde la ventana para tomar posición premium se cierra con cada mes que pasa.
+      </p>
+    </div>
+
+    <div class="mt-20">
+      <div class="reveal subtle-label">Lo que encontramos</div>
+
+      <div class="reveal observation">
+        <div class="observation-num">i</div>
+        <div style="flex: 1;">
+          <h4 class="observation-title">Redes sociales sin estrategia visible</h4>
+          <p class="paragraph muted">El perfil de Instagram acumula más de mil publicaciones pero mantiene apenas seis mil seguidores. La causa no es el algoritmo: son piezas genéricas sin pilares de contenido, sin narrativa consistente, sin el tratamiento visual que exige un inventario que va del Mercedes-Maybach al McLaren 720S. Cantidad sin dirección no construye autoridad.</p>
+        </div>
+      </div>
+
+      <div class="reveal observation">
+        <div class="observation-num">ii</div>
+        <div style="flex: 1;">
+          <h4 class="observation-title">Sitio con fricción crítica de conversión</h4>
+          <p class="paragraph muted">Varias páginas de inventario muestran cero vehículos mientras otras sí tienen stock. Las meta descripciones están duplicadas en todas las páginas — Google literalmente no sabe cómo posicionar cada sección. No existe página Nosotros ni narrativa de marca, el único canal de contacto es WhatsApp sin atribución, y no hay simulador de crédito pese a que siete de cada diez ventas automotrices en México se cierran financiadas.</p>
+        </div>
+      </div>
+
+      <div class="reveal observation">
+        <div class="observation-num">iii</div>
+        <div style="flex: 1;">
+          <h4 class="observation-title">Reputación infrautilizada</h4>
+          <p class="paragraph muted">El perfil de Google Business sostiene 4.8 estrellas — un activo sólido — pero con apenas treinta y nueve reseñas para más de una década de operación. Cada estrella adicional representa casi 9% más conversión local. Automatizar la solicitud post-venta triplicaría ese número en nueve meses.</p>
+        </div>
+      </div>
+
+      <div class="reveal observation">
+        <div class="observation-num">iv</div>
+        <div style="flex: 1;">
+          <h4 class="observation-title">Sin trazabilidad de leads</h4>
+          <p class="paragraph muted">Cada consulta llega a WhatsApp, se atiende manualmente y se pierde en el hilo. Sin CRM, no hay manera de saber cuántos leads genera cada canal, qué cerró y qué no, ni cómo nutrir a un comprador que está en el mes uno de un ciclo de dos. En ventas consultivas de alto ticket, esto es silenciosamente caro.</p>
+        </div>
+      </div>
+
+      <div class="reveal observation">
+        <div class="observation-num">v</div>
+        <div style="flex: 1;">
+          <h4 class="observation-title">Categorías premium sin activación digital</h4>
+          <p class="paragraph muted">Motos, yates y lanchas aparecen en la navegación pero no tienen inventario online visible. Es justamente el mix que ningún competidor en la zona ofrece — y es el diferenciador lifestyle más valioso para el perfil de comprador que ya pisa Puerta de Hierro por otras razones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EL ÁNGULO -->
+<section class="section">
+  <div class="section-inner">
+    <div class="reveal section-label">
+      <span>03</span>
+      <div class="divider"></div>
+      <span>El ángulo</span>
+    </div>
+
+    <h2 class="reveal display-heading xl max-w-5xl">
+      Hay una posición que<br>
+      <span class="accent-italic">nadie más puede ocupar</span> en Guadalajara.
+    </h2>
+
+    <div class="max-w-3xl mb-20">
+      <p class="reveal paragraph">
+        Los grandes marketplaces compiten por volumen masivo y cargan el peso reputacional de su escala. Las redes oficiales de marca dependen de programas institucionales con restricciones. Otros jugadores locales tienen volumen pero no pelean posicionamiento premium. Y los independientes con audiencia digital no tienen los cuarenta años, ni la ubicación, ni el inventario multi-categoría.
+      </p>
+      <p class="reveal reveal-delay-1 paragraph mt-6">
+        Ningún jugador en Guadalajara combina hoy estos cinco elementos al mismo tiempo. Esa intersección, bien comunicada, es la tesis de marca.
+      </p>
+    </div>
+
+    <div class="angle-grid">
+      <div class="reveal angle-card">
+        <div class="angle-num">01</div>
+        <h4 class="angle-title">Cuatro décadas</h4>
+        <p class="angle-body">Curación automotriz premium como activo de confianza</p>
+      </div>
+      <div class="reveal reveal-delay-1 angle-card">
+        <div class="angle-num">02</div>
+        <h4 class="angle-title">Independiente</h4>
+        <p class="angle-body">Sin ataduras de programa oficial de marca</p>
+      </div>
+      <div class="reveal reveal-delay-2 angle-card">
+        <div class="angle-num">03</div>
+        <h4 class="angle-title">Multi-producto</h4>
+        <p class="angle-body">Autos, camionetas, motos, yates y lanchas</p>
+      </div>
+      <div class="reveal reveal-delay-3 angle-card">
+        <div class="angle-num">04</div>
+        <h4 class="angle-title">Puerta de Hierro</h4>
+        <p class="angle-body">El corredor premium más denso de Occidente</p>
+      </div>
+      <div class="reveal reveal-delay-4 angle-card">
+        <div class="angle-num">05</div>
+        <h4 class="angle-title">Boutique</h4>
+        <p class="angle-body">Una sola puerta — curación, no catálogo masivo</p>
+      </div>
+    </div>
+
+    <div class="reveal big-quote">
+      La propuesta no es convertirse en otra agencia digital. Es convertirse en el nombre que aparece cuando un empresario de Andares escribe <span class="quote-highlight">"Porsche Cayenne seminuevo Zapopan"</span> en su iPhone a las diez de la noche.
+    </div>
+  </div>
+</section>
+
+<!-- LA PROPUESTA -->
+<section class="section section-surface">
+  <div class="section-inner">
+    <div class="reveal section-label">
+      <span>04</span>
+      <div class="divider"></div>
+      <span>La propuesta</span>
+    </div>
+
+    <h2 class="reveal display-heading xl max-w-4xl">
+      Cinco frentes, una ejecución<br>
+      <span class="accent-italic">coordinada.</span>
+    </h2>
+
+    <div class="max-w-3xl mb-16">
+      <p class="reveal paragraph">
+        No se trata de activar canales sueltos. Se trata de construir un ecosistema donde el sitio, las redes, los anuncios, el CRM y la reputación trabajan sobre el mismo prospecto, en la misma conversación, durante los dos meses que dura su decisión.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="reveal service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <h4 class="service-title">Renovación del sitio</h4>
+        <p class="service-desc">Un sitio que comunica boutique premium desde el primer segundo, con el inventario vivo como centro de la experiencia y caminos de conversión claros en cada vehículo.</p>
+        <div class="service-list">
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Rediseño visual con dirección de arte premium</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Fichas de producto con video, WhatsApp y formulario</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Páginas Nosotros, Financiamiento, Garantía, Blog</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Simulador de crédito y proceso de compra visible</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Optimización SEO técnica y schema markup</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Velocidad móvil optimizada</span></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1 service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h4 class="service-title">Redes sociales con estrategia</h4>
+        <p class="service-desc">Tres a cinco Reels semanales, publicaciones tipo carrusel con narrativa, Stories diarias. Pilares de contenido claros: producto, historia, experiencia, educación, entrega.</p>
+        <div class="service-list">
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Calendario editorial mensual con pilares definidos</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Dirección de arte y tratamiento visual consistente</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Producción de Reels y posts con identidad premium</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Gestión activa de Stories y comunidad</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Reporte de métricas y aprendizajes mensuales</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Gestión integrada de Google Business Profile</span></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <h4 class="service-title">Google Ads</h4>
+        <p class="service-desc">Captación de compradores en el momento exacto de intención. Campañas de búsqueda por modelo, Performance Max con feed de inventario, retargeting al sitio.</p>
+        <div class="service-list">
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Search Ads por marca, modelo y ubicación</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Performance Max con feed de inventario</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Campañas de remarketing al sitio</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Segmentación geográfica fina por colonia premium</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Reportes de costo por lead y conversión</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Optimización continua por performance</span></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h4 class="service-title">Meta Ads</h4>
+        <p class="service-desc">Advantage+ Catalog Ads mostrando unidades reales del inventario a audiencias calificadas. Segmentación por colonia e intereses de alto poder adquisitivo.</p>
+        <div class="service-list">
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Catalog Ads con feed de inventario sincronizado</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Segmentación por polígonos de colonia premium</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Lookalikes de clientes existentes</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Creatividades con dirección de arte consistente</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Campañas de awareness y conversión paralelas</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Integración con CRM para atribución</span></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-4 service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h4 class="service-title">CRM y automatización</h4>
+        <p class="service-desc">GoHighLevel como columna vertebral: cada lead de cada canal entra al mismo pipeline, se nutre automáticamente durante el ciclo de dos meses, y nunca se pierde.</p>
+        <div class="service-list">
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Pipeline visual de oportunidades</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Integración WhatsApp, Instagram, Facebook, sitio</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Flujos de nurturing para leads en decisión</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Recordatorios de visita y seguimiento</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Solicitud automática de reseña post-venta</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Reportes de origen, avance y cierre</span></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-5 service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+        <h4 class="service-title">Medición y reportes</h4>
+        <p class="service-desc">Lo que no se mide no se mejora. Reportes mensuales cruzando performance de canales, calidad de leads, avance en pipeline y aprendizajes accionables.</p>
+        <div class="service-list">
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Dashboard mensual integrado</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Métricas por canal y por campaña</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Análisis de calidad de lead por origen</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Recomendaciones de optimización</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Sesión mensual de revisión estratégica</span></div>
+          <div class="service-list-item"><span class="service-bullet"></span><span class="service-list-text">Ajustes continuos basados en datos</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producción audiovisual -->
+    <div class="reveal production-block">
+      <svg class="production-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+      <div style="flex: 1;">
+        <div class="production-badge">Fuertemente recomendado</div>
+        <h4 class="production-title">Producción audiovisual</h4>
+        <p class="paragraph muted mb-6">
+          En autos premium, el producto físico es el contenido. Un walk-around cinematográfico de un Porsche Cayenne Turbo Hybrid o un McLaren 720S se consume diez veces más que una foto estática. La producción profesional — foto y video — es la diferencia entre un feed que anuncia inventario y uno que construye deseo.
+        </p>
+        <div class="production-prices">
+          <div>
+            <div class="production-price-number">$3,000</div>
+            <div class="production-price-label">Sesión de foto por unidad</div>
+          </div>
+          <div>
+            <div class="production-price-number">$5,500</div>
+            <div class="production-price-label">Video por unidad · + IVA</div>
+          </div>
+        </div>
+        <p class="production-note">Cotización eventual e independiente, activable por lote de unidades según inventario.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section class="section">
+  <div class="section-inner">
+    <div class="reveal section-label">
+      <span>05</span>
+      <div class="divider"></div>
+      <span>Inversión</span>
+    </div>
+
+    <h2 class="reveal display-heading xl max-w-4xl">
+      Dos caminos.<br>
+      <span class="accent-italic">La misma dirección.</span>
+    </h2>
+
+    <div class="max-w-3xl mb-16">
+      <p class="reveal paragraph">
+        El plan Esencial es la base mínima viable. El Recomendado es el ecosistema completo pensado para el perfil de Premium Used Car. Ambos construyen sobre el mismo sitio, el mismo CRM, la misma estrategia de marca. La diferencia está en la amplitud de la captación.
+      </p>
+    </div>
+
+    <div class="reveal plan-toggle">
+      <button class="plan-btn" data-plan="esencial" onclick="switchPlan('esencial')">Esencial</button>
+      <button class="plan-btn active" data-plan="recomendado" onclick="switchPlan('recomendado')">Recomendado</button>
+    </div>
+
+    <!-- Plan Esencial -->
+    <div class="plan-panel hidden" data-panel="esencial">
+      <div class="plan-grid">
+        <div>
+          <div class="plan-label">Plan Esencial</div>
+          <h3 class="plan-tagline">Fundamentos digitales activos</h3>
+          <p class="paragraph muted">La base mínima viable: sitio funcional, presencia social profesional, captación con Google Ads, y CRM para no perder leads. Deja afuera Meta Ads individual, pero mantiene la infraestructura crítica.</p>
+        </div>
+
+        <div class="plan-price-box">
+          <div class="plan-price-label">Inversión mensual</div>
+          <div class="plan-price-amount">
+            <span class="plan-price-big">$15,500</span>
+            <span class="plan-price-currency">MXN</span>
+          </div>
+          <div class="plan-price-sub">Más IVA · Más inversión única de sitio</div>
+          <div class="plan-setup">
+            <div class="plan-setup-title">+ $20,000 única</div>
+            <div class="plan-setup-note">Renovación del sitio web · 50% al inicio, 50% a entrega</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-breakdown">
+        <div class="plan-breakdown-head"><div class="plan-breakdown-head-label">Desglose</div></div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Renovación estratégica del sitio</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$20,000</span>
+            <span class="plan-breakdown-nota">Inversión única</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Gestión de redes sociales</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$7,500</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Google Ads — gestión</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$4,000</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">CRM + automatización (GoHighLevel)</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$4,000</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Google Business Profile + reputación</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount included">Incluido</span>
+            <span class="plan-breakdown-nota">con redes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pauta-box">
+        <svg class="pauta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <div>
+          <div class="pauta-title">Pauta publicitaria recomendada</div>
+          <p class="pauta-body">Adicional a la gestión, se recomienda pauta de <strong>$10,000 MXN mensuales en Google Ads</strong>. La pauta se invierte directamente en la plataforma y se ajusta mes a mes según performance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan Recomendado -->
+    <div class="plan-panel" data-panel="recomendado">
+      <div class="plan-grid">
+        <div>
+          <div class="plan-label">Plan Recomendado</div>
+          <h3 class="plan-tagline">Ecosistema digital completo</h3>
+          <p class="paragraph muted">El ecosistema pensado para el perfil de Premium Used Car: Google y Meta trabajando en paralelo sobre la geolocalización premium de ZMG, con el CRM capturando cada lead de cada canal. Es la configuración que convierte inversión en trazabilidad.</p>
+        </div>
+
+        <div class="plan-price-box">
+          <div class="plan-price-label">Inversión mensual</div>
+          <div class="plan-price-amount">
+            <span class="plan-price-big">$19,500</span>
+            <span class="plan-price-currency">MXN</span>
+          </div>
+          <div class="plan-price-sub">Más IVA · Más inversión única de sitio</div>
+          <div class="plan-setup">
+            <div class="plan-setup-title">+ $20,000 única</div>
+            <div class="plan-setup-note">Renovación del sitio web · 50% al inicio, 50% a entrega</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-breakdown">
+        <div class="plan-breakdown-head"><div class="plan-breakdown-head-label">Desglose</div></div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Renovación estratégica del sitio</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$20,000</span>
+            <span class="plan-breakdown-nota">Inversión única</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Gestión de redes sociales</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$7,500</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Google Ads — gestión</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$4,000</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Meta Ads — gestión</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$4,000</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">CRM + automatización (GoHighLevel)</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount">$4,000</span>
+            <span class="plan-breakdown-nota">/ mes</span>
+          </div>
+        </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">Google Business Profile + reputación</div>
+          <div class="plan-breakdown-price">
+            <span class="plan-breakdown-amount included">Incluido</span>
+            <span class="plan-breakdown-nota">con redes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pauta-box">
+        <svg class="pauta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <div>
+          <div class="pauta-title">Pauta publicitaria recomendada</div>
+          <p class="pauta-body">Adicional a la gestión, se recomienda pauta de <strong>$10,000 MXN mensuales en Google Ads</strong> y <strong>$10,000 MXN mensuales en Meta Ads</strong>, totalizando $20,000 MXN en pauta. La pauta se invierte directamente en las plataformas y se ajusta mes a mes según performance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTE -->
+<section class="section section-surface">
+  <div class="section-inner">
+    <div class="reveal section-label">
+      <span>06</span>
+      <div class="divider"></div>
+      <span>Horizonte</span>
+    </div>
+
+    <h2 class="reveal display-heading xl max-w-4xl mb-16">
+      A dónde llegamos<br>
+      <span class="accent-italic">en doce meses.</span>
+    </h2>
+
+    <div class="horizon-grid">
+      <div class="reveal horizon-card">
+        <div class="horizon-period">Primeros 90 días</div>
+        <h4 class="horizon-title">Infraestructura viva</h4>
+        <p class="horizon-body">Sitio renovado operando, CRM capturando cada lead, campañas de Google y Meta activas con primeras optimizaciones. Cadencia estable de redes con dirección de arte consistente.</p>
+      </div>
+      <div class="reveal reveal-delay-1 horizon-card">
+        <div class="horizon-period">Mes 4 al 8</div>
+        <h4 class="horizon-title">Tracción visible</h4>
+        <p class="horizon-body">Tráfico web creciendo en consultas premium calificadas. Instagram pasando de seis a quince mil seguidores con engagement real. Google Business escalando de treinta y nueve a cien reseñas con rating sostenido.</p>
+      </div>
+      <div class="reveal reveal-delay-2 horizon-card">
+        <div class="horizon-period">Mes 9 al 12</div>
+        <h4 class="horizon-title">Posición de autoridad</h4>
+        <p class="horizon-body">Premium Used Car reconocido como la referencia boutique premium de Guadalajara. Leads calificados llegando por canales orgánicos además de pauta. Base reputacional y data que abre conversaciones con compradores que antes no se alcanzaban.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="section cierre">
+  <div class="cierre-bg"></div>
+  <div class="cierre-inner">
+    <div class="reveal cierre-label">Lo que estamos proponiendo</div>
+
+    <div class="reveal reveal-delay-1 cierre-statement">
+      Premium Used Car no necesita vender más.<br>
+      <span class="italic-accent">Necesita que el comprador premium los encuentre primero.</span>
+    </div>
+
+    <div class="cierre-line"><div class="cierre-line-el"></div></div>
+
+    <p class="reveal reveal-delay-2 paragraph muted max-w-2xl mx-auto">
+      Esta propuesta no es un gasto operativo. Es la infraestructura mínima para que un negocio que ya vende unidades de medio millón a seis millones de pesos deje de perder la mayoría de los leads que nunca se miden, y empiece a capturar los que la competencia tomará en cuanto adopte el mismo stack.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="footer-brand-logo" />
+    </div>
+    <div class="footer-meta">
+      <div class="footer-meta-title">Propuesta estratégica digital</div>
+      <div class="footer-meta-sub">Premium Used Car · Abril 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  revealElements.forEach(el => observer.observe(el));
+
+  // Plan toggle
+  function switchPlan(planName) {
+    document.querySelectorAll('.plan-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.plan === planName);
+    });
+    document.querySelectorAll('.plan-panel').forEach(panel => {
+      panel.classList.toggle('hidden', panel.dataset.panel !== planName);
+    });
+  }
+</script>
+
+</body>
+</html>

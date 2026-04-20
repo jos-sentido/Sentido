@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (por si en algún futuro se agrega build step)
+node_modules/
+.env
+.env.local
+
+# Vercel
+.vercel
+
+# Temporales
+*.tmp
+*.bak

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Propuestas</title>
+<meta name="description" content="Propuestas estratégicas de Sentido Branding & Advertising" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0A0A0A;
+    color: #EDEAE4;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 25% 30%, #C5A572 0%, transparent 45%),
+      radial-gradient(circle at 80% 70%, #C5A572 0%, transparent 40%);
+  }
+  .container {
+    max-width: 560px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .logo {
+    width: 180px;
+    height: auto;
+    margin: 0 auto 2.5rem;
+    display: block;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  h1 .accent {
+    color: #C5A572;
+    font-style: italic;
+  }
+  .tagline {
+    font-size: 11px;
+    color: #6B6661;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+  p {
+    color: #9A9590;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-size: 15px;
+  }
+  .accent-inline { color: #C5A572; font-style: italic; }
+  a {
+    color: #C5A572;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(197, 165, 114, 0.3);
+    transition: border-color 0.3s;
+  }
+  a:hover { border-bottom-color: #C5A572; }
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: #C5A572;
+    margin: 2.5rem auto;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="logo" />
+
+    <h1>
+      Espacio de <span class="accent">propuestas</span>
+    </h1>
+    <div class="tagline">Estrategia digital · desde 2010</div>
+
+    <p>
+      Este es el espacio donde viven nuestras propuestas estratégicas.
+      Si recibiste un enlace específico, escríbelo en la barra del navegador.
+    </p>
+
+    <div class="divider"></div>
+
+    <p>
+      Para conocer nuestro trabajo, visita <a href="https://sentido.mx">sentido.mx</a>.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+# Este archivo existe para que Git mantenga la carpeta /propuestas/ aunque esté vacía.
+# Cada propuesta va en su propia subcarpeta: /propuestas/[nombre-kebab]/index.html
