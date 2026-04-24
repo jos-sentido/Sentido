@@ -149,6 +149,26 @@
     pointer-events: none;
   }
   .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-sentido-mark {
+    display: inline-flex; align-items: center; gap: 0.875rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-sentido-mark img {
+    height: 44px; width: auto; display: block;
+    opacity: 0.95;
+  }
+  .hero-sentido-mark .mark-tag {
+    font-family: var(--font-display);
+    font-size: 13px; font-style: italic;
+    color: var(--ink-muted);
+    letter-spacing: 0.01em;
+  }
+  .hero-sentido-mark .mark-divider {
+    width: 1px; height: 28px; background: var(--border-strong);
+  }
+  @media (min-width: 768px) { .hero-sentido-mark img { height: 52px; } }
   .hero-meta {
     display: flex; align-items: center; gap: 0.875rem;
     font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
@@ -465,6 +485,11 @@
 <!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
+    <div class="hero-sentido-mark reveal">
+      <img src="/assets/logo-sentido-dark.png" alt="Sentido Branding & Advertising" />
+      <span class="mark-divider"></span>
+      <span class="mark-tag">para Fabiaa Clo</span>
+    </div>
     <div class="hero-meta reveal">
       <span>Propuesta estratégica</span>
       <span class="divider"></span>
