@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Fabiaa Clo</title>
+<meta name="description" content="Propuesta estratégica de Sentido para Fabiaa Clo — construir la casa digital de la marca sin abandonar lo que ya funciona en Instagram." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF6F1;
+    --surface: #F3ECE2;
+    --surface-elevated: #EDE3D4;
+    --border: #E3D6C2;
+    --border-strong: #D4C2A8;
+    --accent: #C8836B;
+    --accent-deep: #A56550;
+    --accent-soft: #E6B29F;
+    --accent-tint: #F5E4DB;
+    --ink: #2B2420;
+    --ink-soft: #4D433D;
+    --ink-muted: #7A6E66;
+    --ink-whisper: #A89B91;
+    --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+  .reveal-d5 { transition-delay: 0.40s; }
+
+  /* Nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(250, 246, 241, 0.85);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--border); }
+  .nav-inner {
+    max-width: 80rem; margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-logo img { height: 26px; display: block; opacity: 0.92; }
+  .nav-logo .divider { width: 1px; height: 18px; background: var(--border-strong); }
+  .nav-logo .label {
+    font-family: var(--font-display);
+    font-size: 15px; font-style: italic; color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: none; gap: 2rem; }
+  @media (min-width: 900px) { .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent-deep); }
+  .nav-cta {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent-deep); text-decoration: none; font-weight: 500;
+  }
+
+  /* Section */
+  .section {
+    width: 100%;
+    padding: 6rem 1.5rem;
+    position: relative;
+  }
+  @media (min-width: 768px) { .section { padding: 8rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 9rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-narrow { max-width: 56rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-elevated { background-color: var(--surface-elevated); }
+
+  /* Section label */
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.875rem;
+    margin-bottom: 2rem;
+    color: var(--accent-deep);
+  }
+  .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .section-label .divider { height: 1px; width: 2.5rem; background-color: var(--accent); opacity: 0.55; }
+  .section-label span { font-size: 11px; letter-spacing: 0.28em; font-weight: 500; text-transform: uppercase; }
+
+  /* Typography */
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; color: var(--ink); line-height: 1.08; }
+  .h-xl { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.02em; }
+  .h-lg { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+  .h-md { font-size: clamp(1.5rem, 3vw, 2.125rem); }
+  .h-sm { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.2; }
+  .italic-accent { font-style: italic; color: var(--accent-deep); }
+
+  .p {
+    font-size: 17px; line-height: 1.75; font-weight: 400; color: var(--ink-soft);
+  }
+  .p.lg { font-size: 19px; line-height: 1.7; }
+  .p.muted { color: var(--ink-muted); }
+  .p.sm { font-size: 14px; line-height: 1.65; }
+  .p + .p { margin-top: 1.25rem; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 1.5rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 10rem 3rem 6rem; } }
+  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 6rem; } }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 50% at 80% 20%, rgba(200, 131, 107, 0.14), transparent 70%),
+      radial-gradient(50% 50% at 10% 85%, rgba(230, 178, 159, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-meta {
+    display: flex; align-items: center; gap: 0.875rem;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta .divider { height: 1px; width: 2.5rem; background: var(--accent); opacity: 0.55; }
+
+  .hero-brand {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .hero-brand .dot { color: var(--accent); }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 48rem;
+    margin-bottom: 3rem;
+    line-height: 1.35;
+  }
+
+  .hero-details {
+    display: grid; grid-template-columns: 1fr; gap: 2rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--border);
+    max-width: 48rem;
+  }
+  @media (min-width: 640px) { .hero-details { grid-template-columns: repeat(3, 1fr); } }
+  .hero-detail .label {
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink-whisper); margin-bottom: 0.5rem;
+  }
+  .hero-detail .value {
+    font-family: var(--font-display); font-size: 1.125rem; color: var(--ink);
+  }
+
+  /* Contexto / intro */
+  .lede {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: 1.25;
+    color: var(--ink);
+    font-weight: 400;
+    max-width: 54rem;
+  }
+  .lede em { font-style: italic; color: var(--accent-deep); }
+
+  /* Hallazgos grid */
+  .findings {
+    display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .findings { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+  .finding {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .finding:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+  .finding .num {
+    font-family: var(--font-display); font-size: 14px; font-style: italic;
+    color: var(--accent-deep); margin-bottom: 1rem; letter-spacing: 0.05em;
+  }
+  .finding h4 {
+    font-family: var(--font-display); font-size: 1.25rem;
+    color: var(--ink); margin-bottom: 0.75rem; letter-spacing: -0.005em;
+  }
+  .finding p {
+    font-size: 15px; line-height: 1.65; color: var(--ink-soft);
+  }
+
+  /* Pillars (ángulo) */
+  .pillars {
+    display: grid; grid-template-columns: 1fr; gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  @media (min-width: 768px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+  .pillar {
+    padding-top: 1.75rem;
+    border-top: 2px solid var(--accent);
+  }
+  .pillar .num {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 13px; color: var(--accent-deep); letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  .pillar h4 {
+    font-family: var(--font-display); font-size: 1.375rem;
+    color: var(--ink); margin-bottom: 0.875rem;
+  }
+  .pillar p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* Propuesta — servicios */
+  .services { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .service {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2.25rem;
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+    transition: border-color 0.3s ease;
+  }
+  .service:hover { border-color: var(--accent-soft); }
+  @media (min-width: 768px) {
+    .service { grid-template-columns: 180px 1fr; padding: 2.5rem; gap: 2.5rem; }
+  }
+  .service-head {
+    font-family: var(--font-display);
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500;
+    padding-top: 0.5rem;
+  }
+  .service-head .num {
+    display: block; font-size: 2.5rem; font-style: italic; font-weight: 400;
+    color: var(--ink); margin-bottom: 0.25rem; letter-spacing: -0.02em;
+  }
+  .service-body h3 {
+    font-family: var(--font-display); font-size: 1.625rem;
+    color: var(--ink); margin-bottom: 0.875rem; line-height: 1.15;
+  }
+  .service-body > p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; margin-bottom: 1.5rem; }
+  .service-body ul { list-style: none; padding: 0; display: grid; gap: 0.625rem; }
+  .service-body ul li {
+    position: relative; padding-left: 1.5rem;
+    font-size: 14.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .service-body ul li::before {
+    content: ''; position: absolute; left: 0; top: 0.55rem;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Inversión card */
+  .invest-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .invest-card { padding: 3.5rem; } }
+  .invest-card.featured {
+    border-color: var(--accent);
+    position: relative;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--accent-tint) 100%);
+  }
+  .invest-card.featured::before {
+    content: 'Fase 1 · Arranque';
+    position: absolute; top: -14px; left: 2rem;
+    background: var(--accent-deep); color: #fff;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 0.35rem 0.875rem; border-radius: 999px; font-weight: 500;
+  }
+  .invest-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 2rem; flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+  }
+  .invest-head h3 {
+    font-family: var(--font-display); font-size: 1.75rem; color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .invest-head .sub { font-size: 14.5px; color: var(--ink-muted); max-width: 28rem; }
+  .invest-price { text-align: right; min-width: 160px; }
+  .invest-price .amount {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem);
+    color: var(--ink); font-weight: 400; line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .invest-price .cycle { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); margin-top: 0.5rem; font-weight: 500; }
+  .invest-price .iva { font-size: 11px; color: var(--ink-whisper); margin-top: 0.25rem; letter-spacing: 0.1em; }
+
+  .invest-items {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+  }
+  .invest-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.875rem 0;
+    border-bottom: 1px dashed var(--border);
+    gap: 1.5rem;
+  }
+  .invest-item:last-child { border-bottom: none; }
+  .invest-item .desc { font-size: 15px; color: var(--ink); }
+  .invest-item .desc small { display: block; color: var(--ink-muted); font-size: 13px; margin-top: 0.15rem; }
+  .invest-item .val { font-family: var(--font-display); font-size: 1rem; color: var(--ink); font-weight: 500; white-space: nowrap; }
+
+  .invest-footer {
+    margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 13.5px; color: var(--ink-muted); line-height: 1.65;
+  }
+  .invest-footer strong { color: var(--ink); font-weight: 500; }
+
+  /* Optional / opcional blocks */
+  .optional-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  @media (min-width: 640px) { .optional-grid { grid-template-columns: repeat(2, 1fr); } }
+  .optional {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem 1.75rem;
+  }
+  .optional .tag {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .optional h5 { font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); margin-bottom: 0.35rem; }
+  .optional .price { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin-bottom: 0.65rem; }
+  .optional .price .iva { font-size: 11px; color: var(--ink-whisper); letter-spacing: 0.08em; }
+  .optional p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.55; }
+
+  /* Horizonte timeline */
+  .horizon { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+  @media (min-width: 768px) { .horizon { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .milestone {
+    padding: 2rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+  }
+  .milestone .when {
+    font-family: var(--font-display); font-size: 0.875rem; font-style: italic;
+    color: var(--accent-deep); letter-spacing: 0.05em; margin-bottom: 0.75rem;
+  }
+  .milestone h4 {
+    font-family: var(--font-display); font-size: 1.25rem; color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .milestone p { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+
+  /* Closing */
+  .closing {
+    background: var(--ink);
+    color: #F5EFE6;
+    padding: 7rem 1.5rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) { .closing { padding: 9rem 3rem; } }
+  .closing .section-label { color: var(--accent-soft); }
+  .closing .section-label .dot { background: var(--accent-soft); }
+  .closing .section-label .divider { background: var(--accent-soft); opacity: 0.5; }
+  .closing h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    color: #F5EFE6;
+    font-weight: 400;
+    max-width: 44rem; margin: 0 auto 2rem;
+  }
+  .closing h2 em { color: var(--accent-soft); font-style: italic; }
+  .closing p { color: #CBBEB0; font-size: 16.5px; max-width: 36rem; margin: 0 auto 3rem; line-height: 1.7; }
+  .closing .signature {
+    margin-top: 4rem; display: inline-flex; flex-direction: column; align-items: center; gap: 0.875rem;
+  }
+  .closing .signature img { height: 30px; opacity: 0.9; }
+  .closing .signature small {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #8B7F71;
+  }
+
+  /* Footer */
+  .foot {
+    background: var(--ink);
+    color: #8B7F71;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(245, 239, 230, 0.08);
+    font-size: 11.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .foot a { color: #CBBEB0; text-decoration: none; margin: 0 0.5rem; }
+
+  /* Transitional divider */
+  .divider-line {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; margin: 2rem 0 0;
+  }
+  .divider-line .l { flex: 1; height: 1px; background: var(--border); max-width: 120px; }
+  .divider-line .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/assets/logo-sentido-dark.png" alt="Sentido" />
+      <span class="divider"></span>
+      <span class="label">para Fabiaa Clo</span>
+    </div>
+    <div class="nav-links">
+      <a href="#contexto">Contexto</a>
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#angulo">Ángulo</a>
+      <a href="#propuesta">Propuesta</a>
+      <a href="#inversion">Inversión</a>
+    </div>
+    <a href="#cierre" class="nav-cta">Siguiente paso →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-meta reveal">
+      <span>Propuesta estratégica</span>
+      <span class="divider"></span>
+      <span>Sentido · 2026</span>
+    </div>
+    <h1 class="hero-brand reveal reveal-d1">Fabiaa Clo<span class="dot">.</span></h1>
+    <p class="hero-subtitle reveal reveal-d2">
+      Construir la casa digital de la marca <em>sin soltar</em> lo que ya funciona en Instagram.
+    </p>
+    <div class="hero-details reveal reveal-d3">
+      <div class="hero-detail">
+        <div class="label">Marca</div>
+        <div class="value">Ropa femenina emergente · MX</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Fase</div>
+        <div class="value">Fundamentos digitales</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Horizonte</div>
+        <div class="value">90 días para activar</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTO -->
+<section class="section" id="contexto">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>01 · El punto de partida</span></div>
+    <p class="lede reveal reveal-d1">
+      Fabiaa Clo ya <em>vende</em>. Las clientas llegan por Instagram, escriben por DM, confían sin haber visto la marca en ningún otro lado. Eso no es poca cosa — es la parte difícil ya resuelta.
+    </p>
+    <div style="max-width: 54rem; margin-top: 2.5rem;">
+      <p class="p lg reveal reveal-d2">
+        El siguiente salto no es reemplazar Instagram. Es <strong style="color: var(--ink); font-weight: 500;">construirle una casa propia a la marca</strong> — un sitio, una base de clientas, un ecosistema que vive fuera de una plataforma que ya bloqueó una cuenta una vez y podría hacerlo otra.
+      </p>
+      <p class="p lg reveal reveal-d3">
+        La meta de esta propuesta: dejar a Fabiaa Clo con identidad, tienda, sistema de seguimiento y visibilidad propia. IG sigue siendo el motor de adquisición. Lo demás queda del lado de la marca.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section class="section section-surface" id="diagnostico">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>02 · Diagnóstico</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.5rem;">
+      Lo que hoy <span class="italic-accent">acelera</span> y lo que hoy <span class="italic-accent">detiene</span>.
+    </h2>
+    <p class="p reveal reveal-d2" style="max-width: 44rem;">
+      Antes de proponer servicios, mapeamos lo que se observa desde afuera: perfil, contenido, flujo de compra, operación logística. De ahí sale todo lo que viene.
+    </p>
+
+    <div class="findings">
+      <div class="finding reveal reveal-d1">
+        <div class="num">— 01</div>
+        <h4>Venta probada por DM</h4>
+        <p>El modelo funciona. Las clientas preguntan, cotizan y compran directo en Instagram. Eso confirma que hay producto deseado y audiencia real. No hay que cambiarlo, hay que escalarlo con soporte.</p>
+      </div>
+      <div class="finding reveal reveal-d2">
+        <div class="num">— 02</div>
+        <h4>Riesgo concentrado en una plataforma</h4>
+        <p>La cuenta original ya fue bloqueada por Meta. Hoy la nueva cuenta es el único canal de venta. Cada like, cada conversación, cada clienta vive dentro de IG. Sin respaldo propio, un segundo bloqueo cuesta el negocio.</p>
+      </div>
+      <div class="finding reveal reveal-d3">
+        <div class="num">— 03</div>
+        <h4>Sin tienda propia</h4>
+        <p>No hay sitio. La compra depende de que alguien esté disponible para responder el DM. Eso limita horarios, escala y percepción de profesionalismo frente a marcas comparables que ya tienen Shopify activo.</p>
+      </div>
+      <div class="finding reveal reveal-d4">
+        <div class="num">— 04</div>
+        <h4>Contenido tipo selfie/espejo</h4>
+        <p>El tono honesto funciona al inicio y conecta. Pero para crecer en ticket promedio y percepción de marca, hace falta sumar contenido con producción — sin perder la cercanía que hoy convierte.</p>
+      </div>
+      <div class="finding reveal reveal-d5">
+        <div class="num">— 05</div>
+        <h4>Sin base de datos de clientas</h4>
+        <p>Las que ya compraron no están registradas en ningún lado. No hay forma de recordarles un relanzamiento, avisar de una colección nueva o pedir que repitan. Cada venta arranca desde cero.</p>
+      </div>
+      <div class="finding reveal reveal-d5">
+        <div class="num">— 06</div>
+        <h4>Logística viable, operación artesanal</h4>
+        <p>Manuable + DHL resuelven el envío. Políticas de cambio definidas. La operación existe, pero vive en la cabeza de una persona. Formalizarla en sitio y automatización libera tiempo para crear y vender.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁNGULO -->
+<section class="section" id="angulo">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>03 · El ángulo de Sentido</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
+      Tres pilares para pasar de <span class="italic-accent">cuenta con tracción</span> a <span class="italic-accent">marca con casa</span>.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 44rem;">
+      La propuesta se arma alrededor de tres ideas simples: darle a la marca un lugar propio donde vivir, un sistema para acordarse de cada clienta, y una voz consistente que hable con o sin ti detrás del DM.
+    </p>
+
+    <div class="pillars">
+      <div class="pillar reveal reveal-d1">
+        <div class="num">— PILAR I</div>
+        <h4>Voz que escala</h4>
+        <p>Gestión de Instagram + TikTok con mix de contenido orgánico y producción apoyada por IA. Mantiene la cadencia sin depender de que la dueña grabe cada reel — y lleva la marca a la plataforma donde hoy se descubren las marcas emergentes.</p>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="num">— PILAR II</div>
+        <h4>Casa propia</h4>
+        <p>Sitio Shopify con catálogo, pago, envíos y políticas claras. Deja de depender del DM para vender y le da a la marca un lugar que nadie puede bloquear. Llega en Fase 2, cuando haya tracción para sostenerlo.</p>
+      </div>
+      <div class="pillar reveal reveal-d3">
+        <div class="num">— PILAR III</div>
+        <h4>Memoria de cliente</h4>
+        <p>CRM con base de datos propia, seguimiento automatizado por WhatsApp y correo, recordatorios y reactivación. Las clientas dejan de ser anónimas. Se activa cuando el sitio esté vivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA -->
+<section class="section section-surface" id="propuesta">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>04 · La propuesta</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
+      Dos fases, <span class="italic-accent">una misma marca</span>.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 44rem;">
+      Fase 1 arranca hoy con redes en Instagram y TikTok — suficiente para crecer audiencia con ritmo y consistencia. Cuando haya tracción, Fase 2 construye la casa digital: sitio Shopify y CRM propio.
+    </p>
+
+    <div class="services">
+
+      <div class="service reveal reveal-d1">
+        <div class="service-head">
+          <span class="num">01</span>
+          Fase 1 · Instagram
+        </div>
+        <div class="service-body">
+          <h3>Instagram con ritmo y voz consistente</h3>
+          <p>15 publicaciones mensuales con mix de reels, carruseles, posts e historias. La producción de contenido incluye apoyo con IA para mantener la cadencia sin cargar toda la creación sobre una persona. Tono honesto y cercano que ya conecta, estructurado ahora con calendario editorial y objetivos claros.</p>
+          <ul>
+            <li>Calendario editorial mensual y línea gráfica consolidada</li>
+            <li>Copywriting por pieza con CTAs claros hacia WhatsApp</li>
+            <li>Producción de contenido con apoyo de IA (imágenes, variaciones, video)</li>
+            <li>Gestión de historias, encuestas, stickers de compra</li>
+            <li>Reporte mensual de crecimiento y piezas top</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service reveal reveal-d2">
+        <div class="service-head">
+          <span class="num">02</span>
+          Fase 1 · TikTok
+        </div>
+        <div class="service-body">
+          <h3>El contenido de video, también donde se descubren las marcas</h3>
+          <p>Add-on para que todo el video que se produce para Instagram se suba también a TikTok, adaptado al formato y al algoritmo de la plataforma. Es donde hoy se descubren las marcas de ropa femenina emergentes — y el costo marginal es mínimo porque el contenido ya existe.</p>
+          <ul>
+            <li>Adaptación de videos producidos para IG al formato TikTok</li>
+            <li>Copy y hashtags optimizados por plataforma</li>
+            <li>Publicación en cadencia alineada al calendario editorial</li>
+            <li>Monitoreo de tendencias y sonidos relevantes del nicho</li>
+            <li>Reporte de alcance y engagement mensual</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service reveal reveal-d3">
+        <div class="service-head">
+          <span class="num">03</span>
+          Fase 2 · Sitio
+        </div>
+        <div class="service-body">
+          <h3>La tienda donde la marca vive de verdad</h3>
+          <p>Desarrollo de sitio e-commerce en Shopify: catálogo, checkout, integración con Manuable + DHL, políticas de cambios y devoluciones configuradas, dominio y SSL. Diseño alineado a la estética de la marca, mobile-first, listo para recibir tráfico desde IG, TikTok y pauta. Se activa cuando Fase 1 haya generado tracción para sostenerlo.</p>
+          <ul>
+            <li>Catálogo con variantes de talla, color e inventario</li>
+            <li>Checkout con Stripe / Shop Pay / OXXO / transferencias</li>
+            <li>Integración directa con Manuable para guías DHL</li>
+            <li>Páginas de política (cambios 24h, sin devoluciones) formalizadas</li>
+            <li>SEO on-page base + Meta Pixel + Google Analytics instalados</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service reveal reveal-d4">
+        <div class="service-head">
+          <span class="num">04</span>
+          Fase 2 · CRM
+        </div>
+        <div class="service-body">
+          <h3>Base de datos propia y conversaciones en un solo lugar</h3>
+          <p>Implementación de CRM en GoHighLevel: cada DM, cada compra, cada consulta queda registrada en un perfil de clienta. Automatizaciones de WhatsApp y correo para agradecer compra, pedir reseña, notificar nuevas colecciones y reactivar a quienes no compraron en 60 días. Si IG vuelve a fallar, la lista de clientas sigue siendo tuya.</p>
+          <ul>
+            <li>Pipeline comercial: Lead → Conversación → Compra → Recompra</li>
+            <li>Automatización post-compra por WhatsApp + correo</li>
+            <li>Flujo de reactivación a clientas inactivas (60 días)</li>
+            <li>Integración con Shopify para sincronizar clientas y pedidos</li>
+            <li>Campañas manuales para lanzamientos y preventas</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section class="section" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>05 · Inversión</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
+      Fase 1 arranca en <span class="italic-accent">$10,000 MXN</span> mensuales.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 44rem;">
+      Fase 1 activa redes (Instagram + TikTok) con un plan mensual compacto. Fase 2 suma sitio Shopify y CRM cuando haya tracción para sostenerlos — se cotiza aparte para que arranquen sólo cuando el negocio esté listo.
+    </p>
+
+    <!-- FASE 1 FEATURED -->
+    <div class="invest-card featured reveal reveal-d1">
+      <div class="invest-head">
+        <div>
+          <h3>Fase 1 · Plan mensual de redes</h3>
+          <p class="sub">Instagram con TikTok como extensión del contenido de video. Arranca desde el primer mes.</p>
+        </div>
+        <div class="invest-price">
+          <div class="amount">$10,000</div>
+          <div class="cycle">MXN / mes</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
+      <div class="invest-items">
+        <div class="invest-item">
+          <div class="desc">Redes Sociales — Instagram
+            <small>15 publicaciones mensuales · producción con apoyo IA · calendario + reportes</small>
+          </div>
+          <div class="val">$7,500</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Add-on TikTok
+            <small>Adaptación y publicación del contenido de video en TikTok alineado al calendario de IG</small>
+          </div>
+          <div class="val">$2,500</div>
+        </div>
+      </div>
+      <div class="invest-footer">
+        <strong>Total Fase 1:</strong> $10,000 MXN mensuales <strong>+ IVA</strong>. Pago mensual por adelantado. Contrato mínimo sugerido: 3 meses para ver tracción real.
+      </div>
+    </div>
+
+    <!-- FASE 2 HEADER -->
+    <h3 class="h-md reveal" style="margin-top: 4rem; margin-bottom: 0.75rem;">Fase 2 — cuando haya tracción</h3>
+    <p class="p reveal" style="max-width: 44rem; margin-bottom: 2rem;">
+      Sitio propio y CRM. Se activan cuando las redes hayan generado audiencia y conversaciones suficientes para que valga la pena mudar la operación.
+    </p>
+
+    <!-- INVERSIÓN ÚNICA: SITIO -->
+    <div class="invest-card reveal reveal-d2">
+      <div class="invest-head">
+        <div>
+          <h3>Sitio Shopify · Inversión única</h3>
+          <p class="sub">Desarrollo completo de la tienda. Pago único. Mantenimiento bajo demanda y soporte continuo mientras haya plan mensual activo.</p>
+        </div>
+        <div class="invest-price">
+          <div class="amount">$20,000</div>
+          <div class="cycle">MXN · Único</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
+      <div class="invest-items">
+        <div class="invest-item">
+          <div class="desc">Desarrollo e-commerce Shopify
+            <small>Distribución, programación, responsive, base de datos, tags, pixels, administrable, SEO URLs, SSL, buscador, inventarios</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Integración Manuable + DHL + políticas configuradas</div>
+          <div class="val">Incluido</div>
+        </div>
+      </div>
+      <div class="invest-footer">
+        <strong>Pagos:</strong> 60% anticipo al iniciar · 40% a la entrega. <strong>Plazo:</strong> 4 a 6 semanas desde el anticipo. <strong>No incluye:</strong> dominio, hosting Shopify (plan mensual propio del cliente), fotografía, pauta publicitaria.
+      </div>
+    </div>
+
+    <!-- CRM MENSUAL -->
+    <div class="invest-card reveal reveal-d3">
+      <div class="invest-head">
+        <div>
+          <h3>CRM GoHighLevel · Mensual</h3>
+          <p class="sub">Gestión operativa, automatizaciones, campañas y soporte sobre la plataforma. Se activa junto con el sitio o después, no antes.</p>
+        </div>
+        <div class="invest-price">
+          <div class="amount">$4,000</div>
+          <div class="cycle">MXN / mes</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
+      <div class="invest-items">
+        <div class="invest-item">
+          <div class="desc">Implementación, pipeline, automatizaciones WhatsApp + email
+            <small>Integración con Shopify · campañas manuales · flujos de recompra y reactivación</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+      </div>
+      <div class="invest-footer">
+        <strong>Tarifa catálogo.</strong> Incluye uso de la plataforma, configuración y gestión continua. Sin costo adicional por campañas manuales de lanzamiento.
+      </div>
+    </div>
+
+    <!-- PAUTA -->
+    <div class="invest-card reveal reveal-d4">
+      <div class="invest-head">
+        <div>
+          <h3>Pauta publicitaria · Meta Ads</h3>
+          <p class="sub">Presupuesto sugerido para acelerar adquisición desde Instagram. Se cobra directo a la plataforma — no pasa por Sentido.</p>
+        </div>
+        <div class="invest-price">
+          <div class="amount">$5,000</div>
+          <div class="cycle">MXN / mes</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
+      <div class="invest-footer" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <strong>Gestión de campañas incluida</strong> dentro del plan mensual de redes. Este monto es solo el presupuesto pagado a Meta. Escalable según resultados.
+      </div>
+    </div>
+
+    <!-- OPCIONALES -->
+    <h3 class="h-md reveal" style="margin-top: 4.5rem; margin-bottom: 1rem;">Opcionales — cuando la marca esté lista</h3>
+    <p class="p reveal" style="max-width: 44rem;">
+      Servicios que no son parte de Fase 1 pero suman valor cuando el negocio lo pida. Cotizados como eventos independientes.
+    </p>
+    <div class="optional-grid">
+      <div class="optional reveal reveal-d1">
+        <div class="tag">Producción</div>
+        <h5>Sesión fotográfica</h5>
+        <div class="price">$3,000 MXN <span class="iva">+ IVA / sesión</span></div>
+        <p>2 horas, 25–30 imágenes finales, retoque, adaptación a formatos para redes y sitio. Cotizable cada vez que se quiera lanzar colección o refrescar catálogo.</p>
+      </div>
+      <div class="optional reveal reveal-d2">
+        <div class="tag">Producción</div>
+        <h5>Sesión de video</h5>
+        <div class="price">$5,500 MXN <span class="iva">+ IVA / sesión</span></div>
+        <p>2 horas de grabación. Entrega: 1 video de 40s + 4 cortos de 12s para reels e historias. Ideal para lanzamientos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTE -->
+<section class="section section-surface">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>06 · Qué pasa mes a mes</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
+      El recorrido de los primeros <span class="italic-accent">90 días</span>.
+    </h2>
+
+    <div class="horizon">
+      <div class="milestone reveal reveal-d1">
+        <div class="when">MES 1 · Arranque Fase 1</div>
+        <h4>Instagram y TikTok con ritmo</h4>
+        <p>Arrancan las redes con calendario editorial, línea gráfica consolidada y producción con apoyo de IA. El contenido de video se empieza a publicar también en TikTok, adaptado al formato de la plataforma.</p>
+      </div>
+      <div class="milestone reveal reveal-d2">
+        <div class="when">MES 2 · Tracción</div>
+        <h4>Audiencia creciendo en dos frentes</h4>
+        <p>Crecimiento medible en seguidores, alcance y conversaciones. Pauta Meta complementa el orgánico. El DM sigue siendo el cierre, ahora con más volumen entrante y tono consistente.</p>
+      </div>
+      <div class="milestone reveal reveal-d3">
+        <div class="when">MES 3 · Señal para Fase 2</div>
+        <h4>Lista para mudar la operación</h4>
+        <p>Con tres meses de tracción sostenida se dispara Fase 2: arranca desarrollo del sitio Shopify y la implementación del CRM. En 4 a 6 semanas la marca opera con casa propia y base de clientas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="closing" id="cierre">
+  <div class="section-label reveal"><span class="dot"></span><span>Siguiente paso</span><span class="divider"></span></div>
+  <h2 class="reveal reveal-d1">
+    Fabiaa Clo ya tiene lo más difícil. <em>Lo que sigue es construirle casa.</em>
+  </h2>
+  <p class="reveal reveal-d2">
+    Cuando confirmes esta propuesta arrancamos con contrato y kickoff. En 4 a 6 semanas el sitio está vivo. En 90 días la marca ya opera con casa propia, base de clientas y voz consistente.
+  </p>
+  <div class="signature reveal reveal-d3">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    <small>Sentido · Branding & Advertising · 2026</small>
+  </div>
+</section>
+
+<footer class="foot">
+  <div>
+    <a href="https://sentido.mx">sentido.mx</a> ·
+    <a href="mailto:hola@sentido.mx">hola@sentido.mx</a> ·
+    <a href="https://instagram.com/sentido.mx">@sentido.mx</a>
+  </div>
+</footer>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth scroll for nav anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
