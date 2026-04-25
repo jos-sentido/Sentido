@@ -425,6 +425,51 @@
   }
   .invest-footer strong { color: var(--ink); font-weight: 500; }
 
+  /* Sub-bloque de pauta (anidado dentro de invest-card) */
+  .invest-addon {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .invest-addon {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.75rem;
+    }
+  }
+  .invest-addon .addon-label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .invest-addon .addon-title {
+    font-family: var(--font-display); font-size: 1.125rem;
+    color: var(--ink); line-height: 1.25; margin-bottom: 0.4rem;
+  }
+  .invest-addon .addon-copy {
+    font-size: 13.5px; color: var(--ink-muted); line-height: 1.6; max-width: 32rem;
+  }
+  .invest-addon .addon-copy strong { color: var(--ink); font-weight: 500; }
+  .invest-addon .addon-price {
+    text-align: left;
+    display: flex; flex-direction: column; gap: 0.15rem;
+  }
+  @media (min-width: 640px) { .invest-addon .addon-price { text-align: right; align-items: flex-end; } }
+  .invest-addon .addon-price .amount {
+    font-family: var(--font-display); font-size: 1.5rem; color: var(--ink); line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .invest-addon .addon-price .cycle {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500; margin-top: 0.4rem;
+  }
+  .invest-addon .addon-price .iva { font-size: 10px; color: var(--ink-whisper); letter-spacing: 0.1em; }
+
   /* Optional / opcional blocks */
   .optional-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
   @media (min-width: 640px) { .optional-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -800,6 +845,22 @@
       <div class="invest-footer">
         <strong>Total mensual Fase 1:</strong> $10,000 MXN <strong>+ IVA</strong>. Pago mensual por adelantado. Contrato mínimo sugerido: 3 meses para ver tracción real.
       </div>
+
+      <!-- Pauta sugerida — sub-bloque dentro del plan de redes -->
+      <div class="invest-addon">
+        <div>
+          <div class="addon-label">+ Pauta sugerida</div>
+          <div class="addon-title">Meta Ads · presupuesto a la plataforma</div>
+          <p class="addon-copy">
+            Va <strong>directo a Meta</strong>, no es honorario Sentido. La <strong>gestión de campañas está incluida</strong> en el plan mensual de redes — el mismo equipo que opera Instagram y TikTok corre la pauta. Escalable según resultados.
+          </p>
+        </div>
+        <div class="addon-price">
+          <div class="amount">$5,000</div>
+          <div class="cycle">MXN / mes</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
     </div>
 
     <!-- FASE 1 · SITIO ÚNICO -->
@@ -829,24 +890,6 @@
       </div>
       <div class="invest-footer">
         <strong>Pagos:</strong> 60% anticipo al iniciar · 40% a la entrega. <strong>Plazo:</strong> 4 a 6 semanas desde el anticipo. <strong>No incluye:</strong> dominio, hosting Shopify (plan mensual propio del cliente), fotografía, pauta publicitaria.
-      </div>
-    </div>
-
-    <!-- PAUTA -->
-    <div class="invest-card reveal reveal-d3" style="margin-top: 1.5rem;">
-      <div class="invest-head">
-        <div>
-          <h3>Pauta publicitaria · Meta Ads</h3>
-          <p class="sub">Presupuesto sugerido para acelerar adquisición desde Instagram. Se cobra directo a la plataforma — no pasa por Sentido.</p>
-        </div>
-        <div class="invest-price">
-          <div class="amount">$5,000</div>
-          <div class="cycle">MXN / mes</div>
-          <div class="iva">+ IVA</div>
-        </div>
-      </div>
-      <div class="invest-footer" style="margin-top: 0; padding-top: 0; border-top: none;">
-        <strong>Gestión de campañas incluida</strong> dentro del plan mensual de redes. Este monto es solo el presupuesto pagado a Meta. Escalable según resultados.
       </div>
     </div>
 
