@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Capacidades para el Sector Inmobiliario</title>
+<meta name="description" content="Sentido — sistema de marketing digital con IA para desarrolladores, inmobiliarias de lujo y agencias en México. Calificar mejor, vender más, gastar menos." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0D10;
+    --surface: #11141A;
+    --surface-elevated: #171B22;
+    --surface-hover: #1D222B;
+    --border: #1F242D;
+    --border-accent: #2B3140;
+    --border-bright: #3A4254;
+    --accent: #C9A961;
+    --accent-dim: #8B7548;
+    --accent-bright: #DCBE7A;
+    --accent-soft: rgba(201, 169, 97, 0.08);
+    --text: #ECEAE5;
+    --text-dim: #9BA0AB;
+    --text-muted: #5F6573;
+    --success: #7FB069;
+    --danger: #C75D5D;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+  .reveal-d5 { transition-delay: 0.5s; }
+
+  /* Layout */
+  .section {
+    width: 100%;
+    padding: 5rem 1.5rem;
+    position: relative;
+  }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    color: var(--accent);
+  }
+  .section-label span {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+  }
+  .section-label .divider { height: 1px; width: 3rem; background-color: var(--accent); opacity: 0.6; }
+
+  /* Typography */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+  }
+  .display-heading.xl { font-size: 2.25rem; }
+  .display-heading.xxl { font-size: 2.75rem; }
+  @media (min-width: 768px) {
+    .display-heading.xl { font-size: 3rem; }
+    .display-heading.xxl { font-size: 4rem; }
+  }
+  @media (min-width: 1024px) {
+    .display-heading.xl { font-size: 3.5rem; }
+    .display-heading.xxl { font-size: 5rem; }
+  }
+  .display-heading .accent-italic { font-style: italic; color: var(--accent); font-weight: 500; }
+  .display-heading .accent { color: var(--accent); }
+
+  .paragraph {
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 300;
+    color: var(--text);
+  }
+  .paragraph.lg { font-size: 17px; }
+  .paragraph.muted { color: var(--text-dim); }
+  .paragraph .inline-accent {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .paragraph strong { color: var(--text); font-weight: 500; }
+
+  .max-w-2xl { max-width: 42rem; }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+  .max-w-5xl { max-width: 64rem; }
+
+  .mono-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem 1.5rem;
+    background: radial-gradient(ellipse at top, rgba(201, 169, 97, 0.04) 0%, transparent 60%), var(--bg);
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 3rem; } }
+  @media (min-width: 1024px) { .hero { padding: 4rem 5rem; } }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 169, 97, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 97, 0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-logo img { height: 28px; width: auto; }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-meta .accent-dot { color: var(--accent); margin: 0 0.5rem; }
+  .hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 64rem;
+    margin: 4rem 0;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    height: 1px;
+    width: 2.5rem;
+    background: var(--accent);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 768px) { .hero-title { font-size: 4rem; } }
+  @media (min-width: 1024px) { .hero-title { font-size: 5.5rem; } }
+  .hero-title .italic { font-style: italic; color: var(--accent); font-weight: 500; }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 300;
+    color: var(--text-dim);
+    max-width: 36rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) { .hero-sub { font-size: 19px; } }
+  .hero-sub strong { color: var(--text); font-weight: 400; }
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-stat-row {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    border-left: 1px solid var(--border-accent);
+    padding-left: 1rem;
+  }
+  .hero-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .hero-stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-scroll {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Stat block */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    padding: 1.75rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .stat-card:hover { border-left-color: var(--accent-bright); background: var(--surface-elevated); }
+  .stat-card .num {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .stat-card .label {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .stat-card .source {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* Insight blocks */
+  .insight-block {
+    border-left: 2px solid var(--accent);
+    padding: 1.25rem 0 1.25rem 1.75rem;
+    margin: 2rem 0;
+  }
+  .insight-block .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .insight-block .text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--text);
+  }
+  @media (min-width: 768px) { .insight-block .text { font-size: 1.75rem; } }
+  .insight-block .text em { color: var(--accent); font-weight: 500; }
+
+  /* Split blocks (problem/solution) */
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .split-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .split-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+  }
+  .split-card.problem {
+    background: rgba(199, 93, 93, 0.04);
+    border-color: rgba(199, 93, 93, 0.25);
+  }
+  .split-card.solution {
+    background: var(--accent-soft);
+    border-color: rgba(201, 169, 97, 0.3);
+  }
+  .split-card .head {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .split-card.problem .head { color: var(--danger); }
+  .split-card.solution .head { color: var(--accent); }
+  .split-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .split-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* Approach grid (anonimizado) */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .approach-grid { grid-template-columns: repeat(2, 1fr); } }
+  .approach-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.3s;
+  }
+  .approach-card:hover { background: var(--surface-elevated); }
+  .approach-card .icon-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .approach-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .approach-card h3 em { font-style: italic; color: var(--accent); }
+  .approach-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* Capability cards (servicios) */
+  .cap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+  .cap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .cap-card:hover { border-color: var(--border-bright); }
+  .cap-main {
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .cap-main { grid-template-columns: 2.5fr 1fr; gap: 2rem; align-items: start; }
+  }
+  .cap-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .cap-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .cap-title em { font-style: italic; color: var(--accent); }
+  .cap-ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cap-ai-badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--accent);
+  }
+  .cap-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .cap-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cap-includes li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .cap-includes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    width: 8px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .cap-includes li strong { color: var(--text); font-weight: 400; }
+  .cap-pricing {
+    background: var(--bg);
+    border: 1px solid var(--border-accent);
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .cap-pricing .label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .cap-pricing .price {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .cap-pricing .price .currency { font-size: 0.7em; color: var(--text-dim); font-weight: 400; }
+  .cap-pricing .period {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .cap-pricing .iva {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Pauta sub-block (adyacente) */
+  .pauta-block {
+    border-top: 1px dashed var(--border-accent);
+    background: rgba(11, 13, 16, 0.5);
+    padding: 1.25rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .pauta-block { grid-template-columns: 1fr auto; }
+  }
+  .pauta-block .pauta-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .pauta-block .pauta-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .pauta-block .pauta-text strong { color: var(--text); font-weight: 400; }
+  .pauta-range {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* CALCULADORA */
+  .calc-wrap {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-elevated) 100%);
+    border: 1px solid var(--border-bright);
+    padding: 2rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .calc-wrap { padding: 3rem; } }
+  .calc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .calc-header .title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .calc-header .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 0.4rem 0.7rem;
+  }
+  .calc-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .calc-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .calc-option:hover { border-color: var(--border-bright); background: var(--surface); }
+  .calc-option.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .calc-option .opt-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+  .calc-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border-bright);
+    background: var(--surface);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .calc-option.active .calc-checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .calc-checkbox::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border-right: 2px solid var(--bg);
+    border-bottom: 2px solid var(--bg);
+    transform: rotate(45deg) translateY(-1px);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .calc-option.active .calc-checkbox::after { opacity: 1; }
+  .opt-name {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .opt-name .opt-sub {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+    font-weight: 300;
+  }
+  .opt-price {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  .calc-summary {
+    background: var(--bg);
+    border: 1px solid var(--border-accent);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14px;
+  }
+  .calc-row .lbl {
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .calc-row .val {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .calc-row.discount .val { color: var(--success); font-style: italic; }
+  .calc-row.discount .lbl { color: var(--success); }
+  .calc-row.total {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+  }
+  .calc-row.total .lbl {
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .calc-row.total .val {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .calc-row.total .val .currency {
+    font-size: 0.55em;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+  .calc-note {
+    margin-top: 1rem;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+  .calc-empty {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+
+  /* PAUTA PLANES */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
+  .plan-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem 1.75rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .plan-card:hover { border-color: var(--border-bright); }
+  .plan-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--surface) 60%);
+  }
+  .plan-card.featured::before {
+    content: 'RECOMENDADO';
+    position: absolute;
+    top: -10px;
+    left: 1.75rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
+  }
+  .plan-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+  .plan-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+  .plan-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .plan-price .from {
+    font-size: 0.55em;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-right: 0.4rem;
+    font-weight: 400;
+  }
+  .plan-price .currency {
+    font-size: 0.5em;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .plan-period {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .plan-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+  .plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .plan-list li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .plan-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    width: 8px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .plan-list li strong { color: var(--text); font-weight: 400; }
+
+  .pauta-disclaimer {
+    background: rgba(201, 169, 97, 0.04);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .pauta-disclaimer strong { color: var(--accent); font-weight: 500; }
+
+  /* HORIZONTE */
+  .horizon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .horizon-grid { grid-template-columns: repeat(3, 1fr); } }
+  .horizon-card {
+    background: var(--surface);
+    padding: 2rem;
+  }
+  .horizon-card .day {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .horizon-card .day-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .horizon-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .horizon-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .horizon-card li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .horizon-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* CIERRE */
+  .closing {
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+  }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem 5rem; } }
+  .closing h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.15;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 2rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 768px) { .closing h2 { font-size: 3.5rem; } }
+  .closing h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .closing p {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+  .closing .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 640px) { .closing .contact-grid { flex-direction: row; justify-content: center; gap: 3rem; } }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .contact-item .lbl {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .contact-item a {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .contact-item a:hover { border-bottom-color: var(--accent); }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  .footer-logo img { height: 24px; opacity: 0.6; margin-bottom: 1rem; }
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .footer-meta .dot { color: var(--accent); margin: 0 0.5rem; }
+
+  /* Tags */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.7rem;
+  }
+
+  /* Comparison block */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0 3rem;
+  }
+  @media (min-width: 768px) { .compare-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .compare-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .compare-card .head {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-card.before .head { color: var(--text-muted); }
+  .compare-card.after .head { color: var(--accent); }
+  .compare-card ul { list-style: none; padding: 0; margin: 0; }
+  .compare-card li {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+  }
+  .compare-card.before li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    color: var(--danger);
+    font-size: 16px;
+  }
+  .compare-card.after li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--accent);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-logo">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </div>
+    <div class="hero-meta">
+      Sector inmobiliario <span class="accent-dot">·</span> México 2026
+    </div>
+  </div>
+
+  <div class="hero-center">
+    <div class="hero-eyebrow">Capacidades para el sector inmobiliario</div>
+    <h1 class="hero-title">
+      Calificar mejor.<br />
+      Cerrar más.<br />
+      <span class="italic">Gastar menos.</span>
+    </h1>
+    <p class="hero-sub">
+      Un sistema operado con <strong>inteligencia artificial</strong> para desarrollos, inmobiliarias de lujo y agencias que están cansadas de pagar leads que nadie cierra.
+    </p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-value">8 de cada 10</div>
+        <div class="hero-stat-label">Leads sin capacidad real</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">&lt; 1 min</div>
+        <div class="hero-stat-label">Primer contacto IA</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">3×</div>
+        <div class="hero-stat-label">Tasa de cierre típica</div>
+      </div>
+    </div>
+    <div class="hero-scroll">↓ Scroll</div>
+  </div>
+</section>
+
+<!-- ============== EL MOMENTO ============== -->
+<section class="section section-divider" id="momento">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>01 · El momento del sector</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      El inmobiliario en México vive su <span class="accent-italic">recomposición más profunda</span> en una década.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Las tasas hipotecarias siguen presionando la compra tradicional. El comprador llega más informado, más exigente, y mucho más impaciente. Los desarrollos compiten por atención en feeds saturados de inventario, donde el primero que responde gana — y el resto educa al lead para la competencia.
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-card reveal">
+        <div class="num">82%</div>
+        <div class="label">de las búsquedas de vivienda en México inician en plataformas digitales antes de ver el inmueble físicamente</div>
+        <div class="source">AMPI · 2025</div>
+      </div>
+      <div class="stat-card reveal reveal-d1">
+        <div class="num">&lt; 5 min</div>
+        <div class="label">ventana donde un lead inmobiliario es 9× más probable de convertir si se contacta</div>
+        <div class="source">Harvard Business Review</div>
+      </div>
+      <div class="stat-card reveal reveal-d2">
+        <div class="num">$280–650</div>
+        <div class="label">CPL promedio en Meta Ads para residencial medio en México (MXN)</div>
+        <div class="source">Benchmark sectorial</div>
+      </div>
+      <div class="stat-card reveal reveal-d3">
+        <div class="num">$900–2.4k</div>
+        <div class="label">CPL promedio en Google Ads para residencial premium y vertical lujo (MXN)</div>
+        <div class="source">Benchmark sectorial</div>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Lectura</div>
+      <div class="text">
+        El reto ya no es <em>generar leads</em>. Es <em>responder a tiempo</em> y filtrar antes de quemar al broker.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EL VERDADERO PROBLEMA ============== -->
+<section class="section section-surface section-divider" id="problema">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>02 · El verdadero problema</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      En inmobiliario el problema nunca fue conseguir leads — fue conseguir los <span class="accent-italic">correctos</span>.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      La diferencia entre los desarrollos que cierran y los que pierden no es cuántos formularios llenan al mes. Es cuántos de esos formularios eran personas con capacidad real de compra, intención clara, y ganas de conversar — no de que les vendan.
+    </p>
+
+    <div class="split-grid">
+      <div class="split-card problem reveal">
+        <div class="head">Cómo opera la mayoría</div>
+        <h3>Volumen primero, pensar después.</h3>
+        <p>
+          Pauta abierta, formulario corto, lead crudo cae al CRM, broker llama (cuando puede), 3 horas después el lead ya está hablando con la competencia. El broker quema su tiempo descalificando manualmente. Resultado: burnout del equipo, CPL alto, tasa de cierre baja, y reportes que nadie entiende.
+        </p>
+      </div>
+      <div class="split-card solution reveal reveal-d1">
+        <div class="head">Cómo operamos en Sentido</div>
+        <h3>Filtrar primero, persuadir después, vender al final.</h3>
+        <p>
+          El sistema responde en menos de un minuto, hace preguntas de calificación conversacionales por WhatsApp, identifica intención y capacidad antes de pasarlo al broker. Cuando el equipo humano interviene, ya está hablando con alguien preparado para conversar. La IA no reemplaza al broker — le ahorra todo lo que no debería estar haciendo.
+        </p>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card before reveal">
+        <div class="head">Operación tradicional</div>
+        <ul>
+          <li>Lead llega al broker en frío, sin contexto previo</li>
+          <li>Tiempo de respuesta: 30 minutos a 4 horas</li>
+          <li>Broker descalifica manualmente uno por uno</li>
+          <li>50–70% del tiempo del broker en leads sin capacidad</li>
+          <li>Reportes mensuales en PDF que nadie revisa</li>
+          <li>Decisiones de pauta basadas en intuición</li>
+        </ul>
+      </div>
+      <div class="compare-card after reveal reveal-d1">
+        <div class="head">Operación con Sentido + IA</div>
+        <ul>
+          <li>IA conversa primero, califica intención y capacidad</li>
+          <li>Tiempo de respuesta: menos de 1 minuto, 24/7</li>
+          <li>Solo leads pre-calificados llegan al broker humano</li>
+          <li>Broker enfocado solo en conversaciones que cierran</li>
+          <li>Dashboard tiempo real con métricas que importan</li>
+          <li>Optimización predictiva: la pauta aprende sola</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CÓMO TRABAJAMOS EL SECTOR ============== -->
+<section class="section section-divider" id="trabajamos">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>03 · Cómo trabajamos el sector</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Hemos operado dentro del sector con <span class="accent-italic">cuatro perfiles distintos</span>.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Cada uno con dinámicas propias de demanda, ciclos de venta y arquitectura de marca. La operación se adapta al tipo de inventario y al ciclo de cierre — no al revés.
+    </p>
+
+    <div class="approach-grid">
+      <div class="approach-card reveal">
+        <div class="icon-num">A · Constructores y desarrolladores</div>
+        <h3>Grupos constructores con <em>inventario activo</em></h3>
+        <p>
+          Verticales residenciales, conjuntos de villas, naves, lotificaciones. Ciclo de venta 3–9 meses, decisión racional con peso emocional. Aquí el sistema prioriza captación masiva calificada, recorridos virtuales, y un pipeline largo que no se enfría.
+        </p>
+      </div>
+      <div class="approach-card reveal reveal-d1">
+        <div class="icon-num">B · Desarrollos de lujo nacional</div>
+        <h3>Inmobiliarias de <em>lujo a nivel nacional</em></h3>
+        <p>
+          Ticket alto, comprador internacional o HNW mexicano, decisión por aspiración + reputación. El sistema enfatiza posicionamiento de marca, contenido premium, prospección de baja densidad y alta calificación, y discreción en la conversación.
+        </p>
+      </div>
+      <div class="approach-card reveal reveal-d2">
+        <div class="icon-num">C · Agencias de franquicia</div>
+        <h3>Agencias inmobiliarias <em>de franquicia</em></h3>
+        <p>
+          Operación multi-broker, marca paraguas, inventario rotativo. Necesitan herramientas que escalen entre brokers sin diluir el branding del corporativo. El sistema entrega kit de medios local + automatización compartida + dashboard por agente.
+        </p>
+      </div>
+      <div class="approach-card reveal reveal-d3">
+        <div class="icon-num">D · Brokers independientes</div>
+        <h3>Inmobiliarias <em>independientes</em></h3>
+        <p>
+          Equipos de 1 a 5, marca personal fuerte, presupuestos quirúrgicos. Necesitan máxima eficiencia por peso invertido, automatización que reemplace al asistente que no tienen, y posicionamiento que compita contra agencias grandes sin pelear por volumen.
+        </p>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Constante</div>
+      <div class="text">
+        Cambia el ticket, cambia el ciclo, cambia el tono — pero el principio operativo no: <em>primero filtrar, después persuadir, al final vender</em>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CAPACIDADES MODULARES ============== -->
+<section class="section section-surface section-divider" id="capacidades">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>04 · Capacidades modulares</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Cuatro capacidades. Conectadas por <span class="accent-italic">una sola inteligencia</span>.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Cada servicio funciona por separado, pero el verdadero valor aparece cuando operan como un solo sistema. La IA es el hilo conductor: aprende del comportamiento del lead en pauta, ajusta segmentación, califica conversacionalmente, predice cierre, y reasigna presupuesto donde más rinde.
+    </p>
+
+    <div class="cap-list">
+
+      <!-- Google Ads -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>Google Ads</em> + IA predictiva</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Captación de demanda de alta intención. Búsquedas con intención de compra explícita, retargeting en Display y YouTube, optimización de pujas en tiempo real.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>Optimización predictiva</strong> de pujas según probabilidad de conversión</li>
+              <li>Identificación automática de <strong>audiencias de mayor intención</strong></li>
+              <li>Copy testing automatizado con rotación creativa</li>
+              <li>Tracking de conversiones offline (citas reales, no solo formularios)</li>
+              <li>Reporte semanal con recomendaciones accionables</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Gestión mensual</div>
+            <div class="price"><span class="currency">$</span>4,000</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA</div>
+          </div>
+        </div>
+        <div class="pauta-block">
+          <div>
+            <div class="pauta-label">Pauta Google · directo a la plataforma</div>
+            <div class="pauta-text">El presupuesto de pauta va <strong>directo a Google Ads</strong>, no es honorario de Sentido. Rango recomendado según ticket y geografía.</div>
+          </div>
+          <div class="pauta-range">$10k–$30k+ MXN/mes</div>
+        </div>
+      </div>
+
+      <!-- Meta + Redes -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>Redes sociales</em> + Meta Ads + IA</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Construcción de marca + captación performance en Meta y TikTok. Contenido, pauta y comunidad como un solo flujo. Meta Ads incluido sin costo adicional al contratar gestión de redes.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>15 publicaciones mensuales</strong> con mix de formatos (reels, carruseles, posts, historias)</li>
+              <li>Segmentación inteligente por audiencias lookalike y first-party</li>
+              <li><strong>Generación y rotación creativa</strong> con detección temprana de fatiga</li>
+              <li>Atención de mensajes y comentarios L–V (handoff a CRM)</li>
+              <li>Reporte mensual con insights y recomendación de pauta</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Gestión mensual</div>
+            <div class="price"><span class="currency">$</span>7,500</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA · Meta Ads incluido</div>
+          </div>
+        </div>
+        <div class="pauta-block">
+          <div>
+            <div class="pauta-label">Pauta Meta + TikTok · directo a las plataformas</div>
+            <div class="pauta-text">El presupuesto va <strong>directo a Meta y TikTok</strong>, no es honorario de Sentido. Rango recomendado según objetivo de campaña y vertical.</div>
+          </div>
+          <div class="pauta-range">$10k–$30k+ MXN/mes</div>
+        </div>
+      </div>
+
+      <!-- CRM + Automatización + IA -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>CRM</em> + Automatización IA</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              El corazón del sistema. Aquí es donde la IA filtra, califica y persuade antes de pasar al broker. Operado sobre GoHighLevel, configurado para inmobiliario.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>Respondedor IA por WhatsApp</strong> — primer contacto en menos de 1 minuto, 24/7</li>
+              <li>Calificación conversacional (capacidad, intención, timing) antes del broker</li>
+              <li><strong>Lead scoring predictivo</strong> con probabilidad de cierre</li>
+              <li>Pipeline configurado: Lead · Contacto · Visita · Negociación · Cierre</li>
+              <li>Nurturing inteligente que ajusta cadencia según comportamiento</li>
+              <li>Calendarios compartidos, integración Google/Outlook, landing pages</li>
+              <li>Implementación <strong>sin costo</strong> con mantenimiento mensual activo</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Mantenimiento mensual</div>
+            <div class="price"><span class="currency">$</span>4,000</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA · Setup incluido</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tiempo Real -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>Dashboard</em> tiempo real + IA</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Una sola vista de qué está pasando, qué funciona y qué no. Incluido sin costo adicional al contratar dos o más servicios anteriores.
+            </p>
+            <ul class="cap-includes">
+              <li>Métricas vivas: leads, citas calificadas, costo por cita, cierre por broker</li>
+              <li><strong>Alertas automáticas</strong> de anomalías en pauta o conversión</li>
+              <li>Recomendaciones de optimización en lenguaje natural</li>
+              <li>Predicción de resultados a 30 / 60 / 90 días</li>
+              <li>Acceso compartido para corporativo, brokers y aliados</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Add-on</div>
+            <div class="price" style="font-size: 1.4rem;">Incluido</div>
+            <div class="period">con 2+ servicios</div>
+            <div class="iva">$2,500 MXN/mes individual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reputación digital opcional -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>Gestión de reputación</em> digital</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Opcional. Reseñas en Google, Facebook y portales inmobiliarios trabajadas como activo de marca. Filtrado estratégico antes de que las quejas lleguen al perfil público.
+            </p>
+            <ul class="cap-includes">
+              <li>Automatización de solicitud de reseñas post-visita y post-cierre</li>
+              <li><strong>Filtrado de insatisfechos</strong> a formulario privado antes de exponer</li>
+              <li>Optimización de Google Maps / GBP para captación local</li>
+              <li>Reportes mensuales de score y tendencia</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Mensual</div>
+            <div class="price"><span class="currency">$</span>4,500</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA · combo CRM disponible</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">El conector</div>
+      <div class="text">
+        La IA es lo que hace creíble la promesa: <em>responder primero, calificar mejor, llegar solo a citas calificadas</em>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CALCULADORA ============== -->
+<section class="section section-divider" id="calculadora">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>05 · Calculadora interactiva</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Arma tu sistema. <span class="accent-italic">Mira el total en vivo.</span>
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Selecciona los servicios que aplican al caso. La calculadora aplica automáticamente <strong>10% de descuento</strong> al combinar dos servicios y <strong>15%</strong> al combinar tres o más. Inversión de pauta publicitaria se cotiza por separado en la siguiente sección.
+    </p>
+
+    <div class="calc-wrap reveal">
+      <div class="calc-header">
+        <div class="title">Configurador de inversión</div>
+        <div class="badge">Tiempo real</div>
+      </div>
+
+      <div class="calc-options" id="calc-options">
+        <div class="calc-option" data-price="4000" data-name="Google Ads">
+          <div class="opt-left">
+            <div class="calc-checkbox"></div>
+            <div class="opt-name">
+              Google Ads + IA predictiva
+              <span class="opt-sub">Gestión mensual · pauta directo a Google</span>
+            </div>
+          </div>
+          <div class="opt-price">$4,000</div>
+        </div>
+
+        <div class="calc-option" data-price="7500" data-name="Redes + Meta Ads">
+          <div class="opt-left">
+            <div class="calc-checkbox"></div>
+            <div class="opt-name">
+              Redes sociales + Meta Ads + IA
+              <span class="opt-sub">15 posts/mes · Meta Ads incluido</span>
+            </div>
+          </div>
+          <div class="opt-price">$7,500</div>
+        </div>
+
+        <div class="calc-option" data-price="4000" data-name="CRM + Automatización IA">
+          <div class="opt-left">
+            <div class="calc-checkbox"></div>
+            <div class="opt-name">
+              CRM + Automatización IA
+              <span class="opt-sub">Respondedor WhatsApp · scoring · setup incluido</span>
+            </div>
+          </div>
+          <div class="opt-price">$4,000</div>
+        </div>
+
+        <div class="calc-option" data-price="2500" data-name="Dashboard tiempo real">
+          <div class="opt-left">
+            <div class="calc-checkbox"></div>
+            <div class="opt-name">
+              Dashboard tiempo real + IA
+              <span class="opt-sub">Sin costo al contratar 2+ servicios</span>
+            </div>
+          </div>
+          <div class="opt-price">$2,500</div>
+        </div>
+
+        <div class="calc-option" data-price="4500" data-name="Reputación digital">
+          <div class="opt-left">
+            <div class="calc-checkbox"></div>
+            <div class="opt-name">
+              Reputación digital
+              <span class="opt-sub">Reseñas + GBP + filtrado estratégico</span>
+            </div>
+          </div>
+          <div class="opt-price">$4,500</div>
+        </div>
+      </div>
+
+      <div class="calc-summary">
+        <div class="calc-row">
+          <div class="lbl">Subtotal mensual</div>
+          <div class="val" id="calc-subtotal">—</div>
+        </div>
+        <div class="calc-row discount" id="calc-discount-row" style="display:none;">
+          <div class="lbl" id="calc-discount-label">Descuento bundle</div>
+          <div class="val" id="calc-discount">—</div>
+        </div>
+        <div class="calc-row" id="calc-dashboard-row" style="display:none;">
+          <div class="lbl">Dashboard incluido</div>
+          <div class="val" style="color: var(--success); font-style: italic;">– sin costo</div>
+        </div>
+        <div class="calc-row total">
+          <div class="lbl">Total mensual</div>
+          <div class="val" id="calc-total"><span class="calc-empty">Selecciona servicios</span></div>
+        </div>
+        <div class="calc-note">
+          Precios en MXN, no incluyen IVA. Pauta publicitaria en Google, Meta y TikTok se cotiza por separado y va directo a las plataformas (no es honorario de Sentido). Implementación de CRM sin costo con mantenimiento mensual activo.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PAUTA / PLANES ============== -->
+<section class="section section-surface section-divider" id="pauta">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>06 · Inversión publicitaria</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Tres niveles de pauta. <span class="accent-italic">Calibrados al ciclo del proyecto.</span>
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      La pauta es lo que enciende el sistema. Estos rangos son recomendaciones según objetivos típicos por vertical inmobiliaria. <strong>El monto va directo a Meta, Google o TikTok</strong> — no es honorario de Sentido. Lo que se gestiona, optimiza y reporta es la operación.
+    </p>
+
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-name">Esencial</div>
+        <div class="plan-tag">Validación · brokers independientes</div>
+        <div class="plan-price"><span class="from">desde</span>$10,000<span class="currency"> MXN</span></div>
+        <div class="plan-period">por mes en pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li><strong>Foco:</strong> validar canal y mensaje en una zona</li>
+          <li>1 plataforma activa (Meta o Google)</li>
+          <li>1 segmento principal + retargeting</li>
+          <li>Optimización quincenal</li>
+          <li>Lead esperado: <strong>15–35 calificados/mes</strong></li>
+        </ul>
+      </div>
+
+      <div class="plan-card featured reveal reveal-d1">
+        <div class="plan-name">Crecimiento</div>
+        <div class="plan-tag">Inmobiliarias y desarrollos en operación</div>
+        <div class="plan-price"><span class="from">desde</span>$20,000<span class="currency"> MXN</span></div>
+        <div class="plan-period">por mes en pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li><strong>Foco:</strong> escalar lo que ya funciona</li>
+          <li>2 plataformas activas (Meta + Google)</li>
+          <li>Múltiples segmentos + lookalikes</li>
+          <li>Optimización semanal con IA</li>
+          <li>Lead esperado: <strong>40–90 calificados/mes</strong></li>
+        </ul>
+      </div>
+
+      <div class="plan-card reveal reveal-d2">
+        <div class="plan-name">Masivo</div>
+        <div class="plan-tag">Lanzamientos y desarrollos de lujo</div>
+        <div class="plan-price"><span class="from">desde</span>$30,000<span class="currency"> MXN</span></div>
+        <div class="plan-period">por mes en pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li><strong>Foco:</strong> dominar geografía y vertical</li>
+          <li>3+ plataformas (Meta, Google, TikTok, YouTube)</li>
+          <li>Branded + performance + alto ticket</li>
+          <li>Optimización diaria + alertas IA</li>
+          <li>Lead esperado: <strong>100+ calificados/mes</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pauta-disclaimer reveal">
+      <strong>Importante:</strong> el presupuesto de pauta no es honorario de Sentido. Se carga directamente a tu cuenta de Meta Business, Google Ads o TikTok Ads. Sentido factura únicamente la gestión, configuración, optimización y reportes (cotizada en la sección de servicios). Los rangos de leads esperados son estimaciones basadas en benchmarks sectoriales — el resultado real depende de geografía, ticket, oferta y temporada.
+    </div>
+  </div>
+</section>
+
+<!-- ============== HORIZONTE ============== -->
+<section class="section section-divider" id="horizonte">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>07 · Horizonte de resultados</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Qué pasa en los primeros <span class="accent-italic">seis meses.</span>
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      No prometemos cierres en semana uno. Prometemos un sistema funcionando, aprendiendo, y entregando datos accionables desde el día uno. Lo demás es disciplina operativa.
+    </p>
+
+    <div class="horizon-grid">
+      <div class="horizon-card reveal">
+        <div class="day">30</div>
+        <div class="day-label">Días</div>
+        <h4>Sistema operando</h4>
+        <ul>
+          <li>CRM y respondedor IA en producción</li>
+          <li>Pauta activa en plataforma principal</li>
+          <li>Pipeline configurado y brokers entrenados</li>
+          <li>Primeras citas calificadas llegando</li>
+          <li>Dashboard tiempo real disponible</li>
+        </ul>
+      </div>
+
+      <div class="horizon-card reveal reveal-d1">
+        <div class="day">90</div>
+        <div class="day-label">Días</div>
+        <h4>Optimización con datos reales</h4>
+        <ul>
+          <li>Modelos de IA entrenados con datos del proyecto</li>
+          <li>Segmentación afinada por intención y zona</li>
+          <li>CPL bajando 15–35% vs. punto de partida</li>
+          <li>Tasa de cita calificada arriba de 60%</li>
+          <li>Reportes con insights, no solo métricas</li>
+        </ul>
+      </div>
+
+      <div class="horizon-card reveal reveal-d2">
+        <div class="day">180</div>
+        <div class="day-label">Días</div>
+        <h4>Sistema rentable y escalable</h4>
+        <ul>
+          <li>Predicciones de cierre confiables a 30 días</li>
+          <li>Reasignación de pauta donde más rinde</li>
+          <li>Brokers operando 100% en leads calificados</li>
+          <li>Reputación digital construida y monitoreada</li>
+          <li>Decisión de escalar a más vertical o geografía</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Lo que no hacemos</div>
+      <div class="text">
+        Prometer leads garantizados, ROI mágico, o métricas que no se sostienen al mes 4. <em>Trabajamos con números reales, no con números de junta.</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CIERRE ============== -->
+<section class="closing">
+  <div class="reveal">
+    <h2>
+      El sector inmobiliario premia<br />
+      a quien <em>responde primero</em>,<br />
+      <em>califica mejor</em>, y <em>cierra distinto</em>.
+    </h2>
+    <p class="reveal reveal-d1">
+      Sentido es la operación que hace posible las tres al mismo tiempo. Conversemos cuando tengas el primer proyecto en mente.
+    </p>
+
+    <div class="contact-grid reveal reveal-d2">
+      <div class="contact-item">
+        <span class="lbl">Correo</span>
+        <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      </div>
+      <div class="contact-item">
+        <span class="lbl">Instagram</span>
+        <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+      </div>
+      <div class="contact-item">
+        <span class="lbl">Web</span>
+        <a href="https://sentido.mx" target="_blank" rel="noopener">sentido.mx</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+  </div>
+  <div class="footer-meta">
+    Sentido Branding & Advertising <span class="dot">·</span> México 2026 <span class="dot">·</span> Capacidades sectoriales
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Calculadora interactiva
+  (function() {
+    const options = document.querySelectorAll('.calc-option');
+    const subtotalEl = document.getElementById('calc-subtotal');
+    const discountRow = document.getElementById('calc-discount-row');
+    const discountLabel = document.getElementById('calc-discount-label');
+    const discountEl = document.getElementById('calc-discount');
+    const dashboardRow = document.getElementById('calc-dashboard-row');
+    const totalEl = document.getElementById('calc-total');
+
+    const fmt = (n) => '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+    function recalculate() {
+      const active = Array.from(options).filter(o => o.classList.contains('active'));
+      const count = active.length;
+
+      // Dashboard logic — incluido si hay 2+ servicios y dashboard está activo
+      const dashboardOption = Array.from(options).find(o => o.dataset.name === 'Dashboard tiempo real');
+      const dashboardSelected = dashboardOption && dashboardOption.classList.contains('active');
+      const nonDashboardCount = active.filter(o => o.dataset.name !== 'Dashboard tiempo real').length;
+      const dashboardFree = dashboardSelected && nonDashboardCount >= 2;
+
+      let subtotal = 0;
+      active.forEach(o => {
+        const price = parseInt(o.dataset.price, 10);
+        if (o.dataset.name === 'Dashboard tiempo real' && dashboardFree) return;
+        subtotal += price;
+      });
+
+      // Bundle discount sobre count de servicios totales
+      let discountPct = 0;
+      if (count >= 3) discountPct = 0.15;
+      else if (count === 2) discountPct = 0.10;
+      const discountAmount = Math.round(subtotal * discountPct);
+      const total = subtotal - discountAmount;
+
+      if (count === 0) {
+        subtotalEl.textContent = '—';
+        discountRow.style.display = 'none';
+        dashboardRow.style.display = 'none';
+        totalEl.innerHTML = '<span class="calc-empty">Selecciona servicios</span>';
+        return;
+      }
+
+      subtotalEl.textContent = fmt(subtotal);
+
+      if (dashboardFree) {
+        dashboardRow.style.display = 'flex';
+      } else {
+        dashboardRow.style.display = 'none';
+      }
+
+      if (discountPct > 0) {
+        discountRow.style.display = 'flex';
+        discountLabel.textContent = `Descuento bundle (–${Math.round(discountPct * 100)}%)`;
+        discountEl.textContent = '– ' + fmt(discountAmount);
+      } else {
+        discountRow.style.display = 'none';
+      }
+
+      totalEl.innerHTML = fmt(total) + '<span class="currency">MXN / mes</span>';
+    }
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        opt.classList.toggle('active');
+        recalculate();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
