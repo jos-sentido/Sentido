@@ -1638,7 +1638,7 @@
     </h2>
 
     <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
-      Selecciona los servicios que aplican al caso. La calculadora aplica automáticamente <strong>10% de descuento</strong> al combinar dos servicios y <strong>15%</strong> al combinar tres o más. Inversión de pauta publicitaria se cotiza por separado en la siguiente sección.
+      Selecciona los servicios que aplican al caso. La calculadora aplica automáticamente <strong>10% de descuento</strong> al combinar tres servicios y <strong>15%</strong> al combinar cuatro o más. Inversión de pauta publicitaria se cotiza por separado en la siguiente sección.
     </p>
 
     <div class="calc-wrap reveal">
@@ -1966,8 +1966,8 @@
 
       // Bundle discount sobre count de servicios totales
       let discountPct = 0;
-      if (count >= 3) discountPct = 0.15;
-      else if (count === 2) discountPct = 0.10;
+      if (count >= 4) discountPct = 0.15;
+      else if (count === 3) discountPct = 0.10;
       const discountAmount = Math.round(subtotal * discountPct);
       const total = subtotal - discountAmount;
 
