@@ -1623,6 +1623,34 @@
         </div>
       </div>
 
+      <!-- Branding · pago único -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>Branding</em> para nuevos desarrollos</div>
+            </div>
+            <p class="cap-desc">
+              Pago único. Identidad estratégica para lanzamientos de desarrollos, fraccionamientos y nuevas torres. La marca se diseña para sostener el ticket — no para abaratarlo — y se conecta con micrositio, pauta y redes desde el día uno.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>Naming</strong> estratégico, territorio de marca y verificación de disponibilidad</li>
+              <li>Sistema de identidad visual: logo, paleta, tipografía e iconografía</li>
+              <li><strong>Manual de marca</strong> con normas de aplicación, tono y vocería</li>
+              <li>Aplicaciones clave: papelería, señalética, vallas, render watermarks, brochure y materiales de venta</li>
+              <li>Adaptaciones para canales digitales — micrositio, redes y piezas de pauta</li>
+              <li>Entrega lista para producción y conectada con el sistema de captación</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Pago único · desde</div>
+            <div class="price"><span class="currency">$</span>35,000</div>
+            <div class="period">MXN</div>
+            <div class="iva">+ IVA · se cotiza por desarrollo</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Sitios web · pago único -->
       <div class="cap-card reveal">
         <div class="cap-main">
@@ -1738,6 +1766,17 @@
           </div>
           <div class="opt-price">$4,500</div>
         </div>
+
+        <div class="calc-option" data-price="35000" data-name="Branding nuevo desarrollo" data-onetime="true">
+          <div class="opt-left">
+            <div class="calc-checkbox"></div>
+            <div class="opt-name">
+              Branding para nuevos desarrollos
+              <span class="opt-sub">Pago único · naming, identidad y manual · desde $35,000</span>
+            </div>
+          </div>
+          <div class="opt-price">$35,000</div>
+        </div>
       </div>
 
       <div class="calc-summary">
@@ -1757,8 +1796,12 @@
           <div class="lbl">Total mensual</div>
           <div class="val" id="calc-total"><span class="calc-empty">Selecciona servicios</span></div>
         </div>
+        <div class="calc-row total" id="calc-onetime-row" style="display:none;">
+          <div class="lbl">Pago único · branding</div>
+          <div class="val" id="calc-onetime">—</div>
+        </div>
         <div class="calc-note">
-          Precios en MXN, no incluyen IVA. Pauta publicitaria en Google, Meta y TikTok se cotiza por separado y va directo a las plataformas (no es honorario de Sentido). Implementación de CRM sin costo con mantenimiento mensual activo.
+          Precios en MXN, no incluyen IVA. El descuento por bundle aplica únicamente a los servicios mensuales recurrentes; el branding se factura como pago único. Pauta publicitaria en Google, Meta y TikTok se cotiza por separado y va directo a las plataformas (no es honorario de Sentido). Implementación de CRM sin costo con mantenimiento mensual activo.
         </div>
       </div>
     </div>
@@ -1979,42 +2022,54 @@
     const discountEl = document.getElementById('calc-discount');
     const dashboardRow = document.getElementById('calc-dashboard-row');
     const totalEl = document.getElementById('calc-total');
+    const onetimeRow = document.getElementById('calc-onetime-row');
+    const onetimeEl = document.getElementById('calc-onetime');
 
     const fmt = (n) => '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
     function recalculate() {
       const active = Array.from(options).filter(o => o.classList.contains('active'));
-      const count = active.length;
+      const monthlyActive = active.filter(o => o.dataset.onetime !== 'true');
+      const onetimeActive = active.filter(o => o.dataset.onetime === 'true');
+      const monthlyCount = monthlyActive.length;
 
-      // Dashboard logic — incluido si hay 3+ servicios no-dashboard y dashboard está activo
-      const dashboardOption = Array.from(options).find(o => o.dataset.name === 'Dashboard tiempo real');
-      const dashboardSelected = dashboardOption && dashboardOption.classList.contains('active');
-      const nonDashboardCount = active.filter(o => o.dataset.name !== 'Dashboard tiempo real').length;
+      // Dashboard logic — incluido si hay 3+ servicios mensuales no-dashboard y dashboard está activo
+      const dashboardOption = monthlyActive.find(o => o.dataset.name === 'Dashboard tiempo real');
+      const dashboardSelected = !!dashboardOption;
+      const nonDashboardCount = monthlyActive.filter(o => o.dataset.name !== 'Dashboard tiempo real').length;
       const dashboardFree = dashboardSelected && nonDashboardCount >= 3;
 
       let subtotal = 0;
-      active.forEach(o => {
+      monthlyActive.forEach(o => {
         const price = parseInt(o.dataset.price, 10);
         if (o.dataset.name === 'Dashboard tiempo real' && dashboardFree) return;
         subtotal += price;
       });
 
-      // Bundle discount sobre count de servicios totales
+      // Bundle discount sólo sobre servicios mensuales
       let discountPct = 0;
-      if (count >= 4) discountPct = 0.15;
-      else if (count === 3) discountPct = 0.10;
+      if (monthlyCount >= 4) discountPct = 0.15;
+      else if (monthlyCount === 3) discountPct = 0.10;
       const discountAmount = Math.round(subtotal * discountPct);
       const total = subtotal - discountAmount;
 
-      if (count === 0) {
+      // Pago único (branding y futuros add-ons one-time)
+      const onetimeTotal = onetimeActive.reduce((sum, o) => sum + parseInt(o.dataset.price, 10), 0);
+
+      if (active.length === 0) {
         subtotalEl.textContent = '—';
         discountRow.style.display = 'none';
         dashboardRow.style.display = 'none';
+        onetimeRow.style.display = 'none';
         totalEl.innerHTML = '<span class="calc-empty">Selecciona servicios</span>';
         return;
       }
 
-      subtotalEl.textContent = fmt(subtotal);
+      if (monthlyCount > 0) {
+        subtotalEl.textContent = fmt(subtotal);
+      } else {
+        subtotalEl.textContent = '—';
+      }
 
       if (dashboardFree) {
         dashboardRow.style.display = 'flex';
@@ -2030,7 +2085,18 @@
         discountRow.style.display = 'none';
       }
 
-      totalEl.innerHTML = fmt(total) + '<span class="currency">MXN / mes</span>';
+      if (monthlyCount > 0) {
+        totalEl.innerHTML = fmt(total) + '<span class="currency">MXN / mes</span>';
+      } else {
+        totalEl.innerHTML = '<span class="calc-empty">Sin servicios mensuales</span>';
+      }
+
+      if (onetimeTotal > 0) {
+        onetimeRow.style.display = 'flex';
+        onetimeEl.innerHTML = fmt(onetimeTotal) + '<span class="currency">MXN</span>';
+      } else {
+        onetimeRow.style.display = 'none';
+      }
     }
 
     options.forEach(opt => {
