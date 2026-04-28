@@ -35,7 +35,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   body {
     background-color: var(--bg);
     color: var(--text);
@@ -47,6 +47,89 @@
     -moz-osx-font-smoothing: grayscale;
   }
   ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Sticky Nav */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  @media (min-width: 1024px) { .site-nav-inner { padding: 0 2rem; height: 64px; } }
+  .site-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .site-nav-brand img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  @media (min-width: 1024px) { .site-nav-brand img { height: 26px; } }
+  .site-nav-links {
+    display: none;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+  }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .site-nav-links a:hover { color: var(--accent); }
+  .site-nav-links a.active { color: var(--accent); }
+
+  /* Mobile nav: scroll horizontal */
+  .site-nav-mobile {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 0 0 1rem;
+    margin-left: 0.75rem;
+    border-left: 1px solid var(--border);
+    flex: 1;
+    min-width: 0;
+  }
+  .site-nav-mobile::-webkit-scrollbar { display: none; }
+  .site-nav-mobile a {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .site-nav-mobile a:hover, .site-nav-mobile a.active { color: var(--accent); }
+  @media (min-width: 1024px) { .site-nav-mobile { display: none; } }
 
   /* Reveal */
   .reveal {
@@ -150,7 +233,10 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2.5rem 1.5rem;
-    background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.025) 0%, transparent 60%), var(--bg);
+    background:
+      radial-gradient(ellipse 90% 60% at 15% 20%, rgba(255, 255, 255, 0.055) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+      linear-gradient(135deg, #0A0A0A 0%, #131313 50%, #0A0A0A 100%);
     overflow: hidden;
   }
   @media (min-width: 768px) { .hero { padding: 3rem; } }
@@ -158,12 +244,25 @@
   .hero::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-    background-size: 80px 80px;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.04) 0%, transparent 65%);
+    filter: blur(40px);
     pointer-events: none;
+    z-index: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle 600px at 100% 0%, rgba(255, 255, 255, 0.025) 0%, transparent 70%),
+      radial-gradient(circle 500px at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
   .hero-top {
     display: flex;
@@ -172,7 +271,23 @@
     position: relative;
     z-index: 2;
   }
-  .hero-logo img { height: 28px; width: auto; }
+  .hero-logo img { height: 28px; width: auto; display: block; }
+  .hero-mark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-mark img {
+    height: 96px;
+    width: auto;
+    display: block;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.08));
+  }
+  @media (min-width: 768px) { .hero-mark img { height: 120px; } }
+  @media (max-width: 640px) { .hero-mark img { height: 72px; } .hero-mark { margin-bottom: 1.75rem; } }
   .hero-meta {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -186,10 +301,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     max-width: 64rem;
-    margin: 4rem 0;
+    margin: 3rem auto;
     position: relative;
     z-index: 2;
+    text-align: center;
   }
   .hero-eyebrow {
     font-family: var(--font-mono);
@@ -197,15 +314,21 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 2rem;
-    display: flex;
+    margin-bottom: 1.75rem;
+    display: inline-flex;
     align-items: center;
     gap: 0.75rem;
   }
   .hero-eyebrow::before {
     content: '';
     height: 1px;
-    width: 2.5rem;
+    width: 2rem;
+    background: var(--accent);
+  }
+  .hero-eyebrow::after {
+    content: '';
+    height: 1px;
+    width: 2rem;
     background: var(--accent);
   }
   .hero-title {
@@ -1078,25 +1201,59 @@
 </head>
 <body>
 
+<!-- ============== STICKY NAV ============== -->
+<nav class="site-nav" id="site-nav">
+  <div class="site-nav-inner">
+    <a href="#top" class="site-nav-brand" aria-label="Sentido — inicio">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#momento" data-nav>Momento</a></li>
+      <li><a href="#problema" data-nav>Problema</a></li>
+      <li><a href="#trabajamos" data-nav>Cómo trabajamos</a></li>
+      <li><a href="#capacidades" data-nav>Capacidades</a></li>
+      <li><a href="#calculadora" data-nav>Calculadora</a></li>
+      <li><a href="#pauta" data-nav>Pauta</a></li>
+      <li><a href="#horizonte" data-nav>Horizonte</a></li>
+      <li><a href="#contacto" data-nav>Contacto</a></li>
+    </ul>
+    <div class="site-nav-mobile" aria-label="Navegación de secciones">
+      <a href="#momento" data-nav>Momento</a>
+      <a href="#problema" data-nav>Problema</a>
+      <a href="#trabajamos" data-nav>Trabajamos</a>
+      <a href="#capacidades" data-nav>Capacidades</a>
+      <a href="#calculadora" data-nav>Calculadora</a>
+      <a href="#pauta" data-nav>Pauta</a>
+      <a href="#horizonte" data-nav>Horizonte</a>
+      <a href="#contacto" data-nav>Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
 <!-- ============== HERO ============== -->
 <section class="hero">
   <div class="hero-top">
-    <div class="hero-logo">
-      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
-    </div>
     <div class="hero-meta">
       Sector inmobiliario <span class="accent-dot">·</span> México 2026
+    </div>
+    <div class="hero-meta">
+      <span style="color: var(--accent);">●</span> Propuesta sectorial
     </div>
   </div>
 
   <div class="hero-center">
+    <div class="hero-mark">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </div>
     <div class="hero-eyebrow">Capacidades para el sector inmobiliario</div>
     <h1 class="hero-title">
       Calificar mejor.<br />
       Cerrar más.<br />
       <span class="italic">Gastar menos.</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" style="margin-left: auto; margin-right: auto;">
       Un sistema operado con <strong>inteligencia artificial</strong> para desarrollos, inmobiliarias de lujo y agencias que están cansadas de pagar leads que nadie cierra.
     </p>
   </div>
@@ -1708,7 +1865,7 @@
 </section>
 
 <!-- ============== CIERRE ============== -->
-<section class="closing">
+<section class="closing" id="contacto">
   <div class="reveal">
     <h2>
       El sector inmobiliario premia<br />
@@ -1723,10 +1880,6 @@
       <div class="contact-item">
         <span class="lbl">Correo</span>
         <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
-      </div>
-      <div class="contact-item">
-        <span class="lbl">Instagram</span>
-        <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
       </div>
       <div class="contact-item">
         <span class="lbl">Web</span>
@@ -1757,6 +1910,30 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Scroll-spy del nav
+  (function() {
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const sectionIds = ['momento','problema','trabajamos','capacidades','calculadora','pauta','horizonte','contacto'];
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function setActive(id) {
+      navLinks.forEach(a => {
+        if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+        else a.classList.remove('active');
+      });
+    }
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(s => spy.observe(s));
+  })();
 
   // Calculadora interactiva
   (function() {
