@@ -34,6 +34,14 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary);padding:2rem;max-width:720px;margin:0 auto}
+.brand{display:flex;align-items:center;margin-bottom:1.75rem}
+.brand img{height:28px;width:auto;display:block}
+.brand .logo-light{display:block}
+.brand .logo-dark{display:none}
+@media(prefers-color-scheme:dark){
+.brand .logo-light{display:none}
+.brand .logo-dark{display:block}
+}
 h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .subtitle{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.5rem}
 .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:14px}
@@ -58,6 +66,11 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 </style>
 </head>
 <body>
+
+<div class="brand">
+<img class="logo-light" src="/assets/logo-sentido-dark.png" alt="Sentido">
+<img class="logo-dark" src="/assets/logo-sentido-light.png" alt="Sentido">
+</div>
 
 <h1>Distribución de pauta por desarrollo</h1>
 <p class="subtitle">Arrastra las líneas para ajustar la distribución entre canales</p>
