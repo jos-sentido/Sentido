@@ -1089,6 +1089,33 @@
     background: var(--accent-glow);
   }
 
+  /* Descuentos visibles en Paquete Integral */
+  .price-was {
+    color: var(--text-faint);
+    text-decoration: line-through;
+    font-weight: 300;
+    margin-right: 10px;
+    font-size: 0.875rem;
+  }
+  .price-now {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .discount-tag {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 8px;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    background: var(--accent-glow);
+    vertical-align: middle;
+  }
+  tr.total .price-was { font-size: 1rem; }
+
   /* Compare box — paquete vs individual */
   .compare {
     display: grid;
@@ -1803,7 +1830,7 @@
     <div class="table-wrap reveal">
       <div class="table-label">
         <span>Paquete Integral Sentido</span>
-        <span class="savings-badge">Ahorro · $9,000/mes</span>
+        <span class="savings-badge">Ahorro · $11,500/mes</span>
       </div>
       <table>
         <thead>
@@ -1814,24 +1841,24 @@
         </thead>
         <tbody>
           <tr>
-            <td>Gestión de Redes Meta <span style="color: var(--text-faint); font-size: 0.8125rem;">— incluye Meta Ads</span></td>
-            <td class="num">$7,500</td>
+            <td>Gestión de Redes Meta <span style="color: var(--text-faint); font-size: 0.8125rem;">— incluye Meta Ads</span> <span class="discount-tag">Descuento −$1,500</span></td>
+            <td class="num"><span class="price-was">$7,500</span><span class="price-now">$6,000</span></td>
           </tr>
           <tr>
-            <td>Google Ads</td>
-            <td class="num">$4,000</td>
+            <td>Google Ads <span class="discount-tag">Descuento −$500</span></td>
+            <td class="num"><span class="price-was">$4,000</span><span class="price-now">$3,500</span></td>
           </tr>
           <tr>
-            <td>CRM + Automatización + Reputación</td>
-            <td class="num">$4,000</td>
+            <td>CRM + Automatización + Reputación <span class="discount-tag">Descuento −$1,000</span></td>
+            <td class="num"><span class="price-was">$4,000</span><span class="price-now">$3,000</span></td>
           </tr>
           <tr class="included">
             <td>Google Business Profile <span style="color: var(--text-faint); font-size: 0.8125rem;">— preferencial por paquete</span></td>
             <td class="num">Incluido</td>
           </tr>
           <tr class="total">
-            <td>Total mensual</td>
-            <td class="num">$15,500 + IVA</td>
+            <td>Total mensual <span class="discount-tag">Ahorro −$3,000 vs. tarifa estándar</span></td>
+            <td class="num"><span class="price-was">$15,500</span><span class="price-now">$12,500 + IVA</span></td>
           </tr>
         </tbody>
       </table>
@@ -1891,9 +1918,9 @@
       </div>
       <div class="compare-box featured">
         <div class="compare-label">Paquete Integral Sentido</div>
-        <div class="compare-price">$15,500</div>
-        <div class="compare-sub">+ IVA / mes</div>
-        <p class="compare-note">Meta Ads incluido, GBP incluido, implementación CRM sin costo. Ahorro mensual de <strong style="color: var(--accent);">$9,000</strong>.</p>
+        <div class="compare-price"><span style="color: var(--text-faint); text-decoration: line-through; font-size: 0.55em; font-weight: 300; margin-right: 12px;">$15,500</span>$12,500</div>
+        <div class="compare-sub">+ IVA / mes · con descuento aplicado</div>
+        <p class="compare-note">Meta Ads incluido, GBP incluido, implementación CRM sin costo. Descuentos por paquete sobre Redes, Google Ads y CRM. Ahorro mensual de <strong style="color: var(--accent);">$11,500</strong> vs. contratación individual.</p>
       </div>
     </div>
   </div>
