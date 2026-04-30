@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Sistema de Gestión de Perforaciones · Sentido</title>
+<meta name="description" content="Reemplazo a la medida del software canadiense Krux: app móvil offline, dashboard web e IA operativa para gestión de perforaciones mineras." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0F11;
+    --surface: #15171A;
+    --surface-elevated: #1C1F23;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text: #E8E6E1;
+    --text-dim: #9A9893;
+    --text-faint: #5C5B58;
+    --accent: #C28B47;        /* ocre tierra — minería */
+    --accent-soft: rgba(194,139,71,0.12);
+    --tech: #4FB6C9;          /* cyan técnico — datos / código */
+    --tech-soft: rgba(79,182,201,0.12);
+    --steel: #8C9196;         /* gris acero */
+    --warn: #D4824A;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .section {
+    padding: 5rem 1.5rem;
+    position: relative;
+  }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+  }
+  .section-label .divider { height: 1px; width: 3rem; background: var(--accent); opacity: 0.7; }
+  .section-label span { color: var(--accent); font-weight: 500; }
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .display-heading.xl { font-size: clamp(2.25rem, 5.5vw, 4rem); }
+  .display-heading.lg { font-size: clamp(1.75rem, 4vw, 2.75rem); }
+  .display-heading.md { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+  .accent-italic { font-style: italic; color: var(--accent); }
+  .tech-italic { font-style: italic; color: var(--tech); }
+
+  .paragraph {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .paragraph.lg { font-size: 1.15rem; }
+  .paragraph.muted { color: var(--text-dim); }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---------- NAV ---------- */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(14,15,17,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.3s ease;
+  }
+  .site-nav-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .site-nav-brand img { height: 22px; display: block; }
+  .site-nav-links {
+    display: none;
+    list-style: none;
+    gap: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 900px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+  .site-nav-links a:hover { color: var(--text); }
+  .site-nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .site-nav-meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 8rem 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 9rem 3rem 5rem; } }
+  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 5rem; } }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(194,139,71,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(79,182,201,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-meta .accent-dot { color: var(--accent); margin: 0 0.4rem; }
+
+  .hero-center {
+    max-width: 64rem;
+    margin: 4rem 0;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+  .hero-title .italic { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    color: var(--text-dim);
+    max-width: 48rem;
+    line-height: 1.7;
+  }
+
+  .hero-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .hero-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem 3rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-stat-value {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.75rem;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .hero-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-scroll {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-align: right;
+  }
+
+  /* ---------- PROSPECT PLACEHOLDER ---------- */
+  .placeholder-flag {
+    display: inline-block;
+    border: 1px dashed var(--warn);
+    color: var(--warn);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ---------- CARDS ---------- */
+  .card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 4px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover { border-color: var(--border-strong); }
+  .card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .card-eyebrow.tech { color: var(--tech); }
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .card-body {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .card-body ul {
+    list-style: none;
+    margin-top: 1rem;
+    padding-left: 0;
+  }
+  .card-body li {
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .card-body li:first-child { border-top: 0; padding-top: 0.6rem; }
+  .card-body li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 1rem;
+    width: 0.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  .card-body li:first-child::before { top: 1.2rem; }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+  @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ---------- TABLE COMPARATIVA KRUX VS SENTIDO ---------- */
+  .vs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .vs-table thead th {
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--surface);
+  }
+  .vs-table thead th.col-krux { color: var(--steel); }
+  .vs-table thead th.col-sentido { color: var(--accent); }
+  .vs-table tbody td {
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .vs-table tbody tr:last-child td { border-bottom: 0; }
+  .vs-table .dim-col { color: var(--text-faint); }
+  .vs-table .accent-col { color: var(--text); }
+  .vs-table .axis {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    width: 28%;
+  }
+
+  /* ---------- STACK BLOCK ---------- */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .stack-cell {
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    border-radius: 3px;
+    background: var(--surface-elevated);
+  }
+  .stack-cell .layer {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tech);
+    margin-bottom: 0.5rem;
+  }
+  .stack-cell .name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .stack-cell .role {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ---------- PHASE BLOCK ---------- */
+  .phase {
+    border: 1px solid var(--border);
+    background: var(--surface-elevated);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+  }
+  .phase + .phase { margin-top: 1.5rem; }
+  .phase.future { border-style: dashed; opacity: 0.85; }
+  .phase-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .phase-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .phase-tag.future-tag { color: var(--tech); }
+  .phase-title {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-top: 0.5rem;
+    flex: 1 1 60%;
+  }
+  .phase-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-align: right;
+  }
+  .phase-meta strong { color: var(--text); font-weight: 500; }
+  .phase-summary {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 50rem;
+  }
+  .phase-deliverables {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  @media (min-width: 768px) { .phase-deliverables { grid-template-columns: 1fr 1fr; } }
+  .deliverable {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .deliverable .check {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+  .phase.future .deliverable .check { color: var(--tech); }
+
+  /* ---------- PRICE BAR ---------- */
+  .price-bar {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .price-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .price-value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .price-value em { font-style: italic; color: var(--accent); }
+  .price-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+
+  /* ---------- INVESTMENT TOTAL ---------- */
+  .total-card {
+    margin-top: 3rem;
+    background: linear-gradient(135deg, rgba(194,139,71,0.08), rgba(79,182,201,0.04));
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) { .total-card { grid-template-columns: 1fr auto; align-items: center; } }
+  .total-card .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .total-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .total-card p { color: var(--text-dim); font-size: 0.95rem; max-width: 36rem; }
+  .total-card .number {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+  }
+  .total-card .number em { font-style: italic; color: var(--accent); }
+  .total-card .small { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-top: 0.5rem; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  @media (min-width: 768px) {
+    .tl-row { grid-template-columns: 130px 200px 1fr; gap: 2rem; }
+  }
+  .tl-row:last-child { border-bottom: 0; }
+  .tl-row.future { background: rgba(79,182,201,0.03); }
+  .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .tl-row.future .tl-week { color: var(--tech); }
+  .tl-phase {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tl-detail {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- CASE STUDY ---------- */
+  .case {
+    border: 1px solid var(--border);
+    background: var(--surface-elevated);
+    border-radius: 4px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+  .case-head {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tech);
+  }
+  .case-title {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .case-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  @media (min-width: 768px) { .case-features { grid-template-columns: 1fr 1fr; } }
+  .case-features .feature {
+    border-left: 2px solid var(--tech);
+    padding: 0.25rem 0 0.25rem 1rem;
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  .case-features .feature span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--tech);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  /* ---------- CALLOUT ---------- */
+  .callout {
+    border-left: 2px solid var(--accent);
+    padding: 1rem 1.5rem;
+    background: var(--accent-soft);
+    margin: 2rem 0;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout.tech-callout {
+    border-left-color: var(--tech);
+    background: var(--tech-soft);
+  }
+  .callout strong { color: var(--accent); font-weight: 500; }
+  .callout.tech-callout strong { color: var(--tech); }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    text-align: center;
+    padding: 6rem 1.5rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem; } }
+  .closing h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+  }
+  .closing h2 em { font-style: italic; color: var(--accent); }
+  .closing p {
+    color: var(--text-dim);
+    max-width: 36rem;
+    margin: 0 auto 3rem;
+  }
+  .closing-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .closing-meta a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .closing-meta a:hover { color: var(--accent); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+  footer img { height: 22px; opacity: 0.5; margin-bottom: 0.75rem; }
+  footer .copy {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  /* ---------- UTILS ---------- */
+  .mt-3 { margin-top: 1rem; }
+  .mt-6 { margin-top: 2rem; }
+  .mt-8 { margin-top: 2.5rem; }
+  .mb-3 { margin-bottom: 1rem; }
+  .mb-6 { margin-bottom: 2rem; }
+  .text-mono { font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="site-nav" id="site-nav">
+  <div class="site-nav-inner">
+    <a href="#top" class="site-nav-brand" aria-label="Sentido">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#momento" data-target="momento">Momento</a></li>
+      <li><a href="#vs" data-target="vs">Krux vs Sentido</a></li>
+      <li><a href="#solucion" data-target="solucion">Solución</a></li>
+      <li><a href="#stack" data-target="stack">Stack</a></li>
+      <li><a href="#fases" data-target="fases">Fases</a></li>
+      <li><a href="#inversion" data-target="inversion">Inversión</a></li>
+    </ul>
+    <div class="site-nav-meta">Abr · 2026</div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="hero-top">
+    <div class="hero-meta">
+      Perforación minera <span class="accent-dot">·</span> Zacatecas / Guadalajara
+    </div>
+    <div class="hero-meta">
+      Propuesta de desarrollo <span class="accent-dot">·</span> 28 abr 2026
+    </div>
+  </div>
+
+  <div class="hero-center">
+    <div class="hero-eyebrow">Software a la medida · Reemplazo de Krux Analytics</div>
+    <h1 class="hero-title">
+      Que el software<br>
+      se adapte a su <span class="italic">mina</span>,<br>
+      no al revés.
+    </h1>
+    <p class="hero-sub">
+      Una plataforma propia de gestión de perforaciones — app móvil offline para los capitanes,
+      dashboard en tiempo real para oficina, IA operativa que entiende su negocio. Construida
+      pieza por pieza con sus procesos, no contra ellos.
+    </p>
+    <div style="margin-top:1.5rem;">
+      <span class="placeholder-flag">⟶ Reemplazar título con nombre real de la minera antes de enviar</span>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-value">~60%</div>
+        <div class="hero-stat-label">de Krux les sirve hoy</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">3–4 meses</div>
+        <div class="hero-stat-label">a MVP funcional</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">100%</div>
+        <div class="hero-stat-label">propiedad del software</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">+ IA</div>
+        <div class="hero-stat-label">operativa integrada</div>
+      </div>
+    </div>
+    <div class="hero-scroll">↓ Continuar</div>
+  </div>
+</section>
+
+<!-- ============== EL MOMENTO ============== -->
+<section class="section section-divider" id="momento">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>01</span>
+      <span>El momento</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Tienen una operación minera de <span class="accent-italic">primer nivel</span> corriendo sobre un software extranjero que solo entiende
+      <em>la mitad</em> de lo que hacen.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1 mt-6">
+      Krux Analytics resuelve los fundamentos: capturar perforaciones, consolidar reportes, exportar datos.
+      Pero al final del día su equipo dobla la realidad para encajar en el software, no al revés.
+      Procesos propios que no caben. Personalizaciones que no llegan. Decisiones que se atrasan
+      porque el dashboard no muestra <em>su</em> manera de leer la mina.
+    </p>
+
+    <div class="grid-3 mt-8">
+      <div class="card reveal reveal-d1">
+        <div class="card-eyebrow">Diagnóstico 01</div>
+        <div class="card-title">Rigidez de plataforma</div>
+        <div class="card-body">
+          Krux es un producto cerrado. Si el flujo de su mina no encaja con el flujo del software,
+          es la mina la que tiene que cambiar. No al revés.
+        </div>
+      </div>
+      <div class="card reveal reveal-d2">
+        <div class="card-eyebrow">Diagnóstico 02</div>
+        <div class="card-title">~60% de utilidad real</div>
+        <div class="card-body">
+          Ustedes mismos lo dijeron: cubre seis de cada diez necesidades.
+          Las otras cuatro se compensan con Excel, llamadas, criterio del capitán y
+          decisiones que llegan tarde a Guadalajara.
+        </div>
+      </div>
+      <div class="card reveal reveal-d3">
+        <div class="card-eyebrow">Diagnóstico 03</div>
+        <div class="card-title">Datos que no son suyos</div>
+        <div class="card-body">
+          La data de perforaciones, contratos, rendimiento y consumibles vive en una plataforma
+          canadiense. Migrar, exportar o cruzar contra otros sistemas es una negociación con
+          un proveedor externo, no una decisión interna.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-d2 mt-8">
+      <strong>Lo que está en juego no es un software.</strong> Es la velocidad con la que pueden mover
+      una máquina de la mina A a la mina B cuando la data lo pide. Es la capacidad de ajustar el
+      modelo a un nuevo cliente sin esperar tres releases del proveedor. Es <em>soberanía operativa</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ============== KRUX VS SENTIDO ============== -->
+<section class="section section-surface" id="vs">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>02</span>
+      <span>Krux vs Solución Sentido</span>
+    </div>
+
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Mismo problema. <span class="accent-italic">Otra filosofía.</span>
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      No proponemos un Krux clonado. Proponemos lo que Krux <em>no puede</em> ser: un sistema que
+      es de ustedes, evoluciona con ustedes y eventualmente puede convertirse en activo comercial
+      propio para licenciar a otras mineras.
+    </p>
+
+    <div class="reveal reveal-d2 mt-8" style="border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th class="axis">Eje</th>
+            <th class="col-krux">Krux Analytics</th>
+            <th class="col-sentido">Solución a la medida — Sentido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="axis">Adaptabilidad</td>
+            <td class="dim-col">La operación se adapta al software. Personalización limitada por roadmap externo.</td>
+            <td class="accent-col">El software se adapta a la operación. Cada mina puede tener su variante sin tocar el core.</td>
+          </tr>
+          <tr>
+            <td class="axis">Captura en mina</td>
+            <td class="dim-col">App offline funcional. UI rígida, no aprende del flujo del capitán.</td>
+            <td class="accent-col">App React Native offline-first con UI adaptable, validaciones por tipo de contrato y sincronización inteligente.</td>
+          </tr>
+          <tr>
+            <td class="axis">Dashboard oficina</td>
+            <td class="dim-col">Tablas y gráficas estándar. Reportes que requieren exportar y trabajar en Excel.</td>
+            <td class="accent-col">Dashboards interactivos en tiempo real, mapeo geográfico de minas y máquinas, drill-down vivo desde la base de datos.</td>
+          </tr>
+          <tr>
+            <td class="axis">Tracking de contratos</td>
+            <td class="dim-col">Metas y avance básico. Lectura no contextual.</td>
+            <td class="accent-col">Avance vs meta en vivo, alertas tempranas, comparativos por capitán/equipo, narrativa visual del contrato.</td>
+          </tr>
+          <tr>
+            <td class="axis">Inteligencia operativa</td>
+            <td class="dim-col">Reportes pasivos. Las decisiones las hace el humano leyendo tablas.</td>
+            <td class="accent-col">IA conversacional consciente de pantalla: entiende qué están viendo, sugiere movimientos de máquina, detecta paros sospechosos, explica desviaciones.</td>
+          </tr>
+          <tr>
+            <td class="axis">Integraciones</td>
+            <td class="dim-col">Cerradas o por contrato adicional con el proveedor.</td>
+            <td class="accent-col">APIs propias, integración con SAP/ERP, importación inicial de data histórica de Krux, futuro IoT.</td>
+          </tr>
+          <tr>
+            <td class="axis">Propiedad y costos</td>
+            <td class="dim-col">Suscripción recurrente. La data y el software son del proveedor.</td>
+            <td class="accent-col">Inversión única + soporte mensual opcional. El software, el código y la data son de la minera.</td>
+          </tr>
+          <tr>
+            <td class="axis">Horizonte</td>
+            <td class="dim-col">Dependencia indefinida del proveedor canadiense.</td>
+            <td class="accent-col">Activo digital propio. Potencial de licenciamiento futuro a otras mineras del país.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LA SOLUCIÓN ============== -->
+<section class="section section-divider" id="solucion">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>03</span>
+      <span>La solución</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Un sistema que <span class="accent-italic">vive</span> donde vive la mina —
+      del barreno al tablero del director.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1 mt-6">
+      Tres capas que conversan entre sí en tiempo real cuando hay señal,
+      y se sincronizan cuando aparece. Pensadas como un ecosistema, no como módulos sueltos.
+    </p>
+
+    <div class="grid-3 mt-8">
+      <div class="card reveal reveal-d1">
+        <div class="card-eyebrow tech">Capa 01 · Campo</div>
+        <div class="card-title">App móvil offline para capitanes</div>
+        <div class="card-body">
+          La herramienta diaria del líder de perforación. Funciona sin señal,
+          sincroniza cuando vuelve la conexión, valida que cada captura sea coherente con el contrato.
+          <ul>
+            <li>Captura de avances de perforación por turno</li>
+            <li>Registro de incidentes y paros con justificación obligatoria</li>
+            <li>Control de barrenas y consumibles en mina</li>
+            <li>Almacenamiento local SQLite + sync background</li>
+            <li>Validaciones contra meta del contrato en tiempo real</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-d2">
+        <div class="card-eyebrow tech">Capa 02 · Oficina</div>
+        <div class="card-title">Dashboard web en tiempo real</div>
+        <div class="card-body">
+          Lo que el equipo en Guadalajara necesita ver para decidir hoy, no la próxima semana.
+          Mapeo geográfico, métricas vivas, exportación de reportes ejecutivos.
+          <ul>
+            <li>Mapa de minas y máquinas con estado en vivo</li>
+            <li>Avance vs meta por contrato, semana, mes</li>
+            <li>Rendimiento comparado por capitán y equipo</li>
+            <li>Detección automática de paros y máquinas inactivas</li>
+            <li>Reportes exportables (PDF, Excel) con un clic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-d3">
+        <div class="card-eyebrow tech">Capa 03 · Inteligencia</div>
+        <div class="card-title">IA operativa consciente de pantalla</div>
+        <div class="card-body">
+          Un asistente conversacional que entiende exactamente qué está mirando el usuario
+          y responde sobre <em>esa</em> mina, ese contrato, ese capitán. No buzzword: ya corre en otro software de Sentido.
+          <ul>
+            <li>Bot conversacional integrado en dashboard y app</li>
+            <li>Preguntas en lenguaje natural sobre la base de datos</li>
+            <li>Detección de patrones sospechosos (paros recurrentes, inconsistencias)</li>
+            <li>Explicación automática de desviaciones contra meta</li>
+            <li>Aprende de las preguntas frecuentes del equipo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tech-callout reveal reveal-d2 mt-8">
+      <strong>Arquitectura modular desde el día uno.</strong> El core del sistema queda igual; cada
+      mina o cada cliente futuro puede tener su variante de UI, validaciones y reportes sin
+      tocar la base. Esto no es decoración técnica — es la condición para que un día este
+      software se pueda licenciar a otras mineras.
+    </div>
+  </div>
+</section>
+
+<!-- ============== STACK TECNOLÓGICO ============== -->
+<section class="section section-surface" id="stack">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>04</span>
+      <span>Stack tecnológico</span>
+    </div>
+
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Tecnologías <span class="accent-italic">probadas</span> en producción —
+      no apuestas, no experimentos.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      Cada pieza del stack tiene años de adopción industrial, comunidad amplia y cero dependencia
+      vendor-lock. Si mañana quieren migrar de proveedor de hosting o cambiar de equipo de desarrollo,
+      el código sigue funcionando.
+    </p>
+
+    <div class="stack-grid reveal reveal-d2">
+      <div class="stack-cell">
+        <div class="layer">Frontend Web</div>
+        <div class="name">React</div>
+        <div class="role">Dashboard interactivo en oficina. SPA con estado en tiempo real.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">App móvil</div>
+        <div class="name">React Native</div>
+        <div class="role">App offline para iOS y Android desde el mismo código base. Sincroniza cuando hay señal.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">Storage local</div>
+        <div class="name">SQLite</div>
+        <div class="role">Base de datos embebida en el dispositivo. Captura sin conexión, sin pérdida de data.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">Backend / DB</div>
+        <div class="name">PostgreSQL</div>
+        <div class="role">Base de datos relacional managed en Digital Ocean. Confiable, auditable, exportable.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">Infraestructura</div>
+        <div class="name">Digital Ocean</div>
+        <div class="role">Hosting backend, servicios y BD. Costos predecibles y región LATAM disponible.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">Hosting frontend</div>
+        <div class="name">Vercel</div>
+        <div class="role">Deploy continuo del dashboard web. CDN global y rollback instantáneo.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">Repos / CI</div>
+        <div class="name">GitHub</div>
+        <div class="role">Código versionado, revisado y respaldado. Auditoría total de cambios.</div>
+      </div>
+      <div class="stack-cell">
+        <div class="layer">IA</div>
+        <div class="name">Claude / OpenAI</div>
+        <div class="role">APIs de modelos LLM para el bot conversacional consciente de pantalla.</div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-d2 mt-8">
+      <strong>El código y la base de datos quedan en infraestructura de la minera.</strong>
+      Sentido construye y entrega; el software es propiedad del cliente desde el día uno.
+      Las cuentas de Digital Ocean, Vercel y GitHub se configuran a nombre de la empresa.
+    </div>
+  </div>
+</section>
+
+<!-- ============== CASO DE ÉXITO ============== -->
+<section class="section section-divider">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>05</span>
+      <span>Capacidad probada</span>
+    </div>
+
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Lo que aquí se propone <span class="accent-italic">ya corre</span> en otra industria.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      No es teoría. José Salvarez, líder técnico de Sentido, desarrolló una plataforma propia
+      para la industria de medios out-of-home (espectaculares y paradas de camión). Las piezas
+      críticas de la propuesta para minería ya están vivas en producción ahí.
+    </p>
+
+    <div class="case reveal reveal-d2">
+      <div class="case-head">
+        <div>
+          <div class="case-tag">Caso · OOH / espectaculares</div>
+          <div class="case-title mt-3">Plataforma operativa con IA y mapeo geográfico</div>
+        </div>
+        <div class="phase-meta">
+          <strong>~3 meses</strong><br>
+          versión base
+        </div>
+      </div>
+
+      <p class="card-body" style="max-width:50rem;">
+        Sistema interno que hoy gestiona inventario de medios físicos, atiende tickets de soporte y
+        sirve como centro de operación de la empresa. Construido por el mismo equipo que firmaría
+        el sistema de perforaciones.
+      </p>
+
+      <div class="case-features">
+        <div class="feature">
+          <span>Feature 01</span>
+          Dashboard con mapeo geográfico de pines (mismo patrón que minas y máquinas)
+        </div>
+        <div class="feature">
+          <span>Feature 02</span>
+          IA conversacional consciente de pantalla, exactamente la propuesta para minería
+        </div>
+        <div class="feature">
+          <span>Feature 03</span>
+          Integración bidireccional con SAP vía API
+        </div>
+        <div class="feature">
+          <span>Feature 04</span>
+          Análisis de tickets de soporte con categorización automática por IA
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FASES ============== -->
+<section class="section section-surface" id="fases">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>06</span>
+      <span>Fases del proyecto</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      De cero a operación en menos de <span class="accent-italic">medio año.</span>
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      Tres fases con alcance y expectativa claros. Las dos primeras son compromiso firme;
+      la tercera es roadmap futuro que validamos juntos cuando la operación lo amerite.
+    </p>
+
+    <!-- FASE 1 -->
+    <div class="phase reveal reveal-d1 mt-8">
+      <div class="phase-head">
+        <div style="flex:1 1 60%;">
+          <div class="phase-tag">Fase 01 — MVP funcional</div>
+          <div class="phase-title">Software base que ya reemplaza a Krux</div>
+        </div>
+        <div class="phase-meta">
+          Duración<br>
+          <strong>3 a 4 meses</strong>
+        </div>
+      </div>
+      <p class="phase-summary">
+        Al cerrar esta fase, la minera está corriendo su operación diaria sobre el sistema nuevo.
+        Los capitanes capturan en mina, oficina ve la data en vivo, los contratos se trackean
+        contra meta, los reportes salen con un clic. Krux deja de ser indispensable.
+      </p>
+      <div class="phase-deliverables">
+        <div class="deliverable"><span class="check">01 ▸</span><span>App móvil offline para capitanes (iOS + Android) con captura, validaciones y sincronización</span></div>
+        <div class="deliverable"><span class="check">02 ▸</span><span>Dashboard web con visualización en tablas, gráficas y mapeo geográfico</span></div>
+        <div class="deliverable"><span class="check">03 ▸</span><span>Módulo de contratos con metas, avance y alertas tempranas</span></div>
+        <div class="deliverable"><span class="check">04 ▸</span><span>Control de rendimiento por capitán/equipo (semanal, mensual, anual)</span></div>
+        <div class="deliverable"><span class="check">05 ▸</span><span>Inventario de barrenas y consumibles con consumo por contrato</span></div>
+        <div class="deliverable"><span class="check">06 ▸</span><span>Reportes de incidentes y paros con justificación obligatoria</span></div>
+        <div class="deliverable"><span class="check">07 ▸</span><span>Exportación de reportes a PDF y Excel</span></div>
+        <div class="deliverable"><span class="check">08 ▸</span><span>Backend en Digital Ocean, frontend en Vercel, repo en GitHub a nombre de la minera</span></div>
+        <div class="deliverable"><span class="check">09 ▸</span><span>Capacitación al equipo de oficina y capitanes en mina</span></div>
+        <div class="deliverable"><span class="check">10 ▸</span><span>Documentación técnica y manual operativo</span></div>
+      </div>
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Inversión Fase 01</div>
+          <div class="price-value">$<em>110,000</em> MXN <span class="text-mono" style="font-size:0.85rem; color:var(--text-dim);">+ IVA</span></div>
+        </div>
+        <div class="price-note">
+          ⟶ Pago único, alcance cerrado bajo NDA<br>
+          Pagos sugeridos: 30% inicio · 30% mes 2 · 40% entrega
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="phase reveal reveal-d2">
+      <div class="phase-head">
+        <div style="flex:1 1 60%;">
+          <div class="phase-tag">Fase 02 — Personalización profunda</div>
+          <div class="phase-title">El sistema empieza a parecerse a su mina</div>
+        </div>
+        <div class="phase-meta">
+          Duración<br>
+          <strong>1 a 2 meses</strong>
+        </div>
+      </div>
+      <p class="phase-summary">
+        Una vez que el equipo está operando sobre el sistema, llegan los aprendizajes reales:
+        flujos que se pueden afinar, reportes que faltan, atajos que el capitán pide.
+        Esta fase es para convertir esos aprendizajes en software, y para migrar la data histórica
+        que vive en Krux.
+      </p>
+      <div class="phase-deliverables">
+        <div class="deliverable"><span class="check">01 ▸</span><span>Importación de data histórica de Krux (cuando se logre exportar)</span></div>
+        <div class="deliverable"><span class="check">02 ▸</span><span>Activación de IA operativa: bot conversacional consciente de pantalla</span></div>
+        <div class="deliverable"><span class="check">03 ▸</span><span>Personalización de flujos por mina/contrato según uso real</span></div>
+        <div class="deliverable"><span class="check">04 ▸</span><span>Reportes ejecutivos a la medida según lo que pide dirección</span></div>
+        <div class="deliverable"><span class="check">05 ▸</span><span>Refinamiento de UX en app móvil con feedback de capitanes</span></div>
+        <div class="deliverable"><span class="check">06 ▸</span><span>Arquitectura multi-tenant lista para futuro licenciamiento a otras mineras</span></div>
+        <div class="deliverable"><span class="check">07 ▸</span><span>Integraciones adicionales (SAP/ERP/contabilidad si aplica)</span></div>
+        <div class="deliverable"><span class="check">08 ▸</span><span>Optimización de performance y monitoreo en producción</span></div>
+      </div>
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Inversión Fase 02</div>
+          <div class="price-value">$<em>40,000</em> MXN <span class="text-mono" style="font-size:0.85rem; color:var(--text-dim);">+ IVA</span></div>
+        </div>
+        <div class="price-note">
+          ⟶ Arranca al cierre exitoso de Fase 01<br>
+          Pagos sugeridos: 50% inicio · 50% entrega
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="phase future reveal reveal-d3">
+      <div class="phase-head">
+        <div style="flex:1 1 60%;">
+          <div class="phase-tag future-tag">Fase 03 — Roadmap · IoT industrial</div>
+          <div class="phase-title">Que las máquinas reporten solas</div>
+        </div>
+        <div class="phase-meta" style="color:var(--tech);">
+          Horizonte<br>
+          <strong>Por validar</strong>
+        </div>
+      </div>
+      <p class="phase-summary">
+        El siguiente salto natural es eliminar la captura manual conectando sensores IoT directo
+        a la maquinaria de perforación: profundidad, vibración, RPM, consumo, paros automáticos.
+        No lo cotizamos hoy porque requiere validación de hardware industrial, certificación de
+        sensores y pruebas en mina. Cuando esté listo el sistema base, abrimos esta conversación
+        con números reales.
+      </p>
+      <div class="phase-deliverables">
+        <div class="deliverable"><span class="check">·</span><span>Selección y certificación de sensores compatibles con la maquinaria actual</span></div>
+        <div class="deliverable"><span class="check">·</span><span>Capa de ingestión de datos IoT en el backend existente</span></div>
+        <div class="deliverable"><span class="check">·</span><span>Eliminación progresiva de captura manual no crítica</span></div>
+        <div class="deliverable"><span class="check">·</span><span>Alertas automáticas de paros, anomalías y mantenimiento predictivo</span></div>
+      </div>
+      <div class="price-bar">
+        <div>
+          <div class="price-label" style="color:var(--tech);">Compromiso</div>
+          <div class="price-value" style="font-size:1.4rem;">Roadmap · sin precio fijo hoy</div>
+        </div>
+        <div class="price-note">
+          Se cotiza cuando exista validación de hardware industrial.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CRONOGRAMA ============== -->
+<section class="section section-divider">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>07</span>
+      <span>Cronograma estimado</span>
+    </div>
+
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Línea de tiempo <span class="accent-italic">realista</span> — sin teatro de fechas.
+    </h2>
+
+    <div class="timeline reveal reveal-d2">
+      <div class="tl-row">
+        <div class="tl-week">Semana 0</div>
+        <div class="tl-phase">Discovery profundo</div>
+        <div class="tl-detail">Revisión de exports de Krux, sesiones con líderes de operación, posible visita a oficinas y mina, cotización refinada de Fase 01.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">Sem 1–4</div>
+        <div class="tl-phase">Arquitectura + base de datos</div>
+        <div class="tl-detail">Modelado de datos, infraestructura en Digital Ocean, esqueleto de backend, esqueleto de app móvil y dashboard, autenticación.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">Sem 5–10</div>
+        <div class="tl-phase">App móvil offline + dashboard core</div>
+        <div class="tl-detail">Captura de perforaciones, contratos con metas, sincronización offline, dashboard con tablas y gráficas, control de rendimiento.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">Sem 11–14</div>
+        <div class="tl-phase">Inventario + incidentes + reportes</div>
+        <div class="tl-detail">Barrenas, consumibles, paros, justificaciones, exportación de reportes ejecutivos, mapeo geográfico de minas/máquinas.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">Sem 15–16</div>
+        <div class="tl-phase">QA + capacitación + go-live</div>
+        <div class="tl-detail">Pruebas en mina con capitanes, ajustes finales, entrenamiento al equipo de oficina, salida en producción supervisada.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">Sem 17–24</div>
+        <div class="tl-phase">Fase 02 — personalización + IA + import Krux</div>
+        <div class="tl-detail">Activación de bot IA, importación de histórico, refinamientos por feedback real, arquitectura multi-tenant.</div>
+      </div>
+      <div class="tl-row future">
+        <div class="tl-week">Futuro</div>
+        <div class="tl-phase">Fase 03 — IoT (a validar)</div>
+        <div class="tl-detail">Selección de sensores, integración con maquinaria, captura automatizada. Cuando la operación lo pida y el hardware esté listo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== INVERSIÓN + SOPORTE ============== -->
+<section class="section section-surface" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>08</span>
+      <span>Inversión y soporte</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Una inversión <span class="accent-italic">única</span>.
+      Un activo <span class="accent-italic">propio</span>.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      A diferencia de Krux, aquí no hay suscripción indefinida. Pagan el desarrollo,
+      el software queda de la minera, y solo si lo desean contratan un soporte mensual
+      para mantener al equipo de Sentido cerca para ajustes, evolución y guardia técnica.
+    </p>
+
+    <div class="grid-2 mt-8 reveal reveal-d2">
+      <div class="card">
+        <div class="card-eyebrow">Inversión única</div>
+        <div class="card-title">Desarrollo Fase 01 + Fase 02</div>
+        <div class="card-body">
+          Cubre el desarrollo completo del sistema: app móvil offline, dashboard,
+          IA operativa, importación de Krux, capacitación, documentación,
+          arquitectura modular para futuro licenciamiento.
+          <ul>
+            <li>Fase 01 — MVP funcional (3–4 meses)</li>
+            <li>Fase 02 — Personalización + IA + import histórico (1–2 meses)</li>
+            <li>Código fuente, repo y BD a nombre de la minera</li>
+            <li>Capacitación al equipo de oficina y mina</li>
+            <li>Documentación técnica y operativa</li>
+          </ul>
+        </div>
+        <div class="price-bar">
+          <div>
+            <div class="price-label">Total inversión única</div>
+            <div class="price-value">$<em>150,000</em> MXN <span class="text-mono" style="font-size:0.85rem; color:var(--text-dim);">+ IVA</span></div>
+          </div>
+          <div class="price-note">⟶ Fase 01 + Fase 02, sin suscripción</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow tech">Soporte mensual · opcional</div>
+        <div class="card-title">Mantenimiento y evolución continua</div>
+        <div class="card-body">
+          Una vez en producción, el soporte mensual mantiene a Sentido cerca para
+          ajustes operativos, mejoras priorizadas, monitoreo de infraestructura y
+          atención a incidentes. No es obligatorio: el software corre sin él.
+          <ul>
+            <li>Hosting + monitoreo + backups (DO + Vercel)</li>
+            <li>Bolsa mensual de horas de desarrollo para ajustes</li>
+            <li>Atención prioritaria a incidentes</li>
+            <li>Iteraciones priorizadas con el equipo operativo</li>
+            <li>Actualizaciones de seguridad y dependencias</li>
+          </ul>
+        </div>
+        <div class="price-bar">
+          <div>
+            <div class="price-label">Mensual</div>
+            <div class="price-value">$<em>9,000</em> MXN <span class="text-mono" style="font-size:0.85rem; color:var(--text-dim);">+ IVA / mes</span></div>
+          </div>
+          <div class="price-note">⟶ Hosting DO + Vercel incluidos · cancelable</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="total-card reveal reveal-d2">
+      <div>
+        <div class="label">⟶ Lo que están comprando</div>
+        <h3>$150,000 MXN una sola vez. Software propio, sin suscripción.</h3>
+        <p>
+          Comparado contra el costo anual de un sistema rentado que no se adapta a la
+          operación, esta inversión se paga sola en el primer año y queda como activo
+          de la minera. La Fase 03 (IoT industrial) se cotiza por separado tras un
+          discovery de hardware cuando el sistema base esté en producción.
+        </p>
+        <div class="small">⟶ Fase 03 — IoT: a cotizar tras discovery de hardware industrial</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="number">06<em>m</em></div>
+        <div class="small">Aprox. del kickoff a operación plena</div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-d2 mt-8">
+      <strong>Modelo de propiedad.</strong> El software, el código y la base de datos quedan a nombre
+      de la minera desde el día uno. Las cuentas de Digital Ocean, Vercel y GitHub se configuran
+      con el correo corporativo del cliente. Si por cualquier razón la relación con Sentido termina,
+      el sistema sigue corriendo y otro equipo puede tomarlo. No hay rehenes técnicos.
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRÓXIMOS PASOS ============== -->
+<section class="section section-divider">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>09</span>
+      <span>Próximos pasos</span>
+    </div>
+
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Tres movimientos para arrancar <span class="accent-italic">en serio.</span>
+    </h2>
+
+    <div class="grid-3 mt-8">
+      <div class="card reveal reveal-d1">
+        <div class="card-eyebrow">Paso 01 · Cliente</div>
+        <div class="card-title">Krux discovery</div>
+        <div class="card-body">
+          Compartir grabaciones de pantalla del uso diario de Krux y los exports
+          de data más representativos. Esto nos da la base real para sellar la cotización.
+        </div>
+      </div>
+      <div class="card reveal reveal-d2">
+        <div class="card-eyebrow">Paso 02 · Sentido</div>
+        <div class="card-title">Visita y refinamiento</div>
+        <div class="card-body">
+          Visita a oficinas en Guadalajara y, si aplica, a una mina en operación.
+          Sesiones con líderes operativos. Devolvemos cotización fina y cronograma sellado.
+        </div>
+      </div>
+      <div class="card reveal reveal-d3">
+        <div class="card-eyebrow">Paso 03 · Conjunto</div>
+        <div class="card-title">Kickoff Fase 01</div>
+        <div class="card-body">
+          Firma de propuesta cerrada, anticipo, configuración de cuentas a nombre
+          de la minera. La semana siguiente arranca el desarrollo.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CIERRE ============== -->
+<section class="closing">
+  <h2>
+    Krux les vendió un <em>software</em>.<br>
+    Sentido les construye una <em>capacidad operativa</em>.
+  </h2>
+  <p>
+    Y mañana, si quieren, esa capacidad puede convertirse en producto comercial
+    para licenciar a otras mineras del país. Esa es la diferencia entre ser cliente
+    de un proveedor extranjero y ser dueño de su propia plataforma.
+  </p>
+  <div class="closing-meta">
+    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+    <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+    <span>propuestas.sentido.mx</span>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+  <div class="copy">Sentido Branding & Advertising · Propuesta confidencial · Abr 2026</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Scroll-spy for nav
+  const navLinks = document.querySelectorAll('.site-nav-links a[data-target]');
+  const sections = Array.from(navLinks).map(a => document.getElementById(a.dataset.target)).filter(Boolean);
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => spy.observe(s));
+</script>
+
+</body>
+</html>
