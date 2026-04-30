@@ -668,6 +668,41 @@
   }
   .pauta-body strong { color: var(--text); font-weight: 500; }
 
+  /* Pauta inline — sub-bloque adyacente al servicio operador */
+  .pauta-inline {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.875rem 1rem 0.875rem 1.125rem;
+    background-color: var(--surface);
+    border-left: 2px solid var(--accent);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .pauta-inline .pauta-icon { width: 16px; height: 16px; margin-top: 1px; }
+  .pauta-inline-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  .pauta-inline-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .pauta-inline-body strong { color: var(--text); font-weight: 500; }
+  .pauta-inline-note {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
   /* Horizonte */
   .horizon-grid {
     display: grid;
@@ -922,6 +957,104 @@
       letter-spacing: 0.16em;
       gap: 0.375rem;
     }
+  }
+
+  /* Discount / promo styling — only used on Plan Recomendado */
+  .price-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+  .plan-breakdown-amount-old {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .plan-breakdown-amount.discounted {
+    color: var(--accent-bright);
+  }
+  .promo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .promo-badge.discount {
+    color: #0A0A0A;
+    background: var(--accent-bright);
+  }
+  .promo-badge.included {
+    color: var(--accent-bright);
+    background: rgba(197, 165, 114, 0.12);
+    border: 1px solid rgba(197, 165, 114, 0.45);
+  }
+  .promo-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.4rem;
+  }
+  .plan-breakdown-amount.included-bundled {
+    color: var(--accent);
+    font-style: italic;
+    font-size: 18px;
+  }
+  .plan-savings {
+    margin-top: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, rgba(197, 165, 114, 0.10), rgba(197, 165, 114, 0.03));
+    border: 1px solid rgba(197, 165, 114, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .plan-savings-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+    font-weight: 600;
+  }
+  .plan-savings-amount {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--accent-bright);
+    font-weight: 500;
+  }
+  .plan-savings-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 300;
+    flex-basis: 100%;
+    margin-top: 0.25rem;
+  }
+  .price-old-inline {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-right: 0.5rem;
+  }
+  @media (max-width: 640px) {
+    .promo-badge { font-size: 8px; padding: 0.2rem 0.4rem; }
+    .plan-savings-amount { font-size: 22px; }
   }
 </style>
 </head>
@@ -1387,10 +1520,14 @@
         <div class="plan-price-box">
           <div class="plan-price-label">Inversión mensual</div>
           <div class="plan-price-amount">
-            <span class="plan-price-big">$19,500</span>
+            <span class="price-old-inline">$19,500</span>
+            <span class="plan-price-big">$12,500</span>
             <span class="plan-price-currency">MXN</span>
           </div>
           <div class="plan-price-sub">Más IVA · Más inversión única de sitio</div>
+          <div class="promo-badge-row">
+            <span class="promo-badge discount">Oferta especial</span>
+          </div>
           <div class="plan-setup">
             <div class="plan-setup-title">+ $20,000 única</div>
             <div class="plan-setup-note">Renovación del sitio web · 50% al inicio, 50% a entrega</div>
@@ -1408,31 +1545,66 @@
           </div>
         </div>
         <div class="plan-breakdown-row">
-          <div class="plan-breakdown-label">Gestión de redes sociales</div>
+          <div class="plan-breakdown-label">
+            Gestión de redes sociales
+            <div class="promo-badge-row">
+              <span class="promo-badge discount">Descuento</span>
+              <span class="promo-badge included">Incluye Meta Ads sin costo</span>
+            </div>
+          </div>
           <div class="plan-breakdown-price">
-            <span class="plan-breakdown-amount">$7,500</span>
-            <span class="plan-breakdown-nota">/ mes</span>
+            <div class="price-stack">
+              <span class="plan-breakdown-amount-old">$7,500</span>
+              <div>
+                <span class="plan-breakdown-amount discounted">$6,000</span>
+                <span class="plan-breakdown-nota">/ mes</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="plan-breakdown-row">
-          <div class="plan-breakdown-label">Google Ads — gestión</div>
+          <div class="plan-breakdown-label">
+            Meta Ads — gestión
+            <div class="promo-badge-row">
+              <span class="promo-badge included">Gratis · Incluido en Redes Sociales</span>
+            </div>
+          </div>
           <div class="plan-breakdown-price">
-            <span class="plan-breakdown-amount">$4,000</span>
-            <span class="plan-breakdown-nota">/ mes</span>
+            <div class="price-stack">
+              <span class="plan-breakdown-amount-old">$4,000</span>
+              <span class="plan-breakdown-amount included-bundled">Sin costo</span>
+            </div>
+          </div>
+        </div>
+        <div class="pauta-inline">
+          <svg class="pauta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div>
+            <div class="pauta-inline-label">Pauta · Meta Ads</div>
+            <p class="pauta-inline-body"><strong>$10,000 MXN / mes</strong> recomendados en pauta de Meta Ads (Instagram + Facebook).<span class="pauta-inline-note">Se invierte directamente en la plataforma — no es honorario de Sentido. Se ajusta mes a mes según performance.</span></p>
           </div>
         </div>
         <div class="plan-breakdown-row">
-          <div class="plan-breakdown-label">Meta Ads — gestión</div>
+          <div class="plan-breakdown-label">
+            Google Ads — gestión
+            <div class="promo-badge-row">
+              <span class="promo-badge discount">Descuento</span>
+            </div>
+          </div>
           <div class="plan-breakdown-price">
-            <span class="plan-breakdown-amount">$4,000</span>
-            <span class="plan-breakdown-nota">/ mes</span>
+            <div class="price-stack">
+              <span class="plan-breakdown-amount-old">$4,000</span>
+              <div>
+                <span class="plan-breakdown-amount discounted">$3,500</span>
+                <span class="plan-breakdown-nota">/ mes</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="plan-breakdown-row">
-          <div class="plan-breakdown-label">CRM + automatización (GoHighLevel)</div>
-          <div class="plan-breakdown-price">
-            <span class="plan-breakdown-amount">$4,000</span>
-            <span class="plan-breakdown-nota">/ mes</span>
+        <div class="pauta-inline">
+          <svg class="pauta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div>
+            <div class="pauta-inline-label">Pauta · Google Ads</div>
+            <p class="pauta-inline-body"><strong>$10,000 MXN / mes</strong> recomendados en pauta de Google Ads (Search + Performance Max).<span class="pauta-inline-note">Se invierte directamente en la plataforma — no es honorario de Sentido. Se ajusta mes a mes según performance.</span></p>
           </div>
         </div>
         <div class="plan-breakdown-row">
@@ -1442,14 +1614,31 @@
             <span class="plan-breakdown-nota">con redes</span>
           </div>
         </div>
+        <div class="plan-breakdown-row">
+          <div class="plan-breakdown-label">
+            CRM + automatización (GoHighLevel)
+            <div class="promo-badge-row">
+              <span class="promo-badge discount">Descuento</span>
+            </div>
+          </div>
+          <div class="plan-breakdown-price">
+            <div class="price-stack">
+              <span class="plan-breakdown-amount-old">$4,000</span>
+              <div>
+                <span class="plan-breakdown-amount discounted">$3,000</span>
+                <span class="plan-breakdown-nota">/ mes</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="pauta-box">
-        <svg class="pauta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <div class="plan-savings">
         <div>
-          <div class="pauta-title">Pauta publicitaria recomendada</div>
-          <p class="pauta-body">Adicional a la gestión, se recomienda pauta de <strong>$10,000 MXN mensuales en Google Ads</strong> y <strong>$10,000 MXN mensuales en Meta Ads</strong>, totalizando $20,000 MXN en pauta. La pauta se invierte directamente en las plataformas y se ajusta mes a mes según performance.</p>
+          <div class="plan-savings-label">Ahorro mensual</div>
         </div>
+        <div class="plan-savings-amount">−$7,000 MXN / mes</div>
+        <div class="plan-savings-note">Equivalente a $84,000 MXN al año en honorarios. Promoción aplicada exclusivamente sobre el plan Recomendado.</div>
       </div>
     </div>
   </div>
