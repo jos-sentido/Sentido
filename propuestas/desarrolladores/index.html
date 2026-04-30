@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Sistema integral de preventa para desarrolladores</title>
+<meta name="description" content="Sentido — sistema integral de marketing, branding, captación e IA para desarrolladores inmobiliarios en México. Vender el sueño antes de la grúa." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Paleta oficial Sentido — dark monocroma. Sin acento cromático. */
+    --bg: #0A0A0A;
+    --surface: #131313;
+    --surface-elevated: #1A1A1A;
+    --surface-hover: #242424;
+    --border: #2A2A2A;
+    --border-accent: #3A3A3A;
+    --border-bright: #4A4A4A;
+    --accent: #FFFFFF;
+    --accent-dim: #A8A8A8;
+    --accent-bright: #FFFFFF;
+    --accent-soft: rgba(255, 255, 255, 0.04);
+    --text: #EDEAE4;
+    --text-dim: #A8A8A8;
+    --text-muted: #6B6661;
+    --success: #9BB59B;
+    --danger: #C29494;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Sticky Nav */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  @media (min-width: 1024px) { .site-nav-inner { padding: 0 2rem; height: 64px; } }
+  .site-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .site-nav-brand img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  @media (min-width: 1024px) { .site-nav-brand img { height: 26px; } }
+  .site-nav-links {
+    display: none;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+  }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .site-nav-links a:hover { color: var(--accent); }
+  .site-nav-links a.active { color: var(--accent); }
+
+  /* Mobile nav: scroll horizontal */
+  .site-nav-mobile {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 1.25rem 0 1rem;
+    margin-left: 0.75rem;
+    border-left: 1px solid var(--border);
+    flex: 1;
+    min-width: 0;
+    -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to right, black 0, black calc(100% - 28px), transparent 100%);
+  }
+  .site-nav-mobile::-webkit-scrollbar { display: none; }
+  .site-nav-mobile a {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .site-nav-mobile a:hover, .site-nav-mobile a.active { color: var(--accent); }
+  @media (min-width: 1024px) { .site-nav-mobile { display: none; } }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+  .reveal-d5 { transition-delay: 0.5s; }
+
+  /* Layout */
+  .section {
+    width: 100%;
+    padding: 5rem 1.5rem;
+    position: relative;
+  }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    color: var(--accent);
+  }
+  .section-label span {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+  }
+  .section-label .divider { height: 1px; width: 3rem; background-color: var(--accent); opacity: 0.6; }
+
+  /* Typography */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+  }
+  .display-heading.xl { font-size: 2.25rem; }
+  .display-heading.xxl { font-size: 2.75rem; }
+  @media (min-width: 768px) {
+    .display-heading.xl { font-size: 3rem; }
+    .display-heading.xxl { font-size: 4rem; }
+  }
+  @media (min-width: 1024px) {
+    .display-heading.xl { font-size: 3.5rem; }
+    .display-heading.xxl { font-size: 5rem; }
+  }
+  .display-heading .accent-italic { font-style: italic; color: var(--accent); font-weight: 500; }
+  .display-heading .accent { color: var(--accent); }
+
+  .paragraph {
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 300;
+    color: var(--text);
+  }
+  .paragraph.lg { font-size: 17px; }
+  .paragraph.muted { color: var(--text-dim); }
+  .paragraph .inline-accent {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .paragraph strong { color: var(--text); font-weight: 500; }
+
+  .max-w-2xl { max-width: 42rem; }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+  .max-w-5xl { max-width: 64rem; }
+
+  .mono-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem 1.5rem;
+    background:
+      radial-gradient(ellipse 90% 60% at 15% 20%, rgba(255, 255, 255, 0.055) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+      linear-gradient(135deg, #0A0A0A 0%, #131313 50%, #0A0A0A 100%);
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 3rem; } }
+  @media (min-width: 1024px) { .hero { padding: 4rem 5rem; } }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.04) 0%, transparent 65%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle 600px at 100% 0%, rgba(255, 255, 255, 0.025) 0%, transparent 70%),
+      radial-gradient(circle 500px at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-logo img { height: 28px; width: auto; display: block; }
+  .hero-mark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-mark img {
+    height: 96px;
+    width: auto;
+    display: block;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.08));
+  }
+  @media (min-width: 768px) { .hero-mark img { height: 120px; } }
+  @media (max-width: 640px) { .hero-mark img { height: 72px; } .hero-mark { margin-bottom: 1.75rem; } }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-meta .accent-dot { color: var(--accent); margin: 0 0.5rem; }
+  .hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 64rem;
+    margin: 3rem auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    height: 1px;
+    width: 2rem;
+    background: var(--accent);
+  }
+  .hero-eyebrow::after {
+    content: '';
+    height: 1px;
+    width: 2rem;
+    background: var(--accent);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 768px) { .hero-title { font-size: 4rem; } }
+  @media (min-width: 1024px) { .hero-title { font-size: 5.5rem; } }
+  .hero-title .italic { font-style: italic; color: var(--accent); font-weight: 500; }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 300;
+    color: var(--text-dim);
+    max-width: 36rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) { .hero-sub { font-size: 19px; } }
+  .hero-sub strong { color: var(--text); font-weight: 400; }
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-stat-row {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    border-left: 1px solid var(--border-accent);
+    padding-left: 1rem;
+  }
+  .hero-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .hero-stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-scroll {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Stat block */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    padding: 1.75rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .stat-card:hover { border-left-color: var(--accent-bright); background: var(--surface-elevated); }
+  .stat-card .num {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .stat-card .label {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .stat-card .source {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* Insight blocks */
+  .insight-block {
+    border-left: 2px solid var(--accent);
+    padding: 1.25rem 0 1.25rem 1.75rem;
+    margin: 2rem 0;
+  }
+  .insight-block .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .insight-block .text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--text);
+  }
+  @media (min-width: 768px) { .insight-block .text { font-size: 1.75rem; } }
+  .insight-block .text em { color: var(--accent); font-weight: 500; }
+
+  /* Split blocks (problem/solution) */
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .split-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .split-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+  }
+  .split-card.problem {
+    background: rgba(199, 93, 93, 0.04);
+    border-color: rgba(199, 93, 93, 0.25);
+  }
+  .split-card.solution {
+    background: var(--surface-elevated);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  .split-card .head {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .split-card.problem .head { color: var(--danger); }
+  .split-card.solution .head { color: var(--accent); }
+  .split-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .split-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* Approach grid (anonimizado) */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  @media (min-width: 1024px) { .approach-grid { grid-template-columns: repeat(3, 1fr); } }
+  .approach-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.3s;
+  }
+  .approach-card:hover { background: var(--surface-elevated); }
+  .approach-card .icon-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .approach-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .approach-card h3 em { font-style: italic; color: var(--accent); }
+  .approach-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* Capability cards (servicios) */
+  .cap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+  .cap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .cap-card:hover { border-color: var(--border-bright); }
+  .cap-main {
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .cap-main { grid-template-columns: 2.5fr 1fr; gap: 2rem; align-items: start; }
+  }
+  .cap-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .cap-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .cap-title em { font-style: italic; color: var(--accent); }
+  .cap-ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cap-ai-badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  }
+  .cap-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .cap-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cap-includes li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .cap-includes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    width: 8px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .cap-includes li strong { color: var(--text); font-weight: 400; }
+  .cap-pricing {
+    background: var(--bg);
+    border: 1px solid var(--border-accent);
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .cap-pricing .label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .cap-pricing .price {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .cap-pricing .price .currency { font-size: 0.7em; color: var(--text-dim); font-weight: 400; }
+  .cap-pricing .period {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .cap-pricing .iva {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Pauta sub-block (adyacente) */
+  .pauta-block {
+    border-top: 1px dashed var(--border-accent);
+    background: rgba(11, 13, 16, 0.5);
+    padding: 1.25rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .pauta-block { grid-template-columns: 1fr auto; }
+  }
+  .pauta-block .pauta-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .pauta-block .pauta-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .pauta-block .pauta-text strong { color: var(--text); font-weight: 400; }
+  .pauta-range {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* SISTEMA INTEGRAL */
+  .integral-wrap {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-elevated) 100%);
+    border: 1px solid var(--border-bright);
+    padding: 2rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .integral-wrap { padding: 3rem; } }
+  .integral-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .integral-header .title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .integral-header .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.4rem 0.7rem;
+  }
+
+  /* Lista de componentes del sistema */
+  .system-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 768px) { .system-pillars { grid-template-columns: 1fr 1fr; gap: 0 2.5rem; } }
+  .pillar {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .pillar:last-child { border-bottom: none; }
+  @media (min-width: 768px) {
+    .pillar:nth-last-child(2) { border-bottom: none; }
+  }
+  .pillar-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    min-width: 2rem;
+    padding-top: 0.25rem;
+    flex-shrink: 0;
+  }
+  .pillar-body { flex: 1; min-width: 0; }
+  .pillar-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.3rem;
+    line-height: 1.25;
+  }
+  .pillar-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Resumen integral */
+  .integral-summary {
+    background: var(--bg);
+    border: 1px solid var(--border-accent);
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) { .integral-summary { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .summary-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .summary-block.divider-md {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .summary-block.divider-md {
+      padding-bottom: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      padding-right: 2rem;
+    }
+  }
+  .summary-block .lbl {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .summary-block .val {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .summary-block .val .currency {
+    font-size: 0.5em;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+  .summary-block .desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .summary-block .desc strong { color: var(--text); font-weight: 500; }
+
+  .integral-note {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+  .integral-note strong { color: var(--text-dim); font-weight: 500; }
+
+  /* Pauta planes */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
+  .plan-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem 1.75rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .plan-card:hover { border-color: var(--border-bright); }
+  .plan-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--surface) 60%);
+  }
+  .plan-card.featured::before {
+    content: 'RECOMENDADO';
+    position: absolute;
+    top: -10px;
+    left: 1.75rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
+  }
+  .plan-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+  .plan-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+  .plan-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .plan-price .from {
+    font-size: 0.55em;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-right: 0.4rem;
+    font-weight: 400;
+  }
+  .plan-price .currency {
+    font-size: 0.5em;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .plan-period {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .plan-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+  .plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .plan-list li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .plan-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    width: 8px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .plan-list li strong { color: var(--text); font-weight: 400; }
+
+  .pauta-disclaimer {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-left: 3px solid #FFFFFF;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .pauta-disclaimer strong { color: var(--text); font-weight: 500; }
+
+  /* HORIZONTE */
+  .horizon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .horizon-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .horizon-grid { grid-template-columns: repeat(4, 1fr); } }
+  .horizon-card {
+    background: var(--surface);
+    padding: 2rem;
+  }
+  .horizon-card .day {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .horizon-card .day-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .horizon-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .horizon-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .horizon-card li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .horizon-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* CIERRE */
+  .closing {
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+  }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem 5rem; } }
+  .closing h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.15;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 2rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 768px) { .closing h2 { font-size: 3.5rem; } }
+  .closing h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .closing p {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+  .closing .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 640px) { .closing .contact-grid { flex-direction: row; justify-content: center; gap: 3rem; } }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .contact-item .lbl {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .contact-item a {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .contact-item a:hover { border-bottom-color: var(--accent); }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  .footer-logo img { height: 24px; opacity: 0.6; margin-bottom: 1rem; }
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .footer-meta .dot { color: var(--accent); margin: 0 0.5rem; }
+
+  /* Tags */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.7rem;
+  }
+
+  /* Comparison block */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0 3rem;
+  }
+  @media (min-width: 768px) { .compare-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .compare-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .compare-card .head {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-card.before .head { color: var(--text-muted); }
+  .compare-card.after .head { color: var(--accent); }
+  .compare-card ul { list-style: none; padding: 0; margin: 0; }
+  .compare-card li {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+  }
+  .compare-card.before li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    color: var(--danger);
+    font-size: 16px;
+  }
+  .compare-card.after li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* Tipologías de desarrollo */
+  .typology-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  @media (min-width: 768px) { .typology-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .typology-grid { grid-template-columns: repeat(4, 1fr); } }
+  .typology-card {
+    background: var(--surface);
+    padding: 1.75rem 1.5rem;
+    transition: background 0.3s;
+  }
+  .typology-card:hover { background: var(--surface-elevated); }
+  .typology-card .typ-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .typology-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+  .typology-card p {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== STICKY NAV ============== -->
+<nav class="site-nav" id="site-nav">
+  <div class="site-nav-inner">
+    <a href="#top" class="site-nav-brand" aria-label="Sentido — inicio">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#momento" data-nav>Momento</a></li>
+      <li><a href="#problema" data-nav>Problema</a></li>
+      <li><a href="#tipologias" data-nav>Tipologías</a></li>
+      <li><a href="#sistema" data-nav>Sistema</a></li>
+      <li><a href="#integral" data-nav>Contratación</a></li>
+      <li><a href="#pauta" data-nav>Pauta</a></li>
+      <li><a href="#horizonte" data-nav>Horizonte</a></li>
+      <li><a href="#contacto" data-nav>Contacto</a></li>
+    </ul>
+    <div class="site-nav-mobile" aria-label="Navegación de secciones">
+      <a href="#momento" data-nav>Momento</a>
+      <a href="#problema" data-nav>Problema</a>
+      <a href="#tipologias" data-nav>Tipologías</a>
+      <a href="#sistema" data-nav>Sistema</a>
+      <a href="#integral" data-nav>Contratación</a>
+      <a href="#pauta" data-nav>Pauta</a>
+      <a href="#horizonte" data-nav>Horizonte</a>
+      <a href="#contacto" data-nav>Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-meta">
+      Desarrolladores inmobiliarios <span class="accent-dot">·</span> México 2026
+    </div>
+    <div class="hero-meta">
+      <span style="color: var(--accent);">●</span> Propuesta integral
+    </div>
+  </div>
+
+  <div class="hero-center">
+    <div class="hero-mark">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </div>
+    <div class="hero-eyebrow">Sistema integral de preventa para desarrollos inmobiliarios</div>
+    <h1 class="hero-title">
+      Vender el sueño<br />
+      <span class="italic">antes</span> de la grúa.
+    </h1>
+    <p class="hero-sub" style="margin-left: auto; margin-right: auto;">
+      Una operación completa &mdash; <strong>branding, sitios, redes, pauta, CRM, IA y producción</strong> &mdash; diseñada para que un desarrollo se preventa en planos, no en obra negra.
+    </p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-value">6&ndash;18 meses</div>
+        <div class="hero-stat-label">Ciclo de decisión típico</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">82%</div>
+        <div class="hero-stat-label">Investiga online primero</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">&gt;15%</div>
+        <div class="hero-stat-label">ROI exigido al desarrollador</div>
+      </div>
+    </div>
+    <div class="hero-scroll">&darr; Scroll</div>
+  </div>
+</section>
+
+<!-- ============== EL MOMENTO ============== -->
+<section class="section section-divider" id="momento">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>01 &middot; El momento del desarrollador</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      El desarrollador mexicano vive una <span class="accent-italic">paradoja operativa</span>: nunca hubo más demanda potencial, ni menos margen para fallar en preventa.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Costos de construcción presionados, financiamiento más caro, comprador más informado, ciclo de decisión más largo. Para que el modelo financiero del desarrollo cierre con un ROI mayor al 15%, hay que vender una proporción significativa <strong>antes</strong> de que la obra negra arranque. Eso ya no se logra con render bonito, broker de confianza y suerte.
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-card reveal">
+        <div class="num">82%</div>
+        <div class="label">de las búsquedas de vivienda en México inician en plataformas digitales antes de visitar el showroom</div>
+        <div class="source">AMPI &middot; 2025</div>
+      </div>
+      <div class="stat-card reveal reveal-d1">
+        <div class="num">6&ndash;18</div>
+        <div class="label">meses de ventana entre el primer contacto digital y la firma del contrato en preventa</div>
+        <div class="source">Benchmark sectorial</div>
+      </div>
+      <div class="stat-card reveal reveal-d2">
+        <div class="num">30&ndash;50%</div>
+        <div class="label">de unidades en preventa colocadas antes de obra negra, meta financiera típica del desarrollador</div>
+        <div class="source">Modelos financieros estándar</div>
+      </div>
+      <div class="stat-card reveal reveal-d3">
+        <div class="num">$900&ndash;2.4k</div>
+        <div class="label">CPL promedio en Google Ads para residencial premium y vertical de lujo (MXN)</div>
+        <div class="source">Benchmark sectorial</div>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Lectura</div>
+      <div class="text">
+        Quien vende rápido en preventa, vende caro. Quien vende lento, <em>termina rematando inventario</em> al final.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EL VERDADERO PROBLEMA ============== -->
+<section class="section section-surface section-divider" id="problema">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>02 &middot; El verdadero problema</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      El problema no es el desarrollo. El problema es que el sistema que lo vende <span class="accent-italic">opera en piezas sueltas</span>.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Render con un proveedor. Sitio con otro. Redes con un freelance que no entiende el ticket. Meta Ads con una agencia que no habla con quien hace Google. Un CRM que nadie limpia. Brokers que reciben leads crudos y los queman. Cada pieza puede estar bien hecha &mdash; el sistema completo no existe.
+    </p>
+
+    <div class="split-grid">
+      <div class="split-card problem reveal">
+        <div class="head">Cómo opera el desarrollador promedio</div>
+        <h3>Pedazos cosidos por urgencia.</h3>
+        <p>
+          Empieza con render porque el inversionista lo pide. Luego sitio porque hay que poner algo. Después redes porque vio a la competencia. Pauta cuando preventa va lenta. CRM cuando los leads se pierden. Cada decisión la dispara una urgencia distinta. Cada proveedor optimiza su pieza, nadie optimiza el resultado: <strong>preventa cerrada antes de obra</strong>.
+        </p>
+      </div>
+      <div class="split-card solution reveal reveal-d1">
+        <div class="head">Cómo opera Sentido para un desarrollo</div>
+        <h3>Un solo sistema, un solo objetivo.</h3>
+        <p>
+          Branding del desarrollo, micrositio, redes, pauta, CRM con IA y producción de contenido para showroom &mdash; diseñados desde el día uno como <strong>una sola pieza</strong>. Cada elemento alimenta al siguiente. El render alimenta la pauta, la pauta alimenta el CRM, el CRM califica, el broker cierra, el contenido del showroom se reactiva en redes. El sistema es lo que vende, no la suma de partes.
+        </p>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card before reveal">
+        <div class="head">Operación fragmentada</div>
+        <ul>
+          <li>3&ndash;5 proveedores que no se hablan entre ellos</li>
+          <li>Marca del desarrollo distinta a la del corporativo</li>
+          <li>Pauta sin pixel, sin tracking de conversiones reales</li>
+          <li>Leads crudos llegando al broker en frío</li>
+          <li>Showroom sin contenido propio para reactivar</li>
+          <li>Resultado: preventa lenta, presión sobre la obra</li>
+        </ul>
+      </div>
+      <div class="compare-card after reveal reveal-d1">
+        <div class="head">Sistema integral Sentido</div>
+        <ul>
+          <li>Un solo equipo operando todo el funnel</li>
+          <li>Branding del proyecto coherente con corporativo</li>
+          <li>Pauta con tracking offline hasta cita y firma</li>
+          <li>IA califica antes de que el broker invierta tiempo</li>
+          <li>Producción de showroom alimenta redes y pauta</li>
+          <li>Resultado: preventa anticipada, ROI defendido</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TIPOLOGÍAS DE DESARROLLO ============== -->
+<section class="section section-divider" id="tipologias">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>03 &middot; Tipologías de desarrollo</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Cada tipología juega un juego distinto. El sistema <span class="accent-italic">se calibra al producto</span>.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      No es lo mismo preventa de vertical residencial en zona consolidada que lotificación en periferia. Cambia el ticket, el comprador, el ciclo y la estrategia de pauta. El sistema integral es el mismo &mdash; lo que cambia es el énfasis y la calibración por canal.
+    </p>
+
+    <div class="typology-grid">
+      <div class="typology-card reveal">
+        <div class="typ-label">A &middot; Vertical residencial</div>
+        <h4>Torres y mid-rise urbanos</h4>
+        <p>
+          Ticket medio-alto, ciclo de 9&ndash;18 meses, comprador profesionista o inversionista. La narrativa de marca y el render premium pesan tanto como el precio. Preventa anticipada es financieramente decisiva.
+        </p>
+      </div>
+      <div class="typology-card reveal reveal-d1">
+        <div class="typ-label">B &middot; Fraccionamientos</div>
+        <h4>Horizontales y conjuntos</h4>
+        <p>
+          Ticket medio, ciclo de 6&ndash;12 meses, comprador familiar. Foco en zona, plusvalía y amenidades. La pauta geolocalizada y el contenido aspiracional del showroom son las palancas que más rinden.
+        </p>
+      </div>
+      <div class="typology-card reveal reveal-d2">
+        <div class="typ-label">C &middot; Mixed-use</div>
+        <h4>Usos mixtos y desarrollos integrales</h4>
+        <p>
+          Ticket alto, múltiples productos en un mismo proyecto (vivienda, comercial, hotelería). Requiere arquitectura de marca matricial: marca paraguas + sub-marcas por producto, gestionadas como un solo sistema.
+        </p>
+      </div>
+      <div class="typology-card reveal reveal-d3">
+        <div class="typ-label">D &middot; Lotificaciones</div>
+        <h4>Suburbano y desarrollo macro</h4>
+        <p>
+          Ticket variable, ciclo largo (12&ndash;24 meses), comprador inversionista o constructor final. Demanda contenido educativo de plusvalía, pauta de retargeting prolongada y nurturing automatizado por mucho tiempo.
+        </p>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Constante</div>
+      <div class="text">
+        Cambia el ticket, cambia el ciclo, cambia el tono &mdash; pero el principio operativo no: <em>todas las piezas, operadas por un solo sistema, midiendo el mismo resultado</em>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EL SISTEMA (SERVICIOS COMO PIEZAS) ============== -->
+<section class="section section-surface section-divider" id="sistema">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>04 &middot; El sistema, pieza por pieza</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Siete piezas. <span class="accent-italic">Un solo motor.</span>
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Estas son las piezas que componen el sistema integral. Cada una tiene una función específica, pero el resultado &mdash; preventa anticipada y ROI defendido &mdash; sólo aparece cuando operan en conjunto. La IA es el hilo que las conecta: aprende del comportamiento del lead en pauta, ajusta segmentación, califica conversacionalmente, predice cierre, y reasigna presupuesto donde más rinde.
+    </p>
+
+    <div class="cap-list">
+
+      <!-- 01 Branding -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>01 &middot; Branding</em> del desarrollo</div>
+            </div>
+            <p class="cap-desc">
+              Identidad estratégica para el lanzamiento. La marca se diseña para sostener el ticket &mdash; no para abaratarlo &mdash; y se conecta con micrositio, pauta y redes desde el día uno. Pago único, base del sistema.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>Naming</strong> estratégico, territorio de marca y verificación de disponibilidad</li>
+              <li>Sistema de identidad visual: logo, paleta, tipografía e iconografía</li>
+              <li><strong>Manual de marca</strong> con normas de aplicación, tono y vocería</li>
+              <li>Aplicaciones: papelería, señalética, vallas, watermarks de render, brochure y materiales de venta</li>
+              <li>Adaptaciones digitales para micrositio, redes y piezas de pauta</li>
+              <li>Coherencia con la marca corporativa del desarrollador</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Pago único &middot; desde</div>
+            <div class="price"><span class="currency">$</span>35,000</div>
+            <div class="period">MXN</div>
+            <div class="iva">+ IVA &middot; cotiza por desarrollo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Sitios web -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>02 &middot; Sitios y micrositios</em></div>
+            </div>
+            <p class="cap-desc">
+              Pago único. Sitio corporativo del desarrollador + micrositio dedicado por proyecto. Diseñados para captar y precalificar, no solo para mostrar render. Integrados nativamente con CRM y pauta.
+            </p>
+            <ul class="cap-includes">
+              <li>Arquitectura orientada a conversión y SEO local por desarrollo</li>
+              <li>Integración con CRM y formularios precalificadores con lógica de filtrado</li>
+              <li><strong>Catálogo dinámico</strong> de unidades disponibles, plantas, precios y disponibilidad</li>
+              <li>Tour virtual, recorrido 3D, embed de render interactivo</li>
+              <li>Mobile-first, Core Web Vitals optimizados, tracking completo</li>
+              <li>Capacitación al equipo para gestión de contenido</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Pago único &middot; desde</div>
+            <div class="price"><span class="currency">$</span>25,000</div>
+            <div class="period">MXN</div>
+            <div class="iva">+ IVA &middot; por proyecto</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Redes + Meta Ads -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>03 &middot; Redes sociales</em> + Meta Ads + IA</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Construcción de marca + captación performance en Meta y TikTok. Contenido, pauta y comunidad como un solo flujo. Meta Ads incluido sin costo adicional al contratar gestión de redes.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>15 publicaciones mensuales</strong> con mix de formatos (reels, carruseles, posts, historias)</li>
+              <li>Segmentación inteligente por audiencias lookalike y first-party</li>
+              <li><strong>Generación y rotación creativa</strong> con detección temprana de fatiga</li>
+              <li>Atención de mensajes y comentarios L&ndash;V (handoff a CRM)</li>
+              <li>Reporte mensual con insights y recomendación de pauta</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Gestión mensual</div>
+            <div class="price"><span class="currency">$</span>7,500</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA &middot; Meta Ads incluido</div>
+          </div>
+        </div>
+        <div class="pauta-block">
+          <div>
+            <div class="pauta-label">Pauta Meta + TikTok &middot; directo a las plataformas</div>
+            <div class="pauta-text">El presupuesto va <strong>directo a Meta y TikTok</strong>, no es honorario de Sentido. Rango recomendado según ciclo del proyecto y vertical.</div>
+          </div>
+          <div class="pauta-range">$15k&ndash;$40k+ MXN/mes</div>
+        </div>
+      </div>
+
+      <!-- 04 Google Ads -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>04 &middot; Google Ads</em> + IA predictiva</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Captación de demanda de alta intención. Búsquedas con intención de compra explícita, retargeting en Display y YouTube, optimización de pujas en tiempo real para tickets de preventa.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>Optimización predictiva</strong> de pujas según probabilidad de conversión</li>
+              <li>Identificación automática de <strong>audiencias de mayor intención</strong></li>
+              <li>Copy testing automatizado con rotación creativa</li>
+              <li>Tracking de conversiones offline (citas reales en showroom, no solo formularios)</li>
+              <li>Reporte semanal con recomendaciones accionables</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Gestión mensual</div>
+            <div class="price"><span class="currency">$</span>4,000</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA</div>
+          </div>
+        </div>
+        <div class="pauta-block">
+          <div>
+            <div class="pauta-label">Pauta Google &middot; directo a la plataforma</div>
+            <div class="pauta-text">El presupuesto va <strong>directo a Google Ads</strong>, no es honorario de Sentido. Rango recomendado según ticket, geografía y etapa del desarrollo.</div>
+          </div>
+          <div class="pauta-range">$15k&ndash;$45k+ MXN/mes</div>
+        </div>
+      </div>
+
+      <!-- 05 CRM + IA -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>05 &middot; CRM</em> + Automatización IA</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              El corazón del sistema. Aquí es donde la IA filtra, califica y persuade antes de pasar al broker. Operado sobre GoHighLevel, configurado para preventa inmobiliaria con ciclos largos de nurturing.
+            </p>
+            <ul class="cap-includes">
+              <li><strong>Respondedor IA por WhatsApp</strong> &mdash; primer contacto en menos de 1 minuto, 24/7</li>
+              <li>Calificación conversacional (capacidad, intención, timing) antes del broker</li>
+              <li><strong>Lead scoring predictivo</strong> con probabilidad de cierre por unidad</li>
+              <li>Pipeline de preventa: Lead &middot; Contacto &middot; Visita showroom &middot; Apartado &middot; Firma</li>
+              <li><strong>Nurturing largo</strong> de 6&ndash;18 meses con cadencia ajustada por comportamiento</li>
+              <li>Constructor de landing pages precalificadoras por unidad o tipología</li>
+              <li>Calendarios compartidos, integración Google/Outlook, agendamiento automático de visitas</li>
+              <li>Dashboard tiempo real con métricas que importan: leads, citas calificadas, costo por cita, cierre por broker</li>
+              <li>Implementación <strong>sin costo</strong> con mantenimiento mensual activo</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Mantenimiento mensual</div>
+            <div class="price"><span class="currency">$</span>4,000</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA &middot; Setup incluido</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Producción de contenido -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>06 &middot; Producción</em> de contenido para showroom</div>
+            </div>
+            <p class="cap-desc">
+              Eventual e independiente. Foto, video y contenido producido en showroom, departamento muestra, render walkthrough y obra. Material que alimenta redes, pauta y micrositio durante todo el ciclo de preventa.
+            </p>
+            <ul class="cap-includes">
+              <li>Sesiones de producción en showroom y departamento muestra</li>
+              <li>Reels, video tour, drone, walkthrough de render</li>
+              <li>Foto profesional para portales (AMPI, Inmuebles24, Vivanuncios)</li>
+              <li>Testimoniales de inversionistas y compradores tempranos</li>
+              <li>Material modular para pauta (cortes verticales, horizontales, statics)</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Eventual &middot; por sesión</div>
+            <div class="price" style="font-size: 1.4rem;">Cotización</div>
+            <div class="period">por proyecto</div>
+            <div class="iva">+ IVA &middot; calendarizada por etapa</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 Reputación -->
+      <div class="cap-card reveal">
+        <div class="cap-main">
+          <div>
+            <div class="cap-head">
+              <div class="cap-title"><em>07 &middot; Reputación</em> digital del desarrollador</div>
+              <div class="cap-ai-badge">IA Activa</div>
+            </div>
+            <p class="cap-desc">
+              Reseñas en Google, Facebook y portales inmobiliarios trabajadas como activo de marca del desarrollador. En preventa, la reputación del desarrollador pesa tanto como el render &mdash; el comprador investiga proyectos pasados antes de firmar.
+            </p>
+            <ul class="cap-includes">
+              <li>Automatización de solicitud de reseñas post-visita y post-entrega</li>
+              <li><strong>Filtrado de insatisfechos</strong> a formulario privado antes de exponer</li>
+              <li>Optimización de Google Maps / GBP del corporativo y de cada proyecto</li>
+              <li>Monitoreo de menciones en portales inmobiliarios y redes</li>
+              <li>Reportes mensuales de score y tendencia</li>
+            </ul>
+          </div>
+          <div class="cap-pricing">
+            <div class="label">Mensual</div>
+            <div class="price"><span class="currency">$</span>4,500</div>
+            <div class="period">MXN / mes</div>
+            <div class="iva">+ IVA</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">El conector</div>
+      <div class="text">
+        La IA es lo que hace creíble la promesa: <em>responder primero, calificar mejor, llegar solo a citas calificadas</em> &mdash; sostenido durante todo el ciclo largo de preventa.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTRATACIÓN INTEGRAL ============== -->
+<section class="section section-divider" id="integral">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>05 &middot; Contratación integral</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Para obtener los resultados de preventa, el sistema se contrata <span class="accent-italic">completo</span>.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Esta no es una propuesta de servicios sueltos. Las piezas individuales se cotizan arriba para transparencia, pero la promesa de preventa anticipada con ROI defendido <strong>solo se sostiene cuando el sistema completo opera en conjunto</strong>. Sacar piezas rompe el resultado &mdash; el funnel deja de ser un funnel y vuelve a ser una colección de actividades.
+    </p>
+
+    <div class="split-grid">
+      <div class="split-card problem reveal">
+        <div class="head">Por qué no contratar piezas sueltas</div>
+        <h3>Cada hueco se nota en preventa.</h3>
+        <p>
+          Sin branding sólido, la pauta no convierte al precio que necesitas. Sin CRM con IA, los leads se enfrían en el ciclo de 12 meses. Sin pauta, el sitio no se llena. Sin contenido fresco del showroom, las redes mueren al mes 4. Sin reputación trabajada, el comprador desconfía. <strong>Cada pieza ausente le cuesta meses al desarrollo</strong> &mdash; y los meses, en preventa, se traducen en margen perdido.
+        </p>
+      </div>
+      <div class="split-card solution reveal reveal-d1">
+        <div class="head">Por qué el sistema integral sí funciona</div>
+        <h3>Un solo equipo. Un solo objetivo.</h3>
+        <p>
+          Branding define la narrativa. El micrositio la traduce en captación. Redes y pauta la amplifican. El CRM con IA la sostiene durante todo el ciclo. El contenido del showroom la mantiene viva. La reputación la valida. <strong>Operado por un solo equipo</strong>, midiendo una sola métrica final: unidades preventa cerradas vs. meta financiera del desarrollo. No fragmentamos. No subcontratamos piezas. Operamos el sistema entero.
+        </p>
+      </div>
+    </div>
+
+    <div class="integral-wrap reveal">
+      <div class="integral-header">
+        <div class="title">El sistema completo</div>
+        <div class="badge">Contratación integral</div>
+      </div>
+
+      <div class="system-pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-body">
+            <div class="pillar-name">Branding del desarrollo</div>
+            <div class="pillar-desc">Naming, identidad visual, manual de marca y aplicaciones. Coherencia con corporativo. Pago único.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-body">
+            <div class="pillar-name">Sitios y micrositios</div>
+            <div class="pillar-desc">Corporativo + dedicado por proyecto. Catálogo dinámico, integración CRM, conversión y SEO local. Pago único.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-body">
+            <div class="pillar-name">Redes + Meta &amp; TikTok Ads</div>
+            <div class="pillar-desc">15 publicaciones mensuales, segmentación inteligente, gestión de comunidad, Meta Ads incluido en gestión.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <div class="pillar-body">
+            <div class="pillar-name">Google Ads + IA predictiva</div>
+            <div class="pillar-desc">Búsqueda de alta intención, retargeting, tracking offline hasta cita en showroom, optimización en tiempo real.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">05</div>
+          <div class="pillar-body">
+            <div class="pillar-name">CRM + Automatización IA</div>
+            <div class="pillar-desc">Respondedor WhatsApp, calificación conversacional, scoring, nurturing largo de 6&ndash;18 meses, dashboard tiempo real.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">06</div>
+          <div class="pillar-body">
+            <div class="pillar-name">Producción de contenido</div>
+            <div class="pillar-desc">Foto, video, drone, walkthrough y testimoniales para showroom, redes, pauta y portales. Calendarizada por etapa de obra.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">07</div>
+          <div class="pillar-body">
+            <div class="pillar-name">Reputación digital</div>
+            <div class="pillar-desc">Reseñas, GBP, monitoreo de portales y filtrado estratégico. Activo crítico cuando el comprador investiga al desarrollador.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="integral-summary">
+        <div class="summary-block divider-md">
+          <div class="lbl">Operación mensual integral</div>
+          <div class="val">$20k&ndash;$25k<span class="currency">MXN/mes</span></div>
+          <div class="desc">
+            Honorarios mensuales de la operación completa del sistema: <strong>redes + Meta Ads + Google Ads + CRM con IA + reputación</strong>. Incluye dashboard en tiempo real, optimización continua y reportería integrada. Producción de contenido se calendariza por etapa y se cotiza eventual.
+          </div>
+        </div>
+        <div class="summary-block">
+          <div class="lbl">Setup único de arranque</div>
+          <div class="val">$60k&ndash;$120k<span class="currency">MXN</span></div>
+          <div class="desc">
+            Pago único al inicio del proyecto: <strong>branding del desarrollo + sitio corporativo + micrositio dedicado</strong>. El rango depende de complejidad del branding (sub-marcas, manual extendido) y arquitectura del sitio (catálogo dinámico, tour 3D, integraciones especiales).
+          </div>
+        </div>
+      </div>
+
+      <div class="integral-note">
+        <strong>Importante.</strong> Estos rangos cubren la operación de Sentido como sistema integral. La <strong>pauta publicitaria</strong> de Meta, TikTok y Google se calibra por separado (ver siguiente sección) y va directo a las plataformas &mdash; no es honorario de Sentido. La <strong>producción de contenido</strong> es eventual e independiente, calendarizada por hitos del desarrollo (lanzamiento, obra negra, departamento muestra, entrega). Todos los importes están en MXN y no incluyen IVA. Esquema de pago de setup 50/50 (firma / entrega). Operación mensual con esquema 60/40 mes corriente. Compromiso mínimo de 6 meses para que el sistema entre en régimen de optimización con datos propios del proyecto.
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">El compromiso</div>
+      <div class="text">
+        Operamos el sistema completo. <em>O no operamos el sistema.</em> En preventa inmobiliaria, las medias tintas las paga el desarrollador con margen.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PAUTA / PLANES ============== -->
+<section class="section section-surface section-divider" id="pauta">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>06 &middot; Inversión publicitaria</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Tres niveles de pauta. <span class="accent-italic">Calibrados al ciclo del desarrollo.</span>
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      La pauta es lo que enciende el sistema. Estos rangos son recomendaciones según etapa del desarrollo y meta de unidades en preventa. <strong>El monto va directo a Meta, Google o TikTok</strong> &mdash; no es honorario de Sentido. Lo que se gestiona, optimiza y reporta es la operación, ya cotizada en la sección integral anterior.
+    </p>
+
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-name">Validación</div>
+        <div class="plan-tag">Pre-lanzamiento &middot; teaser</div>
+        <div class="plan-price"><span class="from">desde</span>$30,000<span class="currency"> MXN</span></div>
+        <div class="plan-period">por mes en pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li><strong>Foco:</strong> validar narrativa y zona</li>
+          <li>1&ndash;2 plataformas activas (Meta + Google)</li>
+          <li>Audiencias semilla + lookalikes iniciales</li>
+          <li>Lista de espera y captación de interés temprano</li>
+          <li>Lead esperado: <strong>40&ndash;80 calificados/mes</strong></li>
+        </ul>
+      </div>
+
+      <div class="plan-card featured reveal reveal-d1">
+        <div class="plan-name">Preventa activa</div>
+        <div class="plan-tag">Lanzamiento &middot; comercialización plena</div>
+        <div class="plan-price"><span class="from">desde</span>$60,000<span class="currency"> MXN</span></div>
+        <div class="plan-period">por mes en pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li><strong>Foco:</strong> escalar lo que ya funciona</li>
+          <li>3 plataformas activas (Meta, Google, TikTok)</li>
+          <li>Múltiples segmentos por tipología y ticket</li>
+          <li>Retargeting prolongado para ciclo largo</li>
+          <li>Lead esperado: <strong>100&ndash;200 calificados/mes</strong></li>
+        </ul>
+      </div>
+
+      <div class="plan-card reveal reveal-d2">
+        <div class="plan-name">Cierre y absorción</div>
+        <div class="plan-tag">Recta final &middot; inventario residual</div>
+        <div class="plan-price"><span class="from">desde</span>$90,000<span class="currency"> MXN</span></div>
+        <div class="plan-period">por mes en pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li><strong>Foco:</strong> cerrar últimas unidades sin descuento</li>
+          <li>4+ plataformas (Meta, Google, TikTok, YouTube)</li>
+          <li>Branded + performance + alto ticket</li>
+          <li>Optimización diaria + alertas IA</li>
+          <li>Lead esperado: <strong>200+ calificados/mes</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pauta-disclaimer reveal">
+      <strong>Importante:</strong> el presupuesto de pauta no es honorario de Sentido. Se carga directamente a tu cuenta de Meta Business, Google Ads o TikTok Ads. Sentido factura únicamente la gestión, configuración, optimización y reportes (incluida en la operación integral mensual de la sección anterior). Los rangos de leads esperados son estimaciones basadas en benchmarks sectoriales &mdash; el resultado real depende de geografía, ticket, oferta y temporada.
+    </div>
+  </div>
+</section>
+
+<!-- ============== HORIZONTE ============== -->
+<section class="section section-divider" id="horizonte">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>07 &middot; Horizonte de resultados</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Qué pasa en el <span class="accent-italic">primer año</span> del desarrollo.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      No prometemos cierres en semana uno. Prometemos un sistema operando como un solo motor desde el día 30, aprendiendo desde el día 90, y entregando preventa anticipada en régimen óptimo del día 180 en adelante. Lo demás es disciplina operativa &mdash; del desarrollador y de Sentido.
+    </p>
+
+    <div class="horizon-grid">
+      <div class="horizon-card reveal">
+        <div class="day">30</div>
+        <div class="day-label">Días</div>
+        <h4>Sistema en producción</h4>
+        <ul>
+          <li>Branding del desarrollo entregado</li>
+          <li>Micrositio publicado y conectado</li>
+          <li>CRM y respondedor IA en operación</li>
+          <li>Pauta activa en plataforma principal</li>
+          <li>Brokers entrenados y pipeline configurado</li>
+        </ul>
+      </div>
+
+      <div class="horizon-card reveal reveal-d1">
+        <div class="day">90</div>
+        <div class="day-label">Días</div>
+        <h4>Optimización con datos del proyecto</h4>
+        <ul>
+          <li>IA entrenada con leads reales del desarrollo</li>
+          <li>Segmentación afinada por tipología y ticket</li>
+          <li>CPL y costo por cita en optimización</li>
+          <li>Primer ciclo de producción de showroom</li>
+          <li>Primeras unidades apartadas o firmadas</li>
+        </ul>
+      </div>
+
+      <div class="horizon-card reveal reveal-d2">
+        <div class="day">180</div>
+        <div class="day-label">Días</div>
+        <h4>Régimen óptimo</h4>
+        <ul>
+          <li>Pauta reasignada donde más rinde</li>
+          <li>Brokers operando solo en leads calificados</li>
+          <li>Reputación digital construida</li>
+          <li>Pipeline lleno con cohorts maduros</li>
+          <li>Tasa de cierre estabilizada</li>
+        </ul>
+      </div>
+
+      <div class="horizon-card reveal reveal-d3">
+        <div class="day">12m</div>
+        <div class="day-label">Año 1</div>
+        <h4>Meta financiera defendida</h4>
+        <ul>
+          <li>Proporción de preventa anticipada cumplida</li>
+          <li>ROI del desarrollo en línea con modelo</li>
+          <li>Lecciones operativas para el siguiente proyecto</li>
+          <li>Sistema replicable al próximo lanzamiento</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Lo que no hacemos</div>
+      <div class="text">
+        Prometer leads garantizados, ROI mágico, o métricas que no se sostienen al mes 4. <em>Trabajamos con números reales, no con números de junta.</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CIERRE ============== -->
+<section class="closing" id="contacto">
+  <div class="reveal">
+    <h2>
+      El desarrollador que vende <em>antes de la grúa</em><br />
+      es el que <em>defiende su margen</em>.
+    </h2>
+    <p class="reveal reveal-d1">
+      Sentido es la operación integral que hace eso posible. Conversemos cuando tengas el próximo desarrollo en mente &mdash; o el que ya está atorado en preventa.
+    </p>
+
+    <div class="contact-grid reveal reveal-d2">
+      <div class="contact-item">
+        <span class="lbl">Correo</span>
+        <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      </div>
+      <div class="contact-item">
+        <span class="lbl">Web</span>
+        <a href="https://sentido.mx" target="_blank" rel="noopener">sentido.mx</a>
+      </div>
+      <div class="contact-item">
+        <span class="lbl">Instagram</span>
+        <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+  </div>
+  <div class="footer-meta">
+    Sentido Branding &amp; Advertising <span class="dot">&middot;</span> México 2026 <span class="dot">&middot;</span> Sistema integral para desarrolladores
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Scroll-spy del nav
+  (function() {
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const sectionIds = ['momento','problema','tipologias','sistema','integral','pauta','horizonte','contacto'];
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function setActive(id) {
+      navLinks.forEach(a => {
+        if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+        else a.classList.remove('active');
+      });
+    }
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(s => spy.observe(s));
+  })();
+</script>
+
+</body>
+</html>
