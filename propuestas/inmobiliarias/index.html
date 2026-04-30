@@ -885,6 +885,258 @@
   }
   .pauta-disclaimer strong { color: var(--text); font-weight: 500; }
 
+  /* PAQUETE INTEGRAL RECOMENDADO */
+  .integral-wrap {
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--surface-elevated) 70%);
+    border: 1px solid var(--accent);
+    padding: 2.5rem 1.75rem;
+    margin: 3rem 0 2.5rem;
+    position: relative;
+  }
+  @media (min-width: 768px) { .integral-wrap { padding: 3.5rem 3rem; } }
+  .integral-wrap::before {
+    content: 'RECOMENDADO · SISTEMA COMPLETO';
+    position: absolute;
+    top: -10px;
+    left: 1.75rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+  }
+  .integral-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .integral-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  @media (min-width: 768px) { .integral-title { font-size: 2rem; } }
+  .integral-title em { font-style: italic; color: var(--accent); }
+  .integral-mode {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border-bright);
+    padding: 0.4rem 0.7rem;
+    white-space: nowrap;
+  }
+  .integral-deck {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    max-width: 56rem;
+  }
+  .integral-deck strong { color: var(--text); font-weight: 500; }
+  .integral-deck em { color: var(--text); font-style: italic; }
+
+  .integral-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin: 2rem 0 1.5rem;
+    counter-reset: integral;
+  }
+  @media (min-width: 768px) { .integral-stack { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+  .integral-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.25rem 1.1rem 3rem;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+  .integral-item:hover { border-color: var(--border-bright); }
+  .integral-item::before {
+    counter-increment: integral;
+    content: counter(integral, decimal-leading-zero);
+    position: absolute;
+    top: 1.05rem;
+    left: 1rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .integral-item .name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .integral-item .desc {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+  .integral-item .desc strong { color: var(--text); font-weight: 500; }
+
+  .integral-footer {
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .integral-footer-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    max-width: 38rem;
+  }
+  .integral-footer-text strong { color: var(--text); font-weight: 500; }
+  .integral-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    text-decoration: none;
+    padding: 0.85rem 1.15rem;
+    border: 1px solid var(--accent);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .integral-cta:hover { background: transparent; color: var(--accent); }
+  .integral-cta .arrow { transition: transform 0.25s ease; }
+  .integral-cta:hover .arrow { transform: translateY(2px); }
+
+  /* PAUTA SELECTOR (dentro de calculadora) */
+  .pauta-selector {
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px dashed var(--border-accent);
+  }
+  .pauta-selector-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+  .pauta-selector-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .pauta-selector-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .pauta-selector-deck {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .pauta-selector-deck strong { color: var(--text); font-weight: 500; }
+  .pauta-levels {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 700px) { .pauta-levels { grid-template-columns: repeat(3, 1fr); } }
+  .pauta-level {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .pauta-level:hover { border-color: var(--border-bright); }
+  .pauta-level.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .pauta-level.active::after {
+    content: '✓';
+    position: absolute;
+    top: 0.65rem;
+    right: 0.85rem;
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .pauta-level .lvl-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.2rem;
+  }
+  .pauta-level .lvl-tag {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.55rem;
+  }
+  .pauta-level .lvl-range {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .pauta-level .lvl-range .from {
+    font-size: 0.6em;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-right: 0.3rem;
+    font-weight: 400;
+  }
+  .pauta-level .lvl-meta {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin-top: 0.5rem;
+  }
+  .pauta-level .lvl-meta strong { color: var(--text); font-weight: 500; }
+  .pauta-summary {
+    background: var(--surface-elevated);
+    border-left: 2px solid var(--accent);
+    padding: 0.85rem 1rem;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .pauta-summary strong { color: var(--text); font-weight: 500; }
+  .pauta-summary .pauta-amount { color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.05em; }
+
   /* HORIZONTE */
   .horizon-grid {
     display: grid;
@@ -1117,8 +1369,8 @@
       <li><a href="#dual" data-nav>Captación dual</a></li>
       <li><a href="#trabajamos" data-nav>Cómo trabajamos</a></li>
       <li><a href="#capacidades" data-nav>Servicios</a></li>
+      <li><a href="#integral" data-nav>Integral</a></li>
       <li><a href="#calculadora" data-nav>Calculadora</a></li>
-      <li><a href="#pauta" data-nav>Pauta</a></li>
       <li><a href="#horizonte" data-nav>Horizonte</a></li>
       <li><a href="#contacto" data-nav>Contacto</a></li>
     </ul>
@@ -1128,8 +1380,8 @@
       <a href="#dual" data-nav>Captación dual</a>
       <a href="#trabajamos" data-nav>Trabajamos</a>
       <a href="#capacidades" data-nav>Servicios</a>
+      <a href="#integral" data-nav>Integral</a>
       <a href="#calculadora" data-nav>Calculadora</a>
-      <a href="#pauta" data-nav>Pauta</a>
       <a href="#horizonte" data-nav>Horizonte</a>
       <a href="#contacto" data-nav>Contacto</a>
     </div>
@@ -1670,20 +1922,90 @@
   </div>
 </section>
 
+<!-- ============== PAQUETE INTEGRAL RECOMENDADO ============== -->
+<section class="section section-divider" id="integral">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>06 · Paquete integral recomendado</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Lo que recomendamos cuando el objetivo es <span class="accent-italic">construir el sistema completo.</span>
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
+      Esta es la configuración que entrega los resultados que prometemos como sistema integral: cada pieza alimenta a la siguiente, la marca se construye en paralelo a la captación, y la operación se reporta como una sola. Modalidad <strong>iguala mensual</strong> — no proyecto suelto.
+    </p>
+
+    <div class="integral-wrap reveal">
+      <div class="integral-header">
+        <div class="integral-title">Sistema completo · <em>iguala mensual</em></div>
+        <div class="integral-mode">Modalidad · Iguala</div>
+      </div>
+
+      <p class="integral-deck">
+        Branding y sitio web entran <strong>primero como diagnóstico</strong>: analizamos lo que ya existe antes de producir. En sitio web evaluamos si conviene <em>rehacer o iterar</em>. La pauta no es nivel piso de prueba — entra ya en rango <strong>crecimiento → dominio</strong>, calibrada para mover listings y compradores en paralelo desde el primer mes.
+      </p>
+
+      <div class="integral-stack">
+        <div class="integral-item">
+          <div class="name">Branding · diagnóstico y refresh</div>
+          <div class="desc">Auditoría de identidad existente, ajustes o refresh donde haga falta, y <strong>kit de marca para asesores</strong> (firmas, plantillas, presentaciones).</div>
+        </div>
+        <div class="integral-item">
+          <div class="name">Sitio web · auditoría + creación o refactor</div>
+          <div class="desc">Catálogo conectado a EasyBroker / Wasi / AlterEstate, <strong>funnel de conversión</strong>, <strong>blog para SEO</strong>, integración con CRM. No es solo catálogo: es el motor de captación.</div>
+        </div>
+        <div class="integral-item">
+          <div class="name">SEO local + Google Business Profile</div>
+          <div class="desc">Páginas por <strong>zona y colonia</strong>, GBP optimizado y monitoreado, dominio orgánico de búsquedas geo-localizadas.</div>
+        </div>
+        <div class="integral-item">
+          <div class="name">CRM + automatización con IA</div>
+          <div class="desc"><strong>Doble pipeline</strong> (listings y compradores), respondedor IA en WhatsApp, calificación automática y enrutamiento al asesor correcto.</div>
+        </div>
+        <div class="integral-item">
+          <div class="name">Producción de contenido recurrente</div>
+          <div class="desc">Sesiones mensuales de foto y video — propiedades, asesores, formato vertical para redes y casos de éxito. Cotizadas como eventual recurrente, no como servicio mensual fijo.</div>
+        </div>
+        <div class="integral-item">
+          <div class="name">Pauta · Meta + Google · crecimiento → dominio</div>
+          <div class="desc">Inversión publicitaria en <strong>rango activo</strong>, no nivel prueba. Dual desde el día uno: una parte capta listings, otra capta compradores. Se configura en la calculadora abajo.</div>
+        </div>
+        <div class="integral-item">
+          <div class="name">Operación + reporting mensual</div>
+          <div class="desc">Dashboard tiempo real, junta mensual con lectura accionable, optimización semanal con IA, ajustes de segmentación y mensaje según data real.</div>
+        </div>
+      </div>
+
+      <div class="integral-footer">
+        <p class="integral-footer-text">
+          Esto es lo que recomendamos cuando el objetivo es construir el sistema completo. Si quieres explorar una versión modular según etapa o presupuesto, <strong>configúrala abajo</strong> — la calculadora aplica los mismos descuentos por bundle.
+        </p>
+        <a href="#calculadora" class="integral-cta" data-nav>
+          Configurar versión modular
+          <span class="arrow">↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============== CALCULADORA ============== -->
 <section class="section section-surface section-divider" id="calculadora">
   <div class="section-inner">
     <div class="section-label reveal">
       <div class="divider"></div>
-      <span>06 · Calculadora interactiva</span>
+      <span>07 · Configuración modular</span>
     </div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
-      Arma el sistema de tu inmobiliaria. <span class="accent-italic">Mira el total en vivo.</span>
+      Arma tu propia versión del sistema. <span class="accent-italic">Mira el total en vivo.</span>
     </h2>
 
     <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
-      Selecciona los servicios que aplican al caso. La calculadora aplica automáticamente <strong>10% de descuento</strong> al combinar tres servicios mensuales y <strong>15%</strong> al combinar cuatro o más. Inversión de pauta publicitaria se cotiza por separado en la siguiente sección.
+      Selecciona los servicios que aplican a tu etapa. La calculadora aplica automáticamente <strong>10% de descuento</strong> al combinar tres servicios mensuales y <strong>15%</strong> al combinar cuatro o más. La <strong>pauta se configura abajo</strong> como parte del mismo sistema — el monto va directo a Meta o Google, no es honorario de Sentido.
     </p>
 
     <div class="calc-wrap reveal">
@@ -1793,80 +2115,45 @@
           <div class="val" id="calc-onetime">—</div>
         </div>
         <div class="calc-note">
-          Precios en MXN, no incluyen IVA. El descuento por bundle aplica únicamente a los servicios mensuales recurrentes; branding y sitio web se facturan como pago único. Pauta publicitaria en Google, Meta y TikTok se cotiza por separado y va directo a las plataformas (no es honorario de Sentido). Implementación de CRM sin costo con mantenimiento mensual activo. Producción de contenido se cotiza por sesión o paquete por volumen.
+          Precios en MXN, no incluyen IVA. El descuento por bundle aplica únicamente a los servicios mensuales recurrentes; branding y sitio web se facturan como pago único. Implementación de CRM sin costo con mantenimiento mensual activo. Producción de contenido se cotiza por sesión o paquete por volumen.
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============== PAUTA / PLANES ============== -->
-<section class="section section-divider" id="pauta">
-  <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>07 · Inversión publicitaria</span>
-    </div>
+      <!-- SELECTOR DE PAUTA (parte de la calculadora) -->
+      <div class="pauta-selector">
+        <div class="pauta-selector-head">
+          <div class="pauta-selector-title">Nivel de pauta · Meta + Google</div>
+          <div class="pauta-selector-tag">Va directo a la plataforma</div>
+        </div>
+        <p class="pauta-selector-deck">
+          La pauta es lo que enciende el sistema dual: una parte capta listings, otra capta compradores. <strong>El monto va directo a tu cuenta de Meta o Google</strong> — no es honorario de Sentido. La gestión, optimización y reporting de Meta vive junto al servicio de Redes; la de Google vive junto al servicio de Google/SEO/GBP. Aquí defines a qué nivel de inversión arrancas.
+        </p>
 
-    <h2 class="display-heading xl reveal max-w-4xl">
-      Tres niveles de pauta. <span class="accent-italic">Calibrados al tamaño de la inmobiliaria.</span>
-    </h2>
+        <div class="pauta-levels" id="pauta-levels">
+          <div class="pauta-level" data-level="esencial" data-min="10000" data-label="Esencial">
+            <div class="lvl-name">Esencial</div>
+            <div class="lvl-tag">Boutique · 1 zona</div>
+            <div class="lvl-range"><span class="from">desde</span>$10,000</div>
+            <div class="lvl-meta">1 plataforma activa · validar canal y mensaje · <strong>20–40 leads calificados/mes</strong> · optimización quincenal.</div>
+          </div>
+          <div class="pauta-level active" data-level="crecimiento" data-min="20000" data-label="Crecimiento">
+            <div class="lvl-name">Crecimiento</div>
+            <div class="lvl-tag">Captación dual</div>
+            <div class="lvl-range"><span class="from">desde</span>$20,000</div>
+            <div class="lvl-meta">Meta + Google en paralelo · funnel de listings activado · <strong>50–110 leads calificados/mes</strong> · optimización semanal con IA.</div>
+          </div>
+          <div class="pauta-level" data-level="dominio" data-min="35000" data-label="Dominio">
+            <div class="lvl-name">Dominio</div>
+            <div class="lvl-tag">Multi-oficina · lujo</div>
+            <div class="lvl-range"><span class="from">desde</span>$35,000</div>
+            <div class="lvl-meta">3+ plataformas · branded + performance · cobertura por zona, asesor y tipo de propiedad · <strong>120+ leads/mes</strong> · optimización diaria.</div>
+          </div>
+        </div>
 
-    <p class="paragraph lg muted max-w-3xl reveal reveal-d1">
-      La pauta es lo que enciende el sistema dual: una parte capta listings, otra capta compradores. Estos rangos son recomendaciones según objetivos típicos por tamaño de operación. <strong>El monto va directo a Meta, Google o TikTok</strong> — no es honorario de Sentido. Lo que se gestiona, optimiza y reporta es la operación. Recordamos: la pauta de Meta vive junto al servicio de Redes; la pauta de Google vive junto al servicio de Google/SEO/GBP. No hay bloque suelto.
-    </p>
-
-    <div class="plans-grid">
-      <div class="plan-card reveal">
-        <div class="plan-name">Esencial</div>
-        <div class="plan-tag">Inmobiliaria boutique · 1 zona</div>
-        <div class="plan-price"><span class="from">desde</span>$10,000<span class="currency"> MXN</span></div>
-        <div class="plan-period">por mes en pauta total</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-list">
-          <li><strong>Foco:</strong> validar canal y mensaje en una zona</li>
-          <li>1 plataforma activa (Meta o Google)</li>
-          <li>Captación de compradores como prioridad</li>
-          <li>Optimización quincenal</li>
-          <li>Lead esperado: <strong>20–40 calificados/mes</strong></li>
-        </ul>
+        <div class="pauta-summary" id="pauta-summary">
+          Nivel <strong id="pauta-summary-name">Crecimiento</strong> · pauta total estimada <span class="pauta-amount" id="pauta-summary-amount">desde $20,000 MXN/mes</span> directo a Meta + Google. Este monto <strong>se carga a tus cuentas publicitarias</strong>, no se suma al fee mensual de Sentido. Los rangos de leads son estimaciones de benchmark — el resultado real depende de geografía, ticket, competencia y temporada.
+        </div>
       </div>
-
-      <div class="plan-card featured reveal reveal-d1">
-        <div class="plan-name">Crecimiento</div>
-        <div class="plan-tag">Inmobiliaria con captación dual</div>
-        <div class="plan-price"><span class="from">desde</span>$20,000<span class="currency"> MXN</span></div>
-        <div class="plan-period">por mes en pauta total</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-list">
-          <li><strong>Foco:</strong> escalar listings + compradores en paralelo</li>
-          <li>2 plataformas activas (Meta + Google)</li>
-          <li>Funnel de captación de listings activado</li>
-          <li>Múltiples segmentos por zona y tipo de propiedad</li>
-          <li>Optimización semanal con IA</li>
-          <li>Lead esperado: <strong>50–110 calificados/mes</strong></li>
-        </ul>
-      </div>
-
-      <div class="plan-card reveal reveal-d2">
-        <div class="plan-name">Dominio</div>
-        <div class="plan-tag">Inmobiliaria multi-oficina o lujo</div>
-        <div class="plan-price"><span class="from">desde</span>$35,000<span class="currency"> MXN</span></div>
-        <div class="plan-period">por mes en pauta total</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-list">
-          <li><strong>Foco:</strong> dominar geografía y construir autoridad</li>
-          <li>3+ plataformas (Meta, Google, TikTok, YouTube)</li>
-          <li>Branded + performance + alto ticket</li>
-          <li>Cobertura por zona, asesor y tipo de propiedad</li>
-          <li>Optimización diaria + alertas IA</li>
-          <li>Lead esperado: <strong>120+ calificados/mes</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="pauta-disclaimer reveal">
-      <strong>Importante:</strong> el presupuesto de pauta no es honorario de Sentido. Se carga directamente a tu cuenta de Meta Business, Google Ads o TikTok Ads. Sentido factura únicamente la gestión, configuración, optimización y reportes — cotizada en la sección de servicios y siempre adyacente al servicio que opera la pauta (Meta vive con Redes, Google vive con Google/SEO/GBP). Los rangos de leads esperados son estimaciones basadas en benchmarks sectoriales — el resultado real depende de geografía, ticket, nivel de competencia y temporada.
     </div>
   </div>
 </section>
@@ -1993,7 +2280,7 @@
   // Scroll-spy del nav
   (function() {
     const navLinks = document.querySelectorAll('[data-nav]');
-    const sectionIds = ['momento','problema','dual','trabajamos','capacidades','calculadora','pauta','horizonte','contacto'];
+    const sectionIds = ['momento','problema','dual','trabajamos','capacidades','integral','calculadora','horizonte','contacto'];
     const sections = sectionIds
       .map(id => document.getElementById(id))
       .filter(Boolean);
@@ -2102,6 +2389,29 @@
         opt.classList.toggle('active');
         recalculate();
       });
+    });
+  })();
+
+  // Selector de nivel de pauta
+  (function() {
+    const levels = document.querySelectorAll('.pauta-level');
+    const summaryName = document.getElementById('pauta-summary-name');
+    const summaryAmount = document.getElementById('pauta-summary-amount');
+    if (!levels.length || !summaryName || !summaryAmount) return;
+
+    const fmt = (n) => '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+    function setLevel(target) {
+      levels.forEach(l => l.classList.remove('active'));
+      target.classList.add('active');
+      const min = parseInt(target.dataset.min, 10);
+      const label = target.dataset.label;
+      summaryName.textContent = label;
+      summaryAmount.textContent = `desde ${fmt(min)} MXN/mes`;
+    }
+
+    levels.forEach(lvl => {
+      lvl.addEventListener('click', () => setLevel(lvl));
     });
   })();
 </script>
