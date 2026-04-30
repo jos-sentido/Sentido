@@ -341,30 +341,12 @@
   .hero-sub strong { color: var(--text); font-weight: 400; }
   .hero-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-end;
     flex-wrap: wrap;
     gap: 1.5rem;
     position: relative;
     z-index: 2;
-  }
-  .hero-stat-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-  .hero-stat { border-left: 1px solid var(--border-accent); padding-left: 1rem; }
-  .hero-stat-value {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--accent);
-    font-weight: 500;
-    font-style: italic;
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-  .hero-stat-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
   }
   .hero-scroll {
     font-family: var(--font-mono);
@@ -1183,20 +1165,6 @@
   </div>
 
   <div class="hero-bottom">
-    <div class="hero-stat-row">
-      <div class="hero-stat">
-        <div class="hero-stat-value">60–70%</div>
-        <div class="hero-stat-label">Leads sin respuesta en 24h</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">&lt; 1 min</div>
-        <div class="hero-stat-label">Primer contacto IA</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">3×</div>
-        <div class="hero-stat-label">Rendimiento vs. quien no usa IA</div>
-      </div>
-    </div>
     <div class="hero-scroll">↓ Scroll</div>
   </div>
 </section>
