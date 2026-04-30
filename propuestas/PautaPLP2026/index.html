@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de Pauta - PLP Desarrollos</title>
+<style>
+:root{
+--color-background-primary:#ffffff;
+--color-background-secondary:#f5f5f4;
+--color-background-tertiary:#fafaf9;
+--color-text-primary:#1c1917;
+--color-text-secondary:#78716c;
+--color-text-tertiary:#a8a29e;
+--color-border-tertiary:rgba(0,0,0,0.15);
+--color-border-primary:rgba(0,0,0,0.4);
+--color-border-secondary:rgba(0,0,0,0.3);
+--border-radius-md:8px;
+--border-radius-lg:12px;
+--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+@media(prefers-color-scheme:dark){
+:root{
+--color-background-primary:#1c1917;
+--color-background-secondary:#292524;
+--color-background-tertiary:#1c1917;
+--color-text-primary:#fafaf9;
+--color-text-secondary:#a8a29e;
+--color-text-tertiary:#78716c;
+--color-border-tertiary:rgba(255,255,255,0.15);
+--color-border-primary:rgba(255,255,255,0.4);
+--color-border-secondary:rgba(255,255,255,0.3);
+}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary);padding:2rem;max-width:720px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.5rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:14px}
+.pname{font-size:16px;font-weight:500;margin:0 0 2px}
+.psub{font-size:12px;color:var(--color-text-secondary);margin:0 0 14px}
+.sbar-wrap{position:relative;height:36px;border-radius:6px;overflow:visible;margin:0 0 8px;user-select:none;-webkit-user-select:none;cursor:pointer}
+.sbar-seg{position:absolute;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#fff;pointer-events:none;overflow:hidden}
+.sbar-seg:first-child{border-radius:6px 0 0 6px}
+.sbar-seg:last-child{border-radius:0 6px 6px 0}
+.handle{position:absolute;top:-2px;width:4px;height:40px;background:var(--color-background-primary);border:1.5px solid var(--color-border-primary);border-radius:3px;cursor:col-resize;z-index:10;touch-action:none}
+.handle:hover{background:var(--color-background-secondary);border-color:var(--color-text-primary)}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,1fr));gap:0;padding:5px 0;font-size:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.prow-h{font-size:11px;color:var(--color-text-secondary);font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);padding:0 0 4px;margin-bottom:2px}
+.r{text-align:right}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 1.5rem;font-size:12px;color:var(--color-text-secondary)}
+.legend span{display:flex;align-items:center;gap:4px}
+.ldot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.pct-display{display:flex;gap:12px;margin:0 0 10px;font-size:13px}
+.pct-item{display:flex;align-items:center;gap:5px}
+.pct-val{font-weight:500;min-width:32px}
+.hint{font-size:11px;color:var(--color-text-tertiary);margin:0 0 6px;font-style:italic}
+</style>
+</head>
+<body>
+
+<h1>Distribución de pauta por desarrollo</h1>
+<p class="subtitle">Arrastra las líneas para ajustar la distribución entre canales</p>
+
+<div class="legend">
+<span><span class="ldot" style="background:#378ADD"></span>Google Ads</span>
+<span><span class="ldot" style="background:#7F77DD"></span>Meta captación</span>
+<span><span class="ldot" style="background:#1D9E75"></span>Remarketing</span>
+</div>
+
+<div id="projects"></div>
+
+<script>
+var projects=[
+{name:"Bolongo Punta de Mita",current:"$30,000",gPct:20,rPct:15,periods:[
+{label:"May–Jun",total:87500},{label:"Q3 (Jul–Sep)",total:100000},{label:"Q4 (Oct–Dic)",total:100000}]},
+{name:"Amancay Nuevo Vallarta",current:"$30,000",gPct:20,rPct:15,periods:[
+{label:"May–Jun",total:62500},{label:"Q3 (Jul–Sep)",total:78125},{label:"Q4 (Oct–Dic)",total:97656}]},
+{name:"Essentia Country",current:"$30,000",gPct:20,rPct:15,periods:[
+{label:"May–Jun",total:50000},{label:"Q3 (Jul–Sep)",total:55000},{label:"Q4 (Oct–Dic)",total:60000}]},
+{name:"Brelia Residences",current:"$25,000",gPct:22,rPct:14,periods:[
+{label:"May–Jun",total:45000},{label:"Q3 (Jul–Sep)",total:55000},{label:"Q4 (Oct–Dic)",total:65000}]}
+];
+var fmt=function(n){return "$"+Math.round(n).toLocaleString("en-US")};
+var container=document.getElementById("projects");
+
+projects.forEach(function(p,idx){
+var card=document.createElement("div");
+card.className="card";
+card.innerHTML='<p class="pname">'+p.name+'</p><p class="psub">Pauta actual: '+p.current+'/mes</p><p class="hint">Arrastra las líneas para ajustar la distribución</p><div class="pct-display" id="pcts-'+idx+'"></div><div class="sbar-wrap" id="bar-'+idx+'"><div class="sbar-seg" id="seg-g-'+idx+'" style="background:#378ADD"></div><div class="sbar-seg" id="seg-m-'+idx+'" style="background:#7F77DD"></div><div class="sbar-seg" id="seg-r-'+idx+'" style="background:#1D9E75"></div><div class="handle" id="h1-'+idx+'"></div><div class="handle" id="h2-'+idx+'"></div></div><div id="table-'+idx+'" style="margin-top:12px"></div>';
+container.appendChild(card);
+
+var barEl=document.getElementById("bar-"+idx);
+var segG=document.getElementById("seg-g-"+idx);
+var segM=document.getElementById("seg-m-"+idx);
+var segR=document.getElementById("seg-r-"+idx);
+var h1=document.getElementById("h1-"+idx);
+var h2=document.getElementById("h2-"+idx);
+var pctsEl=document.getElementById("pcts-"+idx);
+var tableEl=document.getElementById("table-"+idx);
+
+function render(){
+var gP=p.gPct;var rP=p.rPct;var mP=100-gP-rP;
+segG.style.left="0";segG.style.width=gP+"%";
+segM.style.left=gP+"%";segM.style.width=mP+"%";
+segR.style.left=(gP+mP)+"%";segR.style.width=rP+"%";
+segG.textContent=gP>=8?gP+"%":"";
+segM.textContent=mP>=8?mP+"%":"";
+segR.textContent=rP>=8?rP+"%":"";
+h1.style.left="calc("+gP+"% - 2px)";
+h2.style.left="calc("+(gP+mP)+"% - 2px)";
+pctsEl.innerHTML='<div class="pct-item"><span class="ldot" style="background:#378ADD"></span>Google <span class="pct-val" style="color:#185FA5">'+gP+'%</span></div><div class="pct-item"><span class="ldot" style="background:#7F77DD"></span>Meta <span class="pct-val" style="color:#534AB7">'+mP+'%</span></div><div class="pct-item"><span class="ldot" style="background:#1D9E75"></span>RMK <span class="pct-val" style="color:#0F6E56">'+rP+'%</span></div>';
+var html='<div class="prow prow-h"><span>Periodo</span><span class="r">Google</span><span class="r">Meta</span><span class="r">RMK</span></div>';
+p.periods.forEach(function(pr){
+var gAmt=Math.round(pr.total*gP/100);
+var rAmt=Math.round(pr.total*rP/100);
+var mAmt=pr.total-gAmt-rAmt;
+html+='<div class="prow"><span>'+pr.label+' <span style="color:var(--color-text-secondary);font-size:11px">('+fmt(pr.total)+')</span></span><span class="r" style="color:#185FA5">'+fmt(gAmt)+'</span><span class="r" style="color:#534AB7">'+fmt(mAmt)+'</span><span class="r" style="color:#0F6E56">'+fmt(rAmt)+'</span></div>';
+});
+tableEl.innerHTML=html;
+}
+
+function startDrag(handleNum,e){
+e.preventDefault();
+var rect=barEl.getBoundingClientRect();
+var w=rect.width;
+function onMove(ev){
+var clientX=ev.touches?ev.touches[0].clientX:ev.clientX;
+var pct=Math.round(((clientX-rect.left)/w)*100);
+if(handleNum===1){
+pct=Math.max(5,Math.min(pct,95-p.rPct));
+p.gPct=pct;
+}else{
+pct=Math.max(p.gPct+5,Math.min(pct,95));
+p.rPct=100-pct;
+if(p.rPct<5)p.rPct=5;
+if(100-p.gPct-p.rPct<5){p.rPct=95-p.gPct;}
+}
+render();
+}
+function onEnd(){
+document.removeEventListener("mousemove",onMove);
+document.removeEventListener("mouseup",onEnd);
+document.removeEventListener("touchmove",onMove);
+document.removeEventListener("touchend",onEnd);
+}
+document.addEventListener("mousemove",onMove);
+document.addEventListener("mouseup",onEnd);
+document.addEventListener("touchmove",onMove,{passive:false});
+document.addEventListener("touchend",onEnd);
+}
+
+h1.addEventListener("mousedown",function(e){startDrag(1,e)});
+h1.addEventListener("touchstart",function(e){startDrag(1,e)},{passive:false});
+h2.addEventListener("mousedown",function(e){startDrag(2,e)});
+h2.addEventListener("touchstart",function(e){startDrag(2,e)},{passive:false});
+
+render();
+});
+</script>
+
+</body>
+</html>
