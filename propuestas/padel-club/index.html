@@ -148,12 +148,11 @@
 
   .hero-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     position: relative;
     z-index: 3;
   }
-  .hero-logo img { height: 28px; width: auto; opacity: 0.95; }
   .hero-tag {
     display: inline-flex;
     align-items: center;
@@ -186,6 +185,20 @@
     position: relative;
     z-index: 3;
     max-width: 60rem;
+  }
+  .hero-brand {
+    margin-bottom: 2.25rem;
+    display: flex;
+    align-items: center;
+  }
+  .hero-brand img {
+    height: 36px;
+    width: auto;
+    opacity: 0.95;
+  }
+  @media (min-width: 768px) {
+    .hero-brand { margin-bottom: 2.75rem; }
+    .hero-brand img { height: 42px; }
   }
   .hero-eyebrow {
     font-family: var(--font-mono);
@@ -672,9 +685,6 @@
     <div class="court-bg"></div>
 
     <div class="hero-top">
-      <div class="hero-logo">
-        <img src="/assets/logo-sentido-light.png" alt="Sentido" />
-      </div>
       <div class="hero-tag">
         <span class="pulse"></span>
         <span>Propuesta Activa</span>
@@ -682,6 +692,9 @@
     </div>
 
     <div class="hero-content reveal visible">
+      <div class="hero-brand">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" />
+      </div>
       <div class="hero-eyebrow">
         <span class="line"></span>
         <span>Propuesta para Padel Club · Mayo 2026</span>
@@ -829,10 +842,10 @@
       </div>
 
       <h2 class="h-display lg reveal" style="margin-bottom: 1.5rem; max-width: 50rem;">
-        Un setup que arranca contigo. Una operación que <span class="accent-italic">no para cada mes</span>.
+        Un fee mensual fijo. Una operación que <span class="accent-italic">no para cada mes</span>.
       </h2>
       <p class="p-lg muted reveal reveal-d1" style="max-width: 48rem; margin-bottom: 3.5rem;">
-        El mes 1 montamos toda la infraestructura sin costo extra. Del mes 2 en adelante — y desde el mismo mes 1 también — operamos campañas, automatizaciones y reseñas como un servicio vivo. No es "te dejo el sistema y suerte"; es una agencia haciendo el trabajo mes a mes.
+        Mismo fee mensual desde el día uno. La diferencia es que el primer mes incluye, además de las campañas operando en vivo, el setup completo de la infraestructura — sin costo adicional. No esperas un mes de "armado" para empezar a ver resultados: desde el mes 1 ya hay campañas corriendo y reseñas activándose.
       </p>
 
       <div class="services">
@@ -1010,9 +1023,9 @@
   <section class="closing">
     <div class="court-bg"></div>
     <h2 class="closing-quote reveal">
-      No necesitas más jugadores nuevos.<br/>
-      Necesitas <em>volver a llamar</em><br/>
-      a los que ya conoces.
+      Tu próximo socio activo<br/>
+      <em>ya está en tu base.</em><br/>
+      El siguiente, lo trae su reseña.
     </h2>
     <div style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); position: relative; z-index: 2;">
       <span>Propuesta generada por</span>
