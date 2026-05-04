@@ -988,6 +988,114 @@
   }
   .integral-item .desc strong { color: var(--text); font-weight: 500; }
 
+  /* INTEGRAL · BLOQUE DE TARIFA TOTAL */
+  .integral-pricing {
+    margin-top: 2.25rem;
+    padding: 2rem 1.75rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .integral-pricing { padding: 2.25rem 2.25rem; }
+  }
+  .integral-pricing-intro {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+  .integral-pricing-rows {
+    display: grid;
+    gap: 1rem;
+  }
+  .integral-pricing-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.95rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .integral-pricing-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .integral-pricing-row .lbl {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    max-width: 26rem;
+  }
+  .integral-pricing-row .lbl strong {
+    color: var(--text);
+    font-weight: 500;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 0.15rem;
+    letter-spacing: 0.01em;
+  }
+  .integral-pricing-row .val {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    color: var(--text);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .integral-pricing-row .val .unit {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-left: 0.4rem;
+  }
+  .integral-pricing-total {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .integral-pricing-total .lbl {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    max-width: 22rem;
+  }
+  .integral-pricing-total .val {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    color: var(--accent);
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  @media (min-width: 768px) {
+    .integral-pricing-total .val { font-size: 3.1rem; }
+  }
+  .integral-pricing-total .val .unit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-left: 0.5rem;
+  }
+  .integral-pricing-fineprint {
+    margin-top: 1.25rem;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .integral-pricing-fineprint strong { color: var(--text); font-weight: 500; }
+
   .integral-footer {
     margin-top: 2rem;
     padding-top: 1.75rem;
@@ -1977,6 +2085,45 @@
           <div class="name">Operación + reporting mensual</div>
           <div class="desc">Dashboard tiempo real, junta mensual con lectura accionable, optimización semanal con IA, ajustes de segmentación y mensaje según data real.</div>
         </div>
+      </div>
+
+      <div class="integral-pricing">
+        <div class="integral-pricing-intro">Lo que cuesta operar el sistema completo</div>
+
+        <div class="integral-pricing-rows">
+          <div class="integral-pricing-row">
+            <div class="lbl">
+              <strong>Setup inicial · una sola vez</strong>
+              Branding de la inmobiliaria + sitio web con catálogo de propiedades
+            </div>
+            <div class="val">$70,000<span class="unit">MXN + IVA</span></div>
+          </div>
+
+          <div class="integral-pricing-row">
+            <div class="lbl">
+              <strong>Iguala mensual · operación Sentido</strong>
+              Redes + Meta · Google + SEO + GBP · CRM + IA · Reputación · Dashboard incluido
+            </div>
+            <div class="val">$22,000<span class="unit">MXN + IVA / mes</span></div>
+          </div>
+
+          <div class="integral-pricing-row">
+            <div class="lbl">
+              <strong>Pauta nivel Dominio · directo a Meta + Google</strong>
+              No se suma al fee de Sentido — el monto se carga directo a tus cuentas publicitarias.
+            </div>
+            <div class="val">$35,000<span class="unit">MXN / mes</span></div>
+          </div>
+        </div>
+
+        <div class="integral-pricing-total">
+          <div class="lbl">Inversión mensual total recomendada</div>
+          <div class="val">$57,000<span class="unit">MXN / mes</span></div>
+        </div>
+
+        <p class="integral-pricing-fineprint">
+          <strong>Producción de contenido</strong> se cotiza aparte por sesión o paquete según volumen de propiedades — solo área GDL, desde $15,000 MXN por propiedad. El descuento por bundle de la calculadora ya está aplicado en la iguala mensual.
+        </p>
       </div>
 
       <div class="integral-footer">
