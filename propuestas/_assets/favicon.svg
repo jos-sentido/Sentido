@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Fondo cuadrado redondeado oscuro para contraste universal en pestañas -->
+  <rect width="64" height="64" rx="10" fill="#0A0A0A"/>
+  <!-- Rombo (diamante) — silueta del isotipo Sentido -->
+  <path d="M32 14 L56 32 L32 50 L8 32 Z"
+        stroke="#EDEAE4" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <!-- Ojo estilizado: forma de almendra horizontal -->
+  <path d="M14 32 Q32 20 50 32 Q32 44 14 32 Z"
+        stroke="#EDEAE4" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <!-- Iris -->
+  <circle cx="32" cy="32" r="6.5" fill="#EDEAE4"/>
+  <!-- Pupila -->
+  <circle cx="32" cy="32" r="3" fill="#0A0A0A"/>
+  <!-- Brillo de la pupila -->
+  <circle cx="33.5" cy="30.5" r="0.9" fill="#EDEAE4"/>
+</svg>
