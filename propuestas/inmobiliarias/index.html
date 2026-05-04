@@ -987,6 +987,44 @@
     line-height: 1.55;
   }
   .integral-item .desc strong { color: var(--text); font-weight: 500; }
+  .integral-item .name-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.4rem;
+  }
+  .integral-item .name-row .name { margin-bottom: 0; }
+  .integral-chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.55rem;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: transparent;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .integral-chip.is-recurrent {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .integral-chip.is-platform {
+    border-color: var(--border-bright);
+    color: var(--text);
+  }
+  .integral-chip.is-eventual {
+    border-style: dashed;
+  }
+  .integral-chip.is-optional {
+    border-style: dashed;
+    color: var(--text);
+    border-color: var(--border-bright);
+  }
 
   /* INTEGRAL · BLOQUE DE TARIFA TOTAL */
   .integral-pricing {
@@ -1095,6 +1133,75 @@
     line-height: 1.6;
   }
   .integral-pricing-fineprint strong { color: var(--text); font-weight: 500; }
+
+  /* INTEGRAL · SETUP OPCIONAL (módulo separado) */
+  .integral-setup-aside {
+    margin-top: 1.5rem;
+    padding: 1.5rem 1.5rem;
+    background: var(--surface);
+    border: 1px dashed var(--border-bright);
+    border-left: 2px dashed var(--text-dim);
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .integral-setup-aside { padding: 1.75rem 2rem; }
+  }
+  .integral-setup-aside-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.85rem;
+  }
+  .integral-setup-aside-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+  .integral-setup-aside-row .lbl {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--text);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.3;
+    max-width: 26rem;
+  }
+  .integral-setup-aside-row .val {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .integral-setup-aside-row .val .unit {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-left: 0.4rem;
+  }
+  .integral-setup-aside-row .val .from {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
+  .integral-setup-aside-copy {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .integral-setup-aside-copy strong { color: var(--text); font-weight: 500; }
+  .integral-setup-aside-copy + .integral-setup-aside-copy { margin-top: 0.5rem; }
 
   .integral-footer {
     margin-top: 2rem;
@@ -2058,51 +2165,64 @@
 
       <div class="integral-stack">
         <div class="integral-item">
-          <div class="name">Branding · diagnóstico y refresh</div>
-          <div class="desc">Auditoría de identidad existente, ajustes o refresh donde haga falta, y <strong>kit de marca para asesores</strong> (firmas, plantillas, presentaciones).</div>
+          <div class="name-row">
+            <div class="name">Branding · diagnóstico y refresh</div>
+            <span class="integral-chip is-optional">Setup · opcional según diagnóstico</span>
+          </div>
+          <div class="desc">Auditoría de identidad existente, ajustes o refresh donde haga falta, y <strong>kit de marca para asesores</strong> (firmas, plantillas, presentaciones). <strong>Si tu marca ya opera al nivel requerido, no se rehace</strong> — se valida primero.</div>
         </div>
         <div class="integral-item">
-          <div class="name">Sitio web · auditoría + creación o refactor</div>
-          <div class="desc">Catálogo conectado a EasyBroker / Wasi / AlterEstate, <strong>funnel de conversión</strong>, <strong>blog para SEO</strong>, integración con CRM. No es solo catálogo: es la vitrina que vende y captura.</div>
+          <div class="name-row">
+            <div class="name">Sitio web · auditoría + creación o refactor</div>
+            <span class="integral-chip is-optional">Setup · opcional según diagnóstico</span>
+          </div>
+          <div class="desc">Catálogo conectado a EasyBroker / Wasi / AlterEstate, <strong>funnel de conversión</strong>, <strong>blog para SEO</strong>, integración con CRM. <strong>Si tu sitio ya cumple con catálogo y captura, evaluamos refactor parcial o nada</strong>.</div>
         </div>
         <div class="integral-item">
-          <div class="name">SEO local + Google Business Profile</div>
+          <div class="name-row">
+            <div class="name">SEO local + Google Business Profile</div>
+            <span class="integral-chip is-recurrent">Iguala mensual</span>
+          </div>
           <div class="desc">Páginas por <strong>zona y colonia</strong>, GBP optimizado y monitoreado, dominio orgánico de búsquedas geo-localizadas.</div>
         </div>
         <div class="integral-item">
-          <div class="name">CRM + automatización con IA</div>
+          <div class="name-row">
+            <div class="name">CRM + automatización con IA</div>
+            <span class="integral-chip is-recurrent">Iguala mensual</span>
+          </div>
           <div class="desc"><strong>Doble pipeline</strong> (listings y compradores), respondedor IA en WhatsApp, calificación automática y enrutamiento al asesor correcto.</div>
         </div>
         <div class="integral-item">
-          <div class="name">Producción de contenido recurrente</div>
+          <div class="name-row">
+            <div class="name">Producción de contenido recurrente</div>
+            <span class="integral-chip is-eventual">Eventual · por sesión</span>
+          </div>
           <div class="desc">Sesiones mensuales de foto y video — propiedades, asesores, formato vertical para redes y casos de éxito. Cotizadas como eventual recurrente, no como servicio mensual fijo.</div>
         </div>
         <div class="integral-item">
-          <div class="name">Pauta · Meta + Google · crecimiento → dominio</div>
+          <div class="name-row">
+            <div class="name">Pauta · Meta + Google · crecimiento → dominio</div>
+            <span class="integral-chip is-platform">Mensual · directo a plataforma</span>
+          </div>
           <div class="desc">Inversión publicitaria en <strong>rango activo</strong>, no nivel prueba. Dual desde el día uno: una parte capta listings, otra capta compradores. Se configura en la calculadora abajo.</div>
         </div>
         <div class="integral-item">
-          <div class="name">Operación + reporting mensual</div>
+          <div class="name-row">
+            <div class="name">Operación + reporting mensual</div>
+            <span class="integral-chip is-recurrent">Iguala mensual</span>
+          </div>
           <div class="desc">Dashboard tiempo real, junta mensual con lectura accionable, optimización semanal con IA, ajustes de segmentación y mensaje según data real.</div>
         </div>
       </div>
 
       <div class="integral-pricing">
-        <div class="integral-pricing-intro">Lo que cuesta operar el sistema completo</div>
+        <div class="integral-pricing-intro">Iguala mensual operativa + setup inicial cuando aplica</div>
 
         <div class="integral-pricing-rows">
           <div class="integral-pricing-row">
             <div class="lbl">
-              <strong>Setup inicial · una sola vez</strong>
-              Branding de la inmobiliaria + sitio web con catálogo de propiedades
-            </div>
-            <div class="val">$70,000<span class="unit">MXN + IVA</span></div>
-          </div>
-
-          <div class="integral-pricing-row">
-            <div class="lbl">
               <strong>Iguala mensual · operación Sentido</strong>
-              Redes + Meta · Google + SEO + GBP · CRM + IA · Reputación · Dashboard incluido
+              Redes + Meta · Google + SEO + GBP · CRM + IA · Reputación · Dashboard incluido. Es la base del sistema operativo recurrente.
             </div>
             <div class="val">$22,000<span class="unit">MXN + IVA / mes</span></div>
           </div>
@@ -2119,6 +2239,20 @@
         <div class="integral-pricing-total">
           <div class="lbl">Inversión mensual total recomendada</div>
           <div class="val">$57,000<span class="unit">MXN / mes</span></div>
+        </div>
+
+        <div class="integral-setup-aside">
+          <div class="integral-setup-aside-tag">Setup inicial · opcional según diagnóstico</div>
+          <div class="integral-setup-aside-row">
+            <div class="lbl">Branding (refresh o creación) + sitio web (refactor o creación)</div>
+            <div class="val"><span class="from">desde</span>$70,000<span class="unit">MXN + IVA · una sola vez</span></div>
+          </div>
+          <p class="integral-setup-aside-copy">
+            Se cotiza <strong>tras validación de los activos actuales</strong> de la inmobiliaria. Si tu marca y sitio ya operan al nivel requerido, esta inversión <strong>puede no ser necesaria</strong> — o reducirse a un refresh / refactor parcial.
+          </p>
+          <p class="integral-setup-aside-copy">
+            El precio mostrado es <strong>referencia desde</strong>, no obligatorio. Lo confirmamos juntos después del diagnóstico inicial.
+          </p>
         </div>
 
         <p class="integral-pricing-fineprint">
