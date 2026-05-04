@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Padel Club</title>
+<meta name="description" content="Implementación de GoHighLevel para reactivar tu base de datos y automatizar reseñas. Propuesta Sentido Branding & Advertising." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A1628;
+    --surface: #0F1F36;
+    --surface-elevated: #16294A;
+    --border: #1F3358;
+    --border-accent: #2A4575;
+    --accent: #4ADE80;
+    --accent-dim: #22C55E;
+    --accent-bright: #86EFAC;
+    --accent-blue: #38BDF8;
+    --text: #F1F5F9;
+    --text-dim: #94A3B8;
+    --text-muted: #64748B;
+    --court-line: rgba(74, 222, 128, 0.15);
+    --font-display: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Court grid pattern background */
+  .court-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--court-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--court-line) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    opacity: 0.4;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+  .reveal-d5 { transition-delay: 0.40s; }
+
+  /* Layout */
+  .section {
+    position: relative;
+    width: 100%;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 768px) { .section { padding: 6.5rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 7.5rem 5rem; } }
+  .section-inner { max-width: 70rem; margin: 0 auto; position: relative; z-index: 2; }
+  .section-narrow { max-width: 56rem; margin: 0 auto; position: relative; z-index: 2; }
+  .section-surface { background-color: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  /* Labels */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+  .section-label .num { font-size: 12px; letter-spacing: 0.2em; font-weight: 500; }
+  .section-label .divider { height: 1px; width: 2.5rem; background-color: var(--accent); opacity: 0.6; }
+  .section-label .text { font-size: 11px; letter-spacing: 0.25em; font-weight: 500; text-transform: uppercase; }
+
+  /* Headings */
+  .h-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--text);
+  }
+  .h-display.xl { font-size: 2.5rem; }
+  .h-display.lg { font-size: 2rem; }
+  .h-display.md { font-size: 1.5rem; }
+  @media (min-width: 768px) {
+    .h-display.xl { font-size: 4rem; }
+    .h-display.lg { font-size: 2.75rem; }
+    .h-display.md { font-size: 1.875rem; }
+  }
+  @media (min-width: 1024px) {
+    .h-display.xl { font-size: 5.25rem; }
+    .h-display.lg { font-size: 3.25rem; }
+  }
+  .accent-text { color: var(--accent); }
+  .accent-italic { font-style: italic; color: var(--accent); font-weight: 500; }
+
+  /* Paragraphs */
+  .p-base {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 300;
+    color: var(--text);
+  }
+  .p-lg { font-size: 18px; line-height: 1.7; }
+  @media (min-width: 768px) { .p-lg { font-size: 19px; } }
+  .p-base.muted { color: var(--text-dim); }
+  .p-base strong, .p-lg strong { color: var(--text); font-weight: 600; }
+  .inline-accent { color: var(--accent); font-weight: 500; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem 1.5rem 4rem;
+    background:
+      radial-gradient(ellipse at top right, rgba(56, 189, 248, 0.12), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(74, 222, 128, 0.10), transparent 55%),
+      var(--bg);
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 3.5rem 3rem 5rem; } }
+  @media (min-width: 1024px) { .hero { padding: 4rem 5rem 6rem; min-height: 100vh; } }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+  }
+  .hero-logo img { height: 28px; width: auto; opacity: 0.95; }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: rgba(15, 31, 54, 0.5);
+    backdrop-filter: blur(10px);
+  }
+  .hero-tag .pulse {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 60rem;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow .line {
+    height: 1px; width: 32px;
+    background: var(--accent);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    color: var(--text);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 768px) { .hero-title { font-size: 5rem; } }
+  @media (min-width: 1024px) { .hero-title { font-size: 6.5rem; } }
+  .hero-title .grad {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    max-width: 40rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  @media (min-width: 768px) { .hero-sub { font-size: 19px; } }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 3;
+  }
+  .hero-meta-item span:last-child { color: var(--text); display: block; margin-top: 0.35rem; font-family: var(--font-sans); font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 400; }
+
+  /* Quote block */
+  .pull {
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .pull p {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--text);
+    font-style: italic;
+  }
+  @media (min-width: 768px) { .pull p { font-size: 1.85rem; } }
+
+  /* Two col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .two-col { grid-template-columns: 1fr 1fr; gap: 4.5rem; }
+  }
+
+  /* Findings list */
+  .findings {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .finding {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .finding:last-child { border-bottom: none; }
+  .finding-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .finding-text {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .finding-text strong { color: var(--text); font-weight: 500; }
+
+  /* Stats grid */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .stats { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .stat {
+    padding: 1.75rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-blue));
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  @media (min-width: 768px) { .stat-num { font-size: 2.4rem; } }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .stat-source {
+    margin-top: 0.6rem;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* Service Cards */
+  .services {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 1024px) { .services { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2.25rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .service-card .num-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .service-card .num-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.85rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .service-card .obj {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .service-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .service-card ul li {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .service-card ul li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 8px;
+  }
+
+  /* Investment block */
+  .invest-card {
+    background: linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface) 100%);
+    border: 1px solid var(--border-accent);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .invest-card { padding: 3.5rem; } }
+  .invest-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-blue), var(--accent));
+  }
+  .invest-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 768px) { .invest-grid { grid-template-columns: 1.1fr 1fr; gap: 3.5rem; } }
+  .invest-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .invest-amount {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  @media (min-width: 768px) { .invest-amount { font-size: 4.5rem; } }
+  .invest-amount .iva {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-left: 0.5rem;
+    letter-spacing: 0;
+  }
+  .invest-meta {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 2rem;
+  }
+  .invest-includes {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.25rem;
+  }
+  .invest-includes-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+  .invest-includes ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .invest-includes ul li { font-size: 14.5px; color: var(--text); line-height: 1.5; }
+
+  /* Note callouts */
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .note-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    color: var(--bg);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .note-body { flex: 1; }
+  .note-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+  .note-text {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .note-text strong { color: var(--text); font-weight: 500; }
+
+  /* Process timeline */
+  .timeline {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) { .timeline { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; } }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem 1.25rem;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .step-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* CTA */
+  .closing {
+    position: relative;
+    padding: 6rem 1.5rem 5rem;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at center, rgba(74, 222, 128, 0.08), transparent 60%),
+      var(--bg);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem 6rem; } }
+  .closing-quote {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0 auto 3rem;
+    max-width: 48rem;
+  }
+  @media (min-width: 768px) { .closing-quote { font-size: 3rem; } }
+  @media (min-width: 1024px) { .closing-quote { font-size: 3.75rem; } }
+  .closing-quote em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 500;
+  }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 1.5rem;
+    background: var(--bg);
+  }
+  .footer-inner {
+    max-width: 70rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+  .footer-logo img { height: 24px; width: auto; opacity: 0.85; }
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  @media (min-width: 768px) { .footer-contact { text-align: right; } }
+  .footer-contact a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .footer-contact a:hover { color: var(--accent); }
+
+  /* Storytelling block */
+  .story {
+    margin: 3rem 0;
+    padding: 2.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    position: relative;
+  }
+  @media (min-width: 768px) { .story { padding: 3.5rem; } }
+  .story::before {
+    content: '"';
+    position: absolute;
+    top: 1rem; left: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.4;
+  }
+  .story-text {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--text);
+    font-style: italic;
+    padding-left: 2rem;
+  }
+  @media (min-width: 768px) { .story-text { font-size: 1.75rem; } }
+</style>
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="court-bg"></div>
+
+    <div class="hero-top">
+      <div class="hero-logo">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+      </div>
+      <div class="hero-tag">
+        <span class="pulse"></span>
+        <span>Propuesta Activa</span>
+      </div>
+    </div>
+
+    <div class="hero-content reveal visible">
+      <div class="hero-eyebrow">
+        <span class="line"></span>
+        <span>Propuesta para Padel Club · Mayo 2026</span>
+      </div>
+      <h1 class="hero-title">
+        Tu base de datos<br/>
+        <span class="grad">ya es oro.</span><br/>
+        Solo le falta volver a jugar.
+      </h1>
+      <p class="hero-sub">
+        Implementación de GoHighLevel para reactivar tu base de socios y clientes vía email y WhatsApp, más automatización de reseñas en Google. Setup único, ROI medible desde el primer mes.
+      </p>
+    </div>
+
+    <div class="hero-meta reveal visible reveal-d2">
+      <div class="hero-meta-item">
+        <span>Cliente</span>
+        <span>Padel Club</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>Alcance</span>
+        <span>GHL + Google Reviews</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>Modalidad</span>
+        <span>Setup único</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>Inversión</span>
+        <span>$4,000 MXN + IVA</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ 01. CONTEXTO ============ -->
+  <section class="section section-surface">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <span class="num">01</span>
+        <span class="divider"></span>
+        <span class="text">Contexto del momento</span>
+      </div>
+
+      <div class="two-col">
+        <div class="reveal">
+          <h2 class="h-display lg" style="margin-bottom: 1.75rem;">
+            El pádel en México está en su <span class="accent-italic">mejor momento histórico</span>.
+          </h2>
+          <p class="p-lg muted" style="margin-bottom: 1.5rem;">
+            La demanda por canchas creció 30% en los últimos dos años. Monterrey, Guadalajara y CDMX ya hablan de saturación. Cada semana abre un club nuevo y la conversación entre jugadores se multiplica.
+          </p>
+          <p class="p-lg muted">
+            Eso es bueno. Pero también significa <strong>más opciones para el jugador y más fricción para retenerlo</strong>. Quien no automatiza su comunicación con la base existente, la pierde con el club que sí lo hace.
+          </p>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">+30%</div>
+              <div class="stat-label">Crecimiento de canchas en México (2 años)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">~1M</div>
+              <div class="stat-label">Jugadores activos en el país</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">$517M</div>
+              <div class="stat-label">Mercado proyectado USD para 2027</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">5–7×</div>
+              <div class="stat-label">Más caro adquirir un cliente nuevo que reactivar uno existente</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">88%</div>
+              <div class="stat-label">De usuarios consulta reseñas Google antes de elegir un negocio local</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">10%</div>
+              <div class="stat-label">Crecimiento anual proyectado del sector</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02. OPORTUNIDAD ============ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <span class="num">02</span>
+        <span class="divider"></span>
+        <span class="text">La oportunidad real</span>
+      </div>
+
+      <div class="two-col">
+        <div class="reveal">
+          <h2 class="h-display lg" style="margin-bottom: 1.5rem;">
+            Tienes algo que la mayoría de clubes nuevos <span class="accent-italic">no tiene</span>: historia.
+          </h2>
+          <p class="p-lg muted">
+            Cada socio inactivo, cada jugador que pasó por tu cancha, cada lead que pidió informes — son personas que <strong>ya saben quién eres</strong>. No hace falta convencerlos de que el pádel es divertido. Hace falta recordarles que existes y darles una razón concreta para volver esta semana.
+          </p>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <ul class="findings">
+            <li class="finding">
+              <span class="finding-num">01</span>
+              <p class="finding-text"><strong>Bases de datos olvidadas</strong> son el activo más subutilizado de los clubes deportivos. Reactivar cuesta una fracción de adquirir.</p>
+            </li>
+            <li class="finding">
+              <span class="finding-num">02</span>
+              <p class="finding-text"><strong>El seguimiento manual no escala.</strong> Mensajes uno por uno consumen tiempo, dependen de quién esté de turno y se pierden.</p>
+            </li>
+            <li class="finding">
+              <span class="finding-num">03</span>
+              <p class="finding-text"><strong>WhatsApp tiene tasas de apertura del 90%+,</strong> muy por encima de email solo. La combinación de ambos canales multiplica resultados.</p>
+            </li>
+            <li class="finding">
+              <span class="finding-num">04</span>
+              <p class="finding-text"><strong>Las reseñas de Google son el equivalente moderno del boca a boca.</strong> Cada estrella adicional puede traducirse en más reservas orgánicas sin gastar en pauta.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="story reveal reveal-d3">
+        <p class="story-text">
+          No te falta tráfico. Te falta una conversación automatizada con la gente que ya pasó por tu cancha — y un sistema que convierta cada visita satisfecha en una reseña pública.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03. PROPUESTA ============ -->
+  <section class="section section-surface">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <span class="num">03</span>
+        <span class="divider"></span>
+        <span class="text">La implementación</span>
+      </div>
+
+      <h2 class="h-display lg reveal" style="margin-bottom: 1.5rem; max-width: 50rem;">
+        Una sola plataforma, dos motores de crecimiento.
+      </h2>
+      <p class="p-lg muted reveal reveal-d1" style="max-width: 48rem; margin-bottom: 3.5rem;">
+        Configuramos GoHighLevel — el mismo CRM que usan agencias deportivas y clubes en EE.UU. — adaptado a tu operación. Te entregamos un sistema corriendo, no un manual.
+      </p>
+
+      <div class="services">
+        <!-- Card 1: Reactivación -->
+        <article class="service-card reveal">
+          <div class="num-badge">
+            <span class="dot"></span>
+            <span>A · Reactivación de base</span>
+          </div>
+          <h3>GoHighLevel + Email + WhatsApp</h3>
+          <p class="obj">
+            Convertir tu base de datos existente en reservas y renovaciones, sin que tengas que mandar un solo mensaje a mano.
+          </p>
+          <ul>
+            <li>Setup completo de cuenta / sub-cuenta GHL configurada para tu club</li>
+            <li>Importación, limpieza y segmentación de tu base de datos actual</li>
+            <li>Conexión de tu número de WhatsApp Business al sistema</li>
+            <li>Campañas automatizadas de email marketing (bienvenida, reactivación, fechas importantes)</li>
+            <li>Secuencias de WhatsApp para reactivación de inactivos y nurturing de leads</li>
+            <li>Plantillas de mensajes listas para usar y editables por ti</li>
+            <li>Pipeline de leads visual: quién está caliente, quién necesita seguimiento, quién ya jugó</li>
+          </ul>
+        </article>
+
+        <!-- Card 2: Reseñas -->
+        <article class="service-card reveal reveal-d1">
+          <div class="num-badge">
+            <span class="dot"></span>
+            <span>B · Reputación que vende</span>
+          </div>
+          <h3>Google Business Profile + Sistema de Reseñas</h3>
+          <p class="obj">
+            Convertir cada partida satisfecha en una reseña pública. Subir tu posicionamiento en Google Maps sin pagar pauta.
+          </p>
+          <ul>
+            <li>Configuración u optimización completa de tu Google Business Profile</li>
+            <li>Categorías, atributos, fotos, horarios y servicios calibrados para pádel</li>
+            <li>Automatización dentro de GHL que solicita reseña al cliente justo después de jugar</li>
+            <li>Flujo inteligente: si la experiencia fue positiva → reseña pública, si fue negativa → feedback privado para ti</li>
+            <li>Seguimiento automatizado para clientes recurrentes que aún no han dejado reseña</li>
+            <li>Plantillas de mensajes adaptadas al tono del pádel (cercano, deportivo)</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- Nota crítica costos terceros -->
+      <div class="note reveal reveal-d2">
+        <div class="note-icon">!</div>
+        <div class="note-body">
+          <div class="note-title">Importante · Costos de terceros</div>
+          <p class="note-text">
+            La implementación <strong>no incluye la tarifa mensual de WhatsApp Business API</strong> (aproximadamente <strong>$500 MXN/mes</strong>), que cobra directamente Meta o el proveedor de la plataforma según el volumen de mensajes. Este costo se configura con <strong>tu propio método de pago</strong> durante el setup, va por separado de la inversión a Sentido y queda totalmente bajo tu control. Lo dejamos listo para que solo tengas que autorizar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04. CÓMO LO HACEMOS ============ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <span class="num">04</span>
+        <span class="divider"></span>
+        <span class="text">El proceso</span>
+      </div>
+
+      <h2 class="h-display lg reveal" style="margin-bottom: 1.5rem; max-width: 50rem;">
+        De cero a sistema corriendo en <span class="accent-italic">2 a 3 semanas</span>.
+      </h2>
+      <p class="p-lg muted reveal reveal-d1" style="max-width: 48rem;">
+        No te entregamos PDFs. Te entregamos un sistema funcionando con tu base cargada, tus mensajes configurados y tu equipo capacitado para operarlo.
+      </p>
+
+      <div class="timeline">
+        <div class="step reveal">
+          <div class="step-num">SEMANA 1</div>
+          <div class="step-title">Setup técnico</div>
+          <div class="step-desc">Creación de cuenta, conexión de WhatsApp Business, configuración de Google Business Profile.</div>
+        </div>
+        <div class="step reveal reveal-d1">
+          <div class="step-num">SEMANA 1–2</div>
+          <div class="step-title">Carga y limpieza de base</div>
+          <div class="step-desc">Importación de tu BDD, segmentación por antigüedad, frecuencia y tipo de cliente.</div>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="step-num">SEMANA 2</div>
+          <div class="step-title">Diseño de flujos</div>
+          <div class="step-desc">Plantillas de email + WhatsApp, automatizaciones de reactivación y de solicitud de reseñas.</div>
+        </div>
+        <div class="step reveal reveal-d3">
+          <div class="step-num">SEMANA 3</div>
+          <div class="step-title">Pruebas y entrega</div>
+          <div class="step-desc">Activación, primer envío piloto, capacitación de tu equipo y entrega de manual de operación.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05. INVERSIÓN ============ -->
+  <section class="section section-surface">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <span class="num">05</span>
+        <span class="divider"></span>
+        <span class="text">Inversión</span>
+      </div>
+
+      <h2 class="h-display lg reveal" style="margin-bottom: 1.25rem; max-width: 50rem;">
+        Un setup. Un pago. Un sistema corriendo.
+      </h2>
+      <p class="p-lg muted reveal reveal-d1" style="max-width: 48rem;">
+        Sin mensualidades ni amarres. Pagas la implementación una sola vez y el sistema queda operando bajo tu control.
+      </p>
+
+      <div class="invest-card reveal reveal-d2">
+        <div class="invest-grid">
+          <div>
+            <div class="invest-label">Implementación completa · Pago único</div>
+            <div class="invest-amount">$4,000<span class="iva">MXN + IVA</span></div>
+            <div class="invest-meta">Pago 100% al iniciar el proyecto · Sin mensualidades</div>
+            <p class="p-base muted" style="font-size: 14.5px; line-height: 1.65;">
+              Cubre el setup completo de los dos motores: reactivación con GHL (email + WhatsApp + pipeline) y sistema automatizado de reseñas en Google Business Profile.
+            </p>
+          </div>
+
+          <div class="invest-includes">
+            <div class="invest-includes-title">Incluye</div>
+            <ul>
+              <li>Configuración de cuenta GoHighLevel</li>
+              <li>Importación y limpieza de tu BDD</li>
+              <li>Conexión de WhatsApp Business</li>
+              <li>Campañas de email automatizadas</li>
+              <li>Secuencias de WhatsApp configuradas</li>
+              <li>Plantillas editables listas</li>
+              <li>Optimización de Google Business Profile</li>
+              <li>Sistema automatizado de reseñas</li>
+              <li>Capacitación de tu equipo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nota WhatsApp API -->
+      <div class="note reveal reveal-d3">
+        <div class="note-icon">$</div>
+        <div class="note-body">
+          <div class="note-title">Costo de terceros · Aclaración</div>
+          <p class="note-text">
+            <strong>WhatsApp Business API · ~$500 MXN/mes:</strong> tarifa que cobra Meta directamente al método de pago del cliente, configurada durante el setup. <strong>No es honorario de Sentido</strong> y va completamente por separado. El monto puede variar ligeramente según volumen de mensajes enviados.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nota qué NO incluye -->
+      <div class="note reveal reveal-d4" style="border-left-color: var(--text-muted);">
+        <div class="note-icon" style="background: var(--text-muted);">i</div>
+        <div class="note-body">
+          <div class="note-title" style="color: var(--text-muted);">Lo que esta propuesta no cubre</div>
+          <p class="note-text">
+            Esta implementación está enfocada exclusivamente en reactivación de base + reseñas. <strong>No incluye</strong> diseño web, branding, redes sociales, pauta publicitaria, producción de contenido ni gestión mensual continua. Si en algún momento Padel Club quiere expandir hacia esos frentes, los cotizamos por separado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CIERRE ============ -->
+  <section class="closing">
+    <div class="court-bg"></div>
+    <h2 class="closing-quote reveal">
+      No necesitas más jugadores nuevos.<br/>
+      Necesitas <em>volver a llamar</em><br/>
+      a los que ya conoces.
+    </h2>
+    <div style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); position: relative; z-index: 2;">
+      <span>Propuesta generada por</span>
+      <span style="color: var(--text); font-weight: 600; border-bottom: 1px solid var(--border-accent); padding-bottom: 2px;">Sentido</span>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" />
+      </div>
+      <div class="footer-contact">
+        <div>contacto@sentido.mx</div>
+        <div><a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a></div>
+        <div>propuestas.sentido.mx/padel-club</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
