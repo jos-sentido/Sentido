@@ -1528,29 +1528,30 @@
   }
 
   /* ================= HERO ENHANCEMENTS ================= */
-  /* Giant background wordmark — decorative watermark */
+  /* Giant background isotipo — decorative watermark */
   .hero-watermark {
     position: absolute;
-    left: -3%;
-    bottom: -18%;
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(18rem, 48vw, 56rem);
-    color: var(--text);
-    opacity: 0.028;
-    letter-spacing: -0.06em;
-    line-height: 0.8;
+    right: -10%;
+    bottom: -25%;
+    width: clamp(40rem, 75vw, 70rem);
+    height: clamp(40rem, 75vw, 70rem);
     pointer-events: none;
     z-index: 0;
     user-select: none;
-    white-space: nowrap;
     animation: driftSlow 28s ease-in-out infinite;
   }
 
+  .hero-watermark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    opacity: 0.045;
+  }
+
   @keyframes driftSlow {
-    0%, 100% { transform: translateX(0) translateY(0); }
-    50% { transform: translateX(-2%) translateY(-1%); }
+    0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    50% { transform: translateX(-1%) translateY(-1%) rotate(-1.5deg); }
   }
 
   /* Cursor-following glow */
@@ -1700,7 +1701,21 @@
     font-style: normal;
   }
 
-  .marquee-item.brand { color: var(--text); }
+  .marquee-item.brand {
+    color: var(--text);
+    padding: 14px 0;
+  }
+
+  .marquee-item.brand img {
+    height: 36px;
+    width: auto;
+    filter: invert(1);
+    opacity: 0.7;
+    display: block;
+  }
+
+  .marquee-item.brand::after { display: none; }
+  .marquee-item.brand + .marquee-item { margin-left: 56px; }
 
   @keyframes marqueeScroll {
     from { transform: translateX(0); }
@@ -1713,20 +1728,17 @@
   }
 
   section .container > .section-title::before {
-    content: 'S';
+    content: '';
     position: absolute;
-    left: -28px;
+    left: -32px;
     top: -56px;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(6rem, 12vw, 10rem);
-    color: var(--text);
-    opacity: 0.025;
+    width: clamp(7rem, 13vw, 11rem);
+    height: clamp(7rem, 13vw, 11rem);
+    background: url('/assets/isotipo-sentido.png') center/contain no-repeat;
+    filter: invert(1);
+    opacity: 0.05;
     pointer-events: none;
-    line-height: 1;
     z-index: 0;
-    letter-spacing: -0.05em;
   }
 
   /* ================= SERVICE CARD CORNER REVEAL ================= */
@@ -1768,34 +1780,29 @@
   }
   .step:hover::before { width: 100%; }
 
-  /* ================= CLOSING WORDMARK ================= */
+  /* ================= CLOSING ISOTIPO ================= */
   .closing-wordmark {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(5rem, 16vw, 14rem);
-    color: var(--text);
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    margin: 0 auto 32px;
-    display: inline-block;
+    width: clamp(180px, 26vw, 320px);
+    height: clamp(180px, 26vw, 320px);
+    margin: 0 auto 48px;
+    display: block;
     position: relative;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(20px) scale(0.92);
+    transition: opacity 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .closing-wordmark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    opacity: 0.92;
   }
 
   .closing-wordmark.visible {
     opacity: 1;
-    transform: translateY(0);
-  }
-
-  .closing-wordmark::after {
-    content: '·';
-    color: var(--accent);
-    margin-left: 0.06em;
-    font-style: normal;
-    font-weight: 400;
+    transform: translateY(0) scale(1);
   }
 
   /* ================= RESPONSIVE ================= */
@@ -1890,7 +1897,9 @@
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
-  <div class="hero-watermark" aria-hidden="true">Sentido</div>
+  <div class="hero-watermark" aria-hidden="true">
+    <img src="/assets/isotipo-sentido.png" alt="" />
+  </div>
   <div class="hero-cursor-glow" id="hero-cursor-glow" aria-hidden="true"></div>
 
   <div class="container">
@@ -1938,26 +1947,26 @@
 <!-- ================= MARQUEE STRIP ================= -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item brand"><img src="/assets/isotipo-sentido.png" alt="" /></span>
     <span class="marquee-item">Marca</span>
     <span class="marquee-item">Pauta</span>
     <span class="marquee-item">Sistema</span>
     <span class="marquee-item">Conversión</span>
     <span class="marquee-item">Resultado</span>
-    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item brand"><img src="/assets/isotipo-sentido.png" alt="" /></span>
     <span class="marquee-item">Branding</span>
     <span class="marquee-item">Advertising</span>
     <span class="marquee-item">CRM</span>
     <span class="marquee-item">Reputación</span>
     <span class="marquee-item">Retención</span>
     <!-- duplicado para loop continuo -->
-    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item brand"><img src="/assets/isotipo-sentido.png" alt="" /></span>
     <span class="marquee-item">Marca</span>
     <span class="marquee-item">Pauta</span>
     <span class="marquee-item">Sistema</span>
     <span class="marquee-item">Conversión</span>
     <span class="marquee-item">Resultado</span>
-    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item brand"><img src="/assets/isotipo-sentido.png" alt="" /></span>
     <span class="marquee-item">Branding</span>
     <span class="marquee-item">Advertising</span>
     <span class="marquee-item">CRM</span>
@@ -2749,7 +2758,7 @@
     <span class="marquee-item">Captura</span>
     <span class="marquee-item">Conversión</span>
     <span class="marquee-item">Retención</span>
-    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item brand"><img src="/assets/isotipo-sentido.png" alt="" /></span>
     <span class="marquee-item">Marca</span>
     <span class="marquee-item">Pauta</span>
     <span class="marquee-item">Sitio</span>
@@ -2760,7 +2769,7 @@
     <span class="marquee-item">Captura</span>
     <span class="marquee-item">Conversión</span>
     <span class="marquee-item">Retención</span>
-    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item brand"><img src="/assets/isotipo-sentido.png" alt="" /></span>
     <span class="marquee-item">Marca</span>
     <span class="marquee-item">Pauta</span>
     <span class="marquee-item">Sitio</span>
@@ -2772,7 +2781,9 @@
 <!-- ================= CIERRE ================= -->
 <section class="closing">
   <div class="container-narrow">
-    <div class="closing-wordmark" id="closing-wordmark">Sentido</div>
+    <div class="closing-wordmark" id="closing-wordmark" aria-label="Sentido">
+      <img src="/assets/isotipo-sentido.png" alt="Sentido" />
+    </div>
     <p class="closing-tesis reveal">
       Tu producto ya está listo.<br />
       Tu mercado ya está esperando.<br />
