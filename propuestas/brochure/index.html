@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Brochure Interactivo — Branding & Advertising</title>
+<meta name="description" content="Sentido Branding & Advertising — el sistema integral de marca, captación, conversión y retención para negocios que quieren crecer en serio." />
+<meta property="og:title" content="Sentido · Brochure Interactivo" />
+<meta property="og:description" content="No se trata de hacer más contenido. Se trata del sistema que lo convierte en negocio." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --surface: #0D0D11;
+    --surface-elevated: #15151B;
+    --surface-ghost: #0A0A0E;
+    --border: #1F1F26;
+    --border-strong: #2A2A33;
+    --text: #EDEAE4;
+    --text-dim: #8B8680;
+    --text-faint: #55524E;
+    --accent: #C9B896;
+    --accent-dim: #5A4F3D;
+    --accent-glow: rgba(201, 184, 150, 0.08);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+  section { scroll-margin-top: 64px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ================= NAV ================= */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+  }
+
+  .site-nav.hidden { transform: translateY(-100%); }
+  .site-nav.scrolled { background: rgba(5, 5, 5, 0.88); }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+
+  .nav-mark {
+    height: 22px;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-mark.loaded {
+    display: block;
+    opacity: 0.85;
+  }
+
+  .nav-mark.loaded + .nav-wordmark { display: none; }
+
+  .nav-brand:hover .nav-mark { opacity: 1; }
+
+  .nav-wordmark {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    transition: color 0.2s ease;
+  }
+
+  .nav-wordmark::after {
+    content: '·';
+    color: var(--accent);
+    margin-left: 4px;
+    font-style: normal;
+  }
+
+  .nav-brand:hover .nav-wordmark { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 0;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nav-link:hover { color: var(--text); }
+  .nav-link.active { color: var(--accent); }
+  .nav-link.active::after { width: 100%; }
+
+  .nav-link.nav-cta {
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent-glow);
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .nav-link.nav-cta:hover { background: rgba(91, 155, 189, 0.18); border-color: var(--accent); }
+  .nav-link.nav-cta::after { display: none; }
+
+  /* ================= LAYOUT ================= */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .container-narrow {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section {
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  /* ================= TYPOGRAPHY ================= */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); }
+  h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+  h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  h4 { font-size: 1.375rem; }
+
+  .display-italic { font-style: italic; font-weight: 300; color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--text-faint);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 700px;
+  }
+
+  p { color: var(--text); font-size: 1.0625rem; line-height: 1.75; }
+  p + p { margin-top: 1.25rem; }
+  p.dim { color: var(--text-dim); }
+
+  strong { font-weight: 500; color: var(--text); }
+  em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+  /* ================= HERO ================= */
+  .hero {
+    min-height: 100vh;
+    padding: 48px 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
+
+  .hero > .container { width: 100%; }
+
+  .hero-top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  .sentido-logo-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .sentido-mark {
+    height: 96px;
+    opacity: 0.95;
+    display: block;
+  }
+
+  .sentido-wordmark {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    margin-bottom: 40px;
+    max-width: 900px;
+  }
+
+  .hero h1 .first-line { display: block; color: var(--text-dim); font-size: 0.7em; margin-bottom: 12px; }
+  .hero h1 .second-line { display: block; }
+
+  .hero-divider {
+    width: 64px;
+    height: 1px;
+    background: var(--accent);
+    margin: 48px 0;
+  }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .hero-meta-label { color: var(--text-faint); display: block; margin-bottom: 8px; font-size: 0.6875rem; }
+  .hero-meta-value { color: var(--text); }
+
+  /* ================= TESIS / TWO-COL ================= */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .pullquote {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.4;
+    color: var(--text);
+    padding: 32px 0 32px 32px;
+    border-left: 2px solid var(--accent);
+    margin: 48px 0;
+  }
+
+  .pullquote .attribution {
+    display: block;
+    margin-top: 24px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* Findings (tesis bullets) */
+  .findings { margin-top: 48px; }
+
+  .finding {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .finding:last-child { border-bottom: 1px solid var(--border); }
+
+  .finding-num {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .finding-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--text);
+  }
+
+  .finding-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  /* ================= MÉTODO (LAYER STACK) ================= */
+  .layer-stack {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .layer {
+    background: var(--surface);
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: 80px 240px 1fr;
+    gap: 40px;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+
+  .layer:hover { background: var(--surface-elevated); }
+
+  .layer-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--accent-dim);
+    line-height: 1;
+  }
+
+  .layer-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+
+  .layer-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .layer-services {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ================= SERVICIOS ================= */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .service {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .service:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
+
+  .service-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+  }
+
+  .service-letter {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent-dim);
+  }
+
+  .service-price-head { text-align: right; }
+
+  .service-category {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    font-weight: 500;
+  }
+
+  .service-price {
+    font-family: var(--font-mono);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .service-period {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Pauta inline note within Capacidades */
+  .pauta-inline {
+    grid-column: 1 / -1;
+    background: var(--surface-ghost);
+    border: 1px dashed var(--border-strong);
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .pauta-inline-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .pauta-inline-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.375rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .pauta-inline-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .pauta-inline-ranges {
+    display: flex;
+    gap: 32px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .pauta-inline-range {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text);
+  }
+
+  .pauta-inline-range span {
+    display: block;
+    font-size: 0.625rem;
+    color: var(--text-faint);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .pauta-inline { grid-template-columns: 1fr; padding: 24px; gap: 20px; }
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .service-lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .service-items { list-style: none; padding: 0; }
+
+  .service-items li {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.5;
+    padding: 8px 0 8px 20px;
+    position: relative;
+  }
+
+  .service-items li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 17px;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+
+  .service-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border: 1px solid var(--accent-dim);
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  /* Service que ocupa fila completa (G · Sitio Web teaser, F · Branding) */
+  .service.full { grid-column: 1 / -1; }
+
+  /* ================= WEB TABS ================= */
+  .web-tabs {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 40px;
+    min-height: 540px;
+  }
+
+  .web-tabs-nav {
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .web-tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 22px 28px;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-dim);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+    align-items: center;
+    transition: background 0.25s ease, color 0.25s ease;
+    position: relative;
+    width: 100%;
+  }
+
+  .web-tab-btn:last-child { border-bottom: none; }
+
+  .web-tab-btn:hover { background: var(--surface-elevated); color: var(--text); }
+  .web-tab-btn.active { background: var(--surface-elevated); color: var(--text); }
+
+  .web-tab-btn.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent);
+  }
+
+  .web-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .web-tab-label {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .web-tabs-content {
+    background: var(--surface);
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .web-tab-panel { display: none; }
+
+  .web-tab-panel.active {
+    display: block;
+    animation: fadeInPanel 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeInPanel {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .web-tab-panel-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .web-tab-panel-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.625rem, 2.5vw, 2.125rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .web-tab-panel-lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+
+  .web-tab-panel-list { list-style: none; padding: 0; margin: 0; }
+
+  .web-tab-panel-list li {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.7;
+    padding: 11px 0 11px 22px;
+    position: relative;
+  }
+
+  .web-tab-panel-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 21px;
+    width: 10px; height: 1px;
+    background: var(--accent);
+  }
+
+  .web-tabs-hint {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 48px;
+    padding: 16px 24px;
+    background: var(--accent-glow);
+    border-left: 2px solid var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  .hint-arrow {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--accent);
+    animation: nudgeRight 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes nudgeRight {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(6px); opacity: 1; }
+  }
+
+  .hint-text { line-height: 1.5; }
+
+  .web-tab-nav-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    gap: 16px;
+  }
+
+  .web-tab-arrow {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 12px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .web-tab-arrow:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .web-tab-arrow:hover:not(:disabled) .arrow-symbol { transform: translateX(4px); }
+  .web-tab-prev:hover:not(:disabled) .arrow-symbol { transform: translateX(-4px); }
+
+  .web-tab-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  .arrow-symbol {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    transition: transform 0.25s ease;
+    display: inline-block;
+  }
+
+  .web-tab-indicator {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.125rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .indicator-current {
+    color: var(--accent);
+    font-weight: 400;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .indicator-sep { color: var(--text-faint); font-style: italic; }
+
+  .indicator-total {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ================= TABLES ================= */
+  .table-wrap {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin: 32px 0;
+    overflow: hidden;
+  }
+
+  .table-label {
+    padding: 20px 32px;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+
+  th, td {
+    padding: 20px 32px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem;
+  }
+
+  th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  td { color: var(--text); font-weight: 300; }
+
+  td.num {
+    font-family: var(--font-mono);
+    text-align: right;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr.total td {
+    background: var(--accent-glow);
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 1rem;
+    border-top: 1px solid var(--accent-dim);
+  }
+
+  tr.included td.num {
+    color: var(--accent);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .savings-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 6px 12px;
+    border: 1px solid var(--accent-dim);
+    background: var(--accent-glow);
+  }
+
+  .price-was {
+    color: var(--text-faint);
+    text-decoration: line-through;
+    font-weight: 300;
+    margin-right: 10px;
+    font-size: 0.875rem;
+  }
+  .price-now { color: var(--accent); font-weight: 500; }
+  .discount-tag {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 8px;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    background: var(--accent-glow);
+    vertical-align: middle;
+  }
+  tr.total .price-was { font-size: 1rem; }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 48px;
+    border: 1px solid var(--border);
+  }
+
+  .compare-box { background: var(--surface); padding: 40px; }
+  .compare-box.featured { background: var(--surface-elevated); }
+
+  .compare-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+  }
+  .compare-box.featured .compare-label { color: var(--accent); }
+
+  .compare-price {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .compare-box.featured .compare-price { color: var(--accent); }
+
+  .compare-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .compare-note { font-size: 0.875rem; color: var(--text-dim); line-height: 1.5; }
+
+  .single-price {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .single-price-info { flex: 1; min-width: 280px; }
+
+  .single-price-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px; }
+
+  .single-price-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
+
+  .single-price-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  .single-price-num small {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+  }
+
+  /* ================= INVERSIÓN — SOFT NOTE ================= */
+  .invest-grid {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .invest-row {
+    background: var(--surface);
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: 220px 1fr 200px;
+    gap: 32px;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+
+  .invest-row:hover { background: var(--surface-elevated); }
+
+  .invest-label {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.0625rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .invest-label em {
+    font-style: italic;
+    color: var(--text-dim);
+    font-weight: 300;
+    font-size: 0.875rem;
+  }
+
+  .invest-desc {
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .invest-ref {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-align: right;
+  }
+
+  .invest-ref strong {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.875rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin: 4px 0;
+    line-height: 1;
+  }
+
+  .invest-ref span {
+    display: block;
+    font-size: 0.625rem;
+    color: var(--text-faint);
+    letter-spacing: 0.16em;
+    margin-top: 4px;
+  }
+
+  .invest-closing {
+    margin-top: 48px;
+    padding: 32px 40px;
+    background: var(--surface-ghost);
+    border-left: 2px solid var(--accent);
+  }
+
+  .invest-closing p {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .invest-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 24px;
+      text-align: left;
+    }
+    .invest-ref { text-align: left; }
+    .invest-closing { padding: 24px; }
+  }
+
+  /* ================= PAUTA ================= */
+  .pauta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .pauta-box {
+    background: var(--surface);
+    border: 1px dashed var(--border-strong);
+    padding: 32px;
+  }
+
+  .pauta-channel {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  .pauta-range {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.875rem;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .pauta-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.5; }
+
+  .pauta-disclaimer {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--surface-ghost);
+    border-left: 1px solid var(--accent);
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+
+  /* ================= ARRANCAMOS (4 steps) ================= */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  .step {
+    background: var(--surface);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background 0.3s ease;
+  }
+
+  .step:hover { background: var(--surface-elevated); }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--accent-dim);
+    line-height: 1;
+  }
+
+  .step-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .step-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
+
+  .step-meta {
+    margin-top: auto;
+    padding-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ================= FORMULARIO ================= */
+  .form-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .form-wrap::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; width: 48px; height: 1px;
+    background: var(--accent);
+  }
+  .form-wrap::after {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; width: 1px; height: 48px;
+    background: var(--accent);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field.full { grid-column: 1 / -1; }
+
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .form-label .req { color: var(--accent); margin-left: 4px; }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--surface-ghost);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    width: 100%;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--bg);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; font-family: var(--font-sans); }
+
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-dim) 50%), linear-gradient(135deg, var(--text-dim) 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    font-size: 0.875rem;
+    color: var(--text-dim);
+  }
+
+  .checkbox-label:hover { border-color: var(--accent-dim); color: var(--text); }
+
+  .checkbox-label input { accent-color: var(--accent); cursor: pointer; }
+
+  .checkbox-label:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    color: var(--accent);
+  }
+
+  .form-submit-row {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .form-submit {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+
+  .form-submit:hover:not(:disabled) {
+    background: #D9C9A8;
+    transform: translateY(-2px);
+  }
+
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-submit .arrow-symbol { transition: transform 0.25s ease; }
+  .form-submit:hover:not(:disabled) .arrow-symbol { transform: translateX(4px); }
+
+  .form-note {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  .form-status {
+    margin-top: 24px;
+    padding: 18px 24px;
+    border-left: 2px solid var(--accent);
+    background: var(--accent-glow);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.5;
+    display: none;
+  }
+
+  .form-status.visible { display: block; }
+  .form-status.error { border-left-color: #c97b5a; background: rgba(201, 123, 90, 0.08); }
+
+  /* ================= CIERRE ================= */
+  .closing {
+    padding: 160px 0;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--bg) 0%, var(--surface-ghost) 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .closing-logo { display: flex; justify-content: center; margin-bottom: 48px; }
+  .closing-logo img { height: 56px; opacity: 0.85; }
+
+  .closing-tesis {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+
+  .closing-tesis em { font-style: italic; color: var(--accent); }
+
+  .closing-mark { width: 40px; height: 1px; background: var(--accent); margin: 48px auto; }
+
+  .closing-sig {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .closing-sig strong { color: var(--text-dim); font-weight: 500; }
+
+  .closing-contact {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+  }
+
+  .closing-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+  }
+
+  .closing-contact a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ================= REVEAL ANIMATIONS ================= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ================= SCROLL PROGRESS BAR ================= */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--accent);
+    z-index: 200;
+    transition: width 0.08s linear;
+    box-shadow: 0 0 12px var(--accent);
+    pointer-events: none;
+  }
+
+  /* ================= HERO ENHANCEMENTS ================= */
+  /* Giant background wordmark — decorative watermark */
+  .hero-watermark {
+    position: absolute;
+    left: -3%;
+    bottom: -18%;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18rem, 48vw, 56rem);
+    color: var(--text);
+    opacity: 0.028;
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+    white-space: nowrap;
+    animation: driftSlow 28s ease-in-out infinite;
+  }
+
+  @keyframes driftSlow {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-2%) translateY(-1%); }
+  }
+
+  /* Cursor-following glow */
+  .hero-cursor-glow {
+    position: absolute;
+    pointer-events: none;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 184, 150, 0.07) 0%, transparent 65%);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    will-change: transform, opacity;
+  }
+
+  .hero:hover .hero-cursor-glow { opacity: 1; }
+
+  /* Hero logo — bigger + presence (image hidden until loaded) */
+  .sentido-mark {
+    height: 140px;
+    opacity: 0;
+    display: none;
+    filter: drop-shadow(0 4px 24px rgba(201, 184, 150, 0.08));
+    transition: opacity 0.4s ease;
+  }
+
+  .sentido-mark.loaded {
+    display: block;
+    opacity: 0.95;
+  }
+
+  .sentido-mark.loaded + .sentido-wordmark { display: none; }
+
+  /* Wordmark — PRIMARY visual identity (always visible by default) */
+  .sentido-wordmark {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 0.85;
+    position: relative;
+  }
+
+  .sentido-wordmark .mark-text {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(4rem, 12vw, 9rem);
+    color: var(--text);
+    letter-spacing: -0.045em;
+    line-height: 0.9;
+    position: relative;
+    display: inline-block;
+  }
+
+  .sentido-wordmark .mark-text::after {
+    content: '·';
+    color: var(--accent);
+    margin-left: 0.06em;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .sentido-wordmark .mark-tagline {
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* H1 word reveal */
+  .hero h1 .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(28px);
+    will-change: opacity, transform;
+  }
+
+  .hero h1.animate .word {
+    animation: wordRise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes wordRise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ================= MARQUEE STRIP ================= */
+  .marquee {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 0;
+    background: var(--surface-ghost);
+    position: relative;
+  }
+
+  .marquee::before,
+  .marquee::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--surface-ghost), transparent);
+  }
+  .marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--surface-ghost), transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 48s linear infinite;
+  }
+
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 22px 0;
+    margin-right: 56px;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    color: var(--text-dim);
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+
+  .marquee-item::after {
+    content: '·';
+    color: var(--accent);
+    margin-left: 56px;
+    font-style: normal;
+  }
+
+  .marquee-item.brand { color: var(--text); }
+
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ================= SECTION TITLE — S WATERMARK ================= */
+  section .container > .section-title {
+    position: relative;
+  }
+
+  section .container > .section-title::before {
+    content: 'S';
+    position: absolute;
+    left: -28px;
+    top: -56px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(6rem, 12vw, 10rem);
+    color: var(--text);
+    opacity: 0.025;
+    pointer-events: none;
+    line-height: 1;
+    z-index: 0;
+    letter-spacing: -0.05em;
+  }
+
+  /* ================= SERVICE CARD CORNER REVEAL ================= */
+  .service::after {
+    content: '';
+    position: absolute;
+    top: -1px; right: -1px;
+    width: 0; height: 0;
+    border-top: 1px solid var(--accent);
+    border-right: 1px solid var(--accent);
+    transition: width 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .service:hover::after { width: 48px; height: 48px; }
+
+  /* Layer hover — left mark accent grows */
+  .layer { position: relative; }
+  .layer::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .layer:hover::before { width: 2px; }
+
+  /* Step hover — top accent line grows */
+  .step { position: relative; }
+  .step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 1px;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .step:hover::before { width: 100%; }
+
+  /* ================= CLOSING WORDMARK ================= */
+  .closing-wordmark {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(5rem, 16vw, 14rem);
+    color: var(--text);
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin: 0 auto 32px;
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .closing-wordmark.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .closing-wordmark::after {
+    content: '·';
+    color: var(--accent);
+    margin-left: 0.06em;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 900px) {
+    .nav-inner { padding: 0 20px; gap: 16px; height: 56px; }
+    .nav-mark { height: 18px; }
+    .nav-wordmark { font-size: 0.9375rem; }
+    .nav-links { gap: 18px; }
+    .nav-link { font-size: 0.625rem; letter-spacing: 0.14em; }
+    .nav-link.nav-cta { padding: 6px 10px; }
+    html { scroll-padding-top: 56px; }
+    section { scroll-margin-top: 56px; }
+    section { padding: 80px 0; }
+    .two-col { grid-template-columns: 1fr; gap: 48px; }
+    .layer { grid-template-columns: 60px 1fr; gap: 24px; padding: 28px 24px; }
+    .layer-name { font-size: 1.25rem; grid-column: 2 / 3; }
+    .layer-desc { grid-column: 2 / 3; }
+    .services { grid-template-columns: 1fr; }
+    .service.full { grid-column: auto; }
+
+    .web-tabs { grid-template-columns: 1fr; min-height: 0; }
+    .web-tabs-nav {
+      flex-direction: row;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .web-tabs-nav::-webkit-scrollbar { display: none; }
+    .web-tab-btn {
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      padding: 16px 20px;
+      flex-shrink: 0;
+      min-width: 200px;
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+    }
+    .web-tab-btn:last-child { border-right: none; }
+    .web-tab-btn.active::before { width: 100%; height: 2px; top: auto; bottom: 0; }
+    .web-tab-label { font-size: 0.9375rem; }
+    .web-tabs-content { padding: 32px 24px; }
+    .web-tab-panel-title { padding-bottom: 18px; }
+    .web-tabs-hint { padding: 14px 20px; font-size: 0.6875rem; gap: 12px; margin-top: 32px; }
+    .web-tab-nav-footer { margin-top: 32px; padding-top: 24px; gap: 8px; }
+    .web-tab-arrow { padding: 10px 14px; font-size: 0.625rem; letter-spacing: 0.14em; gap: 8px; }
+    .arrow-label { display: none; }
+    .web-tab-arrow .arrow-symbol { font-size: 1.25rem; }
+
+    .compare { grid-template-columns: 1fr; }
+    .pauta-grid { grid-template-columns: 1fr; }
+    .finding { grid-template-columns: 1fr; gap: 12px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+    .sentido-mark { height: 72px; }
+    .sentido-logo-wrap { margin-bottom: 28px; }
+    th, td { padding: 16px 20px; font-size: 0.875rem; }
+    .compare-box, .service, .single-price { padding: 28px 24px; }
+    .container, .container-narrow { padding: 0 24px; }
+
+    .steps { grid-template-columns: 1fr; }
+    .form-wrap { padding: 32px 24px; }
+    .form-grid { grid-template-columns: 1fr; gap: 18px; }
+    .checkbox-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 540px) {
+    .checkbox-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- ================= NAV ================= -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <img src="/assets/logo-sentido-light.png" alt="" class="nav-mark" onload="this.classList.add('loaded')" />
+      <span class="nav-wordmark" aria-label="Sentido">Sentido</span>
+    </a>
+    <div class="nav-links">
+      <a href="#tesis" class="nav-link" data-section="tesis">Tesis</a>
+      <a href="#metodo" class="nav-link" data-section="metodo">Método</a>
+      <a href="#proceso" class="nav-link" data-section="proceso">Proceso</a>
+      <a href="#capacidades" class="nav-link" data-section="capacidades">Capacidades</a>
+      <a href="#sitio-web" class="nav-link" data-section="sitio-web">Sitio</a>
+      <a href="#hablemos" class="nav-link nav-cta" data-section="hablemos">Hablemos →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-watermark" aria-hidden="true">Sentido</div>
+  <div class="hero-cursor-glow" id="hero-cursor-glow" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-top">
+      <span class="status-pill">
+        <span class="status-dot"></span>
+        Brochure Interactivo · 2026
+      </span>
+    </div>
+  </div>
+
+  <div class="container hero-center">
+    <div class="sentido-logo-wrap">
+      <img src="/assets/logo-sentido-light.png" alt="" class="sentido-mark" onload="this.classList.add('loaded')" />
+      <span class="sentido-wordmark" aria-label="Sentido Branding & Advertising">
+        <span class="mark-text">Sentido</span>
+        <span class="mark-tagline">Branding &amp; Advertising</span>
+      </span>
+    </div>
+    <span class="eyebrow reveal">Sentido · Branding & Advertising</span>
+    <h1 class="hero-h1 reveal" style="margin-top: 24px;">
+      <span class="first-line">No se trata de hacer más contenido.</span>
+      <span class="second-line">Se trata del <span class="display-italic">sistema</span> que lo convierte en negocio.</span>
+    </h1>
+    <div class="hero-divider reveal"></div>
+    <p class="hero-sub reveal">
+      Una agencia que conecta marca, pauta, tecnología y datos en un mismo sistema — para que cada peso invertido en marketing produzca leads, ventas y clientes que regresan.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="hero-bottom">
+      <div>
+        <span class="hero-meta-label">Operación</span>
+        <span class="hero-meta-value">Sentido Branding & Advertising</span>
+      </div>
+      <div style="text-align: right;">
+        <span class="hero-meta-label">Documento</span>
+        <span class="hero-meta-value">Brochure General · Servicios Sentido</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MARQUEE STRIP ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item">Marca</span>
+    <span class="marquee-item">Pauta</span>
+    <span class="marquee-item">Sistema</span>
+    <span class="marquee-item">Conversión</span>
+    <span class="marquee-item">Resultado</span>
+    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item">Branding</span>
+    <span class="marquee-item">Advertising</span>
+    <span class="marquee-item">CRM</span>
+    <span class="marquee-item">Reputación</span>
+    <span class="marquee-item">Retención</span>
+    <!-- duplicado para loop continuo -->
+    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item">Marca</span>
+    <span class="marquee-item">Pauta</span>
+    <span class="marquee-item">Sistema</span>
+    <span class="marquee-item">Conversión</span>
+    <span class="marquee-item">Resultado</span>
+    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item">Branding</span>
+    <span class="marquee-item">Advertising</span>
+    <span class="marquee-item">CRM</span>
+    <span class="marquee-item">Reputación</span>
+    <span class="marquee-item">Retención</span>
+  </div>
+</div>
+
+<!-- ================= 01 · TESIS ================= -->
+<section id="tesis">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">01 — TESIS</span>
+        <h2>Servicios sueltos no construyen<br />un negocio. <span class="display-italic">Un sistema sí.</span></h2>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="reveal">
+        <p class="lede" style="margin-bottom: 24px;">
+          La mayoría de marcas contratan agencias por pieza: un community por aquí, alguien para Google Ads por allá, un diseñador freelance para el sitio. Cada pieza viva en su isla, sin hablar entre sí.
+        </p>
+        <p style="color: var(--text-dim);">
+          El resultado: presupuesto que se diluye, decisiones que se contradicen, leads que se pierden en el camino entre el anuncio y la venta. Sentido existe porque ese modelo ya no alcanza para crecer.
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="pullquote" style="margin: 0;">
+          La marca, la pauta, el sitio y el CRM no son cuatro proyectos. Son <em>cuatro capas</em> del mismo sistema — y solo conectadas producen el resultado que cada una promete por separado.
+          <span class="attribution">Sentido · Método de trabajo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="findings">
+      <div class="finding reveal">
+        <div class="finding-num">01</div>
+        <div class="finding-title">Una sola cabeza estratégica</div>
+        <div class="finding-desc">Brand, pauta, sitio, CRM y reputación se piensan desde la misma estrategia, no desde cinco proveedores que se enteran tarde de lo que decidió el otro.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">02</div>
+        <div class="finding-title">Cada peso se mide al final de su recorrido</div>
+        <div class="finding-desc">No medimos clics ni alcance como meta — medimos leads calificados, conversiones, clientes recurrentes. La pauta vive integrada con CRM y sitio, para saber qué funcionó de verdad.</div>
+      </div>
+      <div class="finding reveal">
+        <div class="finding-num">03</div>
+        <div class="finding-title">Sistema que escala sin rehacerse</div>
+        <div class="finding-desc">El sitio, el CRM y los flujos de automatización se construyen desde el día uno para crecer con la marca — más sucursales, más líneas de producto, más mercados, sin tener que volver a empezar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 · MÉTODO ================= -->
+<section id="metodo">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">02 — MÉTODO</span>
+        <h2>El sistema, en cuatro capas.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Cada negocio que llega a Sentido se atiende desde estas cuatro capas. Algunas marcas necesitan las cuatro desde el día uno; otras refuerzan la que tienen débil. La propuesta puntual se arma una vez que entendemos dónde estás parado.
+    </p>
+
+    <div class="layer-stack">
+      <div class="layer reveal">
+        <div class="layer-num">01</div>
+        <div>
+          <div class="layer-name">Alcance</div>
+          <div class="layer-services">Redes Meta · Google Ads · GBP · Pauta</div>
+        </div>
+        <div class="layer-desc">
+          Llegar a las personas correctas con el mensaje correcto, en el canal donde ya están buscando o donde ya están consumiendo contenido. Combina presencia orgánica (contenido y comunidad) con captura de intención (search + maps + social ads).
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">02</div>
+        <div>
+          <div class="layer-name">Captura</div>
+          <div class="layer-services">Sitio Web Estratégico · Landings por audiencia</div>
+        </div>
+        <div class="layer-desc">
+          Convertir tráfico en lead o pedido. El sitio no es una tarjeta de presentación — es el destino donde cada campaña aterriza con una ruta clara hacia la conversión, calibrada por audiencia.
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">03</div>
+        <div>
+          <div class="layer-name">Conversión</div>
+          <div class="layer-services">CRM · Automatización · WhatsApp · Email Marketing</div>
+        </div>
+        <div class="layer-desc">
+          Convertir leads en clientes. Pipeline configurado a la realidad del negocio, respuesta automática en menos de 60 segundos, seguimiento humano apoyado en flujos automatizados, atribución medida hasta el cierre.
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">04</div>
+        <div>
+          <div class="layer-name">Retención + Reputación</div>
+          <div class="layer-services">Reseñas · Recompra · Reactivación</div>
+        </div>
+        <div class="layer-desc">
+          El cliente no termina en la primera venta. Reseñas que alimentan visibilidad, campañas a base de datos que reactivan inactivos, secuencias de recompra recurrente. La capa que casi nadie atiende y la que más rentabilidad genera.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 · CÓMO TRABAJAMOS (PROCESO) ================= -->
+<section id="proceso">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">03 — CÓMO TRABAJAMOS</span>
+        <h2>El método detrás del sistema.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      La diferencia entre una agencia que entrega piezas y una que construye sistemas no está en lo que ofrece — está en cómo trabaja. Esto es lo que pasa cada mes en Sentido, desde el primer día hasta el reporte número doce.
+    </p>
+
+    <div class="layer-stack" style="margin-top: 64px;">
+      <div class="layer reveal">
+        <div class="layer-num">01</div>
+        <div>
+          <div class="layer-name">Diagnóstico antes de proponer</div>
+          <div class="layer-services">Llamada profunda · Auditoría · Mapa de brechas</div>
+        </div>
+        <div class="layer-desc">
+          No hacemos propuestas desde un catálogo. Antes de cotizar, dedicamos 45-60 minutos a entender el negocio, su estado actual y dónde está la brecha más cara de no resolver. La propuesta nace del diagnóstico, no de un menú.
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">02</div>
+        <div>
+          <div class="layer-name">Estrategia escrita, no improvisada</div>
+          <div class="layer-services">Plan estratégico · Audiencias · KPIs</div>
+        </div>
+        <div class="layer-desc">
+          Cada cliente recibe un documento estratégico vivo: audiencias priorizadas, mensajes por segmento, métricas que importan, secuencia de prioridades. Es la fuente de verdad de los siguientes 12 meses — y se actualiza cuando los datos lo piden.
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">03</div>
+        <div>
+          <div class="layer-name">Construcción en el orden correcto</div>
+          <div class="layer-services">Branding → Sitio → CRM → Pauta</div>
+        </div>
+        <div class="layer-desc">
+          Construir en desorden es la causa #1 de presupuesto desperdiciado. El sitio antes que la pauta. El CRM antes que el sitio. Branding antes que todo si la marca aún no resuena. Cada capa se monta sobre la anterior, no en paralelo descoordinado.
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">04</div>
+        <div>
+          <div class="layer-name">Activación medible desde el día uno</div>
+          <div class="layer-services">Pixels · Conversions API · Dashboards</div>
+        </div>
+        <div class="layer-desc">
+          Antes de prender una campaña, el sistema de medición ya está conectado: tracking de conversiones, atribución, dashboards en vivo. Si no se puede medir, no se prende. Es la única manera de saber qué funcionó cuando llegue el momento de optimizar.
+        </div>
+      </div>
+      <div class="layer reveal">
+        <div class="layer-num">05</div>
+        <div>
+          <div class="layer-name">Optimización continua, no entrega</div>
+          <div class="layer-services">Reporte mensual · Iteración · Decisiones con datos</div>
+        </div>
+        <div class="layer-desc">
+          El sistema no se entrega; se afina. Cada mes hay un reporte con qué funcionó, qué se ajusta y por qué — y un cliente que entiende sus propios números, no solo recibe una factura. Las decisiones se toman con datos, no con intuición ni con el último artículo de moda.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 · CAPACIDADES ================= -->
+<section id="capacidades">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">04 — CAPACIDADES</span>
+        <h2>Lo que componemos<br />en cada capa.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal" style="margin-bottom: 16px;">
+      Listado informativo de los módulos que conformamos para un cliente. <em>No es un menú con precios</em> — el alcance específico, el orden de activación y la inversión se cotizan en la propuesta personalizada, después del diagnóstico inicial.
+    </p>
+
+    <p class="reveal" style="color: var(--text-dim); margin-bottom: 32px; font-size: 0.9375rem;">
+      Algunos clientes activan los cinco módulos mensuales desde el día uno; otros arrancan con dos o tres y suman conforme el sistema demuestra tracción. El sitio web y el branding son inversiones únicas que se cotizan aparte y suelen ir antes del paquete mensual.
+    </p>
+
+    <div class="services">
+      <!-- A · Redes Meta -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">A</div>
+          <div class="service-price-head">
+            <span class="service-category">Módulo mensual</span>
+            <span class="service-period">Meta Ads incluido</span>
+          </div>
+        </div>
+        <h3 class="service-title">Gestión de Redes Meta</h3>
+        <p class="service-lede">Instagram + Facebook. Contenido que distribuye, pauta que alcanza, comunidad que se construye.</p>
+        <ul class="service-items">
+          <li>15 publicaciones mensuales: 6 reels, 3 carruseles, 6 posts fijos + adaptación a historias</li>
+          <li>Planeación estratégica por segmento de audiencia</li>
+          <li>Producción gráfica, edición de video, copywriting de marca</li>
+          <li>Contenido con IA para escala visual sin depender de sesiones constantes</li>
+          <li>Configuración, segmentación y optimización de campañas Meta Ads <strong>(incluido)</strong></li>
+          <li>Administración de perfiles, primer contacto automatizado, redirección a WhatsApp/CRM</li>
+          <li>Reporte mensual de alcance, engagement y leads generados</li>
+        </ul>
+        <span class="service-tag">Meta Ads · Incluido</span>
+      </div>
+
+      <!-- B · Google Ads -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">B</div>
+          <div class="service-price-head">
+            <span class="service-category">Módulo mensual</span>
+            <span class="service-period">Search · PMax · Demand Gen</span>
+          </div>
+        </div>
+        <h3 class="service-title">Google Ads</h3>
+        <p class="service-lede">Captura de intención de búsqueda en el momento exacto en que tu mercado teclea lo que tu marca resuelve.</p>
+        <ul class="service-items">
+          <li>Investigación de keywords por intención y por etapa del funnel</li>
+          <li>Creación de campañas Search + Performance Max (y Demand Gen si aplica)</li>
+          <li>Segmentación geográfica calibrada al área de operación</li>
+          <li>Landing pages específicas por audiencia conectadas al sitio</li>
+          <li>Optimización semanal de pujas, palabras y anuncios</li>
+          <li>Reporte mensual con CPL, conversiones y ROI estimado</li>
+        </ul>
+      </div>
+
+      <!-- Pauta inline (adyacente a A y B) -->
+      <div class="pauta-inline reveal">
+        <div>
+          <div class="pauta-inline-label">Nota · Pauta publicitaria</div>
+          <div class="pauta-inline-title">El presupuesto de pauta va aparte.</div>
+        </div>
+        <div>
+          <p class="pauta-inline-desc">
+            Los módulos A y B requieren presupuesto de pauta — pero ese presupuesto va directo a Meta y Google con medio de pago del cliente. No es parte de los honorarios de Sentido. El monto se calibra al mercado, sector y ambición del negocio durante el diagnóstico.
+          </p>
+          <div class="pauta-inline-ranges">
+            <div class="pauta-inline-range">
+              <span>Meta Ads · típico</span>
+              $5,000 – $15,000 / mes
+            </div>
+            <div class="pauta-inline-range">
+              <span>Google Ads · típico</span>
+              $3,000 – $8,000 / mes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C · CRM -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">C</div>
+          <div class="service-price-head">
+            <span class="service-category">Módulo mensual</span>
+            <span class="service-period">Setup sin costo</span>
+          </div>
+        </div>
+        <h3 class="service-title">CRM + Automatización + Reputación</h3>
+        <p class="service-lede">El nervio del sistema. Donde cada lead que entra se convierte, y cada cliente se retiene.</p>
+        <ul class="service-items">
+          <li>Pipeline configurado a la realidad del negocio, con etapas específicas</li>
+          <li>Captura automática de leads desde redes, sitio, WhatsApp y pauta</li>
+          <li>Respuesta inicial automatizada en &lt;60 segundos</li>
+          <li>Recordatorios de pedido recurrente, reactivación de inactivos</li>
+          <li>Monitoreo y respuesta a reseñas, campañas para clientes recurrentes</li>
+          <li>Filtrado estratégico de reseñas negativas hacia formulario privado</li>
+          <li>1 número WhatsApp, mensajes ilimitados, correos ilimitados</li>
+          <li>Implementación inicial <strong>sin costo</strong> con mantenimiento mensual activo</li>
+        </ul>
+        <span class="service-tag">Implementación · Sin costo</span>
+      </div>
+
+      <!-- D · GBP -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">D</div>
+          <div class="service-price-head">
+            <span class="service-category">Módulo mensual</span>
+            <span class="service-period">Posicionamiento local</span>
+          </div>
+        </div>
+        <h3 class="service-title">Google Business Profile</h3>
+        <p class="service-lede">El activo de posicionamiento local más subutilizado. Cada búsqueda en Maps cerca de tu domicilio debe encontrarte antes que a la competencia.</p>
+        <ul class="service-items">
+          <li>Optimización inicial del perfil y verificación</li>
+          <li>6 publicaciones mensuales derivadas del calendario de redes</li>
+          <li>Actualización de información, horarios, fotos, promociones</li>
+          <li>Gestión activa de preguntas y reseñas desde el CRM</li>
+          <li>Estrategia de posicionamiento en Maps por zona</li>
+          <li>Reporte mensual de visitas, clics y solicitudes de ruta</li>
+        </ul>
+        <span class="service-tag">Incluido en paquete integral</span>
+      </div>
+
+      <!-- E · Email Marketing -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">E</div>
+          <div class="service-price-head">
+            <span class="service-category">Módulo mensual</span>
+            <span class="service-period">Complemento del paquete</span>
+          </div>
+        </div>
+        <h3 class="service-title">Email Marketing + Automatización avanzada</h3>
+        <p class="service-lede">La base de datos no es una lista — es un activo. Email y automatización extraen valor de cada lead y cada cliente, una y otra vez.</p>
+        <ul class="service-items">
+          <li>Estrategia de segmentación por etapa del ciclo de cliente</li>
+          <li>2 campañas mensuales a base de datos completa</li>
+          <li>Flujos automatizados: bienvenida, nutrición, recuperación de carrito, recompra, reactivación</li>
+          <li>Diseño y copywriting de cada plantilla, alineado al branding</li>
+          <li>Pruebas A/B en subject lines y CTAs para optimizar apertura y clic</li>
+          <li>Reporte mensual de entregabilidad, apertura, clic y conversión atribuida</li>
+        </ul>
+        <span class="service-tag">Complemento al paquete</span>
+      </div>
+
+      <!-- F · Branding (full width) -->
+      <div class="service full reveal">
+        <div class="service-head">
+          <div class="service-letter">F</div>
+          <div class="service-price-head">
+            <span class="service-category">Inversión única</span>
+            <span class="service-period">Alcance modular</span>
+          </div>
+        </div>
+        <h3 class="service-title">Branding · Identidad de Marca</h3>
+        <p class="service-lede">Antes del sitio, antes de la pauta, antes del CRM — la marca. Naming, identidad y narrativa con la robustez para sostener todo lo que viene después.</p>
+        <ul class="service-items">
+          <li>Investigación de mercado, competencia y posicionamiento estratégico</li>
+          <li>Naming (opcional, según el caso) y arquitectura de marca</li>
+          <li>Identidad visual completa: logotipo, sistema gráfico, paleta, tipografía, iconografía</li>
+          <li>Manual de marca con reglas de uso, tono de voz y aplicaciones</li>
+          <li>Aplicaciones base: tarjetas, papelería digital, plantillas de redes, firma de correo</li>
+          <li>Versiones para uso digital, impresión, redes y formatos especiales</li>
+        </ul>
+        <span class="service-tag">Inversión única · Alcance modular</span>
+      </div>
+
+      <!-- G · Sitio Web teaser (full width) -->
+      <div class="service full reveal">
+        <div class="service-head">
+          <div class="service-letter">G</div>
+          <div class="service-price-head">
+            <span class="service-category">Inversión única</span>
+            <span class="service-period">4 semanas de desarrollo</span>
+          </div>
+        </div>
+        <h3 class="service-title">Sitio Web Estratégico</h3>
+        <p class="service-lede">El hub digital donde todo el sistema converge. Detalles en la sección 05 — seis dimensiones coordinadas, no una tarjeta de presentación.</p>
+        <ul class="service-items">
+          <li>Arquitectura por audiencia con rutas diferenciadas</li>
+          <li>Integración nativa con CRM, Meta Pixel, Google Ads y GA4</li>
+          <li>SEO técnico y rendimiento mobile-first</li>
+          <li>CMS administrable + arquitectura preparada para crecer</li>
+        </ul>
+        <a href="#sitio-web" class="service-tag" style="text-decoration: none;">Ver las 6 dimensiones →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · SITIO WEB ================= -->
+<section id="sitio-web">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">05 — SITIO WEB ESTRATÉGICO</span>
+        <h2>Seis dimensiones,<br />un solo hub digital.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Las campañas, los anuncios, las automatizaciones, los pedidos — todo necesita un destino que convierta, no una tarjeta de presentación. El sitio se construye en seis dimensiones coordinadas; explora cada una a continuación.
+    </p>
+
+    <div class="pullquote reveal">
+      Un sitio web no es una página — es infraestructura. Si las campañas mandan tráfico a un destino que no convierte, la pauta se desperdicia. Por eso el sitio se entrega antes de que el sistema de alcance arranque a máxima potencia.
+    </div>
+
+    <div class="web-tabs-hint reveal">
+      <span class="hint-arrow">→</span>
+      <span class="hint-text">Seis dimensiones coordinadas. Navega con las flechas o selecciona desde el índice.</span>
+    </div>
+
+    <div class="web-tabs reveal">
+      <div class="web-tabs-nav" role="tablist" aria-label="Dimensiones del Sitio Web Estratégico">
+        <button class="web-tab-btn active" role="tab" aria-selected="true" data-tab="arquitectura">
+          <span class="web-tab-num">01</span>
+          <span class="web-tab-label">Arquitectura y diseño</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="rutas">
+          <span class="web-tab-num">02</span>
+          <span class="web-tab-label">Rutas por audiencia</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="captacion">
+          <span class="web-tab-num">03</span>
+          <span class="web-tab-label">Captación y conversión</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="integracion">
+          <span class="web-tab-num">04</span>
+          <span class="web-tab-label">Integración del sistema</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="seo">
+          <span class="web-tab-num">05</span>
+          <span class="web-tab-label">SEO técnico y rendimiento</span>
+        </button>
+        <button class="web-tab-btn" role="tab" aria-selected="false" data-tab="escalabilidad">
+          <span class="web-tab-num">06</span>
+          <span class="web-tab-label">Base preparada para crecer</span>
+        </button>
+      </div>
+
+      <div class="web-tabs-content">
+        <div class="web-tab-panel active" role="tabpanel" data-panel="arquitectura">
+          <span class="web-tab-panel-num">01 — Fundación del sitio</span>
+          <h4 class="web-tab-panel-title">Arquitectura y diseño</h4>
+          <p class="web-tab-panel-lede">La estructura visual y funcional sobre la que se construye todo lo demás.</p>
+          <ul class="web-tab-panel-list">
+            <li>Estructura estratégica por audiencia: rutas diferenciadas según los públicos del negocio</li>
+            <li>Diseño visual alineado al branding de la marca, con elevación editorial para destacar en sectores visualmente saturados</li>
+            <li>Desarrollo responsivo mobile-first, optimizado para la experiencia desde teléfono</li>
+            <li>Jerarquía de conversión clara en cada página: mensaje, prueba, acción</li>
+            <li>Sistema de componentes reutilizable para futuras actualizaciones sin dependencia total del desarrollo</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="rutas">
+          <span class="web-tab-panel-num">02 — Segmentación de tráfico</span>
+          <h4 class="web-tab-panel-title">Rutas diferenciadas por audiencia</h4>
+          <p class="web-tab-panel-lede">Cada audiencia llega a una experiencia diseñada específicamente para ella, no a un mensaje genérico.</p>
+          <ul class="web-tab-panel-list">
+            <li>Landings dedicadas por segmento de mercado (B2C, B2B, distintos productos o regiones)</li>
+            <li>Cada ruta con su propio formulario, su propio CTA y su propia narrativa visual</li>
+            <li>Argumentos calibrados por audiencia: lenguaje, proof points y objeciones diferenciados</li>
+            <li>Las campañas de Google Ads y Meta Ads envían tráfico directo a la ruta correcta, no a una home genérica</li>
+            <li>Tracking diferenciado por ruta para medir qué audiencia convierte mejor</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="captacion">
+          <span class="web-tab-panel-num">03 — De visitante a lead</span>
+          <h4 class="web-tab-panel-title">Herramientas de captación y conversión</h4>
+          <p class="web-tab-panel-lede">Cada visita al sitio tiene una oportunidad clara para convertirse en pedido o en prospecto calificado.</p>
+          <ul class="web-tab-panel-list">
+            <li>Formularios inteligentes con campos condicionales según la audiencia detectada</li>
+            <li>Integración directa con WhatsApp Business para contacto inmediato desde cualquier sección</li>
+            <li>Botones de llamado a la acción optimizados por sección y por audiencia</li>
+            <li>Módulos de cotización o agendamiento para negocios con ciclos de venta consultivos</li>
+            <li>Sección de preguntas frecuentes orientada a disminuir fricción de compra</li>
+            <li>Pop-ups estratégicos de captura (no invasivos) para visitantes con intención pero sin acción</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="integracion">
+          <span class="web-tab-panel-num">04 — El sitio conectado al sistema</span>
+          <h4 class="web-tab-panel-title">Integración del sistema</h4>
+          <p class="web-tab-panel-lede">El sitio no vive aislado: es una pieza del sistema donde cada interacción alimenta las demás capas.</p>
+          <ul class="web-tab-panel-list">
+            <li>Conexión directa con CRM: cada formulario alimenta el pipeline correcto con asignación automática</li>
+            <li>Meta Pixel configurado para remarketing y optimización de campañas</li>
+            <li>Google Ads conversion tracking para medir rentabilidad real de la pauta</li>
+            <li>Google Analytics 4 para comportamiento, embudos y atribución</li>
+            <li>Preparado para email marketing y automatizaciones de seguimiento</li>
+            <li>Enlace con Google Business Profile para reforzar el ecosistema de búsqueda local</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="seo">
+          <span class="web-tab-panel-num">05 — Visibilidad orgánica</span>
+          <h4 class="web-tab-panel-title">SEO técnico y rendimiento</h4>
+          <p class="web-tab-panel-lede">Construido para aparecer en las búsquedas relevantes y cargar rápido en el móvil del cliente.</p>
+          <ul class="web-tab-panel-list">
+            <li>Estructura de URLs optimizada para búsquedas relevantes a la marca y al sector</li>
+            <li>Meta tags, schema markup y datos estructurados para mejor visibilidad en Google</li>
+            <li>Imágenes optimizadas, carga rápida en móvil, Core Web Vitals cuidados</li>
+            <li>Certificado SSL activo, sitemap, robots.txt y configuración técnica estándar</li>
+            <li>Enlace con Google Business Profile para reforzar posicionamiento local</li>
+            <li>Base preparada para contenido SEO de largo plazo (blog, artículos de autoridad)</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-panel" role="tabpanel" data-panel="escalabilidad">
+          <span class="web-tab-panel-num">06 — Infraestructura de crecimiento</span>
+          <h4 class="web-tab-panel-title">Base preparada para crecer</h4>
+          <p class="web-tab-panel-lede">Lo que hoy atiende a tu mercado actual debe poder crecer contigo sin rehacerse.</p>
+          <ul class="web-tab-panel-list">
+            <li>CMS administrable para actualizar contenido sin depender del desarrollo</li>
+            <li>Base preparada para expansión bilingüe o multilingüe cuando se decida activar nuevos mercados</li>
+            <li>Arquitectura compatible con módulos adicionales (e-commerce, reservas, membresías) en fase posterior</li>
+            <li>Estructura para blog y contenido de autoridad (SEO de largo plazo)</li>
+            <li>Analítica configurada para medir qué funciona y qué ajustar mes a mes</li>
+            <li>Escalable a más sucursales o líneas de producto sin rediseño completo</li>
+          </ul>
+        </div>
+
+        <div class="web-tab-nav-footer">
+          <button class="web-tab-arrow web-tab-prev" aria-label="Dimensión anterior" disabled>
+            <span class="arrow-symbol">←</span>
+            <span class="arrow-label">Anterior</span>
+          </button>
+          <div class="web-tab-indicator">
+            <span class="indicator-current">01</span>
+            <span class="indicator-sep">/</span>
+            <span class="indicator-total">06</span>
+          </div>
+          <button class="web-tab-arrow web-tab-next" aria-label="Dimensión siguiente">
+            <span class="arrow-label">Siguiente</span>
+            <span class="arrow-symbol">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 96px; margin-bottom: 24px;">Cronograma típico</h3>
+    <p class="reveal" style="color: var(--text-dim); margin-bottom: 32px;">El desarrollo se ejecuta en cuatro semanas con entregables intermedios. La puesta en marcha del sitio marca el arranque pleno del sistema de alcance y captura.</p>
+
+    <div class="table-wrap reveal">
+      <div class="table-label">
+        <span>Fases del desarrollo</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th>Fase</th>
+            <th>Entregable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">1</td>
+            <td>Arquitectura y estrategia de contenido</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Wireframes, mapa de rutas, copys por audiencia</td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">2</td>
+            <td>Diseño visual y producción gráfica</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Mockups aprobados, sistema visual completo</td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">3</td>
+            <td>Desarrollo e integraciones</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Sitio funcional en staging, CRM y pixels conectados</td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">4</td>
+            <td>Pruebas, ajustes y lanzamiento</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Sitio en vivo, SEO técnico validado, handoff al equipo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="single-price reveal" style="margin-top: 48px;">
+      <div class="single-price-info">
+        <h3 class="single-price-title">Sitio Web Estratégico</h3>
+        <p class="single-price-desc">
+          Inversión única, entrega en cuatro semanas, pago en dos parcialidades (60% al iniciar / 40% contra entrega). El alcance específico y la cotización final se incluyen en la propuesta personalizada, después del diagnóstico inicial.
+        </p>
+        <p class="single-price-desc" style="margin-top: 12px; color: var(--text-faint); font-size: 0.875rem;">
+          No incluye hosting, dominio, fotografía y video de producto, ni pauta publicitaria — son rubros que se manejan con la cuenta del cliente o se cotizan aparte.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 · UNA NOTA SOBRE LA INVERSIÓN ================= -->
+<section id="inversion">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">06 — UNA NOTA SOBRE LA INVERSIÓN</span>
+        <h2>No es un menú con precios.<br /><span style="color: var(--text-dim); font-style: italic;">Es un sistema que se cotiza.</span></h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Cada propuesta de Sentido se cotiza al alcance específico, después del diagnóstico inicial. Esa es la única forma honesta de poner un número — porque ningún negocio que llega aquí necesita lo mismo, ni en el mismo orden, ni al mismo tiempo.
+    </p>
+
+    <p class="reveal" style="color: var(--text-dim); margin-top: 24px;">
+      Lo que sí podemos compartir en este brochure es el orden de magnitud, para que sepas si estamos en la misma conversación antes de invertir tu tiempo en una llamada.
+    </p>
+
+    <div class="invest-grid reveal">
+      <div class="invest-row">
+        <div class="invest-label">Paquete integral mensual</div>
+        <div class="invest-desc">Las cuatro capas activadas con preferencias de paquete. Cubre redes, pauta, CRM, automatización y posicionamiento local.</div>
+        <div class="invest-ref">parte de <strong>$12,500</strong><span>+ IVA / mes</span></div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">Sitio Web Estratégico</div>
+        <div class="invest-desc">Inversión única. Las seis dimensiones descritas en la sección 05, entrega en cuatro semanas, dos parcialidades.</div>
+        <div class="invest-ref">parte de <strong>$20,000</strong><span>+ IVA / único</span></div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">Branding · Identidad</div>
+        <div class="invest-desc">Inversión única. Naming (cuando aplica), identidad visual completa, manual de marca, aplicaciones base.</div>
+        <div class="invest-ref">parte de <strong>$25,000</strong><span>+ IVA / único</span></div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">Email Marketing avanzado</div>
+        <div class="invest-desc">Complemento mensual al paquete. Para marcas con base de datos significativa o ciclo de recompra largo.</div>
+        <div class="invest-ref">parte de <strong>$3,500</strong><span>+ IVA / mes</span></div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">Pauta publicitaria <em>(va aparte)</em></div>
+        <div class="invest-desc">No es honorario de Sentido. Va directo a Meta y Google con medio de pago del cliente. Se calibra al mercado y la ambición del negocio.</div>
+        <div class="invest-ref"><strong>$8,000 – $25,000</strong><span>típico / mes combinado</span></div>
+      </div>
+    </div>
+
+    <div class="invest-closing reveal">
+      <p>
+        La propuesta cerrada — con alcance, secuencia y precios definitivos — llega después de una llamada de diagnóstico de 45-60 minutos. Esa propuesta es <em>sin costo</em> y se entrega en cinco días hábiles. No es un PDF genérico; es el documento de trabajo de los primeros doce meses.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 · CÓMO ARRANCAMOS ================= -->
+<section id="arrancamos">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">07 — CÓMO ARRANCAMOS</span>
+        <h2>De este brochure<br />a un sistema en marcha.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Cuatro pasos. El primero es sin costo y sirve para ambas partes: tú entiendes si Sentido encaja con lo que necesitas, y nosotros entendemos si podemos prometer resultados con honestidad.
+    </p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-name">Diagnóstico estratégico</div>
+        <div class="step-desc">Llamada de 45 min. Mapeamos el estado actual del sistema — marca, sitio, pauta, CRM — y dónde está la brecha más cara de no resolver.</div>
+        <div class="step-meta">Sin costo · 45 min</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-name">Propuesta a medida</div>
+        <div class="step-desc">En 5 días hábiles entregamos una propuesta del estilo de este brochure, pero específica para tu marca, mercado y números. Con alcance y precios cerrados.</div>
+        <div class="step-meta">5 días hábiles</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-name">Onboarding y kickoff</div>
+        <div class="step-desc">Firma de propuesta, accesos a plataformas, kickoff con todo el equipo asignado. Cronograma de las primeras 4 semanas con entregables semanales.</div>
+        <div class="step-meta">Semana 1</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-name">Sistema en marcha</div>
+        <div class="step-desc">A 30 días: sitio en vivo, CRM operando, campañas activas, primer reporte de resultados. A 90 días: sistema optimizado con data real, no con hipótesis.</div>
+        <div class="step-meta">30 días al sistema activo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 · HABLEMOS ================= -->
+<section id="hablemos">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">08 — HABLEMOS</span>
+        <h2>Cuéntanos qué estás resolviendo.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Si lo que viste hasta aquí hace sentido para tu marca, este es el siguiente paso. El formulario tarda menos de un minuto. Un estratega de Sentido te responde en menos de 24 horas hábiles para agendar el diagnóstico.
+    </p>
+
+    <div class="form-wrap reveal">
+      <form id="lead-form" data-webhook="" novalidate>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="lf-nombre">Nombre completo <span class="req">*</span></label>
+            <input class="form-input" id="lf-nombre" name="nombre" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-empresa">Empresa o marca <span class="req">*</span></label>
+            <input class="form-input" id="lf-empresa" name="empresa" type="text" autocomplete="organization" required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-email">Correo electrónico <span class="req">*</span></label>
+            <input class="form-input" id="lf-email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-whatsapp">WhatsApp <span class="req">*</span></label>
+            <input class="form-input" id="lf-whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+52 ..." required />
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label" for="lf-sitio">Sitio web o Instagram actual</label>
+            <input class="form-input" id="lf-sitio" name="sitio" type="text" placeholder="sitio.com · @instagram" />
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label">¿En qué necesitas apoyo? <span class="req">*</span></label>
+            <div class="checkbox-grid">
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="pauta" /> Pauta (Meta / Google)</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="redes" /> Redes y contenido</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="sitio" /> Sitio web</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="branding" /> Branding / Identidad</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="crm" /> CRM y automatización</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="email" /> Email marketing</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="paquete" /> Paquete integral completo</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="no-se" /> Aún no estoy seguro</label>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-presupuesto">Presupuesto mensual aproximado</label>
+            <select class="form-select" id="lf-presupuesto" name="presupuesto">
+              <option value="">Selecciona un rango</option>
+              <option value="menos-10k">Menos de $10,000 MXN</option>
+              <option value="10-20k">$10,000 – $20,000 MXN</option>
+              <option value="20-40k">$20,000 – $40,000 MXN</option>
+              <option value="40k-mas">Más de $40,000 MXN</option>
+              <option value="por-definir">Por definir / depende del alcance</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-tiempo">¿Cuándo te gustaría arrancar?</label>
+            <select class="form-select" id="lf-tiempo" name="tiempo">
+              <option value="">Selecciona un horizonte</option>
+              <option value="ya">Lo antes posible</option>
+              <option value="1-3-meses">En 1 a 3 meses</option>
+              <option value="3-6-meses">En 3 a 6 meses</option>
+              <option value="explorando">Solo estoy explorando</option>
+            </select>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label" for="lf-contexto">Algo de contexto (opcional)</label>
+            <textarea class="form-textarea" id="lf-contexto" name="contexto" placeholder="Cuéntanos brevemente qué estás resolviendo, qué ya intentaste, o qué te trajo hasta aquí."></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit-row">
+          <span class="form-note">Respuesta en &lt; 24h hábiles · jos@sentido.mx</span>
+          <button class="form-submit" type="submit">
+            Enviar
+            <span class="arrow-symbol">→</span>
+          </button>
+        </div>
+
+        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE STRIP (pre-cierre) ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Alcance</span>
+    <span class="marquee-item">Captura</span>
+    <span class="marquee-item">Conversión</span>
+    <span class="marquee-item">Retención</span>
+    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item">Marca</span>
+    <span class="marquee-item">Pauta</span>
+    <span class="marquee-item">Sitio</span>
+    <span class="marquee-item">CRM</span>
+    <span class="marquee-item">Resultado</span>
+    <!-- duplicado -->
+    <span class="marquee-item">Alcance</span>
+    <span class="marquee-item">Captura</span>
+    <span class="marquee-item">Conversión</span>
+    <span class="marquee-item">Retención</span>
+    <span class="marquee-item brand">Sentido</span>
+    <span class="marquee-item">Marca</span>
+    <span class="marquee-item">Pauta</span>
+    <span class="marquee-item">Sitio</span>
+    <span class="marquee-item">CRM</span>
+    <span class="marquee-item">Resultado</span>
+  </div>
+</div>
+
+<!-- ================= CIERRE ================= -->
+<section class="closing">
+  <div class="container-narrow">
+    <div class="closing-wordmark" id="closing-wordmark">Sentido</div>
+    <p class="closing-tesis reveal">
+      Tu producto ya está listo.<br />
+      Tu mercado ya está esperando.<br />
+      <em>Falta el sistema que los conecta.</em>
+    </p>
+    <div class="closing-mark"></div>
+    <div class="closing-sig">
+      Brochure preparado por <strong>Sentido</strong> · Branding & Advertising
+    </div>
+    <div class="closing-contact">
+      <a href="mailto:jos@sentido.mx">jos@sentido.mx</a>
+      <a href="https://sentido.mx" target="_blank" rel="noopener">sentido.mx</a>
+      <a href="https://wa.me/5213222253390" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.findings .reveal, .services .reveal, .steps .reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+
+  // ================= SCROLL PROGRESS BAR =================
+  const progressBar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+    progressBar.style.width = Math.min(100, Math.max(0, scrolled * 100)) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ================= HERO CURSOR GLOW =================
+  const hero = document.querySelector('.hero');
+  const cursorGlow = document.getElementById('hero-cursor-glow');
+  if (hero && cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+    let glowX = 0, glowY = 0, targetX = 0, targetY = 0;
+    let glowVisible = false;
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+      if (!glowVisible) {
+        glowX = targetX; glowY = targetY;
+        glowVisible = true;
+      }
+    });
+
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.12;
+      glowY += (targetY - glowY) * 0.12;
+      cursorGlow.style.transform = `translate(${glowX - 300}px, ${glowY - 300}px)`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+  }
+
+  // ================= H1 WORD-BY-WORD REVEAL =================
+  const heroH1 = document.querySelector('.hero-h1');
+  if (heroH1) {
+    // Wrap each word inside .first-line and .second-line in a <span class="word">
+    heroH1.querySelectorAll('.first-line, .second-line').forEach(line => {
+      const html = line.innerHTML;
+      // Split by spaces but keep inner tags (display-italic) intact
+      // Walk through nodes
+      const fragments = [];
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+
+      function processNode(node) {
+        const result = [];
+        node.childNodes.forEach(child => {
+          if (child.nodeType === Node.TEXT_NODE) {
+            const words = child.textContent.split(/(\s+)/);
+            words.forEach(w => {
+              if (w.trim() === '') {
+                result.push(document.createTextNode(w));
+              } else {
+                const span = document.createElement('span');
+                span.className = 'word';
+                span.textContent = w;
+                result.push(span);
+              }
+            });
+          } else if (child.nodeType === Node.ELEMENT_NODE) {
+            const wrapper = document.createElement('span');
+            wrapper.className = 'word';
+            wrapper.appendChild(child.cloneNode(true));
+            result.push(wrapper);
+          }
+        });
+        return result;
+      }
+
+      const newChildren = processNode(tmp);
+      line.innerHTML = '';
+      newChildren.forEach(n => line.appendChild(n));
+    });
+
+    // Apply staggered animation delay
+    const words = heroH1.querySelectorAll('.word');
+    words.forEach((w, i) => {
+      w.style.animationDelay = (0.25 + i * 0.07) + 's';
+    });
+
+    // Trigger animation after a beat
+    setTimeout(() => heroH1.classList.add('animate'), 200);
+  }
+
+  // ================= CLOSING WORDMARK REVEAL =================
+  const closingWordmark = document.getElementById('closing-wordmark');
+  if (closingWordmark) {
+    const closingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          closingObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    closingObserver.observe(closingWordmark);
+  }
+
+  // ================= NAV BEHAVIOR =================
+  const nav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const sectionMap = {
+    'tesis': document.getElementById('tesis'),
+    'metodo': document.getElementById('metodo'),
+    'proceso': document.getElementById('proceso'),
+    'capacidades': document.getElementById('capacidades'),
+    'sitio-web': document.getElementById('sitio-web'),
+    'inversion': document.getElementById('inversion'),
+    'arrancamos': document.getElementById('arrancamos'),
+    'hablemos': document.getElementById('hablemos')
+  };
+
+  const sectionToNav = {
+    'tesis': 'tesis',
+    'metodo': 'metodo',
+    'proceso': 'proceso',
+    'capacidades': 'capacidades',
+    'sitio-web': 'sitio-web',
+    'inversion': 'sitio-web',
+    'arrancamos': 'hablemos',
+    'hablemos': 'hablemos'
+  };
+
+  const setActiveLink = (sectionId) => {
+    const targetNav = sectionToNav[sectionId];
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === targetNav);
+    });
+  };
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveLink(entry.target.id);
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+  Object.values(sectionMap).forEach(section => {
+    if (section) spyObserver.observe(section);
+  });
+
+  let lastScroll = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', currentScroll > 40);
+        if (currentScroll > 200) {
+          if (currentScroll > lastScroll + 6) nav.classList.add('hidden');
+          else if (currentScroll < lastScroll - 6) nav.classList.remove('hidden');
+        } else {
+          nav.classList.remove('hidden');
+        }
+        lastScroll = currentScroll;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // ================= WEB TABS =================
+  const tabBtns = Array.from(document.querySelectorAll('.web-tab-btn'));
+  const tabPanels = Array.from(document.querySelectorAll('.web-tab-panel'));
+  const prevBtn = document.querySelector('.web-tab-prev');
+  const nextBtn = document.querySelector('.web-tab-next');
+  const indicatorCurrent = document.querySelector('.indicator-current');
+  const totalTabs = tabBtns.length;
+  let currentTabIdx = 0;
+
+  function activateTabIndex(idx) {
+    idx = Math.max(0, Math.min(totalTabs - 1, idx));
+    currentTabIdx = idx;
+
+    tabBtns.forEach((b, i) => {
+      const isActive = i === idx;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    tabPanels.forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+
+    if (indicatorCurrent) {
+      indicatorCurrent.textContent = String(idx + 1).padStart(2, '0');
+    }
+
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === totalTabs - 1;
+  }
+
+  tabBtns.forEach((btn, idx) => {
+    btn.addEventListener('click', () => activateTabIndex(idx));
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentTabIdx > 0) activateTabIndex(currentTabIdx - 1);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentTabIdx < totalTabs - 1) activateTabIndex(currentTabIdx + 1);
+    });
+  }
+
+  tabBtns.forEach((btn, idx) => {
+    btn.addEventListener('keydown', (e) => {
+      let newIdx = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        newIdx = Math.min(idx + 1, totalTabs - 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        newIdx = Math.max(idx - 1, 0);
+      }
+      if (newIdx !== null && newIdx !== idx) {
+        e.preventDefault();
+        activateTabIndex(newIdx);
+        tabBtns[newIdx].focus();
+      }
+    });
+  });
+
+  // ================= LEAD FORM =================
+  const form = document.getElementById('lead-form');
+  const statusEl = document.getElementById('lf-status');
+  const submitBtn = form ? form.querySelector('.form-submit') : null;
+
+  function showStatus(msg, isError) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.classList.add('visible');
+    statusEl.classList.toggle('error', !!isError);
+  }
+
+  function collectInterest() {
+    return Array.from(form.querySelectorAll('input[name="interes"]:checked')).map(i => i.value);
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const interes = collectInterest();
+      if (interes.length === 0) {
+        showStatus('Selecciona al menos una opción en "¿En qué necesitas apoyo?".', true);
+        return;
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const payload = {
+        nombre: form.nombre.value.trim(),
+        empresa: form.empresa.value.trim(),
+        email: form.email.value.trim(),
+        whatsapp: form.whatsapp.value.trim(),
+        sitio: form.sitio.value.trim(),
+        interes: interes,
+        presupuesto: form.presupuesto.value,
+        tiempo: form.tiempo.value,
+        contexto: form.contexto.value.trim(),
+        source: 'brochure.sentido.mx',
+        submitted_at: new Date().toISOString()
+      };
+
+      const webhook = form.dataset.webhook;
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.arrow-symbol').textContent = '…';
+
+      try {
+        if (webhook) {
+          const res = await fetch(webhook, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('Webhook respondió ' + res.status);
+        } else {
+          // Fallback dev: log para verificación local mientras se conecta el webhook
+          console.log('[brochure] lead (sin webhook):', payload);
+          await new Promise(r => setTimeout(r, 600));
+        }
+        showStatus('Recibido. Un estratega de Sentido te responde en menos de 24 horas hábiles a ' + payload.email + '.', false);
+        form.reset();
+        submitBtn.querySelector('.arrow-symbol').textContent = '✓';
+      } catch (err) {
+        console.error(err);
+        showStatus('No pudimos enviar tu mensaje. Escríbenos directo a jos@sentido.mx o por WhatsApp y lo resolvemos.', true);
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.arrow-symbol').textContent = '→';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
