@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Manufaktura Muebles</title>
+<meta name="description" content="Propuesta estratégica de Sentido para Manufaktura Muebles — renovar el sitio web para que la vitrina digital esté a la altura del taller." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F1E8;
+    --surface: #ECE3D2;
+    --surface-elevated: #E0D3BB;
+    --border: #D4C3A4;
+    --border-strong: #BFAA85;
+    --accent: #8B5A2B;
+    --accent-deep: #5C3A1A;
+    --accent-soft: #C9986B;
+    --accent-tint: #EFE0CB;
+    --ink: #1E1916;
+    --ink-soft: #3D342C;
+    --ink-muted: #6E6256;
+    --ink-whisper: #9A8B7C;
+    --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+  .reveal-d5 { transition-delay: 0.40s; }
+
+  /* Nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(246, 241, 232, 0.85);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--border); }
+  .nav-inner {
+    max-width: 80rem; margin: 0 auto;
+    padding: 0.875rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) { .nav-inner { padding: 1rem 1.5rem; } }
+  .nav-logo { display: flex; align-items: center; gap: 0.625rem; min-width: 0; }
+  .nav-logo img { height: 24px; display: block; opacity: 0.92; flex-shrink: 0; }
+  @media (min-width: 640px) { .nav-logo img { height: 26px; } }
+  .nav-logo .divider { width: 1px; height: 18px; background: var(--border-strong); flex-shrink: 0; }
+  .nav-logo .label {
+    font-family: var(--font-display);
+    font-size: 13px; font-style: italic; color: var(--ink-soft);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (min-width: 640px) { .nav-logo .label { font-size: 15px; } }
+  @media (max-width: 420px) {
+    .nav-logo .divider, .nav-logo .label { display: none; }
+  }
+  .nav-links { display: none; gap: 2rem; }
+  @media (min-width: 900px) { .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent-deep); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-deep); text-decoration: none; font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  @media (min-width: 640px) { .nav-cta { font-size: 12px; letter-spacing: 0.14em; } }
+
+  /* Section */
+  .section {
+    width: 100%;
+    padding: 4.5rem 1.25rem;
+    position: relative;
+  }
+  @media (min-width: 640px) { .section { padding: 5.5rem 1.5rem; } }
+  @media (min-width: 768px) { .section { padding: 8rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 9rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-narrow { max-width: 56rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-elevated { background-color: var(--surface-elevated); }
+
+  /* Section label */
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.875rem;
+    margin-bottom: 2rem;
+    color: var(--accent-deep);
+  }
+  .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .section-label .divider { height: 1px; width: 2.5rem; background-color: var(--accent); opacity: 0.55; }
+  .section-label span { font-size: 11px; letter-spacing: 0.28em; font-weight: 500; text-transform: uppercase; }
+
+  /* Typography */
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; color: var(--ink); line-height: 1.08; }
+  .h-xl { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.02em; }
+  .h-lg { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+  .h-md { font-size: clamp(1.5rem, 3vw, 2.125rem); }
+  .h-sm { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.2; }
+  .italic-accent { font-style: italic; color: var(--accent-deep); }
+
+  .p {
+    font-size: 17px; line-height: 1.75; font-weight: 400; color: var(--ink-soft);
+  }
+  .p.lg { font-size: 19px; line-height: 1.7; }
+  .p.muted { color: var(--ink-muted); }
+  .p.sm { font-size: 14px; line-height: 1.65; }
+  .p + .p { margin-top: 1.25rem; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6.5rem 1.25rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  @media (min-width: 640px) { .hero { padding: 8rem 1.5rem 5rem; } }
+  @media (min-width: 768px) { .hero { padding: 10rem 3rem 6rem; } }
+  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 6rem; } }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 50% at 80% 20%, rgba(139, 90, 43, 0.14), transparent 70%),
+      radial-gradient(50% 50% at 10% 85%, rgba(201, 152, 107, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-sentido-mark {
+    display: inline-flex; align-items: center; gap: 1.25rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .hero-sentido-mark img {
+    height: 66px; width: auto; display: block;
+    opacity: 0.95;
+  }
+  .hero-sentido-mark .mark-tag {
+    font-family: var(--font-display);
+    font-size: 15px; font-style: italic;
+    color: var(--ink-muted);
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+  .hero-sentido-mark .mark-divider {
+    width: 1px; height: 42px; background: var(--border-strong);
+  }
+  @media (min-width: 768px) {
+    .hero-sentido-mark img { height: 78px; }
+    .hero-sentido-mark .mark-divider { height: 52px; }
+    .hero-sentido-mark .mark-tag { font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .hero-sentido-mark {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.875rem;
+    }
+    .hero-sentido-mark img { height: 56px; }
+    .hero-sentido-mark .mark-divider { display: none; }
+    .hero-sentido-mark .mark-tag {
+      font-size: 14px;
+      padding-left: 2px;
+    }
+  }
+  .hero-meta {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  @media (min-width: 640px) {
+    .hero-meta { gap: 0.875rem; font-size: 11px; letter-spacing: 0.28em; margin-bottom: 2.5rem; }
+  }
+  .hero-meta .divider { height: 1px; width: 2rem; background: var(--accent); opacity: 0.55; }
+  @media (min-width: 640px) { .hero-meta .divider { width: 2.5rem; } }
+
+  .hero-brand {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .hero-brand .dot { color: var(--accent); }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 50rem;
+    margin-bottom: 3rem;
+    line-height: 1.35;
+  }
+
+  .hero-details {
+    display: grid; grid-template-columns: 1fr; gap: 2rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--border);
+    max-width: 48rem;
+  }
+  @media (min-width: 640px) { .hero-details { grid-template-columns: repeat(3, 1fr); } }
+  .hero-detail .label {
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink-whisper); margin-bottom: 0.5rem;
+  }
+  .hero-detail .value {
+    font-family: var(--font-display); font-size: 1.125rem; color: var(--ink);
+  }
+
+  /* Lede */
+  .lede {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: 1.25;
+    color: var(--ink);
+    font-weight: 400;
+    max-width: 54rem;
+  }
+  .lede em { font-style: italic; color: var(--accent-deep); }
+
+  /* Findings */
+  .findings {
+    display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .findings { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+  .finding {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem 1.25rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  @media (min-width: 640px) { .finding { padding: 2rem; } }
+  .finding:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+  .finding .num {
+    font-family: var(--font-display); font-size: 14px; font-style: italic;
+    color: var(--accent-deep); margin-bottom: 1rem; letter-spacing: 0.05em;
+  }
+  .finding h4 {
+    font-family: var(--font-display); font-size: 1.25rem;
+    color: var(--ink); margin-bottom: 0.75rem; letter-spacing: -0.005em;
+  }
+  .finding p {
+    font-size: 15px; line-height: 1.65; color: var(--ink-soft);
+  }
+
+  /* Before / after comparison */
+  .vs {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .vs { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .vs-card {
+    padding: 1.75rem 1.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  @media (min-width: 640px) { .vs-card { padding: 2.25rem; } }
+  .vs-card.before { background: var(--surface-elevated); }
+  .vs-card.after { background: var(--bg); border-color: var(--accent-soft); }
+  .vs-card .tag {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 1rem;
+  }
+  .vs-card.before .tag { color: var(--ink-muted); }
+  .vs-card.after .tag { color: var(--accent-deep); }
+  .vs-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.375rem; color: var(--ink); margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .vs-card ul { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+  .vs-card ul li {
+    position: relative; padding-left: 1.25rem;
+    font-size: 14.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .vs-card ul li::before {
+    content: ''; position: absolute; left: 0; top: 0.6rem;
+    width: 5px; height: 5px; border-radius: 50%;
+  }
+  .vs-card.before ul li::before { background: var(--ink-whisper); }
+  .vs-card.after ul li::before { background: var(--accent); }
+
+  /* Pillars */
+  .pillars {
+    display: grid; grid-template-columns: 1fr; gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  @media (min-width: 768px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+  .pillar {
+    padding-top: 1.75rem;
+    border-top: 2px solid var(--accent);
+  }
+  .pillar .num {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 13px; color: var(--accent-deep); letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  .pillar h4 {
+    font-family: var(--font-display); font-size: 1.375rem;
+    color: var(--ink); margin-bottom: 0.875rem;
+  }
+  .pillar p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* Services */
+  .services { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .service {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.75rem 1.5rem;
+    display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    transition: border-color 0.3s ease;
+  }
+  @media (min-width: 640px) { .service { padding: 2.25rem; gap: 1.5rem; } }
+  .service:hover { border-color: var(--accent-soft); }
+  @media (min-width: 768px) {
+    .service { grid-template-columns: 180px 1fr; padding: 2.5rem; gap: 2.5rem; }
+  }
+  .service-head {
+    font-family: var(--font-display);
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500;
+    padding-top: 0.5rem;
+  }
+  .service-head .num {
+    display: block; font-size: 2.5rem; font-style: italic; font-weight: 400;
+    color: var(--ink); margin-bottom: 0.25rem; letter-spacing: -0.02em;
+  }
+  .service-body h3 {
+    font-family: var(--font-display); font-size: 1.625rem;
+    color: var(--ink); margin-bottom: 0.875rem; line-height: 1.15;
+  }
+  .service-body > p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; margin-bottom: 1.5rem; }
+  .service-body ul { list-style: none; padding: 0; display: grid; gap: 0.625rem; }
+  .service-body ul li {
+    position: relative; padding-left: 1.5rem;
+    font-size: 14.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .service-body ul li::before {
+    content: ''; position: absolute; left: 0; top: 0.55rem;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Invest card */
+  .invest-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 640px) { .invest-card { padding: 2.5rem; } }
+  @media (min-width: 768px) { .invest-card { padding: 3.5rem; } }
+  .invest-card.featured {
+    border-color: var(--accent);
+    position: relative;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--accent-tint) 100%);
+  }
+  .invest-card.featured::before {
+    content: 'Inversión principal';
+    position: absolute; top: -14px; left: 1.25rem;
+    background: var(--accent-deep); color: #fff;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 0.35rem 0.875rem; border-radius: 999px; font-weight: 500;
+  }
+  @media (min-width: 640px) { .invest-card.featured::before { left: 2rem; } }
+  .invest-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1.25rem; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 640px) {
+    .invest-head { gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; }
+  }
+  .invest-head h3 {
+    font-family: var(--font-display); font-size: 1.45rem; color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  @media (min-width: 640px) { .invest-head h3 { font-size: 1.75rem; } }
+  .invest-head .sub { font-size: 14px; color: var(--ink-muted); max-width: 32rem; line-height: 1.55; }
+  @media (min-width: 640px) { .invest-head .sub { font-size: 14.5px; } }
+  .invest-price { text-align: left; min-width: 0; }
+  @media (min-width: 640px) { .invest-price { text-align: right; min-width: 180px; } }
+  .invest-price .amount {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem);
+    color: var(--ink); font-weight: 400; line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .invest-price .cycle { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); margin-top: 0.5rem; font-weight: 500; }
+  .invest-price .iva { font-size: 11px; color: var(--ink-whisper); margin-top: 0.25rem; letter-spacing: 0.1em; }
+
+  .invest-items {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+  }
+  .invest-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.875rem 0;
+    border-bottom: 1px dashed var(--border);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  @media (min-width: 640px) { .invest-item { gap: 1.5rem; flex-wrap: nowrap; } }
+  .invest-item:last-child { border-bottom: none; }
+  .invest-item .desc { font-size: 15px; color: var(--ink); }
+  .invest-item .desc small { display: block; color: var(--ink-muted); font-size: 13px; margin-top: 0.15rem; }
+  .invest-item .val { font-family: var(--font-display); font-size: 1rem; color: var(--ink); font-weight: 500; white-space: nowrap; }
+
+  .invest-footer {
+    margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 13.5px; color: var(--ink-muted); line-height: 1.65;
+  }
+  .invest-footer strong { color: var(--ink); font-weight: 500; }
+
+  /* Optional blocks */
+  .optional-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  @media (min-width: 640px) { .optional-grid { grid-template-columns: repeat(2, 1fr); } }
+  .optional {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem 1.25rem;
+  }
+  @media (min-width: 640px) { .optional { padding: 1.5rem 1.75rem; } }
+  .optional .tag {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .optional h5 { font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); margin-bottom: 0.35rem; }
+  .optional .price { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin-bottom: 0.65rem; }
+  .optional .price .iva { font-size: 11px; color: var(--ink-whisper); letter-spacing: 0.08em; }
+  .optional p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.55; }
+
+  /* Horizon timeline */
+  .horizon { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+  @media (min-width: 768px) { .horizon { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
+  .milestone {
+    padding: 1.5rem 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+  }
+  @media (min-width: 640px) { .milestone { padding: 1.75rem 1.5rem; } }
+  .milestone .when {
+    font-family: var(--font-display); font-size: 0.875rem; font-style: italic;
+    color: var(--accent-deep); letter-spacing: 0.05em; margin-bottom: 0.75rem;
+  }
+  .milestone h4 {
+    font-family: var(--font-display); font-size: 1.15rem; color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .milestone p { font-size: 13.75px; line-height: 1.6; color: var(--ink-soft); }
+
+  /* Closing */
+  .closing {
+    background: var(--ink);
+    color: #F5EFE6;
+    padding: 5rem 1.25rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) { .closing { padding: 7rem 1.5rem; } }
+  @media (min-width: 768px) { .closing { padding: 9rem 3rem; } }
+  .closing .section-label { color: var(--accent-soft); }
+  .closing .section-label .dot { background: var(--accent-soft); }
+  .closing .section-label .divider { background: var(--accent-soft); opacity: 0.5; }
+  .closing h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    color: #F5EFE6;
+    font-weight: 400;
+    max-width: 44rem; margin: 0 auto 2rem;
+  }
+  .closing h2 em { color: var(--accent-soft); font-style: italic; }
+  .closing p { color: #CBBEB0; font-size: 16.5px; max-width: 36rem; margin: 0 auto 3rem; line-height: 1.7; }
+  .closing .signature {
+    margin-top: 4rem; display: inline-flex; flex-direction: column; align-items: center; gap: 0.875rem;
+  }
+  .closing .signature img { height: 30px; opacity: 0.9; }
+  .closing .signature small {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #8B7F71;
+  }
+
+  /* Footer */
+  .foot {
+    background: var(--ink);
+    color: #8B7F71;
+    padding: 2rem 1.25rem;
+    text-align: center;
+    border-top: 1px solid rgba(245, 239, 230, 0.08);
+    font-size: 10.5px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    line-height: 1.8;
+  }
+  @media (min-width: 640px) { .foot { font-size: 11.5px; letter-spacing: 0.14em; padding: 2rem 1.5rem; } }
+  .foot a { color: #CBBEB0; text-decoration: none; margin: 0 0.4rem; display: inline-block; }
+
+  /* Path choice */
+  .path-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .path-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; } }
+  .path {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  @media (min-width: 640px) { .path { padding: 2.25rem; } }
+  .path.recommended {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--accent-tint) 100%);
+  }
+  .path.recommended::before {
+    content: 'Recomendado';
+    position: absolute; top: -12px; left: 1.5rem;
+    background: var(--accent-deep); color: #fff;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 0.3rem 0.75rem; border-radius: 999px; font-weight: 500;
+  }
+  .path .path-tag {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500; margin-bottom: 0.875rem;
+  }
+  .path h4 {
+    font-family: var(--font-display); font-size: 1.5rem;
+    color: var(--ink); margin-bottom: 0.875rem; line-height: 1.2;
+  }
+  .path > p {
+    font-size: 14.5px; line-height: 1.65; color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+  }
+  .path ul { list-style: none; padding: 0; display: grid; gap: 0.55rem; margin-bottom: 1.5rem; }
+  .path ul li {
+    position: relative; padding-left: 1.25rem;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+  }
+  .path ul li::before {
+    content: ''; position: absolute; left: 0; top: 0.55rem;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  }
+  .path .path-foot {
+    margin-top: auto; padding-top: 1.25rem;
+    border-top: 1px dashed var(--border);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .path .path-foot .lbl {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-whisper);
+  }
+  .path .path-foot .val {
+    font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); font-weight: 500;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/assets/logo-sentido-dark.png" alt="Sentido" />
+      <span class="divider"></span>
+      <span class="label">para Manufaktura</span>
+    </div>
+    <div class="nav-links">
+      <a href="#contexto">Contexto</a>
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#angulo">Ángulo</a>
+      <a href="#propuesta">Propuesta</a>
+      <a href="#inversion">Inversión</a>
+    </div>
+    <a href="#cierre" class="nav-cta">Siguiente paso →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-sentido-mark reveal">
+      <img src="/assets/logo-sentido-dark.png" alt="Sentido Branding & Advertising" />
+      <span class="mark-divider"></span>
+      <span class="mark-tag">para Manufaktura Muebles</span>
+    </div>
+    <div class="hero-meta reveal">
+      <span>Propuesta estratégica</span>
+      <span class="divider"></span>
+      <span>Sentido · 2026</span>
+    </div>
+    <h1 class="hero-brand reveal reveal-d1">Manufaktura<span class="dot">.</span></h1>
+    <p class="hero-subtitle reveal reveal-d2">
+      Una vitrina digital <em>a la altura del taller</em> — para que el sitio cuente lo mismo que ya cuenta la pieza terminada.
+    </p>
+    <div class="hero-details reveal reveal-d3">
+      <div class="hero-detail">
+        <div class="label">Marca</div>
+        <div class="value">Fabricantes de muebles · Zapopan, Jal.</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Foco</div>
+        <div class="value">Renovación visual del sitio</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Horizonte</div>
+        <div class="value">5 a 7 semanas para entregar</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTO -->
+<section class="section" id="contexto">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>01 · El punto de partida</span></div>
+    <p class="lede reveal reveal-d1">
+      Manufaktura <em>fabrica</em>. No revende. Salas, comedores, recámaras, piezas de madera con acabado industrial — hechas en taller propio en Zapopan, con clientes que conocen el producto y vuelven.
+    </p>
+    <div style="max-width: 54rem; margin-top: 2.5rem;">
+      <p class="p lg reveal reveal-d2">
+        El producto compite con marcas más caras y gana. El problema no está en lo que sale del taller — está en <strong style="color: var(--ink); font-weight: 500;">cómo lo cuenta el sitio web</strong>. Un WordPress con años encima, plantilla cansada, fotos de catálogo dispersas, y una experiencia que en celular se siente más vieja de lo que la marca realmente es.
+      </p>
+      <p class="p lg reveal reveal-d3">
+        La meta de esta propuesta: rediseñar y reconstruir el sitio para que, cuando alguien llegue desde Google, Instagram o referido, lo primero que sienta sea la misma calidad que siente al pisar el showroom.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section class="section section-surface" id="diagnostico">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>02 · Diagnóstico del sitio actual</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
+      Lo que <span class="italic-accent">se ve</span> hoy en manufakturamuebles.mx.
+    </h2>
+    <p class="p reveal reveal-d2" style="max-width: 46rem;">
+      Revisamos el sitio desde afuera — como llega un comprador potencial. De ahí salen los seis puntos que justifican una renovación completa, no un retoque cosmético.
+    </p>
+
+    <div class="findings">
+      <div class="finding reveal reveal-d1">
+        <div class="num">— 01</div>
+        <h4>Estética que envejeció antes que el producto</h4>
+        <p>La plantilla WordPress se nota: layout genérico, jerarquía visual plana, tipografía sin carácter. La pieza terminada tiene oficio. El sitio no lo refleja, y eso castiga el precio que la marca puede pedir online.</p>
+      </div>
+      <div class="finding reveal reveal-d2">
+        <div class="num">— 02</div>
+        <h4>Experiencia móvil pesada y lenta</h4>
+        <p>Más del 70% del tráfico de muebles llega por celular. El sitio actual carga lento, las imágenes no están optimizadas y la navegación en móvil obliga a hacer zoom o scroll incómodo. Pierde compradores antes de que vean producto.</p>
+      </div>
+      <div class="finding reveal reveal-d3">
+        <div class="num">— 03</div>
+        <h4>Catálogo sin arquitectura clara</h4>
+        <p>Salas, comedores, recámaras, decoración, outlet — están todos, pero la organización no guía. Un visitante que entra buscando "sala industrial" no tiene un camino claro. Las fichas de producto no destacan materiales, medidas ni la palabra clave: fabricado a la medida.</p>
+      </div>
+      <div class="finding reveal reveal-d4">
+        <div class="num">— 04</div>
+        <h4>Foto de producto heterogénea</h4>
+        <p>Conviven fotos viejas con fotos recientes, fondos distintos, luces distintas. Eso rompe el "sello de marca" visual que un sitio de muebles necesita para sentirse premium. El nuevo sitio puede arreglar parte vía diseño — el resto pide sesión fotográfica.</p>
+      </div>
+      <div class="finding reveal reveal-d5">
+        <div class="num">— 05</div>
+        <h4>No comunica que son fabricantes</h4>
+        <p>El diferencial real de Manufaktura — taller propio, fabricación a medida, oficio — no se ve en la home. Se mezcla con cualquier mueblería que solo revende. Una renovación bien hecha pone eso al frente desde el primer scroll.</p>
+      </div>
+      <div class="finding reveal reveal-d5">
+        <div class="num">— 06</div>
+        <h4>Conversión sin embudo</h4>
+        <p>No hay un camino claro hacia cotización, WhatsApp o visita al showroom. El botón existe pero está enterrado. Sin SEO local, sin pixel de Meta funcionando, sin formularios bien armados. Es decir: el tráfico que llega, se pierde.</p>
+      </div>
+    </div>
+
+    <!-- Antes / Después comparativa -->
+    <div class="vs">
+      <div class="vs-card before reveal reveal-d2">
+        <div class="tag">— Hoy</div>
+        <h4>Sitio que cumple, no que vende</h4>
+        <ul>
+          <li>Plantilla WordPress genérica con años de antigüedad</li>
+          <li>Carga lenta en móvil, imágenes sin optimizar</li>
+          <li>Navegación de catálogo sin jerarquía editorial</li>
+          <li>Diferencial "fabricante a medida" diluido en la home</li>
+          <li>Sin embudo claro hacia cotización o WhatsApp</li>
+          <li>SEO técnico mínimo, sin pixel ni analítica activa</li>
+        </ul>
+      </div>
+      <div class="vs-card after reveal reveal-d3">
+        <div class="tag">— Después de la renovación</div>
+        <h4>Sitio que se siente como el showroom</h4>
+        <ul>
+          <li>Diseño a medida con identidad propia y oficio visible</li>
+          <li>Mobile-first, carga rápida, imágenes en formato moderno</li>
+          <li>Catálogo organizado por ambiente y tipo de proyecto</li>
+          <li>"Fabricamos a la medida" como argumento central</li>
+          <li>WhatsApp y cotización accesibles en cada ficha</li>
+          <li>SEO local Zapopan/GDL + pixel + analítica configurados</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁNGULO -->
+<section class="section" id="angulo">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>03 · El ángulo de Sentido</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
+      Tres pilares para pasar de <span class="italic-accent">tener sitio</span> a <span class="italic-accent">tener vitrina</span>.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
+      La renovación no es cambiar colores ni mover botones. Es reconstruir el sitio desde cero con tres ideas que hoy faltan: una estética que iguale al producto, una experiencia que funcione donde la gente realmente compra (el celular), y un camino claro para convertir visita en cotización.
+    </p>
+
+    <div class="pillars">
+      <div class="pillar reveal reveal-d1">
+        <div class="num">— PILAR I</div>
+        <h4>Estética con oficio</h4>
+        <p>Diseño visual nuevo, hecho a medida — no plantilla. Tipografía editorial, paleta de madera y acero, fotografía protagonista. El sitio se ve y se siente como una marca de muebles seria, no como un catálogo de mueblería genérica.</p>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="num">— PILAR II</div>
+        <h4>Rendimiento real</h4>
+        <p>Reconstrucción técnica completa: tema custom, imágenes optimizadas (WebP, lazy loading), velocidad de carga bajo 3 segundos en móvil, SEO técnico al día. La velocidad ya no es bonito-tenerla — es lo primero que mide Google y lo primero que abandona el cliente.</p>
+      </div>
+      <div class="pillar reveal reveal-d3">
+        <div class="num">— PILAR III</div>
+        <h4>Camino a la venta</h4>
+        <p>Cada página empuja hacia una sola acción: cotizar por WhatsApp, agendar visita al showroom o pedir asesoría a medida. Botones visibles, formularios cortos, pixel de Meta y Google Analytics conectados desde el día uno para medir qué funciona.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA -->
+<section class="section section-surface" id="propuesta">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>04 · La propuesta</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
+      Un proyecto de <span class="italic-accent">renovación completa</span> del sitio web.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
+      No es un retoque al WordPress actual. Es rediseño visual + reconstrucción técnica + arquitectura de catálogo + configuración SEO/analítica. Entregamos un sitio nuevo, listo para recibir tráfico y convertirlo.
+    </p>
+
+    <div class="services">
+
+      <div class="service reveal reveal-d1">
+        <div class="service-head">
+          <span class="num">01</span>
+          Diseño
+        </div>
+        <div class="service-body">
+          <h3>Diseño visual a medida — identidad digital propia</h3>
+          <p>Diseñamos el sitio pieza por pieza. Nada de plantillas reutilizadas. Paleta inspirada en los materiales del taller (madera, acero, lino), tipografía editorial con peso, fotografía a pantalla completa, micro-animaciones discretas. El sitio se siente premium porque está diseñado como uno premium.</p>
+          <ul>
+            <li>Sistema visual completo: paleta, tipografía, iconografía, espaciados</li>
+            <li>Diseño mobile-first de todas las pantallas clave en Figma</li>
+            <li>Estilo editorial para fichas de producto y páginas de categoría</li>
+            <li>Plantillas base reutilizables para nuevos productos a futuro</li>
+            <li>Revisión y ajuste de identidad de marca si hace falta</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service reveal reveal-d2">
+        <div class="service-head">
+          <span class="num">02</span>
+          Desarrollo
+        </div>
+        <div class="service-body">
+          <h3>Reconstrucción técnica del sitio sobre WordPress moderno</h3>
+          <p>Mantenemos WordPress como CMS (no hay que migrar el catálogo ni perder URLs/SEO existentes), pero reemplazamos la plantilla por un tema desarrollado a medida. Optimización integral: velocidad, imágenes, código limpio, seguridad. Quedan administrables las páginas y productos desde el mismo panel de siempre.</p>
+          <ul>
+            <li>Tema WordPress custom desarrollado desde cero</li>
+            <li>Imágenes en WebP con lazy loading y CDN</li>
+            <li>Migración cuidadosa del catálogo existente (sin perder URLs)</li>
+            <li>Responsive perfecto en móvil, tablet y desktop</li>
+            <li>Compatibilidad con WooCommerce para ventas en línea futuras</li>
+            <li>Backup automático, SSL y endurecimiento de seguridad</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service reveal reveal-d3">
+        <div class="service-head">
+          <span class="num">03</span>
+          Catálogo
+        </div>
+        <div class="service-body">
+          <h3>Arquitectura del catálogo y fichas de producto</h3>
+          <p>Reorganizamos cómo navega el comprador. Categorías por ambiente (sala, comedor, recámara) y por estilo (industrial, rústico, contemporáneo). Fichas que sí cuentan lo que importa: materiales, medidas, opciones de tela/acabado, y un CTA grande para cotizar o pedir adaptación a medida.</p>
+          <ul>
+            <li>Estructura nueva de menú y categorías</li>
+            <li>Ficha de producto rediseñada con galería, ficha técnica y CTA</li>
+            <li>Página "Hecho a la medida" con proceso explicado</li>
+            <li>Sección de proyectos / showroom con fotografía hero</li>
+            <li>Buscador y filtros funcionales en catálogo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service reveal reveal-d4">
+        <div class="service-head">
+          <span class="num">04</span>
+          SEO + analítica
+        </div>
+        <div class="service-body">
+          <h3>SEO técnico, local y configuración de medición</h3>
+          <p>SEO técnico al día: sitemap, schema de producto, meta tags, redirecciones desde URLs actuales. SEO local enfocado a Zapopan y Guadalajara — "muebles a la medida Zapopan", "fábrica de muebles GDL". Instalamos pixel de Meta, Google Analytics 4 y Google Tag Manager para que cualquier campaña futura tenga datos desde el día uno.</p>
+          <ul>
+            <li>Auditoría SEO técnica + plan de redirecciones</li>
+            <li>Optimización on-page de las 20 páginas más importantes</li>
+            <li>Google Business Profile alineado al sitio nuevo</li>
+            <li>Meta Pixel, Google Analytics 4, Google Tag Manager</li>
+            <li>Schema markup de producto para resultados enriquecidos</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tecnología — escenario alterno -->
+    <h3 class="h-md reveal" style="margin-top: 4.5rem; margin-bottom: 0.75rem;">¿Y si en lugar de WordPress?</h3>
+    <p class="p reveal" style="max-width: 46rem; margin-bottom: 1rem;">
+      WordPress es el camino recomendado por continuidad (catálogo cargado, SEO ganado, equipo familiarizado). Pero si en el futuro Manufaktura quiere abrir e-commerce con checkout real, Shopify es la opción mejor pensada para eso. Lo dejamos sobre la mesa como decisión estratégica.
+    </p>
+
+    <div class="path-grid">
+      <div class="path recommended reveal reveal-d1">
+        <div class="path-tag">— Opción A · WordPress reconstruido</div>
+        <h4>Mismo CMS, sitio nuevo de cero</h4>
+        <p>Aprovecha todo lo ganado: catálogo existente, URLs con SEO, login conocido. Cambia el tema, el diseño, la velocidad — el resto se queda. Ideal para esta etapa.</p>
+        <ul>
+          <li>Sin migración de catálogo ni pérdida de SEO</li>
+          <li>Mismo panel de administración de siempre</li>
+          <li>Compatibilidad con WooCommerce cuando se quiera vender online</li>
+          <li>Plazo y costo menores</li>
+        </ul>
+        <div class="path-foot">
+          <span class="lbl">Inversión</span>
+          <span class="val">$45,000 MXN único</span>
+        </div>
+      </div>
+      <div class="path reveal reveal-d2">
+        <div class="path-tag">— Opción B · Migración a Shopify</div>
+        <h4>Plataforma pensada para vender</h4>
+        <p>Si la prioridad pasara a ser vender en línea con checkout, envíos y pagos integrados, Shopify es el estándar. Cambio mayor de plataforma — más alcance, más inversión.</p>
+        <ul>
+          <li>Checkout, pagos y envíos integrados desde el día uno</li>
+          <li>Apps maduras para reseñas, garantías, productos a medida</li>
+          <li>Sin dolores de mantenimiento técnico (no plugins, no updates)</li>
+          <li>Plazo y costo mayores · migración manual de catálogo</li>
+        </ul>
+        <div class="path-foot">
+          <span class="lbl">Inversión</span>
+          <span class="val">$65,000 MXN único</span>
+        </div>
+      </div>
+    </div>
+    <p class="p sm reveal" style="margin-top: 1.5rem; max-width: 46rem; color: var(--ink-muted);">
+      La cotización principal de esta propuesta es la <strong style="color: var(--ink);">Opción A · WordPress reconstruido</strong>. Si más adelante quieren mover el sitio a Shopify, se hace como segundo proyecto.
+    </p>
+
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section class="section" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>05 · Inversión</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
+      <span class="italic-accent">$45,000 MXN</span> únicos de desarrollo + opcional mensual de mantenimiento.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
+      Un pago único por la renovación completa del sitio. El mantenimiento mensual es opcional y se contrata sólo si Manufaktura quiere que Sentido siga viendo el sitio después de la entrega (actualizaciones, soporte, cambios de catálogo).
+    </p>
+
+    <!-- INVERSIÓN PRINCIPAL · DESARROLLO -->
+    <div class="invest-card featured reveal reveal-d1">
+      <div class="invest-head">
+        <div>
+          <h3>Renovación visual y técnica del sitio · Inversión única</h3>
+          <p class="sub">Diseño + desarrollo + arquitectura de catálogo + SEO técnico + configuración de medición. Entrega del sitio nuevo listo para operar.</p>
+        </div>
+        <div class="invest-price">
+          <div class="amount">$45,000</div>
+          <div class="cycle">MXN · Único</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
+      <div class="invest-items">
+        <div class="invest-item">
+          <div class="desc">Diseño visual a medida
+            <small>Sistema visual completo, mockups en Figma, plantillas base reutilizables</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Desarrollo del tema WordPress custom
+            <small>Tema desde cero, mobile-first, responsive, optimizado, compatibilidad WooCommerce</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Arquitectura del catálogo + fichas de producto
+            <small>Reorganización por ambiente y estilo, ficha técnica, página "Hecho a la medida"</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Migración del catálogo existente y URLs
+            <small>Conservación de SEO ganado, redirecciones 301, sin pérdida de tráfico</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">SEO técnico + local + configuración de medición
+            <small>Schema, sitemap, GBP, Meta Pixel, GA4, GTM listos para campañas futuras</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Pruebas, lanzamiento y capacitación
+            <small>QA cross-browser, despliegue en producción, sesión de entrenamiento al equipo</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+      </div>
+      <div class="invest-footer">
+        <strong>Pagos:</strong> 50% anticipo al iniciar · 30% al aprobar diseño · 20% a la entrega. <strong>Plazo:</strong> 5 a 7 semanas desde el anticipo. <strong>No incluye:</strong> hosting, dominio (ya activo del cliente), pauta publicitaria, fotografía nueva de producto.
+      </div>
+    </div>
+
+    <!-- MANTENIMIENTO MENSUAL OPCIONAL -->
+    <div class="invest-card reveal reveal-d2" style="margin-top: 1.5rem; border-color: var(--accent-soft);">
+      <div class="invest-head">
+        <div>
+          <h3>Mantenimiento mensual · Opcional</h3>
+          <p class="sub">Para que el sitio se mantenga al día después del lanzamiento. Actualizaciones, soporte, cambios menores, monitoreo. Contratable o no — el sitio funciona sin esto.</p>
+        </div>
+        <div class="invest-price">
+          <div class="amount">$4,500</div>
+          <div class="cycle">MXN / mes</div>
+          <div class="iva">+ IVA</div>
+        </div>
+      </div>
+      <div class="invest-items">
+        <div class="invest-item">
+          <div class="desc">Actualizaciones de WordPress, plugins y temas
+            <small>Seguridad al día, sin que el sitio se rompa por updates desatendidos</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Backup automático semanal y monitoreo de uptime
+            <small>Si algo se cae, Sentido lo detecta y lo levanta antes de que afecte ventas</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Cambios menores de contenido y catálogo
+            <small>Hasta 2 horas mensuales acumulables por trimestre — alta de productos, cambios de copy, ajustes</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Reporte mensual de tráfico, búsquedas y conversiones
+            <small>Lectura clara de Google Analytics + recomendaciones de mejora</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+      </div>
+      <div class="invest-footer">
+        <strong>Tarifa catálogo.</strong> Sin contrato forzoso — se puede activar o pausar mes a mes. Si en algún momento Manufaktura quiere correr Meta Ads o Google Ads, se cotiza aparte como add-on.
+      </div>
+    </div>
+
+    <!-- OPCIONALES -->
+    <h3 class="h-md reveal" style="margin-top: 4.5rem; margin-bottom: 1rem;">Opcionales — cuando sume valor</h3>
+    <p class="p reveal" style="max-width: 46rem;">
+      Servicios que no son parte del proyecto base pero que potencian el resultado. Cotizables aparte cuando la marca lo pida.
+    </p>
+    <div class="optional-grid">
+      <div class="optional reveal reveal-d1">
+        <div class="tag">Producción</div>
+        <h5>Sesión fotográfica de producto</h5>
+        <div class="price">$8,500 MXN <span class="iva">+ IVA / jornada</span></div>
+        <p>Jornada de fotografía en taller o showroom. 6–8 horas, 40–60 imágenes finales, retoque, formatos para sitio y redes. Recomendado para homogeneizar el catálogo y darle al sitio nuevo su sello visual desde el día uno.</p>
+      </div>
+      <div class="optional reveal reveal-d2">
+        <div class="tag">Producción</div>
+        <h5>Video institucional del taller</h5>
+        <div class="price">$12,000 MXN <span class="iva">+ IVA</span></div>
+        <p>Día completo de grabación en el taller. Pieza de 60s para home + 4 cortos de 15s para redes. Muestra el oficio detrás de cada mueble — lo que hoy no se cuenta y es el diferencial real.</p>
+      </div>
+      <div class="optional reveal reveal-d3">
+        <div class="tag">Pauta</div>
+        <h5>Gestión de Meta Ads / Google Ads</h5>
+        <div class="price">$5,000 MXN <span class="iva">+ IVA / mes</span></div>
+        <p>Gestión mensual de campañas. El presupuesto a la plataforma corre por cuenta de Manufaktura (sugerido: $8,000+ MXN/mes). Cuando el sitio nuevo esté arriba con pixel funcionando, la pauta sí mide y sí escala.</p>
+      </div>
+      <div class="optional reveal reveal-d4">
+        <div class="tag">Redes</div>
+        <h5>Gestión de Instagram + Facebook</h5>
+        <div class="price">Desde $8,000 MXN <span class="iva">+ IVA / mes</span></div>
+        <p>Plan editorial mensual: contenido, copywriting, gestión, reportes. Cotizable según volumen de publicaciones. Útil si Manufaktura quiere que el sitio nuevo no quede solo — sino con un ecosistema digital completo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTE -->
+<section class="section section-surface">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>06 · Cómo se ven las semanas</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
+      De anticipo a sitio en el aire en <span class="italic-accent">5 a 7 semanas</span>.
+    </h2>
+
+    <div class="horizon">
+      <div class="milestone reveal reveal-d1">
+        <div class="when">SEMANA 1 · Descubrimiento</div>
+        <h4>Kickoff y arquitectura</h4>
+        <p>Reunión inicial, acceso al sitio actual, revisión del catálogo. Definimos arquitectura de contenidos, mapa del sitio y referencias estéticas. Salimos con un brief firmado.</p>
+      </div>
+      <div class="milestone reveal reveal-d2">
+        <div class="when">SEMANAS 2–3 · Diseño</div>
+        <h4>Mockups en Figma</h4>
+        <p>Diseñamos home, página de categoría, ficha de producto, "Hecho a la medida", contacto y showroom. Una ronda de revisión y ajustes. Aprobación del diseño desbloquea el 30% del pago.</p>
+      </div>
+      <div class="milestone reveal reveal-d3">
+        <div class="when">SEMANAS 3–6 · Desarrollo</div>
+        <h4>Construcción del sitio</h4>
+        <p>Desarrollo del tema WordPress, migración del catálogo, integración de SEO, pixel y analítica. Sitio en ambiente de pruebas para que Manufaktura lo recorra antes del lanzamiento.</p>
+      </div>
+      <div class="milestone reveal reveal-d4">
+        <div class="when">SEMANA 7 · Lanzamiento</div>
+        <h4>Sitio en producción</h4>
+        <p>QA final, despliegue al dominio actual, redirecciones activas, capacitación al equipo. El sitio nuevo entra al aire. Pago final 20%. Empieza el mantenimiento mensual si se contrató.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="closing" id="cierre">
+  <div class="section-label reveal"><span class="dot"></span><span>Siguiente paso</span><span class="divider"></span></div>
+  <h2 class="reveal reveal-d1">
+    El taller ya hace muebles que valen. <em>Toca darles la vitrina que merecen.</em>
+  </h2>
+  <p class="reveal reveal-d2">
+    Cuando confirmen esta propuesta arrancamos con contrato y kickoff. En 5 a 7 semanas el sitio nuevo está en el aire — mismo dominio, mismo catálogo, pero con la cara que la marca debió tener desde hace años. Y listo para que cualquier campaña, referido o búsqueda en Google encuentre lo que de verdad hace Manufaktura.
+  </p>
+  <div class="signature reveal reveal-d3">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    <small>Sentido · Branding & Advertising · 2026</small>
+  </div>
+</section>
+
+<footer class="foot">
+  <div>
+    <a href="https://sentido.mx">sentido.mx</a> ·
+    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> ·
+    <a href="https://instagram.com/sentido.mx">@sentido.mx</a>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
