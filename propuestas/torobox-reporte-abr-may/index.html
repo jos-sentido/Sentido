@@ -114,11 +114,11 @@
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
   /* Sparkline timeline (simple flex) */
-  .timeline { display: flex; align-items: flex-end; gap: 4px; height: 130px; margin-top: 12px; }
-  .timeline .day { flex: 1; background: var(--panel-2); border-radius: 3px; position: relative; min-height: 4px; }
-  .timeline .day .b { background: var(--accent); border-radius: 3px; position: absolute; bottom: 0; left: 0; right: 0; min-height: 0; }
+  .timeline { display: flex; align-items: flex-end; gap: 5px; height: 220px; margin-top: 16px; padding: 0 4px; }
+  .timeline .day { flex: 1; background: var(--panel-2); border-radius: 4px; position: relative; min-height: 8px; }
+  .timeline .day .b { background: var(--accent); border-radius: 4px; position: absolute; bottom: 0; left: 0; right: 0; min-height: 0; box-shadow: 0 -2px 8px rgba(241,100,30,0.15); }
   .timeline .day .b[style*="height:0%"] { display: none; }
-  .timeline-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 6px; }
+  .timeline-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 8px; padding: 0 4px; }
 
   footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
   footer span { color: var(--text); }
@@ -183,36 +183,36 @@
 <div class="panel">
   <div class="timeline" id="timeline">
     <!-- 30 días · escala no-linear para que 1 lead tenga buen peso visual -->
-    <div class="day" title="19 abr · 1 lead"><div class="b" style="height:42%"></div></div>
-    <div class="day" title="20 abr · 1 lead"><div class="b" style="height:42%"></div></div>
+    <div class="day" title="19 abr · 1 lead"><div class="b" style="height:60%"></div></div>
+    <div class="day" title="20 abr · 1 lead"><div class="b" style="height:60%"></div></div>
     <div class="day" title="21 abr · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="22 abr · 0 leads"><div class="b" style="height:0%"></div></div>
-    <div class="day" title="23 abr · 2 leads"><div class="b" style="height:65%"></div></div>
+    <div class="day" title="23 abr · 2 leads"><div class="b" style="height:80%"></div></div>
     <div class="day" title="24 abr · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="25 abr · 0 leads"><div class="b" style="height:0%"></div></div>
-    <div class="day" title="26 abr · 1 lead"><div class="b" style="height:42%"></div></div>
+    <div class="day" title="26 abr · 1 lead"><div class="b" style="height:60%"></div></div>
     <div class="day" title="27 abr · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="28 abr · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="29 abr · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="30 abr · 0 leads"><div class="b" style="height:0%"></div></div>
-    <div class="day" title="1 may · 1 lead"><div class="b" style="height:42%"></div></div>
-    <div class="day" title="2 may · 2 leads"><div class="b" style="height:65%"></div></div>
+    <div class="day" title="1 may · 1 lead"><div class="b" style="height:60%"></div></div>
+    <div class="day" title="2 may · 2 leads"><div class="b" style="height:80%"></div></div>
     <div class="day" title="3 may · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="4 may · 0 leads"><div class="b" style="height:0%"></div></div>
-    <div class="day" title="5 may · 1 lead"><div class="b" style="height:42%"></div></div>
-    <div class="day" title="6 may · 2 leads"><div class="b" style="height:65%"></div></div>
-    <div class="day" title="7 may · 1 lead"><div class="b" style="height:42%"></div></div>
-    <div class="day" title="8 may · 1 lead"><div class="b" style="height:42%"></div></div>
+    <div class="day" title="5 may · 1 lead"><div class="b" style="height:60%"></div></div>
+    <div class="day" title="6 may · 2 leads"><div class="b" style="height:80%"></div></div>
+    <div class="day" title="7 may · 1 lead"><div class="b" style="height:60%"></div></div>
+    <div class="day" title="8 may · 1 lead"><div class="b" style="height:60%"></div></div>
     <div class="day" title="9 may · 0 leads"><div class="b" style="height:0%"></div></div>
     <div class="day" title="10 may · 0 leads"><div class="b" style="height:0%"></div></div>
-    <div class="day" title="11 may · 1 lead"><div class="b" style="height:42%"></div></div>
-    <div class="day" title="12 may · 3 leads"><div class="b" style="height:85%"></div></div>
-    <div class="day" title="13 may · 3 leads"><div class="b" style="height:85%"></div></div>
-    <div class="day" title="14 may · 1 lead"><div class="b" style="height:42%"></div></div>
+    <div class="day" title="11 may · 1 lead"><div class="b" style="height:60%"></div></div>
+    <div class="day" title="12 may · 3 leads"><div class="b" style="height:100%"></div></div>
+    <div class="day" title="13 may · 3 leads"><div class="b" style="height:100%"></div></div>
+    <div class="day" title="14 may · 1 lead"><div class="b" style="height:60%"></div></div>
     <div class="day" title="15 may · 0 leads"><div class="b" style="height:0%"></div></div>
-    <div class="day" title="16 may · 2 leads"><div class="b" style="height:65%"></div></div>
-    <div class="day" title="17 may · 1 lead"><div class="b" style="height:42%"></div></div>
-    <div class="day" title="18 may · 2 leads"><div class="b" style="height:65%"></div></div>
+    <div class="day" title="16 may · 2 leads"><div class="b" style="height:80%"></div></div>
+    <div class="day" title="17 may · 1 lead"><div class="b" style="height:60%"></div></div>
+    <div class="day" title="18 may · 2 leads"><div class="b" style="height:80%"></div></div>
   </div>
   <div class="timeline-labels">
     <span>19 abr</span><span>26 abr</span><span>3 may</span><span>10 may</span><span>18 may</span>
@@ -553,7 +553,7 @@
     <div class="day" title="2 may · 20 clics · $68"><div class="b" style="height:32%"></div></div>
     <div class="day" title="3 may · 22 clics · $62"><div class="b" style="height:35%"></div></div>
     <div class="day" title="4 may · 27 clics · $92"><div class="b" style="height:44%"></div></div>
-    <div class="day" title="5 may · 26 clics · $65"><div class="b" style="height:42%"></div></div>
+    <div class="day" title="5 may · 26 clics · $65"><div class="b" style="height:60%"></div></div>
     <div class="day" title="6 may · 47 clics · $105"><div class="b" style="height:76%"></div></div>
     <div class="day" title="7 may · 35 clics · $112"><div class="b" style="height:56%"></div></div>
     <div class="day" title="8 may · 48 clics · $200 ★ pico costo"><div class="b" style="height:77%; background:var(--accent-2);"></div></div>
