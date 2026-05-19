@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToroBox · Reporte de Insights de Leads · 19 abr – 19 may 2026</title>
+<style>
+  :root {
+    --bg: #0e1116;
+    --panel: #161b22;
+    --panel-2: #1c232c;
+    --line: #262d36;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #f1641e;
+    --accent-2: #ffb648;
+    --good: #3fb950;
+    --warn: #d29922;
+    --bad: #f85149;
+    --blue: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 32px 80px; }
+  header.report-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 36px;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .brand { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .brand strong { color: var(--accent); }
+  h1 { font-size: 32px; margin: 6px 0 0; font-weight: 600; letter-spacing: -0.01em; }
+  .head-meta { text-align: right; font-size: 13px; color: var(--muted); }
+  .head-meta strong { color: var(--text); display: block; font-size: 14px; }
+
+  h2 {
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin: 56px 0 16px; font-weight: 600;
+  }
+  h3 { font-size: 18px; margin: 0 0 8px; font-weight: 600; }
+  p { margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 13px; }
+
+  /* KPI grid */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .kpi {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 18px 16px;
+  }
+  .kpi .label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .kpi .value { font-size: 30px; font-weight: 600; margin-top: 4px; letter-spacing: -0.02em; }
+  .kpi .delta { font-size: 12px; margin-top: 4px; color: var(--muted); }
+  .kpi .delta.up { color: var(--good); }
+  .kpi .delta.down { color: var(--bad); }
+
+  /* Two-col panels */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px 22px 20px;
+  }
+
+  /* Horizontal bars */
+  .bar-row { display: grid; grid-template-columns: 130px 1fr 48px; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-row .lbl { font-size: 13px; color: var(--text); }
+  .bar-row .num { font-size: 13px; text-align: right; color: var(--muted); }
+  .bar-track { background: var(--panel-2); border-radius: 4px; height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+
+  /* Pipeline funnel */
+  .funnel { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+  .funnel-step {
+    display: grid; grid-template-columns: 180px 1fr 40px; align-items: center; gap: 10px;
+  }
+  .funnel-step .lbl { font-size: 13px; }
+  .funnel-step .num { font-size: 13px; text-align: right; }
+  .funnel-bar {
+    background: var(--panel-2); border-radius: 4px; height: 22px; position: relative; overflow: hidden;
+  }
+  .funnel-bar .fill { height: 100%; border-radius: 4px; }
+  .funnel-bar .fill.zero { background: repeating-linear-gradient(45deg, #1c232c, #1c232c 6px, #232c37 6px, #232c37 12px); width: 100% !important; opacity: 0.5; }
+
+  /* Insights */
+  .insight {
+    background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 10px; padding: 18px 22px; margin-bottom: 12px;
+  }
+  .insight.warn { border-left-color: var(--warn); }
+  .insight.bad { border-left-color: var(--bad); }
+  .insight.good { border-left-color: var(--good); }
+  .insight h3 { display: flex; align-items: center; gap: 10px; }
+  .tag {
+    display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 999px;
+    background: var(--panel-2); color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .tag.bad { background: rgba(248,81,73,0.12); color: var(--bad); }
+  .tag.warn { background: rgba(210,153,34,0.14); color: var(--accent-2); }
+  .tag.good { background: rgba(63,185,80,0.14); color: var(--good); }
+  .insight .action {
+    margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--text);
+  }
+  .insight .action strong { color: var(--accent); }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Sparkline timeline (simple flex) */
+  .timeline { display: flex; align-items: flex-end; gap: 3px; height: 70px; margin-top: 12px; }
+  .timeline .day { flex: 1; background: var(--panel-2); border-radius: 2px; position: relative; min-height: 2px; }
+  .timeline .day .b { background: var(--accent); border-radius: 2px; position: absolute; bottom: 0; left: 0; right: 0; }
+  .timeline-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 6px; }
+
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  footer span { color: var(--text); }
+
+  @media (max-width: 800px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .funnel-step { grid-template-columns: 130px 1fr 36px; }
+    .bar-row { grid-template-columns: 110px 1fr 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="report-head">
+  <div>
+    <div class="brand"><strong>ToroBox</strong> · Reporte de Insights</div>
+    <h1>Comportamiento de leads y desempeño del sitio web</h1>
+  </div>
+  <div class="head-meta">
+    <strong>Periodo: 19 abr – 19 may 2026</strong>
+    Fuente: GHL · Minibodegas ToroBox<br>
+    Sentido Branding &amp; Advertising · 19 mayo 2026
+  </div>
+</header>
+
+<p class="muted small" style="max-width:780px;">
+  Primera lectura de la estrategia digital cruzando cuatro fuentes: <strong>CRM (GHL)</strong>,
+  <strong>analítica del sitio (GA4)</strong>, <strong>Google Ads</strong> y <strong>Meta Ads</strong>.
+  El objetivo es validar de dónde están llegando los prospectos, qué quieren, dónde se está rompiendo
+  el embudo y cómo está rindiendo cada canal pagado antes de proponer la siguiente ola de optimizaciones.
+</p>
+
+<!-- ================== KPIs ================== -->
+<h2>Resumen ejecutivo · 30 días</h2>
+<div class="kpis">
+  <div class="kpi">
+    <div class="label">Leads nuevos</div>
+    <div class="value">26</div>
+    <div class="delta">≈ 0.87 leads / día · base de cuenta: 38</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Oportunidades creadas</div>
+    <div class="value">26</div>
+    <div class="delta">1 oportunidad por lead — pipeline en sintonía con CRM</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Pipeline GHL</div>
+    <div class="value" style="color: var(--accent-2);">Pausa</div>
+    <div class="delta">Activación pendiente · usuarios CRM no provisionados aún</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Google Ads · post 1 may</div>
+    <div class="value" style="color: var(--good);">48%</div>
+    <div class="delta up">▲ 10 leads en 18 días · campaña <code>intencion_gdl</code></div>
+  </div>
+</div>
+
+<!-- ================== Volumen por día ================== -->
+<h2>Velocidad de captura · leads por día</h2>
+<div class="panel">
+  <div class="timeline" id="timeline">
+    <!-- 30 días, alturas relativas (max=4 leads en un día) -->
+    <div class="day" title="19 abr · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="20 abr · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="21 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="22 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="23 abr · 2"><div class="b" style="height:50%"></div></div>
+    <div class="day" title="24 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="25 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="26 abr · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="27 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="28 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="29 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="30 abr · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="1 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="2 may · 2"><div class="b" style="height:50%"></div></div>
+    <div class="day" title="3 may · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="4 may · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="5 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="6 may · 2"><div class="b" style="height:50%"></div></div>
+    <div class="day" title="7 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="8 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="9 may · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="10 may · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="11 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="12 may · 3"><div class="b" style="height:75%"></div></div>
+    <div class="day" title="13 may · 3"><div class="b" style="height:75%"></div></div>
+    <div class="day" title="14 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="15 may · 0"><div class="b" style="height:0%"></div></div>
+    <div class="day" title="16 may · 2"><div class="b" style="height:50%"></div></div>
+    <div class="day" title="17 may · 1"><div class="b" style="height:25%"></div></div>
+    <div class="day" title="18 may · 2"><div class="b" style="height:50%"></div></div>
+  </div>
+  <div class="timeline-labels">
+    <span>19 abr</span><span>26 abr</span><span>3 may</span><span>10 may</span><span>18 may</span>
+  </div>
+  <p class="muted small" style="margin-top:14px;">
+    Captura desigual los primeros 15 días (varios huecos de 2–4 días sin leads) y una clara aceleración
+    a partir del 11 de mayo, sostenida en las últimas dos semanas.
+  </p>
+</div>
+
+<!-- ================== Fuente y sucursal ================== -->
+<h2>Distribución de leads · fuente y sucursal</h2>
+<div class="grid-2">
+  <div class="panel">
+    <h3>Por canal real de adquisición</h3>
+    <p class="muted small">26 leads · cruzando UTMs + attributionSource de cada contacto</p>
+
+    <div class="bar-row">
+      <div class="lbl">Google Ads · <code style="font-size:11px;">intencion_gdl</code></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">10</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Form Web · directo/orgánico</div>
+      <div class="bar-track"><div class="bar-fill" style="width:80%; background: var(--accent-2);"></div></div>
+      <div class="num">8</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Instagram · DM directo</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%; background: var(--blue);"></div></div>
+      <div class="num">4</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Facebook · DM directo</div>
+      <div class="bar-track"><div class="bar-fill" style="width:30%; background: #4d7fcf;"></div></div>
+      <div class="num">3</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Instagram · Form Web</div>
+      <div class="bar-track"><div class="bar-fill" style="width:10%; background: var(--blue); opacity:0.6;"></div></div>
+      <div class="num">1</div>
+    </div>
+    <p class="small" style="margin-top:14px;">
+      <strong style="color: var(--accent);">Google Ads ya es el canal #1.</strong> La campaña
+      <code>intencion_gdl</code> arrancó el 1 de mayo: desde entonces ha aportado 10 de los 21 leads
+      capturados (<strong>48% post-activación</strong>) y todos llegan calificados con sucursal,
+      tamaño y plazo. Antes del 1 de mayo, 100% era tráfico orgánico/directo.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Sucursal de interés</h3>
+    <p class="muted small">Sólo los 17 leads con campo "sucursal" capturado</p>
+
+    <div class="bar-row">
+      <div class="lbl">Av. Vallarta</div>
+      <div class="bar-track"><div class="bar-fill" style="width:90%; background: var(--accent);"></div></div>
+      <div class="num">9</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Zona Real</div>
+      <div class="bar-track"><div class="bar-fill" style="width:50%; background: var(--accent-2);"></div></div>
+      <div class="num">5</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Punto Sur</div>
+      <div class="bar-track"><div class="bar-fill" style="width:30%; background: var(--blue);"></div></div>
+      <div class="num">3</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Bucerías</div>
+      <div class="bar-track"><div class="bar-fill" style="width:1%; background: var(--muted);"></div></div>
+      <div class="num">0</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Sin asignar</div>
+      <div class="bar-track"><div class="bar-fill" style="width:90%; background: #3a4350;"></div></div>
+      <div class="num">9</div>
+    </div>
+    <p class="muted small" style="margin-top:14px;">
+      Vallarta concentra más de la mitad de la demanda calificada. Bucerías no recibió un solo lead
+      en 30 días — banderazo para revisar pauta local y SEO de esa sucursal.
+    </p>
+  </div>
+</div>
+
+<!-- ================== Desempeño del sitio web ================== -->
+<h2>Desempeño del sitio web · GA4</h2>
+<p class="muted small" style="margin-top:-8px;">Datos extraídos de Google Analytics 4 · ventana: 21 abr – 18 may 2026 (28 días, alineado con el periodo del reporte).</p>
+
+<div class="kpis" style="margin-top: 12px;">
+  <div class="kpi">
+    <div class="label">Usuarios activos</div>
+    <div class="value">399</div>
+    <div class="delta">≈ 14 usuarios/día · 99% son usuarios nuevos</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Sesiones</div>
+    <div class="value">~473</div>
+    <div class="delta">1.18 sesiones por usuario · baja recurrencia</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Tasa de conversión global</div>
+    <div class="value" style="color: var(--good);">4.8%</div>
+    <div class="delta up">▲ 19 leads form / 399 usuarios · benchmark sano para self-storage</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Engagement promedio</div>
+    <div class="value">41.5s</div>
+    <div class="delta">Bajo · objetivo a 60-90s con mejor contenido above-the-fold</div>
+  </div>
+</div>
+
+<div class="grid-2" style="margin-top: 18px;">
+  <div class="panel">
+    <h3>Adquisición · de dónde llegan los usuarios</h3>
+    <p class="muted small">Primera fuente / medio · 399 usuarios totales</p>
+
+    <div class="bar-row">
+      <div class="lbl">Google · CPC (Ads)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">256</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Google · Orgánico</div>
+      <div class="bar-track"><div class="bar-fill" style="width:32%; background: var(--good);"></div></div>
+      <div class="num">83</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Directo · sin referrer</div>
+      <div class="bar-track"><div class="bar-fill" style="width:18%; background: var(--accent-2);"></div></div>
+      <div class="num">46</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Facebook · referral</div>
+      <div class="bar-track"><div class="bar-fill" style="width:3%; background: var(--blue);"></div></div>
+      <div class="num">5</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Linktree / Owned</div>
+      <div class="bar-track"><div class="bar-fill" style="width:2%; background: var(--muted);"></div></div>
+      <div class="num">3</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Otros (Bing, Yahoo, IG)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:2%; background: var(--muted);"></div></div>
+      <div class="num">6</div>
+    </div>
+    <p class="small" style="margin-top:14px;">
+      <strong style="color: var(--accent);">64% del tráfico viene de Google Ads</strong> y 21% de orgánico — el sitio
+      depende fuertemente de Google. Meta (FB+IG referral) trae apenas 6 usuarios al sitio: el grueso
+      de la presencia social ocurre <em>dentro</em> de las plataformas (DMs), no manda tráfico a la web.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Páginas más visitadas · top 10</h3>
+    <p class="muted small">Vistas · usuarios únicos · % rebote</p>
+
+    <table style="font-size:12px;">
+      <thead><tr><th>Página</th><th class="num">Vistas</th><th class="num">Usuarios</th><th class="num">Rebote</th></tr></thead>
+      <tbody>
+        <tr><td>Home (es)</td><td class="num">307</td><td class="num">236</td><td class="num">45%</td></tr>
+        <tr><td>Home (alt)</td><td class="num">243</td><td class="num">142</td><td class="num">38%</td></tr>
+        <tr style="background:rgba(63,185,80,0.08);"><td>Tamaños de Mini Bodegas</td><td class="num">75</td><td class="num">49</td><td class="num" style="color:var(--good);">13%</td></tr>
+        <tr style="background:rgba(63,185,80,0.08);"><td>Contacto / Cotiza</td><td class="num">69</td><td class="num">30</td><td class="num" style="color:var(--good);">23%</td></tr>
+        <tr><td>Sucursales</td><td class="num">47</td><td class="num">33</td><td class="num">13%</td></tr>
+        <tr><td>Sucursales (alt)</td><td class="num">42</td><td class="num">29</td><td class="num">9%</td></tr>
+        <tr><td>Qué puedes guardar</td><td class="num">24</td><td class="num">17</td><td class="num">0%</td></tr>
+        <tr><td>Sucursal Vallarta</td><td class="num">21</td><td class="num">12</td><td class="num">25%</td></tr>
+        <tr><td>Calculadora de espacio</td><td class="num">18</td><td class="num">14</td><td class="num">25%</td></tr>
+        <tr><td>Sucursal Punto Sur</td><td class="num">11</td><td class="num">7</td><td class="num">40%</td></tr>
+      </tbody>
+    </table>
+    <p class="small" style="margin-top:10px;">
+      <strong>"Tamaños"</strong> y <strong>"Contacto"</strong> son las páginas top de engagement
+      (rebote &lt;25%). Son el corazón del funnel y están haciendo el trabajo.
+      <strong>Calculadora de Espacio</strong> está subutilizada (apenas 18 vistas).
+    </p>
+  </div>
+</div>
+
+<div class="grid-2" style="margin-top: 18px;">
+  <div class="panel">
+    <h3>Tráfico por sucursal · página de sucursal vista</h3>
+    <p class="muted small">Suma de variantes en español + dominio canónico</p>
+
+    <div class="bar-row">
+      <div class="lbl">Av. Vallarta</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">33</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Punto Sur</div>
+      <div class="bar-track"><div class="bar-fill" style="width:55%; background: var(--accent-2);"></div></div>
+      <div class="num">18</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Zona Real</div>
+      <div class="bar-track"><div class="bar-fill" style="width:48%; background: var(--blue);"></div></div>
+      <div class="num">16</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Bucerías</div>
+      <div class="bar-track"><div class="bar-fill" style="width:21%; background: var(--bad);"></div></div>
+      <div class="num">7</div>
+    </div>
+    <p class="small" style="margin-top:14px;">
+      Bucerías recibe la cuarta parte del tráfico de Vallarta. Confirma el insight de leads:
+      <strong>el problema no es el seguimiento, es la captura de demanda</strong>. Hay que llevarles tráfico.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Geo · ciudades top</h3>
+    <p class="muted small">Usuarios por ciudad · top 8 + concentración</p>
+
+    <div class="bar-row">
+      <div class="lbl">Guadalajara</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">77</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Ciudad de México</div>
+      <div class="bar-track"><div class="bar-fill" style="width:87%; background: var(--accent-2);"></div></div>
+      <div class="num">67</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Zapopan</div>
+      <div class="bar-track"><div class="bar-fill" style="width:69%; background: var(--accent);"></div></div>
+      <div class="num">53</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">León</div>
+      <div class="bar-track"><div class="bar-fill" style="width:9%; background: var(--blue);"></div></div>
+      <div class="num">7</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Culiacán / S. Agustín / Tonalá</div>
+      <div class="bar-track"><div class="bar-fill" style="width:8%; background: var(--blue);"></div></div>
+      <div class="num">6 c/u</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Monterrey / Morelia / Tlaquepaque</div>
+      <div class="bar-track"><div class="bar-fill" style="width:6%; background: var(--muted);"></div></div>
+      <div class="num">5 c/u</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Puerto Vallarta / Bucerías</div>
+      <div class="bar-track"><div class="bar-fill" style="width:5%; background: var(--bad);"></div></div>
+      <div class="num">3 + 1</div>
+    </div>
+    <p class="small" style="margin-top:14px;">
+      <strong style="color: var(--accent-2);">17% del tráfico viene de CDMX</strong> — un dato inesperado.
+      Sugiere demanda inter-ciudad (mudanzas hacia GDL, B2B con sede en CDMX, o gente con propiedades en Jalisco).
+      Vale la pena explorar una landing o copy dedicado a este segmento.
+    </p>
+  </div>
+</div>
+
+<div class="panel" style="margin-top: 18px;">
+  <h3>Funnel completo · de visita a lead</h3>
+  <div class="funnel" style="margin-top: 10px;">
+    <div class="funnel-step">
+      <div class="lbl">Visitas al sitio</div>
+      <div class="funnel-bar"><div class="fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">399</div>
+    </div>
+    <div class="funnel-step">
+      <div class="lbl">Vieron "Contacto/Cotiza"</div>
+      <div class="funnel-bar"><div class="fill" style="width:8%; background: var(--accent-2);"></div></div>
+      <div class="num">30</div>
+    </div>
+    <div class="funnel-step">
+      <div class="lbl">Leads en CRM (form)</div>
+      <div class="funnel-bar"><div class="fill" style="width:5%; background: var(--good);"></div></div>
+      <div class="num">19</div>
+    </div>
+  </div>
+  <p class="small" style="margin-top:14px;">
+    De cada 100 visitas al sitio, ~8 llegan a la página de contacto y ~5 envían el formulario.
+    <strong>El cuello de botella está arriba del funnel</strong>: solo 7.5% de los visitantes
+    llega a la página de contacto. Una vez ahí, el <strong>63% convierte</strong> — la página
+    de contacto está bien optimizada. La oportunidad es traer al usuario a esa página más rápido
+    (CTAs más visibles desde home y páginas de sucursal).
+  </p>
+</div>
+
+<!-- ================== Google Ads ================== -->
+<h2>Google Ads · desempeño de la campaña activa</h2>
+<p class="muted small" style="margin-top:-8px;">
+  Periodo del export: 19 abr – 18 may 2026 (30 días, campaña activa desde el 23 abr) ·
+  campaña <strong>"TB — C1 Intención GDL"</strong> (la <code>intencion_gdl</code> que vimos en los UTMs).
+</p>
+
+<div class="kpis" style="margin-top: 12px;">
+  <div class="kpi">
+    <div class="label">Inversión total</div>
+    <div class="value">$2,350</div>
+    <div class="delta">MXN · ≈ $90 MXN/día (26 días activos)</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Impresiones / Clics</div>
+    <div class="value">10.4K</div>
+    <div class="delta">773 clics totales · 26 días</div>
+  </div>
+  <div class="kpi">
+    <div class="label">CTR / CPC</div>
+    <div class="value" style="color: var(--good);">7.41%</div>
+    <div class="delta up">▲ CPC $3.04 MXN · CTR alto = intención de búsqueda real</div>
+  </div>
+  <div class="kpi">
+    <div class="label">CPL · lead calificado</div>
+    <div class="value" style="color: var(--good);">$235</div>
+    <div class="delta">10 leads form con sucursal, tamaño y plazo completos</div>
+  </div>
+</div>
+
+<div class="panel" style="margin-top: 18px;">
+  <h3>Curva de aprendizaje · clics y costo diario</h3>
+  <p class="muted small">El algoritmo aprende: en las 2 últimas semanas el CPC bajó a la mitad y los clics se duplicaron.</p>
+
+  <div class="timeline" style="height: 100px;">
+    <!-- Empieza 23 abr, máximo clics ≈ 62 -->
+    <div class="day" title="19 abr · 0 clics"><div class="b" style="height:0%; background: var(--muted);"></div></div>
+    <div class="day" title="20 abr · 0 clics"><div class="b" style="height:0%; background: var(--muted);"></div></div>
+    <div class="day" title="21 abr · 0 clics"><div class="b" style="height:0%; background: var(--muted);"></div></div>
+    <div class="day" title="22 abr · 0 clics"><div class="b" style="height:0%; background: var(--muted);"></div></div>
+    <div class="day" title="23 abr · 15 clics · $96"><div class="b" style="height:24%"></div></div>
+    <div class="day" title="24 abr · 17 clics · $104"><div class="b" style="height:27%"></div></div>
+    <div class="day" title="25 abr · 24 clics · $109"><div class="b" style="height:39%"></div></div>
+    <div class="day" title="26 abr · 21 clics · $88"><div class="b" style="height:34%"></div></div>
+    <div class="day" title="27 abr · 21 clics · $76"><div class="b" style="height:34%"></div></div>
+    <div class="day" title="28 abr · 17 clics · $56"><div class="b" style="height:27%"></div></div>
+    <div class="day" title="29 abr · 18 clics · $60"><div class="b" style="height:29%"></div></div>
+    <div class="day" title="30 abr · 18 clics · $68"><div class="b" style="height:29%"></div></div>
+    <div class="day" title="1 may · 31 clics · $97"><div class="b" style="height:50%"></div></div>
+    <div class="day" title="2 may · 20 clics · $68"><div class="b" style="height:32%"></div></div>
+    <div class="day" title="3 may · 22 clics · $62"><div class="b" style="height:35%"></div></div>
+    <div class="day" title="4 may · 27 clics · $92"><div class="b" style="height:44%"></div></div>
+    <div class="day" title="5 may · 26 clics · $65"><div class="b" style="height:42%"></div></div>
+    <div class="day" title="6 may · 47 clics · $105"><div class="b" style="height:76%"></div></div>
+    <div class="day" title="7 may · 35 clics · $112"><div class="b" style="height:56%"></div></div>
+    <div class="day" title="8 may · 48 clics · $200 ★ pico costo"><div class="b" style="height:77%; background:var(--accent-2);"></div></div>
+    <div class="day" title="9 may · 25 clics · $134"><div class="b" style="height:40%"></div></div>
+    <div class="day" title="10 may · 62 clics · $110 ★ pico clics"><div class="b" style="height:100%; background:var(--good);"></div></div>
+    <div class="day" title="11 may · 14 clics · $74"><div class="b" style="height:23%"></div></div>
+    <div class="day" title="12 may · 36 clics · $94"><div class="b" style="height:58%"></div></div>
+    <div class="day" title="13 may · 44 clics · $88"><div class="b" style="height:71%"></div></div>
+    <div class="day" title="14 may · 56 clics · $99"><div class="b" style="height:90%"></div></div>
+    <div class="day" title="15 may · 32 clics · $67"><div class="b" style="height:52%"></div></div>
+    <div class="day" title="16 may · 30 clics · $66"><div class="b" style="height:48%"></div></div>
+    <div class="day" title="17 may · 31 clics · $70"><div class="b" style="height:50%"></div></div>
+    <div class="day" title="18 may · 36 clics · $90"><div class="b" style="height:58%"></div></div>
+  </div>
+  <div class="timeline-labels">
+    <span>19 abr</span><span>26 abr</span><span>3 may</span><span>10 may</span><span>18 may</span>
+  </div>
+  <p class="small" style="margin-top:14px;">
+    <strong style="color: var(--good);">CPC bajó de $6.43 (23 abr) a $1.78 (10 may)</strong>,
+    72% menos en 17 días. El algoritmo está identificando mejor a la audiencia que convierte
+    y los clics se duplicaron. Esta es la señal típica de una campaña madurando bien.
+  </p>
+</div>
+
+<!-- ================== Meta Ads ================== -->
+<h2>Meta Ads · desempeño de la campaña activa</h2>
+<p class="muted small" style="margin-top:-8px;">
+  Periodo del export: 5 – 18 may 2026 (14 días) · campaña <strong>"GDL — Clientes Potenciales web"</strong>
+  con 6 anuncios activos (1 dominante).
+</p>
+
+<div class="kpis" style="margin-top: 12px;">
+  <div class="kpi">
+    <div class="label">Inversión total</div>
+    <div class="value">$937.58</div>
+    <div class="delta">MXN · ~$67 MXN/día promedio</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Impresiones / Alcance</div>
+    <div class="value">9.6K</div>
+    <div class="delta">≈ 6,675 personas alcanzadas · frecuencia 1.45 prom</div>
+  </div>
+  <div class="kpi">
+    <div class="label">CTR / CPC</div>
+    <div class="value" style="color: var(--good);">2.98%</div>
+    <div class="delta up">▲ 288 clics · CPC $3.26 MXN (muy barato)</div>
+  </div>
+  <div class="kpi">
+    <div class="label">CPL estimado (Meta)</div>
+    <div class="value" style="color: var(--accent-2);">~$117</div>
+    <div class="delta">8 leads sociales atribuibles · medición de conversión a configurar</div>
+  </div>
+</div>
+
+<div class="grid-2" style="margin-top: 18px;">
+  <div class="panel">
+    <h3>Desglose por anuncio</h3>
+    <p class="muted small">Ordenado por gasto · una sola creatividad concentra el presupuesto</p>
+
+    <table style="font-size:12px;">
+      <thead>
+        <tr>
+          <th>Anuncio</th><th class="num">Gasto</th><th class="num">Imp.</th><th class="num">Clics</th><th class="num">CTR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(241,100,30,0.08);">
+          <td><strong>Copia</strong> (dominante)</td><td class="num">$802</td><td class="num">8,314</td><td class="num">235</td><td class="num">2.83%</td>
+        </tr>
+        <tr><td>Copia 4</td><td class="num">$63</td><td class="num">620</td><td class="num">17</td><td class="num">2.74%</td></tr>
+        <tr><td>Copia (var.)</td><td class="num">$36</td><td class="num">204</td><td class="num">16</td><td class="num">7.84%</td></tr>
+        <tr><td>Original</td><td class="num">$22</td><td class="num">294</td><td class="num">11</td><td class="num">3.74%</td></tr>
+        <tr><td>Copia 3</td><td class="num">$8</td><td class="num">97</td><td class="num">9</td><td class="num">9.28%</td></tr>
+        <tr><td>Copia 2</td><td class="num">$7</td><td class="num">119</td><td class="num">0</td><td class="num">0%</td></tr>
+      </tbody>
+    </table>
+    <p class="small" style="margin-top:10px;">
+      <strong>86% del gasto vive en un solo anuncio.</strong> Las variantes con CTR superior
+      (Copia var. 7.84%, Copia 3 9.28%) están infra-entregadas — vale la pena darles más presupuesto
+      o pausarlas para enfocar el aprendizaje.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Calidad del anuncio dominante</h3>
+    <p class="muted small">Diagnóstico de Meta · benchmark contra otros anunciantes en mismo objetivo</p>
+
+    <div class="bar-row">
+      <div class="lbl">Calidad</div>
+      <div class="bar-track"><div class="bar-fill" style="width:50%; background: var(--accent-2);"></div></div>
+      <div class="num small" style="text-align:right;">Promedio</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">% Interacción</div>
+      <div class="bar-track"><div class="bar-fill" style="width:75%; background: var(--good);"></div></div>
+      <div class="num small" style="text-align:right; color:var(--good);">▲ Sobre promedio</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">% Conversiones</div>
+      <div class="bar-track"><div class="bar-fill" style="width:50%; background: var(--accent-2);"></div></div>
+      <div class="num small" style="text-align:right;">Promedio</div>
+    </div>
+
+    <table style="font-size:12px; margin-top:14px;">
+      <tbody>
+        <tr><td class="muted">Frecuencia actual</td><td class="num"><strong>1.50</strong></td></tr>
+        <tr><td class="muted">Alcance único</td><td class="num">5,544</td></tr>
+        <tr><td class="muted">CPM</td><td class="num">$96.48</td></tr>
+        <tr><td class="muted">CPC del anuncio</td><td class="num">$3.41</td></tr>
+        <tr><td class="muted">Atribución</td><td class="num small">7d clic / 1d view</td></tr>
+      </tbody>
+    </table>
+    <p class="small" style="margin-top:10px;">
+      Engagement por arriba del promedio confirma que el creativo conecta. Frecuencia 1.50 todavía sana
+      pero acercándose al rango (1.8-2.0) donde conviene refrescar creatividad para no fatigar audiencia.
+    </p>
+  </div>
+</div>
+
+<div class="panel" style="margin-top: 18px; border-left: 3px solid var(--bad);">
+  <h3>⚠ Medición de conversiones · gap entre Meta y GA4</h3>
+  <p class="small">
+    Meta reporta <strong>288 clics</strong> a la web en los 14 días, pero GA4 solo registra
+    <strong>5 sesiones</strong> con fuente <code>facebook.com / referral</code> en el mismo periodo.
+    El 98% de los clics no se está atribuyendo correctamente al lado del sitio.
+  </p>
+  <p class="small" style="margin-top:8px; margin-bottom:0;">
+    <strong>Hipótesis más probable:</strong> los anuncios no llevan parámetros UTM en el URL final (o el píxel
+    de Meta está mal configurado en el sitio), por lo que el tráfico llega como "directo" o
+    no se mide. Esto coincide con los 46 usuarios "(direct) / (none)" que vimos en GA4 — parte
+    de ellos probablemente son clics de Meta. Como confirma el usuario: la medición no quedó bien
+    y la campaña actualmente está optimizando para tráfico, no para conversión.
+  </p>
+</div>
+
+<!-- ================== Calidad de los leads ================== -->
+<h2>Calidad y perfil de los leads</h2>
+<div class="grid-2">
+  <div class="panel">
+    <h3>Tamaño de bodega solicitado</h3>
+    <p class="muted small">19 leads · resto sin capturar el campo</p>
+
+    <div class="bar-row">
+      <div class="lbl">1.75 m² (chico)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:80%; background: var(--accent);"></div></div>
+      <div class="num">4</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">3.5 m²</div>
+      <div class="bar-track"><div class="bar-fill" style="width:80%; background: var(--accent);"></div></div>
+      <div class="num">4</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">7 m²</div>
+      <div class="bar-track"><div class="bar-fill" style="width:60%; background: var(--accent-2);"></div></div>
+      <div class="num">3</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">9–11 m²</div>
+      <div class="bar-track"><div class="bar-fill" style="width:60%; background: var(--accent-2);"></div></div>
+      <div class="num">3</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">15 m²</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%; background: var(--blue);"></div></div>
+      <div class="num">1</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">30 m² (grande)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%; background: var(--blue);"></div></div>
+      <div class="num">1</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Necesita asesoría</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%; background: var(--muted);"></div></div>
+      <div class="num">1</div>
+    </div>
+    <p class="muted small" style="margin-top:14px;">
+      <strong>74% de los leads piden bodegas chicas (≤7 m²)</strong>: perfil residencial / uso esporádico.
+      El segmento empresarial (15 m²+) es marginal en este periodo.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Plazo de contrato deseado</h3>
+    <p class="muted small">19 leads · resto sin capturar el campo</p>
+
+    <div class="bar-row">
+      <div class="lbl">Mensual</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">10</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">3 – 6 meses</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%; background: var(--accent-2);"></div></div>
+      <div class="num">4</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">7+ meses</div>
+      <div class="bar-track"><div class="bar-fill" style="width:10%; background: var(--blue);"></div></div>
+      <div class="num">1</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Anualidad</div>
+      <div class="bar-track"><div class="bar-fill" style="width:10%; background: var(--blue);"></div></div>
+      <div class="num">1</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Necesita asesoría</div>
+      <div class="bar-track"><div class="bar-fill" style="width:30%; background: var(--muted);"></div></div>
+      <div class="num">3</div>
+    </div>
+    <p class="muted small" style="margin-top:14px;">
+      <strong>53% busca contrato mensual</strong>, sólo 11% (2 leads) explora plazo largo. Implica
+      LTV menor por contrato pero más rotación — el mensaje publicitario está atrayendo al perfil
+      flexible, no al empresarial de plazo largo.
+    </p>
+  </div>
+</div>
+
+<!-- ================== Pipeline ================== -->
+<h2>Estado del pipeline de ventas · contexto operativo</h2>
+<div class="panel" style="border-left: 3px solid var(--warn);">
+  <p class="small" style="margin-top:0;">
+    Pipeline configurado: <strong>ToroBox — Pipeline de Ventas</strong> · 5 etapas activas.
+    Snapshot de las 26 oportunidades creadas en el periodo:
+  </p>
+
+  <div class="funnel">
+    <div class="funnel-step">
+      <div class="lbl">Nuevo Lead</div>
+      <div class="funnel-bar"><div class="fill" style="width:100%; background: var(--accent);"></div></div>
+      <div class="num">26</div>
+    </div>
+    <div class="funnel-step">
+      <div class="lbl">Contactado</div>
+      <div class="funnel-bar"><div class="fill zero"></div></div>
+      <div class="num">—</div>
+    </div>
+    <div class="funnel-step">
+      <div class="lbl">Cotización enviada</div>
+      <div class="funnel-bar"><div class="fill zero"></div></div>
+      <div class="num">—</div>
+    </div>
+    <div class="funnel-step">
+      <div class="lbl">Visita agendada</div>
+      <div class="funnel-bar"><div class="fill zero"></div></div>
+      <div class="num">—</div>
+    </div>
+    <div class="funnel-step">
+      <div class="lbl">Contrato firmado</div>
+      <div class="funnel-bar"><div class="fill zero"></div></div>
+      <div class="num">—</div>
+    </div>
+  </div>
+
+  <p class="small" style="margin-top:18px;">
+    <strong style="color: var(--accent-2);">⚠ Importante para leer estos números correctamente:</strong>
+    el pipeline de GHL <em>aún no está activo operativamente</em>. Hoy todos los leads del sitio web
+    se enrutan por correo electrónico directo a la sucursal correspondiente, y son las sucursales
+    quienes les dan seguimiento fuera de GHL. La actualización de etapas en el CRM está
+    <strong>pendiente de que ToroBox proporcione la información de los usuarios</strong> para
+    provisionar accesos al CRM.
+  </p>
+  <p class="muted small" style="margin-top:8px; margin-bottom:0;">
+    Por eso este reporte se enfoca en <em>captura y calidad de leads</em>, no en conversión.
+    Una vez activado el pipeline, podremos empatar estos volúmenes con tasa de contacto, cotización
+    y cierre real por sucursal.
+  </p>
+</div>
+
+<!-- ================== Insights accionables ================== -->
+<h2>Insights accionables · qué hacer con esto</h2>
+
+<div class="insight warn">
+  <h3>1. Activación del pipeline en GHL · pendiente del cliente <span class="tag warn">En espera</span></h3>
+  <p>Hoy los leads se enrutan por correo a cada sucursal y el seguimiento ocurre fuera de GHL. La
+  activación del pipeline está detenida porque ToroBox aún no nos ha entregado los datos para
+  provisionar usuarios del CRM. No es un problema de seguimiento — es un pendiente conocido que
+  bloquea poder medir conversión real.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> dar seguimiento puntual al cliente para destrabar la entrega
+    de información de usuarios. Una vez recibida, configurar accesos y, en paralelo, dejar listo
+    el workflow que automatice el avance de etapa cuando se reciba el correo de la sucursal
+    (para no depender 100% de actualización manual).
+  </div>
+</div>
+
+<div class="insight good">
+  <h3>2. Google Ads ya es el motor principal de leads <span class="tag good">Hallazgo clave</span></h3>
+  <p>La campaña <code>intencion_gdl</code> arrancó el 1 de mayo y en 18 días ha generado
+  <strong>10 leads (48% de la captura post-activación)</strong>. Todos llegan con sucursal,
+  tamaño y plazo capturados — es el canal con mejor calidad de información hasta ahora.
+  Distribución por sucursal: Vallarta 5 · Zona Real 3 · Punto Sur 2 · Bucerías 0.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> mantener y escalar inversión en <code>intencion_gdl</code>;
+    abrir variante geo-segmentada para Bucerías que hoy no captura nada por Ads;
+    empezar a medir CPL real (costo por lead) cruzando con el reporte de Google Ads.
+  </div>
+</div>
+
+<div class="insight warn">
+  <h3>2b. 31% del tráfico web sigue sin atribución <span class="tag warn">Pendiente técnico</span></h3>
+  <p>De los 26 leads, <strong>8 llegan por Form Web sin UTMs</strong> (directo, orgánico, o referidos
+  internos sin tagging). Todos son anteriores al 1 de mayo o casos puntuales después. Como referencia:
+  Carlos Lozano, Jose Pérez, Selene Bricio, Julio Tamarit, Rebeca Nuñez, Jose Luis Gonzalez,
+  Claudia Leos y Alejandra García.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> confirmar que <em>todos</em> los puntos de entrada al form
+    (links orgánicos, QR de sucursales, perfiles de Google Business) llevan UTMs distintivos
+    (<code>utm_source=organic</code>, <code>utm_source=gmb</code>, etc.) para no perder estos
+    canales en el mix. Hoy quedan ocultos como "directo".
+  </div>
+</div>
+
+<div class="insight bad">
+  <h3>3. Bucerías: falla doble · tráfico y leads <span class="tag bad">Atención</span></h3>
+  <p>Bucerías recibe <strong>solo 7 visitas en 28 días</strong> a su página de sucursal (vs Vallarta 33,
+  Punto Sur 18, Zona Real 16) y <strong>0 leads</strong> en el periodo. El problema no es que la página
+  no convierta — es que no le está llegando tráfico. Además, la campaña <code>intencion_gdl</code>
+  como su nombre indica está enfocada en GDL, no en Vallarta-Bucerías.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> abrir una campaña paralela <code>intencion_vallarta</code> o
+    <code>intencion_bucerias</code> con geo-segmentación en Bahía de Banderas + Puerto Vallarta;
+    revisar Google Business Profile de la sucursal; auditar SEO de la página local. Como referencia
+    para validar demanda: hay 3 usuarios desde Puerto Vallarta y 1 desde Bucerías navegando el sitio
+    (encontrando GDL), lo cual indica que la demanda existe pero no se está captando bien.
+  </div>
+</div>
+
+<div class="insight warn">
+  <h3>4. Leads sociales llegan "ciegos" <span class="tag warn">Atención</span></h3>
+  <p>Los 7 leads de Social Media no traen sucursal, tamaño, plazo ni tipo de uso. Llegan por DM y
+  no pasan por el formulario calificador. El equipo está recibiendo conversaciones sin contexto.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> activar un flujo de Instagram/Facebook DM con un bot que
+    haga 3 preguntas mínimas (sucursal, tamaño, fecha de inicio) antes del handoff humano,
+    e idealmente derivar al formulario para enriquecer.
+  </div>
+</div>
+
+<div class="insight good">
+  <h3>5. La aceleración es real <span class="tag good">Buena señal</span></h3>
+  <p>Últimos 7 días: 12 leads (1.7/día). Primeras 3 semanas del periodo: 14 leads (0.67/día).
+  La tendencia es claramente al alza y coincide con la activación de canales que hemos venido
+  implementando. La estrategia está empezando a generar tracción.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> mantener el ritmo de contenido + pauta y enfocarse en
+    no romper el embudo aguas abajo (insights 1 y 2). El cuello de botella ya no es la captura.
+  </div>
+</div>
+
+<div class="insight">
+  <h3>6. El perfil dominante es residencial flexible <span class="tag">Insight estratégico</span></h3>
+  <p>74% de los leads pide bodega ≤ 7 m² y 53% quiere contrato mensual. La promesa de marketing
+  está atrayendo al uso doméstico / mudanza / temporal, no al cliente empresarial de plazo largo.</p>
+  <div class="action">
+    <strong>Decisión a tomar:</strong> ¿queremos optimizar para este segmento (más volumen, menor
+    ticket, mayor rotación) o construir una segunda línea de campañas dirigida a empresas
+    (15 m²+, anualidad)? Recomendación: validar 30 días más antes de pivotar; el volumen aún es bajo
+    para concluir.
+  </div>
+</div>
+
+<div class="insight good">
+  <h3>7. La página de contacto convierte muy bien · el problema está arriba <span class="tag good">Hallazgo clave</span></h3>
+  <p>Solo 30 usuarios llegaron a la página "Contacto/Cotiza" y 19 enviaron el formulario:
+  <strong>tasa de conversión del 63% una vez que llegan ahí</strong>. La página está optimizada.
+  El cuello de botella es traer usuarios a esa página: solo el 7.5% de las 399 visitas al sitio
+  llega a Contacto.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> reforzar CTAs hacia "Cotiza" desde la home y las páginas de
+    sucursal (botones más visibles, sticky bar, exit-intent popup). También revisar la Calculadora
+    de Espacio (subutilizada: 18 vistas) como puerta intermedia hacia el formulario.
+  </div>
+</div>
+
+<div class="insight bad">
+  <h3>8. Meta Ads tiene un agujero de medición · 288 clics, 5 sesiones <span class="tag bad">Crítico</span></h3>
+  <p>La campaña activa en Meta ($937.58 MXN en 14 días) reporta 288 clics al link pero GA4 solo
+  registró 5 sesiones desde <code>facebook.com / referral</code>. Eso es <strong>98% del clic
+  desaparece entre Meta y el sitio</strong>. Aun así, el CTR (2.98%) e interacción ("Por encima del
+  promedio") muestran que el creativo está enganchando — el problema es de tracking, no de creativo.</p>
+  <div class="action">
+    <strong>Acción Sentido (esta semana):</strong> (1) revisar que el URL de destino de cada anuncio
+    incluya UTMs (<code>utm_source=facebook&amp;utm_medium=cpc&amp;utm_campaign=...</code>);
+    (2) verificar instalación del píxel de Meta + Conversions API en el sitio;
+    (3) configurar el evento de conversión "Lead" en Meta apuntando al envío del form. Sin esto,
+    seguimos quemando presupuesto sin poder optimizar el algoritmo de Meta hacia conversiones reales.
+  </div>
+</div>
+
+<div class="insight warn">
+  <h3>9. Presupuesto Meta concentrado en 1 anuncio · variantes mejor en CTR no escalan <span class="tag warn">Optimización</span></h3>
+  <p>El anuncio "Copia" acumula <strong>86% del gasto</strong> ($802 de $937) con CTR 2.83%, mientras
+  que variantes más pequeñas como "Copia (var.)" (CTR 7.84%) y "Copia 3" (CTR 9.28%) están
+  infra-entregadas. La frecuencia del dominante ya llega a 1.50 — pronto fatigará a la audiencia.</p>
+  <div class="action">
+    <strong>Acción Sentido:</strong> redistribuir presupuesto hacia las variantes con CTR superior
+    para extraer más aprendizaje y diversificar creatividad. Empezar a planear un refresh creativo
+    (nuevas imágenes / copys) antes de que el dominante pase de frecuencia 1.8.
+  </div>
+</div>
+
+<div class="insight good">
+  <h3>10. Comparativo Google Ads vs Meta Ads · cada canal hace algo distinto <span class="tag good">Insight estratégico</span></h3>
+  <p>Con datos reales de ambas plataformas para el periodo:</p>
+  <table style="font-size:13px; margin-top:8px;">
+    <thead>
+      <tr>
+        <th>Canal</th>
+        <th class="num">Inversión</th>
+        <th class="num">Días</th>
+        <th class="num">Clics</th>
+        <th class="num">CTR</th>
+        <th class="num">CPC</th>
+        <th class="num">Leads</th>
+        <th class="num">CPL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(63,185,80,0.06);">
+        <td><strong>Google Ads</strong> · intencion_gdl</td>
+        <td class="num">$2,350</td>
+        <td class="num">26</td>
+        <td class="num">773</td>
+        <td class="num" style="color:var(--good);"><strong>7.41%</strong></td>
+        <td class="num">$3.04</td>
+        <td class="num">10</td>
+        <td class="num">$235</td>
+      </tr>
+      <tr>
+        <td><strong>Meta Ads</strong> · GDL Leads web</td>
+        <td class="num">$938</td>
+        <td class="num">14</td>
+        <td class="num">288</td>
+        <td class="num">2.98%</td>
+        <td class="num">$3.26</td>
+        <td class="num">8*</td>
+        <td class="num" style="color:var(--accent-2);"><strong>$117</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="muted small" style="margin-top:8px;">* 7 DMs (IG/FB) + 1 form con utm_source=ig. Atribución aproximada.</p>
+
+  <p class="small" style="margin-top:14px;">
+    <strong>Los dos canales hacen cosas distintas y ambas valen:</strong>
+  </p>
+  <ul class="small" style="margin: 6px 0 0; padding-left: 18px;">
+    <li><strong>Google Ads</strong> trae leads <em>calificados</em>: el usuario ya está buscando "mini bodega Guadalajara", llena formulario completo con sucursal/tamaño/plazo. CPL más alto ($235) pero el lead es accionable de inmediato. CTR 7.41% confirma intención alta.</li>
+    <li><strong>Meta Ads</strong> trae <em>conversaciones</em>: el usuario reacciona al creativo y manda DM. CPL más bajo ($117) pero el lead no tiene datos — requiere calificación manual. Buen creativo (interacción "sobre el promedio") pero medición rota inflando el CPL real.</li>
+  </ul>
+  <div class="action">
+    <strong>Decisión Sentido:</strong> mantener ambos canales pero con roles claros — Google escala
+    leads calificados; Meta escala awareness y conversaciones de calificación más alta del funnel.
+    Prioridad inmediata: <strong>arreglar la medición de Meta</strong> (hoy 288 clics = 5 sesiones GA),
+    luego decidir si vale la pena rebalancear presupuesto. Con medición corregida, el CPL real de
+    Meta probablemente baje, no suba.
+  </div>
+</div>
+
+<div class="insight">
+  <h3>11. 17% del tráfico viene de CDMX · demanda inter-ciudad <span class="tag">Insight estratégico</span></h3>
+  <p>67 de los 399 usuarios entran al sitio desde Ciudad de México. Es la segunda ciudad en volumen,
+  arriba incluso de Zapopan. Probablemente son personas planeando mudanza GDL↔CDMX, B2B con sede
+  en CDMX que necesita espacio en Jalisco, o propietarios con segunda residencia.</p>
+  <div class="action">
+    <strong>Decisión a explorar:</strong> probar una variante de copy o landing dirigida al uso de
+    mudanza/inter-ciudad. Puede ser una campaña pequeña piloto en Google Ads con keywords tipo
+    "mini bodega para mudanza Guadalajara" y geo CDMX para validar conversión.
+  </div>
+</div>
+
+<!-- ================== Tabla detallada ================== -->
+<h2>Detalle · 26 leads del periodo</h2>
+<div class="panel" style="padding: 4px 0 0;">
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th><th>Lead</th><th>Sucursal</th><th>Canal real (UTM)</th><th>Plazo</th><th>Tamaño</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>19 abr</td><td>Carlos Lozano</td><td>Vallarta</td><td>Form Web · directo</td><td>Mensual</td><td>1.75 m²</td></tr>
+    <tr><td>20 abr</td><td>Jose Pérez Arroyo</td><td>Vallarta</td><td>Form Web · directo</td><td>Mensual</td><td>1.75 m²</td></tr>
+    <tr><td>23 abr</td><td>Jose Luis González</td><td>Zona Real</td><td>Form Web · directo</td><td>Mensual</td><td>9 m²</td></tr>
+    <tr><td>23 abr</td><td>Claudia C. Leos</td><td>Zona Real</td><td>Form Web · directo</td><td>Mensual</td><td>Asesoría</td></tr>
+    <tr><td>26 abr</td><td>Selene Bricio</td><td>Vallarta</td><td>Form Web · directo</td><td>Asesoría</td><td>15 m²</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>1 may</td><td>Marcela Cortés</td><td>Zona Real</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Asesoría</td><td>11 m²</td></tr>
+    <tr><td>2 may</td><td>Julio Tamarit</td><td>Vallarta</td><td>Form Web · directo</td><td>7+ meses</td><td>7 m²</td></tr>
+    <tr><td>2 may</td><td>Alberto Rosales</td><td class="muted">—</td><td>Facebook · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>5 may</td><td>Jorge Armando</td><td>Punto Sur</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Asesoría</td><td>3.5 m²</td></tr>
+    <tr><td>6 may</td><td>Rebeca Nuñez</td><td>Vallarta</td><td>Form Web · directo</td><td>Mensual</td><td>10 m²</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>6 may</td><td>Raúl Alfaro</td><td>Vallarta</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Mensual</td><td>1.75 m²</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>7 may</td><td>Cesar Lopez</td><td>Vallarta</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Anualidad</td><td>1.75 m²</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>8 may</td><td>Guillermo Avila</td><td>Vallarta</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>3–6 meses</td><td>3.5 m²</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>11 may</td><td>Marco Huerta</td><td>Zona Real</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Mensual</td><td>7 m²</td></tr>
+    <tr><td>12 may</td><td>marai_gdl</td><td class="muted">—</td><td>Instagram · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr><td>12 may</td><td>Alexander Martínez</td><td>Vallarta</td><td>Instagram · Form Web</td><td>3–6 meses</td><td>10 m²</td></tr>
+    <tr><td>12 may</td><td>paormonroy</td><td class="muted">—</td><td>Instagram · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>13 may</td><td>Ivonne Rodríguez</td><td>Zona Real</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Mensual</td><td>3.5 m²</td></tr>
+    <tr><td>13 may</td><td>Marilu Alvarado</td><td class="muted">—</td><td>Facebook · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>13 may</td><td>Zaira Ramírez</td><td>Vallarta</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>Mensual</td><td>30 m²</td></tr>
+    <tr><td>14 may</td><td>Di Monroy</td><td class="muted">—</td><td>Instagram · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr><td>16 may</td><td>Edyth Romero</td><td class="muted">—</td><td>Facebook · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr><td>16 may</td><td>Chat AI</td><td class="muted">—</td><td>Instagram · DM</td><td class="muted">—</td><td class="muted">—</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>17 may</td><td>Carlos Escamilla</td><td>Punto Sur</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>3–6 meses</td><td>3.5 m²</td></tr>
+    <tr style="background:rgba(241,100,30,0.06);"><td>18 may</td><td>Salvador Cotero</td><td>Vallarta</td><td><strong>Google Ads</strong> · intencion_gdl</td><td>3–6 meses</td><td>10 m²</td></tr>
+    <tr><td>18 may</td><td>Alejandra García</td><td>Punto Sur</td><td>Form Web · directo</td><td>Mensual</td><td>7 m²</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ================== Proyección 30 días ================== -->
+<h2>Proyección · próximos 30 días</h2>
+<p class="muted small" style="margin-top:-8px;">
+  Estimación conservadora basada en benchmarks reales del último mes + presupuestos actualizados al 19 may.
+  Incluye dos experimentos de escalamiento simultáneos en curso, uno por canal.
+</p>
+
+<div class="kpis" style="margin-top: 12px;">
+  <div class="kpi">
+    <div class="label">Inversión publicitaria</div>
+    <div class="value">$15.3K</div>
+    <div class="delta">MXN · Google $9K + Meta $6.3K</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Leads esperados</div>
+    <div class="value" style="color: var(--good);">~78</div>
+    <div class="delta up">▲ +200% vs 26 leads del periodo anterior</div>
+  </div>
+  <div class="kpi">
+    <div class="label">CPL mezclado</div>
+    <div class="value">$197</div>
+    <div class="delta">Google $273 (calificado) · Meta $141 (mixto DM/form)</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Bucerías activado</div>
+    <div class="value" style="color: var(--accent-2);">+13</div>
+    <div class="delta">leads esperados · de 0 a 13/mes con campaña dedicada</div>
+  </div>
+</div>
+
+<!-- Experimentos -->
+<h2 style="margin-top: 36px;">Experimentos en curso · 2 escalados simultáneos</h2>
+<p class="muted small" style="margin-top:-8px;">
+  Ambos canales están corriendo un escalado temporal para generar data de comparación contra el
+  ritmo previo. Después de la Fase A se regularizan a un presupuesto sostenible mensual.
+</p>
+
+<div class="grid-2" style="margin-top: 12px;">
+  <div class="panel" style="border-left: 3px solid var(--accent);">
+    <h3>Google Ads · multi-geo (intencion_gdl + Bucerías)</h3>
+    <p class="muted small">Cap mensual $7K · saldo actual $4,106</p>
+
+    <table style="font-size:12px;">
+      <thead><tr><th>Fase</th><th class="num">Días</th><th class="num">$/día</th><th class="num">Inv.</th><th class="num">Leads</th><th class="num">CPL</th></tr></thead>
+      <tbody>
+        <tr style="background:rgba(241,100,30,0.08);">
+          <td><strong>A · escalado</strong></td><td class="num">1–9</td><td class="num">$483</td><td class="num">$4,106</td><td class="num">14</td><td class="num">$293</td>
+        </tr>
+        <tr><td class="muted">↳ intencion_gdl</td><td class="num muted">9</td><td class="num muted">$90</td><td class="num muted">$810</td><td class="num muted">3-4</td><td class="num muted">$235</td></tr>
+        <tr><td class="muted">↳ Bucerías</td><td class="num muted">9</td><td class="num muted">$393</td><td class="num muted">$3,537</td><td class="num muted">10-11</td><td class="num muted">$325</td></tr>
+        <tr>
+          <td><strong>B · regularizado</strong></td><td class="num">10–30</td><td class="num">$233</td><td class="num">$4,893</td><td class="num">19</td><td class="num">$258</td>
+        </tr>
+        <tr style="border-top: 2px solid var(--line);">
+          <td><strong>Total 30d</strong></td><td class="num"><strong>30</strong></td><td class="num">mixto</td><td class="num"><strong>$9,000</strong></td><td class="num"><strong>~33</strong></td><td class="num"><strong>$273</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted small" style="margin-top:8px;">
+      Fase A quema el saldo restante a ritmo combinado de $483/día. Fase B regulariza para no
+      exceder cap mensual. Total cruza dos ciclos del cap, por eso supera los $7K rígidos.
+    </p>
+  </div>
+
+  <div class="panel" style="border-left: 3px solid var(--blue);">
+    <h3>Meta Ads · escalado de presupuesto diario</h3>
+    <p class="muted small">Cap mensual $5K · saldo actual $4,062</p>
+
+    <table style="font-size:12px;">
+      <thead><tr><th>Fase</th><th class="num">Días</th><th class="num">$/día</th><th class="num">Inv.</th><th class="num">Leads</th><th class="num">CPL</th></tr></thead>
+      <tbody>
+        <tr style="background:rgba(88,166,255,0.08);">
+          <td><strong>A · escalado 3.7×</strong></td><td class="num">1–16</td><td class="num">$250</td><td class="num">$4,000</td><td class="num">~27</td><td class="num">$150</td>
+        </tr>
+        <tr>
+          <td><strong>B · regularizado</strong></td><td class="num">17–30</td><td class="num">$167</td><td class="num">$2,338</td><td class="num">~18</td><td class="num">$130</td>
+        </tr>
+        <tr style="border-top: 2px solid var(--line);">
+          <td><strong>Total 30d</strong></td><td class="num"><strong>30</strong></td><td class="num">mixto</td><td class="num"><strong>$6,338</strong></td><td class="num"><strong>~45</strong></td><td class="num"><strong>$141</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted small" style="margin-top:8px;">
+      Fase A activa hoy: el saldo restante alcanza para 16 días a $250. Después regulariza a $167
+      (que es $5K / 30 días, el ritmo sostenible). Lectura final del experimento: 4 junio.
+    </p>
+  </div>
+</div>
+
+<!-- Matriz de decisiones -->
+<h2 style="margin-top: 36px;">Decisiones que dependen del experimento</h2>
+<p class="muted small" style="margin-top:-8px;">
+  Los dos experimentos están diseñados para generar evidencia que sustente la propuesta de
+  presupuesto sostenible del próximo ciclo. Esto es lo que vamos a poder responder con los datos.
+</p>
+
+<div class="grid-2" style="margin-top: 12px;">
+  <div class="panel">
+    <h3>Aprendizajes Google Ads (cierre 28 may)</h3>
+    <table style="font-size:13px;">
+      <thead><tr><th>Pregunta</th><th>Decisión habilitada</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>¿CPL Bucerías converge a $235 o se queda en $300+?</td>
+          <td>Validar viabilidad real del mercado Vallarta-Bucerías</td>
+        </tr>
+        <tr>
+          <td>¿intencion_gdl se canibaliza al agregar otra campaña?</td>
+          <td>Justifica pedir más cap mensual ($7K → $10-15K) o redistribuir</td>
+        </tr>
+        <tr>
+          <td>¿Bucerías genera leads tan calificados como GDL?</td>
+          <td>Replicar estructura en otros geos futuros</td>
+        </tr>
+        <tr>
+          <td>¿El CTR 7.41% se mantiene al sumar geo nuevo?</td>
+          <td>Confirmar si la intención de búsqueda local es comparable</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Aprendizajes Meta Ads (cierre 4 jun)</h3>
+    <table style="font-size:13px;">
+      <thead><tr><th>Pregunta</th><th>Decisión habilitada</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>¿CPL $117 → $150 (sano) o $200+ (saturación)?</td>
+          <td>Validar si vale subir cap mensual de $5K a $7-8K</td>
+        </tr>
+        <tr>
+          <td>¿Ratio DM vs form cambia con audiencia más amplia?</td>
+          <td>Ajustar formato de campaña (lead form vs traffic objective)</td>
+        </tr>
+        <tr>
+          <td>¿Frecuencia llega a 2.5+ en 16 días?</td>
+          <td>Trigger para refresh creativo</td>
+        </tr>
+        <tr>
+          <td>¿Aparecen más leads con sucursal asignada?</td>
+          <td>Confirmar si el copy nuevo está calificando mejor el lead</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Calendario -->
+<h2 style="margin-top: 36px;">Calendario de checkpoints</h2>
+<div class="panel">
+<table style="font-size:13px;">
+  <thead>
+    <tr><th>Fecha</th><th>Día del experimento</th><th>Acción Sentido</th><th>Output esperado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>26 may</strong></td><td>Día 7</td>
+      <td>Mini-review intermedio · CPL, CTR, frecuencia en ambos canales</td>
+      <td>Decidir si pausar Fase A o continuar (alerta temprana de saturación)</td>
+    </tr>
+    <tr style="background:rgba(241,100,30,0.06);">
+      <td><strong>28 may</strong></td><td>Día 9 — fin Fase A Google</td>
+      <td>Cierre del experimento Google · comparativo solo-GDL vs GDL+Bucerías</td>
+      <td>Recomendación de cap mensual Google: $7K · $10K · $15K</td>
+    </tr>
+    <tr style="background:rgba(88,166,255,0.06);">
+      <td><strong>4 jun</strong></td><td>Día 16 — fin Fase A Meta</td>
+      <td>Cierre del experimento Meta · comparativo $67/día vs $250/día</td>
+      <td>Recomendación de cap mensual Meta: $5K · $7K · $8K</td>
+    </tr>
+    <tr style="background:rgba(63,185,80,0.06);">
+      <td><strong>19 jun</strong></td><td>Próximo reporte de insights</td>
+      <td>Reporte completo con baseline ampliado + 2 experimentos cerrados + pipeline GHL (si arrancó)</td>
+      <td>Propuesta de presupuesto sostenible 2026-Q3 argumentada con datos propios</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ================== Próximos pasos ================== -->
+<h2>Próximos pasos recomendados</h2>
+<div class="panel">
+  <ol style="margin: 0; padding-left: 20px;">
+    <li style="margin-bottom:8px;"><strong>Esta semana (crítico):</strong> arreglar la medición de Meta Ads — UTMs en el URL de destino, validar píxel y Conversions API, configurar evento "Lead". Sin esto los $937 quincenales se siguen optimizando hacia tráfico y no hacia ventas.</li>
+    <li style="margin-bottom:8px;"><strong>Esta semana:</strong> taggear con UTMs los puntos de entrada que hoy llegan como "directo" (Google Business Profile, links orgánicos, QR de sucursal).</li>
+    <li style="margin-bottom:8px;"><strong>Esta semana:</strong> seguimiento al cliente para destrabar la entrega de información de usuarios del CRM y poder activar el pipeline de GHL.</li>
+    <li style="margin-bottom:8px;"><strong>Próximas 2 semanas:</strong> redistribuir presupuesto en Meta hacia variantes con mejor CTR + planear refresh creativo (freq actual 1.50). Abrir campaña Google Ads geo-segmentada para Vallarta/Bucerías.</li>
+    <li style="margin-bottom:8px;"><strong>Próximas 2 semanas:</strong> calificación automática de leads de Social Media vía bot de DM antes del handoff humano + reforzar CTAs hacia "Cotiza" desde home y páginas de sucursal.</li>
+    <li><strong>Próximo reporte (19 jun 2026):</strong> con medición Meta corregida y pipeline GHL operando, podremos cerrar el cuadro <em>canal × inversión × CPL × calidad de lead × conversión real (visita / cotización / contrato)</em> y tomar decisiones de optimización por canal con certeza. La inversión actual de cada canal (Google $2,350 · Meta $938 · total $3,288 MXN en el periodo) servirá como baseline para medir mejoras.</li>
+  </ol>
+</div>
+
+<footer>
+  Reporte generado el <span>19 mayo 2026</span> · datos extraídos de GoHighLevel
+  (Location <code>C8HeFtWI5ohKrH5SpKub</code>) · ventana de análisis: 19 abr – 18 may 2026.<br>
+  Próxima entrega sugerida: <span>19 junio 2026</span>. <span style="color:var(--accent);">Sentido Branding &amp; Advertising</span>.
+</footer>
+
+</div>
+</body>
+</html>
