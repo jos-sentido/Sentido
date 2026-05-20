@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clemente 70 · Sistema de captación y conversión — Sentido</title>
+<meta name="description" content="Propuesta estratégica de Sentido para Clemente 70: contenido producido con IA, pauta calificada en Meta y Google, y CRM con nurturing automatizado para convertir tráfico en citas de showroom." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Paleta Clemente 70 — patrimonio + arte contemporáneo.
+       Cream profundo como base (referencia a la Casona Porfiriana),
+       acento tierra cálido (terracota envejecida), grafito profundo
+       para contrastes editoriales tipo galería. */
+    --bg: #F4EFE6;
+    --bg-deep: #ECE5D7;
+    --surface: #FFFFFF;
+    --surface-elevated: #FAF6EE;
+    --surface-hover: #EDE3D0;
+    --ink: #1A1614;
+    --ink-soft: #2E2924;
+    --border: #D9CFBC;
+    --border-accent: #C4B79E;
+    --border-bright: #A89A7E;
+    --accent: #8C4A2A;        /* terracota envejecida — guiño Tamayo/Orozco */
+    --accent-dim: #B07A5C;
+    --accent-bright: #6E3A21;
+    --accent-soft: rgba(140, 74, 42, 0.08);
+    --text: #1A1614;
+    --text-dim: #5C5147;
+    --text-muted: #8B7E6D;
+    --success: #4A6B4A;
+    --danger: #8B3A2A;
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Sticky Nav */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  @media (min-width: 1024px) { .site-nav-inner { padding: 0 2rem; height: 68px; } }
+  .site-nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; flex-shrink: 0; }
+  .site-nav-brand img { height: 22px; width: auto; display: block; }
+  @media (min-width: 1024px) { .site-nav-brand img { height: 26px; } }
+  .site-nav-links { display: none; align-items: center; gap: 1.75rem; list-style: none; }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .site-nav-links a:hover, .site-nav-links a.active { color: var(--accent); }
+
+  .site-nav-mobile {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 0.5rem;
+    margin-left: 0.75rem;
+    flex: 1;
+    min-width: 0;
+  }
+  .site-nav-mobile::-webkit-scrollbar { display: none; }
+  @media (min-width: 1024px) { .site-nav-mobile { display: none; } }
+  .site-nav-mobile a {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .site-nav-mobile a.active { color: var(--accent); }
+
+  /* Containers */
+  .container {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+  @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+  .container-narrow { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 1024px) { .container-narrow { padding: 0 2rem; } }
+
+  /* Hero */
+  .hero {
+    padding: 4rem 0 5rem;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(140, 74, 42, 0.05), transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(140, 74, 42, 0.03), transparent 60%);
+    position: relative;
+  }
+  @media (min-width: 768px) { .hero { padding: 6rem 0 7rem; } }
+  .hero-logo-sentido {
+    height: 26px;
+    width: auto;
+    display: block;
+    margin-bottom: 3rem;
+    opacity: 0.85;
+  }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 30px; margin-bottom: 4rem; } }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+  .hero-prospect {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .hero-prospect-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3rem;
+  }
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 7vw, 5.2rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    max-width: 60rem;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .hero-lead {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    max-width: 42rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) { .hero-lead { font-size: 1.25rem; } }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    background: var(--surface-elevated);
+  }
+
+  /* Section base */
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { .section { padding: 7rem 0; } }
+  .section.dark {
+    background: var(--ink);
+    color: var(--bg);
+    border-bottom: 0;
+  }
+  .section.dark .section-num,
+  .section.dark .section-label { color: var(--accent-dim); }
+  .section.dark .section-title,
+  .section.dark .section-title em { color: #F4EFE6; }
+  .section.dark .section-title em { color: var(--accent-dim); }
+  .section.dark .lead { color: #C8BFB0; }
+  .section.dark .body-text { color: #C8BFB0; }
+  .section.dark .body-text strong { color: #F4EFE6; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 50rem;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .lead {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    max-width: 44rem;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+  }
+
+  /* Body text patterns */
+  .body-text {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 44rem;
+  }
+  .body-text + .body-text { margin-top: 1.25rem; }
+  .body-text strong { color: var(--ink); font-weight: 500; }
+
+  /* Diagnóstico grid */
+  .diag-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .diag-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .diag-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .diag-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+  .diag-card-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .diag-card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .diag-card-body {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  /* Stat band */
+  .stat-band {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+  }
+  @media (min-width: 768px) { .stat-band { grid-template-columns: repeat(4, 1fr); } }
+  .stat-cell {
+    background: var(--surface-elevated);
+    padding: 2rem 1.5rem;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Sistema (modules) */
+  .module {
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(217, 207, 188, 0.4);
+  }
+  .module:last-child { border-bottom: 0; }
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 1024px) { .module-grid { grid-template-columns: 1fr 2fr; gap: 4rem; } }
+
+  .module-label-col {
+    position: sticky;
+    top: 90px;
+    align-self: start;
+  }
+  .module-letter {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .module-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .module-name {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .module-content {}
+  .module-headline {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+  .module-body p {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .module-body strong { color: var(--ink); font-weight: 500; }
+  .module-list {
+    list-style: none;
+    margin-top: 1.5rem;
+    padding-left: 0;
+  }
+  .module-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .module-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .module-list li strong { color: var(--ink); font-weight: 500; }
+
+  /* Pricing card adyacente al módulo */
+  .price-block {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) { .price-block.with-ads { grid-template-columns: 1fr 1fr; } }
+  .price-card {
+    background: var(--surface);
+    border: 1px solid var(--border-accent);
+    padding: 1.5rem;
+    border-radius: 2px;
+  }
+  .price-card.ads {
+    background: var(--accent-soft);
+    border-style: dashed;
+    border-color: var(--accent);
+  }
+  .price-card-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .price-card.ads .price-card-label { color: var(--accent-bright); }
+  .price-card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .price-card-amount {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .price-card-amount small {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  .price-card-note {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+  .price-card-note strong { color: var(--ink); }
+
+  /* Inversion summary table */
+  .invest-summary {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .invest-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .invest-row:last-child { border-bottom: 0; }
+  .invest-row.total {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 1.5rem;
+  }
+  .invest-row.total .invest-label,
+  .invest-row.total .invest-amount { color: var(--bg); }
+  .invest-row.total .invest-amount { color: var(--accent-dim); }
+  .invest-label {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .invest-label small {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 0.2rem;
+    line-height: 1.4;
+  }
+  .invest-amount {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .invest-amount.muted { color: var(--text-muted); font-weight: 400; }
+
+  .invest-notes {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) { .invest-notes { grid-template-columns: 1fr 1fr; } }
+  .note {
+    background: var(--accent-soft);
+    border-left: 2px solid var(--accent);
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .note strong { color: var(--ink); }
+
+  /* Horizonte timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .timeline { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+  .timeline-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem 1.75rem;
+    position: relative;
+    border-radius: 2px;
+  }
+  .timeline-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .timeline-when {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .timeline-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+  }
+  .timeline-list li {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    padding: 0.4rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .timeline-list li:first-child { border-top: 0; }
+
+  /* Cierre */
+  .closing {
+    padding: 7rem 0;
+    text-align: center;
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .closing-quote {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.2;
+    max-width: 50rem;
+    margin: 0 auto 2.5rem;
+    color: #F4EFE6;
+    letter-spacing: -0.01em;
+  }
+  .closing-quote em {
+    font-style: normal;
+    color: var(--accent-dim);
+  }
+  .closing-contact {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-top: 2rem;
+  }
+  .closing-contact a {
+    color: #F4EFE6;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-dim);
+    padding-bottom: 2px;
+    margin: 0 0.5rem;
+  }
+  .closing-contact a:hover { color: var(--accent-dim); }
+  .closing-sentido-mark {
+    height: 24px;
+    width: auto;
+    opacity: 0.6;
+    margin-top: 3rem;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Footer */
+  footer {
+    background: var(--bg-deep);
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  @media (min-width: 768px) {
+    .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .footer-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .footer-meta a:hover { border-bottom-color: var(--accent); }
+
+  /* Util */
+  .accent { color: var(--accent); }
+  .ink { color: var(--ink); }
+  .mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-nav-brand" href="#top">
+      <img src="/assets/logo-sentido-dark.png" alt="Sentido" />
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#contexto">01 · Contexto</a></li>
+      <li><a href="#diagnostico">02 · Diagnóstico</a></li>
+      <li><a href="#angulo">03 · Ángulo</a></li>
+      <li><a href="#sistema">04 · Sistema</a></li>
+      <li><a href="#inversion">05 · Inversión</a></li>
+      <li><a href="#horizonte">06 · Horizonte</a></li>
+    </ul>
+    <div class="site-nav-mobile">
+      <a href="#contexto">01</a>
+      <a href="#diagnostico">02</a>
+      <a href="#angulo">03</a>
+      <a href="#sistema">04</a>
+      <a href="#inversion">05</a>
+      <a href="#horizonte">06</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="container">
+    <img src="/assets/logo-sentido-dark.png" alt="Sentido" class="hero-logo-sentido" />
+    <div class="hero-meta">Propuesta estratégica · Mayo 2026</div>
+    <h2 class="hero-prospect">Clemente 70</h2>
+    <div class="hero-prospect-sub">Colonia Americana · Guadalajara</div>
+    <h1 class="hero-h1">Convertir el tráfico de un <em>barrio caliente</em> en compradores reales del showroom.</h1>
+    <p class="hero-lead">Clemente 70 ya existe como narrativa, como arquitectura y como dirección. Lo que falta es el sistema que convierta el interés que ya genera en citas calificadas y, después, en escrituras firmadas.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Contenido producido con IA</span>
+      <span class="hero-tag">Pauta Meta + Google</span>
+      <span class="hero-tag">CRM &amp; nurturing</span>
+      <span class="hero-tag">Sistema integrado</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 01 CONTEXTO ========== -->
+<section class="section" id="contexto">
+  <div class="container-narrow">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <span class="section-label">Contexto</span>
+    </div>
+    <h2 class="section-title reveal">El <em>barrio más cool del mundo</em> también es el más saturado del mercado.</h2>
+    <p class="lead reveal">Colonia Americana ganó el título de Time Out en 2022 y desde entonces se volvió la zona más demandada para vertical premium en Guadalajara. Esa demanda es la buena noticia. La mala es lo que viene con ella.</p>
+
+    <p class="body-text reveal">El mercado vertical en GDL ya representa <strong>84 % de la oferta nueva de vivienda</strong>. En la zona metropolitana hay <strong>339 proyectos activos</strong> compitiendo simultáneamente, con un inventario de más de 15 mil unidades disponibles. El Mundial 2026 multiplicó la atención, los retornos proyectados están en <strong>12 % anual</strong> y todos los desarrolladores de la ciudad lo saben.</p>
+
+    <p class="body-text reveal">En Americana específicamente, Clemente 70 no compite contra abstracciones. Compite contra <strong>Coordenada Lafayette</strong> (198 deptos, 3 torres, Grupo VEQ), <strong>Torre Dix</strong>, <strong>Nibele</strong>, <strong>Scala Towers</strong>, <strong>Bruselas</strong> y otros desarrollos verticales que pelean por el mismo lead, con presupuestos de pauta comparables y mensajes intercambiables.</p>
+
+    <p class="body-text reveal">El precio por metro cuadrado en la zona se ubica entre <strong>$55 mil y $85 mil</strong>. El comprador objetivo tiene capacidad, opciones y una cosa que ningún competidor puede comprar: <strong>tiempo de atención escaso</strong>. La decisión rara vez se toma en el primer click.</p>
+
+    <div class="stat-band reveal">
+      <div class="stat-cell">
+        <div class="stat-value">84%</div>
+        <div class="stat-label">Vivienda vertical sobre<br>oferta nueva en GDL</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">339</div>
+        <div class="stat-label">Proyectos verticales<br>activos en la ZMG</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">12%</div>
+        <div class="stat-label">ROI anual proyectado<br>preventa zona Americana</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">145</div>
+        <div class="stat-label">Unidades a colocar<br>en Clemente 70</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 02 DIAGNÓSTICO ========== -->
+<section class="section" id="diagnostico" style="background: var(--bg-deep);">
+  <div class="container-narrow">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <span class="section-label">Diagnóstico</span>
+    </div>
+    <h2 class="section-title reveal">No es el tráfico. Es lo que pasa <em>después</em> del click.</h2>
+    <p class="lead reveal">Clemente 70 ya está corriendo pauta. El sitio se ve. Hay tráfico. Pero los leads no se convierten en citas y las citas no se convierten en cierre. Esto es lo que detectamos al auditar la presencia digital actual:</p>
+
+    <div class="diag-grid">
+      <div class="diag-card reveal">
+        <div class="diag-card-num">01 · Embudo plano</div>
+        <h3 class="diag-card-title">La pauta entrega leads que nadie clasifica.</h3>
+        <p class="diag-card-body">El comprador inmobiliario premium no se compra con un solo click. Hoy todos los leads se tratan igual — el que pidió brochure, el que vio dos veces el sitio y el que ya conoce el showroom entran al mismo pool. No hay scoring de intención ni segmentación por tipología.</p>
+      </div>
+
+      <div class="diag-card reveal">
+        <div class="diag-card-num">02 · Cero nurturing</div>
+        <h3 class="diag-card-title">Después del formulario, silencio.</h3>
+        <p class="diag-card-body">El lead inmobiliario maduro entre 30 y 90 días. Sin secuencias automatizadas por WhatsApp y email que mantengan el proyecto presente, el prospecto se enfría y termina firmando con el desarrollo del competidor que sí le habló cada semana.</p>
+      </div>
+
+      <div class="diag-card reveal">
+        <div class="diag-card-num">03 · Contenido subexplotado</div>
+        <h3 class="diag-card-title">La narrativa "Life is Art" no se está contando en formato vertical.</h3>
+        <p class="diag-card-body">Las tipologías-muralistas (Orozco, Rivera, Kahlo, Tamayo, Cuevas), la Casona Porfiriana y el hotel boutique son material narrativo de primer nivel. En redes hoy hay renders y datos, pero no la historia. Reels y formatos verticales que sí cuentan esa historia están casi ausentes.</p>
+      </div>
+
+      <div class="diag-card reveal">
+        <div class="diag-card-num">04 · Pauta sin inteligencia</div>
+        <h3 class="diag-card-title">Tráfico medido en clicks, no en intención.</h3>
+        <p class="diag-card-body">La pauta actual visible optimiza por costo por click y alcance, no por leads de alta intención. Sin retargeting segmentado por tipología, sin lead magnets diferenciados, sin campañas de búsqueda capturando palabras de compra ("departamentos preventa Americana", "Clemente 70 disponibilidad").</p>
+      </div>
+
+      <div class="diag-card reveal">
+        <div class="diag-card-num">05 · Sin handoff a ventas</div>
+        <h3 class="diag-card-title">El equipo del showroom recibe leads fríos.</h3>
+        <p class="diag-card-body">Hoy no hay un proceso documentado de cuándo un lead "se gradúa" para que el asesor lo llame. El asesor termina hablándole a contactos no calificados y abandonando los buenos. El costo por cita real se dispara y la moral del equipo cae.</p>
+      </div>
+
+      <div class="diag-card reveal">
+        <div class="diag-card-num">06 · Datos perdidos</div>
+        <h3 class="diag-card-title">Cada lead que se enfría es un dato que no se reusa.</h3>
+        <p class="diag-card-body">Sin CRM central, la información del prospecto (qué tipología vio, qué amenidad le importó, cuándo abandonó) se pierde. Esa data es exactamente lo que entrena tanto la pauta como las próximas campañas de contenido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 03 EL ÁNGULO ========== -->
+<section class="section dark" id="angulo">
+  <div class="container-narrow">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <span class="section-label">El ángulo Sentido</span>
+    </div>
+    <h2 class="section-title reveal">Vender Clemente 70 no es vender 145 departamentos. Es contar <em>una sola historia</em>, 145 veces, a la persona correcta.</h2>
+
+    <p class="body-text reveal" style="margin-top: 2rem;">La mayoría de los desarrollos en Americana operan con cuatro proveedores distintos: una agencia de redes, una de pauta, un freelance de contenido y un CRM que nadie usa. El resultado es ruido — mucho movimiento, poca conversión.</p>
+
+    <p class="body-text reveal">El sistema que proponemos vive integrado: <strong>el mismo equipo que escribe el copy del reel produce el anuncio que lo amplifica, mide qué leads convierte y los entrega al CRM para nurturing.</strong> Una sola lógica, una sola data, una sola narrativa.</p>
+
+    <p class="body-text reveal">Encima de eso, Sentido produce contenido con <strong>asistencia de IA generativa</strong>. No para abaratar — para escalar. Renders animados, recorridos virtuales, variaciones por tipología, micro-historias de cada muralista, formatos verticales semanales. Lo que antes tomaba una agencia tradicional una semana, lo entregamos en días, con calidad cinematográfica y costos controlados.</p>
+
+    <p class="body-text reveal">Eso libera presupuesto para lo que sí mueve la aguja: <strong>pauta inteligente</strong> y <strong>seguimiento humano automatizado</strong>.</p>
+  </div>
+</section>
+
+<!-- ========== 04 SISTEMA ========== -->
+<section class="section" id="sistema">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <span class="section-label">El sistema</span>
+    </div>
+    <h2 class="section-title reveal">Cuatro módulos. Una sola máquina de conversión.</h2>
+    <p class="lead reveal">Cada módulo opera por sí solo y se activa por fases. Pero cuando los cuatro corren juntos, se retroalimentan: el contenido alimenta la pauta, la pauta alimenta el CRM, el CRM entrena al contenido. El sistema completo es lo que justifica la inversión.</p>
+
+    <!-- MÓDULO A · CONTENIDO IA -->
+    <div class="module reveal">
+      <div class="module-grid">
+        <div class="module-label-col">
+          <div class="module-letter">A</div>
+          <div class="module-kicker">Módulo A</div>
+          <div class="module-name">Contenido producido con IA</div>
+        </div>
+        <div class="module-content">
+          <p class="module-headline">"Life is Art" se cuenta en vertical, cada semana, con la velocidad que el mercado exige.</p>
+          <div class="module-body">
+            <p>Producimos <strong>15 piezas mensuales</strong> para Instagram y formatos verticales, con un mix calibrado para inmobiliario premium: <strong>reels narrativos con asistencia de IA</strong> (recorridos animados, variaciones por tipología, animación de los renders existentes), carruseles editoriales sobre la Casona Porfiriana y los muralistas, micro-historias del barrio Americana y formatos de "una semana en Clemente 70" pensados para retención de audiencia.</p>
+            <p>La IA generativa no reemplaza al equipo creativo — lo multiplica. Permite producir <strong>variaciones por tipología, por persona compradora y por canal</strong> sin disparar costos, y libera tiempo para enfocarse en la estrategia narrativa y el copy.</p>
+            <ul class="module-list">
+              <li><strong>15 piezas mensuales</strong> entre reels, carruseles, stories y posts estáticos</li>
+              <li><strong>4-6 reels mensuales</strong> con asistencia IA (animación de renders, recorridos virtuales, variaciones)</li>
+              <li>Calendario editorial alineado al embudo: awareness · consideración · cierre</li>
+              <li>Copywriting estratégico con CTAs específicos por etapa</li>
+              <li>Reporte mensual de performance + iteración creativa basada en data del CRM</li>
+            </ul>
+          </div>
+          <div class="price-block with-ads">
+            <div class="price-card">
+              <div class="price-card-label">Honorario Sentido</div>
+              <div class="price-card-title">Contenido + Gestión de Redes</div>
+              <div class="price-card-amount">$7,500 <small>+ IVA / mes</small></div>
+              <div class="price-card-note">Producción, edición, copy, calendario, publicación y reportes. Incluye gestión de Meta Ads sin honorario adicional.</div>
+            </div>
+            <div class="price-card ads">
+              <div class="price-card-label">Pauta adyacente · Meta</div>
+              <div class="price-card-title">Inversión directa a la plataforma</div>
+              <div class="price-card-amount">$10,000–$25,000 <small>+ IVA / mes</small></div>
+              <div class="price-card-note"><strong>No es honorario Sentido.</strong> El monto va directo a Meta. Recomendado para Americana premium: $15,000 inicial, escalable según conversión.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO B · LEAD GEN GOOGLE -->
+    <div class="module reveal">
+      <div class="module-grid">
+        <div class="module-label-col">
+          <div class="module-letter">B</div>
+          <div class="module-kicker">Módulo B</div>
+          <div class="module-name">Captación en buscadores</div>
+        </div>
+        <div class="module-content">
+          <p class="module-headline">Capturar al comprador en el momento exacto en que escribe "departamentos preventa Americana".</p>
+          <div class="module-body">
+            <p>El comprador inmobiliario premium pasa <strong>30 a 90 días investigando</strong>. En ese período busca en Google con palabras de alta intención: "departamentos preventa Americana", "preventa Lafayette", "Clemente 70 disponibilidad", "departamentos lujo Guadalajara". Cada una de esas búsquedas es un lead que hoy se está yendo a la competencia.</p>
+            <p>Diseñamos <strong>campañas de búsqueda + Performance Max</strong> enfocadas a captar esas intenciones, con landing pages específicas por tipología y lead magnets diferenciados (brochure digital, agenda showroom, recorrido virtual). Cada landing se conecta directo al CRM con scoring automático.</p>
+            <ul class="module-list">
+              <li><strong>Campañas de búsqueda</strong> sobre palabras de alta intención (preventa, disponibilidad, precio, tipología)</li>
+              <li><strong>Performance Max</strong> con assets segmentados por tipología y persona compradora</li>
+              <li><strong>Landing pages dedicadas</strong> con tracking de comportamiento (tiempo en página, scroll, tipología vista)</li>
+              <li>Lead magnets diferenciados que califican intención antes de entregar al asesor</li>
+              <li>Conversiones offline importadas desde el CRM (cita agendada, cita realizada, cierre)</li>
+            </ul>
+          </div>
+          <div class="price-block with-ads">
+            <div class="price-card">
+              <div class="price-card-label">Honorario Sentido</div>
+              <div class="price-card-title">Gestión Google Ads + Landings</div>
+              <div class="price-card-amount">$4,000 <small>+ IVA / mes</small></div>
+              <div class="price-card-note">Configuración, optimización, palabras clave, copy de anuncios, conversiones offline y reporte mensual.</div>
+            </div>
+            <div class="price-card ads">
+              <div class="price-card-label">Pauta adyacente · Google</div>
+              <div class="price-card-title">Inversión directa a la plataforma</div>
+              <div class="price-card-amount">$8,000–$20,000 <small>+ IVA / mes</small></div>
+              <div class="price-card-note"><strong>No es honorario Sentido.</strong> El monto va directo a Google. Recomendado para captar búsquedas de alta intención en Americana: $12,000 inicial.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO C · ESTRATEGIA LEAD GEN -->
+    <div class="module reveal">
+      <div class="module-grid">
+        <div class="module-label-col">
+          <div class="module-letter">C</div>
+          <div class="module-kicker">Módulo C</div>
+          <div class="module-name">Estrategia de generación de leads</div>
+        </div>
+        <div class="module-content">
+          <p class="module-headline">Antes de prender la pauta, definir <em>a quién</em> exactamente le estamos hablando.</p>
+          <div class="module-body">
+            <p>Una sola sesión de trabajo no resuelve nada si no hay un mapa estratégico debajo. Antes de la primera campaña, Sentido entrega un <strong>playbook de captación</strong> que vive como documento operativo del equipo de marketing y ventas.</p>
+            <ul class="module-list">
+              <li><strong>Buyer personas detallados</strong> del comprador objetivo por tipología (1 rec inversionista, 2 rec primera vivienda, 3 rec familia, etc.)</li>
+              <li><strong>Mapa de embudo</strong> con touchpoints, lead magnets y secuencias por etapa</li>
+              <li><strong>Estrategia de contenido</strong> alineada a cada persona y momento del embudo</li>
+              <li><strong>Sistema de scoring</strong> que define cuándo un lead "se gradúa" a llamada de asesor</li>
+              <li><strong>SLA con el equipo de ventas</strong>: cuánto tiempo entre lead y primer contacto humano</li>
+            </ul>
+            <p style="margin-top: 1.5rem;">Este es el documento que alinea a Sentido, al equipo de Clemente 70 y a los asesores del showroom. Se construye en las primeras 3 semanas y se itera trimestralmente.</p>
+          </div>
+          <div class="price-block">
+            <div class="price-card">
+              <div class="price-card-label">Inversión única · activación</div>
+              <div class="price-card-title">Playbook de captación + setup</div>
+              <div class="price-card-amount">Incluido <small>al contratar el sistema integral</small></div>
+              <div class="price-card-note">Sentido entrega el playbook en las primeras 3 semanas como parte de la activación del sistema. Sin costo adicional cuando se contratan los módulos A, B y D.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO D · CRM -->
+    <div class="module reveal">
+      <div class="module-grid">
+        <div class="module-label-col">
+          <div class="module-letter">D</div>
+          <div class="module-kicker">Módulo D</div>
+          <div class="module-name">CRM &amp; nurturing automatizado</div>
+        </div>
+        <div class="module-content">
+          <p class="module-headline">El lead que llega caliente al showroom es el que cierra. Aquí construimos esa máquina.</p>
+          <div class="module-body">
+            <p>Sentido implementa <strong>GoHighLevel</strong> como CRM central del proyecto. El lead que entra por cualquier canal (Meta, Google, orgánico, referido) cae en un pipeline configurado a la medida de Clemente 70, con scoring automático y secuencias de WhatsApp + email que mantienen al prospecto cálido durante todo su periodo de decisión.</p>
+            <ul class="module-list">
+              <li><strong>Pipeline comercial</strong> configurado (Lead · Contacto · Reunión · Seguimiento · Ganado/Pérdido)</li>
+              <li><strong>Captura automática</strong> de leads desde Meta, Google, sitio y WhatsApp</li>
+              <li><strong>Asignación inteligente</strong> de leads al asesor disponible con tracking de SLA</li>
+              <li><strong>Secuencias de nurturing</strong> por WhatsApp + email + SMS según etapa del embudo</li>
+              <li><strong>Scoring automático</strong>: el lead solo se gradúa a llamada cuando engagement > umbral</li>
+              <li><strong>Calendarios compartidos</strong> Google/Outlook para agendar showroom en un click</li>
+              <li><strong>Reportes en tiempo real</strong> de conversión por canal, costo por cita y costo por cierre</li>
+            </ul>
+            <p style="margin-top: 1.5rem;"><strong>La implementación es sin costo</strong> cuando se contrata el mantenimiento mensual — el equivalente a $15,000 + IVA de setup que Sentido absorbe como parte del compromiso de operar el sistema.</p>
+          </div>
+          <div class="price-block">
+            <div class="price-card">
+              <div class="price-card-label">Honorario Sentido</div>
+              <div class="price-card-title">CRM + automatización GoHighLevel</div>
+              <div class="price-card-amount">$4,000 <small>+ IVA / mes</small></div>
+              <div class="price-card-note">Pipeline activo, secuencias, WhatsApp business, scoring, reportes. <strong>Setup e implementación sin costo</strong> al contratar el mantenimiento.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== 05 INVERSIÓN ========== -->
+<section class="section" id="inversion" style="background: var(--bg-deep);">
+  <div class="container-narrow">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <span class="section-label">Inversión</span>
+    </div>
+    <h2 class="section-title reveal">Honorarios claros. Pauta separada. Activación modular.</h2>
+    <p class="lead reveal">Lo que Sentido cobra está separado de lo que va a las plataformas. La pauta no es un honorario nuestro: es presupuesto que ustedes inyectan a Meta y Google. Aquí está el desglose mensual completo, listo para activar todo o por fases.</p>
+
+    <div class="invest-summary reveal">
+      <div class="invest-row">
+        <div class="invest-label">
+          Módulo A · Contenido con IA + Gestión Redes
+          <small>15 piezas mensuales, reels IA, copy, calendario, reportes · Meta Ads incluido sin honorario adicional</small>
+        </div>
+        <div class="invest-amount">$7,500 / mes</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">
+          Pauta Meta Ads · adyacente al Módulo A
+          <small>Inversión directa a la plataforma · recomendado inicial $15,000</small>
+        </div>
+        <div class="invest-amount muted">$10,000–$25,000 / mes</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">
+          Módulo B · Gestión Google Ads + landings
+          <small>Búsqueda + Performance Max, landings dedicadas, conversiones offline</small>
+        </div>
+        <div class="invest-amount">$4,000 / mes</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">
+          Pauta Google Ads · adyacente al Módulo B
+          <small>Inversión directa a la plataforma · recomendado inicial $12,000</small>
+        </div>
+        <div class="invest-amount muted">$8,000–$20,000 / mes</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">
+          Módulo C · Playbook de captación + setup estratégico
+          <small>Incluido al contratar el sistema integral (Módulos A + B + D)</small>
+        </div>
+        <div class="invest-amount muted">Incluido</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-label">
+          Módulo D · CRM + automatización GoHighLevel
+          <small>Pipeline, secuencias, WhatsApp business, scoring · Setup sin costo</small>
+        </div>
+        <div class="invest-amount">$4,000 / mes</div>
+      </div>
+      <div class="invest-row total">
+        <div class="invest-label">
+          Honorarios Sentido — sistema completo
+          <small style="color: var(--accent-dim);">Todos los módulos activos · más IVA · pauta no incluida</small>
+        </div>
+        <div class="invest-amount">$15,500 / mes</div>
+      </div>
+    </div>
+
+    <div class="invest-notes reveal">
+      <div class="note">
+        <strong>Pauta separada del honorario.</strong> El presupuesto que va a Meta y Google nunca es comisión de Sentido. El total mensual a presupuestar por Clemente 70 (honorarios + pauta recomendada) ronda <strong>$42,500 / mes</strong> en escenario base, escalable según resultados.
+      </div>
+      <div class="note">
+        <strong>Producción de contenido eventual.</strong> Sesiones de foto/video físicas en el showroom o de las amenidades se cotizan aparte: $3,000 sesión foto · $5,500 sesión video. No se suman al fee mensual.
+      </div>
+      <div class="note">
+        <strong>Pagos.</strong> Honorarios mensuales por adelantado los primeros 5 días de cada mes. Activación del sistema completo: primer mes anticipado + setup CRM (sin costo extra) en la firma.
+      </div>
+      <div class="note">
+        <strong>Activación modular.</strong> Si quieren activar por fases: arrancamos con A+D (contenido + CRM) el mes 1, sumamos B (Google) el mes 2 cuando el CRM ya esté capturando. La pauta de Meta puede correr desde el mes 1 con el módulo A.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 06 HORIZONTE ========== -->
+<section class="section" id="horizonte">
+  <div class="container-narrow">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <span class="section-label">Horizonte</span>
+    </div>
+    <h2 class="section-title reveal">Qué se ve en <em>3, 6 y 12 meses</em>.</h2>
+    <p class="lead reveal">El sistema no entrega magia el día 1. Entrega tracción medible en plazos definidos. Esto es lo que esperamos que pase, mes a mes, si arrancamos la activación completa en junio 2026.</p>
+
+    <div class="timeline">
+      <div class="timeline-card reveal">
+        <div class="timeline-when">Mes 1–3</div>
+        <h3 class="timeline-title">Cimentar el sistema</h3>
+        <ul class="timeline-list">
+          <li>CRM activo, pipeline operando, secuencias de nurturing corriendo</li>
+          <li>Playbook entregado y alineado con asesores del showroom</li>
+          <li>Primera ola de contenido IA publicada (12 reels, 30 piezas totales)</li>
+          <li>Pauta Meta optimizando lead magnets · primera data confiable de costo por lead</li>
+          <li>Google Ads aprendiendo · campañas de búsqueda en optimización</li>
+        </ul>
+      </div>
+      <div class="timeline-card reveal">
+        <div class="timeline-when">Mes 4–6</div>
+        <h3 class="timeline-title">Calibrar la conversión</h3>
+        <ul class="timeline-list">
+          <li>Scoring del CRM identificando leads calientes con precisión</li>
+          <li>Pauta Meta y Google con creatividades ganadoras escaladas</li>
+          <li>Conversiones offline alimentando algoritmos de Google y Meta</li>
+          <li>Bajada medible en costo por cita real (no por lead)</li>
+          <li>Equipo de ventas recibiendo leads pre-calificados, no fríos</li>
+        </ul>
+      </div>
+      <div class="timeline-card reveal">
+        <div class="timeline-when">Mes 7–12</div>
+        <h3 class="timeline-title">Escalar la máquina</h3>
+        <ul class="timeline-list">
+          <li>Narrativa "Life is Art" consolidada como activo de marca</li>
+          <li>Comunidad orgánica de seguidores convirtiéndose en referidos</li>
+          <li>Sistema replicable para próximos desarrollos del grupo</li>
+          <li>ROI sobre marketing trazable hasta cada escritura firmada</li>
+          <li>Showroom operando a capacidad con leads calificados de forma constante</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CIERRE ========== -->
+<section class="closing">
+  <div class="container-narrow">
+    <p class="closing-quote">Clemente 70 ya tiene la <em>arquitectura</em>, la <em>narrativa</em> y la <em>dirección</em>. Falta el sistema que convierta eso en compradores.</p>
+    <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 2rem;">Esa es la propuesta. Lo siguiente es activar.</p>
+    <div class="closing-contact">
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      <span style="opacity:0.4;">·</span>
+      <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+    </div>
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-sentido-mark" />
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-meta">
+        Sentido · Branding &amp; Advertising · Mayo 2026<br>
+        Propuesta estratégica preparada para Clemente 70
+      </div>
+      <div class="footer-meta">
+        <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://propuestas.sentido.mx" target="_blank" rel="noopener">propuestas.sentido.mx</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Scroll-spy for nav links
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.site-nav-links a, .site-nav-mobile a');
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach((s) => spyObserver.observe(s));
+</script>
+</body>
+</html>
