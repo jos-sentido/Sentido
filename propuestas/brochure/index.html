@@ -1088,6 +1088,262 @@
     margin-left: 8px;
   }
 
+  /* ================= SISTEMA VIVO ================= */
+  .sistema-vivo {
+    margin-top: 56px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .vivo-layer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 40px;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+
+  .vivo-layer:hover { border-color: var(--accent-dim); }
+
+  .vivo-layer-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .vivo-layer-label::before {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    max-width: 80px;
+    order: 2;
+  }
+
+  .vivo-nodes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .vivo-node {
+    background: var(--surface-elevated);
+    border: 1px solid var(--accent-dim);
+    padding: 18px 22px;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    text-align: center;
+    color: var(--text);
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    cursor: default;
+  }
+
+  .vivo-node:hover {
+    background: rgba(201, 184, 150, 0.10);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .vivo-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 28px 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .vivo-flow::before,
+  .vivo-flow::after {
+    content: '';
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: var(--border-strong);
+  }
+
+  .vivo-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.5;
+  }
+
+  .vivo-arrows span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--accent);
+    animation: pulse-arrow 2.4s ease-in-out infinite;
+  }
+
+  .vivo-arrows span:nth-child(2) { animation-delay: 0.3s; opacity: 0.6; }
+  .vivo-arrows span:nth-child(3) { animation-delay: 0.6s; opacity: 0.3; }
+
+  @keyframes pulse-arrow {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(4px); }
+  }
+
+  .vivo-core {
+    background: linear-gradient(135deg, var(--surface-elevated), var(--surface));
+    border: 1px solid var(--accent);
+    padding: 48px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vivo-core::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 140%; height: 140%;
+    background: radial-gradient(circle, var(--accent-glow), transparent 55%);
+    transform: translate(-50%, -50%);
+    animation: vivo-pulse 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes vivo-pulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  }
+
+  .vivo-core > * { position: relative; z-index: 1; }
+
+  .vivo-core-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .vivo-core-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(2rem, 4vw, 2.875rem);
+    color: var(--text);
+    margin-bottom: 20px;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  .vivo-core-title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .vivo-core-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .vivo-foundation {
+    margin-top: 24px;
+    padding: 22px 32px;
+    background: var(--surface-ghost);
+    border: 1px dashed var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+
+  .vivo-foundation-label { color: var(--accent); }
+  .vivo-foundation-name { color: var(--text); font-style: normal; }
+  .vivo-foundation-sep { color: var(--text-faint); }
+
+  /* IA Pillars */
+  .ia-pillars {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .ia-pillar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .ia-pillar:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-4px);
+  }
+
+  .ia-pillar::after {
+    content: '';
+    position: absolute;
+    top: -1px; right: -1px;
+    width: 0; height: 0;
+    border-top: 1px solid var(--accent);
+    border-right: 1px solid var(--accent);
+    transition: width 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .ia-pillar:hover::after { width: 36px; height: 36px; }
+
+  .ia-pillar-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .ia-pillar-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .ia-pillar-desc {
+    color: var(--text-dim);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .vivo-nodes { grid-template-columns: 1fr; gap: 12px; }
+    .vivo-layer { padding: 24px; }
+    .vivo-core { padding: 32px 24px; }
+    .vivo-flow::before, .vivo-flow::after { max-width: 40px; }
+    .ia-pillars { grid-template-columns: 1fr; }
+    .ia-pillar { padding: 28px 24px; }
+  }
+
   /* ================= INVERSIÓN — SOFT NOTE ================= */
   .invest-grid {
     margin-top: 48px;
@@ -1912,8 +2168,8 @@
       <a href="#contexto" class="nav-link" data-section="contexto">Contexto</a>
       <a href="#metodo" class="nav-link" data-section="metodo">Método</a>
       <a href="#proceso" class="nav-link" data-section="proceso">Proceso</a>
+      <a href="#sistema-vivo" class="nav-link" data-section="sistema-vivo">Sistema Vivo</a>
       <a href="#sistemas" class="nav-link" data-section="sistemas">Sistemas</a>
-      <a href="#arrancamos" class="nav-link" data-section="arrancamos">Arrancamos</a>
       <a href="#hablemos" class="nav-link nav-cta" data-section="hablemos">Hablemos →</a>
     </div>
   </div>
@@ -2174,12 +2430,113 @@
   </div>
 </section>
 
-<!-- ================= 04 · SISTEMAS ================= -->
+<!-- ================= 04 · EL SISTEMA VIVO ================= -->
+<section id="sistema-vivo">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">04 — EL SISTEMA VIVO</span>
+        <h2>Cada pieza alimenta a las demás.<br /><span style="color: var(--text-dim); font-style: italic;">La IA conecta el ciclo completo.</span></h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Las piezas no operan en paralelo desconectado — operan en circuito. Cada lead capturado entrena al modelo de la pauta; cada conversión refina la segmentación; cada reseña alimenta el contenido. La IA no es un módulo aparte: es la capa que conecta los servicios y los hace optimizarse mes con mes.
+    </p>
+
+    <p class="reveal" style="color: var(--text-dim); margin-top: 24px; font-size: 0.9375rem;">
+      Esta es la razón por la que el trabajo es continuo, no de entrega única. El sistema del mes 6 vale más que el del mes 1 — con la misma inversión.
+    </p>
+
+    <!-- VISUAL: SISTEMA VIVO -->
+    <div class="sistema-vivo reveal">
+      <!-- Capa superior: Captura -->
+      <div class="vivo-layer">
+        <div class="vivo-layer-label">Captura · genera datos</div>
+        <div class="vivo-nodes">
+          <div class="vivo-node">Redes Meta</div>
+          <div class="vivo-node">Google Ads</div>
+          <div class="vivo-node">Google Business Profile</div>
+        </div>
+      </div>
+
+      <!-- Flow descendente -->
+      <div class="vivo-flow">
+        Datos · señales · audiencias
+        <div class="vivo-arrows"><span>↓</span><span>↓</span><span>↓</span></div>
+        Conversiones · comportamiento · contexto
+      </div>
+
+      <!-- Núcleo IA -->
+      <div class="vivo-core">
+        <div class="vivo-core-label">Núcleo del sistema</div>
+        <div class="vivo-core-title">IA &amp; Datos <em>del cliente</em></div>
+        <div class="vivo-core-desc">
+          Modelos de pauta (Advantage+, PMax, Demand Gen) entrenados con datos del CRM. Scoring de leads, generación de creativos, copywriting asistido, respuestas automatizadas con LLM, atribución cruzada, segmentación dinámica, predicción de churn y recompra. La inteligencia no se compra de un proveedor — se construye con la data del negocio.
+        </div>
+      </div>
+
+      <!-- Flow ascendente / regreso -->
+      <div class="vivo-flow">
+        Personalización · automatización · optimización
+        <div class="vivo-arrows" style="transform: rotate(180deg);"><span>↓</span><span>↓</span><span>↓</span></div>
+        Iteración · aprendizaje · ajuste
+      </div>
+
+      <!-- Capa inferior: Conversión & Retención -->
+      <div class="vivo-layer">
+        <div class="vivo-layer-label">Conversión &amp; Retención · cierra el ciclo</div>
+        <div class="vivo-nodes">
+          <div class="vivo-node">Sitio Web</div>
+          <div class="vivo-node">CRM + Automatización</div>
+          <div class="vivo-node">Email Marketing</div>
+        </div>
+      </div>
+
+      <!-- Sustento: Branding -->
+      <div class="vivo-foundation">
+        <span class="vivo-foundation-label">Sustento</span>
+        <span class="vivo-foundation-sep">·</span>
+        <span class="vivo-foundation-name">Branding · Identidad — el marco que da consistencia a todo lo demás</span>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 96px; margin-bottom: 24px;">La IA en acción · cuatro frentes concretos</h3>
+    <p class="reveal" style="color: var(--text-dim); margin-bottom: 24px; font-size: 0.9375rem;">
+      No es IA como buzzword — es IA usada deliberadamente en partes específicas del sistema donde aporta velocidad, escala o decisión.
+    </p>
+
+    <div class="ia-pillars">
+      <div class="ia-pillar reveal">
+        <div class="ia-pillar-num">01 · OPTIMIZACIÓN DE PAUTA</div>
+        <h4 class="ia-pillar-title">Modelos que aprenden con tus conversiones</h4>
+        <p class="ia-pillar-desc">Meta Advantage+, Google Performance Max y Demand Gen reciben las conversiones del CRM y refinan audiencias, pujas y creativos sin intervención manual. La pauta del mes 6 rinde el doble que la del mes 1, sin subir el presupuesto.</p>
+      </div>
+      <div class="ia-pillar reveal">
+        <div class="ia-pillar-num">02 · CONTENIDO A ESCALA</div>
+        <h4 class="ia-pillar-title">Producción visual y copy sin sesiones constantes</h4>
+        <p class="ia-pillar-desc">IA para imagen, video y copywriting permite generar variantes para A/B testing sin depender de producción continua. El branding define el marco creativo; la IA acelera la ejecución dentro de ese marco, manteniendo la marca consistente.</p>
+      </div>
+      <div class="ia-pillar reveal">
+        <div class="ia-pillar-num">03 · CONVERSACIÓN AUTOMATIZADA</div>
+        <h4 class="ia-pillar-title">Respuesta en &lt;60s con criterio humano</h4>
+        <p class="ia-pillar-desc">LLMs integrados al CRM responden el primer mensaje en menos de 60 segundos, en el tono de la marca, califican intención y agendan. El humano interviene solo donde aporta valor real — no para teclear lo mismo cien veces.</p>
+      </div>
+      <div class="ia-pillar reveal">
+        <div class="ia-pillar-num">04 · DECISIONES CON DATOS</div>
+        <h4 class="ia-pillar-title">Una sola vista del sistema completo</h4>
+        <p class="ia-pillar-desc">Dashboards que combinan pauta, sitio, CRM y reseñas dan al cliente una sola vista — no cinco reportes desconectados. La reunión mensual deja de ser sobre "qué se hizo" y empieza a ser sobre "qué se ajusta para el próximo mes".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · SISTEMAS ================= -->
 <section id="sistemas">
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">04 — SISTEMAS</span>
+        <span class="section-number">05 — SISTEMAS</span>
         <h2>Lo que componemos<br />en cada capa.</h2>
       </div>
     </div>
@@ -2211,6 +2568,7 @@
           <li>Contenido con IA para escala visual sin depender de sesiones constantes</li>
           <li>Configuración, segmentación y optimización de campañas Meta Ads <strong>(incluido)</strong></li>
           <li>Administración de perfiles, primer contacto automatizado, redirección a WhatsApp/CRM</li>
+          <li><strong>IA aplicada:</strong> Meta Advantage+ alimentado por conversiones del CRM, A/B testing continuo de creativos generados con IA, optimización automática de audiencias</li>
           <li>Reporte mensual de alcance, engagement y leads generados</li>
         </ul>
         <span class="service-tag">Meta Ads · Incluido</span>
@@ -2233,6 +2591,7 @@
           <li>Segmentación geográfica calibrada al área de operación</li>
           <li>Landing pages específicas por audiencia conectadas al sitio</li>
           <li>Optimización semanal de pujas, palabras y anuncios</li>
+          <li><strong>IA aplicada:</strong> estrategia híbrida humano + máquina — Sentido define marco e intención; Smart Bidding, Performance Max y Demand Gen optimizan dentro de él con datos del CRM</li>
           <li>Reporte mensual con CPL, conversiones y ROI estimado</li>
         </ul>
       </div>
@@ -2279,6 +2638,7 @@
           <li>Monitoreo y respuesta a reseñas, campañas para clientes recurrentes</li>
           <li>Filtrado estratégico de reseñas negativas hacia formulario privado</li>
           <li>1 número WhatsApp, mensajes ilimitados, correos ilimitados</li>
+          <li><strong>IA aplicada:</strong> scoring de leads por probabilidad de conversión, respuestas iniciales asistidas con LLM en el tono de la marca, predicción de churn y oportunidades de recompra</li>
           <li>Implementación inicial <strong>sin costo</strong> con mantenimiento mensual activo</li>
         </ul>
         <span class="service-tag">Implementación · Sin costo</span>
@@ -2301,6 +2661,7 @@
           <li>Actualización de información, horarios, fotos, promociones</li>
           <li>Gestión activa de preguntas y reseñas desde el CRM</li>
           <li>Estrategia de posicionamiento en Maps por zona</li>
+          <li><strong>IA aplicada:</strong> respuestas a reseñas asistidas con IA preservando el tono de marca, análisis de sentimiento para detectar patrones y oportunidades reales de mejora del servicio</li>
           <li>Reporte mensual de visitas, clics y solicitudes de ruta</li>
         </ul>
         <span class="service-tag">Incluido en paquete integral</span>
@@ -2323,6 +2684,7 @@
           <li>Flujos automatizados: bienvenida, nutrición, recuperación de carrito, recompra, reactivación</li>
           <li>Diseño y copywriting de cada plantilla, alineado al branding</li>
           <li>Pruebas A/B en subject lines y CTAs para optimizar apertura y clic</li>
+          <li><strong>IA aplicada:</strong> send time optimization por receptor, generación + A/B test continuo de subject lines, segmentación dinámica por comportamiento, personalización de contenido a nivel individual</li>
           <li>Reporte mensual de entregabilidad, apertura, clic y conversión atribuida</li>
         </ul>
         <span class="service-tag">Complemento al paquete</span>
@@ -2346,6 +2708,7 @@
           <li>Manual de marca con reglas de uso, tono de voz y aplicaciones</li>
           <li>Aplicaciones base: tarjetas, papelería digital, plantillas de redes, firma de correo</li>
           <li>Versiones para uso digital, impresión, redes y formatos especiales</li>
+          <li><strong>IA aplicada:</strong> investigación de mercado y competencia aceleradas con IA, exploración visual asistida para validar dirección antes de invertir en producción, tono de voz documentado para uso en agentes IA del cliente</li>
         </ul>
         <span class="service-tag">Inversión única · Alcance modular</span>
       </div>
@@ -2367,6 +2730,7 @@
           <li>Integración nativa con CRM, Meta Pixel, Google Ads y GA4</li>
           <li>SEO técnico y Core Web Vitals cuidados</li>
           <li>CMS administrable + arquitectura preparada para crecer</li>
+          <li><strong>IA aplicada:</strong> análisis automático de heatmaps + comportamiento para detectar fricciones, A/B testing continuo de hero y CTAs, personalización dinámica por fuente de tráfico</li>
         </ul>
         <span class="service-tag">Inversión única · alcance modular</span>
       </div>
@@ -2379,7 +2743,7 @@
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">05 — CÓMO ARRANCAMOS</span>
+        <span class="section-number">06 — CÓMO ARRANCAMOS</span>
         <h2>De este brochure<br />a un sistema en marcha.</h2>
       </div>
     </div>
@@ -2422,7 +2786,7 @@
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">06 — HABLEMOS</span>
+        <span class="section-number">07 — HABLEMOS</span>
         <h2>Cuéntanos qué estás resolviendo.</h2>
       </div>
     </div>
@@ -2693,6 +3057,7 @@
     'contexto': document.getElementById('contexto'),
     'metodo': document.getElementById('metodo'),
     'proceso': document.getElementById('proceso'),
+    'sistema-vivo': document.getElementById('sistema-vivo'),
     'sistemas': document.getElementById('sistemas'),
     'arrancamos': document.getElementById('arrancamos'),
     'hablemos': document.getElementById('hablemos')
@@ -2702,8 +3067,9 @@
     'contexto': 'contexto',
     'metodo': 'metodo',
     'proceso': 'proceso',
+    'sistema-vivo': 'sistema-vivo',
     'sistemas': 'sistemas',
-    'arrancamos': 'arrancamos',
+    'arrancamos': 'hablemos',
     'hablemos': 'hablemos'
   };
 
