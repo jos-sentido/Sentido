@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Propuesta para AmPara Consultoría Inmobiliaria</title>
+<meta name="description" content="Sistema de marketing digital diseñado a la medida de AmPara — broker boutique en Guadalajara y Zapopan. Captación de compradores calificados, posicionamiento premium y cierre sistematizado." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Paleta heredada de AmPara — azul-grafito premium tapatío */
+    --bg: #1A1D2A;
+    --surface: #232737;
+    --surface-elevated: #2C3145;
+    --surface-hover: #353B53;
+    --border: #353B53;
+    --border-accent: #4A5170;
+    --border-bright: #5C6486;
+    --accent: #C9B584;
+    --accent-dim: #A89968;
+    --accent-soft: rgba(201, 181, 132, 0.08);
+    --secondary: #7882A0;
+    --text: #E8DFD3;
+    --text-dim: #A8AEBF;
+    --text-muted: #6B7287;
+    --success: #A3B89C;
+    --danger: #C29494;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Sticky nav */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26, 29, 42, 0.78);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  @media (min-width: 1024px) { .site-nav-inner { padding: 0 2rem; height: 68px; } }
+  .site-nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; flex-shrink: 0; }
+  .site-nav-brand img { height: 22px; width: auto; display: block; }
+  @media (min-width: 1024px) { .site-nav-brand img { height: 26px; } }
+  .site-nav-x {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .site-nav-links { display: none; align-items: center; gap: 1.6rem; list-style: none; }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .site-nav-links a:hover, .site-nav-links a.active { color: var(--accent); }
+  .site-nav-mobile {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 1.1rem;
+    padding: 0 1.25rem 0 1rem;
+    margin-left: 0.75rem;
+    border-left: 1px solid var(--border);
+    flex: 1;
+    min-width: 0;
+    -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to right, black 0, black calc(100% - 28px), transparent 100%);
+  }
+  .site-nav-mobile::-webkit-scrollbar { display: none; }
+  .site-nav-mobile a {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+    align-self: center;
+  }
+  .site-nav-mobile a:hover, .site-nav-mobile a.active { color: var(--accent); }
+  @media (min-width: 1024px) { .site-nav-mobile { display: none; } }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+
+  /* Layout */
+  .section { width: 100%; padding: 5rem 1.5rem; position: relative; }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    color: var(--accent);
+  }
+  .section-label span {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+  }
+  .section-label .divider { height: 1px; width: 3rem; background-color: var(--accent); opacity: 0.6; }
+
+  /* Typography */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    color: var(--text);
+  }
+  .display-heading em { font-style: italic; color: var(--accent); font-weight: 300; }
+  h1.display-heading { font-size: clamp(2.4rem, 6.5vw, 5.4rem); }
+  h2.display-heading { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 1.5rem; }
+  h3.display-heading { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+
+  .lede {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 48rem;
+    font-weight: 300;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  .micro-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 92vh;
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(201, 181, 132, 0.05) 0%, transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(120, 130, 160, 0.06) 0%, transparent 50%),
+      var(--bg);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 181, 132, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 181, 132, 0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; width: 100%; }
+  .hero-logo-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+  .hero-logo-bar img { height: 32px; width: auto; }
+  .hero-logo-bar .sep { color: var(--text-muted); font-family: var(--font-mono); font-size: 14px; }
+  .hero-logo-bar .ampara-mark {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .hero-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .hero h1 { margin-bottom: 2rem; }
+  .hero h1 .accent-line {
+    display: block;
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+    color: var(--text-dim);
+    max-width: 42rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    max-width: 38rem;
+  }
+  @media (min-width: 768px) { .hero-meta { grid-template-columns: repeat(4, 1fr); } }
+  .hero-meta-item .label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+  }
+  .hero-meta-item .value {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* Note / callout */
+  .note {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--accent-soft);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    margin: 2rem 0;
+  }
+  .note-icon { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; flex-shrink: 0; padding-top: 2px; }
+  .note p { color: var(--text-dim); font-size: 0.95rem; margin: 0; }
+  .note p strong { color: var(--text); font-weight: 500; }
+
+  /* Hallazgos grid */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .findings-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .finding-card {
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .finding-card:hover { border-color: var(--border-accent); background: var(--surface-elevated); }
+  .finding-card .num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .finding-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+  .finding-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.65; }
+  .finding-card .so-what {
+    margin-top: 1.1rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Plan toggle */
+  .plan-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  .plan-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .plan-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .plan-toggle button.active {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+  }
+
+  /* Service card */
+  .services-stack { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  .service-card:hover { border-color: var(--border-accent); }
+  .service-card.highlighted { border-color: var(--accent); }
+  .service-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+    align-items: start;
+  }
+  @media (min-width: 768px) { .service-head { grid-template-columns: 1fr auto; padding: 2.5rem; gap: 2rem; } }
+  .service-head-left .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .service-head-left h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .service-head-left .objective {
+    color: var(--text-dim);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    max-width: 36rem;
+  }
+  .service-price {
+    text-align: left;
+    min-width: 0;
+  }
+  @media (min-width: 768px) { .service-price { text-align: right; min-width: 12rem; } }
+  .service-price .amount {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.4vw, 2rem);
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .service-price .amount sup { font-size: 0.6em; vertical-align: top; opacity: 0.7; }
+  .service-price .freq {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+  .service-price .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 3px;
+    margin-top: 0.6rem;
+  }
+  .service-price .tag.included { background: rgba(163, 184, 156, 0.12); color: var(--success); }
+  .service-price .tag.opcional { background: rgba(120, 130, 160, 0.15); color: var(--secondary); }
+
+  .service-body {
+    padding: 0 2rem 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  @media (min-width: 768px) { .service-body { padding: 2rem 2.5rem 2.5rem; padding-top: 2rem; } }
+  .service-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    list-style: none;
+  }
+  @media (min-width: 768px) { .service-items { grid-template-columns: repeat(2, 1fr); gap: 1rem 2rem; } }
+  .service-items li {
+    display: flex;
+    gap: 0.75rem;
+    color: var(--text-dim);
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+  .service-items li::before {
+    content: '—';
+    color: var(--accent);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+  }
+  .service-items li strong { color: var(--text); font-weight: 500; }
+
+  /* Pauta sub-block (adyacente al servicio operador) */
+  .pauta-block {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--bg);
+    border: 1px dashed var(--border-accent);
+    border-radius: 4px;
+  }
+  .pauta-block .pauta-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .pauta-block .pauta-label .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .pauta-block .pauta-label span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .pauta-block h5 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .pauta-block p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  .pauta-block .pauta-range {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .pauta-block .pauta-note {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* Inversion summary */
+  .invest-summary {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+  }
+  @media (min-width: 768px) { .invest-summary { padding: 3rem; } }
+  .invest-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+  .invest-row:last-of-type { border-bottom: none; }
+  .invest-row .label { color: var(--text-dim); font-size: 0.95rem; }
+  .invest-row .label strong { color: var(--text); font-weight: 500; }
+  .invest-row .val { font-family: var(--font-mono); color: var(--text); font-size: 0.98rem; }
+  .invest-row.total { margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-bright); border-bottom: none; }
+  .invest-row.total .label { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); font-weight: 500; }
+  .invest-row.total .val { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); font-weight: 500; }
+
+  /* Setup grid */
+  .setup-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 768px) { .setup-grid { grid-template-columns: repeat(2, 1fr); } }
+  .setup-card {
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .setup-card .num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .setup-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+  .setup-card p {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+  .setup-card .price {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .setup-card .price .iva {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+  }
+
+  /* Horizon */
+  .horizon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .horizon-grid { grid-template-columns: repeat(3, 1fr); } }
+  .horizon-card {
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+  }
+  .horizon-card .month {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .horizon-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+  .horizon-card ul { list-style: none; }
+  .horizon-card ul li {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  .horizon-card ul li::before {
+    content: '·';
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+
+  /* Close */
+  .close {
+    text-align: center;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  .close .frase {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.2;
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+    letter-spacing: -0.01em;
+  }
+  .close .frase em { color: var(--accent); font-style: italic; font-weight: 300; }
+  .close .firma {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 3rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 1.5rem;
+    background: var(--bg);
+  }
+  .site-footer-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .site-footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+  }
+  .site-footer img { height: 24px; width: auto; opacity: 0.8; }
+  .site-footer .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+  }
+  .site-footer .contact a { color: var(--text-dim); text-decoration: none; transition: color 0.2s ease; }
+  .site-footer .contact a:hover { color: var(--accent); }
+  .site-footer .meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="#hero" class="site-nav-brand">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+      <span class="site-nav-x">·</span>
+      <span class="site-nav-x">AMPARA</span>
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#contexto" class="nav-link">Contexto</a></li>
+      <li><a href="#hallazgos" class="nav-link">Hallazgos</a></li>
+      <li><a href="#angulo" class="nav-link">Ángulo</a></li>
+      <li><a href="#propuesta" class="nav-link">Propuesta</a></li>
+      <li><a href="#inversion" class="nav-link">Inversión</a></li>
+      <li><a href="#horizonte" class="nav-link">Horizonte</a></li>
+    </ul>
+    <div class="site-nav-mobile">
+      <a href="#contexto" class="nav-link">Contexto</a>
+      <a href="#hallazgos" class="nav-link">Hallazgos</a>
+      <a href="#angulo" class="nav-link">Ángulo</a>
+      <a href="#propuesta" class="nav-link">Propuesta</a>
+      <a href="#inversion" class="nav-link">Inversión</a>
+      <a href="#horizonte" class="nav-link">Horizonte</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="section hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-logo-bar reveal">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+      <span class="sep">×</span>
+      <span class="ampara-mark">AMPARA</span>
+    </div>
+
+    <div class="hero-kicker reveal reveal-d1">Propuesta personalizada · Mayo 2026</div>
+
+    <h1 class="display-heading reveal reveal-d2">
+      Un sistema para que cada propiedad
+      <span class="accent-line">encuentre a su comprador.</span>
+    </h1>
+
+    <p class="hero-sub reveal reveal-d3">
+      La marca de AmPara ya transmite el nivel de las propiedades que representan.
+      Lo que falta no es presencia — es <strong style="color:var(--text);">el sistema que convierta esa presencia en cierres recurrentes</strong>
+      sin depender de quién los conoce ya.
+    </p>
+
+    <div class="hero-meta reveal reveal-d4">
+      <div class="hero-meta-item">
+        <div class="label">Para</div>
+        <div class="value">AmPara MX</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Mercado</div>
+        <div class="value">GDL · Zapopan</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Ticket</div>
+        <div class="value">$2M – $9M+</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Horizonte</div>
+        <div class="value">90 días</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section id="contexto" class="section section-surface">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>01 · Contexto</span></div>
+
+    <h2 class="display-heading reveal reveal-d1">
+      No es que haga falta hacer más. <em>Hace falta que lo que ya hacen, capitalice.</em>
+    </h2>
+
+    <p class="lede reveal reveal-d2" style="margin-top:1.5rem;">
+      En la primera conversación quedó claro: AmPara no es un broker más. Es una consultoría inmobiliaria boutique
+      operando en el segmento premium de Guadalajara y Zapopan — donde la decisión de compra de un departamento de $3M
+      o una casa de $9M se cocina durante meses, en privado, entre referidos y recomendaciones.
+    </p>
+
+    <p class="lede reveal reveal-d3" style="margin-top:1.5rem;">
+      <strong>Tienen marca. Tienen inventario. Tienen cierres.</strong> Lo que falta es el sistema digital que haga
+      que un comprador que jamás los ha conocido sienta — al primer contacto — la misma confianza que sienten quienes
+      ya cerraron con ustedes.
+    </p>
+
+    <div class="note reveal reveal-d4">
+      <div class="note-icon">NOTA</div>
+      <p>Esta propuesta parte de la conversación previa que ya tuvimos sobre el ecosistema de marketing para
+      inmobiliarias. <strong>No es un copy-paste</strong> — es lo que tiene sentido específicamente para AmPara
+      según lo que vimos en redes, inventario y mercado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HALLAZGOS -->
+<section id="hallazgos" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>02 · Hallazgos</span></div>
+
+    <h2 class="display-heading reveal reveal-d1">
+      Lo que vimos al revisar <em>el ecosistema actual de AmPara.</em>
+    </h2>
+
+    <p class="lede reveal reveal-d2" style="margin-top:1.5rem;">
+      Cada hallazgo tiene una implicación clara — y cada uno se resuelve con una pieza específica del sistema
+      que proponemos más adelante.
+    </p>
+
+    <div class="findings-grid">
+
+      <div class="finding-card reveal reveal-d1">
+        <div class="num">01 / Presencia</div>
+        <h4>Producen contenido, pero el alcance no escala.</h4>
+        <p>44 publicaciones en Instagram con 120 seguidores. La cuenta produce, pero el ratio entre
+        contenido y comunidad indica que no hay una estrategia de distribución activa. El contenido
+        existe; nadie lo descubre.</p>
+        <div class="so-what">↳ Gestión Redes + Meta Ads geo-segmentado</div>
+      </div>
+
+      <div class="finding-card reveal reveal-d2">
+        <div class="num">02 / Posicionamiento</div>
+        <h4>La marca lee premium. El feed mezcla códigos.</h4>
+        <p>Logo elegante, paleta sobria, propiedades de alto nivel. Pero el feed mezcla listings,
+        selfies hablando a cámara, posts del Mundial y tips genéricos sin pilares editoriales.
+        El ojo high-net-worth lee inconsistencia y se aleja.</p>
+        <div class="so-what">↳ Refinamiento de marca + pilares de contenido</div>
+      </div>
+
+      <div class="finding-card reveal reveal-d3">
+        <div class="num">03 / Discoverability</div>
+        <h4>"Cierres" como único highlight — buen instinto, mal sistematizado.</h4>
+        <p>El highlight "Cierres" es prueba social bien intencionada, pero está aislado. No hay
+        sitio web, no hay GBP optimizado, no hay reseñas visibles en Google. Cuando un comprador
+        busca "AmPara Zapopan" tras la primera referencia, no encuentra autoridad.</p>
+        <div class="so-what">↳ Sitio inmobiliario + Google Business + Reputación</div>
+      </div>
+
+      <div class="finding-card reveal reveal-d4">
+        <div class="num">04 / Captación</div>
+        <h4>Cada listing se publica una vez. Y se va.</h4>
+        <p>Las propiedades aparecen en feed con un "SE VENDE / SE RENTA" y mueren ahí. No hay
+        amplificación pagada, no hay landing por listing, no hay retargeting a quienes vieron la
+        propiedad. Cada inventario es una oportunidad usada al 20%.</p>
+        <div class="so-what">↳ Meta Ads + Google Ads por listing premium</div>
+      </div>
+
+      <div class="finding-card reveal reveal-d1">
+        <div class="num">05 / Seguimiento</div>
+        <h4>Los leads llegan por DM. ¿Y después?</h4>
+        <p>Sin un CRM, cada conversación queda atrapada en Instagram, WhatsApp o memoria del
+        broker. Los compradores premium tardan 3-9 meses en decidir. Sin sistema de seguimiento,
+        los que no compran en 30 días se pierden — aunque sí compren después.</p>
+        <div class="so-what">↳ CRM GoHighLevel + nurturing automatizado</div>
+      </div>
+
+      <div class="finding-card reveal reveal-d2">
+        <div class="num">06 / Prueba social</div>
+        <h4>Cierran, pero no se ve afuera del feed.</h4>
+        <p>El highlight "Cierres" sugiere que sí hay clientes felices. Pero no hay reseñas visibles
+        en Google, ni testimonios en video, ni casos publicados. La prueba social de AmPara hoy
+        depende del boca a boca — y eso no escala.</p>
+        <div class="so-what">↳ Sistema de captura de reseñas + casos en contenido</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ANGULO -->
+<section id="angulo" class="section section-surface section-divider">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>03 · Ángulo</span></div>
+
+    <h2 class="display-heading reveal reveal-d1">
+      La oportunidad real:
+      <em>convertir AmPara en la consultoría inmobiliaria de referencia para el segmento $3M – $10M en Zapopan.</em>
+    </h2>
+
+    <p class="lede reveal reveal-d2" style="margin-top:2rem;">
+      El mercado tapatío premium está fragmentado. Hay brokers grandes con presencia masiva pero
+      sin posicionamiento boutique. Y hay agentes independientes con conocimiento profundo pero
+      sin marca. <strong>AmPara está exactamente en el espacio que nadie ocupa bien</strong>: marca cuidada,
+      enfoque consultivo, propiedades curadas — pero sin la presencia digital que ese posicionamiento merece.
+    </p>
+
+    <p class="lede reveal reveal-d3" style="margin-top:1.5rem;">
+      La estrategia no es ser "el broker más grande". Es ser <strong>el broker que cuando alguien quiere comprar
+      o vender en Zapopan, aparece primero, se ve confiable y comunica nivel</strong>. Eso se construye con un
+      sistema, no con más posts.
+    </p>
+
+    <div class="note reveal reveal-d4" style="margin-top:3rem;">
+      <div class="note-icon">PRINCIPIO</div>
+      <p>En el segmento premium, <strong>la frecuencia de aparición pesa menos que la consistencia del nivel</strong>.
+      Un comprador de $5M no necesita ver 30 posts al mes — necesita que los 12 que vea, todos, le confirmen
+      que eligió a la consultoría correcta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA -->
+<section id="propuesta" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>04 · La propuesta</span></div>
+
+    <h2 class="display-heading reveal reveal-d1">
+      Dos caminos. <em>Mismo destino.</em>
+    </h2>
+
+    <p class="lede reveal reveal-d2" style="margin-top:1.5rem; margin-bottom: 1rem;">
+      Diseñamos dos planes para que AmPara escoja según el momento. El <strong>Esencial</strong> instala los
+      cimientos digitales que un broker boutique no puede no tener. El <strong>Acelerado</strong> suma el
+      sistema de seguimiento y la pauta en Google que convierte intención en cierre.
+    </p>
+
+    <p class="lede reveal reveal-d3">
+      Producción de contenido (foto/video de propiedades) se cotiza eventual — solo cuando un listing
+      premium amerita producción dedicada. La pauta publicitaria va siempre directa a Meta o Google
+      (no es honorario de Sentido) y está sugerida con rangos razonables al ticket de AmPara.
+    </p>
+
+    <!-- TOGGLE -->
+    <div class="plan-toggle-wrap reveal reveal-d4" style="margin-top: 3rem;">
+      <div class="plan-toggle" role="tablist">
+        <button class="active" data-plan="esencial">Plan Esencial</button>
+        <button data-plan="acelerado">Plan Acelerado</button>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="services-stack">
+
+      <!-- 1. Gestión de Redes + Meta Ads adyacente -->
+      <div class="service-card highlighted">
+        <div class="service-head">
+          <div class="service-head-left">
+            <div class="num">01 / Presencia</div>
+            <h3>Gestión de Redes Sociales con pilares editoriales</h3>
+            <p class="objective">15 publicaciones mensuales con mix de formatos (reels, carruseles, posts, historias)
+            organizadas en pilares claros: propiedades destacadas, vida en Zapopan, momentos de cierre, AmPara behind-the-scenes.
+            Tono y visual consistentes con la marca actual.</p>
+          </div>
+          <div class="service-price">
+            <div class="amount">$7,500<sup> + IVA</sup></div>
+            <div class="freq">por mes</div>
+          </div>
+        </div>
+        <div class="service-body">
+          <ul class="service-items">
+            <li>Calendario editorial mensual aprobado con cliente</li>
+            <li>Diseño gráfico de piezas + edición de reels</li>
+            <li>Copywriting con voz AmPara consistente</li>
+            <li>Programación y publicación (FB + IG)</li>
+            <li>Gestión de comentarios y DMs entrantes en horario laboral</li>
+            <li>Reporte mensual con métricas y propuestas</li>
+          </ul>
+
+          <!-- PAUTA META adyacente -->
+          <div class="pauta-block">
+            <div class="pauta-label">
+              <span class="dot"></span>
+              <span>Pauta adyacente · Meta Ads</span>
+            </div>
+            <h5>Amplificación pagada de listings + remarketing local</h5>
+            <p>Gestión de campañas en Meta (Instagram + Facebook) segmentadas a zonas premium de Guadalajara
+            metropolitana, intereses inmobiliarios y remarketing a quienes ya vieron contenido de AmPara.
+            <strong>Incluida sin costo adicional</strong> al contratar Gestión de Redes.</p>
+            <div class="pauta-range">Presupuesto recomendado: $5,000 – $8,000 MXN / mes</div>
+            <div class="pauta-note">* Este monto va directo a Meta, no es honorario de Sentido. Configurado en cuenta publicitaria de AmPara.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Google Business + reputación + (Acelerado) Google Ads -->
+      <div class="service-card">
+        <div class="service-head">
+          <div class="service-head-left">
+            <div class="num">02 / Discoverability</div>
+            <h3>Google Business Profile + presencia local en buscador</h3>
+            <p class="objective">Optimización del perfil de Google Business para que cuando alguien busque
+            "broker inmobiliario Zapopan" o "consultoría inmobiliaria Guadalajara", AmPara aparezca con
+            fotos, reseñas y autoridad. Incluye captación sistematizada de reseñas vía WhatsApp post-cierre.</p>
+          </div>
+          <div class="service-price">
+            <div class="amount">$2,500<sup> + IVA</sup></div>
+            <div class="freq">por mes</div>
+            <div class="tag">Precio bundle con redes</div>
+          </div>
+        </div>
+        <div class="service-body">
+          <ul class="service-items">
+            <li>Alta / optimización completa del perfil GBP</li>
+            <li>Carga mensual de fotos de propiedades destacadas</li>
+            <li>Respuesta a reseñas y mensajes en perfil</li>
+            <li>Automatización de solicitud de reseñas post-cierre (WhatsApp)</li>
+            <li>Filtrado estratégico de insatisfechos a canal privado</li>
+            <li>Estrategia de keywords locales (Zapopan, Andares, Puerta del Hierro)</li>
+          </ul>
+
+          <!-- PAUTA GOOGLE adyacente — solo Acelerado -->
+          <div class="pauta-block plan-acelerado-only" style="display:none;">
+            <div class="pauta-label">
+              <span class="dot"></span>
+              <span>Pauta adyacente · Google Ads · Plan Acelerado</span>
+            </div>
+            <h5>Captura de búsquedas con intención de compra</h5>
+            <p>Campañas de Google Search para keywords con intención clara: "casa en venta Zapopan",
+            "departamento Andares", "broker inmobiliario Guadalajara". Aquí está el comprador que ya
+            decidió que quiere comprar — solo falta que AmPara aparezca primero.</p>
+            <div class="pauta-range">Gestión Sentido: $4,000 + IVA / mes</div>
+            <div class="pauta-range">Presupuesto recomendado a Google: $5,000 – $10,000 MXN / mes</div>
+            <div class="pauta-note">* El monto a Google va directo a la plataforma, no es honorario de Sentido.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CRM (incluido en Acelerado, opcional en Esencial) -->
+      <div class="service-card">
+        <div class="service-head">
+          <div class="service-head-left">
+            <div class="num">03 / Seguimiento</div>
+            <h3>CRM GoHighLevel + automatización de leads</h3>
+            <p class="objective">Pipeline comercial completo donde cada DM, llamada, mensaje de WhatsApp
+            y formulario de la web entra automáticamente. Etapas claras (Lead → Calificación → Visita →
+            Negociación → Cierre), nurturing automatizado para compradores que tardan en decidir, y
+            recordatorios para que AmPara no pierda un solo contacto.</p>
+          </div>
+          <div class="service-price">
+            <div class="amount">$4,000<sup> + IVA</sup></div>
+            <div class="freq">por mes</div>
+            <div class="tag plan-acelerado-tag included" style="display:none;">Incluido en Acelerado</div>
+            <div class="tag plan-esencial-tag opcional">Opcional en Esencial</div>
+          </div>
+        </div>
+        <div class="service-body">
+          <ul class="service-items">
+            <li>Pipeline configurado al flujo comercial de AmPara</li>
+            <li>Captura automática desde IG, WhatsApp, formularios web</li>
+            <li>Secuencias de seguimiento (email + WhatsApp + SMS)</li>
+            <li>Calendarios sincronizados (Google / Outlook)</li>
+            <li>1 número de WhatsApp Business integrado</li>
+            <li>Implementación e instalación <strong>sin costo</strong> con mantenimiento mensual activo</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INVERSION -->
+<section id="inversion" class="section section-surface section-divider">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>05 · Inversión</span></div>
+
+    <h2 class="display-heading reveal reveal-d1">
+      Cotización clara, <em>sin sorpresas.</em>
+    </h2>
+
+    <p class="lede reveal reveal-d2" style="margin-top:1.5rem;">
+      Pagos mensuales por adelantado. Inversión única setup pagada 50/50 (50% al iniciar, 50% al entregar).
+      Todos los honorarios de gestión llevan IVA. La pauta publicitaria va directa a la plataforma —
+      no la cobra Sentido.
+    </p>
+
+    <!-- Resumen Esencial -->
+    <div class="invest-summary plan-esencial-only">
+      <div class="micro-label" style="margin-bottom: 1rem;">Plan Esencial · Mensual</div>
+      <h3 class="display-heading" style="font-size:1.6rem; margin-bottom:1.5rem;">Cimientos digitales para broker boutique</h3>
+
+      <div class="invest-row">
+        <div class="label"><strong>Gestión de Redes Sociales</strong> · 15 piezas/mes + pilares editoriales</div>
+        <div class="val">$7,500</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>Meta Ads — gestión</strong> · adyacente a redes</div>
+        <div class="val">Incluido</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>Google Business Profile</strong> · precio bundle con redes</div>
+        <div class="val">$2,500</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>Gestión de reseñas automatizada</strong> · post-cierre vía WhatsApp</div>
+        <div class="val">Incluido</div>
+      </div>
+      <div class="invest-row total">
+        <div class="label">Honorarios mensuales Sentido</div>
+        <div class="val">$10,000 + IVA</div>
+      </div>
+
+      <div class="note" style="margin-top:2rem;">
+        <div class="note-icon">PAUTA</div>
+        <p><strong>Inversión recomendada en plataformas (va directa a Meta, no a Sentido):</strong>
+        $5,000 – $8,000 MXN / mes para Meta Ads. Esto amplifica listings premium y construye remarketing local.</p>
+      </div>
+
+      <div class="note" style="background: rgba(120, 130, 160, 0.08); border-left-color: var(--secondary);">
+        <div class="note-icon" style="color:var(--secondary);">OPCIONAL</div>
+        <p><strong>CRM GoHighLevel — $4,000 + IVA / mes</strong> (con implementación sin costo).
+        Se puede agregar al Esencial cuando AmPara esté listo para sistematizar seguimiento.</p>
+      </div>
+    </div>
+
+    <!-- Resumen Acelerado -->
+    <div class="invest-summary plan-acelerado-only" style="display:none;">
+      <div class="micro-label" style="margin-bottom: 1rem;">Plan Acelerado · Mensual</div>
+      <h3 class="display-heading" style="font-size:1.6rem; margin-bottom:1.5rem;">Sistema comercial completo</h3>
+
+      <div class="invest-row">
+        <div class="label"><strong>Gestión de Redes Sociales</strong> · 15 piezas/mes + pilares editoriales</div>
+        <div class="val">$7,500</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>Meta Ads — gestión</strong> · adyacente a redes</div>
+        <div class="val">Incluido</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>Google Business Profile</strong> · precio bundle con redes</div>
+        <div class="val">$2,500</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>Google Ads — gestión</strong> · captura de búsquedas con intención</div>
+        <div class="val">$4,000</div>
+      </div>
+      <div class="invest-row">
+        <div class="label"><strong>CRM GoHighLevel</strong> · pipeline + automatización + WhatsApp</div>
+        <div class="val">Incluido*</div>
+      </div>
+      <div class="invest-row total">
+        <div class="label">Honorarios mensuales Sentido</div>
+        <div class="val">$14,000 + IVA</div>
+      </div>
+
+      <div class="note" style="margin-top:2rem;">
+        <div class="note-icon">PAUTA</div>
+        <p><strong>Inversión recomendada en plataformas (va directa a Meta y Google, no a Sentido):</strong>
+        <br>Meta Ads: $5,000 – $8,000 MXN / mes
+        <br>Google Ads: $5,000 – $10,000 MXN / mes
+        <br>Total pauta sugerida: $10,000 – $18,000 MXN / mes destinados a las plataformas.</p>
+      </div>
+
+      <p style="margin-top:1.5rem; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--text-muted); text-transform: uppercase;">
+        * Implementación CRM sin costo con mantenimiento mensual activo.
+      </p>
+    </div>
+
+    <!-- SETUP INICIAL -->
+    <div style="margin-top: 5rem;">
+      <h3 class="display-heading reveal" style="font-size:1.8rem; margin-bottom:1rem;">Inversión única — Setup inicial</h3>
+      <p class="lede reveal reveal-d1" style="margin-bottom:1rem;">
+        El sistema mensual no arranca sobre el aire. Necesitamos cimientos: marca refinada y un sitio que reciba
+        los leads que vamos a generar. Estos son los dos pagos únicos al inicio del proyecto.
+      </p>
+
+      <div class="setup-grid">
+        <div class="setup-card reveal reveal-d2">
+          <div class="num">SU.01</div>
+          <h4>Refinamiento de marca & sistema visual</h4>
+          <p>AmPara ya tiene una identidad sólida — no necesita rebrand. Lo que sí necesita es sistematizar
+          paleta, tipografías, plantillas de listing, plantillas de stories, y kit de redes. Que todo lo que
+          AmPara publique se vea igual de bien que el logo.</p>
+          <div class="price">$8,000<span class="iva">+ IVA</span></div>
+        </div>
+        <div class="setup-card reveal reveal-d3">
+          <div class="num">SU.02</div>
+          <h4>Sitio web inmobiliario one-pager</h4>
+          <p>Landing profesional con listings destacados, sección "sobre AmPara", formulario de captación
+          conectado al CRM, integración con WhatsApp y Google Maps. Diseñada para que el comprador high-net-worth
+          que aterrice aquí, decida agendar una cita.</p>
+          <div class="price">$15,000<span class="iva">+ IVA</span></div>
+        </div>
+      </div>
+
+      <div class="invest-summary" style="margin-top: 2.5rem;">
+        <div class="invest-row total">
+          <div class="label">Inversión única total · Setup</div>
+          <div class="val">$23,000 + IVA</div>
+        </div>
+        <p style="margin-top:1rem; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--text-muted); text-transform: uppercase;">
+          Pago 50% al iniciar · 50% a la entrega · Plazo aproximado 4-5 semanas
+        </p>
+      </div>
+    </div>
+
+    <!-- Nota producción -->
+    <div class="note reveal" style="margin-top: 4rem;">
+      <div class="note-icon">PRODUCCIÓN</div>
+      <p><strong>Sesiones de foto y video de propiedades destacadas</strong> se cotizan eventual cuando aplican:
+      sesión foto $3,000 (2h, 25-30 imágenes editadas) · sesión video $5,500 + IVA (2h, 1 video largo + 4 cortos).
+      No se incluyen en el fee mensual — el broker decide cuándo y qué propiedad lo amerita.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTE -->
+<section id="horizonte" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>06 · Horizonte</span></div>
+
+    <h2 class="display-heading reveal reveal-d1">
+      Qué pasa durante <em>los primeros 90 días.</em>
+    </h2>
+
+    <p class="lede reveal reveal-d2" style="margin-top:1.5rem;">
+      No prometemos viralidad ni cierres garantizados. Prometemos un sistema operando, métricas claras y
+      una base que cada mes pesa más. Esto es lo que AmPara debe esperar ver en el corto plazo.
+    </p>
+
+    <div class="horizon-grid">
+      <div class="horizon-card reveal reveal-d1">
+        <div class="month">Mes 01 · Cimientos</div>
+        <h4>El sistema se instala.</h4>
+        <ul>
+          <li>Refinamiento de marca entregado</li>
+          <li>Sitio web live + integrado al CRM</li>
+          <li>Pilares editoriales aprobados</li>
+          <li>GBP optimizado y verificado</li>
+          <li>Primera batch de contenido publicado</li>
+          <li>Meta Ads encendido en zonas premium</li>
+        </ul>
+      </div>
+      <div class="horizon-card reveal reveal-d2">
+        <div class="month">Mes 02 · Tracción</div>
+        <h4>El sistema empieza a producir.</h4>
+        <ul>
+          <li>Crecimiento orgánico de seguidores tapatíos</li>
+          <li>Primeros leads vía Meta Ads en CRM</li>
+          <li>Primeras reseñas en GBP de cierres recientes</li>
+          <li>Si va Acelerado: campañas Google Search activas</li>
+          <li>Métricas mensuales con propuestas de ajuste</li>
+        </ul>
+      </div>
+      <div class="horizon-card reveal reveal-d3">
+        <div class="month">Mes 03 · Consolidación</div>
+        <h4>El sistema se vuelve previsible.</h4>
+        <ul>
+          <li>Volumen de leads estabilizado y medible</li>
+          <li>Pipeline de CRM con conversaciones activas</li>
+          <li>Posicionamiento orgánico en búsquedas locales</li>
+          <li>Casos de cierre con reseñas como prueba social</li>
+          <li>Decisión informada sobre escalar pauta o servicios</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="section close section-surface section-divider">
+  <div class="section-inner">
+    <p class="micro-label reveal" style="margin-bottom: 2rem;">07 · Cierre</p>
+    <p class="frase reveal reveal-d1">
+      AmPara ya eligió un nivel.<br>
+      <em>Toca que el sistema digital esté a esa altura.</em>
+    </p>
+    <p class="firma reveal reveal-d2">— Sentido Branding & Advertising</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    <div class="contact">
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+      <a href="https://propuestas.sentido.mx" target="_blank" rel="noopener">propuestas.sentido.mx</a>
+    </div>
+    <div class="meta">Propuesta AmPara · 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => navIO.observe(s));
+
+  // Plan toggle
+  const planButtons = document.querySelectorAll('.plan-toggle button');
+  const esencialEls = document.querySelectorAll('.plan-esencial-only');
+  const aceleradoEls = document.querySelectorAll('.plan-acelerado-only');
+  const esencialTags = document.querySelectorAll('.plan-esencial-tag');
+  const aceleradoTags = document.querySelectorAll('.plan-acelerado-tag');
+
+  planButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      planButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const plan = btn.getAttribute('data-plan');
+      if (plan === 'esencial') {
+        esencialEls.forEach(el => el.style.display = '');
+        aceleradoEls.forEach(el => el.style.display = 'none');
+        esencialTags.forEach(el => el.style.display = '');
+        aceleradoTags.forEach(el => el.style.display = 'none');
+      } else {
+        esencialEls.forEach(el => el.style.display = 'none');
+        aceleradoEls.forEach(el => el.style.display = '');
+        esencialTags.forEach(el => el.style.display = 'none');
+        aceleradoTags.forEach(el => el.style.display = '');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
