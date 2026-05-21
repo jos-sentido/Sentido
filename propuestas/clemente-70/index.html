@@ -141,13 +141,14 @@
   }
   @media (min-width: 768px) { .hero { padding: 6rem 0 7rem; } }
   .hero-logo-sentido {
-    height: 26px;
+    /* Tamaño hero: 2x del default histórico (26→52 mobile, 30→60 desktop) — lineamiento Sentido 2026-05 */
+    height: 52px;
     width: auto;
     display: block;
     margin-bottom: 3rem;
     opacity: 0.85;
   }
-  @media (min-width: 768px) { .hero-logo-sentido { height: 30px; margin-bottom: 4rem; } }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 4.5rem; } }
   .hero-meta {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -647,7 +648,8 @@
   }
   .closing-contact a:hover { color: var(--accent-dim); }
   .closing-sentido-mark {
-    height: 24px;
+    /* Tamaño footer/closing: 1.5x del default histórico (24→36) — lineamiento Sentido 2026-05 */
+    height: 36px;
     width: auto;
     opacity: 0.6;
     margin-top: 3rem;
