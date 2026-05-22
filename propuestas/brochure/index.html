@@ -2798,7 +2798,7 @@
     </p>
 
     <div class="form-wrap reveal">
-      <form id="lead-form" data-webhook="" novalidate>
+      <form id="lead-form" data-webhook="https://formsubmit.co/ajax/jos@sentido.mx" novalidate>
         <div class="form-grid">
           <div class="form-field">
             <label class="form-label" for="lf-nombre">Nombre completo <span class="req">*</span></label>
@@ -3205,21 +3205,32 @@
         return;
       }
 
-      const payload = {
-        nombre: form.nombre.value.trim(),
-        empresa: form.empresa.value.trim(),
-        email: form.email.value.trim(),
-        whatsapp: form.whatsapp.value.trim(),
-        sitio: form.sitio.value.trim(),
-        interes: interes,
-        presupuesto: form.presupuesto.value,
-        tiempo: form.tiempo.value,
-        contexto: form.contexto.value.trim(),
-        source: 'brochure.sentido.mx',
-        submitted_at: new Date().toISOString()
+      const webhook = form.dataset.webhook;
+      const isFormsubmit = webhook && webhook.includes('formsubmit.co');
+
+      const basePayload = {
+        Nombre: form.nombre.value.trim(),
+        Empresa: form.empresa.value.trim(),
+        Email: form.email.value.trim(),
+        WhatsApp: form.whatsapp.value.trim(),
+        'Sitio / IG': form.sitio.value.trim() || '—',
+        'Necesita apoyo en': interes.join(', '),
+        Presupuesto: form.presupuesto.value || 'sin especificar',
+        'Cuándo arranca': form.tiempo.value || 'sin especificar',
+        Contexto: form.contexto.value.trim() || '—',
+        Fuente: 'brochure.sentido.mx',
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
       };
 
-      const webhook = form.dataset.webhook;
+      // FormSubmit special fields — improve the email rendering
+      const payload = isFormsubmit ? {
+        _subject: `Lead nuevo · ${form.empresa.value.trim() || 'sin empresa'} · brochure`,
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: form.email.value.trim(),
+        ...basePayload
+      } : basePayload;
+
       submitBtn.disabled = true;
       submitBtn.querySelector('.arrow-symbol').textContent = '…';
 
@@ -3236,7 +3247,7 @@
           console.log('[brochure] lead (sin webhook):', payload);
           await new Promise(r => setTimeout(r, 600));
         }
-        showStatus('Recibido. Un estratega de Sentido te responde en menos de 24 horas hábiles a ' + payload.email + '.', false);
+        showStatus('Recibido. Un estratega de Sentido te responde en menos de 24 horas hábiles a ' + basePayload.Email + '.', false);
         form.reset();
         submitBtn.querySelector('.arrow-symbol').textContent = '✓';
       } catch (err) {
