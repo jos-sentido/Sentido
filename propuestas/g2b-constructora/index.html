@@ -732,6 +732,103 @@
     line-height: 1.55;
   }
 
+  /* ---------- CTA / LEAD FORM ---------- */
+  .cta-form-section {
+    padding: 6rem 1.5rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 768px) { .cta-form-section { padding: 8rem 3rem; } }
+  .cta-form-inner { max-width: 48rem; margin: 0 auto; }
+  .cta-form-section h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.015em;
+  }
+  .cta-form-section h2 em { font-style: italic; color: var(--accent); }
+  .cta-form-section .lede {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 36rem;
+  }
+  #lead-form { display: grid; gap: 1.25rem; }
+  #lead-form label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input,
+  #lead-form select,
+  #lead-form textarea {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.95rem 1.1rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: #1a1a1a;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  #lead-form input::placeholder,
+  #lead-form textarea::placeholder { color: rgba(26,26,26,0.5); }
+  #lead-form input:focus,
+  #lead-form select:focus,
+  #lead-form textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--text);
+  }
+  #lead-form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a1a1a' stroke-width='1.5' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  #lead-form textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    margin-top: 0.5rem;
+    padding: 1.1rem 2.5rem;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: #0B1929;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s;
+    justify-self: start;
+  }
+  .form-submit:hover:not(:disabled) { background: #d8b884; transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-status {
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--surface-elevated);
+    border-left: 3px solid var(--success);
+    border-radius: 0 4px 4px 0;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s, max-height 0.3s;
+  }
+  .form-status.visible { opacity: 1; max-height: 200px; padding: 1rem 1.25rem; }
+  .form-status.error { border-left-color: var(--warn); }
+
   /* ---------- CLOSING ---------- */
   .closing {
     padding: 7rem 1.5rem;
@@ -1129,8 +1226,8 @@
     </div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
-      Cinco frentes que trabajan en bloque: <span class="accent-italic">sitio, autoridad orgánica, LinkedIn institucional,
-      material de apoyo y posicionamiento sectorial.</span>
+      Tres frentes que trabajan en bloque: <span class="accent-italic">plataforma institucional con SEO técnico,
+      redes sociales Meta espejando a LinkedIn, y materiales por proyecto bajo demanda.</span>
     </h2>
     <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
       Cada sistema se justifica contra las cuatro audiencias definidas en la sección 02. Lo que no aporta a
@@ -1154,7 +1251,8 @@
         Sitio multi-página construido sobre la identidad visual actual de G2B (azul marino, sistema gráfico
         existente, iconografía corporativa). Arquitectura pensada desde el comité de licitación:
         portafolio sectorizado, capacidad operativa documentada, normatividad y ESG con peso institucional,
-        canal de contacto diferenciado por tipo de prospecto.
+        canal de contacto diferenciado por tipo de prospecto. El <strong>SEO técnico de base viene
+        incluido en el desarrollo</strong> — no se factura aparte ni después.
       </p>
 
       <div class="service-deliverables">
@@ -1167,82 +1265,26 @@
         <div class="deliverable"><span class="check">·</span> <span>Página de Licitaciones / RFP: canal institucional diferenciado para procesos formales.</span></div>
         <div class="deliverable"><span class="check">·</span> <span>Contacto institucional separado por tipo: licitación, sector privado, prensa, talento.</span></div>
         <div class="deliverable"><span class="check">·</span> <span>Responsive mobile-first, SSL, tags y pixels, módulo administrable, SEO URLs.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span><strong>SEO técnico de base incluido:</strong> auditoría inicial, keywords sectoriales ("contratista PTAR", "infraestructura hidráulica México", "constructora desazolves", "ingeniería sanitaria nacional"), arquitectura semántica, meta tags, schema.org de empresa constructora, sitemap y robots.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Setup de Google Search Console y Google Analytics 4 al publicar.</span></div>
         <div class="deliverable"><span class="check">·</span> <span>Bilingüe ES/EN opcional (recomendado si hay obra con clientes internacionales o fondos extranjeros).</span></div>
       </div>
 
       <div class="price-bar">
         <div>
-          <div class="price-label">Inversión única — desarrollo sitio institucional</div>
-          <div class="price-value"><em>$45,000</em> + IVA</div>
+          <div class="price-label">Inversión única — desarrollo sitio institucional + SEO técnico de base</div>
+          <div class="price-value"><em>$55,000</em> + IVA</div>
         </div>
         <div class="price-note">60% al iniciar · 40% contra entrega · No incluye servidor, dominio ni producción fotográfica</div>
       </div>
     </div>
 
-    <!-- Servicio 2 — SEO técnico + sectorial -->
+    <!-- Servicio 2 — Redes Sociales Meta + complemento LinkedIn -->
     <div class="service reveal reveal-d1">
       <div class="service-head">
         <div>
-          <div class="service-tag">Sistema 02 · Autoridad orgánica</div>
-          <h3 class="service-title">SEO técnico + posicionamiento sectorial</h3>
-        </div>
-        <div class="service-meta">
-          Fee mensual<br>
-          <strong>+ setup inicial</strong>
-        </div>
-      </div>
-
-      <p class="service-summary">
-        Estrategia de posicionamiento orgánico dirigida específicamente al tipo de búsqueda que hacen
-        evaluadores, desarrolladores y certificadores antes de adjudicar o invertir. El objetivo no es
-        tráfico masivo: es que las búsquedas <em>correctas</em> encuentren a G2B en los primeros tres
-        resultados.
-      </p>
-
-      <div class="service-deliverables">
-        <div class="deliverable"><span class="check">·</span> <span>Investigación de keywords sectoriales: "contratista PTAR", "infraestructura hidráulica México", "constructora desazolves", "ingeniería sanitaria nacional", "redes pluviales", entre 40 y 60 términos prioritarios.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>SEO técnico on-page: estructura semántica, meta tags, schema.org de empresa constructora, sitemap, robots, velocidad de carga.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Optimización de contenido editorial por sección y por keyword objetivo.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Setup de Google Search Console, Google Analytics 4, monitoreo de rankings.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Reporte mensual: posiciones, búsquedas, oportunidades, ajustes ejecutados.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Estrategia de contenido evergreen sectorial (artículos técnicos cortos publicados desde la página de Insights).</span></div>
-      </div>
-
-      <div class="price-bar">
-        <div>
-          <div class="price-label">Setup SEO inicial — auditoría + arquitectura</div>
-          <div class="price-value"><em>$15,000</em> + IVA</div>
-        </div>
-        <div class="price-note">Pago único, al iniciar · Trabajado en paralelo al desarrollo del sitio</div>
-      </div>
-      <div class="price-bar">
-        <div>
-          <div class="price-label">Fee mensual — gestión SEO continua</div>
-          <div class="price-value"><em>$8,000</em> + IVA / mes</div>
-        </div>
-        <div class="price-note">Contrato sugerido mínimo de 6 meses para ver resultados de posicionamiento sectorial</div>
-      </div>
-
-      <!-- Pauta Google adyacente a SEO -->
-      <div class="pauta-block">
-        <div class="pauta-eyebrow">Pauta Google · Opcional — adyacente a SEO</div>
-        <div class="pauta-title">Google Ads sectorial (búsquedas de licitación / B2B)</div>
-        <div class="pauta-body">
-          Mientras el SEO orgánico madura (4 a 6 meses), Google Ads en búsquedas de alta intención sectorial
-          asegura presencia inmediata. Cobertura sugerida: keywords B2B de alto ticket sin saturación de
-          competencia.
-          <br><br>
-          <strong>Gestión Sentido:</strong> $4,000 + IVA / mes. &nbsp; <strong>Presupuesto sugerido a plataforma:</strong> $8,000 a $15,000 / mes (va directo a Google, no es honorario de Sentido).
-        </div>
-      </div>
-    </div>
-
-    <!-- Servicio 3 — LinkedIn corporativo -->
-    <div class="service reveal reveal-d2 water-svc">
-      <div class="service-head">
-        <div>
-          <div class="service-tag water">Sistema 03 · Autoridad institucional</div>
-          <h3 class="service-title">LinkedIn corporativo G2B</h3>
+          <div class="service-tag">Sistema 02 · Presencia institucional recurrente</div>
+          <h3 class="service-title">Redes Sociales (Meta) + complemento LinkedIn corporativo</h3>
         </div>
         <div class="service-meta">
           Fee mensual<br>
@@ -1251,112 +1293,114 @@
       </div>
 
       <p class="service-summary">
-        LinkedIn es el único canal social que pesa para esta audiencia. Decisores de obra pública,
-        directores de desarrollo, fondos de infraestructura y consultores ESG <em>sí</em> leen LinkedIn.
-        El resto de redes (Instagram, TikTok, Facebook lifestyle) no aportan al objetivo del sitio y se
-        descartan.
+        Para una empresa B2B/B2G de alto ticket como G2B, la presencia social cumple dos funciones:
+        <strong>Meta (Facebook + Instagram)</strong> como pieza de awareness institucional — el lugar donde
+        cualquier comité, periodista o talento confirma que la empresa está activa, formal y comunicando;
+        y <strong>LinkedIn corporativo</strong> como capa profesional para decisores, fondos de infraestructura,
+        certificadores ESG y consultores que toman la decisión final. Operamos Meta como canal principal
+        y <em>espejeamos</em> la parrilla a LinkedIn con adaptación de copy al tono B2B/institucional —
+        un modelo que optimiza producción sin diluir mensaje.
       </p>
 
       <div class="service-deliverables">
-        <div class="deliverable"><span class="check">·</span> <span>Operación de página corporativa G2B Constructora.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>15 publicaciones mensuales con mix de formatos: casos de obra, hitos técnicos, ESG, normatividad, reconocimientos.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Calendario editorial alineado al portafolio de obras y al ciclo de licitaciones del sector.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Copys en tono institucional sectorial — no marketing lifestyle.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Activación de perfiles de liderazgo (CEO / dirección técnica) como amplificadores de la página corporativa, opcional.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Reporte mensual de alcance, interacción cualificada y crecimiento de seguidores por cargo/sector.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span><strong>Paquete estándar Meta (Facebook + Instagram):</strong> 15 publicaciones mensuales + 5 gifs/animaciones cortas. Mix de formatos: casos de obra, hitos técnicos, ESG, normatividad, reconocimientos.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Parrilla mensual con calendario editorial alineado al portafolio de obras y al ciclo de licitaciones del sector.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Diseño gráfico, copy, programación y community management básico (atención L-V).</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Copys en tono institucional sectorial — sin estética lifestyle ni marketing genérico.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span><strong>Complemento LinkedIn (espejo de Meta):</strong> replicación de la parrilla principal a la página corporativa de G2B en LinkedIn, con adaptación de copy al tono B2B/institucional para decisores.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Activación de perfiles de liderazgo (CEO / dirección técnica) como amplificadores de la página corporativa — opcional.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Reporte mensual cross-canal: alcance, interacción, crecimiento de seguidores por cargo/sector en LinkedIn y desempeño orgánico en Meta.</span></div>
       </div>
 
       <div class="price-bar">
         <div>
-          <div class="price-label">Fee mensual — gestión LinkedIn corporativo</div>
+          <div class="price-label">Paquete Meta (FB + IG) — gestión integral mensual</div>
           <div class="price-value"><em>$7,500</em> + IVA / mes</div>
         </div>
-        <div class="price-note">Por adelantado · Negociable según volumen de contenido y activación de perfiles de liderazgo</div>
+        <div class="price-note">15 publicaciones + 5 gifs · Paquete estándar Sentido para perfiles institucionales</div>
+      </div>
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Complemento LinkedIn — espejo + adaptación B2B</div>
+          <div class="price-value"><em>$3,000</em> + IVA / mes</div>
+        </div>
+        <div class="price-note">Add-on al paquete Meta · Replicación de parrilla con copy adaptado a tono corporativo</div>
+      </div>
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Total fee mensual recurrente</div>
+          <div class="price-value"><em>$10,500</em> + IVA / mes</div>
+        </div>
+        <div class="price-note">Por adelantado · Contrato sugerido mínimo de 6 meses</div>
       </div>
 
-      <!-- Pauta LinkedIn adyacente a Redes -->
+      <!-- Pauta Meta adyacente a Redes Meta -->
       <div class="pauta-block">
-        <div class="pauta-eyebrow">Pauta LinkedIn · Opcional — adyacente a LinkedIn orgánico</div>
+        <div class="pauta-eyebrow">Pauta Meta · Opcional — adyacente al paquete Meta</div>
+        <div class="pauta-title">Meta Ads institucional (Facebook + Instagram)</div>
+        <div class="pauta-body">
+          Pauta dirigida a amplificar piezas clave de la parrilla — hitos de obra, casos PTAR, contenido ESG —
+          para alcanzar audiencias profesionales y geografías estratégicas. Cero pauta masiva tipo e-commerce.
+          <br><br>
+          <strong>Gestión Sentido:</strong> incluida dentro del paquete Meta al activarse. &nbsp;
+          <strong>Presupuesto sugerido a plataforma:</strong> $5,000 a $15,000 / mes (va directo a Meta, no es honorario de Sentido).
+        </div>
+      </div>
+
+      <!-- Pauta LinkedIn adyacente al complemento LinkedIn -->
+      <div class="pauta-block">
+        <div class="pauta-eyebrow">Pauta LinkedIn · Opcional — adyacente al complemento LinkedIn</div>
         <div class="pauta-title">LinkedIn Ads segmentado por cargo y sector</div>
         <div class="pauta-body">
           Cuando se activa, la pauta se dirige específicamente a cargos como <em>Director de Obra Pública</em>,
           <em>Gerente de Desarrollo</em>, <em>Analista de Riesgo de Infraestructura</em>, dentro de
           empresas/instituciones objetivo. Cero pauta masiva, cero impresiones desperdiciadas.
           <br><br>
-          <strong>Gestión Sentido:</strong> incluida dentro del fee mensual de LinkedIn al activarse. &nbsp;
+          <strong>Gestión Sentido:</strong> incluida dentro del complemento LinkedIn al activarse. &nbsp;
           <strong>Presupuesto sugerido a plataforma:</strong> $10,000 a $25,000 / mes (va directo a LinkedIn, no es honorario de Sentido).
         </div>
       </div>
     </div>
 
-    <!-- Servicio 4 — Producción de contenido sectorial -->
-    <div class="service reveal reveal-d2">
+    <!-- Servicio 3 — Servicios por proyecto bajo demanda -->
+    <div class="service reveal reveal-d2 water-svc">
       <div class="service-head">
         <div>
-          <div class="service-tag">Sistema 04 · Evidencia visual</div>
-          <h3 class="service-title">Producción de contenido sectorial</h3>
+          <div class="service-tag water">Sistema 03 · Servicios por proyecto bajo demanda</div>
+          <h3 class="service-title">Diseño de presentaciones y producción audiovisual</h3>
         </div>
         <div class="service-meta">
-          Servicio eventual<br>
-          <strong>por sesión</strong>
+          Por proyecto<br>
+          <strong>cotización a medida</strong>
         </div>
       </div>
 
       <p class="service-summary">
-        Fotografía documental y video corto de obra real. Sin estética publicitaria. El estándar es
-        cobertura tipo Annual Report: PTARs en operación, frentes activos de obra, flota, equipo técnico,
-        antes/después de proyectos. Material que alimenta sitio, LinkedIn, dossiers de licitación y reportes ESG.
+        Servicios de alto valor que G2B activa cuando los necesita — no recurrentes, no parte del fee mensual,
+        no parte del onboarding inicial. Disponibles cuando un proceso de licitación, una junta con un
+        desarrollador o una visita de obra los detone.
       </p>
 
       <div class="service-deliverables">
-        <div class="deliverable"><span class="check">·</span> <span>Sesión fotográfica documental: 2 horas, 25-30 imágenes editadas, retoque, adaptación a múltiples formatos. <strong>$3,000 + IVA por sesión.</strong></span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Sesión de video documental: 2 horas, tomas interiores/exteriores/detalles, edición. Entrega 1 video 40s + 4 cortos 12s. <strong>$5,500 + IVA por sesión.</strong></span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Cobertura sugerida inicial: 3 PTARs en operación + 2 frentes activos + flota + equipo técnico. Bloque típico de 4 a 6 sesiones distribuidas en 8 semanas.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span><strong>Diseño de Presentaciones</strong> — Presentaciones a medida, por proyecto, con producción asistida por IA en cada una. Mismo nivel de cuidado, narrativa y diseño con el que armamos esta misma propuesta que estás leyendo ahora. Pensado para licitaciones, juntas con desarrolladores, comités de capital privado o gobierno. <strong>Desde $5,000 + IVA por presentación.</strong></span></div>
+        <div class="deliverable"><span class="check">·</span> <span><strong>Producción audiovisual documental</strong> — Fotografía y video corto de obra real (PTARs, frentes activos, flota, equipo técnico). Estándar tipo Annual Report. Sin estética publicitaria. <strong>Cotización por proyecto</strong> según número de sesiones, locaciones y entregables.</span></div>
         <div class="deliverable"><span class="check">·</span> <span>Material entregado en banco propiedad de G2B, sin licencias recurrentes ni dependencias externas.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Programación según calendario de obra disponible. Nunca se suma al fee mensual.</span></div>
       </div>
 
       <div class="price-bar">
         <div>
-          <div class="price-label">Bloque de cobertura inicial sugerido — 3 sesiones foto + 2 sesiones video</div>
-          <div class="price-value"><em>$20,000</em> + IVA</div>
+          <div class="price-label">Diseño de presentación con producción IA</div>
+          <div class="price-value"><em>desde $5,000</em> + IVA</div>
         </div>
-        <div class="price-note">Eventual — nunca se suma a fee mensual. Programación según calendario de obra disponible.</div>
+        <div class="price-note">Por presentación · Cada pieza es un proyecto a medida</div>
       </div>
-    </div>
-
-    <!-- Servicio 5 — Material de apoyo / dossiers -->
-    <div class="service reveal reveal-d3">
-      <div class="service-head">
-        <div>
-          <div class="service-tag">Sistema 05 · Apoyo comercial</div>
-          <h3 class="service-title">Dossiers digitales para licitación y desarrollo privado</h3>
-        </div>
-        <div class="service-meta">
-          Servicio único<br>
-          <strong>+ actualización anual</strong>
-        </div>
-      </div>
-
-      <p class="service-summary">
-        Material editorial de alto formato que se entrega físicamente o se anexa a procesos de licitación,
-        propuestas a desarrolladores, due diligence de bancos. Acompaña al sitio web, no lo sustituye:
-        cuando un evaluador necesita un PDF formal para subir a su expediente, este es el documento.
-      </p>
-
-      <div class="service-deliverables">
-        <div class="deliverable"><span class="check">·</span> <span>Dossier corporativo institucional G2B (versión maestra): estructura + información editorial + diseño gráfico completo.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>One-pagers sectorizados: hidráulica, PTARs, infraestructura urbana, ESG. Plantillas editables para uso comercial.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Ficha técnica por obra estrella: cifras, alcance, normatividad aplicada, fotografía documental.</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Versión bilingüe ES/EN del dossier maestro (opcional, recomendado para fondos extranjeros).</span></div>
-        <div class="deliverable"><span class="check">·</span> <span>Entrega en PDF + editables (Illustrator/InDesign) para que G2B pueda actualizar internamente.</span></div>
-      </div>
-
       <div class="price-bar">
         <div>
-          <div class="price-label">Inversión única — dossier maestro + one-pagers sectorizados</div>
-          <div class="price-value"><em>$25,000</em> + IVA</div>
+          <div class="price-label">Producción audiovisual</div>
+          <div class="price-value water-italic">Cotización por proyecto</div>
         </div>
-        <div class="price-note">50% al iniciar · 50% contra entrega · Tiempo estimado 1.5 meses</div>
+        <div class="price-note">Se activa cuando G2B lo requiera · Foto desde $3,000 / video desde $5,500 por sesión</div>
       </div>
     </div>
 
@@ -1376,8 +1420,8 @@
         </div>
         <div class="no-item">
           <div class="x">No aplica</div>
-          <div class="label">Instagram, TikTok, Facebook lifestyle</div>
-          <div class="why">Audiencias incorrectas. Comités, fondos y desarrolladores no investigan contratistas hidráulicos en redes consumer.</div>
+          <div class="label">TikTok y contenido lifestyle / consumer</div>
+          <div class="why">Meta sí entra como awareness institucional con tono sobrio, pero TikTok y contenido lifestyle quedan fuera. La parrilla es sectorial: obra, hitos técnicos, ESG — no entretenimiento.</div>
         </div>
         <div class="no-item">
           <div class="x">No aplica</div>
@@ -1404,61 +1448,49 @@
     </div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
-      Tres bloques: <span class="accent-italic">inversión única</span> de plataforma, <span class="accent-italic">fee mensual</span> de operación
-      y <span class="water-italic">pauta digital</span> presupuestada aparte.
+      Cuatro bloques: <span class="accent-italic">inversión única</span> de plataforma, <span class="accent-italic">fee mensual</span> de operación,
+      <span class="water-italic">servicios por proyecto</span> bajo demanda y <span class="water-italic">pauta digital</span> presupuestada aparte.
     </h2>
     <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
       Separados intencionalmente para que G2B pueda decidir qué arranca primero, qué se prioriza por
-      flujo, y qué se activa cuando el sitio ya esté maduro. Todos los precios en MXN con IVA explícito.
+      flujo, y qué se activa cuando lo necesite. Todos los precios en MXN con IVA explícito.
     </p>
 
-    <!-- Inversiones únicas -->
+    <!-- Bloque A — Inversión única -->
     <div class="service reveal reveal-d1 mt-8">
       <div class="service-head">
         <div>
-          <div class="service-tag">Bloque A · Inversiones únicas</div>
-          <h3 class="service-title">Plataforma + activos institucionales</h3>
+          <div class="service-tag">Bloque A · Inversión única</div>
+          <h3 class="service-title">Plataforma institucional con SEO técnico incluido</h3>
         </div>
         <div class="service-meta">
-          Pagos 50/50<br>
-          o <strong>60/40</strong> según servicio
+          Pagos<br>
+          <strong>60/40</strong>
         </div>
       </div>
 
       <div class="service-deliverables" style="grid-template-columns: 1fr;">
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Sitio web institucional G2B</strong> — desarrollo completo, 8 a 10 semanas</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$45,000 + IVA</span>
-        </div>
-        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Setup SEO inicial</strong> — auditoría, keywords sectoriales, arquitectura</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$15,000 + IVA</span>
-        </div>
-        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Dossier corporativo + one-pagers sectorizados</strong></span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$25,000 + IVA</span>
-        </div>
-        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Bloque inicial de producción de contenido</strong> — 3 sesiones foto + 2 video</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$20,000 + IVA</span>
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Sitio web institucional G2B</strong> — desarrollo completo (8 a 10 semanas) con SEO técnico de base incluido (auditoría, keywords sectoriales, arquitectura semántica, metadata, sitemap, schema)</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$55,000 + IVA</span>
         </div>
       </div>
 
       <div class="price-bar">
         <div>
-          <div class="price-label">Total inversiones únicas</div>
-          <div class="price-value"><em>$105,000</em> + IVA</div>
+          <div class="price-label">Total inversión única</div>
+          <div class="price-value"><em>$55,000</em> + IVA</div>
         </div>
-        <div class="price-note">Distribuido entre 2 a 3 meses según ritmo de arranque</div>
+        <div class="price-note">60% al iniciar · 40% contra entrega · Distribuido en 2 a 3 meses según ritmo de arranque</div>
       </div>
     </div>
 
-    <!-- Fee mensual -->
+    <!-- Bloque B — Fee mensual -->
     <div class="service reveal reveal-d2">
       <div class="service-head">
         <div>
           <div class="service-tag">Bloque B · Fee mensual</div>
-          <h3 class="service-title">Operación recurrente: SEO + LinkedIn institucional</h3>
+          <h3 class="service-title">Presencia institucional recurrente — Meta + LinkedIn espejo</h3>
         </div>
         <div class="service-meta">
           Recurrente<br>
@@ -1468,30 +1500,68 @@
 
       <div class="service-deliverables" style="grid-template-columns: 1fr;">
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Gestión SEO sectorial</strong> — posicionamiento orgánico continuo</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$8,000 + IVA / mes</span>
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Paquete Meta (Facebook + Instagram)</strong> — 15 publicaciones + 5 gifs / mes con calendario sectorial</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$7,500 + IVA / mes</span>
         </div>
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>LinkedIn corporativo</strong> — 15 publicaciones + estrategia + reporte</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$7,500 + IVA / mes</span>
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Complemento LinkedIn</strong> — espejo de Meta + adaptación de copy B2B/institucional</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$3,000 + IVA / mes</span>
         </div>
       </div>
 
       <div class="price-bar">
         <div>
           <div class="price-label">Total fee mensual recurrente</div>
-          <div class="price-value"><em>$15,500</em> + IVA / mes</div>
+          <div class="price-value"><em>$10,500</em> + IVA / mes</div>
         </div>
-        <div class="price-note">Contrato sugerido mínimo de 6 meses · Incluye Google Ads sin costo de gestión si se activa pauta (ver bloque C)</div>
+        <div class="price-note">Contrato sugerido mínimo de 6 meses · Gestión de pauta Meta y LinkedIn incluida cuando se active (ver bloque D)</div>
       </div>
     </div>
 
-    <!-- Bloque C — Pauta -->
+    <!-- Bloque C — Servicios por proyecto bajo demanda -->
+    <div class="service reveal reveal-d2 water-svc">
+      <div class="service-head">
+        <div>
+          <div class="service-tag water">Bloque C · Servicios por proyecto bajo demanda</div>
+          <h3 class="service-title">Presentaciones y audiovisual — cuando se necesiten</h3>
+        </div>
+        <div class="service-meta">
+          Por proyecto<br>
+          <strong>cotización a medida</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        No entran en el onboarding inicial ni en el fee mensual. Se activan cuando una licitación,
+        una junta con desarrollador o una visita de obra los requieran.
+      </p>
+
+      <div class="service-deliverables" style="grid-template-columns: 1fr;">
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Diseño de Presentaciones</strong> — por proyecto, con producción asistida por IA. Mismo cuidado narrativo y de diseño que esta propuesta.</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--water); white-space: nowrap;">desde $5,000 + IVA</span>
+        </div>
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Producción audiovisual</strong> — fotografía y video documental de obra (PTARs, frentes, flota).</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--water); white-space: nowrap;">cotización por proyecto</span>
+        </div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Activación</div>
+          <div class="price-value water-italic">A demanda</div>
+        </div>
+        <div class="price-note">Nunca se suma al fee mensual · Cada pieza es un proyecto cotizado a medida</div>
+      </div>
+    </div>
+
+    <!-- Bloque D — Pauta -->
     <div class="service reveal reveal-d3 water-svc">
       <div class="service-head">
         <div>
-          <div class="service-tag water">Bloque C · Pauta digital (presupuesto plataforma)</div>
-          <h3 class="service-title">Inversión a Google Ads y LinkedIn Ads</h3>
+          <div class="service-tag water">Bloque D · Pauta digital (presupuesto a plataforma)</div>
+          <h3 class="service-title">Inversión a Meta Ads y LinkedIn Ads</h3>
         </div>
         <div class="service-meta">
           A plataforma<br>
@@ -1500,15 +1570,15 @@
       </div>
 
       <p class="service-summary">
-        Este bloque se separa intencionalmente: el dinero va directo a Google y LinkedIn (no a Sentido).
-        La gestión profesional ya está incluida en el fee mensual del Bloque B cuando se activa pauta.
-        Rango sugerido — ajustable según el ciclo comercial de G2B.
+        Este bloque se separa intencionalmente: el dinero va directo a Meta y LinkedIn (no a Sentido).
+        La gestión profesional ya está incluida en el fee mensual del Bloque B cuando se activa la pauta.
+        Rangos sugeridos — ajustables según el ciclo comercial de G2B.
       </p>
 
       <div class="service-deliverables" style="grid-template-columns: 1fr;">
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Google Ads</strong> — búsquedas sectoriales B2B/B2G de alta intención (gestión incluida en fee mensual)</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--water); white-space: nowrap;">$8,000 a $15,000 / mes</span>
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Meta Ads</strong> — amplificación de piezas clave de la parrilla (gestión incluida en fee mensual)</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--water); white-space: nowrap;">$5,000 a $15,000 / mes</span>
         </div>
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
           <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>LinkedIn Ads</strong> — segmentación por cargo (director obra, gerente desarrollo, analista riesgo)</span></div>
@@ -1519,9 +1589,9 @@
       <div class="price-bar">
         <div>
           <div class="price-label">Rango total sugerido pauta digital</div>
-          <div class="price-value water-italic">$18,000 a $40,000 / mes</div>
+          <div class="price-value water-italic">$15,000 a $40,000 / mes</div>
         </div>
-        <div class="price-note">No es honorario Sentido — va directo a Google y LinkedIn. Activación opcional y gradual.</div>
+        <div class="price-note">No es honorario Sentido — va directo a Meta y LinkedIn. Activación opcional y gradual.</div>
       </div>
     </div>
 
@@ -1531,14 +1601,15 @@
         <div class="label">Resumen del primer semestre de operación</div>
         <h3>Inversión total estimada · ramp-up + 6 meses</h3>
         <p>
-          $105,000 únicos al arranque + $15,500 / mes × 6 meses = $198,000 + IVA en honorarios Sentido.
-          Pauta digital aparte, escalable según resultados. Compromiso editorial: cada peso debe poder
-          defenderse frente al comité que pregunta "¿para qué sirvió?".
+          $55,000 único al arranque + $10,500 / mes × 6 meses = <strong>$118,000 + IVA</strong> en honorarios Sentido.
+          Pauta digital aparte, escalable según resultados. Servicios por proyecto (presentaciones, audiovisual)
+          se activan a demanda. Compromiso editorial: cada peso debe poder defenderse frente al comité que
+          pregunta "¿para qué sirvió?".
         </p>
         <div class="small">Estimado para presupuestación interna — propuesta formal con fechas y entregables se entrega al firmar.</div>
       </div>
       <div>
-        <div class="number"><em>$198,000</em></div>
+        <div class="number"><em>$118,000</em></div>
         <div class="small">+ IVA · honorarios Sentido · 6 meses</div>
       </div>
     </div>
@@ -1566,18 +1637,18 @@
         <div class="tl-period">Mes 1 – 3</div>
         <div class="tl-phase">Plataforma viva</div>
         <div class="tl-detail">
-          Sitio institucional publicado, dossier maestro entregado, LinkedIn corporativo en operación con
-          contenido sectorial semanal, primer bloque de fotografía documental disponible. G2B ya puede compartir
-          un link profesional cuando un evaluador, banco o desarrollador lo pida.
+          Sitio institucional publicado con SEO técnico de base operando, parrilla mensual Meta + LinkedIn
+          espejo arrancando con contenido sectorial. G2B ya puede compartir un link profesional cuando un
+          evaluador, banco o desarrollador lo pida.
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-period">Mes 3 – 6</div>
         <div class="tl-phase">Posicionamiento sectorial</div>
         <div class="tl-detail">
-          Búsquedas técnicas sectoriales empiezan a devolver a G2B en primera página: "contratista PTAR",
-          "constructora hidráulica México", "infraestructura sanitaria". LinkedIn corporativo con tracción
-          documentable. Dossiers actualizados con obras del trimestre.
+          Búsquedas técnicas sectoriales empiezan a devolver a G2B orgánicamente: "contratista PTAR",
+          "constructora hidráulica México", "infraestructura sanitaria". Página corporativa LinkedIn con
+          tracción documentable. Primeras presentaciones por proyecto entregadas con narrativa institucional.
         </div>
       </div>
       <div class="tl-row future">
@@ -1586,7 +1657,8 @@
         <div class="tl-detail">
           El sitio empieza a aparecer mencionado en contextos institucionales — comités, publicaciones
           sectoriales, perfiles de prensa. LinkedIn corporativo con autoridad sectorial reconocible.
-          Banco de evidencia visual robusto para procesos de licitación más ambiciosos.
+          Banco de evidencia visual creciente (producción audiovisual por proyecto) para procesos de
+          licitación más ambiciosos.
         </div>
       </div>
       <div class="tl-row future">
@@ -1599,6 +1671,50 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============== CTA + LEAD FORM ============== -->
+<section class="cta-form-section" id="responder">
+  <div class="cta-form-inner">
+    <h2>Cuando estén listos, <em>respondamos</em>.</h2>
+    <p class="lede">
+      Una sola respuesta en este formulario y entramos en conversación.
+      Te respondo personalmente en menos de 24 horas hábiles.
+    </p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate>
+      <input type="hidden" name="propuesta" value="g2b-constructora" />
+
+      <label>Nombre <span class="req">*</span>
+        <input name="nombre" type="text" required autocomplete="name" />
+      </label>
+
+      <label>Email <span class="req">*</span>
+        <input name="email" type="email" required autocomplete="email" />
+      </label>
+
+      <label>WhatsApp / Teléfono
+        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+      </label>
+
+      <label>Siguiente paso <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Avancemos — agendemos kickoff</option>
+          <option>Me interesa pero quiero ajustar el alcance</option>
+          <option>Tengo preguntas antes de decidir</option>
+          <option>Necesito un poco más de tiempo</option>
+        </select>
+      </label>
+
+      <label>Mensaje (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Comentarios, dudas o ajustes que quieras dejar por escrito."></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar respuesta →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
   </div>
 </section>
 
@@ -1660,6 +1776,52 @@
     });
   }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
   sections.forEach((s) => spy.observe(s.section));
+
+  // Lead form — POST a /api/lead (Resend + correo branded a jos@sentido.mx)
+  const leadForm = document.getElementById('lead-form');
+  if (leadForm) {
+    const statusEl = document.getElementById('lf-status');
+    const submitBtn = leadForm.querySelector('.form-submit');
+
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
+
+      const payload = {
+        Propuesta: leadForm.propuesta.value,
+        Nombre: leadForm.nombre.value.trim(),
+        Email: leadForm.email.value.trim(),
+        WhatsApp: leadForm.whatsapp.value.trim() || '—',
+        'Siguiente paso': leadForm.paso.value,
+        Mensaje: leadForm.mensaje.value.trim() || '—',
+        Fuente: location.pathname,
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.classList.remove('visible', 'error');
+
+      try {
+        const res = await fetch(leadForm.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        leadForm.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar respuesta →';
+      }
+    });
+  }
 </script>
 
 </body>
