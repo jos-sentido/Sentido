@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · G2B Constructora · Sentido</title>
+<meta name="description" content="Plataforma digital institucional para G2B Constructora: sitio web orientado a procesos de licitación, posicionamiento sectorial y autoridad técnica en infraestructura hidráulica." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1929;              /* azul marino profundo G2B */
+    --surface: #11243A;          /* azul marino card */
+    --surface-elevated: #15304B; /* azul medio para elevación */
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text: #E8EEF5;
+    --text-dim: #94A5BA;
+    --text-faint: #5A6E85;
+    --accent: #C9A66B;          /* dorado institucional — infra/seriedad */
+    --accent-soft: rgba(201,166,107,0.12);
+    --water: #4A9EBF;            /* azul agua — hidráulica */
+    --water-soft: rgba(74,158,191,0.12);
+    --steel: #8A9CAE;
+    --warn: #D4824A;
+    --success: #6FAE7D;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .section { padding: 5rem 1.5rem; position: relative; }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+  }
+  .section-label .divider { height: 1px; width: 3rem; background: var(--accent); opacity: 0.7; }
+  .section-label span { color: var(--accent); font-weight: 500; }
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .display-heading.xl { font-size: clamp(2.25rem, 5.5vw, 4rem); }
+  .display-heading.lg { font-size: clamp(1.75rem, 4vw, 2.75rem); }
+  .display-heading.md { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+  .accent-italic { font-style: italic; color: var(--accent); }
+  .water-italic { font-style: italic; color: var(--water); }
+
+  .paragraph {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .paragraph.lg { font-size: 1.15rem; }
+  .paragraph.muted { color: var(--text-dim); }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---------- NAV ---------- */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(11,25,41,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.3s ease;
+  }
+  .site-nav-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .site-nav-brand img { height: 26px; display: block; }
+  @media (min-width: 768px) { .site-nav-brand img { height: 30px; } }
+  .site-nav-links {
+    display: none;
+    list-style: none;
+    gap: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 1000px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+  .site-nav-links a:hover { color: var(--text); }
+  .site-nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .site-nav-meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 8rem 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 9rem 3rem 5rem; } }
+  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 5rem; } }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 25%, rgba(201,166,107,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 75%, rgba(74,158,191,0.06) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+  }
+  .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-meta .accent-dot { color: var(--accent); margin: 0 0.4rem; }
+
+  /* Logo Sentido en hero — memoria: 52px mobile / 60px desktop, antes del H1 */
+  .hero-logo-sentido {
+    height: 52px;
+    width: auto;
+    display: block;
+    margin-bottom: 3rem;
+    opacity: 0.85;
+  }
+  @media (min-width: 768px) {
+    .hero-logo-sentido { height: 60px; margin-bottom: 4rem; }
+  }
+
+  .hero-center {
+    max-width: 64rem;
+    margin: 3rem 0;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-prospect {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--water);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-prospect::before {
+    content: '';
+    height: 1px;
+    width: 2rem;
+    background: var(--water);
+    opacity: 0.6;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6.4vw, 4.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+  .hero-title .italic { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    color: var(--text-dim);
+    max-width: 48rem;
+    line-height: 1.75;
+  }
+
+  .hero-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .hero-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem 3rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-stat-value {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.75rem;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .hero-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-scroll {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-align: right;
+  }
+
+  /* ---------- CARDS ---------- */
+  .card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 4px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover { border-color: var(--border-strong); }
+  .card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .card-eyebrow.water { color: var(--water); }
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .card-body {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .card-body ul {
+    list-style: none;
+    margin-top: 1rem;
+    padding-left: 0;
+  }
+  .card-body li {
+    padding: 0.45rem 0 0.45rem 1.25rem;
+    position: relative;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .card-body li:first-child { border-top: 0; padding-top: 0.6rem; }
+  .card-body li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 1.05rem;
+    width: 0.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  .card-body li:first-child::before { top: 1.2rem; }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+  @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ---------- CALLOUT ---------- */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 1.75rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent); font-weight: 500; }
+  .callout em { font-style: italic; color: var(--accent); }
+  .callout.water { background: var(--water-soft); border-left-color: var(--water); }
+  .callout.water strong, .callout.water em { color: var(--water); }
+
+  /* ---------- DATA STRIPE (números $943M) ---------- */
+  .data-stripe {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .data-stripe { grid-template-columns: repeat(3, 1fr); } }
+  .data-cell {
+    padding: 1.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-elevated);
+  }
+  @media (min-width: 768px) {
+    .data-cell { border-bottom: 0; border-right: 1px solid var(--border); }
+    .data-cell:last-child { border-right: 0; }
+  }
+  .data-cell .num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2.25rem;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .data-cell .lbl {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .data-cell .detail {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* ---------- TABLE COMPARATIVA ---------- */
+  .vs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .vs-table thead th {
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--surface);
+  }
+  .vs-table thead th.col-current { color: var(--steel); }
+  .vs-table thead th.col-target { color: var(--accent); }
+  .vs-table tbody td {
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .vs-table tbody tr:last-child td { border-bottom: 0; }
+  .vs-table .dim-col { color: var(--text-faint); }
+  .vs-table .accent-col { color: var(--text); }
+  .vs-table .axis {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    width: 24%;
+  }
+
+  /* ---------- SERVICE BLOCK ---------- */
+  .service {
+    border: 1px solid var(--border);
+    background: var(--surface-elevated);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+  }
+  .service + .service { margin-top: 1.5rem; }
+  .service-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .service-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .service-tag.water { color: var(--water); }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-top: 0.5rem;
+    flex: 1 1 60%;
+  }
+  .service-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-align: right;
+  }
+  .service-meta strong { color: var(--text); font-weight: 500; }
+  .service-summary {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 50rem;
+  }
+  .service-deliverables {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  @media (min-width: 768px) { .service-deliverables { grid-template-columns: 1fr 1fr; gap: 0.75rem; } }
+  .deliverable {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .deliverable .check {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+  }
+  .service.water-svc .deliverable .check { color: var(--water); }
+
+  /* ---------- PRICE BAR ---------- */
+  .price-bar {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .price-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .price-value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .price-value em { font-style: italic; color: var(--accent); }
+  .price-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+
+  /* ---------- PAUTA SUB-BLOCK (adyacente al servicio operador) ---------- */
+  .pauta-block {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--water-soft);
+    border: 1px dashed var(--water);
+    border-radius: 4px;
+  }
+  .pauta-block .pauta-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--water);
+    margin-bottom: 0.5rem;
+  }
+  .pauta-block .pauta-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .pauta-block .pauta-body {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .pauta-block .pauta-body strong { color: var(--text); font-weight: 500; }
+
+  /* ---------- INVESTMENT TOTAL ---------- */
+  .total-card {
+    margin-top: 3rem;
+    background: linear-gradient(135deg, rgba(201,166,107,0.08), rgba(74,158,191,0.04));
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) { .total-card { grid-template-columns: 1fr auto; align-items: center; } }
+  .total-card .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .total-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .total-card p { color: var(--text-dim); font-size: 0.95rem; max-width: 36rem; }
+  .total-card .number {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+  }
+  .total-card .number em { font-style: italic; color: var(--accent); }
+  .total-card .small { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-top: 0.5rem; }
+
+  /* ---------- HORIZON / TIMELINE ---------- */
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem;
+    padding: 1.4rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  @media (min-width: 768px) {
+    .tl-row { grid-template-columns: 130px 220px 1fr; gap: 2rem; }
+  }
+  .tl-row:last-child { border-bottom: 0; }
+  .tl-row.future { background: rgba(74,158,191,0.03); }
+  .tl-period {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .tl-row.future .tl-period { color: var(--water); }
+  .tl-phase {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tl-detail {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  /* ---------- AUDIENCE BLOCK ---------- */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 768px) { .audience-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } }
+  .audience-cell {
+    border: 1px solid var(--border);
+    background: var(--surface-elevated);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+  .audience-cell.primary { border-color: var(--accent); background: linear-gradient(135deg, rgba(201,166,107,0.06), transparent); }
+  .audience-cell .priority {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.5rem;
+  }
+  .audience-cell.primary .priority { color: var(--accent); }
+  .audience-cell .who {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .audience-cell .what {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ---------- NEGATIVE SPACE (lo que no haremos) ---------- */
+  .no-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 768px) { .no-list { grid-template-columns: repeat(2, 1fr); } }
+  .no-item {
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border-left: 2px solid var(--text-faint);
+    border-radius: 0 4px 4px 0;
+  }
+  .no-item .x {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.3rem;
+  }
+  .no-item .label {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .no-item .why {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    padding: 7rem 1.5rem;
+    text-align: center;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .closing { padding: 9rem 3rem; } }
+  .closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(201,166,107,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .closing-inner { position: relative; max-width: 56rem; margin: 0 auto; }
+  .closing-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .closing-statement {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.8vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.015em;
+  }
+  .closing-statement em { font-style: italic; color: var(--accent); }
+  .closing-sub {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 38rem;
+    margin: 0 auto 3rem;
+    line-height: 1.75;
+  }
+  .closing-sentido-mark {
+    height: 36px;
+    width: auto;
+    opacity: 0.6;
+    margin: 3rem auto 1.5rem;
+    display: block;
+  }
+  .closing-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .closing-meta a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .closing-meta a:hover { color: var(--accent); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+  footer .copy {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  /* ---------- UTILS ---------- */
+  .mt-3 { margin-top: 1rem; }
+  .mt-6 { margin-top: 2rem; }
+  .mt-8 { margin-top: 2.5rem; }
+  .mb-3 { margin-bottom: 1rem; }
+  .mb-6 { margin-bottom: 2rem; }
+  .text-mono { font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="site-nav" id="site-nav">
+  <div class="site-nav-inner">
+    <a href="#top" class="site-nav-brand" aria-label="Sentido">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#contexto" data-target="contexto">Contexto</a></li>
+      <li><a href="#audiencias" data-target="audiencias">Audiencias</a></li>
+      <li><a href="#angulo" data-target="angulo">Ángulo</a></li>
+      <li><a href="#sistemas" data-target="sistemas">Sistemas</a></li>
+      <li><a href="#inversion" data-target="inversion">Inversión</a></li>
+      <li><a href="#horizonte" data-target="horizonte">Horizonte</a></li>
+    </ul>
+    <div class="site-nav-meta">May · 2026</div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="hero-top">
+    <div class="hero-meta">
+      Infraestructura hidráulica <span class="accent-dot">·</span> Cobertura nacional
+    </div>
+    <div class="hero-meta">
+      Propuesta estratégica <span class="accent-dot">·</span> 22 may 2026
+    </div>
+  </div>
+
+  <div class="hero-center">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido" />
+
+    <div class="hero-prospect">Para Grupo Constructor G2B</div>
+
+    <h1 class="hero-title">
+      $943 millones facturados.<br>
+      Cero plataforma digital que <span class="italic">lo respalde</span> cuando el comité<br>
+      los googlea antes de adjudicar.
+    </h1>
+    <p class="hero-sub">
+      Una plataforma institucional construida con un solo objetivo: que cuando un comité evaluador,
+      un desarrollador privado o un certificador ESG busque a G2B antes de tomar una decisión, encuentre
+      una operación digital tan seria, técnica y verificable como la obra que ya entregan en campo.
+    </p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-value">$943 M</div>
+        <div class="hero-stat-label">facturados último año</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">54% / 46%</div>
+        <div class="hero-stat-label">obra pública / privada</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">5 PTARs</div>
+        <div class="hero-stat-label">en operación</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">+ 60 equipos</div>
+        <div class="hero-stat-label">de flota propia</div>
+      </div>
+    </div>
+    <div class="hero-scroll">↓ Continuar</div>
+  </div>
+</section>
+
+<!-- ============== CONTEXTO / EL MOMENTO ============== -->
+<section class="section section-divider" id="contexto">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>01</span>
+      <span>El contexto</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      G2B ya ganó la conversación en <span class="accent-italic">campo</span>. La que sigue es la conversación
+      <em>antes</em> del campo: la del comité, el due diligence y la búsqueda en internet.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1 mt-6">
+      G2B llega a 2026 con $943.1 millones facturados, cinco plantas de tratamiento operando, flota propia
+      en pesada y especializada, certificación normativa de origen y un portafolio de obra pública y privada
+      que muy pocos contratistas hidráulicos en México pueden mostrar. El expediente técnico está intacto.
+      Lo que está incompleto es la <em>capa digital</em> que respalda ese expediente cuando un evaluador,
+      un fondo o un desarrollador busca confirmar — antes de firmar — que la empresa al otro lado del contrato
+      es exactamente lo que dice ser.
+    </p>
+
+    <div class="data-stripe reveal reveal-d2 mt-8">
+      <div class="data-cell">
+        <div class="lbl">Facturación 2025</div>
+        <div class="num">$943.1 M</div>
+        <div class="detail">$509.3 M iniciativa pública (54%) · $433.9 M iniciativa privada (46%). Mezcla balanceada que reduce dependencia de un solo canal de venta.</div>
+      </div>
+      <div class="data-cell">
+        <div class="lbl">Líneas de mayor peso</div>
+        <div class="num">$372 M</div>
+        <div class="detail">Suma de Desazolves ($158 M), Drenaje sanitario ($124 M) y Drenaje pluvial ($89.7 M). El núcleo hidráulico del negocio.</div>
+      </div>
+      <div class="data-cell">
+        <div class="lbl">Capacidad operativa</div>
+        <div class="num">+ 60</div>
+        <div class="detail">Equipos de flota propia entre pesada, especializada y transporte. Sin subcontratación de maquinaria — un diferenciador real en licitaciones.</div>
+      </div>
+    </div>
+
+    <div class="grid-3 mt-8">
+      <div class="card reveal reveal-d1">
+        <div class="card-eyebrow">Diagnóstico 01</div>
+        <div class="card-title">Sin sitio web propio</div>
+        <div class="card-body">
+          Hoy G2B no tiene presencia web institucional. Cualquier comité evaluador, banco o desarrollador
+          que quiera validar la empresa antes de adjudicar depende del CV en PDF, una llamada o una
+          referencia de tercero. La empresa más grande de la sala no aparece en internet con el peso que tiene.
+        </div>
+      </div>
+      <div class="card reveal reveal-d2">
+        <div class="card-eyebrow">Diagnóstico 02</div>
+        <div class="card-title">Trayectoria sin vitrina</div>
+        <div class="card-body">
+          Las PTARs en operación, los $943M facturados, los desazolves entregados y el cumplimiento NOM-001/002/003
+          son hechos verificables que hoy no están documentados públicamente. La obra existe; el respaldo digital
+          no. En procesos de licitación, eso es ruido contra los competidores que sí lo tienen.
+        </div>
+      </div>
+      <div class="card reveal reveal-d3">
+        <div class="card-eyebrow">Diagnóstico 03</div>
+        <div class="card-title">Posicionamiento sectorial débil</div>
+        <div class="card-body">
+          Búsquedas como "constructora hidráulica México", "contratista PTAR", "infraestructura sanitaria"
+          no devuelven a G2B en primera página. El liderazgo técnico real no se traduce en visibilidad
+          orgánica frente a quien está investigando contratistas en este momento.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-d2 mt-8">
+      <strong>Lo que está en juego no es marketing.</strong> Es el costo de que un comité de licitación
+      tenga que adjudicar entre dos empresas, una con plataforma digital institucional y otra sin ella,
+      y use ese gap como criterio de desempate. En infraestructura crítica, la digitalización institucional
+      ya dejó de ser opcional. Es <em>parte del expediente</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ============== AUDIENCIAS ============== -->
+<section class="section section-surface" id="audiencias">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>02</span>
+      <span>Para quién se construye este sitio</span>
+    </div>
+
+    <h2 class="display-heading lg reveal max-w-4xl">
+      No es un sitio para captar leads. Es una <span class="accent-italic">carta de presentación digital</span>
+      para procesos de licitación de alto calibre.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      Esa diferencia define todo lo demás: la jerarquía de información, el tono, la estructura, qué se
+      muestra y qué se omite. Hablamos a cuatro audiencias en orden de prioridad — y cada decisión de diseño,
+      contenido y SEO se justifica contra ellas.
+    </p>
+
+    <div class="audience-grid reveal reveal-d2">
+      <div class="audience-cell primary">
+        <div class="priority">Prioridad 01</div>
+        <div class="who">Comités evaluadores de licitaciones públicas</div>
+        <div class="what">
+          Necesitan validar formalidad institucional, trayectoria verificable, capacidad operativa real y
+          cumplimiento normativo antes de adjudicar. El sitio les entrega evidencia en formato consumible:
+          obras documentadas, normatividad listada, flota visible, cifras macro del último ejercicio.
+        </div>
+      </div>
+      <div class="audience-cell primary">
+        <div class="priority">Prioridad 02</div>
+        <div class="who">Desarrolladores privados y socios B2B</div>
+        <div class="what">
+          Buscan contratista hidráulico confiable para proyectos de gran ticket. Validan escala, capacidad de
+          ejecución, casos de éxito comparables y velocidad de respuesta comercial. El sitio responde con
+          casos sectorizados (industrial, urbano, ambiental) y una vía clara de contacto.
+        </div>
+      </div>
+      <div class="audience-cell">
+        <div class="priority">Prioridad 03</div>
+        <div class="who">Bancos, fondos y certificadores ESG</div>
+        <div class="what">
+          Hacen due diligence financiero, técnico y ambiental. El sitio les entrega la sección de normatividad
+          y ESG con peso institucional: NOM-001/002/003, 170,000+ plántulas entregadas, alineación con
+          ministerios y gobiernos autónomos. Información lista para usarse en evaluación.
+        </div>
+      </div>
+      <div class="audience-cell">
+        <div class="priority">Prioridad 04</div>
+        <div class="who">Talento técnico especializado</div>
+        <div class="what">
+          Ingenieros, residentes, supervisores y operadores de equipo pesado que evalúan dónde construir
+          carrera. El sitio entrega un mensaje claro de escala, formalidad y proyectos de impacto —
+          el reclutamiento técnico se vuelve más barato cuando la empresa ya se vendió a sí misma.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout water reveal reveal-d2 mt-8">
+      <strong>Regla operativa:</strong> cuando una decisión de contenido beneficia a la audiencia 01 pero
+      ensucia el mensaje para la 03, gana la 01. Las cuatro audiencias importan, pero el sitio se construye
+      <em>desde el comité de licitación hacia afuera</em>, no al revés.
+    </div>
+  </div>
+</section>
+
+<!-- ============== ÁNGULO ESTRATÉGICO ============== -->
+<section class="section section-divider" id="angulo">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>03</span>
+      <span>El ángulo</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      G2B no necesita parecer una constructora moderna. Necesita verse como <span class="accent-italic">la constructora</span>
+      a la que se le adjudica el contrato porque cualquier alternativa parece riesgosa.
+    </h2>
+
+    <p class="paragraph lg muted max-w-3xl reveal reveal-d1 mt-6">
+      La estética y la narrativa del sitio se construyen alrededor de <em>seriedad institucional</em>:
+      tipografía sobria, paleta corporativa azul marino consistente con la identidad actual, fotografía
+      de obra documental (no publicitaria), datos duros antes que adjetivos, y un tono que respira la misma
+      formalidad con la que la empresa firma contratos de nueve cifras. Cero ruido visual lifestyle, cero
+      promesas de marketing, cero infografías de "soluciones 360". Sitio de infraestructura crítica.
+    </p>
+
+    <div class="reveal reveal-d2 mt-8" style="border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th class="axis">Eje</th>
+            <th class="col-current">Sitio típico de constructora mexicana</th>
+            <th class="col-target">Plataforma institucional G2B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="axis">Tono editorial</td>
+            <td class="dim-col">Adjetivos de marketing, frases tipo "soluciones integrales", lenguaje genérico.</td>
+            <td class="accent-col">Datos verificables, lenguaje técnico sectorial, tono institucional B2G/B2B.</td>
+          </tr>
+          <tr>
+            <td class="axis">Estructura</td>
+            <td class="dim-col">Home extendido con todo en una página, secciones decorativas.</td>
+            <td class="accent-col">Arquitectura por audiencia: portafolio de obras, capacidad técnica, normatividad/ESG, contacto institucional.</td>
+          </tr>
+          <tr>
+            <td class="axis">Evidencia</td>
+            <td class="dim-col">Stock photos genéricas, mockups, frases sin respaldo.</td>
+            <td class="accent-col">Fotografía documental de obra real, cifras anuales, listado de PTARs y proyectos, flota propia con inventario.</td>
+          </tr>
+          <tr>
+            <td class="axis">Llamada a la acción</td>
+            <td class="dim-col">"Cotiza tu proyecto" en formato de e-commerce.</td>
+            <td class="accent-col">Canal institucional de licitaciones y RFPs. Formulario diferenciado por tipo de prospecto.</td>
+          </tr>
+          <tr>
+            <td class="axis">SEO objetivo</td>
+            <td class="dim-col">Keywords genéricas "constructora México".</td>
+            <td class="accent-col">Búsquedas técnicas sectoriales: "contratista PTAR", "infraestructura hidráulica México", "constructora desazolves", "ingeniería sanitaria nacional".</td>
+          </tr>
+          <tr>
+            <td class="axis">LinkedIn</td>
+            <td class="dim-col">Inactivo o con contenido genérico.</td>
+            <td class="accent-col">Página corporativa con contenido sectorial de autoridad: casos de obra, ESG, normatividad, perfiles técnicos.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal reveal-d3 mt-8">
+      <strong>Tesis editorial del sitio</strong>: cada palabra, cada cifra y cada imagen debe responder
+      una sola pregunta del lector — <em>"¿estos son los que adjudicaríamos sin que nadie en el comité levante una ceja?"</em>.
+      Si una sección no aporta a esa respuesta, se elimina.
+    </div>
+  </div>
+</section>
+
+<!-- ============== SISTEMAS / SERVICIOS ============== -->
+<section class="section section-surface" id="sistemas">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>04</span>
+      <span>Sistemas que se activan</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Cinco frentes que trabajan en bloque: <span class="accent-italic">sitio, autoridad orgánica, LinkedIn institucional,
+      material de apoyo y posicionamiento sectorial.</span>
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      Cada sistema se justifica contra las cuatro audiencias definidas en la sección 02. Lo que no aporta a
+      ese objetivo no entra en alcance — y lo dejamos explícito al final de esta sección.
+    </p>
+
+    <!-- Servicio 1 — Sitio web institucional -->
+    <div class="service reveal reveal-d1 mt-8">
+      <div class="service-head">
+        <div>
+          <div class="service-tag">Sistema 01 · Plataforma base</div>
+          <h3 class="service-title">Sitio web institucional G2B</h3>
+        </div>
+        <div class="service-meta">
+          Inversión única<br>
+          <strong>8 a 10 semanas</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        Sitio multi-página construido sobre la identidad visual actual de G2B (azul marino, sistema gráfico
+        existente, iconografía corporativa). Arquitectura pensada desde el comité de licitación:
+        portafolio sectorizado, capacidad operativa documentada, normatividad y ESG con peso institucional,
+        canal de contacto diferenciado por tipo de prospecto.
+      </p>
+
+      <div class="service-deliverables">
+        <div class="deliverable"><span class="check">·</span> <span>Home institucional con jerarquía clara: quiénes son, qué hacen, magnitud operativa.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Sección "Soluciones" con seis líneas de negocio (hidráulica, PTARs, redes, pluvial, pavimentación, urbano).</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Portafolio de obras estrella con permiso de mostrar: ficha técnica, cifras, fotografía documental.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Sección de Capacidad Operativa: inventario de flota pesada, especializada y transporte propio.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Sección Normatividad + ESG: NOM-001/002/003, alineación ministerial, 170,000+ plántulas entregadas.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Cifras del último ejercicio: $943.1 M, mezcla pública/privada, ticket por línea.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Página de Licitaciones / RFP: canal institucional diferenciado para procesos formales.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Contacto institucional separado por tipo: licitación, sector privado, prensa, talento.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Responsive mobile-first, SSL, tags y pixels, módulo administrable, SEO URLs.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Bilingüe ES/EN opcional (recomendado si hay obra con clientes internacionales o fondos extranjeros).</span></div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Inversión única — desarrollo sitio institucional</div>
+          <div class="price-value"><em>$45,000</em> + IVA</div>
+        </div>
+        <div class="price-note">60% al iniciar · 40% contra entrega · No incluye servidor, dominio ni producción fotográfica</div>
+      </div>
+    </div>
+
+    <!-- Servicio 2 — SEO técnico + sectorial -->
+    <div class="service reveal reveal-d1">
+      <div class="service-head">
+        <div>
+          <div class="service-tag">Sistema 02 · Autoridad orgánica</div>
+          <h3 class="service-title">SEO técnico + posicionamiento sectorial</h3>
+        </div>
+        <div class="service-meta">
+          Fee mensual<br>
+          <strong>+ setup inicial</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        Estrategia de posicionamiento orgánico dirigida específicamente al tipo de búsqueda que hacen
+        evaluadores, desarrolladores y certificadores antes de adjudicar o invertir. El objetivo no es
+        tráfico masivo: es que las búsquedas <em>correctas</em> encuentren a G2B en los primeros tres
+        resultados.
+      </p>
+
+      <div class="service-deliverables">
+        <div class="deliverable"><span class="check">·</span> <span>Investigación de keywords sectoriales: "contratista PTAR", "infraestructura hidráulica México", "constructora desazolves", "ingeniería sanitaria nacional", "redes pluviales", entre 40 y 60 términos prioritarios.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>SEO técnico on-page: estructura semántica, meta tags, schema.org de empresa constructora, sitemap, robots, velocidad de carga.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Optimización de contenido editorial por sección y por keyword objetivo.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Setup de Google Search Console, Google Analytics 4, monitoreo de rankings.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Reporte mensual: posiciones, búsquedas, oportunidades, ajustes ejecutados.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Estrategia de contenido evergreen sectorial (artículos técnicos cortos publicados desde la página de Insights).</span></div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Setup SEO inicial — auditoría + arquitectura</div>
+          <div class="price-value"><em>$15,000</em> + IVA</div>
+        </div>
+        <div class="price-note">Pago único, al iniciar · Trabajado en paralelo al desarrollo del sitio</div>
+      </div>
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Fee mensual — gestión SEO continua</div>
+          <div class="price-value"><em>$8,000</em> + IVA / mes</div>
+        </div>
+        <div class="price-note">Contrato sugerido mínimo de 6 meses para ver resultados de posicionamiento sectorial</div>
+      </div>
+
+      <!-- Pauta Google adyacente a SEO -->
+      <div class="pauta-block">
+        <div class="pauta-eyebrow">Pauta Google · Opcional — adyacente a SEO</div>
+        <div class="pauta-title">Google Ads sectorial (búsquedas de licitación / B2B)</div>
+        <div class="pauta-body">
+          Mientras el SEO orgánico madura (4 a 6 meses), Google Ads en búsquedas de alta intención sectorial
+          asegura presencia inmediata. Cobertura sugerida: keywords B2B de alto ticket sin saturación de
+          competencia.
+          <br><br>
+          <strong>Gestión Sentido:</strong> $4,000 + IVA / mes. &nbsp; <strong>Presupuesto sugerido a plataforma:</strong> $8,000 a $15,000 / mes (va directo a Google, no es honorario de Sentido).
+        </div>
+      </div>
+    </div>
+
+    <!-- Servicio 3 — LinkedIn corporativo -->
+    <div class="service reveal reveal-d2 water-svc">
+      <div class="service-head">
+        <div>
+          <div class="service-tag water">Sistema 03 · Autoridad institucional</div>
+          <h3 class="service-title">LinkedIn corporativo G2B</h3>
+        </div>
+        <div class="service-meta">
+          Fee mensual<br>
+          <strong>15 publicaciones</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        LinkedIn es el único canal social que pesa para esta audiencia. Decisores de obra pública,
+        directores de desarrollo, fondos de infraestructura y consultores ESG <em>sí</em> leen LinkedIn.
+        El resto de redes (Instagram, TikTok, Facebook lifestyle) no aportan al objetivo del sitio y se
+        descartan.
+      </p>
+
+      <div class="service-deliverables">
+        <div class="deliverable"><span class="check">·</span> <span>Operación de página corporativa G2B Constructora.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>15 publicaciones mensuales con mix de formatos: casos de obra, hitos técnicos, ESG, normatividad, reconocimientos.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Calendario editorial alineado al portafolio de obras y al ciclo de licitaciones del sector.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Copys en tono institucional sectorial — no marketing lifestyle.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Activación de perfiles de liderazgo (CEO / dirección técnica) como amplificadores de la página corporativa, opcional.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Reporte mensual de alcance, interacción cualificada y crecimiento de seguidores por cargo/sector.</span></div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Fee mensual — gestión LinkedIn corporativo</div>
+          <div class="price-value"><em>$7,500</em> + IVA / mes</div>
+        </div>
+        <div class="price-note">Por adelantado · Negociable según volumen de contenido y activación de perfiles de liderazgo</div>
+      </div>
+
+      <!-- Pauta LinkedIn adyacente a Redes -->
+      <div class="pauta-block">
+        <div class="pauta-eyebrow">Pauta LinkedIn · Opcional — adyacente a LinkedIn orgánico</div>
+        <div class="pauta-title">LinkedIn Ads segmentado por cargo y sector</div>
+        <div class="pauta-body">
+          Cuando se activa, la pauta se dirige específicamente a cargos como <em>Director de Obra Pública</em>,
+          <em>Gerente de Desarrollo</em>, <em>Analista de Riesgo de Infraestructura</em>, dentro de
+          empresas/instituciones objetivo. Cero pauta masiva, cero impresiones desperdiciadas.
+          <br><br>
+          <strong>Gestión Sentido:</strong> incluida dentro del fee mensual de LinkedIn al activarse. &nbsp;
+          <strong>Presupuesto sugerido a plataforma:</strong> $10,000 a $25,000 / mes (va directo a LinkedIn, no es honorario de Sentido).
+        </div>
+      </div>
+    </div>
+
+    <!-- Servicio 4 — Producción de contenido sectorial -->
+    <div class="service reveal reveal-d2">
+      <div class="service-head">
+        <div>
+          <div class="service-tag">Sistema 04 · Evidencia visual</div>
+          <h3 class="service-title">Producción de contenido sectorial</h3>
+        </div>
+        <div class="service-meta">
+          Servicio eventual<br>
+          <strong>por sesión</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        Fotografía documental y video corto de obra real. Sin estética publicitaria. El estándar es
+        cobertura tipo Annual Report: PTARs en operación, frentes activos de obra, flota, equipo técnico,
+        antes/después de proyectos. Material que alimenta sitio, LinkedIn, dossiers de licitación y reportes ESG.
+      </p>
+
+      <div class="service-deliverables">
+        <div class="deliverable"><span class="check">·</span> <span>Sesión fotográfica documental: 2 horas, 25-30 imágenes editadas, retoque, adaptación a múltiples formatos. <strong>$3,000 + IVA por sesión.</strong></span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Sesión de video documental: 2 horas, tomas interiores/exteriores/detalles, edición. Entrega 1 video 40s + 4 cortos 12s. <strong>$5,500 + IVA por sesión.</strong></span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Cobertura sugerida inicial: 3 PTARs en operación + 2 frentes activos + flota + equipo técnico. Bloque típico de 4 a 6 sesiones distribuidas en 8 semanas.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Material entregado en banco propiedad de G2B, sin licencias recurrentes ni dependencias externas.</span></div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Bloque de cobertura inicial sugerido — 3 sesiones foto + 2 sesiones video</div>
+          <div class="price-value"><em>$20,000</em> + IVA</div>
+        </div>
+        <div class="price-note">Eventual — nunca se suma a fee mensual. Programación según calendario de obra disponible.</div>
+      </div>
+    </div>
+
+    <!-- Servicio 5 — Material de apoyo / dossiers -->
+    <div class="service reveal reveal-d3">
+      <div class="service-head">
+        <div>
+          <div class="service-tag">Sistema 05 · Apoyo comercial</div>
+          <h3 class="service-title">Dossiers digitales para licitación y desarrollo privado</h3>
+        </div>
+        <div class="service-meta">
+          Servicio único<br>
+          <strong>+ actualización anual</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        Material editorial de alto formato que se entrega físicamente o se anexa a procesos de licitación,
+        propuestas a desarrolladores, due diligence de bancos. Acompaña al sitio web, no lo sustituye:
+        cuando un evaluador necesita un PDF formal para subir a su expediente, este es el documento.
+      </p>
+
+      <div class="service-deliverables">
+        <div class="deliverable"><span class="check">·</span> <span>Dossier corporativo institucional G2B (versión maestra): estructura + información editorial + diseño gráfico completo.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>One-pagers sectorizados: hidráulica, PTARs, infraestructura urbana, ESG. Plantillas editables para uso comercial.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Ficha técnica por obra estrella: cifras, alcance, normatividad aplicada, fotografía documental.</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Versión bilingüe ES/EN del dossier maestro (opcional, recomendado para fondos extranjeros).</span></div>
+        <div class="deliverable"><span class="check">·</span> <span>Entrega en PDF + editables (Illustrator/InDesign) para que G2B pueda actualizar internamente.</span></div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Inversión única — dossier maestro + one-pagers sectorizados</div>
+          <div class="price-value"><em>$25,000</em> + IVA</div>
+        </div>
+        <div class="price-note">50% al iniciar · 50% contra entrega · Tiempo estimado 1.5 meses</div>
+      </div>
+    </div>
+
+    <!-- Lo que NO hacemos -->
+    <div class="reveal reveal-d3 mt-8">
+      <h3 class="display-heading md mb-3">Lo que <em class="accent-italic">no</em> entra en alcance — y por qué</h3>
+      <p class="paragraph muted max-w-3xl">
+        Decir que no es parte del trabajo estratégico. Estos servicios existen en el catálogo Sentido pero
+        no aplican a G2B y los descartamos explícitamente para que la propuesta no se infle con ruido:
+      </p>
+
+      <div class="no-list">
+        <div class="no-item">
+          <div class="x">No aplica</div>
+          <div class="label">Performance ads masivos (Meta / Google "leads")</div>
+          <div class="why">El ciclo de venta de G2B es licitación o RFP, no lead form de e-commerce. Pauta masiva no compra contratos de nueve cifras.</div>
+        </div>
+        <div class="no-item">
+          <div class="x">No aplica</div>
+          <div class="label">Instagram, TikTok, Facebook lifestyle</div>
+          <div class="why">Audiencias incorrectas. Comités, fondos y desarrolladores no investigan contratistas hidráulicos en redes consumer.</div>
+        </div>
+        <div class="no-item">
+          <div class="x">No aplica</div>
+          <div class="label">Branding / rediseño de identidad</div>
+          <div class="why">G2B ya tiene identidad consolidada (logo, paleta azul marino, sistema visual). Sentido se limita a aplicarla, no a rediseñarla.</div>
+        </div>
+        <div class="no-item">
+          <div class="x">No aplica</div>
+          <div class="label">Email marketing B2C / automatizaciones de venta digital</div>
+          <div class="why">No hay base de datos de consumidor final. La comunicación institucional con prospectos B2B/B2G se opera por canales formales (oficio, RFP, reunión).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== INVERSIÓN ============== -->
+<section class="section section-divider" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>05</span>
+      <span>Estructura de inversión</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Tres bloques: <span class="accent-italic">inversión única</span> de plataforma, <span class="accent-italic">fee mensual</span> de operación
+      y <span class="water-italic">pauta digital</span> presupuestada aparte.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      Separados intencionalmente para que G2B pueda decidir qué arranca primero, qué se prioriza por
+      flujo, y qué se activa cuando el sitio ya esté maduro. Todos los precios en MXN con IVA explícito.
+    </p>
+
+    <!-- Inversiones únicas -->
+    <div class="service reveal reveal-d1 mt-8">
+      <div class="service-head">
+        <div>
+          <div class="service-tag">Bloque A · Inversiones únicas</div>
+          <h3 class="service-title">Plataforma + activos institucionales</h3>
+        </div>
+        <div class="service-meta">
+          Pagos 50/50<br>
+          o <strong>60/40</strong> según servicio
+        </div>
+      </div>
+
+      <div class="service-deliverables" style="grid-template-columns: 1fr;">
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Sitio web institucional G2B</strong> — desarrollo completo, 8 a 10 semanas</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$45,000 + IVA</span>
+        </div>
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Setup SEO inicial</strong> — auditoría, keywords sectoriales, arquitectura</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$15,000 + IVA</span>
+        </div>
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Dossier corporativo + one-pagers sectorizados</strong></span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$25,000 + IVA</span>
+        </div>
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Bloque inicial de producción de contenido</strong> — 3 sesiones foto + 2 video</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$20,000 + IVA</span>
+        </div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Total inversiones únicas</div>
+          <div class="price-value"><em>$105,000</em> + IVA</div>
+        </div>
+        <div class="price-note">Distribuido entre 2 a 3 meses según ritmo de arranque</div>
+      </div>
+    </div>
+
+    <!-- Fee mensual -->
+    <div class="service reveal reveal-d2">
+      <div class="service-head">
+        <div>
+          <div class="service-tag">Bloque B · Fee mensual</div>
+          <h3 class="service-title">Operación recurrente: SEO + LinkedIn institucional</h3>
+        </div>
+        <div class="service-meta">
+          Recurrente<br>
+          <strong>por adelantado</strong>
+        </div>
+      </div>
+
+      <div class="service-deliverables" style="grid-template-columns: 1fr;">
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Gestión SEO sectorial</strong> — posicionamiento orgánico continuo</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$8,000 + IVA / mes</span>
+        </div>
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>LinkedIn corporativo</strong> — 15 publicaciones + estrategia + reporte</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$7,500 + IVA / mes</span>
+        </div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Total fee mensual recurrente</div>
+          <div class="price-value"><em>$15,500</em> + IVA / mes</div>
+        </div>
+        <div class="price-note">Contrato sugerido mínimo de 6 meses · Incluye Google Ads sin costo de gestión si se activa pauta (ver bloque C)</div>
+      </div>
+    </div>
+
+    <!-- Bloque C — Pauta -->
+    <div class="service reveal reveal-d3 water-svc">
+      <div class="service-head">
+        <div>
+          <div class="service-tag water">Bloque C · Pauta digital (presupuesto plataforma)</div>
+          <h3 class="service-title">Inversión a Google Ads y LinkedIn Ads</h3>
+        </div>
+        <div class="service-meta">
+          A plataforma<br>
+          <strong>no es honorario</strong>
+        </div>
+      </div>
+
+      <p class="service-summary">
+        Este bloque se separa intencionalmente: el dinero va directo a Google y LinkedIn (no a Sentido).
+        La gestión profesional ya está incluida en el fee mensual del Bloque B cuando se activa pauta.
+        Rango sugerido — ajustable según el ciclo comercial de G2B.
+      </p>
+
+      <div class="service-deliverables" style="grid-template-columns: 1fr;">
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Google Ads</strong> — búsquedas sectoriales B2B/B2G de alta intención (gestión incluida en fee mensual)</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--water); white-space: nowrap;">$8,000 a $15,000 / mes</span>
+        </div>
+        <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>LinkedIn Ads</strong> — segmentación por cargo (director obra, gerente desarrollo, analista riesgo)</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--water); white-space: nowrap;">$10,000 a $25,000 / mes</span>
+        </div>
+      </div>
+
+      <div class="price-bar">
+        <div>
+          <div class="price-label">Rango total sugerido pauta digital</div>
+          <div class="price-value water-italic">$18,000 a $40,000 / mes</div>
+        </div>
+        <div class="price-note">No es honorario Sentido — va directo a Google y LinkedIn. Activación opcional y gradual.</div>
+      </div>
+    </div>
+
+    <!-- Total general -->
+    <div class="total-card reveal reveal-d3">
+      <div>
+        <div class="label">Resumen del primer semestre de operación</div>
+        <h3>Inversión total estimada · ramp-up + 6 meses</h3>
+        <p>
+          $105,000 únicos al arranque + $15,500 / mes × 6 meses = $198,000 + IVA en honorarios Sentido.
+          Pauta digital aparte, escalable según resultados. Compromiso editorial: cada peso debe poder
+          defenderse frente al comité que pregunta "¿para qué sirvió?".
+        </p>
+        <div class="small">Estimado para presupuestación interna — propuesta formal con fechas y entregables se entrega al firmar.</div>
+      </div>
+      <div>
+        <div class="number"><em>$198,000</em></div>
+        <div class="small">+ IVA · honorarios Sentido · 6 meses</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HORIZONTE ============== -->
+<section class="section section-surface" id="horizonte">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="divider"></div>
+      <span>06</span>
+      <span>El horizonte</span>
+    </div>
+
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Qué cambia en el negocio cuando esta plataforma <span class="accent-italic">empieza a operar</span>.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
+      Tres horizontes con expectativas reales. Nada de promesas de "x10 leads". Esta no es esa propuesta.
+    </p>
+
+    <div class="timeline reveal reveal-d2">
+      <div class="tl-row">
+        <div class="tl-period">Mes 1 – 3</div>
+        <div class="tl-phase">Plataforma viva</div>
+        <div class="tl-detail">
+          Sitio institucional publicado, dossier maestro entregado, LinkedIn corporativo en operación con
+          contenido sectorial semanal, primer bloque de fotografía documental disponible. G2B ya puede compartir
+          un link profesional cuando un evaluador, banco o desarrollador lo pida.
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-period">Mes 3 – 6</div>
+        <div class="tl-phase">Posicionamiento sectorial</div>
+        <div class="tl-detail">
+          Búsquedas técnicas sectoriales empiezan a devolver a G2B en primera página: "contratista PTAR",
+          "constructora hidráulica México", "infraestructura sanitaria". LinkedIn corporativo con tracción
+          documentable. Dossiers actualizados con obras del trimestre.
+        </div>
+      </div>
+      <div class="tl-row future">
+        <div class="tl-period">Mes 6 – 12</div>
+        <div class="tl-phase">Activo digital consolidado</div>
+        <div class="tl-detail">
+          El sitio empieza a aparecer mencionado en contextos institucionales — comités, publicaciones
+          sectoriales, perfiles de prensa. LinkedIn corporativo con autoridad sectorial reconocible.
+          Banco de evidencia visual robusto para procesos de licitación más ambiciosos.
+        </div>
+      </div>
+      <div class="tl-row future">
+        <div class="tl-period">Año 2+</div>
+        <div class="tl-phase">Soberanía digital institucional</div>
+        <div class="tl-detail">
+          La plataforma deja de ser un proyecto de marketing y se vuelve parte del expediente institucional
+          de G2B — el activo que respalda cada licitación, cada due diligence y cada conversación
+          comercial. Crecimiento sin renta a plataformas de terceros.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CLOSING ============== -->
+<section class="closing">
+  <div class="closing-inner">
+    <div class="closing-eyebrow">De CV en PDF a plataforma institucional</div>
+    <h2 class="closing-statement">
+      G2B ya tiene la obra, la flota, los <em>$943 millones</em><br>
+      y las normas en orden.<br>
+      Falta que el <em>internet</em> lo sepa.
+    </h2>
+    <p class="closing-sub">
+      Esta propuesta no es un proyecto de marketing. Es la pieza digital que faltaba en el expediente
+      institucional. Lista para arrancar en cuanto haya señal.
+    </p>
+
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="closing-sentido-mark" />
+
+    <div class="closing-meta">
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+      <span>propuestas.sentido.mx</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="copy">Sentido Branding &amp; Advertising · 2026 · Propuesta confidencial G2B Constructora</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Scroll spy nav
+  const navLinks = document.querySelectorAll('.site-nav-links a');
+  const sections = Array.from(navLinks).map((a) => {
+    const id = a.getAttribute('data-target');
+    return { link: a, section: document.getElementById(id) };
+  }).filter((s) => s.section);
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        navLinks.forEach((l) => l.classList.remove('active'));
+        const match = sections.find((s) => s.section === e.target);
+        if (match) match.link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach((s) => spy.observe(s.section));
+</script>
+
+</body>
+</html>
