@@ -525,6 +525,87 @@
     font-style: italic;
   }
 
+  /* Deliverables grid — desglose de piezas */
+  .deliverables-grid {
+    margin-top: 1.5rem;
+    padding: 1.4rem 1.5rem 1.3rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .deliverables-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .deliverables-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .deliverables-platform {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .deliverables-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .deliverables-row {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr 2fr;
+    gap: 0.6rem;
+    align-items: baseline;
+    padding: 0.45rem 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .deliverables-row:last-child { border-bottom: none; }
+  .dl-type {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .dl-qty {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .dl-detail {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .deliverables-note {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .deliverables-row {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+      padding: 0.65rem 0;
+    }
+    .dl-qty { font-size: 0.8rem; }
+  }
+
   /* Inversion summary */
   .invest-summary {
     margin-top: 3rem;
@@ -959,7 +1040,7 @@
       <div class="service-card highlighted">
         <div class="service-head">
           <div class="service-head-left">
-            <div class="num">01 / Presencia</div>
+            <div class="num">Redes / Presencia</div>
             <h3>Gestión de Redes Sociales con pilares editoriales</h3>
             <p class="objective">15 publicaciones mensuales con mix de formatos (reels, carruseles, posts, historias)
             organizadas en pilares claros: propiedades destacadas, vida en Zapopan, momentos de cierre, AmPara behind-the-scenes.
@@ -973,12 +1054,48 @@
         <div class="service-body">
           <ul class="service-items">
             <li>Calendario editorial mensual aprobado con cliente</li>
-            <li>Diseño gráfico de piezas + edición de reels</li>
             <li>Copywriting con voz AmPara consistente</li>
             <li>Programación y publicación (FB + IG)</li>
             <li>Gestión de comentarios y DMs entrantes en horario laboral</li>
             <li>Reporte mensual con métricas y propuestas</li>
+            <li>Diseño gráfico de piezas + edición de reels in-house</li>
           </ul>
+
+          <!-- Desglose mensual de piezas -->
+          <div class="deliverables-grid">
+            <div class="deliverables-head">
+              <span class="deliverables-label">Desglose mensual · 15 piezas + 5 gifs</span>
+              <span class="deliverables-platform">Instagram + Facebook</span>
+            </div>
+            <div class="deliverables-rows">
+              <div class="deliverables-row">
+                <div class="dl-type">Reels</div>
+                <div class="dl-qty">3 piezas</div>
+                <div class="dl-detail">propiedades destacadas + behind-the-scenes</div>
+              </div>
+              <div class="deliverables-row">
+                <div class="dl-type">Carruseles</div>
+                <div class="dl-qty">4 piezas</div>
+                <div class="dl-detail">listings, mercado, educación de compra</div>
+              </div>
+              <div class="deliverables-row">
+                <div class="dl-type">Posts feed</div>
+                <div class="dl-qty">5 piezas</div>
+                <div class="dl-detail">estática / branding / momentos de cierre</div>
+              </div>
+              <div class="deliverables-row">
+                <div class="dl-type">Stories</div>
+                <div class="dl-qty">3 piezas</div>
+                <div class="dl-detail">vida en Zapopan, polls, recordatorios</div>
+              </div>
+              <div class="deliverables-row">
+                <div class="dl-type">GIFs animados</div>
+                <div class="dl-qty">5 piezas</div>
+                <div class="dl-detail">stickers de marca para stories y replies</div>
+              </div>
+            </div>
+            <div class="deliverables-note">Mix ajustable mes a mes según calendario comercial (ej. lanzamiento de propiedad nueva, temporada alta). Reels y carruseles llevan prioridad por alcance orgánico.</div>
+          </div>
 
           <!-- PAUTA META adyacente -->
           <div class="pauta-block">
@@ -996,15 +1113,16 @@
         </div>
       </div>
 
-      <!-- 2. Google Business + reputación + (Acelerado) Google Ads -->
+      <!-- 2. Google Business Profile (orgánico, ambos planes) -->
       <div class="service-card">
         <div class="service-head">
           <div class="service-head-left">
-            <div class="num">02 / Discoverability</div>
+            <div class="num">GBP / Discoverability orgánica</div>
             <h3>Google Business Profile + presencia local en buscador</h3>
             <p class="objective">Optimización del perfil de Google Business para que cuando alguien busque
             "broker inmobiliario Zapopan" o "consultoría inmobiliaria Guadalajara", AmPara aparezca con
-            fotos, reseñas y autoridad. Incluye captación sistematizada de reseñas vía WhatsApp post-cierre.</p>
+            fotos, reseñas y autoridad en Maps y Search. Pieza puramente <strong>orgánica</strong> — sin
+            pauta, sin costo por clic. Incluye captación sistematizada de reseñas vía WhatsApp post-cierre.</p>
           </div>
           <div class="service-price">
             <div class="amount">$2,500<sup> + IVA</sup></div>
@@ -1016,34 +1134,65 @@
           <ul class="service-items">
             <li>Alta / optimización completa del perfil GBP</li>
             <li>Carga mensual de fotos de propiedades destacadas</li>
+            <li>Posts mensuales en el perfil (novedades, listings)</li>
             <li>Respuesta a reseñas y mensajes en perfil</li>
             <li>Automatización de solicitud de reseñas post-cierre (WhatsApp)</li>
             <li>Filtrado estratégico de insatisfechos a canal privado</li>
             <li>Estrategia de keywords locales (Zapopan, Andares, Puerta del Hierro)</li>
+            <li>Reporte mensual de impresiones, clics y llamadas desde el perfil</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. Google Ads — solo Plan Acelerado -->
+      <div class="service-card plan-acelerado-only" style="display:none;">
+        <div class="service-head">
+          <div class="service-head-left">
+            <div class="num">Google Ads / Captación pagada</div>
+            <h3>Google Ads — captura de búsquedas con intención de compra</h3>
+            <p class="objective">Servicio <strong>independiente</strong> de Google Business Profile. Mientras GBP
+            captura quien busca AmPara o brokers en su zona orgánicamente, Google Ads captura intención de compra
+            activa con campañas de búsqueda pagadas: "casa en venta Zapopan", "departamento Andares",
+            "broker inmobiliario Guadalajara". Aquí está el comprador que ya decidió comprar — solo falta que
+            AmPara aparezca primero.</p>
+          </div>
+          <div class="service-price">
+            <div class="amount">$4,000<sup> + IVA</sup></div>
+            <div class="freq">por mes · gestión</div>
+            <div class="tag">Solo Plan Acelerado</div>
+          </div>
+        </div>
+        <div class="service-body">
+          <ul class="service-items">
+            <li>Investigación y selección de keywords con intención de compra</li>
+            <li>Estructura de campañas (Search + Performance Max según fit)</li>
+            <li>Redacción de anuncios responsivos (RSAs) con variantes A/B</li>
+            <li>Configuración de conversiones (formularios, llamadas, WhatsApp)</li>
+            <li>Optimización semanal de pujas, keywords negativas y calidad</li>
+            <li>Reporte mensual con CPL, conversiones y siguiente mes</li>
           </ul>
 
-          <!-- PAUTA GOOGLE adyacente — solo Acelerado -->
-          <div class="pauta-block plan-acelerado-only" style="display:none;">
+          <!-- PAUTA GOOGLE adyacente -->
+          <div class="pauta-block">
             <div class="pauta-label">
               <span class="dot"></span>
-              <span>Pauta adyacente · Google Ads · Plan Acelerado</span>
+              <span>Pauta adyacente · Inversión a Google</span>
             </div>
-            <h5>Captura de búsquedas con intención de compra</h5>
-            <p>Campañas de Google Search para keywords con intención clara: "casa en venta Zapopan",
-            "departamento Andares", "broker inmobiliario Guadalajara". Aquí está el comprador que ya
-            decidió que quiere comprar — solo falta que AmPara aparezca primero.</p>
-            <div class="pauta-range">Gestión Sentido: $4,000 + IVA / mes</div>
+            <h5>Presupuesto que va directo a la plataforma</h5>
+            <p>El monto recomendado para clics se paga directamente a Google desde la cuenta publicitaria
+            de AmPara. <strong>No es honorario de Sentido</strong>, es la munición para que las campañas
+            tengan alcance suficiente para generar leads calificados.</p>
             <div class="pauta-range">Presupuesto recomendado a Google: $5,000 – $10,000 MXN / mes</div>
-            <div class="pauta-note">* El monto a Google va directo a la plataforma, no es honorario de Sentido.</div>
+            <div class="pauta-note">* Va directo a Google Ads, no a Sentido. Ajustable según tracción mes a mes.</div>
           </div>
         </div>
       </div>
 
-      <!-- 3. CRM (incluido en Acelerado, opcional en Esencial) -->
+      <!-- 4. CRM (incluido en Acelerado, opcional en Esencial) -->
       <div class="service-card">
         <div class="service-head">
           <div class="service-head-left">
-            <div class="num">03 / Seguimiento</div>
+            <div class="num">CRM / Seguimiento</div>
             <h3>CRM GoHighLevel + automatización de leads</h3>
             <p class="objective">Pipeline comercial completo donde cada DM, llamada, mensaje de WhatsApp
             y formulario de la web entra automáticamente. Etapas claras (Lead → Calificación → Visita →
@@ -1102,12 +1251,12 @@
         <div class="val">Incluido</div>
       </div>
       <div class="invest-row">
-        <div class="label"><strong>Google Business Profile</strong> · precio bundle con redes</div>
+        <div class="label"><strong>Google Business Profile</strong> · orgánico · precio bundle con redes</div>
         <div class="val">$2,500</div>
       </div>
       <div class="invest-row">
         <div class="label"><strong>Gestión de reseñas automatizada</strong> · post-cierre vía WhatsApp</div>
-        <div class="val">Incluido</div>
+        <div class="val">Incluido en GBP</div>
       </div>
       <div class="invest-row total">
         <div class="label">Honorarios mensuales Sentido</div>
@@ -1117,7 +1266,8 @@
       <div class="note" style="margin-top:2rem;">
         <div class="note-icon">PAUTA</div>
         <p><strong>Inversión recomendada en plataformas (va directa a Meta, no a Sentido):</strong>
-        $5,000 – $8,000 MXN / mes para Meta Ads. Esto amplifica listings premium y construye remarketing local.</p>
+        $5,000 – $8,000 MXN / mes para Meta Ads. Esto amplifica listings premium y construye remarketing local.
+        Plan Esencial no contempla Google Ads pagados; la presencia en Google se construye orgánicamente vía GBP.</p>
       </div>
 
       <div class="note" style="background: rgba(120, 130, 160, 0.08); border-left-color: var(--secondary);">
@@ -1141,11 +1291,11 @@
         <div class="val">Incluido</div>
       </div>
       <div class="invest-row">
-        <div class="label"><strong>Google Business Profile</strong> · precio bundle con redes</div>
+        <div class="label"><strong>Google Business Profile</strong> · orgánico · precio bundle con redes</div>
         <div class="val">$2,500</div>
       </div>
       <div class="invest-row">
-        <div class="label"><strong>Google Ads — gestión</strong> · captura de búsquedas con intención</div>
+        <div class="label"><strong>Google Ads — gestión</strong> · pagado · captura de búsquedas con intención</div>
         <div class="val">$4,000</div>
       </div>
       <div class="invest-row">
