@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   }
 
   const to = process.env.LEAD_TO || 'jos@sentido.mx';
-  const from = process.env.LEAD_FROM || 'Brochure Sentido <onboarding@resend.dev>';
+  const from = process.env.LEAD_FROM || 'Brochure Sentido <brochure@sentido.mx>';
 
   // Vercel parsea JSON automáticamente cuando Content-Type es application/json
   const data = req.body || {};
