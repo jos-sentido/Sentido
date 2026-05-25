@@ -2798,7 +2798,7 @@
     </p>
 
     <div class="form-wrap reveal">
-      <form id="lead-form" data-webhook="https://formsubmit.co/ajax/jos@sentido.mx" novalidate>
+      <form id="lead-form" data-webhook="/api/lead" novalidate>
         <div class="form-grid">
           <div class="form-field">
             <label class="form-label" for="lf-nombre">Nombre completo <span class="req">*</span></label>
@@ -3206,7 +3206,6 @@
       }
 
       const webhook = form.dataset.webhook;
-      const isFormsubmit = webhook && webhook.includes('formsubmit.co');
 
       const basePayload = {
         Nombre: form.nombre.value.trim(),
@@ -3222,14 +3221,7 @@
         Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
       };
 
-      // FormSubmit special fields — improve the email rendering
-      const payload = isFormsubmit ? {
-        _subject: `Lead nuevo · ${form.empresa.value.trim() || 'sin empresa'} · brochure`,
-        _template: 'table',
-        _captcha: 'false',
-        _replyto: form.email.value.trim(),
-        ...basePayload
-      } : basePayload;
+      const payload = basePayload;
 
       submitBtn.disabled = true;
       submitBtn.querySelector('.arrow-symbol').textContent = '…';
