@@ -159,24 +159,38 @@
   }
   @media (min-width: 768px) { .hero { padding: 9rem 3rem 5rem; } }
   @media (min-width: 1024px) { .hero { padding: 10rem 5rem 5rem; } }
+  /* Gradient animado — fluidez/agua, alude al sector hidráulico sin caricaturizar */
   .hero::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: -10%;
     background:
-      radial-gradient(ellipse at 15% 25%, rgba(201,166,107,0.07) 0%, transparent 55%),
-      radial-gradient(ellipse at 85% 75%, rgba(74,158,191,0.06) 0%, transparent 55%);
+      radial-gradient(ellipse 60% 50% at 20% 30%, rgba(74,158,191,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 80% 70%, rgba(74,158,191,0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 65% 25%, rgba(201,166,107,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 40% at 30% 80%, rgba(201,166,107,0.07) 0%, transparent 55%);
+    background-size: 180% 180%;
+    background-repeat: no-repeat;
+    filter: blur(2px);
     pointer-events: none;
+    animation: heroFlow 22s ease-in-out infinite alternate;
+    will-change: background-position, transform;
   }
   .hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
-    background-size: 64px 64px;
+    background:
+      radial-gradient(ellipse at center, transparent 35%, rgba(11,25,41,0.55) 100%);
     pointer-events: none;
+  }
+  @keyframes heroFlow {
+    0%   { background-position: 0% 30%, 100% 70%, 60% 20%, 25% 80%; transform: translate3d(0,0,0) scale(1); }
+    50%  { background-position: 40% 55%, 55% 40%, 35% 50%, 60% 45%; transform: translate3d(0,-1%,0) scale(1.02); }
+    100% { background-position: 100% 70%, 0% 30%, 20% 80%, 80% 20%; transform: translate3d(0,0,0) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before { animation: none; }
   }
   .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
 
@@ -767,32 +781,55 @@
     color: var(--text-dim);
   }
   #lead-form label .req { color: var(--accent); }
-  #lead-form input,
+  #lead-form input[type="text"],
+  #lead-form input[type="email"],
+  #lead-form input[type="tel"],
   #lead-form select,
   #lead-form textarea {
     display: block;
     width: 100%;
     margin-top: 0.5rem;
     padding: 0.95rem 1.1rem;
-    background: var(--accent-soft);
+    background: #0B1929;
     border: 1px solid var(--accent);
     border-radius: 4px;
-    color: #1a1a1a;
+    color: #F5EDD8;
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.5;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   }
-  #lead-form input::placeholder,
-  #lead-form textarea::placeholder { color: rgba(26,26,26,0.5); }
-  #lead-form input:focus,
+  #lead-form input[type="text"]::placeholder,
+  #lead-form input[type="email"]::placeholder,
+  #lead-form input[type="tel"]::placeholder,
+  #lead-form textarea::placeholder { color: rgba(245,237,216,0.45); }
+  #lead-form input[type="text"]::-webkit-input-placeholder,
+  #lead-form input[type="email"]::-webkit-input-placeholder,
+  #lead-form input[type="tel"]::-webkit-input-placeholder,
+  #lead-form textarea::-webkit-input-placeholder { color: rgba(245,237,216,0.45); }
+  #lead-form input[type="text"]:focus,
+  #lead-form input[type="email"]:focus,
+  #lead-form input[type="tel"]:focus,
   #lead-form select:focus,
   #lead-form textarea:focus {
     outline: none;
-    background: #fff;
-    border-color: var(--text);
+    background: #0E1F33;
+    border-color: #E0C285;
+    box-shadow: 0 0 0 3px rgba(201,166,107,0.18);
   }
-  #lead-form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a1a1a' stroke-width='1.5' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  /* Autofill — mantén texto claro en navegadores webkit */
+  #lead-form input:-webkit-autofill,
+  #lead-form input:-webkit-autofill:hover,
+  #lead-form input:-webkit-autofill:focus,
+  #lead-form textarea:-webkit-autofill,
+  #lead-form select:-webkit-autofill {
+    -webkit-text-fill-color: #F5EDD8;
+    -webkit-box-shadow: 0 0 0px 1000px #0B1929 inset;
+    caret-color: #F5EDD8;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  #lead-form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A66B' stroke-width='1.5' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  #lead-form select option { background: #0B1929; color: #F5EDD8; }
   #lead-form textarea { resize: vertical; min-height: 100px; }
   .form-submit {
     margin-top: 0.5rem;
@@ -1006,7 +1043,7 @@
 
     <h2 class="display-heading xl reveal max-w-4xl">
       G2B ya ganó la conversación en <span class="accent-italic">campo</span>. La que sigue es la conversación
-      <em>antes</em> del campo: la del comité, el due diligence y la búsqueda en internet.
+      <em>antes</em> del campo: la del comité, la validación institucional y la búsqueda en internet.
     </h2>
 
     <p class="paragraph lg muted max-w-3xl reveal reveal-d1 mt-6">
@@ -1091,7 +1128,7 @@
     </h2>
     <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
       Esa diferencia define todo lo demás: la jerarquía de información, el tono, la estructura, qué se
-      muestra y qué se omite. Hablamos a cuatro audiencias en orden de prioridad — y cada decisión de diseño,
+      muestra y qué se omite. Hablamos a dos audiencias prioritarias — y cada decisión de diseño,
       contenido y SEO se justifica contra ellas.
     </p>
 
@@ -1114,30 +1151,12 @@
           casos sectorizados (industrial, urbano, ambiental) y una vía clara de contacto.
         </div>
       </div>
-      <div class="audience-cell">
-        <div class="priority">Prioridad 03</div>
-        <div class="who">Bancos, fondos y certificadores ESG</div>
-        <div class="what">
-          Hacen due diligence financiero, técnico y ambiental. El sitio les entrega la sección de normatividad
-          y ESG con peso institucional: NOM-001/002/003, 170,000+ plántulas entregadas, alineación con
-          ministerios y gobiernos autónomos. Información lista para usarse en evaluación.
-        </div>
-      </div>
-      <div class="audience-cell">
-        <div class="priority">Prioridad 04</div>
-        <div class="who">Talento técnico especializado</div>
-        <div class="what">
-          Ingenieros, residentes, supervisores y operadores de equipo pesado que evalúan dónde construir
-          carrera. El sitio entrega un mensaje claro de escala, formalidad y proyectos de impacto —
-          el reclutamiento técnico se vuelve más barato cuando la empresa ya se vendió a sí misma.
-        </div>
-      </div>
     </div>
 
     <div class="callout water reveal reveal-d2 mt-8">
-      <strong>Regla operativa:</strong> cuando una decisión de contenido beneficia a la audiencia 01 pero
-      ensucia el mensaje para la 03, gana la 01. Las cuatro audiencias importan, pero el sitio se construye
-      <em>desde el comité de licitación hacia afuera</em>, no al revés.
+      <strong>Regla operativa:</strong> el sitio se construye <em>desde el comité de licitación hacia afuera</em>.
+      Cuando una decisión de contenido beneficia a la audiencia 01, gana — aunque haga el mensaje
+      más técnico de lo que cómodo se sentiría para una audiencia masiva.
     </div>
   </div>
 </section>
@@ -1677,7 +1696,7 @@
         <div class="tl-phase">Soberanía digital institucional</div>
         <div class="tl-detail">
           La plataforma deja de ser un proyecto de marketing y se vuelve parte del expediente institucional
-          de G2B — el activo que respalda cada licitación, cada due diligence y cada conversación
+          de G2B — el activo que respalda cada licitación, cada validación institucional y cada conversación
           comercial. Crecimiento sin renta a plataformas de terceros.
         </div>
       </div>
@@ -1734,13 +1753,13 @@
   <div class="closing-inner">
     <div class="closing-eyebrow">De CV en PDF a plataforma institucional</div>
     <h2 class="closing-statement">
-      G2B ya tiene la obra, la flota, las <em>PTARs</em><br>
-      y las normas en orden.<br>
-      Falta que el <em>internet</em> lo sepa.
+      Construyamos la <em>plataforma institucional</em><br>
+      a la altura de lo que G2B ya entrega en obra.
     </h2>
     <p class="closing-sub">
-      Esta propuesta no es un proyecto de marketing. Es la pieza digital que faltaba en el expediente
-      institucional. Lista para arrancar en cuanto haya señal.
+      Sentido convierte la operación física — obra, flota, normatividad, cobertura nacional —
+      en la presencia digital que un comité evaluador, un desarrollador o un socio institucional
+      necesita encontrar antes de adjudicar. Es la infraestructura comercial que faltaba.
     </p>
 
     <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="closing-sentido-mark" />
