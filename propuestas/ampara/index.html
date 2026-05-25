@@ -665,6 +665,62 @@
     line-height: 1.65;
     margin-bottom: 1.25rem;
   }
+  .setup-card .setup-section {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .setup-card .setup-section-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.55rem;
+    display: block;
+  }
+  .setup-card ul.setup-items {
+    list-style: none;
+    margin: 0 0 0.25rem 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .setup-card ul.setup-items li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .setup-card ul.setup-items li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+  .setup-card ul.setup-items li strong { color: var(--text); font-weight: 500; }
+  .setup-card .setup-delivery {
+    margin-top: 1.25rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.025);
+    border-left: 2px solid var(--accent);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .setup-card .setup-delivery strong {
+    color: var(--text);
+    font-weight: 500;
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
   .setup-card .price {
     font-family: var(--font-display);
     font-size: 1.5rem;
@@ -1064,13 +1120,13 @@
           <!-- Desglose mensual de piezas -->
           <div class="deliverables-grid">
             <div class="deliverables-head">
-              <span class="deliverables-label">Desglose mensual · 15 piezas + 5 gifs</span>
+              <span class="deliverables-label">Desglose mensual · 18 piezas + 5 gifs</span>
               <span class="deliverables-platform">Instagram + Facebook</span>
             </div>
             <div class="deliverables-rows">
               <div class="deliverables-row">
                 <div class="dl-type">Reels</div>
-                <div class="dl-qty">3 piezas</div>
+                <div class="dl-qty">6 piezas</div>
                 <div class="dl-detail">propiedades destacadas + behind-the-scenes</div>
               </div>
               <div class="deliverables-row">
@@ -1330,19 +1386,89 @@
 
       <div class="setup-grid">
         <div class="setup-card reveal reveal-d2">
-          <div class="num">SU.01</div>
-          <h4>Refinamiento de marca & sistema visual</h4>
-          <p>AmPara ya tiene una identidad sólida — no necesita rebrand. Lo que sí necesita es sistematizar
-          paleta, tipografías, plantillas de listing, plantillas de stories, y kit de redes. Que todo lo que
-          AmPara publique se vea igual de bien que el logo.</p>
+          <div class="num">SU.01 · Sistema de diseño para web</div>
+          <h4>Refinamiento de marca aplicado al sitio web</h4>
+          <p>AmPara ya tiene una identidad sólida — no necesita rebrand. Lo que sí necesita es el sistema
+          visual que va a alimentar al sitio web: tokens de diseño, jerarquía tipográfica para pantalla,
+          componentes UI y patrones de layout. Es el cimiento que hace que el sitio se vea profesional
+          y consistente, no improvisado.</p>
+
+          <div class="setup-section">
+            <span class="setup-section-label">Diagnóstico</span>
+            <ul class="setup-items">
+              <li><strong>Auditoría de identidad actual</strong> — logo, paleta, tipografía existente, aplicaciones vigentes</li>
+              <li><strong>Definición de tono visual</strong> — premium / institucional / accesible — para guiar todas las decisiones</li>
+            </ul>
+          </div>
+
+          <div class="setup-section">
+            <span class="setup-section-label">Sistema de diseño</span>
+            <ul class="setup-items">
+              <li><strong>Sistema de color extendido</strong> — primarios, secundarios, neutros, estados (hover, focus, error, éxito) — tokens listos para web</li>
+              <li><strong>Jerarquía tipográfica para web</strong> — escalas H1 → H6, body, caption, micro — con tamaños responsive</li>
+              <li><strong>Componentes UI base</strong> — botones (primario, secundario, ghost), cards de listing de propiedad, formularios, navegación, footer</li>
+              <li><strong>Patrones de layout</strong> — grids, contenedores, espaciado vertical/horizontal estandarizado</li>
+              <li><strong>Iconografía</strong> — set de íconos coherente para UI del sitio (amenidades, contacto, navegación)</li>
+              <li><strong>Tratamiento fotográfico</strong> — criterios de selección, edición de color, formatos y proporciones para fotos de propiedades</li>
+              <li><strong>Guía rápida de aplicación</strong> — cómo se usa el sistema sin romper consistencia</li>
+            </ul>
+          </div>
+
+          <div class="setup-delivery">
+            <strong>Entrega</strong>
+            Documento de sistema visual (PDF + Figma) + assets exportados (logos, íconos, paleta digital, tokens) listos para alimentar el desarrollo del sitio.
+          </div>
+
           <div class="price">$8,000<span class="iva">+ IVA</span></div>
         </div>
+
         <div class="setup-card reveal reveal-d3">
-          <div class="num">SU.02</div>
+          <div class="num">SU.02 · Activo digital principal</div>
           <h4>Sitio web inmobiliario one-pager</h4>
-          <p>Landing profesional con listings destacados, sección "sobre AmPara", formulario de captación
-          conectado al CRM, integración con WhatsApp y Google Maps. Diseñada para que el comprador high-net-worth
-          que aterrice aquí, decida agendar una cita.</p>
+          <p>Landing profesional construida sobre el sistema visual anterior. Una sola página que cuenta
+          la historia de AmPara, presenta propiedades destacadas, capta leads al CRM y conecta directo a
+          WhatsApp. Diseñada para que el comprador high-net-worth que aterrice aquí decida agendar una cita.</p>
+
+          <div class="setup-section">
+            <span class="setup-section-label">Diseño & UX</span>
+            <ul class="setup-items">
+              <li><strong>Diseño UX/UI custom</strong> basado en el sistema visual de SU.01 — sin templates genéricos</li>
+              <li><strong>Estructura one-pager</strong> con secciones: hero, propiedades destacadas, sobre AmPara, proceso de asesoría, testimonios, contacto</li>
+              <li><strong>Mobile-first</strong> — diseñado primero para celular (donde se navega la mayoría del tráfico) y adaptado a desktop</li>
+            </ul>
+          </div>
+
+          <div class="setup-section">
+            <span class="setup-section-label">Funcionalidades</span>
+            <ul class="setup-items">
+              <li><strong>Listings destacados</strong> con galería de fotos, datos clave (precio, m², ubicación, amenidades) y CTA a contacto</li>
+              <li><strong>Formulario de captación</strong> conectado al CRM (GoHighLevel) — los leads entran directo al pipeline</li>
+              <li><strong>Integración WhatsApp Business</strong> — botón flotante + click-to-chat desde cada propiedad</li>
+              <li><strong>Integración Google Maps</strong> en sección de contacto + ubicación de propiedades</li>
+            </ul>
+          </div>
+
+          <div class="setup-section">
+            <span class="setup-section-label">SEO técnico & performance</span>
+            <ul class="setup-items">
+              <li><strong>SEO on-page básico</strong> — meta tags, schema markup Local Business + RealEstateListing, sitemap, robots.txt</li>
+              <li><strong>Velocidad de carga optimizada</strong> — imágenes comprimidas, lazy loading, code minificado</li>
+              <li><strong>Setup de Google Analytics 4 + Meta Pixel</strong> — tracking de visitas, fuentes y conversiones desde día uno</li>
+            </ul>
+          </div>
+
+          <div class="setup-section">
+            <span class="setup-section-label">Cierre</span>
+            <ul class="setup-items">
+              <li><strong>Capacitación al equipo</strong> — cómo subir propiedades nuevas, leer analytics y responder leads desde el CRM</li>
+            </ul>
+          </div>
+
+          <div class="setup-delivery">
+            <strong>Entrega</strong>
+            Sitio live en dominio propio de AmPara + manual de uso + accesos a GA4, Meta Pixel y panel del CMS. Listo para empezar a recibir tráfico de pauta y orgánico el día del go-live.
+          </div>
+
           <div class="price">$15,000<span class="iva">+ IVA</span></div>
         </div>
       </div>
