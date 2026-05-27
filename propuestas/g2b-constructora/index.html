@@ -565,6 +565,36 @@
     font-size: 0.72rem;
     color: var(--text-faint);
   }
+  /* Etiqueta "Incluido en la contratación" — reemplaza precio numérico cuando algo va sin costo extra */
+  .price-included {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--success);
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(111,174,125,0.45);
+    background: rgba(111,174,125,0.10);
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .price-included::before {
+    content: '✓';
+    font-size: 0.9rem;
+    color: var(--success);
+  }
+  /* Versión inline para tablas/listas del bloque A (totalizador) */
+  .price-included-inline {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--success);
+    white-space: nowrap;
+  }
 
   /* ---------- PAUTA SUB-BLOCK (adyacente al servicio operador) ---------- */
   .pauta-block {
@@ -1254,8 +1284,8 @@
     <p class="paragraph muted max-w-3xl reveal reveal-d1 mt-3">
       Cada sistema se justifica contra las audiencias definidas en la sección 02 y se conecta con los demás:
       el sitio recibe tráfico, las redes y la capa Google lo amplifican, y el CRM lo centraliza para que
-      ninguna conversación institucional se pierda. Al final de la sección dejamos explícito qué queda fuera
-      de esta primera fase y qué puede sumarse cuando G2B esté listo para extender el alcance.
+      ninguna conversación institucional se pierda. Al final de la sección dejamos mapeadas las extensiones
+      del alcance — capas que se activan cuando G2B decida expandir sobre los fundamentos ya operando.
     </p>
 
     <!-- Servicio 1 — Sitio web institucional -->
@@ -1422,16 +1452,16 @@
       <div class="price-bar">
         <div>
           <div class="price-label">Setup único — Google Business Profile</div>
-          <div class="price-value"><em>$3,500</em> + IVA</div>
+          <div class="price-included">Incluido en la contratación</div>
         </div>
-        <div class="price-note">Una sola vez · Creación, verificación, categorías, descripción, fotos iniciales</div>
+        <div class="price-note">Sin costo de setup · Creación, verificación, categorías, descripción, fotos iniciales</div>
       </div>
       <div class="price-bar">
         <div>
           <div class="price-label">Mantenimiento GBP + Gestión Google Ads — fee mensual</div>
-          <div class="price-value"><em>$6,500</em> + IVA / mes</div>
+          <div class="price-value"><em>$4,500</em> + IVA / mes</div>
         </div>
-        <div class="price-note">$2,500 mantenimiento GBP + $4,000 gestión Google Ads · Activable por separado si se prefiere</div>
+        <div class="price-note">$1,500 mantenimiento GBP + $3,000 gestión Google Ads · Activable por separado si se prefiere</div>
       </div>
 
       <!-- Pauta Google adyacente a la gestión Google Ads -->
@@ -1486,9 +1516,9 @@
       <div class="price-bar">
         <div>
           <div class="price-label">Setup único — implementación CRM completa</div>
-          <div class="price-value"><em>$8,000</em> + IVA</div>
+          <div class="price-included">Incluido en la contratación</div>
         </div>
-        <div class="price-note">Una sola vez · Auditoría, configuración, pipelines, propiedades custom, integraciones</div>
+        <div class="price-note">Sin costo de setup · Auditoría, configuración, pipelines, propiedades custom, integraciones</div>
       </div>
       <div class="price-bar">
         <div>
@@ -1541,14 +1571,14 @@
       </div>
     </div>
 
-    <!-- Fuera del alcance inicial — disponibles como extensión -->
+    <!-- Extensiones del alcance — disponibles cuando G2B esté listo -->
     <div class="reveal reveal-d3 mt-8">
-      <h3 class="display-heading md mb-3">Fuera del alcance inicial — <em class="accent-italic">disponibles como extensión futura</em></h3>
+      <h3 class="display-heading md mb-3">Extensiones del alcance — <em class="accent-italic">disponibles cuando G2B esté listo</em></h3>
       <p class="paragraph muted max-w-3xl">
         Esta primera fase está enfocada en construir la plataforma institucional, la presencia social y la
         capa Google, sumando el CRM como hub central. Los siguientes servicios son parte del catálogo Sentido
-        y pueden sumarse cuando G2B esté listo para extender el alcance — son <em>roadmap potencial</em>,
-        no descarte:
+        y pueden sumarse cuando G2B decida expandir el alcance — son <em>roadmap potencial</em>, capas que
+        se activan cuando los fundamentos ya operan:
       </p>
 
       <div class="no-list">
@@ -1615,12 +1645,12 @@
     <div class="service reveal reveal-d1 mt-8">
       <div class="service-head">
         <div>
-          <div class="service-tag">Bloque A · Inversiones únicas de arranque</div>
-          <h3 class="service-title">Plataforma + setup de capa Google + setup CRM</h3>
+          <div class="service-tag">Bloque A · Inversión única de arranque</div>
+          <h3 class="service-title">Plataforma institucional G2B — setup Google y CRM incluidos</h3>
         </div>
         <div class="service-meta">
-          Pagos<br>
-          <strong>60/40 sitio · 50/50 setups</strong>
+          Pago<br>
+          <strong>60/40 sitio</strong>
         </div>
       </div>
 
@@ -1631,20 +1661,20 @@
         </div>
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
           <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Setup Google Business Profile</strong> — creación/reclamo de ficha, verificación, categorías, descripción institucional, fotografía inicial</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$3,500 + IVA</span>
+          <span class="price-included-inline">✓ Incluido</span>
         </div>
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
           <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Setup CRM institucional</strong> — auditoría, configuración cuenta, pipelines de licitaciones y oportunidades, propiedades custom sector infraestructura, integraciones con sitio y redes</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$8,000 + IVA</span>
+          <span class="price-included-inline">✓ Incluido</span>
         </div>
       </div>
 
       <div class="price-bar">
         <div>
-          <div class="price-label">Total inversiones únicas</div>
-          <div class="price-value"><em>$41,500</em> + IVA</div>
+          <div class="price-label">Total inversión única</div>
+          <div class="price-value"><em>$30,000</em> + IVA</div>
         </div>
-        <div class="price-note">Distribuido en 2 a 3 meses según ritmo de arranque · No incluye servidor, dominio, licencia de CRM ni producción fotográfica</div>
+        <div class="price-note">60% al iniciar · 40% contra entrega · Setups de GBP y CRM incluidos sin costo adicional · No incluye servidor, dominio, licencia de CRM ni producción fotográfica</div>
       </div>
     </div>
 
@@ -1671,8 +1701,8 @@
           <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$3,000 + IVA / mes</span>
         </div>
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
-          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Mantenimiento GBP + Gestión Google Ads</strong> — operación de la capa Google ($2,500 GBP + $4,000 Google Ads)</span></div>
-          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$6,500 + IVA / mes</span>
+          <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Mantenimiento GBP + Gestión Google Ads</strong> — operación de la capa Google ($1,500 GBP + $3,000 Google Ads)</span></div>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); white-space: nowrap;">$4,500 + IVA / mes</span>
         </div>
         <div class="deliverable" style="border-top: 1px solid var(--border); justify-content: space-between;">
           <div style="display: flex; gap: 0.75rem;"><span class="check">·</span> <span><strong>Operación CRM institucional</strong> — mantenimiento, optimización y soporte estratégico al equipo G2B</span></div>
@@ -1683,7 +1713,7 @@
       <div class="price-bar">
         <div>
           <div class="price-label">Total fee mensual recurrente</div>
-          <div class="price-value"><em>$21,000</em> + IVA / mes</div>
+          <div class="price-value"><em>$19,000</em> + IVA / mes</div>
         </div>
         <div class="price-note">Contrato sugerido mínimo de 6 meses · Gestión de pauta Meta, LinkedIn y Google Ads incluida cuando se active (ver Bloque D) · Licencia CRM (HubSpot u otra) a cargo de G2B</div>
       </div>
@@ -1776,10 +1806,11 @@
         <div class="label">Resumen de inversión</div>
         <h3>Honorarios Sentido — arranque y operación recurrente</h3>
         <p>
-          <strong>$41,500 + IVA único al arranque</strong> (plataforma institucional con SEO técnico + setup
-          Google Business Profile + setup CRM). <strong>$21,000 + IVA mensual</strong> por operación digital
-          integrada (redes Meta + LinkedIn espejo + capa Google + hub CRM). Pauta digital aparte, escalable
-          según resultados. Servicios por proyecto (presentaciones, audiovisual) se activan a demanda.
+          <strong>$30,000 + IVA único al arranque</strong> por la plataforma institucional con SEO técnico —
+          setups de Google Business Profile y CRM <em>incluidos sin costo adicional</em> al contratar.
+          <strong>$19,000 + IVA mensual</strong> por operación digital integrada (redes Meta + LinkedIn espejo +
+          capa Google + hub CRM). Pauta digital aparte, escalable según resultados. Servicios por proyecto
+          (presentaciones, audiovisual) se activan a demanda.
           Compromiso editorial: cada peso debe poder defenderse frente al comité que pregunta "¿para qué sirvió?".
         </p>
         <div class="small">Estimado para presupuestación inicial — propuesta formal con fechas y entregables se entrega al firmar.</div>
@@ -1787,12 +1818,12 @@
       <div style="display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start;">
         <div>
           <div class="small" style="margin-top: 0; margin-bottom: 0.35rem;">Único al arranque</div>
-          <div class="number"><em>$41,500</em></div>
-          <div class="small">+ IVA</div>
+          <div class="number"><em>$30,000</em></div>
+          <div class="small">+ IVA · setups GBP y CRM incluidos</div>
         </div>
         <div>
           <div class="small" style="margin-top: 0; margin-bottom: 0.35rem;">Mensual recurrente</div>
-          <div class="number"><em>$21,000</em><span style="font-size: 0.5em; color: var(--text-dim); font-style: normal;"> / mes</span></div>
+          <div class="number"><em>$19,000</em><span style="font-size: 0.5em; color: var(--text-dim); font-style: normal;"> / mes</span></div>
           <div class="small">+ IVA · honorarios Sentido</div>
         </div>
       </div>
