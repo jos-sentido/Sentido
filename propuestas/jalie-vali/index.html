@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · JALIE-VALI Constructora · Sentido</title>
+<meta name="description" content="Sede digital institucional para JALIE-VALI Constructora: un sitio web que transmite escala, capacidad técnica y confianza para ganar licitaciones de obra pública y privada." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14181A;             /* grafito profundo */
+    --bg-deep: #0D1011;
+    --surface: #1C2123;        /* card grafito */
+    --surface-elevated: #242A2C;
+    --concrete: #2A3033;       /* gris concreto elevado */
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text: #ECEFEC;
+    --text-dim: #9AA4A0;
+    --text-faint: #5D6864;
+    --accent: #4CAF2E;          /* verde JALIE vivo */
+    --accent-bright: #5BC93A;
+    --accent-soft: rgba(76,175,46,0.12);
+    --accent-line: rgba(76,175,46,0.28);
+    --steel: #8A9690;
+    --warn: #D69A3C;
+    --cream: #F4F2EC;           /* superficie clara para logo oscuro */
+    --font-display: 'Archivo', 'Arial Narrow', sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .section { padding: 5rem 1.5rem; position: relative; }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background: var(--surface); }
+  .section-deep { background: var(--bg-deep); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+  }
+  .section-label .divider { height: 1px; width: 3rem; background: var(--accent); opacity: 0.85; }
+  .section-label span { color: var(--accent); font-weight: 500; }
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .display-heading.xl { font-size: clamp(2.1rem, 5.5vw, 4.1rem); }
+  .display-heading.lg { font-size: clamp(1.7rem, 4vw, 2.7rem); }
+  .display-heading.md { font-size: clamp(1.35rem, 2.6vw, 1.85rem); font-weight: 700; }
+  .accent-text { color: var(--accent); }
+
+  .paragraph {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .paragraph.lg { font-size: 1.18rem; }
+  .paragraph.muted { color: var(--text-dim); }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---------- NAV ---------- */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,16,17,0.88);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.3s ease;
+  }
+  .site-nav-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .site-nav-brand { display: flex; align-items: center; gap: 0.85rem; }
+  .site-nav-brand .nav-jalie { height: 30px; display: block; }
+  .site-nav-brand .nav-sep { width: 1px; height: 22px; background: var(--border-strong); }
+  .site-nav-brand .nav-sentido { height: 26px; display: block; }
+  @media (min-width: 768px) {
+    .site-nav-brand .nav-jalie { height: 34px; }
+    .site-nav-brand .nav-sentido { height: 30px; }
+  }
+  .site-nav-links {
+    display: none;
+    list-style: none;
+    gap: 1.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 1000px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+  }
+  .site-nav-links a:hover { color: var(--text); }
+  .site-nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .nav-cta {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bg-deep);
+    background: var(--accent);
+    padding: 0.55rem 1rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--accent-bright); }
+  @media (min-width: 600px) { .nav-cta { display: inline-block; } }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(160deg, var(--bg-deep) 0%, var(--bg) 60%, #181D1E 100%);
+  }
+  @media (min-width: 768px) { .hero { padding: 9rem 3rem 5rem; } }
+  @media (min-width: 1024px) { .hero { padding: 9rem 5rem 5rem; } }
+  /* diagonales industriales */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 45%;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 38px, rgba(76,175,46,0.035) 38px 40px);
+    -webkit-mask-image: linear-gradient(to left, black, transparent);
+    mask-image: linear-gradient(to left, black, transparent);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: -10%; bottom: -20%;
+    width: 60%; height: 60%;
+    background: radial-gradient(circle, rgba(76,175,46,0.10), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+  .hero-logo-sentido {
+    height: 52px;
+    width: auto;
+    display: block;
+    margin-bottom: 3rem;
+    opacity: 0.85;
+  }
+  @media (min-width: 768px) {
+    .hero-logo-sentido { height: 60px; margin-bottom: 4rem; }
+  }
+  .hero-jalie-mark {
+    height: 88px;
+    width: auto;
+    display: block;
+    margin-bottom: 2.2rem;
+  }
+  @media (min-width: 768px) { .hero-jalie-mark { height: 118px; margin-bottom: 2.8rem; } }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta .dot { color: var(--accent); }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.8rem;
+    max-width: 18ch;
+  }
+  .hero h1 .accent-text { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 46rem;
+    font-weight: 300;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+  .hero-pillars {
+    margin-top: 2.8rem;
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-top: 1.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-pillars span { padding-right: 1.4rem; margin-right: 1.4rem; border-right: 1px solid var(--border); }
+  .hero-pillars span:last-child { border-right: 0; }
+  .hero-pillars b { color: var(--accent); font-weight: 600; }
+
+  /* ---------- GENERIC ELEMENTS ---------- */
+  .lead-paragraph {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: none;
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+  .lead-paragraph .accent-text { color: var(--accent); }
+
+  .body-block { margin-top: 1.5rem; }
+  .body-block p { margin-bottom: 1.25rem; }
+  .body-block p:last-child { margin-bottom: 0; }
+
+  /* metric strip */
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .metric-row { grid-template-columns: repeat(4, 1fr); } }
+  .metric {
+    background: var(--bg);
+    padding: 1.8rem 1.4rem;
+  }
+  .section-surface .metric { background: var(--surface); }
+  .metric .num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .metric .lbl {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.7rem;
+    line-height: 1.4;
+  }
+
+  /* ---------- FINDINGS LIST ---------- */
+  .findings { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (min-width: 768px) { .findings { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .finding {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 1.8rem;
+  }
+  .section-surface .finding { background: var(--surface-elevated); }
+  .finding .f-tag {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .finding h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+  .finding p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
+
+  /* ---------- SERVICE / MODULE CARDS ---------- */
+  .modules { display: grid; gap: 1.5rem; margin-top: 3rem; }
+  @media (min-width: 900px) { .modules { grid-template-columns: 1fr 1fr; } }
+  .module {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .module:hover { border-color: var(--accent-line); transform: translateY(-2px); }
+  .module .m-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .module h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.5rem;
+  }
+  .module .m-purpose {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .module ul { list-style: none; display: grid; gap: 0.7rem; }
+  .module li {
+    font-size: 0.94rem;
+    color: var(--text);
+    padding-left: 1.4rem;
+    position: relative;
+    line-height: 1.55;
+  }
+  .module li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.55em;
+    width: 7px; height: 7px;
+    background: var(--accent);
+    transform: rotate(45deg);
+  }
+  .module li b { font-weight: 600; color: var(--text); }
+
+  /* ---------- INVESTMENT ---------- */
+  .price-card {
+    background: linear-gradient(155deg, var(--surface-elevated), var(--surface));
+    border: 1px solid var(--border-strong);
+    border-top: 3px solid var(--accent);
+    padding: 2.5rem 2rem;
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .price-card { padding: 3rem 3rem; } }
+  .price-card .pc-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .price-card .pc-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  .price-amount {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .price-amount .iva {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .price-terms {
+    margin-top: 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .price-terms b { color: var(--accent); font-weight: 600; }
+
+  .includes {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+  @media (min-width: 700px) { .includes { grid-template-columns: 1fr 1fr; } }
+  .includes li {
+    list-style: none;
+    font-size: 0.95rem;
+    color: var(--text);
+    padding-left: 1.7rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .includes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .note {
+    margin-top: 2.5rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 3px;
+    padding: 1.4rem 1.6rem;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    display: flex;
+    gap: 0.9rem;
+  }
+  .note .ic { color: var(--accent); flex-shrink: 0; font-size: 1.1rem; }
+  .note b { color: var(--text); font-weight: 600; }
+
+  .excludes {
+    margin-top: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--text-faint);
+    line-height: 1.7;
+  }
+
+  /* ---------- HORIZON ---------- */
+  .horizon { display: grid; gap: 1.5rem; margin-top: 3rem; }
+  @media (min-width: 768px) { .horizon { grid-template-columns: repeat(3, 1fr); } }
+  .horizon-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    position: relative;
+  }
+  .horizon-step .h-when {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .horizon-step h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .horizon-step p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.6; }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    background: var(--bg-deep);
+    text-align: center;
+    padding: 7rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 60px, rgba(76,175,46,0.03) 60px 62px);
+    pointer-events: none;
+  }
+  .closing-inner { max-width: 56rem; margin: 0 auto; position: relative; z-index: 2; }
+  .closing h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .closing h2 .accent-text { color: var(--accent); }
+  .closing p {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  /* ---------- CTA FORM ---------- */
+  .cta-form-section {
+    background: var(--surface);
+    padding: 5rem 1.5rem 6rem;
+    border-top: 1px solid var(--border);
+  }
+  @media (min-width: 768px) { .cta-form-section { padding: 7rem 3rem; } }
+  .cta-form-inner { max-width: 44rem; margin: 0 auto; }
+  .cta-form-inner h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 1rem;
+  }
+  .cta-form-inner .lede {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 2.8rem;
+    max-width: 38rem;
+  }
+  #lead-form { display: grid; gap: 1.2rem; }
+  #lead-form label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input[type="text"],
+  #lead-form input[type="email"],
+  #lead-form input[type="tel"],
+  #lead-form select,
+  #lead-form textarea {
+    width: 100%;
+    margin-top: 0.4rem;
+    background: var(--cream);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 0.95rem 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: #14181A;
+    font-weight: 400;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  #lead-form input::placeholder,
+  #lead-form textarea::placeholder { color: rgba(20,24,26,0.42); }
+  #lead-form input:focus,
+  #lead-form select:focus,
+  #lead-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  #lead-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234CAF2E' stroke-width='1.6' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.1rem center;
+    padding-right: 2.6rem;
+    cursor: pointer;
+  }
+  #lead-form textarea { resize: vertical; min-height: 110px; }
+  .form-submit {
+    margin-top: 0.6rem;
+    background: var(--accent);
+    color: var(--bg-deep);
+    border: none;
+    border-radius: 3px;
+    padding: 1.05rem 2rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    justify-self: start;
+  }
+  .form-submit:hover:not(:disabled) { background: var(--accent-bright); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+  .form-status {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    line-height: 1.6;
+  }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: var(--warn); }
+
+  .form-aside {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    line-height: 1.9;
+  }
+  .form-aside a { color: var(--accent); text-decoration: none; }
+  .form-aside a:hover { text-decoration: underline; }
+
+  /* ---------- FOOTER ---------- */
+  .site-footer {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+  }
+  .closing-sentido-mark {
+    height: 36px;
+    width: auto;
+    opacity: 0.6;
+    margin: 0 auto 1.5rem;
+    display: block;
+  }
+  .site-footer .copy {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    line-height: 1.8;
+  }
+  .site-footer .copy a { color: var(--text-dim); text-decoration: none; }
+  .site-footer .copy a:hover { color: var(--accent); }
+
+  /* ---------- REVEAL ANIM ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" id="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-brand">
+      <img src="/propuestas/jalie-vali/logo-jalie-light.png" alt="JALIE-VALI Constructora" class="nav-jalie" />
+      <span class="nav-sep"></span>
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-sentido" />
+    </div>
+    <ul class="site-nav-links">
+      <li><a href="#contexto" data-target="contexto">Contexto</a></li>
+      <li><a href="#angulo" data-target="angulo">El ángulo</a></li>
+      <li><a href="#sitio" data-target="sitio">El sitio</a></li>
+      <li><a href="#inversion" data-target="inversion">Inversión</a></li>
+      <li><a href="#horizonte" data-target="horizonte">Horizonte</a></li>
+    </ul>
+    <a href="#responder" class="nav-cta">Avancemos →</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido" />
+    <img src="/propuestas/jalie-vali/logo-jalie-light.png" alt="JALIE-VALI Constructora" class="hero-jalie-mark reveal" />
+    <div class="hero-meta reveal">
+      Propuesta de sitio web institucional <span class="dot">·</span> 2 jun 2026
+    </div>
+    <h1 class="reveal">
+      La obra ya habla.<br><span class="accent-text">Falta que el mundo</span> la vea.
+    </h1>
+    <p class="hero-sub reveal">
+      JALIE-VALI ejecuta infraestructura de <strong>$542 millones</strong> con flota propia y capacidad técnica de primer nivel. Pero hoy ese respaldo vive en un PowerPoint. Construyamos la <strong>sede digital</strong> que sostenga su escala — un sitio que gane confianza antes de la primera reunión.
+    </p>
+    <div class="hero-pillars reveal">
+      <span><b>Ingeniería</b></span>
+      <span><b>Construcción</b></span>
+      <span><b>Resultados</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTEXTO ============ -->
+<section class="section section-divider" id="contexto">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <span>01</span><span class="divider"></span> Contexto
+    </div>
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Una constructora seria, sin terreno digital propio.
+    </h2>
+    <div class="body-block max-w-3xl reveal">
+      <p class="paragraph lg muted">
+        JALIE-VALI compite por obra pública y privada de gran escala: drenaje profundo, protección hidráulica, redes sanitarias, instalaciones eléctricas e industriales. Es un negocio donde la decisión la toman <strong style="color:var(--text)">dependencias de gobierno, desarrolladores y direcciones de obra industrial</strong> — perfiles que investigan antes de invitar a concursar.
+      </p>
+      <p class="paragraph muted">
+        Y cuando ese comprador busca a JALIE-VALI, hoy no encuentra una sede que confirme su tamaño. El CV corporativo es sólido, pero vive en un archivo que solo llega por correo. No hay un lugar público donde la flota propia, las cifras de obra y el cumplimiento normativo se vuelvan <strong style="color:var(--text)">argumento verificable</strong>. En licitaciones, esa ausencia se traduce en fricción: más explicaciones, menos autoridad percibida.
+      </p>
+    </div>
+    <div class="metric-row reveal">
+      <div class="metric"><div class="num">$542M</div><div class="lbl">En obra ejecutada 2026</div></div>
+      <div class="metric"><div class="num">46+</div><div class="lbl">Máquinas de flota propia</div></div>
+      <div class="metric"><div class="num">4</div><div class="lbl">Frentes de especialidad</div></div>
+      <div class="metric"><div class="num">0</div><div class="lbl">Sede digital — hoy</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HALLAZGOS ============ -->
+<section class="section section-surface" id="hallazgos">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <span>02</span><span class="divider"></span> Lo que vemos
+    </div>
+    <h2 class="display-heading lg reveal max-w-4xl">
+      El sector decide con datos. JALIE-VALI los tiene; falta exhibirlos.
+    </h2>
+    <div class="findings">
+      <div class="finding reveal">
+        <div class="f-tag">Comprador B2B / gobierno</div>
+        <h4>Investigan antes de invitar</h4>
+        <p>Dependencias y desarrolladores filtran proveedores buscando capacidad demostrable. Sin sitio, JALIE-VALI queda fuera del primer corte por falta de presencia, no por falta de obra.</p>
+      </div>
+      <div class="finding reveal">
+        <div class="f-tag">Diferenciador no contado</div>
+        <h4>La flota propia es oro sin vitrina</h4>
+        <p>46+ máquinas propias —excavadoras, anfibias, motoniveladoras— eliminan dependencia de terceros y aceleran ejecución. Es el argumento más fuerte y hoy no aparece en ningún lado público.</p>
+      </div>
+      <div class="finding reveal">
+        <div class="f-tag">Confianza institucional</div>
+        <h4>Cumplimiento normativo invisible</h4>
+        <p>Trabajo bajo NOM, lineamientos CFE, media/alta tensión, contra incendio. Para el comprador técnico esto reduce riesgo — pero solo si lo encuentra escrito y respaldado.</p>
+      </div>
+      <div class="finding reveal">
+        <div class="f-tag">Portafolio disperso</div>
+        <h4>Proyectos sin un solo lugar que los reúna</h4>
+        <p>Cárcamos, desazolves, drenaje pluvial y sanitario: un historial que debería ser portafolio navegable y verificable, no láminas sueltas en una presentación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL ÁNGULO ============ -->
+<section class="section section-divider" id="angulo">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <span>03</span><span class="divider"></span> El ángulo
+    </div>
+    <p class="lead-paragraph reveal max-w-4xl">
+      No es un folleto en línea. Es la <span class="accent-text">prueba pública</span> de que JALIE-VALI ejecuta a la escala que dice ejecutar.
+    </p>
+    <div class="body-block max-w-3xl reveal">
+      <p class="paragraph muted">
+        El sitio se construye con una sola obsesión: que un director de obra, un funcionario o un desarrollador entre, y en treinta segundos entienda que está frente a una constructora capaz de cargar con su proyecto. Escala, flota, especialidades y cumplimiento — ordenados como argumento, no como catálogo.
+      </p>
+      <p class="paragraph muted">
+        Tono institucional, sobrio, técnico. La estética industrial de JALIE-VALI —verde, grafito, concreto— traducida a una experiencia digital que se siente tan sólida como la obra que respalda. Listo para compartir el enlace en cualquier proceso de licitación y que ese enlace <strong style="color:var(--text)">cierre la conversación de credibilidad antes de empezarla</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL SITIO ============ -->
+<section class="section section-deep" id="sitio">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <span>04</span><span class="divider"></span> El sitio
+    </div>
+    <h2 class="display-heading xl reveal max-w-4xl">
+      Lo que construimos.
+    </h2>
+    <p class="paragraph muted max-w-3xl reveal" style="margin-top:1.5rem;">
+      Un sitio institucional de una sola sede, responsive y mobile-first, estructurado para que cada sección empuje al visitante hacia el contacto. Diseño, programación y arquitectura editorial — todo incluido.
+    </p>
+
+    <div class="modules">
+      <div class="module reveal">
+        <div class="m-num">MÓDULO 01</div>
+        <h3>Home institucional</h3>
+        <p class="m-purpose">La primera impresión que gana o pierde la licitación. Escala y autoridad en los primeros segundos.</p>
+        <ul>
+          <li>Hero potente con <b>identidad JALIE-VALI</b> y mensaje de escala</li>
+          <li>Cifras de respaldo: obra ejecutada, flota, frentes de especialidad</li>
+          <li>Accesos directos a especialidades y a cotización</li>
+          <li>Diseño industrial verde / grafito / concreto fiel a su marca</li>
+        </ul>
+      </div>
+
+      <div class="module reveal">
+        <div class="m-num">MÓDULO 02</div>
+        <h3>Áreas de especialidad</h3>
+        <p class="m-purpose">Las cuatro líneas de obra, cada una explicada como solución técnica, no como lista.</p>
+        <ul>
+          <li><b>Hidráulica y sanitaria</b> — colectores, drenaje profundo, pluvial</li>
+          <li><b>Protección hidráulica</b> — desazolves, cauces, taludes, presas</li>
+          <li><b>Instalaciones eléctricas e industriales</b> — media/alta tensión, subestaciones, control</li>
+          <li><b>Urbanización y redes</b> — pozos, bocas de tormenta, rehabilitación</li>
+        </ul>
+      </div>
+
+      <div class="module reveal">
+        <div class="m-num">MÓDULO 03</div>
+        <h3>Capacidad operativa</h3>
+        <p class="m-purpose">El diferenciador convertido en vitrina: flota propia con cifras que el comprador puede verificar.</p>
+        <ul>
+          <li>Inventario de maquinaria pesada propia con conteos</li>
+          <li>Plantas de producción y logística propia</li>
+          <li>Narrativa de cumplimiento normativo (NOM, CFE)</li>
+          <li>Bloque de "ejecución sin terceros" como ventaja competitiva</li>
+        </ul>
+      </div>
+
+      <div class="module reveal">
+        <div class="m-num">MÓDULO 04</div>
+        <h3>Proyectos y portafolio</h3>
+        <p class="m-purpose">El historial reunido y navegable: la prueba de que la escala es real.</p>
+        <ul>
+          <li>Galería de proyectos por tipo de obra</li>
+          <li>Ficha por proyecto: alcance, ubicación, especialidad</li>
+          <li>Resumen de obra ejecutada con cifras globales</li>
+          <li>Estructura lista para sumar nuevos proyectos en el tiempo</li>
+        </ul>
+      </div>
+
+      <div class="module reveal">
+        <div class="m-num">MÓDULO 05</div>
+        <h3>Nosotros</h3>
+        <p class="m-purpose">La empresa, sus valores y su promesa institucional como cierre de confianza.</p>
+        <ul>
+          <li>Historia y posicionamiento: "Empresa Mexicana Líder"</li>
+          <li>Pilares: Ingeniería · Construcción · Resultados</li>
+          <li>Valores: Compromiso · Calidad · Responsabilidad</li>
+          <li>Mensaje institucional con tono sobrio y técnico</li>
+        </ul>
+      </div>
+
+      <div class="module reveal">
+        <div class="m-num">MÓDULO 06</div>
+        <h3>Contacto y cotización</h3>
+        <p class="m-purpose">El cierre operativo: convertir la visita en una conversación de licitación.</p>
+        <ul>
+          <li>Formulario de cotización / contacto directo</li>
+          <li>Datos institucionales, ubicación y canales</li>
+          <li>WhatsApp directo y enlace a correo corporativo</li>
+          <li>SEO técnico de base y SSL para indexación y confianza</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVERSIÓN ============ -->
+<section class="section section-divider" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <span>05</span><span class="divider"></span> Inversión
+    </div>
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Una sede digital institucional. Inversión única.
+    </h2>
+
+    <div class="price-card reveal">
+      <div class="pc-eyebrow">Desarrollo de sitio web institucional</div>
+      <div class="pc-title">JALIE-VALI · Sitio institucional completo</div>
+      <div class="price-amount">$25,000 <span class="iva">+ IVA</span></div>
+      <div class="price-terms">
+        Pago: <b>60% al iniciar</b> · <b>40% contra entrega</b><br>
+        Tiempo estimado de desarrollo: 4 a 6 semanas
+      </div>
+
+      <ul class="includes">
+        <li>Hasta 6 secciones / módulos institucionales</li>
+        <li>Diseño responsive mobile-first</li>
+        <li>Programación interna y arquitectura editorial</li>
+        <li>Contenido gráfico y maquetación de la información existente</li>
+        <li>Galería de proyectos administrable</li>
+        <li>Formulario de cotización / contacto</li>
+        <li>SEO técnico de base (URLs, metadatos, estructura)</li>
+        <li>Integración WhatsApp · SSL · tags y pixels</li>
+      </ul>
+
+      <div class="note">
+        <span class="ic">📌</span>
+        <span><b>Producción de contenido (foto / video de obra)</b> se cotiza por separado y de forma eventual cuando se requiera. Recomendable para potenciar el portafolio, pero no es necesaria para lanzar el sitio con el material existente.</span>
+      </div>
+
+      <div class="excludes">
+        No incluye: servidor / hosting, dominio, producción fotográfica o de video, ni gestión de pauta publicitaria.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HORIZONTE ============ -->
+<section class="section section-surface" id="horizonte">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <span>06</span><span class="divider"></span> Horizonte
+    </div>
+    <h2 class="display-heading lg reveal max-w-4xl">
+      Qué cambia cuando el sitio está vivo.
+    </h2>
+    <div class="horizon">
+      <div class="horizon-step reveal">
+        <div class="h-when">Mes 1</div>
+        <h4>Sede en línea</h4>
+        <p>JALIE-VALI deja de mandar un PPT y empieza a mandar un enlace. La primera impresión pasa a ser pública, profesional y consistente en cualquier proceso.</p>
+      </div>
+      <div class="horizon-step reveal">
+        <div class="h-when">Mes 3</div>
+        <h4>Autoridad indexada</h4>
+        <p>Con SEO técnico de base, el sitio empieza a aparecer en búsquedas de su sector y región. El portafolio crece con cada obra nueva que se documenta.</p>
+      </div>
+      <div class="horizon-step reveal">
+        <div class="h-when">Mes 6+</div>
+        <h4>Base para crecer</h4>
+        <p>Sobre esta sede se puede activar —cuando JALIE-VALI lo decida— administración mensual, contenido de obra, o presencia en redes B2B. El sitio es el cimiento; lo demás se construye encima.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <div class="closing-inner">
+    <h2 class="reveal">Infraestructura que protege hoy.<br><span class="accent-text">Una sede digital</span> que trasciende mañana.</h2>
+    <p class="reveal">La obra de JALIE-VALI ya demuestra capacidad. El sitio solo tiene que estar a su altura — y dejar que el respaldo hable por sí solo, antes de la primera llamada.</p>
+  </div>
+</section>
+
+<!-- ============ CTA + FORM ============ -->
+<section id="responder" class="cta-form-section">
+  <div class="cta-form-inner">
+    <h2>Construyamos la sede.</h2>
+    <p class="lede">Marca dónde estás parado y te respondo personalmente en menos de 24 h hábiles. Si prefieres, escríbeme directo — los canales están abajo.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate>
+      <input type="hidden" name="propuesta" value="jalie-vali" />
+
+      <label>Nombre <span class="req">*</span>
+        <input name="nombre" type="text" required autocomplete="name" />
+      </label>
+
+      <label>Email <span class="req">*</span>
+        <input name="email" type="email" required autocomplete="email" />
+      </label>
+
+      <label>WhatsApp
+        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+      </label>
+
+      <label>Siguiente paso <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Avancemos — agendemos kickoff</option>
+          <option>Me interesa pero quiero ajustar el alcance</option>
+          <option>Tengo preguntas antes de decidir</option>
+          <option>Necesito un poco más de tiempo</option>
+        </select>
+      </label>
+
+      <label>Mensaje (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Cuéntame qué tienes en mente…"></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar respuesta →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="form-aside">
+      Sentido Branding &amp; Advertising<br>
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-sentido-mark" />
+  <div class="copy">
+    Sentido Branding &amp; Advertising · 2026 · Propuesta confidencial JALIE-VALI Constructora<br>
+    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+  </div>
+</footer>
+
+<script>
+  // ---- Reveal on scroll ----
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // ---- Scroll-spy nav ----
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.site-nav-links a'));
+    var map = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute('data-target');
+      var sec = document.getElementById(id);
+      if (sec) map[id] = { link: a, sec: sec };
+    });
+    var ids = Object.keys(map);
+    if (!ids.length) return;
+    function onScroll() {
+      var pos = window.scrollY + 120;
+      var current = null;
+      ids.forEach(function (id) {
+        if (map[id].sec.offsetTop <= pos) current = id;
+      });
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (current) map[current].link.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // ---- Lead form ----
+  (function () {
+    var form = document.getElementById('lead-form');
+    if (!form) return;
+    var statusEl = document.getElementById('lf-status');
+    var submitBtn = form.querySelector('.form-submit');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var payload = {
+        Propuesta: form.propuesta.value,
+        Nombre: form.nombre.value.trim(),
+        Email: form.email.value.trim(),
+        WhatsApp: form.whatsapp.value.trim() || '—',
+        'Siguiente paso': form.paso.value,
+        Mensaje: form.mensaje.value.trim() || '—',
+        Fuente: 'propuestas.sentido.mx/jalie-vali',
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.classList.remove('error');
+
+      try {
+        var res = await fetch(form.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        form.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar respuesta →';
+      }
+    });
+  })();
+</script>
+</body>
+</html>
