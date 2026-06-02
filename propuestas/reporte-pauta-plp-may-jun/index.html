@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte de Pauta · Sentido · PLP Desarrollos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0e12;--bg2:#14161d;--surface:#181b23;--surface2:#1f232d;
+    --line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.05);
+    --ink:#edeae2;--ink-dim:#9a9ba6;--ink-faint:#65666f;
+    --gold:#cba46a;--gold-soft:#e7d3a8;
+    --c-google:#4f8cff;--c-google-soft:#8fb8ff;--c-meta:#9b8bff;--c-meta-soft:#b6a9ff;--c-lp:#ef7d45;--c-rmk:#34c596;
+    --pos:#34c596;--neg:#ef6a6a;
+    --shadow:0 24px 60px -20px rgba(0,0,0,.7);
+    --serif:"Fraunces",Georgia,serif;--sans:"Hanken Grotesk",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5;
+    background-image:radial-gradient(900px 500px at 85% -5%,rgba(155,139,255,.10),transparent 60%),radial-gradient(700px 480px at 5% 8%,rgba(203,164,106,.08),transparent 55%);min-height:100vh}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:54px 28px 80px}
+  .tabnums{font-variant-numeric:tabular-nums lining-nums}
+
+  .eyebrow{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .eyebrow .dot{width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.5vw,56px);line-height:1.02;letter-spacing:-.015em;margin:18px 0 14px}
+  h1 em{font-style:italic;color:var(--gold-soft)}
+  .sub{color:var(--ink-dim);font-size:15.5px;max-width:66ch}
+  .sub b{color:var(--ink);font-weight:600}
+  .parts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  .pcard{flex:1;min-width:240px;background:linear-gradient(160deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:13px;align-items:flex-start}
+  .pcard .num{font-family:var(--serif);font-size:22px;color:var(--gold);line-height:1;flex:none;margin-top:2px}
+  .pcard .tt{font-weight:600;font-size:14px}.pcard .ds{font-size:12.5px;color:var(--ink-dim);margin-top:3px}
+
+  /* platform switch */
+  .platbar{display:flex;align-items:center;gap:14px;margin:30px 0 0;flex-wrap:wrap}
+  .platbar .pl{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+  .platsw{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:5px}
+  .platbtn{appearance:none;border:0;background:none;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:14px;color:var(--ink-dim);padding:10px 22px;border-radius:9px;transition:.2s;display:flex;align-items:center;gap:9px}
+  .platbtn i{width:10px;height:10px;border-radius:3px;background:currentColor;opacity:.9}
+  .platbtn[data-pf="meta"].active{background:rgba(155,139,255,.16);color:var(--c-meta-soft)}
+  .platbtn[data-pf="google"].active{background:rgba(79,140,255,.16);color:var(--c-google-soft)}
+  .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent 70%);margin:26px 0 0}
+
+  .tabs{display:flex;gap:6px;margin:34px 0 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .tab{appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);color:var(--ink-dim);font-size:14.5px;font-weight:600;padding:13px 18px;position:relative;border-radius:10px 10px 0 0;transition:color .2s}
+  .tab:hover{color:var(--ink)}.tab.active{color:var(--ink)}
+  .tab.active::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;background:var(--gold);border-radius:2px}
+  .tab .k{font-size:11px;color:var(--ink-faint);font-weight:600;display:block;margin-top:1px}.tab.active .k{color:var(--gold)}
+  .panel{display:none;animation:fade .5s ease both;padding-top:30px}.panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .phead{margin-bottom:22px}
+  .phead h2{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.01em}
+  .phead h2 .pf{font-style:italic}
+  .phead p{color:var(--ink-dim);font-size:13.5px;margin-top:6px;max-width:66ch}
+
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:30px}
+  .card{background:linear-gradient(160deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:15px;padding:18px;position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent,var(--gold)),transparent)}
+  .card .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .card .val{font-family:var(--serif);font-weight:600;font-size:26px;margin-top:11px;letter-spacing:-.01em}
+  .card .mt{font-size:12px;color:var(--ink-dim);margin-top:5px}
+  .chip{display:inline-flex;align-items:center;gap:5px;font-weight:700;font-size:13px;padding:3px 10px;border-radius:999px}
+  .chip.up{color:var(--pos);background:rgba(52,197,150,.12)}.chip.down{color:var(--neg);background:rgba(239,106,106,.12)}
+
+  .grow{display:grid;grid-template-columns:150px 1fr 130px;align-items:center;gap:16px;padding:11px 0;border-top:1px solid var(--line2)}
+  .grow:first-child{border-top:0}
+  .grow .who .nm{font-size:14.5px;font-weight:600}.grow .who .ac{font-size:11px;color:var(--ink-faint)}
+  .track{height:28px;background:var(--surface2);border-radius:8px;overflow:hidden}
+  .fill{height:100%;width:0;border-radius:8px;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+  .fill.flat{background:linear-gradient(90deg,#3a3d49,#54586a)}
+  .grow .amt{font-family:var(--serif);font-size:16px;text-align:right}
+  .grow .amt small{display:block;font-family:var(--sans);font-size:10.5px;color:var(--ink-faint);font-weight:600;letter-spacing:.04em}
+  .gtot{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+  .gtot .l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+  .gtot .r{font-family:var(--serif);font-size:24px}
+  .cap{font-size:12px;color:var(--ink-faint);margin-top:14px}
+
+  .crow{padding:18px 0;border-top:1px solid var(--line2)}.crow:first-child{border-top:0}
+  .crow .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:12px;flex-wrap:wrap}
+  .crow .name{font-size:16px;font-weight:600}
+  .crow .delta{font-size:13.5px;font-weight:700}.crow .delta small{color:var(--ink-faint);font-weight:500;margin-right:8px}
+  .rtot{font-family:var(--serif);font-size:14.5px;color:var(--gold-soft);margin-right:14px}
+  .barline{display:grid;grid-template-columns:54px 1fr 120px;align-items:center;gap:14px;margin-bottom:7px}
+  .barline .tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .fill.mayo{background:linear-gradient(90deg,#3a3d49,#54586a)}
+  .barline .amt{font-family:var(--serif);font-size:16px;text-align:right}
+  .totals{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .totals .ttl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-bottom:14px}
+  .tstack{height:42px;display:flex;border-radius:10px;overflow:hidden;background:var(--surface2);margin-bottom:18px}
+  .tseg{height:100%;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;padding:0 14px;font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden}
+  .tseg.gastado{background:linear-gradient(90deg,#3a3d49,#54586a);color:var(--ink)}
+  .tfigs{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .tfig{display:flex;flex-direction:column;gap:3px}
+  .tfig .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .tfig .v{font-family:var(--serif);font-size:23px}.tfig.total .v{color:var(--gold)}
+  .tfigs .op{font-family:var(--serif);font-size:24px;color:var(--ink-faint)}
+
+  .ptools{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+  .pswitch{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px}
+  .pbtn{appearance:none;border:0;background:none;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--ink-dim);padding:8px 15px;border-radius:9px;transition:.2s;white-space:nowrap}
+  .pbtn.active{background:var(--gold);color:#1a160c}
+  .psum{font-size:13px;color:var(--ink-dim)}.psum b{font-family:var(--serif);font-size:16px;color:var(--ink)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+  .lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-dim);font-weight:500}
+  .lg i{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .prow{padding:15px 0;border-top:1px solid var(--line2)}.prow:first-of-type{border-top:0}
+  .prow .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .prow .name{font-size:15px;font-weight:600}.prow .tot{font-family:var(--serif);font-size:16px}
+  .stack{height:34px;display:flex;border-radius:9px;overflow:hidden;background:var(--surface2)}
+  .seg{height:100%;width:0;transition:width 1s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;justify-content:center;position:relative;min-width:0}
+  .seg span{font-size:11.5px;font-weight:700;color:rgba(0,0,0,.58);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px}
+  .seg.g{background:var(--c-google)}.seg.m{background:var(--c-meta)}.seg.l{background:var(--c-lp)}.seg.r{background:var(--c-rmk)}
+  .seg:hover{filter:brightness(1.12)}
+
+  .foot{margin-top:46px;border-top:1px solid var(--line);padding-top:24px;font-size:12px;color:var(--ink-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  #tip{position:fixed;z-index:50;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s;background:#0a0b0e;border:1px solid var(--line);border-radius:10px;padding:10px 13px;box-shadow:var(--shadow);font-size:12.5px;max-width:240px}
+  #tip.on{opacity:1;transform:none}
+  #tip .t-l{color:var(--ink-faint);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+  #tip .t-v{font-family:var(--serif);font-size:17px}#tip .t-s{color:var(--ink-dim);margin-top:3px}
+
+  @media(max-width:760px){
+    .cards{grid-template-columns:1fr 1fr}
+    .grow{grid-template-columns:1fr 92px;grid-template-areas:"who amt" "bar bar"}
+    .grow .who{grid-area:who}.grow .amt{grid-area:amt}.grow .track{grid-area:bar}
+    .barline{grid-template-columns:48px 1fr}.barline .amt{grid-column:2;text-align:left;font-size:14px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="dot"></span> Sentido · PLP Desarrollos</div>
+    <h1>Reporte de Pauta <em>Meta &amp; Google</em></h1>
+    <p class="sub">Análisis de gasto y comparativa de presupuesto por plataforma. Moneda: <b>MXN</b>.</p>
+    <div class="parts">
+      <div class="pcard"><span class="num">1</span><div><div class="tt">Análisis de gasto · Mayo 2026</div><div class="ds">Gasto de pauta de los <b style="color:var(--ink-dim)">6 desarrollos</b>, por plataforma.</div></div></div>
+      <div class="pcard"><span class="num">2</span><div><div class="tt">Comparativa Mayo → Junio</div><div class="ds">Mayo (real) vs nuevo presupuesto, solo de los <b style="color:var(--ink-dim)">4 desarrollos con aumento</b>.</div></div></div>
+    </div>
+    <div class="platbar">
+      <span class="pl">Plataforma</span>
+      <div class="platsw" id="platsw">
+        <button class="platbtn active" data-pf="meta"><i></i> Meta Ads</button>
+        <button class="platbtn" data-pf="google"><i></i> Google Ads</button>
+      </div>
+    </div>
+    <div class="rule"></div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-t="gasto">Análisis de gasto<span class="k">6 desarrollos · mayo</span></button>
+    <button class="tab" data-t="cmp">Comparativa<span class="k">4 con aumento · may→jun</span></button>
+    <button class="tab" data-t="plan">Plan por canal<span class="k">4 con aumento · jun/Q3/Q4</span></button>
+  </nav>
+
+  <section class="panel active" id="gasto">
+    <div class="phead"><h2>Gasto de pauta — Mayo 2026 · <span class="pf" id="gPf">Meta Ads</span></h2>
+      <p id="gDesc"></p></div>
+    <div class="cards" id="gCards"></div>
+    <div id="gRows"></div>
+    <div class="gtot"><span class="l">Total mayo · 6 desarrollos</span><span class="r tabnums" id="gTotal"></span></div>
+    <div class="cap" id="gCap"></div>
+  </section>
+
+  <section class="panel" id="cmp">
+    <div class="phead"><h2>Comparativa Mayo (real) → Junio (plan) · <span class="pf" id="cPf">Meta Ads</span></h2>
+      <p id="cDesc"></p></div>
+    <div class="cards" id="cCards"></div>
+    <div id="cmpRows"></div>
+    <div class="totals" id="cmpTotals"></div>
+  </section>
+
+  <section class="panel" id="plan">
+    <div class="phead"><h2>Distribución del nuevo plan por canal · 4 con aumento</h2>
+      <p>Reparto 15% Google · 50% Meta · 20% LPs GHL · 15% RMK. Vista del plan completo (todos los canales), independiente de la plataforma seleccionada arriba.</p></div>
+    <div class="ptools">
+      <div class="pswitch" id="pswitch">
+        <button class="pbtn active" data-p="Junio">Junio</button>
+        <button class="pbtn" data-p="Q3">Q3 · Jul–Sep</button>
+        <button class="pbtn" data-p="Q4">Q4 · Oct–Dic</button>
+      </div>
+      <div class="psum" id="pSum"></div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div id="planRows"></div>
+  </section>
+
+  <div class="foot"><span>Fuente: Meta Ads y Google Ads (gasto neto) · Propuesta PautaPLP2026</span><span>Generado: junio 2026</span></div>
+</div>
+<div id="tip"></div>
+
+<script>
+const DEVS=[
+ {name:"Bolongo Punta de Mita",short:"Bolongo",cuenta:"Que estás buscando",plan:true},
+ {name:"Amancay Nuevo Vallarta",short:"Amancay",cuenta:"Sentido AT",plan:true},
+ {name:"Essentia Country",short:"Essentia",cuenta:"Sentido AT",plan:true},
+ {name:"Brelia Residences",short:"Brelia",cuenta:"Sentido AT",plan:true},
+ {name:"Heredit",short:"Heredit",cuenta:"Sentido RE",plan:false},
+ {name:"Península Mzt",short:"Península Mzt",cuenta:"Sentido RE",plan:false}
+];
+// May 2026 actual spend per platform
+const SPEND={
+ meta:{Bolongo:27091.54,Amancay:26177.53,Essentia:25520.97,Brelia:22251.69,Heredit:20687.24,"Península Mzt":17058.33},
+ google:{Bolongo:2500,Amancay:2500,Essentia:2500,Brelia:2500,Heredit:2500,"Península Mzt":2500}
+};
+// New plan (proposal): channel amounts per period. g=Google m=Meta l=LPs GHL r=RMK
+const PLAN={
+ Bolongo:{Junio:{g:13125,m:43750,l:17500,r:13125},Q3:{g:15000,m:50000,l:20000,r:15000},Q4:{g:15000,m:50000,l:20000,r:15000}},
+ Amancay:{Junio:{g:9375,m:31250,l:12500,r:9375},Q3:{g:11719,m:39063,l:15625,r:11718},Q4:{g:14648,m:48828,l:19531,r:14649}},
+ Essentia:{Junio:{g:7500,m:25000,l:10000,r:7500},Q3:{g:8250,m:27500,l:11000,r:8250},Q4:{g:9000,m:30000,l:12000,r:9000}},
+ Brelia:{Junio:{g:6750,m:22500,l:9000,r:6750},Q3:{g:8250,m:27500,l:11000,r:8250},Q4:{g:9750,m:32500,l:13000,r:9750}}
+};
+const PF={
+ meta:{label:"Meta Ads",ck:"m",color:"var(--c-meta)",soft:"var(--c-meta-soft)",
+   gDesc:"Gasto neto en Meta (campañas de Leads) durante mayo, los 6 desarrollos ordenados de mayor a menor.",
+   cDesc:"Solo los 4 desarrollos con aumento. Gris = gasto Meta real de mayo; color = presupuesto Meta de junio.",cap:""},
+ google:{label:"Google Ads",ck:"g",color:"var(--c-google)",soft:"var(--c-google-soft)",
+   gDesc:"Gasto en Google Ads de mayo, los 6 desarrollos. Se considera $2,500 por cuenta (monto cargado).",
+   cDesc:"Solo los 4 desarrollos con aumento. Gris = gasto Google de mayo; color = presupuesto Google de junio.",
+   cap:"Gasto Google de mayo considerado: $2,500 por cuenta, según indicación."}
+};
+const CH=[{k:"g",label:"Google",pct:"15%",c:"--c-google"},{k:"m",label:"Meta",pct:"50%",c:"--c-meta"},{k:"l",label:"LPs GHL",pct:"20%",c:"--c-lp"},{k:"r",label:"RMK",pct:"15%",c:"--c-rmk"}];
+
+const mxn=(n,d=0)=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
+const pct=n=>(n>=0?'+':'−')+Math.abs(n*100).toFixed(1)+'%';
+const sum=a=>a.reduce((s,x)=>s+x,0);
+const plan4=DEVS.filter(d=>d.plan);
+let platform='meta', period='Junio';
+
+function renderGasto(pf){
+  const C=PF[pf], sp=SPEND[pf];
+  document.getElementById('gPf').textContent=C.label;
+  document.getElementById('gDesc').textContent=C.gDesc;
+  document.getElementById('gCap').textContent=C.cap;
+  const total6=sum(DEVS.map(d=>sp[d.short])), s4=sum(plan4.map(d=>sp[d.short])), s2=total6-s4;
+  const cards=[
+   {lbl:"Gasto total mayo",val:mxn(total6,0),mt:`6 desarrollos · ${C.label}`,accent:C.color},
+   {lbl:"4 con aumento",val:mxn(s4,0),mt:`${(s4/total6*100).toFixed(0)}% · van a comparativa`,accent:C.soft},
+   {lbl:"2 sin cambio",val:mxn(s2,0),mt:`${(s2/total6*100).toFixed(0)}% · Heredit · Península Mzt`,accent:"#54586a"},
+   {lbl:"Promedio / desarrollo",val:mxn(total6/DEVS.length,0),mt:"6 desarrollos",accent:"var(--c-rmk)"}
+  ];
+  document.getElementById('gCards').innerHTML=cards.map((c,i)=>`<div class="card" style="--accent:${c.accent};animation:fade .6s ${i*.07}s both"><div class="lbl">${c.lbl}</div><div class="val tabnums">${c.val}</div><div class="mt">${c.mt}</div></div>`).join('');
+  const gMax=Math.max(...DEVS.map(d=>sp[d.short]));
+  document.getElementById('gRows').innerHTML=DEVS.map((d,i)=>{
+    const v=sp[d.short];
+    const bg=d.plan?`background:linear-gradient(90deg,#5a5f78,${C.color})`:'';
+    return `<div class="grow" style="animation:fade .5s ${i*.06}s both">
+      <div class="who"><div class="nm">${d.short}</div><div class="ac">${d.cuenta}</div></div>
+      <div class="track"><div class="fill ${d.plan?'':'flat'}" style="${bg}" data-w="${v/gMax*100}" data-l="${d.short} · ${d.cuenta}" data-v="${mxn(v,2)}" data-s="${d.plan?'Con aumento en junio':'Se mantiene igual'}"></div></div>
+      <div class="amt tabnums">${mxn(v,0)}<small>${d.plan?'CON AUMENTO':'SIN CAMBIO'}</small></div>
+    </div>`;
+  }).join('');
+  document.getElementById('gTotal').textContent=mxn(total6,2);
+}
+
+function renderCmp(pf){
+  const C=PF[pf], sp=SPEND[pf];
+  document.getElementById('cPf').textContent=C.label;
+  document.getElementById('cDesc').textContent=C.cDesc;
+  const may4=sum(plan4.map(d=>sp[d.short])), jun4=sum(plan4.map(d=>PLAN[d.short].Junio[C.ck])), v=(jun4-may4)/may4;
+  const cards=[
+   {lbl:`${C.label} mayo · real`,val:mxn(may4,0),mt:"4 con aumento",accent:"#54586a"},
+   {lbl:`${C.label} junio · plan`,val:mxn(jun4,0),mt:"nuevo presupuesto",accent:C.color},
+   {lbl:"Variación",val:`<span class="chip ${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${pct(v)}</span>`,mt:"mayo → junio",accent:"var(--pos)"},
+   {lbl:"Aumento en pesos",val:mxn(jun4-may4,0),mt:`más inversión en ${C.label}`,accent:"var(--gold)"}
+  ];
+  document.getElementById('cCards').innerHTML=cards.map((c,i)=>`<div class="card" style="--accent:${c.accent};animation:fade .6s ${i*.07}s both"><div class="lbl">${c.lbl}</div><div class="val tabnums">${c.val}</div><div class="mt">${c.mt}</div></div>`).join('');
+  const cMax=Math.max(...plan4.flatMap(d=>[sp[d.short],PLAN[d.short].Junio[C.ck]]));
+  document.getElementById('cmpRows').innerHTML=plan4.map((d,i)=>{
+    const may=sp[d.short], jun=PLAN[d.short].Junio[C.ck], dif=jun-may, vv=dif/may, tot=may+jun;
+    return `<div class="crow" style="animation:fade .5s ${i*.07}s both">
+      <div class="top"><span class="name">${d.name}</span>
+        <span><span class="rtot tabnums">Total ${mxn(tot,0)}</span><span class="delta" style="color:${vv>=0?'var(--pos)':'var(--neg)'}"><small>Δ ${mxn(dif,0)}</small>${pct(vv)}</span></span></div>
+      <div class="barline"><span class="tag">Mayo</span><div class="track"><div class="fill mayo" data-w="${may/cMax*100}" data-l="${d.short} · ${C.label} mayo (real)" data-v="${mxn(may,2)}"></div></div><span class="amt tabnums">${mxn(may,0)}</span></div>
+      <div class="barline"><span class="tag">Junio</span><div class="track"><div class="fill" style="background:linear-gradient(90deg,${C.color},${C.soft})" data-w="${jun/cMax*100}" data-l="${d.short} · ${C.label} junio (plan)" data-v="${mxn(jun,0)}"></div></div><span class="amt tabnums">${mxn(jun,0)}</span></div>
+    </div>`;
+  }).join('');
+  const totAll=may4+jun4;
+  document.getElementById('cmpTotals').innerHTML=`
+   <div class="ttl">Totales ${C.label} · 4 con aumento — gastado + por gastar</div>
+   <div class="tstack">
+     <div class="tseg gastado" data-w="${may4/totAll*100}" data-l="Gastado · mayo (real)" data-v="${mxn(may4,2)}" data-s="${(may4/totAll*100).toFixed(0)}% del total"><span>Gastado · mayo · ${mxn(may4,0)}</span></div>
+     <div class="tseg" style="background:linear-gradient(90deg,${C.color},${C.soft});color:rgba(0,0,0,.62)" data-w="${jun4/totAll*100}" data-l="Por gastar · junio (plan)" data-v="${mxn(jun4,0)}" data-s="${(jun4/totAll*100).toFixed(0)}% del total"><span>Por gastar · junio · ${mxn(jun4,0)}</span></div>
+   </div>
+   <div class="tfigs">
+     <div class="tfig"><span class="l">Gastado · mayo</span><span class="v tabnums">${mxn(may4,0)}</span></div>
+     <div class="op">+</div>
+     <div class="tfig"><span class="l">Por gastar · junio</span><span class="v tabnums">${mxn(jun4,0)}</span></div>
+     <div class="op">=</div>
+     <div class="tfig total"><span class="l">Total mayo + junio</span><span class="v tabnums">${mxn(totAll,0)}</span></div>
+   </div>`;
+}
+
+document.getElementById('legend').innerHTML=CH.map(c=>`<span class="lg"><i style="background:var(${c.c})"></i>${c.label} <span style="color:var(--ink-faint)">${c.pct}</span></span>`).join('');
+const planMax=Math.max(...plan4.flatMap(d=>Object.values(PLAN[d.short]).map(o=>o.g+o.m+o.l+o.r)));
+function renderPlan(per){
+  document.getElementById('planRows').innerHTML=plan4.map((d,i)=>{
+    const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r;
+    const segs=CH.map(c=>{const val=o[c.k];return `<div class="seg ${c.k}" data-w="${val/planMax*100}" data-l="${d.short} · ${c.label} (${c.pct})" data-v="${mxn(val,0)}" data-s="${(val/tot*100).toFixed(0)}% del total · ${per==='Junio'?'mensual':'trimestral'}"><span>${mxn(val,0)}</span></div>`}).join('');
+    return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+  }).join('');
+  const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r})), pmeta=sum(plan4.map(d=>PLAN[d.short][per].m)), pg=sum(plan4.map(d=>PLAN[d.short][per].g));
+  document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmeta,0)}</b> &nbsp;·&nbsp; Google: <b>${mxn(pg,0)}</b>`;
+  animateBars(document.getElementById('plan')); bindTips();
+}
+
+function animateBars(scope){
+  scope.querySelectorAll('.fill,.seg,.tseg').forEach(el=>el.style.width='0');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>scope.querySelectorAll('.fill,.seg,.tseg').forEach(el=>el.style.width=el.dataset.w+'%')));
+}
+const tip=document.getElementById('tip');
+function bindTips(){
+  document.querySelectorAll('[data-l]').forEach(el=>{
+    el.onmousemove=e=>{tip.innerHTML=`<div class="t-l">${el.dataset.l}</div><div class="t-v tabnums">${el.dataset.v}</div>${el.dataset.s?`<div class="t-s">${el.dataset.s}</div>`:''}`;tip.classList.add('on');
+      let x=e.clientX+12,y=e.clientY+12;if(x+250>innerWidth)x=e.clientX-250;if(y+90>innerHeight)y=e.clientY-90;tip.style.left=x+'px';tip.style.top=y+'px';};
+    el.onmouseleave=()=>tip.classList.remove('on');
+  });
+}
+const tabs=document.querySelectorAll('.tab'),panels={gasto:document.getElementById('gasto'),cmp:document.getElementById('cmp'),plan:document.getElementById('plan')};
+function activePanel(){return document.querySelector('.tab.active').dataset.t}
+tabs.forEach(t=>t.onclick=()=>{tabs.forEach(x=>x.classList.remove('active'));t.classList.add('active');Object.values(panels).forEach(p=>p.classList.remove('active'));const p=panels[t.dataset.t];p.classList.add('active');animateBars(p);bindTips();});
+document.querySelectorAll('.platbtn').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.platbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  platform=b.dataset.pf; renderGasto(platform); renderCmp(platform);
+  const p=panels[activePanel()]; animateBars(p); bindTips();
+});
+document.querySelectorAll('.pbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.pbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');period=b.dataset.p;renderPlan(period);});
+
+renderGasto('meta'); renderCmp('meta'); renderPlan('Junio');
+animateBars(document.getElementById('gasto')); bindTips();
+</script>
+</body>
+</html>
