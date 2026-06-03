@@ -132,12 +132,47 @@
   #tip .t-l{color:var(--ink-faint);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
   #tip .t-v{font-family:var(--serif);font-size:17px}#tip .t-s{color:var(--ink-dim);margin-top:3px}
 
+  /* Galería de comprobantes */
+  .gal-btn{display:inline-flex;align-items:center;justify-content:center;margin-left:9px;width:30px;height:25px;border-radius:7px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:inherit;cursor:pointer;transition:.18s;vertical-align:middle}
+  .gal-btn:hover,.gal-btn:focus-visible{background:rgba(203,164,106,.18);border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px);outline:none}
+  .gal-btn svg{display:block}
+  .gal-overlay{position:fixed;inset:0;z-index:60;background:rgba(6,7,10,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto}
+  .gal-overlay.on{display:flex;animation:fade .3s ease both}
+  .gal-modal{width:100%;max-width:1000px;background:linear-gradient(160deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px 24px 28px;margin:auto 0}
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  .gal-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .gal-head h3{font-family:var(--serif);font-weight:600;font-size:23px;margin-top:6px}
+  .gal-close{appearance:none;border:1px solid var(--line);background:var(--surface2);color:var(--ink-dim);width:38px;height:38px;border-radius:10px;font-size:15px;cursor:pointer;flex:none;transition:.18s}
+  .gal-close:hover{color:var(--ink);border-color:var(--gold)}
+  .gal-note{font-size:12.5px;color:var(--ink-dim);margin:10px 0 20px;max-width:64ch}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .gal-card{background:var(--surface2);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column;text-align:left}
+  .gal-card:hover{border-color:var(--accent,var(--gold));transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(0,0,0,.7)}
+  .gal-card .thumb{aspect-ratio:4/3;overflow:hidden;background:#0a0b0e}
+  .gal-card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .gal-card .meta{padding:10px 12px}
+  .gal-card .dev{font-size:13px;font-weight:600}
+  .gal-card .amt{font-family:var(--serif);font-size:12.5px;color:var(--ink-dim);margin-top:2px}
+  .gal-lightbox{position:fixed;inset:0;z-index:70;background:rgba(4,5,7,.94);display:none;align-items:center;justify-content:center;padding:40px}
+  .gal-lightbox.on{display:flex;animation:fade .25s ease both}
+  .gal-lightbox img{max-width:92vw;max-height:84vh;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.9);border:1px solid var(--line)}
+  .lb-close{position:fixed;top:18px;right:22px;width:44px;height:44px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--ink);font-size:17px;cursor:pointer;z-index:71}
+  .lb-close:hover{background:rgba(255,255,255,.16)}
+  .lb-nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:60px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--ink);font-size:28px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;z-index:71}
+  .lb-nav:hover{background:rgba(255,255,255,.16)}
+  .lb-prev{left:18px}.lb-next{right:18px}
+  .lb-cap{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--ink-dim);background:rgba(10,11,14,.72);padding:8px 16px;border-radius:999px;border:1px solid var(--line);text-align:center;max-width:90vw}
+  .lb-cap b{color:var(--ink);font-weight:600}
+
   @media(max-width:760px){
     .cards{grid-template-columns:1fr 1fr}
     .grow{grid-template-columns:1fr 92px;grid-template-areas:"who amt" "bar bar"}
     .grow .who{grid-area:who}.grow .amt{grid-area:amt}.grow .track{grid-area:bar}
     .barline{grid-template-columns:48px 1fr}.barline .amt{grid-column:2;text-align:left;font-size:14px}
+    .gal-grid{grid-template-columns:1fr 1fr;gap:11px}
+    .lb-nav{width:40px;height:52px;font-size:24px}
   }
+  @media(max-width:460px){.gal-grid{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -155,8 +190,8 @@
     <div class="platbar">
       <span class="pl">Plataforma</span>
       <div class="platsw" id="platsw">
-        <button class="platbtn active" data-pf="meta"><i></i> Meta Ads</button>
-        <button class="platbtn" data-pf="google"><i></i> Google Ads</button>
+        <button class="platbtn active" data-pf="meta"><i></i> Meta Ads<span class="gal-btn" data-gal="meta" role="button" tabindex="0" title="Ver comprobantes de gasto directo" aria-label="Ver comprobantes de gasto Meta"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span></button>
+        <button class="platbtn" data-pf="google"><i></i> Google Ads<span class="gal-btn" data-gal="google" role="button" tabindex="0" title="Ver comprobantes de gasto directo" aria-label="Ver comprobantes de gasto Google"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span></button>
       </div>
     </div>
     <div class="rule"></div>
@@ -204,6 +239,23 @@
     <img src="/assets/logo-sentido-light.png" alt="Sentido" class="foot-logo">
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;width:100%"><span>Fuente: Meta Ads y Google Ads (gasto neto) · Propuesta PautaPLP2026</span><span>Generado: junio 2026</span></div>
   </div>
+</div>
+<div class="gal-overlay" id="galOverlay" aria-hidden="true">
+  <div class="gal-modal" role="dialog" aria-modal="true" aria-labelledby="galTitle">
+    <div class="gal-head">
+      <div><div class="gal-eyebrow">Comprobantes de gasto directo</div><h3 id="galTitle">Meta Ads</h3></div>
+      <button class="gal-close" id="galClose" aria-label="Cerrar galería">✕</button>
+    </div>
+    <p class="gal-note">Capturas del gasto neto directamente en la plataforma · mayo 2026. Da click en cualquier comprobante para ampliarlo.</p>
+    <div class="gal-grid" id="galGrid"></div>
+  </div>
+</div>
+<div class="gal-lightbox" id="galLightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">›</button>
+  <div class="lb-cap" id="lbCap"></div>
 </div>
 <div id="tip"></div>
 
@@ -346,6 +398,58 @@ document.querySelectorAll('.pbtn').forEach(b=>b.onclick=()=>{document.querySelec
 
 renderGasto('meta'); renderCmp('meta'); renderPlan('Junio');
 animateBars(document.getElementById('gasto')); bindTips();
+
+/* ===== Galería de comprobantes de gasto directo ===== */
+const GAL_BASE='/propuestas/reporte-pauta-plp-may-jun/comprobantes';
+const GALLERY={
+  meta:{label:'Meta Ads',accent:'var(--c-meta)',items:[
+    {dev:'Bolongo Punta de Mita',amt:'Importe gastado · $27,091.57',f:'meta/01-bolongo.png'},
+    {dev:'Amancay Nuevo Vallarta',amt:'Importe gastado · $26,177.53',f:'meta/02-amancay.png'},
+    {dev:'Essentia Country',amt:'Importe gastado · $25,521.80',f:'meta/03-essentia.png'},
+    {dev:'Brelia Residences',amt:'Importe gastado · $22,264.45',f:'meta/04-brelia.png'},
+    {dev:'Heredit',amt:'Importe gastado · $20,727.26',f:'meta/05-heredit.png'},
+    {dev:'Península Mzt',amt:'Importe gastado · $17,058.36',f:'meta/06-peninsula-mzt.png'}
+  ]},
+  google:{label:'Google Ads',accent:'var(--c-google)',items:[
+    {dev:'Bolongo Punta de Mita',amt:'Actividad de facturación · mayo',f:'google/01-bolongo.png'},
+    {dev:'Amancay Nuevo Vallarta',amt:'Actividad de facturación · mayo',f:'google/02-amancay.png'},
+    {dev:'Essentia Country',amt:'Actividad de facturación · mayo',f:'google/03-essentia.png'},
+    {dev:'Brelia Residences',amt:'Actividad de facturación · mayo',f:'google/04-brelia.png'},
+    {dev:'Heredit',amt:'Actividad de facturación · mayo',f:'google/05-heredit.png'},
+    {dev:'Península Mzt',amt:'Actividad de facturación · mayo',f:'google/06-peninsula-mzt.png'}
+  ]}
+};
+const galOverlay=document.getElementById('galOverlay'),galGrid=document.getElementById('galGrid'),
+      galTitle=document.getElementById('galTitle'),galLightbox=document.getElementById('galLightbox'),
+      lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+let galCur=[],galIdx=0;
+function openGallery(pf){
+  const G=GALLERY[pf]; if(!G)return; galCur=G.items;
+  galTitle.textContent='Comprobantes · '+G.label;
+  galGrid.style.setProperty('--accent',G.accent);
+  galGrid.innerHTML=G.items.map((it,i)=>`<div class="gal-card" data-i="${i}"><div class="thumb"><img src="${GAL_BASE}/${it.f}" alt="Comprobante de gasto · ${it.dev}" loading="lazy"></div><div class="meta"><div class="dev">${it.dev}</div><div class="amt">${it.amt}</div></div></div>`).join('');
+  galOverlay.classList.add('on'); galOverlay.setAttribute('aria-hidden','false');
+}
+function closeGallery(){galOverlay.classList.remove('on');galOverlay.setAttribute('aria-hidden','true');}
+function openLB(i){galIdx=(i+galCur.length)%galCur.length;const it=galCur[galIdx];lbImg.src=`${GAL_BASE}/${it.f}`;lbImg.alt='Comprobante de gasto · '+it.dev;lbCap.innerHTML='<b>'+it.dev+'</b> &nbsp;·&nbsp; '+it.amt;galLightbox.classList.add('on');galLightbox.setAttribute('aria-hidden','false');}
+function closeLB(){galLightbox.classList.remove('on');galLightbox.setAttribute('aria-hidden','true');}
+document.querySelectorAll('.gal-btn').forEach(b=>{
+  const open=e=>{e.stopPropagation();e.preventDefault();openGallery(b.dataset.gal);};
+  b.addEventListener('click',open);
+  b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')open(e);});
+});
+galGrid.addEventListener('click',e=>{const c=e.target.closest('.gal-card');if(c)openLB(+c.dataset.i);});
+document.getElementById('galClose').onclick=closeGallery;
+galOverlay.addEventListener('click',e=>{if(e.target===galOverlay)closeGallery();});
+document.getElementById('lbClose').onclick=closeLB;
+document.getElementById('lbPrev').onclick=()=>openLB(galIdx-1);
+document.getElementById('lbNext').onclick=()=>openLB(galIdx+1);
+galLightbox.addEventListener('click',e=>{if(e.target===galLightbox)closeLB();});
+document.addEventListener('keydown',e=>{
+  if(galLightbox.classList.contains('on')){
+    if(e.key==='Escape')closeLB();else if(e.key==='ArrowLeft')openLB(galIdx-1);else if(e.key==='ArrowRight')openLB(galIdx+1);
+  } else if(galOverlay.classList.contains('on')&&e.key==='Escape'){closeGallery();}
+});
 </script>
 </body>
 </html>
