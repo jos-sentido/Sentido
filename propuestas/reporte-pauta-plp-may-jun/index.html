@@ -67,6 +67,7 @@
   .phead p{color:var(--ink-dim);font-size:13.5px;margin-top:6px;max-width:66ch}
 
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:30px}
+  #gCards{grid-template-columns:repeat(3,1fr)}
   .card{background:linear-gradient(160deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:15px;padding:18px;position:relative;overflow:hidden}
   .card::after{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent,var(--gold)),transparent)}
   .card .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
@@ -165,7 +166,7 @@
   .lb-cap b{color:var(--ink);font-weight:600}
 
   @media(max-width:760px){
-    .cards{grid-template-columns:1fr 1fr}
+    .cards,#gCards{grid-template-columns:1fr 1fr}
     .grow{grid-template-columns:1fr 92px;grid-template-areas:"who amt" "bar bar"}
     .grow .who{grid-area:who}.grow .amt{grid-area:amt}.grow .track{grid-area:bar}
     .barline{grid-template-columns:48px 1fr}.barline .amt{grid-column:2;text-align:left;font-size:14px}
@@ -306,8 +307,7 @@ function renderGasto(pf){
   const cards=[
    {lbl:"Gasto total mayo",val:mxn(total6,0),mt:`6 desarrollos · ${C.label}`,accent:C.color,gal:pf},
    {lbl:"4 con aumento",val:mxn(s4,0),mt:`${(s4/total6*100).toFixed(0)}% · van a comparativa`,accent:C.soft},
-   {lbl:"2 sin cambio",val:mxn(s2,0),mt:`${(s2/total6*100).toFixed(0)}% · Heredit · Península Mzt`,accent:"#54586a"},
-   {lbl:"Promedio / desarrollo",val:mxn(total6/DEVS.length,0),mt:"6 desarrollos",accent:"var(--c-rmk)"}
+   {lbl:"2 sin cambio",val:mxn(s2,0),mt:`${(s2/total6*100).toFixed(0)}% · Heredit · Península Mzt`,accent:"#54586a"}
   ];
   const folderSvg='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
   document.getElementById('gCards').innerHTML=cards.map((c,i)=>`<div class="card" style="--accent:${c.accent};animation:fade .6s ${i*.07}s both"><div class="lbl">${c.lbl}</div><div class="val tabnums">${c.val}</div><div class="mt">${c.mt}</div>${c.gal?`<button class="card-gal" data-gal="${c.gal}" title="Ver comprobantes de gasto directo en ${C.label}" aria-label="Ver comprobantes de gasto ${C.label}">${folderSvg} Ver comprobantes</button>`:''}</div>`).join('');
@@ -317,8 +317,8 @@ function renderGasto(pf){
     const bg=d.plan?`background:linear-gradient(90deg,#5a5f78,${C.color})`:'';
     return `<div class="grow" style="animation:fade .5s ${i*.06}s both">
       <div class="who"><div class="nm">${d.short}</div><div class="ac">${d.cuenta}</div></div>
-      <div class="track"><div class="fill ${d.plan?'':'flat'}" style="${bg}" data-w="${v/gMax*100}" data-l="${d.short} · ${d.cuenta}" data-v="${mxn(v,2)}" data-s="${d.plan?'Con aumento en junio':'Se mantiene igual'}"></div></div>
-      <div class="amt tabnums">${mxn(v,0)}<small>${d.plan?'CON AUMENTO':'SIN CAMBIO'}</small></div>
+      <div class="track"><div class="fill ${d.plan?'':'flat'}" style="${bg}" data-w="${v/gMax*100}" data-l="${d.short} · ${d.cuenta}" data-v="${mxn(v,2)}"></div></div>
+      <div class="amt tabnums">${mxn(v,0)}</div>
     </div>`;
   }).join('');
   document.getElementById('gTotal').textContent=mxn(total6,2);
