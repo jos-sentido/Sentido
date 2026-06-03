@@ -133,9 +133,9 @@
   #tip .t-v{font-family:var(--serif);font-size:17px}#tip .t-s{color:var(--ink-dim);margin-top:3px}
 
   /* Galería de comprobantes */
-  .gal-btn{display:inline-flex;align-items:center;justify-content:center;margin-left:9px;width:30px;height:25px;border-radius:7px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:inherit;cursor:pointer;transition:.18s;vertical-align:middle}
-  .gal-btn:hover,.gal-btn:focus-visible{background:rgba(203,164,106,.18);border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px);outline:none}
-  .gal-btn svg{display:block}
+  .card-gal{display:inline-flex;align-items:center;gap:7px;margin-top:13px;padding:7px 11px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink-dim);font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.01em;cursor:pointer;transition:.18s}
+  .card-gal:hover,.card-gal:focus-visible{background:rgba(203,164,106,.16);border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px);outline:none}
+  .card-gal svg{display:block;flex:none}
   .gal-overlay{position:fixed;inset:0;z-index:60;background:rgba(6,7,10,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto}
   .gal-overlay.on{display:flex;animation:fade .3s ease both}
   .gal-modal{width:100%;max-width:1000px;background:linear-gradient(160deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px 24px 28px;margin:auto 0}
@@ -190,8 +190,8 @@
     <div class="platbar">
       <span class="pl">Plataforma</span>
       <div class="platsw" id="platsw">
-        <button class="platbtn active" data-pf="meta"><i></i> Meta Ads<span class="gal-btn" data-gal="meta" role="button" tabindex="0" title="Ver comprobantes de gasto directo" aria-label="Ver comprobantes de gasto Meta"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span></button>
-        <button class="platbtn" data-pf="google"><i></i> Google Ads<span class="gal-btn" data-gal="google" role="button" tabindex="0" title="Ver comprobantes de gasto directo" aria-label="Ver comprobantes de gasto Google"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span></button>
+        <button class="platbtn active" data-pf="meta"><i></i> Meta Ads</button>
+        <button class="platbtn" data-pf="google"><i></i> Google Ads</button>
       </div>
     </div>
     <div class="rule"></div>
@@ -304,12 +304,13 @@ function renderGasto(pf){
   document.getElementById('gCap').textContent=C.cap;
   const total6=sum(DEVS.map(d=>sp[d.short])), s4=sum(plan4.map(d=>sp[d.short])), s2=total6-s4;
   const cards=[
-   {lbl:"Gasto total mayo",val:mxn(total6,0),mt:`6 desarrollos · ${C.label}`,accent:C.color},
+   {lbl:"Gasto total mayo",val:mxn(total6,0),mt:`6 desarrollos · ${C.label}`,accent:C.color,gal:pf},
    {lbl:"4 con aumento",val:mxn(s4,0),mt:`${(s4/total6*100).toFixed(0)}% · van a comparativa`,accent:C.soft},
    {lbl:"2 sin cambio",val:mxn(s2,0),mt:`${(s2/total6*100).toFixed(0)}% · Heredit · Península Mzt`,accent:"#54586a"},
    {lbl:"Promedio / desarrollo",val:mxn(total6/DEVS.length,0),mt:"6 desarrollos",accent:"var(--c-rmk)"}
   ];
-  document.getElementById('gCards').innerHTML=cards.map((c,i)=>`<div class="card" style="--accent:${c.accent};animation:fade .6s ${i*.07}s both"><div class="lbl">${c.lbl}</div><div class="val tabnums">${c.val}</div><div class="mt">${c.mt}</div></div>`).join('');
+  const folderSvg='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+  document.getElementById('gCards').innerHTML=cards.map((c,i)=>`<div class="card" style="--accent:${c.accent};animation:fade .6s ${i*.07}s both"><div class="lbl">${c.lbl}</div><div class="val tabnums">${c.val}</div><div class="mt">${c.mt}</div>${c.gal?`<button class="card-gal" data-gal="${c.gal}" title="Ver comprobantes de gasto directo en ${C.label}" aria-label="Ver comprobantes de gasto ${C.label}">${folderSvg} Ver comprobantes</button>`:''}</div>`).join('');
   const gMax=Math.max(...DEVS.map(d=>sp[d.short]));
   document.getElementById('gRows').innerHTML=DEVS.map((d,i)=>{
     const v=sp[d.short];
@@ -433,11 +434,7 @@ function openGallery(pf){
 function closeGallery(){galOverlay.classList.remove('on');galOverlay.setAttribute('aria-hidden','true');}
 function openLB(i){galIdx=(i+galCur.length)%galCur.length;const it=galCur[galIdx];lbImg.src=`${GAL_BASE}/${it.f}`;lbImg.alt='Comprobante de gasto · '+it.dev;lbCap.innerHTML='<b>'+it.dev+'</b> &nbsp;·&nbsp; '+it.amt;galLightbox.classList.add('on');galLightbox.setAttribute('aria-hidden','false');}
 function closeLB(){galLightbox.classList.remove('on');galLightbox.setAttribute('aria-hidden','true');}
-document.querySelectorAll('.gal-btn').forEach(b=>{
-  const open=e=>{e.stopPropagation();e.preventDefault();openGallery(b.dataset.gal);};
-  b.addEventListener('click',open);
-  b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')open(e);});
-});
+document.addEventListener('click',e=>{const g=e.target.closest('.card-gal');if(g){e.preventDefault();openGallery(g.dataset.gal);}});
 galGrid.addEventListener('click',e=>{const c=e.target.closest('.gal-card');if(c)openLB(+c.dataset.i);});
 document.getElementById('galClose').onclick=closeGallery;
 galOverlay.addEventListener('click',e=>{if(e.target===galOverlay)closeGallery();});
