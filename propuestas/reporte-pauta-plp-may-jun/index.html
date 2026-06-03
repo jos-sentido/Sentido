@@ -16,14 +16,14 @@
     --line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.05);
     --ink:#edeae2;--ink-dim:#9a9ba6;--ink-faint:#65666f;
     --gold:#cba46a;--gold-soft:#e7d3a8;
-    --c-google:#4f8cff;--c-google-soft:#8fb8ff;--c-meta:#9b8bff;--c-meta-soft:#b6a9ff;--c-lp:#ef7d45;--c-rmk:#34c596;
+    --c-google:#4f8cff;--c-google-soft:#8fb8ff;--c-meta:#d8d2c4;--c-meta-soft:#f1ede4;--c-lp:#ef7d45;--c-rmk:#34c596;
     --pos:#34c596;--neg:#ef6a6a;
     --shadow:0 24px 60px -20px rgba(0,0,0,.7);
     --serif:"Fraunces",Georgia,serif;--sans:"Hanken Grotesk",sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5;
-    background-image:radial-gradient(900px 500px at 85% -5%,rgba(155,139,255,.10),transparent 60%),radial-gradient(700px 480px at 5% 8%,rgba(203,164,106,.08),transparent 55%);min-height:100vh}
+    background-image:radial-gradient(900px 500px at 85% -5%,rgba(216,210,196,.09),transparent 60%),radial-gradient(700px 480px at 5% 8%,rgba(203,164,106,.08),transparent 55%);min-height:100vh}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");mix-blend-mode:overlay}
   .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:54px 28px 80px}
@@ -49,7 +49,7 @@
   .platsw{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:5px}
   .platbtn{appearance:none;border:0;background:none;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:14px;color:var(--ink-dim);padding:10px 22px;border-radius:9px;transition:.2s;display:flex;align-items:center;gap:9px}
   .platbtn i{width:10px;height:10px;border-radius:3px;background:currentColor;opacity:.9}
-  .platbtn[data-pf="meta"].active{background:rgba(155,139,255,.16);color:var(--c-meta-soft)}
+  .platbtn[data-pf="meta"].active{background:rgba(216,210,196,.16);color:var(--c-meta-soft)}
   .platbtn[data-pf="google"].active{background:rgba(79,140,255,.16);color:var(--c-google-soft)}
   .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent 70%);margin:26px 0 0}
 
@@ -122,7 +122,7 @@
   .prow .name{font-size:15px;font-weight:600}.prow .tot{font-family:var(--serif);font-size:16px}
   .stack{height:34px;display:flex;border-radius:9px;overflow:hidden;background:var(--surface2)}
   .seg{height:100%;width:0;transition:width 1s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;justify-content:center;position:relative;min-width:0}
-  .seg span{font-size:11.5px;font-weight:700;color:rgba(0,0,0,.58);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px}
+  .seg span{font-size:11.5px;font-weight:700;color:rgba(0,0,0,.74);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px}
   .seg.g{background:var(--c-google)}.seg.m{background:var(--c-meta)}.seg.l{background:var(--c-lp)}.seg.r{background:var(--c-rmk)}
   .seg:hover{filter:brightness(1.12)}
 
@@ -351,7 +351,7 @@ function renderCmp(pf){
    <div class="ttl">Totales ${C.label} · 4 con aumento — gastado + por gastar</div>
    <div class="tstack">
      <div class="tseg gastado" data-w="${may4/totAll*100}" data-l="Gastado · mayo (real)" data-v="${mxn(may4,2)}" data-s="${(may4/totAll*100).toFixed(0)}% del total"><span>Gastado · mayo · ${mxn(may4,0)}</span></div>
-     <div class="tseg" style="background:linear-gradient(90deg,${C.color},${C.soft});color:rgba(0,0,0,.62)" data-w="${jun4/totAll*100}" data-l="Por gastar · junio (plan)" data-v="${mxn(jun4,0)}" data-s="${(jun4/totAll*100).toFixed(0)}% del total"><span>Por gastar · junio · ${mxn(jun4,0)}</span></div>
+     <div class="tseg" style="background:linear-gradient(90deg,${C.color},${C.soft});color:rgba(0,0,0,.74)" data-w="${jun4/totAll*100}" data-l="Por gastar · junio (plan)" data-v="${mxn(jun4,0)}" data-s="${(jun4/totAll*100).toFixed(0)}% del total"><span>Por gastar · junio · ${mxn(jun4,0)}</span></div>
    </div>
    <div class="tfigs">
      <div class="tfig"><span class="l">Gastado · mayo</span><span class="v tabnums">${mxn(may4,0)}</span></div>
