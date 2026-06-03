@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reporte de Pauta · Sentido · PLP Desarrollos</title>
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png">
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png">
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,6 +29,9 @@
   .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:54px 28px 80px}
   .tabnums{font-variant-numeric:tabular-nums lining-nums}
 
+  .hero-logo{height:52px;width:auto;display:block;margin-bottom:26px;opacity:.85}
+  @media(min-width:768px){.hero-logo{height:60px;margin-bottom:34px}}
+  .foot-logo{height:36px;width:auto;opacity:.6;display:block;margin-bottom:14px}
   .eyebrow{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
   .eyebrow .dot{width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
   h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.5vw,56px);line-height:1.02;letter-spacing:-.015em;margin:18px 0 14px}
@@ -138,6 +144,7 @@
 <body>
 <div class="wrap">
   <header>
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="hero-logo">
     <div class="eyebrow"><span class="dot"></span> Sentido · PLP Desarrollos</div>
     <h1>Reporte de Pauta <em>Meta &amp; Google</em></h1>
     <p class="sub">Análisis de gasto y comparativa de presupuesto por plataforma. Moneda: <b>MXN</b>.</p>
@@ -193,7 +200,10 @@
     <div id="planRows"></div>
   </section>
 
-  <div class="foot"><span>Fuente: Meta Ads y Google Ads (gasto neto) · Propuesta PautaPLP2026</span><span>Generado: junio 2026</span></div>
+  <div class="foot" style="flex-direction:column;align-items:flex-start;gap:14px">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="foot-logo">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;width:100%"><span>Fuente: Meta Ads y Google Ads (gasto neto) · Propuesta PautaPLP2026</span><span>Generado: junio 2026</span></div>
+  </div>
 </div>
 <div id="tip"></div>
 
