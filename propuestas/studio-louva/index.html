@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Studio Louva · Sentido</title>
+<meta name="description" content="Estrategia digital para Studio Louva: convertir 8 años de rigor en BIM, supervisión e ingeniería en una presencia que desarrolladores, fondos y constructoras encuentren antes de adjudicar." />
+<!-- Favicon Sentido -->
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Paleta heredada de louvastudio.com — navy técnico + azul blueprint */
+    --bg: #050C18;             /* navy casi negro — fondo principal */
+    --bg-deep: #020812;        /* el más profundo, hero */
+    --surface: #0B1828;        /* card navy */
+    --surface-elevated: #112338;
+    --border: rgba(157, 192, 245, 0.10);
+    --border-strong: rgba(157, 192, 245, 0.22);
+    --text: #E6EDF6;
+    --text-dim: #93A6BE;
+    --text-faint: #56697F;
+    --accent: #7FB0F2;         /* azul blueprint Louva */
+    --accent-bright: #A9CBFA;
+    --accent-soft: rgba(127, 176, 242, 0.12);
+    --accent-line: rgba(127, 176, 242, 0.35);
+    --grid-line: rgba(127, 176, 242, 0.05);
+    --warn: #E0A86A;
+    --success: #6FBF96;
+    --cream: #EDE6D8;          /* para inputs legibles */
+    --font-display: 'Sora', -apple-system, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .section { padding: 5rem 1.5rem; position: relative; }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+  .narrow { max-width: 52rem; }
+
+  /* Blueprint grid background */
+  .blueprint {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .display-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .display-heading.xl { font-size: clamp(2.3rem, 6vw, 4.4rem); font-weight: 700; }
+  .display-heading.lg { font-size: clamp(1.8rem, 4.2vw, 2.9rem); }
+  .display-heading.md { font-size: clamp(1.4rem, 2.8vw, 2rem); }
+  .accent-text { color: var(--accent); }
+  .accent-italic { font-style: italic; color: var(--accent); font-weight: 400; }
+
+  .paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--text); }
+  .paragraph.lg { font-size: 1.18rem; }
+  .paragraph.muted { color: var(--text-dim); }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+  .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 1.5rem; } .mt-3 { margin-top: 2.5rem; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-label {
+    display: flex; align-items: center; gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 2.5rem;
+  }
+  .section-label .divider { height: 1px; width: 3rem; background: var(--accent); opacity: 0.7; }
+  .section-label span { color: var(--accent); font-weight: 500; font-family: var(--font-mono); }
+
+  /* ---------- NAV ---------- */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(5, 12, 24, 0.82);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 80rem; margin: 0 auto; padding: 0.85rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  }
+  .site-nav .nav-logo { height: 26px; width: auto; opacity: 0.95; }
+  @media (min-width: 768px) { .site-nav .nav-logo { height: 30px; } }
+  .site-nav-links { display: none; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-dim); text-decoration: none;
+    transition: color 0.2s; position: relative; padding-bottom: 2px;
+  }
+  .site-nav-links a:hover, .site-nav-links a.active { color: var(--accent); }
+  .site-nav-links a.active::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: var(--accent);
+  }
+  .nav-cta {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--bg); background: var(--accent);
+    padding: 0.55rem 1.1rem; border-radius: 2px; text-decoration: none;
+    font-weight: 600; transition: background 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--accent-bright); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 7rem 1.5rem 4rem; background: var(--bg-deep); position: relative; overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 8rem 3rem 5rem; } }
+  @media (min-width: 1024px) { .hero { padding: 9rem 5rem 6rem; } }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 52px 52px; opacity: 0.7; pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 80%;
+    background: radial-gradient(circle, rgba(127,176,242,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+
+  .hero-logo-sentido { height: 52px; width: auto; display: block; margin-bottom: 3rem; opacity: 0.85; }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 4rem; } }
+
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center;
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 2.2rem;
+  }
+  .hero-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+  .hero-prospect {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.04; letter-spacing: -0.025em;
+    color: var(--text); max-width: 18ch;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-dim); font-weight: 300;
+    max-width: 44rem; margin-top: 2rem; line-height: 1.7;
+  }
+  .hero-scroll {
+    margin-top: 4rem; font-family: var(--font-mono); font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-scroll .line { width: 2.5rem; height: 1px; background: var(--accent-line); }
+
+  /* ---------- STAT STRIP ---------- */
+  .stat-strip {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 768px) { .stat-strip { grid-template-columns: repeat(4, 1fr); } }
+  .stat-cell { background: var(--bg); padding: 2.2rem 1.5rem; }
+  .stat-num {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--accent); line-height: 1; letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-dim); margin-top: 0.7rem; line-height: 1.5;
+  }
+
+  /* ---------- DIAGNOSIS / FINDINGS ---------- */
+  .finding-grid { display: grid; gap: 1px; background: var(--border); margin-top: 3rem; }
+  @media (min-width: 768px) { .finding-grid { grid-template-columns: 1fr 1fr; } }
+  .finding {
+    background: var(--surface); padding: 2.2rem; position: relative;
+  }
+  .finding-tag {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .finding-tag.gap { color: var(--warn); }
+  .finding-tag.strength { color: var(--success); }
+  .finding-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .finding h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--text); margin-bottom: 0.6rem; }
+  .finding p { font-size: 0.96rem; color: var(--text-dim); line-height: 1.7; }
+
+  /* ---------- OPPORTUNITY TIERS ---------- */
+  .tier { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (min-width: 768px) { .tier { grid-template-columns: 140px 1fr; gap: 2rem; align-items: start; } }
+  .tier + .tier { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .tier-label {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .tier-label small { display: block; color: var(--text-faint); margin-top: 0.4rem; font-size: 0.66rem; letter-spacing: 0.1em; }
+  .tier p { color: var(--text-dim); font-size: 1rem; line-height: 1.75; }
+  .tier p strong { color: var(--text); font-weight: 500; }
+
+  /* ---------- SERVICE CARDS ---------- */
+  .services-grid { display: grid; gap: 1.5rem; margin-top: 1rem; }
+  @media (min-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+  .service-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 3px; padding: 2rem; position: relative; transition: border-color 0.25s, transform 0.25s;
+  }
+  .service-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .service-card.featured { border-color: var(--accent-line); background: var(--surface-elevated); }
+  .service-num {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
+    letter-spacing: 0.1em; margin-bottom: 1.2rem; display: block;
+  }
+  .service-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; color: var(--text); margin-bottom: 0.5rem; }
+  .service-obj { font-size: 0.92rem; color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.04em; margin-bottom: 1.2rem; }
+  .service-card p.desc { font-size: 0.97rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.3rem; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .service-list li { font-size: 0.9rem; color: var(--text); padding-left: 1.4rem; position: relative; line-height: 1.55; }
+  .service-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+  .service-price {
+    border-top: 1px solid var(--border); padding-top: 1.2rem;
+    display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .service-price .amount { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--text); }
+  .service-price .amount small { font-size: 0.8rem; color: var(--text-dim); font-weight: 400; font-family: var(--font-mono); }
+  .service-price .terms { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.05em; }
+
+  /* Pauta sub-block — adyacente al servicio operador */
+  .ad-note {
+    margin-top: 1.4rem; background: var(--accent-soft); border: 1px dashed var(--accent-line);
+    border-radius: 3px; padding: 1.1rem 1.2rem;
+  }
+  .ad-note .ad-tag {
+    font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem; display: block;
+  }
+  .ad-note p { font-size: 0.86rem; color: var(--text-dim); line-height: 1.6; }
+  .ad-note .ad-amount { color: var(--accent-bright); font-weight: 500; font-family: var(--font-mono); }
+
+  /* ---------- INVESTMENT TABLE ---------- */
+  .inv-table { margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+  .inv-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border); align-items: center;
+  }
+  .inv-row:last-child { border-bottom: none; }
+  .inv-row.head { background: var(--surface); }
+  .inv-row.head .inv-name { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .inv-name { font-size: 0.98rem; color: var(--text); }
+  .inv-name small { display: block; color: var(--text-faint); font-size: 0.8rem; margin-top: 0.25rem; }
+  .inv-amount { font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-bright); white-space: nowrap; font-weight: 500; }
+  .inv-row.total { background: var(--accent-soft); }
+  .inv-row.total .inv-name { font-family: var(--font-display); font-weight: 600; color: var(--text); font-size: 1.05rem; }
+  .inv-row.total .inv-amount { color: var(--accent-bright); font-size: 1.15rem; font-weight: 600; }
+
+  /* Bundle highlight */
+  .bundle {
+    margin-top: 2rem; background: var(--surface-elevated); border: 1px solid var(--accent-line);
+    border-radius: 3px; padding: 1.8rem 2rem;
+  }
+  .bundle .bundle-tag {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem; display: inline-block;
+  }
+  .bundle h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.6rem; }
+  .bundle p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.7; }
+  .bundle .save { color: var(--success); font-weight: 500; }
+
+  .note {
+    margin-top: 1.8rem; display: flex; gap: 0.9rem; padding: 1.1rem 1.3rem;
+    background: var(--surface); border-left: 2px solid var(--accent); border-radius: 0 3px 3px 0;
+  }
+  .note .ico { color: var(--accent); flex-shrink: 0; font-size: 1rem; }
+  .note p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.65; }
+
+  /* ---------- HORIZON ---------- */
+  .horizon-grid { display: grid; gap: 1px; background: var(--border); margin-top: 3rem; }
+  @media (min-width: 768px) { .horizon-grid { grid-template-columns: repeat(3, 1fr); } }
+  .horizon-cell { background: var(--surface); padding: 2.2rem 1.8rem; }
+  .horizon-when { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .horizon-cell h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; margin-bottom: 0.7rem; }
+  .horizon-cell p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.7; }
+
+  /* ---------- CTA FORM ---------- */
+  .cta-form-section { background: var(--bg-deep); }
+  .cta-form-inner { max-width: 44rem; margin: 0 auto; }
+  .cta-form-section h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
+  .cta-form-section .lede { color: var(--text-dim); font-size: 1.12rem; margin-top: 1.2rem; max-width: 38rem; }
+  #lead-form { display: grid; gap: 1.25rem; margin-top: 2.8rem; }
+  #lead-form label { display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input, #lead-form select, #lead-form textarea {
+    background: var(--cream); color: #1A2433; border: 1px solid transparent; border-radius: 3px;
+    padding: 0.95rem 1.1rem; font-family: var(--font-sans); font-size: 1rem; font-weight: 400; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #lead-form input::placeholder, #lead-form textarea::placeholder { color: #6B7686; }
+  #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  #lead-form select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231A2433' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  #lead-form textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    margin-top: 0.5rem; background: var(--accent); color: var(--bg-deep); border: none; border-radius: 3px;
+    padding: 1.05rem 1.5rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.01em;
+    cursor: pointer; transition: background 0.2s, transform 0.1s; justify-self: start;
+  }
+  .form-submit:hover:not(:disabled) { background: var(--accent-bright); }
+  .form-submit:active { transform: translateY(1px); }
+  .form-submit:disabled { opacity: 0.6; cursor: default; }
+  .form-status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--success); opacity: 0; transition: opacity 0.3s; line-height: 1.6; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: var(--warn); }
+
+  /* ---------- CLOSING ---------- */
+  .closing { background: var(--bg); padding: 6rem 1.5rem; text-align: center; position: relative; overflow: hidden; }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem; } }
+  .closing::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 52px 52px; opacity: 0.5; pointer-events: none;
+  }
+  .closing-inner { max-width: 50rem; margin: 0 auto; position: relative; z-index: 2; }
+  .closing-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; }
+  .closing-statement { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 4.5vw, 3rem); line-height: 1.18; letter-spacing: -0.02em; }
+  .closing-statement em { font-style: normal; color: var(--accent); }
+  .closing-sub { color: var(--text-dim); font-size: 1.05rem; line-height: 1.75; margin-top: 1.8rem; }
+  .closing-sentido-mark { height: 36px; width: auto; opacity: 0.6; margin-top: 3rem; }
+  .closing-meta { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: center; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; }
+  .closing-meta a, .closing-meta span { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .closing-meta a:hover { color: var(--accent); }
+
+  footer { background: var(--bg-deep); padding: 2rem 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+  footer .copy { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.08em; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-logo" />
+    <div class="site-nav-links">
+      <a href="#contexto" data-target="contexto">Contexto</a>
+      <a href="#diagnostico" data-target="diagnostico">Diagnóstico</a>
+      <a href="#angulo" data-target="angulo">El ángulo</a>
+      <a href="#propuesta" data-target="propuesta">Propuesta</a>
+      <a href="#inversion" data-target="inversion">Inversión</a>
+    </div>
+    <a href="#responder" class="nav-cta">Responder</a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="hero-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido" />
+    <div class="hero-prospect">Propuesta estratégica · Studio Louva</div>
+    <h1>Construyen con <em>precisión milimétrica</em>. Su presencia digital aún no.</h1>
+    <p class="hero-sub">
+      Ocho años modelando edificios verticales en BIM, supervisando obra en tiempo real y
+      coordinando ingenierías hasta el último detalle. Esa disciplina técnica todavía no se
+      traduce en una marca que desarrolladores, fondos y constructoras encuentren —
+      y reconozcan como autoridad — antes de adjudicar un proyecto.
+    </p>
+    <div class="hero-scroll"><span class="line"></span> Desplázate para ver el diagnóstico</div>
+  </div>
+</header>
+
+<!-- ============== STAT STRIP ============== -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-num">+213%</div><div class="stat-label">Crecimiento del inventario de vivienda vertical en México, 2017–2024</div></div>
+  <div class="stat-cell"><div class="stat-num">~60%</div><div class="stat-label">Del inventario vertical nacional se concentra en CDMX, Guadalajara y Monterrey</div></div>
+  <div class="stat-cell"><div class="stat-num">8 años</div><div class="stat-label">De Studio Louva trabajando con metodología BIM como estándar</div></div>
+  <div class="stat-cell"><div class="stat-num">2026</div><div class="stat-label">Año en que BIM se consolida como estándar en grandes constructoras</div></div>
+</div>
+
+<!-- ============== CONTEXTO ============== -->
+<section class="section" id="contexto">
+  <div class="section-inner narrow">
+    <div class="section-label reveal"><span class="divider"></span><span>01</span> El momento del mercado</div>
+    <h2 class="display-heading lg reveal">El skyline de México se está reescribiendo. El criterio para elegir despacho, también.</h2>
+    <p class="paragraph lg muted mt-3 reveal">
+      Guadalajara y Zapopan viven una de las mayores olas de construcción vertical del país.
+      El nearshoring, la demanda de vivienda urbana y los desarrollos sustentables están empujando
+      proyectos cada vez más complejos — y con más capital de por medio.
+    </p>
+    <p class="paragraph muted mt-2 reveal">
+      En ese escenario, la metodología BIM dejó de ser un diferenciador exótico para volverse el
+      estándar que define quién juega en las grandes ligas. Pero hay una asimetría: el rigor técnico
+      de Studio Louva ya está a la altura de ese mercado. <strong style="color:var(--text);font-weight:500;">Su presencia digital
+      todavía no comunica ese rigor.</strong> Quien busca un despacho que modele un edificio
+      completo antes de la primera excavación hoy no encuentra a Louva con la claridad que merece.
+    </p>
+    <p class="paragraph muted mt-2 reveal">
+      Esta propuesta parte de un hecho simple: cuando el producto técnico ya es excelente, el
+      siguiente metro cuadrado de crecimiento no se gana en la obra. Se gana en cómo el mercado
+      percibe, encuentra y confía en quien la dirige.
+    </p>
+  </div>
+</section>
+
+<!-- ============== DIAGNÓSTICO ============== -->
+<section class="section section-surface section-divider blueprint" id="diagnostico">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>02</span> Diagnóstico de marca</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Lo que encontramos al auditar su presencia digital actual.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Revisamos louvastudio.com, su Instagram, LinkedIn y su perfil en buscadores. El patrón es
+      consistente: una operación seria con una huella digital que se queda corta frente a ella.
+    </p>
+
+    <div class="finding-grid reveal">
+      <div class="finding">
+        <span class="finding-tag strength">Fortaleza</span>
+        <h4>Identidad técnica con carácter</h4>
+        <p>El sitio ya usa una estética sobria — navy profundo, tipografía monospace tipo "blueprint" — que comunica precisión. Hay una base de marca real sobre la cual construir, no un lienzo en blanco.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag strength">Fortaleza</span>
+        <h4>Casos de peso para mostrar</h4>
+        <p>Proyectos como Interkero (uso mixto en GDL) y Marakate (residencial vertical en Tulum) son la prueba viviente de lo que Louva resuelve. Hoy ese portafolio no está trabajando como argumento comercial.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>El sitio no convierte ni explica</h4>
+        <p>El sitio carga sin contenido visible para buscadores y sin una narrativa clara de servicios, proceso ni casos. Un desarrollador que llega no entiende en 15 segundos por qué Louva, ni cómo dar el siguiente paso.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>Redes sin cadencia ni función comercial</h4>
+        <p>Instagram y LinkedIn existen, pero sin un ritmo de publicación ni una línea editorial que demuestre el "cómo" — el modelado, la coordinación, la supervisión en tiempo real que distingue a Louva.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>Invisibles en la búsqueda local</h4>
+        <p>Para "despacho BIM Guadalajara" o "supervisión de obra Zapopan", competidores como Quaddro o C&amp;C aparecen primero. Louva no está capitalizando la intención de búsqueda de quien ya quiere contratar.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>Ningún sistema de captación de leads</h4>
+        <p>No hay formularios estratégicos, seguimiento ni CRM. Cada prospecto que llega y no contacta de inmediato se pierde sin rastro. La operación comercial depende de la red de contactos, no de un sistema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EL ÁNGULO ============== -->
+<section class="section section-divider" id="angulo">
+  <div class="section-inner narrow">
+    <div class="section-label reveal"><span class="divider"></span><span>03</span> El ángulo</div>
+    <h2 class="display-heading lg reveal">No vendemos "arquitectura bonita". Posicionamos a Louva como la <span class="accent-text">certeza técnica</span> que reduce el riesgo de un desarrollo.</h2>
+    <p class="paragraph lg muted mt-3 reveal">
+      Hay decenas de despachos que muestran renders espectaculares. Muy pocos pueden demostrar que
+      entregan un edificio modelado al milímetro, con ingenierías coordinadas que evitan
+      interferencias en obra y cuantificaciones que dan certeza económica antes de invertir.
+    </p>
+    <p class="paragraph muted mt-2 reveal">
+      Ese es el territorio de Louva — y es exactamente lo que un desarrollador con capital en juego
+      quiere oír. Toda la estrategia se ordena alrededor de una idea: <strong style="color:var(--text);font-weight:500;">Louva
+      no dibuja edificios, los resuelve antes de construirlos.</strong> Cada pieza de contenido,
+      cada sección del sitio, cada anuncio, refuerza esa percepción de control y precisión.
+    </p>
+
+    <div class="tier reveal">
+      <div class="tier-label">Quick wins<small>Impacto rápido</small></div>
+      <p><strong>Lo que se activa primero:</strong> Google Business Profile optimizado y redes con cadencia editorial. En semanas, Louva empieza a aparecer en búsquedas locales y a mostrar el "cómo" de su trabajo a quien ya lo está buscando.</p>
+    </div>
+    <div class="tier reveal">
+      <div class="tier-label">Fundamentos<small>Lo que faltaba</small></div>
+      <p><strong>La base que sostiene todo:</strong> un sitio que explica, convierte y posiciona — con portafolio, proceso y SEO real — más un CRM que capture cada lead y no deje caer ninguno.</p>
+    </div>
+    <div class="tier reveal">
+      <div class="tier-label">Crecimiento<small>Cuando hay tracción</small></div>
+      <p><strong>Lo que escala la demanda:</strong> pauta en Meta y Google dirigida a desarrolladores, fondos y constructoras, alimentando un pipeline comercial predecible en lugar de depender solo de referidos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LA PROPUESTA ============== -->
+<section class="section section-surface section-divider" id="propuesta">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>04</span> Los sistemas que proponemos</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Cinco sistemas que convierten el rigor técnico de Louva en autoridad de mercado.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Cada uno responde a una brecha concreta del diagnóstico. Se pueden contratar por separado, pero
+      están diseñados para reforzarse entre sí.
+    </p>
+
+    <div class="services-grid mt-3">
+
+      <!-- Sitio web -->
+      <div class="service-card featured reveal">
+        <span class="service-num">SISTEMA 01 · Fundamento</span>
+        <h3>Sitio web estratégico</h3>
+        <div class="service-obj">Que un desarrollador entienda y confíe en 15 segundos</div>
+        <p class="desc">Rediseño del sitio con narrativa de autoridad técnica: servicios explicados, proceso BIM visible, portafolio (Interkero, Marakate, San Miguel) como prueba, y rutas claras de contacto. Responsive, optimizado para SEO desde la estructura, con tags y pixels listos para pauta.</p>
+        <ul class="service-list">
+          <li>Arquitectura de información orientada a desarrolladores y fondos</li>
+          <li>Secciones de servicios, proceso y casos de estudio</li>
+          <li>SEO técnico, URLs limpias, velocidad y mobile-first</li>
+          <li>Formularios estratégicos integrados al CRM</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$20,000 <small>+ IVA · único</small></div>
+          <div class="terms">60% anticipo / 40% entrega</div>
+        </div>
+      </div>
+
+      <!-- Branding refinement -->
+      <div class="service-card reveal">
+        <span class="service-num">SISTEMA 02 · Fundamento</span>
+        <h3>Consolidación de marca</h3>
+        <div class="service-obj">Una identidad consistente en cada punto de contacto</div>
+        <p class="desc">Sistema de marca a partir de la base que ya tienen: paleta, tipografías institucionales, colorimetría y aplicables para que sitio, redes, propuestas y obra hablen el mismo idioma visual. La precisión de Louva, también en su comunicación.</p>
+        <ul class="service-list">
+          <li>Manual de identidad y colorimetría</li>
+          <li>Dos tipografías institucionales</li>
+          <li>10 aplicables de marca + gráficos ejemplo</li>
+          <li>PDF final + archivos editables</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$15,000 <small>+ IVA · único</small></div>
+          <div class="terms">50% / 50% · ~1.5 meses</div>
+        </div>
+      </div>
+
+      <!-- Redes + Meta Ads (pauta adyacente) -->
+      <div class="service-card reveal">
+        <span class="service-num">SISTEMA 03 · Quick win</span>
+        <h3>Gestión de redes sociales</h3>
+        <div class="service-obj">Mostrar el "cómo" que nadie más muestra</div>
+        <p class="desc">Línea editorial mensual para Instagram y LinkedIn enfocada en demostrar dominio técnico: modelado BIM, coordinación de ingenierías, avances de obra en tiempo real, casos. Contenido que construye autoridad, no relleno.</p>
+        <ul class="service-list">
+          <li>15 publicaciones/mes con mix (reels, carruseles, posts)</li>
+          <li>Línea editorial técnica + calendario</li>
+          <li>Atención y comunidad L–V</li>
+          <li>Remarketing y segmentación base</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$7,500 <small>+ IVA / mes</small></div>
+          <div class="terms">Gestión mensual</div>
+        </div>
+        <div class="ad-note">
+          <span class="ad-tag">+ Pauta Meta Ads (opera con este sistema)</span>
+          <p>Gestión de campañas en Meta para amplificar casos y captar desarrolladores. <strong style="color:var(--text);">Incluida sin costo adicional de gestión</strong> al contratar redes. Presupuesto de pauta directo a la plataforma: <span class="ad-amount">$5,000–$15,000 / mes</span> según objetivo (no es honorario de Sentido).</p>
+        </div>
+      </div>
+
+      <!-- Google / SEO / GBP + Google Ads (pauta adyacente) -->
+      <div class="service-card reveal">
+        <span class="service-num">SISTEMA 04 · Quick win</span>
+        <h3>Presencia en Google</h3>
+        <div class="service-obj">Aparecer cuando ya te están buscando</div>
+        <p class="desc">Google Business Profile optimizado para búsquedas locales ("despacho BIM Guadalajara", "supervisión de obra Zapopan") + base de SEO local. Capturar la intención de quien ya quiere contratar, en lugar de cederla a la competencia.</p>
+        <ul class="service-list">
+          <li>Alta, verificación y optimización del perfil</li>
+          <li>Contenido y reseñas para posicionamiento local</li>
+          <li>Estrategia de palabras clave del sector</li>
+          <li>Reportes mensuales de visibilidad</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$2,500 <small>+ IVA / mes</small></div>
+          <div class="terms">Precio preferente con redes</div>
+        </div>
+        <div class="ad-note">
+          <span class="ad-tag">+ Pauta Google Ads (opera con este sistema)</span>
+          <p>Campañas de búsqueda hacia términos de alta intención comercial del sector. Gestión: <span class="ad-amount">$4,000 + IVA / mes</span>. Presupuesto de pauta directo a Google: <span class="ad-amount">$5,000–$15,000 / mes</span> según competencia del término (no es honorario de Sentido).</p>
+        </div>
+      </div>
+
+      <!-- CRM -->
+      <div class="service-card reveal">
+        <span class="service-num">SISTEMA 05 · Fundamento</span>
+        <h3>CRM y automatización</h3>
+        <div class="service-obj">Que ningún lead vuelva a perderse</div>
+        <p class="desc">Implementación de GoHighLevel: pipeline comercial, captura automática de cada formulario del sitio y redes, asignación de leads y seguimiento. La operación comercial deja de depender de la memoria y pasa a depender de un sistema.</p>
+        <ul class="service-list">
+          <li>Pipeline comercial configurado</li>
+          <li>Captura y asignación automática de leads</li>
+          <li>Seguimiento y recordatorios</li>
+          <li>Implementación sin costo con el mantenimiento</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$4,000 <small>+ IVA / mes</small></div>
+          <div class="terms">Setup incluido</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== INVERSIÓN ============== -->
+<section class="section section-divider blueprint" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>05</span> Inversión</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Claro, modular y escalable. Empiezan por donde tenga más sentido.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Separamos lo que es inversión única (fundamentos) de lo que es operación mensual recurrente.
+      La pauta publicitaria va directa a las plataformas y nunca se suma al fee de gestión.
+    </p>
+
+    <!-- Inversión única -->
+    <div class="inv-table reveal">
+      <div class="inv-row head"><div class="inv-name">Inversión única — fundamentos</div><div class="inv-amount">MXN</div></div>
+      <div class="inv-row"><div class="inv-name">Sitio web estratégico <small>60/40 · base de todo el ecosistema</small></div><div class="inv-amount">$20,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Consolidación de marca <small>50/50 · opcional según prioridad</small></div><div class="inv-amount">$15,000 + IVA</div></div>
+      <div class="inv-row total"><div class="inv-name">Total fundamentos</div><div class="inv-amount">$35,000 + IVA</div></div>
+    </div>
+
+    <!-- Inversión mensual -->
+    <div class="inv-table reveal mt-3" style="margin-top:2rem;">
+      <div class="inv-row head"><div class="inv-name">Operación mensual — gestión Sentido</div><div class="inv-amount">MXN / mes</div></div>
+      <div class="inv-row"><div class="inv-name">Gestión de redes (Instagram + LinkedIn) <small>Meta Ads incluida sin costo de gestión</small></div><div class="inv-amount">$7,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Google Business Profile + SEO local <small>precio preferente con redes</small></div><div class="inv-amount">$2,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Gestión Google Ads <small>opcional, cuando se active búsqueda pagada</small></div><div class="inv-amount">$4,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">CRM y automatización (GoHighLevel) <small>setup sin costo</small></div><div class="inv-amount">$4,000 + IVA</div></div>
+      <div class="inv-row total"><div class="inv-name">Operación mensual integral</div><div class="inv-amount">$18,000 + IVA</div></div>
+    </div>
+
+    <!-- Bundle -->
+    <div class="bundle reveal">
+      <span class="bundle-tag">★ Escenario recomendado — Ecosistema integral</span>
+      <h4>Fundamentos + operación integral, arrancando junto</h4>
+      <p>Al contratar sitio, redes, Google y CRM como ecosistema, la <span class="save">gestión de Meta Ads queda incluida sin costo</span> y el Google Business Profile entra a <span class="save">precio preferente ($2,500 vs. $4,500 individual)</span>. Todo el sistema empuja en la misma dirección desde el día uno: una marca técnica que se encuentra, convence y captura.</p>
+    </div>
+
+    <div class="note reveal">
+      <span class="ico">💰</span>
+      <p><strong style="color:var(--text);">La pauta publicitaria es aparte y va directa a la plataforma.</strong> Meta y Google: $5,000–$15,000/mes cada una según objetivo y competencia. Es presupuesto de medios, no honorario de Sentido — ustedes mantienen control total del gasto.</p>
+    </div>
+    <div class="note reveal">
+      <span class="ico">📸</span>
+      <p>La producción de contenido (sesiones de foto y video en obra) se cotiza de forma independiente y eventual — fotografía desde $3,000, video desde $5,500 + IVA por sesión — y nunca se incluye en el fee mensual.</p>
+    </div>
+    <div class="note reveal">
+      <span class="ico">📌</span>
+      <p>Todos los precios en MXN. El IVA está marcado en cada partida. Los servicios son modulares: pueden iniciar con los quick wins (redes + Google) y escalar a fundamentos y pauta conforme se valida la tracción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HORIZONTE ============== -->
+<section class="section section-surface section-divider" id="horizonte">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>06</span> Horizonte</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Cómo se ve esto en 3, 6 y 12 meses.</h2>
+
+    <div class="horizon-grid reveal">
+      <div class="horizon-cell">
+        <div class="horizon-when">Mes 1–3</div>
+        <h4>Visibilidad y ritmo</h4>
+        <p>Google Business activo y posicionando en búsquedas locales. Redes con cadencia editorial mostrando el trabajo técnico. CRM capturando cada contacto. Sitio en desarrollo. Louva empieza a verse como lo que ya es.</p>
+      </div>
+      <div class="horizon-cell">
+        <div class="horizon-when">Mes 4–6</div>
+        <h4>Autoridad y conversión</h4>
+        <p>Sitio nuevo en línea, convirtiendo visitas en leads calificados. Portafolio trabajando como argumento de venta. Primeras campañas de pauta llevando desarrolladores al pipeline. Datos reales para optimizar.</p>
+      </div>
+      <div class="horizon-cell">
+        <div class="horizon-when">Mes 7–12</div>
+        <h4>Pipeline predecible</h4>
+        <p>Un sistema comercial que genera oportunidades de forma constante, no por suerte ni solo por referidos. Louva deja de depender de la red de contactos para crecer y empieza a elegir con qué proyectos quedarse.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA + FORM ============== -->
+<section class="section cta-form-section blueprint" id="responder">
+  <div class="cta-form-inner">
+    <h2 class="reveal">Respondamos.</h2>
+    <p class="lede reveal">Marca dónde estás parado. Te respondo personalmente en menos de 24 h hábiles.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate class="reveal">
+      <input type="hidden" name="propuesta" value="studio-louva" />
+
+      <label>Nombre <span class="req">*</span>
+        <input name="nombre" type="text" required autocomplete="name" />
+      </label>
+
+      <label>Email <span class="req">*</span>
+        <input name="email" type="email" required autocomplete="email" />
+      </label>
+
+      <label>WhatsApp / Teléfono
+        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+      </label>
+
+      <label>Siguiente paso <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Avancemos — agendemos kickoff</option>
+          <option>Me interesa pero quiero ajustar el alcance</option>
+          <option>Tengo preguntas antes de decidir</option>
+          <option>Necesito un poco más de tiempo</option>
+        </select>
+      </label>
+
+      <label>Mensaje (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Comentarios, dudas o ajustes que quieras dejar por escrito."></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar respuesta →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ============== CLOSING ============== -->
+<section class="closing">
+  <div class="closing-inner">
+    <div class="closing-eyebrow">De rigor técnico a autoridad de mercado</div>
+    <h2 class="closing-statement">
+      Louva ya <em>resuelve edificios</em> antes de construirlos.<br>
+      Hagamos que el mercado lo sepa antes de adjudicar.
+    </h2>
+    <p class="closing-sub">
+      Sentido convierte ocho años de precisión en BIM, supervisión e ingeniería en la presencia
+      digital que un desarrollador, un fondo o una constructora necesita encontrar — y reconocer
+      como certeza — antes de decidir con quién construir.
+    </p>
+
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="closing-sentido-mark" />
+
+    <div class="closing-meta">
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+      <span>propuestas.sentido.mx</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="copy">Sentido Branding &amp; Advertising · 2026 · Propuesta confidencial Studio Louva</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Scroll spy nav
+  const navLinks = document.querySelectorAll('.site-nav-links a');
+  const sections = Array.from(navLinks).map((a) => {
+    const id = a.getAttribute('data-target');
+    return { link: a, section: document.getElementById(id) };
+  }).filter((s) => s.section);
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        navLinks.forEach((l) => l.classList.remove('active'));
+        const match = sections.find((s) => s.section === e.target);
+        if (match) match.link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach((s) => spy.observe(s.section));
+
+  // Lead form — POST a /api/lead (Resend + correo branded a jos@sentido.mx)
+  const leadForm = document.getElementById('lead-form');
+  if (leadForm) {
+    const statusEl = document.getElementById('lf-status');
+    const submitBtn = leadForm.querySelector('.form-submit');
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
+      const payload = {
+        Propuesta: leadForm.propuesta.value,
+        Nombre: leadForm.nombre.value.trim(),
+        Email: leadForm.email.value.trim(),
+        WhatsApp: leadForm.whatsapp.value.trim() || '—',
+        'Siguiente paso': leadForm.paso.value,
+        Mensaje: leadForm.mensaje.value.trim() || '—',
+        Fuente: location.pathname,
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.classList.remove('visible', 'error');
+      try {
+        const res = await fetch(leadForm.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        leadForm.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar respuesta →';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
