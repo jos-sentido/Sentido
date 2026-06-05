@@ -85,6 +85,122 @@ p { margin: 0 0 var(--mt-space-md); }
 .mt-related__card h4 { font-family: var(--mt-font-display); text-transform: uppercase; margin-bottom: 0.5rem; }
 .mt-related__card p { font-size: 0.95rem; color: var(--mt-gray-700); margin: 0; }
 @media print { .mt-cta-block, .mt-related, .mt-btn--whatsapp { display: none !important; } body { font-size: 11pt; color: #000; } h1, h2, h3 { color: #000 !important; page-break-after: avoid; } }
+
+/* ============================================================
+   MODO REVISIÓN — solo para vista previa en propuestas.sentido.mx
+   ============================================================ */
+:root {
+  --rv-bg: #1A1A1A;
+  --rv-yellow: #FFBC00;
+  --rv-text: #fff;
+  --rv-muted: #aaa;
+  --rv-green: #4FA13E;
+  --rv-red: #D9534F;
+}
+body { padding-top: 76px !important; }
+
+.rv-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--rv-bg); color: var(--rv-text);
+  border-bottom: 3px solid var(--rv-yellow);
+  font-family: 'Barlow', sans-serif;
+  padding: 0.65rem 1.2rem;
+  display: flex; align-items: center; gap: 1.2rem;
+  justify-content: space-between; flex-wrap: wrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.rv-bar__brand { display: flex; align-items: center; gap: 0.8rem; }
+.rv-bar__badge {
+  display: inline-block;
+  background: var(--rv-yellow); color: var(--rv-bg);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0.3rem 0.7rem; border-radius: 3px;
+}
+.rv-bar__title { font-size: 0.85rem; color: var(--rv-muted); }
+.rv-bar__title strong { color: var(--rv-text); }
+.rv-bar__tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+.rv-tab {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase;
+  padding: 0.3rem 0.7rem; border-radius: 3px;
+  text-decoration: none; color: var(--rv-muted);
+  border: 1px solid #333;
+  transition: all .15s ease;
+}
+.rv-tab:hover { color: var(--rv-yellow); border-color: var(--rv-yellow); }
+.rv-tab--active { background: var(--rv-yellow); color: var(--rv-bg) !important; border-color: var(--rv-yellow); font-weight: 700; }
+.rv-bar__back {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--rv-muted); text-decoration: none;
+  padding-left: 1rem; border-left: 1px solid #333;
+}
+.rv-bar__back:hover { color: var(--rv-yellow); }
+@media (max-width: 800px) {
+  body { padding-top: 130px !important; }
+  .rv-bar { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 0.6rem 1rem; }
+  .rv-bar__title { display: none; }
+}
+
+/* Bloque de aprobación al final del artículo */
+.rv-approve {
+  max-width: 880px; margin: 3rem auto 2rem; padding: 0 1.5rem;
+}
+.rv-approve__inner {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  color: #fff; border-radius: 8px; padding: 2.2rem 2rem;
+  text-align: center; border: 1px solid #333;
+}
+.rv-approve h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #fff !important; margin: 0 0 0.5rem;
+  font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px;
+  border-left: none !important; padding-left: 0 !important;
+}
+.rv-approve p { color: var(--rv-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+.rv-approve__buttons { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.rv-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.75rem 1.4rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.95rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  text-decoration: none; border-radius: 4px;
+  transition: transform .15s ease, box-shadow .15s ease;
+  border: 2px solid transparent;
+}
+.rv-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.rv-btn--approve { background: var(--rv-green); color: #fff; }
+.rv-btn--changes { background: transparent; color: #fff; border-color: #555; }
+.rv-btn--changes:hover { border-color: var(--rv-yellow); color: var(--rv-yellow); }
+
+/* Burbuja flotante WhatsApp */
+.rv-float {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9998;
+  background: #25D366; color: #fff;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: transform .2s ease;
+}
+.rv-float:hover { transform: scale(1.08); }
+.rv-float svg { width: 28px; height: 28px; fill: #fff; }
+.rv-float__tooltip {
+  position: absolute; right: 70px; top: 50%; transform: translateY(-50%);
+  background: #1A1A1A; color: #fff; padding: 0.4rem 0.8rem; border-radius: 4px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem;
+  letter-spacing: 1px; text-transform: uppercase; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+.rv-float:hover .rv-float__tooltip { opacity: 1; }
+
+@media print {
+  .rv-bar, .rv-approve, .rv-float { display: none !important; }
+  body { padding-top: 0 !important; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -120,6 +236,21 @@ p { margin: 0 0 var(--mt-space-md); }
 </head>
 
 <body>
+
+<div class="rv-bar">
+  <div class="rv-bar__brand">
+    <span class="rv-bar__badge">Vista previa</span>
+    <span class="rv-bar__title">Borrador para revisión · <strong>Murotech® blog</strong></span>
+  </div>
+  <div class="rv-bar__tabs">
+      <a href="/murotech-blog-concreto-aligerado" class="rv-tab">01 · Concreto aligerado vs block</a>
+      <a href="/murotech-blog-sin-mezcla" class="rv-tab">02 · Construir sin mezcla</a>
+      <a href="/murotech-blog-resistencia-fuego" class="rv-tab rv-tab--active">03 · Resistencia al fuego</a>
+      <a href="/murotech-blog-instalaciones" class="rv-tab">04 · Instalaciones hidráulicas y eléctricas</a>
+      <a href="/murotech-blog" class="rv-bar__back">← Propuesta editorial</a>
+  </div>
+</div>
+
 
 <article class="mt-article">
   <header class="mt-article__header">
@@ -366,6 +497,23 @@ p { margin: 0 0 var(--mt-space-md); }
     </div>
   </div>
 </div>
+
+
+<div class="rv-approve">
+  <div class="rv-approve__inner">
+    <h3>¿Te parece bien este blog?</h3>
+    <p>Mándame tus comentarios o aprobación por WhatsApp. Te respondo el mismo día.</p>
+    <div class="rv-approve__buttons">
+      <a href="https://wa.me/523331672223?text=Hola%20Jos%21%20%F0%9F%91%8B%20Reviso%20el%20Blog%2003%20%28Resistencia%20al%20fuego%29%20y%20lo%20apruebo%20para%20publicaci%C3%B3n." class="rv-btn rv-btn--approve">✓ Aprobar este blog</a>
+      <a href="https://wa.me/523331672223?text=Hola%20Jos%2C%20reviso%20el%20Blog%2003%20%28Resistencia%20al%20fuego%29%20y%20tengo%20estos%20cambios%3A%0A%0A-%20" class="rv-btn rv-btn--changes">✎ Pedir cambios</a>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/523331672223?text=Hola%20Jos%2C%20sobre%20el%20Blog%2003%20%28Resistencia%20al%20fuego%29%3A%0A%0A" class="rv-float" title="Comentar este blog por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.875 2.909 4.371 2.909 7.026-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+  <span class="rv-float__tooltip">Comentarios por WhatsApp</span>
+</a>
 
 </body>
 </html>
