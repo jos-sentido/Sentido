@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resistencia al fuego en muros: qué dice la norma mexicana y cómo se mide — Blog Murotech®</title>
+<meta name="description" content="Cómo se clasifica un muro cortafuego en México: NMX-C-307, NOM-002-STPS, clasificación F-30 a F-240 y qué pasa dentro de un muro Murotech® durante un incendio.">
+<meta name="keywords" content="resistencia al fuego muros méxico, norma NMX muros, F-90 construcción, muro cortafuego panel, NMX-C-307, NOM-002-STPS, resistencia fuego murotech">
+<link rel="canonical" href="https://murotech.com.mx/murotech-blog-resistencia-fuego">
+
+<meta property="og:title" content="Resistencia al fuego en muros: qué dice la norma mexicana y cómo se mide">
+<meta property="og:description" content="Cómo se clasifica un muro cortafuego en México: normas aplicables, escala F-30 a F-240 y desempeño documentado del panel Murotech® a 1,000°C.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://murotech.com.mx/murotech-blog-resistencia-fuego">
+<meta property="article:published_time" content="2026-06-05">
+<meta property="article:author" content="Equipo Murotech">
+<meta property="article:section" content="Técnico / Norma">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mt-yellow: #FFBC00; --mt-yellow-hover: #E6A800; --mt-black: #1A1A1A;
+  --mt-white: #FFFFFF; --mt-gray-700: #444444; --mt-gray-500: #69727D;
+  --mt-gray-300: #D5D4D0; --mt-gray-100: #EFEFEF;
+  --mt-font-display: 'Barlow Condensed', 'Helvetica Neue', sans-serif;
+  --mt-font-body: 'Barlow', 'Helvetica Neue', sans-serif;
+  --mt-space-xs: 0.5rem; --mt-space-sm: 1rem; --mt-space-md: 1.5rem;
+  --mt-space-lg: 2.5rem; --mt-space-xl: 4rem; --mt-space-2xl: 6rem;
+  --mt-container: 1200px; --mt-container-narrow: 880px;
+  --mt-radius: 4px; --mt-shadow-card: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--mt-font-body); font-size: 17px; line-height: 1.65; color: var(--mt-black); background: var(--mt-white); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--mt-black); text-decoration: underline; transition: color .2s ease; }
+a:hover { color: var(--mt-yellow); }
+h1, h2, h3, h4 { font-family: var(--mt-font-display); font-weight: 700; line-height: 1.1; letter-spacing: 0.5px; margin: 0 0 var(--mt-space-md); text-transform: uppercase; }
+h1 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); }
+h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); }
+h4 { font-size: 1.15rem; text-transform: none; letter-spacing: 0; }
+p { margin: 0 0 var(--mt-space-md); }
+.mt-container { width: 100%; max-width: var(--mt-container); margin: 0 auto; padding: 0 var(--mt-space-md); }
+.mt-article { max-width: var(--mt-container-narrow); margin: 0 auto; padding: var(--mt-space-xl) var(--mt-space-md); }
+.mt-article__header { margin-bottom: var(--mt-space-xl); }
+.mt-article__meta { display: flex; gap: var(--mt-space-md); font-size: 0.9rem; color: var(--mt-gray-500); margin-bottom: var(--mt-space-md); flex-wrap: wrap; }
+.mt-article__meta span:not(:last-child)::after { content: '·'; margin-left: var(--mt-space-md); }
+.mt-hero__breadcrumb { font-family: var(--mt-font-body); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mt-gray-500); margin-bottom: var(--mt-space-md); }
+.mt-blog-card__category { display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mt-yellow); font-weight: 700; }
+.mt-prose { max-width: 760px; font-size: 1.05rem; }
+.mt-prose h2 { margin-top: var(--mt-space-xl); }
+.mt-prose h3 { margin-top: var(--mt-space-lg); color: var(--mt-black); border-left: 4px solid var(--mt-yellow); padding-left: 0.8rem; }
+.mt-prose ul, .mt-prose ol { padding-left: 1.4rem; margin: 0 0 var(--mt-space-md); }
+.mt-prose li { margin-bottom: 0.5rem; }
+.mt-prose blockquote { margin: var(--mt-space-lg) 0; padding: var(--mt-space-md) var(--mt-space-lg); border-left: 4px solid var(--mt-yellow); background: var(--mt-gray-100); font-size: 1.15rem; font-style: italic; }
+.mt-table { width: 100%; border-collapse: collapse; margin: var(--mt-space-lg) 0; font-family: var(--mt-font-body); font-size: 0.98rem; }
+.mt-table th, .mt-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid var(--mt-gray-300); vertical-align: top; }
+.mt-table th { background: var(--mt-black); color: var(--mt-white); font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+.mt-table tr:nth-child(even) td { background: var(--mt-gray-100); }
+.mt-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--mt-space-md); margin: var(--mt-space-lg) 0; }
+.mt-stat-card { background: var(--mt-white); border-left: 4px solid var(--mt-yellow); padding: var(--mt-space-md); box-shadow: var(--mt-shadow-card); }
+.mt-stat-card__number { font-family: var(--mt-font-display); font-size: 2.5rem; font-weight: 700; color: var(--mt-black); line-height: 1; margin-bottom: var(--mt-space-xs); }
+.mt-stat-card__label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mt-gray-700); }
+.mt-callout { background: var(--mt-yellow); color: var(--mt-black); padding: var(--mt-space-md) var(--mt-space-lg); margin: var(--mt-space-lg) 0; border-radius: var(--mt-radius); }
+.mt-callout strong { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+.mt-timeline { margin: var(--mt-space-lg) 0; border-left: 3px solid var(--mt-yellow); padding-left: var(--mt-space-lg); }
+.mt-timeline__step { margin-bottom: var(--mt-space-md); position: relative; }
+.mt-timeline__step::before { content: ''; position: absolute; left: -2.05rem; top: 0.3rem; width: 14px; height: 14px; border-radius: 50%; background: var(--mt-yellow); border: 3px solid var(--mt-white); box-shadow: 0 0 0 2px var(--mt-yellow); }
+.mt-timeline__time { font-family: var(--mt-font-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mt-gray-500); margin-bottom: 0.2rem; }
+.mt-timeline__title { font-family: var(--mt-font-display); font-weight: 700; text-transform: uppercase; margin-bottom: 0.3rem; }
+.mt-cta-block { background: var(--mt-black); color: var(--mt-white); padding: var(--mt-space-xl) var(--mt-space-md); text-align: center; border-radius: var(--mt-radius); margin: var(--mt-space-2xl) auto; max-width: var(--mt-container-narrow); }
+.mt-cta-block h2 { color: var(--mt-white); margin-top: 0; }
+.mt-cta-block p { color: var(--mt-gray-300); max-width: 540px; margin: 0 auto var(--mt-space-md); }
+.mt-cta-block__buttons { display: flex; gap: var(--mt-space-sm); justify-content: center; flex-wrap: wrap; }
+.mt-btn { display: inline-block; padding: 0.95rem 2rem; font-family: var(--mt-font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: 1.5px; text-transform: uppercase; border-radius: var(--mt-radius); border: 2px solid transparent; cursor: pointer; transition: all .2s ease; text-decoration: none; }
+.mt-btn--primary { background: var(--mt-yellow); color: var(--mt-black); }
+.mt-btn--primary:hover { background: var(--mt-yellow-hover); color: var(--mt-black); }
+.mt-btn--whatsapp { background: #25D366; color: var(--mt-white); }
+.mt-related { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--mt-space-md); }
+.mt-related__card { display: block; padding: var(--mt-space-md); background: var(--mt-white); border: 1px solid var(--mt-gray-300); transition: all .2s ease; text-decoration: none; }
+.mt-related__card:hover { border-color: var(--mt-yellow); transform: translateY(-2px); box-shadow: var(--mt-shadow-card); }
+.mt-related__card h4 { font-family: var(--mt-font-display); text-transform: uppercase; margin-bottom: 0.5rem; }
+.mt-related__card p { font-size: 0.95rem; color: var(--mt-gray-700); margin: 0; }
+@media print { .mt-cta-block, .mt-related, .mt-btn--whatsapp { display: none !important; } body { font-size: 11pt; color: #000; } h1, h2, h3 { color: #000 !important; page-break-after: avoid; } }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Resistencia al fuego en muros: qué dice la norma mexicana y cómo se mide",
+  "description": "Cómo se clasifica un muro cortafuego en México: NMX-C-307, NOM-002-STPS y desempeño documentado del panel Murotech® a 1,000°C.",
+  "datePublished": "2026-06-05",
+  "dateModified": "2026-06-05",
+  "author": { "@type": "Organization", "name": "Equipo Murotech" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Murotech",
+    "url": "https://murotech.com.mx",
+    "logo": { "@type": "ImageObject", "url": "https://murotech.com.mx/wp-content/uploads/logo-murotech.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://murotech.com.mx/murotech-blog-resistencia-fuego" },
+  "articleSection": "Técnico / Norma"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://murotech.com.mx/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://murotech.com.mx/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Resistencia al fuego en muros: norma mexicana", "item": "https://murotech.com.mx/murotech-blog-resistencia-fuego" }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<article class="mt-article">
+  <header class="mt-article__header">
+    <div class="mt-hero__breadcrumb">
+      <a href="/">Inicio</a> · <a href="/blog/">Blog</a> · <span>Técnico / Norma</span>
+    </div>
+
+    <span class="mt-blog-card__category">Técnico / Norma</span>
+
+    <h1 style="margin-top: var(--mt-space-sm);">Resistencia al fuego en muros: qué dice la norma mexicana y cómo se mide</h1>
+
+    <div class="mt-article__meta">
+      <span>Por Equipo Murotech</span>
+      <span>5 de junio, 2026</span>
+      <span>10 min de lectura</span>
+    </div>
+  </header>
+
+  <div class="mt-prose">
+
+    <p>
+      Cuando un Director Responsable de Obra firma un proyecto de vivienda vertical, una bodega industrial o un hospedaje, la resistencia al fuego de los muros divisorios deja de ser una cualidad bonita y se convierte en un requisito normativo no negociable. La pregunta no es <em>"¿se quema o no se quema?"</em>. La pregunta técnica es <em>"¿cuántos minutos resiste el muro a más de 1,000°C sin perder función estructural ni dejar pasar humo y calor al otro lado?"</em>. Este artículo explica cómo se mide eso en México, qué pide la norma y qué desempeño tiene un muro Murotech® cuando lo expones al fuego.
+    </p>
+
+    <h2>Por qué un muro debe resistir al fuego (más allá del miedo)</h2>
+
+    <p>
+      Un muro cortafuego no se diseña pensando en que el edificio "no se queme". Se diseña pensando en <strong>compartimentar el incendio</strong>: contener el fuego en un sector del edificio durante el tiempo suficiente para que las personas salgan y los bomberos lleguen. Ese es el principio fundamental de toda la regulación moderna de protección contra incendios.
+    </p>
+
+    <p>
+      Un muro cortafuego cumple tres funciones simultáneas durante un incendio:
+    </p>
+
+    <ol>
+      <li><strong>Estabilidad estructural (R):</strong> el muro debe seguir cargando lo que sostiene (losa, viga, otros muros) sin colapsar.</li>
+      <li><strong>Integridad (E):</strong> el muro no debe agrietarse al grado de dejar pasar llamas o humo caliente al lado opuesto.</li>
+      <li><strong>Aislamiento térmico (I):</strong> la cara del muro que <em>no</em> está expuesta al fuego no debe calentarse a más de 140°C sobre su temperatura inicial. Si se calienta más, los materiales del otro lado pueden inflamarse por radiación, aunque la llama no haya cruzado.</li>
+    </ol>
+
+    <p>
+      Cuando ves clasificaciones como <strong>REI-90</strong> o <strong>F-120</strong> en una ficha técnica, esos números expresan en minutos cuánto resiste el muro cumpliendo las tres funciones simultáneamente bajo una curva estandarizada de temperatura.
+    </p>
+
+    <h2>NMX-C-307 y NOM-002-STPS: lo que pide México</h2>
+
+    <p>
+      México tiene dos cuerpos normativos que regulan la resistencia al fuego de muros, y muchas veces se confunden porque hablan de cosas relacionadas pero distintas.
+    </p>
+
+    <h3>NMX-C-307-ONNCCE — cómo se prueba el muro</h3>
+    <p>
+      La <strong>NMX-C-307-ONNCCE</strong> es la norma mexicana de la Organización Nacional de Normalización y Certificación de la Construcción que define el <em>método de prueba</em> para determinar la resistencia al fuego de elementos constructivos. Se basa en la curva tiempo-temperatura ISO 834 (la misma que usan los estándares europeos y la mayoría de la regulación internacional): el muro se somete a una temperatura que crece de 20°C a más de 1,000°C en cuestión de minutos, simulando un incendio real, y se mide cuánto tiempo cumple las tres funciones (R, E, I) antes de fallar.
+    </p>
+
+    <h3>NOM-002-STPS-2010 — qué pide la autoridad para los centros de trabajo</h3>
+    <p>
+      La <strong>NOM-002-STPS-2010</strong> ("Condiciones de seguridad — Prevención y protección contra incendios en los centros de trabajo") es una Norma Oficial Mexicana <em>de cumplimiento obligatorio</em>. Define las características de los muros cortafuego que deben separar áreas de riesgo dentro de centros de trabajo (bodegas, fábricas, oficinas, hospitales). Esta norma no prueba el muro — prueba el edificio. Pero exige que los muros cortafuego cumplan ciertas resistencias mínimas según el tipo de riesgo del local.
+    </p>
+
+    <p>
+      Adicionalmente, los Reglamentos de Construcciones estatales y municipales (especialmente el de la CDMX) tienen apartados específicos de protección contra incendios que aplican a edificios habitacionales mayores a cierta altura, hospedaje, salas de espectáculos y comercios con aforo.
+    </p>
+
+    <div class="mt-callout">
+      <strong>Lo importante</strong>
+      Cuando un proyecto pide un muro "F-90" o "RF-120" en planos, el constructor está obligado a usar un sistema certificado bajo NMX-C-307 que alcance esa clasificación. No basta con un muro de block grueso "que se ve resistente".
+    </div>
+
+    <h2>Cómo se clasifica un muro: F-30, F-60, F-90, F-120</h2>
+
+    <p>
+      La clasificación de resistencia al fuego se expresa en <strong>minutos</strong>. El número que sigue a la letra es directamente la cantidad de minutos que el muro resiste cumpliendo las tres funciones simultáneamente bajo la curva ISO 834.
+    </p>
+
+    <table class="mt-table">
+      <thead>
+        <tr>
+          <th>Clasificación</th>
+          <th>Minutos de resistencia</th>
+          <th>Aplicación típica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>F-30</strong></td>
+          <td>30 minutos</td>
+          <td>Divisiones interiores en vivienda unifamiliar de planta baja</td>
+        </tr>
+        <tr>
+          <td><strong>F-60</strong></td>
+          <td>60 minutos (1 hora)</td>
+          <td>Muros entre departamentos, hospedaje de bajo riesgo, oficinas</td>
+        </tr>
+        <tr>
+          <td><strong>F-90</strong></td>
+          <td>90 minutos (1.5 horas)</td>
+          <td>Vivienda vertical, hospedaje de mediano riesgo, salidas de emergencia</td>
+        </tr>
+        <tr>
+          <td><strong>F-120</strong></td>
+          <td>120 minutos (2 horas)</td>
+          <td>Bodegas industriales, hospitales, escuelas, comercios grandes</td>
+        </tr>
+        <tr>
+          <td><strong>F-180</strong></td>
+          <td>180 minutos (3 horas)</td>
+          <td>Industria pesada, almacenamiento de productos inflamables</td>
+        </tr>
+        <tr>
+          <td><strong>F-240</strong></td>
+          <td>240 minutos (4 horas)</td>
+          <td>Muros divisorios entre sectores industriales de alto riesgo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Como referencia: un muro de block hueco de 12 cm con aplanados de cemento-arena alcanza entre F-60 y F-90 dependiendo de la calidad del aplanado y los recubrimientos. Un muro de tablaroca con una placa de yeso de 12.5 mm alcanza F-30. Un muro de tabla cemento con yeso resistente al fuego puede alcanzar F-60 a F-90.
+    </p>
+
+    <h2>Qué pasa minuto a minuto dentro de un muro durante un incendio</h2>
+
+    <p>
+      Para entender por qué Murotech® se comporta como se comporta, hay que entender qué pasa físicamente cuando un muro recibe fuego directo. Esto es lo que ocurre en un panel Murotech® bajo la curva ISO 834:
+    </p>
+
+    <div class="mt-timeline">
+      <div class="mt-timeline__step">
+        <div class="mt-timeline__time">Minuto 0 – 5</div>
+        <div class="mt-timeline__title">Calentamiento de la superficie</div>
+        <p>La cara expuesta del panel sube rápidamente de temperatura. La capa de mortero de acabado (pasta sub-base + malla de fibra de vidrio) absorbe el primer impacto térmico. El concreto de la placa empieza a calentarse pero no se compromete estructuralmente.</p>
+      </div>
+      <div class="mt-timeline__step">
+        <div class="mt-timeline__time">Minuto 5 – 30</div>
+        <div class="mt-timeline__title">Curva de calentamiento intenso</div>
+        <p>La temperatura supera los 800°C. La placa de concreto cumple su función de barrera. El núcleo de EPS, que está protegido por las dos placas de concreto, comienza a desgasificarse de forma controlada — el EPS se convierte en gas y deja un colchón de aire dentro del muro, que paradójicamente <em>mejora</em> el aislamiento térmico del lado no expuesto.</p>
+      </div>
+      <div class="mt-timeline__step">
+        <div class="mt-timeline__time">Minuto 30 – 90</div>
+        <div class="mt-timeline__title">Estabilidad sostenida</div>
+        <p>El muro mantiene integridad. La cara expuesta puede llegar a 1,000°C, pero la cara no expuesta sigue a temperaturas que no propagan el fuego al siguiente compartimento. Las varillas de anclaje grado 6000 cosidas a 45° entre las dos placas mantienen la cohesión estructural del muro.</p>
+      </div>
+      <div class="mt-timeline__step">
+        <div class="mt-timeline__time">Minuto 90 – 240</div>
+        <div class="mt-timeline__title">Resistencia extendida documentada</div>
+        <p>Murotech® está documentado para mantener su función como barrera cortafuego real frente a temperaturas de <strong>1,000°C durante 4 horas continuas</strong> — el equivalente a clasificación F-240 bajo norma mexicana. Esto convierte al panel en una opción para los usos más exigentes de la NOM-002-STPS.</p>
+      </div>
+    </div>
+
+    <div class="mt-stat-grid">
+      <div class="mt-stat-card">
+        <div class="mt-stat-card__number">1,000°C</div>
+        <div class="mt-stat-card__label">Temperatura resistida</div>
+      </div>
+      <div class="mt-stat-card">
+        <div class="mt-stat-card__number">4 hrs</div>
+        <div class="mt-stat-card__label">Tiempo continuo documentado</div>
+      </div>
+      <div class="mt-stat-card">
+        <div class="mt-stat-card__number">F-240</div>
+        <div class="mt-stat-card__label">Clasificación equivalente</div>
+      </div>
+    </div>
+
+    <h2>¿Y el EPS no es inflamable?</h2>
+
+    <p>
+      Esta pregunta es legítima y aparece en cada conversación técnica seria. El poliestireno expandido (EPS) de forma aislada y al aire libre arde, sí. Pero dentro de un panel Murotech® el EPS <strong>nunca está expuesto al aire libre durante un incendio</strong>: está confinado entre dos placas de concreto que sellan la cara externa. La placa actúa como barrera física y térmica, y el EPS interior se degrada por temperatura sin acceso a oxígeno, generando un colchón de gas que <em>protege</em> al lado no expuesto.
+    </p>
+
+    <p>
+      Por otro lado, el EPS de Murotech® cumple con las características de seguridad documentadas en el manual técnico oficial: <em>"no es dañino, totalmente inerte, no contiene clorofluorocarbonos o hidrofluorocarbonos, no hay peligro de salud durante la instalación, crea polvo no patógeno y no daña la capa de ozono"</em>. Esto significa que ni durante la instalación ni en condiciones normales de uso representa riesgo para la salud o el ambiente.
+    </p>
+
+    <h2>Aplicaciones donde la resistencia al fuego no es opcional</h2>
+
+    <h3>Vivienda vertical y mixtos habitacionales</h3>
+    <p>
+      En CDMX y municipios metropolitanos, los edificios habitacionales de más de cuatro niveles requieren muros divisorios entre departamentos con clasificación mínima F-60 (1 hora). Edificios de más de ocho niveles o con servicios comerciales en planta baja exigen F-90 o F-120. Los muros perimetrales de escaleras y elevadores tienen requisitos aún más altos. Murotech® cumple con holgura todos estos requisitos.
+    </p>
+
+    <h3>Industria y bodegas</h3>
+    <p>
+      La NOM-002-STPS clasifica los centros de trabajo por riesgo de incendio (bajo, ordinario, alto) y exige muros cortafuego con clasificaciones F-60 a F-180 según el riesgo. Bodegas con almacenamiento de papel, plásticos, químicos o productos combustibles entran en el rango alto. Aquí Murotech® no solo cumple — además aporta su desempeño térmico documentado (<strong>41% de ahorro en aire acondicionado</strong>) que en una bodega industrial significa miles de pesos al mes durante toda la vida del inmueble.
+    </p>
+
+    <h3>Hospedaje, hospitales y escuelas</h3>
+    <p>
+      Hoteles, hospitales y centros educativos tienen las normativas más exigentes de protección contra incendios porque concentran personas vulnerables (huéspedes dormidos, pacientes, niños). Los muros entre habitaciones, entre salas y entre alas requieren F-60 a F-120 según el aforo y la altura. Murotech® se ha usado en proyectos de este tipo en varios estados de México.
+    </p>
+
+    <h3>Centros comerciales y espectáculos</h3>
+    <p>
+      Locales con aforo mayor a 100 personas requieren muros cortafuego entre áreas comerciales, especialmente alrededor de salas de cine, restaurantes y zonas de cocina. Los muros perimetrales de salidas de emergencia requieren F-120 mínimo.
+    </p>
+
+    <h2>Conclusión</h2>
+
+    <p>
+      Especificar resistencia al fuego en un proyecto no es una cualidad decorativa. Es una decisión técnica respaldada por norma mexicana (NMX-C-307, NOM-002-STPS) y por el Reglamento de Construcciones aplicable a cada zona. Pedir un sistema certificado y conocer su clasificación F en minutos es lo mínimo que tu DRO y tu aseguradora van a revisar.
+    </p>
+
+    <p>
+      Murotech® está documentado como barrera cortafuego frente a 1,000°C durante 4 horas continuas, equivalente a clasificación F-240 bajo la metodología de la NMX-C-307. Esto lo convierte en una opción válida para los usos más exigentes de la NOM-002-STPS sin necesidad de añadir capas resistentes adicionales.
+    </p>
+
+    <p>
+      Si necesitas la ficha de pruebas de fuego para una memoria de cálculo o para una revisión por parte de Protección Civil, escríbenos a <a href="/contacto/">contacto</a> y te enviamos el dossier técnico, o consulta la página de <a href="/resistencia-al-fuego/">resistencia al fuego</a> con el resumen ejecutivo del sistema.
+    </p>
+
+  </div>
+
+  <section style="margin-top: var(--mt-space-2xl); padding-top: var(--mt-space-lg); border-top: 1px solid var(--mt-gray-300);">
+    <h3 style="text-align: center; border-left: none; padding-left: 0;">Sigue leyendo sobre Murotech®</h3>
+    <div class="mt-related" style="margin-top: var(--mt-space-lg);">
+      <a href="/murotech-blog-concreto-aligerado" class="mt-related__card">
+        <h4>Concreto aligerado vs block</h4>
+        <p>Tiempos, resistencia y lo que cambia en obra. Sin pelea de costos.</p>
+      </a>
+      <a href="/murotech-blog-sin-mezcla" class="mt-related__card">
+        <h4>Construir sin mezcla</h4>
+        <p>Qué cambia cuando tu obra deja de depender del mortero tradicional.</p>
+      </a>
+      <a href="/resistencia-al-fuego/" class="mt-related__card">
+        <h4>Cualidad: Resistencia al fuego</h4>
+        <p>Resumen visual del desempeño del panel a alta temperatura.</p>
+      </a>
+    </div>
+  </section>
+
+</article>
+
+<div class="mt-container">
+  <div class="mt-cta-block">
+    <h2>¿Necesitas la ficha de pruebas de fuego para tu memoria de cálculo?</h2>
+    <p>
+      Te enviamos el dossier técnico completo con los certificados aplicables, el método de prueba
+      y la clasificación bajo norma mexicana. Útil para DROs, Protección Civil y aseguradoras.
+    </p>
+    <div class="mt-cta-block__buttons">
+      <a href="/contacto/" class="mt-btn mt-btn--primary">Solicitar dossier técnico</a>
+      <a href="https://wa.me/523336535000" class="mt-btn mt-btn--whatsapp">WhatsApp directo</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blog Murotech® — Construcción, Sistemas Constructivos e Industria</title>
+<meta name="description" content="Artículos técnicos sobre construcción con paneles prefabricados, comparativas de sistemas constructivos, instalación y proyectos reales con Murotech®.">
+<meta name="keywords" content="blog murotech, blog construccion mexico, panel concreto blog, sistema constructivo articulos, construccion prefabricada blog">
+<link rel="canonical" href="https://murotech.com.mx/blog/">
+
+<meta property="og:title" content="Blog Murotech® — Construcción y Sistemas Constructivos">
+<meta property="og:description" content="Artículos técnicos sobre paneles prefabricados, comparativas de sistemas constructivos e industria.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://murotech.com.mx/blog/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MUROTECH — Sistema de estilos para páginas nuevas
+   Construido por Sentido Branding & Advertising · 2026
+   Mapeable directo a Blocksy / Elementor en WordPress
+   ============================================================ */
+
+/* ---------- TOKENS ---------- */
+:root {
+  /* Brand colors (extraídos del WP actual) */
+  --mt-yellow: #FFBC00;
+  --mt-yellow-hover: #E6A800;
+  --mt-black: #1A1A1A;
+  --mt-black-pure: #000000;
+  --mt-white: #FFFFFF;
+  --mt-gray-900: #2A2A2A;
+  --mt-gray-700: #444444;
+  --mt-gray-500: #69727D;
+  --mt-gray-300: #D5D4D0;
+  --mt-gray-100: #EFEFEF;
+
+  /* Tipografía */
+  --mt-font-display: 'Barlow Condensed', 'Helvetica Neue', sans-serif;
+  --mt-font-body: 'Barlow', 'Helvetica Neue', sans-serif;
+
+  /* Espaciado */
+  --mt-space-xs: 0.5rem;
+  --mt-space-sm: 1rem;
+  --mt-space-md: 1.5rem;
+  --mt-space-lg: 2.5rem;
+  --mt-space-xl: 4rem;
+  --mt-space-2xl: 6rem;
+
+  /* Layout */
+  --mt-container: 1200px;
+  --mt-container-narrow: 880px;
+
+  /* Radios y sombras */
+  --mt-radius: 4px;
+  --mt-shadow-card: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- RESET BÁSICO ---------- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--mt-font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--mt-black);
+  background: var(--mt-white);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--mt-black); text-decoration: none; transition: color .2s ease; }
+a:hover { color: var(--mt-yellow); }
+
+/* ---------- TIPOGRAFÍA ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--mt-font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  margin: 0 0 var(--mt-space-md);
+  text-transform: uppercase;
+}
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.4rem, 2vw, 1.75rem); }
+h4 { font-size: 1.2rem; text-transform: none; letter-spacing: 0; }
+p { margin: 0 0 var(--mt-space-md); }
+strong { font-weight: 700; }
+
+/* ---------- LAYOUT ---------- */
+.mt-container {
+  width: 100%;
+  max-width: var(--mt-container);
+  margin: 0 auto;
+  padding: 0 var(--mt-space-md);
+}
+.mt-container--narrow { max-width: var(--mt-container-narrow); }
+.mt-section { padding: var(--mt-space-2xl) 0; }
+.mt-section--dark { background: var(--mt-black); color: var(--mt-white); }
+.mt-section--dark h1, .mt-section--dark h2, .mt-section--dark h3 { color: var(--mt-white); }
+.mt-section--gray { background: var(--mt-gray-100); }
+
+/* ---------- HERO (cualidad técnica) ---------- */
+.mt-hero {
+  background: var(--mt-black);
+  color: var(--mt-white);
+  padding: var(--mt-space-2xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+.mt-hero__breadcrumb {
+  font-family: var(--mt-font-body);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--mt-yellow);
+  margin-bottom: var(--mt-space-md);
+}
+.mt-hero__breadcrumb a { color: var(--mt-gray-300); }
+.mt-hero__breadcrumb a:hover { color: var(--mt-yellow); }
+.mt-hero__title {
+  color: var(--mt-white);
+  margin-bottom: var(--mt-space-md);
+}
+.mt-hero__title .mt-highlight {
+  background: var(--mt-yellow);
+  color: var(--mt-black);
+  padding: 0 0.4em;
+  display: inline-block;
+}
+.mt-hero__lede {
+  font-size: 1.25rem;
+  max-width: 720px;
+  color: var(--mt-gray-300);
+}
+.mt-hero__stat {
+  display: inline-block;
+  margin-top: var(--mt-space-lg);
+  padding: var(--mt-space-md) var(--mt-space-lg);
+  background: var(--mt-yellow);
+  color: var(--mt-black);
+  font-family: var(--mt-font-display);
+}
+.mt-hero__stat-number {
+  display: block;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.mt-hero__stat-label {
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: var(--mt-space-xs);
+}
+
+/* ---------- BOTONES / CTA ---------- */
+.mt-btn {
+  display: inline-block;
+  padding: 0.95rem 2rem;
+  font-family: var(--mt-font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--mt-radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.mt-btn--primary {
+  background: var(--mt-yellow);
+  color: var(--mt-black);
+}
+.mt-btn--primary:hover {
+  background: var(--mt-yellow-hover);
+  color: var(--mt-black);
+}
+.mt-btn--ghost {
+  background: transparent;
+  color: var(--mt-white);
+  border-color: var(--mt-white);
+}
+.mt-btn--ghost:hover {
+  background: var(--mt-white);
+  color: var(--mt-black);
+}
+.mt-btn--whatsapp {
+  background: #25D366;
+  color: var(--mt-white);
+}
+
+/* ---------- TABLAS DE DATOS ---------- */
+.mt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--mt-space-lg) 0;
+  font-family: var(--mt-font-body);
+}
+.mt-table th, .mt-table td {
+  padding: var(--mt-space-sm) var(--mt-space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--mt-gray-300);
+}
+.mt-table th {
+  background: var(--mt-black);
+  color: var(--mt-white);
+  font-family: var(--mt-font-display);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+.mt-table tr:nth-child(even) td { background: var(--mt-gray-100); }
+.mt-table--compare th:not(:first-child),
+.mt-table--compare td:not(:first-child) { text-align: center; }
+
+/* ---------- TARJETAS DE DATO TÉCNICO ---------- */
+.mt-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--mt-space-md);
+  margin: var(--mt-space-lg) 0;
+}
+.mt-stat-card {
+  background: var(--mt-white);
+  border-left: 4px solid var(--mt-yellow);
+  padding: var(--mt-space-md);
+  box-shadow: var(--mt-shadow-card);
+}
+.mt-stat-card__number {
+  font-family: var(--mt-font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--mt-black);
+  line-height: 1;
+  margin-bottom: var(--mt-space-xs);
+}
+.mt-stat-card__label {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--mt-gray-700);
+}
+
+/* ---------- BLOQUES DE CONTENIDO ---------- */
+.mt-prose {
+  max-width: 760px;
+  font-size: 1.05rem;
+}
+.mt-prose h2 { margin-top: var(--mt-space-xl); }
+.mt-prose h3 { margin-top: var(--mt-space-lg); color: var(--mt-yellow); }
+.mt-section--dark .mt-prose h3 { color: var(--mt-yellow); }
+.mt-prose ul, .mt-prose ol { padding-left: 1.4rem; margin: 0 0 var(--mt-space-md); }
+.mt-prose li { margin-bottom: 0.5rem; }
+.mt-prose blockquote {
+  margin: var(--mt-space-lg) 0;
+  padding: var(--mt-space-md) var(--mt-space-lg);
+  border-left: 4px solid var(--mt-yellow);
+  background: var(--mt-gray-100);
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+/* ---------- COMPARATIVA / VS ---------- */
+.mt-vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--mt-space-md);
+  margin: var(--mt-space-lg) 0;
+}
+.mt-vs__col {
+  padding: var(--mt-space-lg);
+  border-radius: var(--mt-radius);
+}
+.mt-vs__col--murotech {
+  background: var(--mt-yellow);
+  color: var(--mt-black);
+}
+.mt-vs__col--traditional {
+  background: var(--mt-gray-100);
+  color: var(--mt-gray-700);
+}
+.mt-vs__col h3 { margin-top: 0; }
+@media (max-width: 720px) {
+  .mt-vs { grid-template-columns: 1fr; }
+}
+
+/* ---------- CTA BLOCK ---------- */
+.mt-cta-block {
+  background: var(--mt-black);
+  color: var(--mt-white);
+  padding: var(--mt-space-xl) var(--mt-space-md);
+  text-align: center;
+  border-radius: var(--mt-radius);
+  margin: var(--mt-space-2xl) auto;
+  max-width: var(--mt-container-narrow);
+}
+.mt-cta-block h2 { color: var(--mt-white); margin-top: 0; }
+.mt-cta-block p { color: var(--mt-gray-300); max-width: 540px; margin: 0 auto var(--mt-space-md); }
+.mt-cta-block__buttons { display: flex; gap: var(--mt-space-sm); justify-content: center; flex-wrap: wrap; }
+
+/* ---------- INTERNAL LINKS / CARDS ---------- */
+.mt-related {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--mt-space-md);
+}
+.mt-related__card {
+  display: block;
+  padding: var(--mt-space-md);
+  background: var(--mt-white);
+  border: 1px solid var(--mt-gray-300);
+  transition: all .2s ease;
+}
+.mt-related__card:hover {
+  border-color: var(--mt-yellow);
+  transform: translateY(-2px);
+  box-shadow: var(--mt-shadow-card);
+}
+.mt-related__card h4 {
+  font-family: var(--mt-font-display);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.mt-related__card p { font-size: 0.95rem; color: var(--mt-gray-700); margin: 0; }
+
+/* ---------- FAQ / ACORDEÓN ---------- */
+.mt-faq { max-width: var(--mt-container-narrow); margin: 0 auto; }
+.mt-faq__item {
+  border-bottom: 1px solid var(--mt-gray-300);
+}
+.mt-faq__item summary {
+  cursor: pointer;
+  padding: var(--mt-space-md) 0;
+  font-family: var(--mt-font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mt-faq__item summary::-webkit-details-marker { display: none; }
+.mt-faq__item summary::after {
+  content: '+';
+  color: var(--mt-yellow);
+  font-size: 1.8rem;
+  transition: transform .2s ease;
+}
+.mt-faq__item[open] summary::after { transform: rotate(45deg); }
+.mt-faq__item .mt-faq__body {
+  padding-bottom: var(--mt-space-md);
+  color: var(--mt-gray-700);
+}
+
+/* ---------- BLOG INDEX ---------- */
+.mt-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--mt-space-lg);
+}
+.mt-blog-card {
+  background: var(--mt-white);
+  border: 1px solid var(--mt-gray-300);
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.mt-blog-card:hover { transform: translateY(-3px); box-shadow: var(--mt-shadow-card); }
+.mt-blog-card__thumb { aspect-ratio: 16/9; background: var(--mt-gray-300); }
+.mt-blog-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mt-blog-card__body { padding: var(--mt-space-md); flex: 1; display: flex; flex-direction: column; }
+.mt-blog-card__category {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--mt-yellow);
+  font-weight: 700;
+  margin-bottom: var(--mt-space-xs);
+}
+.mt-blog-card__title { font-size: 1.3rem; margin-bottom: var(--mt-space-sm); }
+.mt-blog-card__meta { font-size: 0.85rem; color: var(--mt-gray-500); margin-top: auto; }
+
+/* ---------- ARTÍCULO INDIVIDUAL ---------- */
+.mt-article { max-width: var(--mt-container-narrow); margin: 0 auto; padding: var(--mt-space-xl) var(--mt-space-md); }
+.mt-article__header { margin-bottom: var(--mt-space-xl); }
+.mt-article__meta { display: flex; gap: var(--mt-space-md); font-size: 0.9rem; color: var(--mt-gray-500); margin-bottom: var(--mt-space-md); }
+.mt-article__meta span:not(:last-child)::after { content: '·'; margin-left: var(--mt-space-md); }
+
+/* ---------- FILTROS BLOG ---------- */
+.mt-filters {
+  display: flex;
+  gap: var(--mt-space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--mt-space-lg);
+  border-bottom: 1px solid var(--mt-gray-300);
+  padding-bottom: var(--mt-space-md);
+}
+.mt-filter {
+  padding: 0.5rem 1.2rem;
+  font-family: var(--mt-font-display);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  border: 1px solid var(--mt-gray-300);
+  background: transparent;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.mt-filter--active, .mt-filter:hover { background: var(--mt-yellow); border-color: var(--mt-yellow); color: var(--mt-black); }
+
+/* ---------- TOC LATERAL (ficha técnica) ---------- */
+.mt-layout-toc { display: grid; grid-template-columns: 240px 1fr; gap: var(--mt-space-xl); align-items: start; }
+.mt-toc { position: sticky; top: 100px; padding: var(--mt-space-md); background: var(--mt-gray-100); border-left: 4px solid var(--mt-yellow); }
+.mt-toc h4 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--mt-space-sm); }
+.mt-toc ul { list-style: none; padding: 0; margin: 0; }
+.mt-toc li { margin-bottom: 0.5rem; }
+.mt-toc a { font-size: 0.95rem; color: var(--mt-gray-700); }
+.mt-toc a:hover { color: var(--mt-yellow); }
+@media (max-width: 900px) { .mt-layout-toc { grid-template-columns: 1fr; } .mt-toc { position: static; } }
+
+/* ---------- PRINT (para "imprimir esta página") ---------- */
+@media print {
+  .mt-hero, .mt-cta-block, .mt-related, .mt-toc, header, footer, .mt-btn--whatsapp { display: none !important; }
+  body { font-size: 11pt; color: #000; }
+  h1, h2, h3 { color: #000 !important; page-break-after: avoid; }
+  .mt-section { padding: 1rem 0; }
+}
+
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog Murotech®",
+  "description": "Artículos técnicos sobre construcción con paneles prefabricados, sistemas constructivos, instalación y proyectos.",
+  "publisher": { "@type": "Organization", "name": "Murotech", "url": "https://murotech.com.mx" },
+  "url": "https://murotech.com.mx/blog/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://murotech.com.mx/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://murotech.com.mx/blog/" }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<section class="mt-hero">
+  <div class="mt-container">
+    <div class="mt-hero__breadcrumb">
+      <a href="/">Inicio</a> · <span>Blog</span>
+    </div>
+    <h1 class="mt-hero__title">
+      Blog <span class="mt-highlight">Murotech®</span>
+    </h1>
+    <p class="mt-hero__lede">
+      Comparativas de sistemas constructivos, guías técnicas de instalación, casos reales
+      en obra y análisis de la industria de la construcción prefabricada en México.
+    </p>
+  </div>
+</section>
+
+<section class="mt-section">
+  <div class="mt-container">
+
+    <!-- FILTROS POR CATEGORÍA -->
+    <div class="mt-filters">
+      <button class="mt-filter mt-filter--active" data-filter="todos">Todos</button>
+      <button class="mt-filter" data-filter="comparativas">Comparativas</button>
+      <button class="mt-filter" data-filter="instalacion">Instalación</button>
+      <button class="mt-filter" data-filter="proyectos">Proyectos</button>
+      <button class="mt-filter" data-filter="industria">Industria</button>
+    </div>
+
+    <!-- LISTADO DE ARTÍCULOS — 4 entradas iniciales aprobadas con el cliente -->
+    <div class="mt-blog-grid">
+
+      <!-- Artículo 1 -->
+      <article class="mt-blog-card" data-category="comparativas">
+        <a href="/murotech-blog-concreto-aligerado" style="display: block; text-decoration: none; color: inherit;">
+          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__body">
+            <span class="mt-blog-card__category">Comparativas</span>
+            <h3 class="mt-blog-card__title">Concreto aligerado y block tradicional: tiempos, resistencia y lo que cambia en obra</h3>
+            <p style="color: var(--mt-gray-700); font-size: 0.95rem;">
+              Más allá del costo: análisis técnico de tiempos de obra, resistencia certificada bajo norma mexicana y desempeño térmico documentado.
+            </p>
+            <div class="mt-blog-card__meta">
+              <span>5 jun, 2026</span> · <span>8 min de lectura</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Artículo 2 -->
+      <article class="mt-blog-card" data-category="industria">
+        <a href="/murotech-blog-sin-mezcla" style="display: block; text-decoration: none; color: inherit;">
+          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__body">
+            <span class="mt-blog-card__category">Industria / Método</span>
+            <h3 class="mt-blog-card__title">Construir sin mezcla: qué cambia cuando tu obra ya no depende del cemento y la arena</h3>
+            <p style="color: var(--mt-gray-700); font-size: 0.95rem;">
+              El cambio cultural más importante de la obra mexicana reciente — y qué significa para constructoras y autoconstructores.
+            </p>
+            <div class="mt-blog-card__meta">
+              <span>5 jun, 2026</span> · <span>9 min de lectura</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Artículo 3 -->
+      <article class="mt-blog-card" data-category="industria">
+        <a href="/murotech-blog-resistencia-fuego" style="display: block; text-decoration: none; color: inherit;">
+          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__body">
+            <span class="mt-blog-card__category">Técnico / Norma</span>
+            <h3 class="mt-blog-card__title">Resistencia al fuego en muros: qué dice la norma mexicana y cómo se mide</h3>
+            <p style="color: var(--mt-gray-700); font-size: 0.95rem;">
+              NMX-C-307, NOM-002-STPS y la clasificación F-30 a F-240. Lo que tu DRO necesita saber sobre muros cortafuego en México.
+            </p>
+            <div class="mt-blog-card__meta">
+              <span>5 jun, 2026</span> · <span>10 min de lectura</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Artículo 4 -->
+      <article class="mt-blog-card" data-category="instalacion">
+        <a href="/murotech-blog-instalaciones" style="display: block; text-decoration: none; color: inherit;">
+          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__body">
+            <span class="mt-blog-card__category">Instalación</span>
+            <h3 class="mt-blog-card__title">Cómo coordinar instalaciones hidráulicas y eléctricas en un muro Murotech®</h3>
+            <p style="color: var(--mt-gray-700); font-size: 0.95rem;">
+              Procedimiento documentado del manual oficial: trazo, ranurado vertical, colocación de tubería y recepción con pasta sub-base.
+            </p>
+            <div class="mt-blog-card__meta">
+              <span>5 jun, 2026</span> · <span>9 min de lectura</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+    </div>
+
+    <!-- NOTA AL PROGRAMADOR -->
+    <div style="margin-top: var(--mt-space-xl); padding: var(--mt-space-md); background: var(--mt-gray-100); border-left: 4px solid var(--mt-yellow);">
+      <strong>Nota para el programador WP:</strong>
+      Este index es el listado dinámico del blog. En WordPress se construye con el loop estándar
+      de archive.php o como bloque de "Últimas entradas" en Gutenberg. Las 4 tarjetas placeholder
+      son referencia visual del componente <code>.mt-blog-card</code> — se sustituyen por los posts
+      reales una vez que estén publicados. Los filtros por categoría usan el atributo
+      <code>data-category</code> y se pueden conectar a las taxonomías de WP con un plugin tipo
+      "Filter Everything" o con un script vanilla simple.
+    </div>
+
+  </div>
+</section>
+
+<!-- SCRIPT DE FILTROS — mostrar / ocultar tarjetas según categoría -->
+<script>
+document.querySelectorAll('.mt-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mt-filter').forEach(b => b.classList.remove('mt-filter--active'));
+    btn.classList.add('mt-filter--active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.mt-blog-card').forEach(card => {
+      card.style.display = (filter === 'todos' || card.dataset.category === filter) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+<div class="mt-container">
+  <div class="mt-cta-block">
+    <h2>¿Buscas información técnica específica?</h2>
+    <p>
+      Consulta la ficha técnica completa o las páginas de cualidades para datos detallados
+      del panel Murotech®.
+    </p>
+    <div class="mt-cta-block__buttons">
+      <a href="/ficha-tecnica/" class="mt-btn mt-btn--primary">Ver ficha técnica</a>
+      <a href="/preguntas-frecuentes/" class="mt-btn mt-btn--ghost">Preguntas frecuentes</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
