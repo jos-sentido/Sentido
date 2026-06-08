@@ -549,6 +549,96 @@ body { padding-top: 76px !important; }
   body { padding-top: 0 !important; }
 }
 
+
+/* ---------- BLOG NUMBER ART (thumbnails) ---------- */
+.bn-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--mt-black);
+  background-image:
+    repeating-linear-gradient(135deg, transparent 0, transparent 18px, rgba(255,188,0,0.07) 18px, rgba(255,188,0,0.07) 20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.6rem;
+  overflow: hidden;
+  color: var(--mt-white);
+}
+.bn-art::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60%; height: 100%;
+  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255,188,0,0.15) 100%);
+  pointer-events: none;
+}
+.bn-art::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--mt-yellow);
+}
+.bn-art__left {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.bn-art__label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--mt-yellow);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--mt-yellow);
+  border-radius: 2px;
+}
+.bn-art__category {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--mt-white);
+  line-height: 1.1;
+  max-width: 140px;
+}
+.bn-art__brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 0.4rem;
+}
+.bn-art__brand strong { color: var(--mt-yellow); font-weight: 700; }
+.bn-art__number {
+  position: relative; z-index: 2;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: clamp(5rem, 13vw, 8.5rem);
+  color: var(--mt-yellow);
+  line-height: 0.85;
+  letter-spacing: -2px;
+  text-shadow: 0 4px 24px rgba(255,188,0,0.25);
+}
+.bn-art__number sup {
+  font-size: 0.4em;
+  color: var(--mt-white);
+  margin-right: 0.1em;
+  letter-spacing: 0;
+  vertical-align: super;
+  opacity: 0.7;
+}
+@media (max-width: 480px) {
+  .bn-art { padding: 1rem 1.2rem; }
+  .bn-art__category { font-size: 0.85rem; max-width: 110px; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -623,7 +713,14 @@ body { padding-top: 76px !important; }
       <!-- Artículo 1 -->
       <article class="mt-blog-card" data-category="comparativas">
         <a href="/murotech-blog-concreto-aligerado" style="display: block; text-decoration: none; color: inherit;">
-          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__thumb"><div class="bn-art">
+            <div class="bn-art__left">
+              <span class="bn-art__label">Blog · Murotech®</span>
+              <span class="bn-art__category">Comparativas</span>
+              <span class="bn-art__brand"><strong>Sentido</strong> · plan editorial</span>
+            </div>
+            <div class="bn-art__number"><sup>N°</sup>01</div>
+          </div></div>
           <div class="mt-blog-card__body">
             <span class="mt-blog-card__category">Comparativas</span>
             <h3 class="mt-blog-card__title">Concreto aligerado y block tradicional: tiempos, resistencia y lo que cambia en obra</h3>
@@ -640,7 +737,14 @@ body { padding-top: 76px !important; }
       <!-- Artículo 2 -->
       <article class="mt-blog-card" data-category="industria">
         <a href="/murotech-blog-sin-mezcla" style="display: block; text-decoration: none; color: inherit;">
-          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__thumb"><div class="bn-art">
+            <div class="bn-art__left">
+              <span class="bn-art__label">Blog · Murotech®</span>
+              <span class="bn-art__category">Industria<br>/ Método</span>
+              <span class="bn-art__brand"><strong>Sentido</strong> · plan editorial</span>
+            </div>
+            <div class="bn-art__number"><sup>N°</sup>02</div>
+          </div></div>
           <div class="mt-blog-card__body">
             <span class="mt-blog-card__category">Industria / Método</span>
             <h3 class="mt-blog-card__title">Construir sin mezcla: qué cambia cuando tu obra ya no depende del cemento y la arena</h3>
@@ -657,7 +761,14 @@ body { padding-top: 76px !important; }
       <!-- Artículo 3 -->
       <article class="mt-blog-card" data-category="industria">
         <a href="/murotech-blog-resistencia-fuego" style="display: block; text-decoration: none; color: inherit;">
-          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__thumb"><div class="bn-art">
+            <div class="bn-art__left">
+              <span class="bn-art__label">Blog · Murotech®</span>
+              <span class="bn-art__category">Técnico<br>/ Norma</span>
+              <span class="bn-art__brand"><strong>Sentido</strong> · plan editorial</span>
+            </div>
+            <div class="bn-art__number"><sup>N°</sup>03</div>
+          </div></div>
           <div class="mt-blog-card__body">
             <span class="mt-blog-card__category">Técnico / Norma</span>
             <h3 class="mt-blog-card__title">Resistencia al fuego en muros: qué dice la norma mexicana y cómo se mide</h3>
@@ -674,7 +785,14 @@ body { padding-top: 76px !important; }
       <!-- Artículo 4 -->
       <article class="mt-blog-card" data-category="instalacion">
         <a href="/murotech-blog-instalaciones" style="display: block; text-decoration: none; color: inherit;">
-          <div class="mt-blog-card__thumb"></div>
+          <div class="mt-blog-card__thumb"><div class="bn-art">
+            <div class="bn-art__left">
+              <span class="bn-art__label">Blog · Murotech®</span>
+              <span class="bn-art__category">Instalación</span>
+              <span class="bn-art__brand"><strong>Sentido</strong> · plan editorial</span>
+            </div>
+            <div class="bn-art__number"><sup>N°</sup>04</div>
+          </div></div>
           <div class="mt-blog-card__body">
             <span class="mt-blog-card__category">Instalación</span>
             <h3 class="mt-blog-card__title">Cómo coordinar instalaciones hidráulicas y eléctricas en un muro Murotech®</h3>
