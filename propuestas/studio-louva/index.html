@@ -258,17 +258,22 @@
   .service-price .amount small { font-size: 0.8rem; color: var(--text-dim); font-weight: 400; font-family: var(--font-mono); }
   .service-price .terms { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.05em; }
 
-  /* Pauta sub-block — adyacente al servicio operador */
+  /* Pauta sub-block — adyacente al servicio operador (destacado) */
   .ad-note {
-    margin-top: 1.4rem; background: var(--accent-soft); border: 1px dashed var(--accent-line);
-    border-radius: 3px; padding: 1.1rem 1.2rem;
+    margin-top: 1.4rem; position: relative;
+    background: linear-gradient(180deg, rgba(127,176,242,0.16), rgba(127,176,242,0.07));
+    border: 1px solid var(--accent-line); border-left: 4px solid var(--accent);
+    border-radius: 6px; padding: 1.15rem 1.25rem 1.2rem;
+    box-shadow: 0 4px 22px rgba(127,176,242,0.10);
   }
   .ad-note .ad-tag {
-    font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.5rem; display: block;
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--bg-deep); background: var(--accent-bright); font-weight: 600;
+    margin-bottom: 0.65rem; display: inline-block; padding: 0.32rem 0.7rem; border-radius: 999px;
   }
-  .ad-note p { font-size: 0.86rem; color: var(--text-dim); line-height: 1.6; }
-  .ad-note .ad-amount { color: var(--accent-bright); font-weight: 500; font-family: var(--font-mono); }
+  .ad-note .ad-tag::before { content: "📣 "; }
+  .ad-note p { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
+  .ad-note .ad-amount { color: var(--accent-bright); font-weight: 600; font-family: var(--font-mono); }
 
   /* ---------- INVESTMENT TABLE ---------- */
   .inv-table { margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
@@ -567,24 +572,21 @@
         <span class="service-num">SISTEMA 03 · Quick win</span>
         <h3>Gestión de redes sociales</h3>
         <div class="service-obj">Mostrar el "cómo" que nadie más muestra</div>
-        <p class="desc">Línea editorial mensual para Facebook e Instagram (las redes base) enfocada en demostrar dominio técnico: modelado BIM, coordinación de ingenierías, avances de obra en tiempo real, casos. Para mostrar el "cómo" trabajan apoyamos la producción con IA (visualizaciones, recreaciones de proceso y piezas explicativas), llevando contenido técnico complejo a formato claro y atractivo. Contenido que construye autoridad, no relleno.</p>
+        <p class="desc">Línea editorial mensual para Facebook, Instagram y LinkedIn enfocada en demostrar dominio técnico: modelado BIM, coordinación de ingenierías, avances de obra en tiempo real, casos. LinkedIn opera como espejo de Facebook e Instagram, publicando el mismo contenido adaptado al perfil B2B (desarrolladores, fondos y constructoras). Para mostrar el "cómo" trabajan apoyamos la producción con IA (visualizaciones, recreaciones de proceso y piezas explicativas), llevando contenido técnico complejo a formato claro y atractivo. Contenido que construye autoridad, no relleno.</p>
         <ul class="service-list">
           <li>15 publicaciones/mes con mix (reels, carruseles, posts)</li>
+          <li>3 redes gestionadas: Facebook, Instagram y LinkedIn (espejo)</li>
           <li>Producción del "cómo" asistida con IA (visualización de proceso)</li>
           <li>Línea editorial técnica + calendario</li>
           <li>Atención y comunidad L–V</li>
           <li>Remarketing y segmentación base</li>
         </ul>
         <div class="service-price">
-          <div class="amount">$7,500 <small>+ IVA / mes</small></div>
-          <div class="terms">Base: Facebook + Instagram</div>
+          <div class="amount">$8,500 <small>+ IVA / mes</small></div>
+          <div class="terms">Facebook + Instagram + LinkedIn</div>
         </div>
         <div class="ad-note">
-          <span class="ad-tag">+ Add-on LinkedIn (opcional)</span>
-          <p>Por el perfil B2B de Louva (desarrolladores, fondos y constructoras), recomendamos sumar LinkedIn como red adicional. Se cotiza como add-on sobre la gestión base de Facebook + Instagram.</p>
-        </div>
-        <div class="ad-note">
-          <span class="ad-tag">+ Pauta Meta Ads (opera con este sistema)</span>
+          <span class="ad-tag">Pauta Meta Ads — opera con este sistema</span>
           <p>Gestión de campañas en Meta para amplificar casos y captar desarrolladores. <strong style="color:var(--text);">Incluida sin costo adicional de gestión</strong> al contratar redes. Presupuesto de pauta directo a la plataforma: <span class="ad-amount">$5,000–$15,000 / mes</span> según objetivo (no es honorario de Sentido).</p>
         </div>
       </div>
@@ -624,7 +626,7 @@
           <div class="terms">Gestión mensual</div>
         </div>
         <div class="ad-note">
-          <span class="ad-tag">+ Pauta Google Ads (opera con este sistema)</span>
+          <span class="ad-tag">Pauta Google Ads — opera con este sistema</span>
           <p>Presupuesto de pauta directo a Google: <span class="ad-amount">$5,000–$15,000 / mes</span> según competencia del término. Es presupuesto de medios, no honorario de Sentido — Louva mantiene control total del gasto.</p>
         </div>
       </div>
@@ -673,19 +675,19 @@
     <!-- Paquete integral mensual -->
     <div class="inv-table reveal mt-3" style="margin-top:2rem;">
       <div class="inv-row head"><div class="inv-name">★ Paquete integral — operación mensual</div><div class="inv-amount">MXN / mes</div></div>
-      <div class="inv-row"><div class="inv-name">Gestión de redes (Facebook + Instagram) <small>Meta Ads incluida · LinkedIn como add-on opcional</small></div><div class="inv-amount">$7,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Gestión de redes (Facebook + Instagram + LinkedIn) <small>Meta Ads incluida</small></div><div class="inv-amount">$8,500 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Gestión de Google Ads <small>búsqueda pagada</small></div><div class="inv-amount">$4,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">CRM y automatización (GoHighLevel) <small>setup sin costo</small></div><div class="inv-amount">$4,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Google Business Profile + SEO local <small>incluido sin costo al contratar el paquete completo</small></div><div class="inv-amount"><span class="save">Incluido</span></div></div>
-      <div class="inv-row"><div class="inv-name">Descuento 10% por ecosistema completo</div><div class="inv-amount"><span class="save">− $1,550</span></div></div>
-      <div class="inv-row total"><div class="inv-name">Total paquete integral</div><div class="inv-amount">$13,950 + IVA / mes</div></div>
+      <div class="inv-row"><div class="inv-name">Descuento 10% por ecosistema completo</div><div class="inv-amount"><span class="save">− $1,650</span></div></div>
+      <div class="inv-row total"><div class="inv-name">Total paquete integral</div><div class="inv-amount">$14,850 + IVA / mes</div></div>
     </div>
 
     <!-- Bundle -->
     <div class="bundle reveal">
       <span class="bundle-tag">★ Escenario recomendado — Paquete integral</span>
       <h4>Todo el ecosistema operando junto, a un solo precio</h4>
-      <p>Al contratar redes, Google Ads y CRM como paquete, el <span class="save">Google Business Profile + SEO local queda incluido sin costo</span> y se aplica un <span class="save">10% de descuento sobre la operación mensual</span> — de $18,000 a <span class="save">$13,950 + IVA / mes</span> (un ahorro de $4,050 cada mes). La gestión de Meta Ads también va incluida sin honorario. Todo el sistema empuja en la misma dirección desde el día uno: una marca técnica que se encuentra, convence y captura. El desglose por servicio está en las tarjetas de arriba.</p>
+      <p>Al contratar redes, Google Ads y CRM como paquete, el <span class="save">Google Business Profile + SEO local queda incluido sin costo</span> y se aplica un <span class="save">10% de descuento sobre la operación mensual</span> — de $19,000 a <span class="save">$14,850 + IVA / mes</span> (un ahorro de $4,150 cada mes). La gestión de Meta Ads también va incluida sin honorario. Todo el sistema empuja en la misma dirección desde el día uno: una marca técnica que se encuentra, convence y captura. El desglose por servicio está en las tarjetas de arriba.</p>
     </div>
 
     <div class="note reveal">
