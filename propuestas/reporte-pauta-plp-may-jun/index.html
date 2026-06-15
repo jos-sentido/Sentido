@@ -472,15 +472,25 @@ function renderObjetivo(pf,per){
       :`Objetivos dentro de Meta de los 4 desarrollos con aumento: Leads Meta, LPs GHL y RMK.`;
   }
   document.getElementById('planRows').innerHTML=plan4.map((d,i)=>{
-    const o=PLAN[d.short][per]; let segs, tot;
-    if(isG){ tot=o.g; segs=seg('','g',o.g,`${d.short} · Visitas a la página (Google Ads)`,`Presupuesto Google · ${per}`); }
-    else{
-      tot=o.m+o.l+o.r; const gast=isJun?Math.min(o.m,metaGastado(d)):0;
-      const leads=gast>0?seg(BRONZE,'m',gast,`${d.short} · Leads Meta · gastado al ${CORTE}`,`${(gast/o.m*100).toFixed(0)}% del presupuesto Leads Meta`)+seg('','m',o.m-gast,`${d.short} · Leads Meta · falta por gastar`,`${((o.m-gast)/o.m*100).toFixed(0)}% del presupuesto Leads Meta`)
-                        :seg('','m',o.m,`${d.short} · Leads Meta`,`${(o.m/tot*100).toFixed(0)}% del presupuesto Meta`);
-      segs=leads+seg('','l',o.l,`${d.short} · LPs GHL`,`${(o.l/tot*100).toFixed(0)}% del presupuesto Meta`)+seg('','r',o.r,`${d.short} · RMK`,`${(o.r/tot*100).toFixed(0)}% del presupuesto Meta`);
+    const o=PLAN[d.short][per];
+    if(isG){
+      const segs=seg('','g',o.g,`${d.short} · Visitas a la página (Google Ads)`,`Presupuesto Google · ${per}`);
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(o.g,0)}</span></div><div class="stack">${segs}</div></div>`;
     }
-    return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+    const tot=o.m+o.l+o.r, gast=isJun?Math.min(o.m,metaGastado(d)):0;
+    const lps=seg('','l',o.l,`${d.short} · LPs GHL`,`${(o.l/tot*100).toFixed(0)}% del presupuesto Meta`), rmk=seg('','r',o.r,`${d.short} · RMK`,`${(o.r/tot*100).toFixed(0)}% del presupuesto Meta`);
+    if(!isJun){
+      const segs=seg('','m',o.m,`${d.short} · Leads Meta`,`${(o.m/tot*100).toFixed(0)}% del presupuesto Meta`)+lps+rmk;
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+    }
+    const line1=seg(BRONZE,'m',gast,`${d.short} · Leads Meta · gastado al ${CORTE}`,`${(gast/o.m*100).toFixed(0)}% del presupuesto Leads Meta`)
+               +seg('','m',o.m-gast,`${d.short} · Leads Meta · falta por gastar`,`${((o.m-gast)/o.m*100).toFixed(0)}% del presupuesto Leads Meta`)+lps+rmk;
+    const line2=seg('','m',o.m,`${d.short} · Leads Meta · total junio`,`${mxn(gast,0)} gastado + ${mxn(o.m-gast,0)} por gastar`)+lps+rmk;
+    return `<div class="prow" style="animation:fade .45s ${i*.06}s both">
+      <div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div>
+      <div class="plan-cap">Gastado · por gastar</div><div class="stack">${line1}</div>
+      <div class="plan-cap">Total por objetivo</div><div class="stack">${line2}</div>
+    </div>`;
   }).join('');
   if(isG){ const pg=sum(plan4.map(d=>PLAN[d.short][per].g));
     document.getElementById('pSum').innerHTML=`Google ${per}: <b>${mxn(pg,0)}</b> &nbsp;·&nbsp; objetivo: Visitas a la página`;
