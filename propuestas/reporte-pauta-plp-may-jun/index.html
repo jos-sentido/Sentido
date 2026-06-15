@@ -225,7 +225,7 @@
 
   <section class="panel" id="plan">
     <div class="phead"><h2>Distribución del nuevo plan por canal · 4 con aumento</h2>
-      <p>Reparto 15% Google · 50% Meta · 20% LPs GHL · 15% RMK. Vista del plan completo (todos los canales), independiente de la plataforma seleccionada arriba.</p></div>
+      <p id="planDesc"></p></div>
     <div class="ptools">
       <div class="pswitch" id="pswitch">
         <button class="pbtn active" data-p="Junio">Junio</button>
@@ -283,10 +283,10 @@ const TODATE={
 const CORTE="14 jun 2026";
 // New plan (proposal): channel amounts per period. g=Google m=Meta l=LPs GHL r=RMK
 const PLAN={
- Bolongo:{Junio:{g:13125,m:43750,l:17500,r:13125},Q3:{g:15000,m:50000,l:20000,r:15000},Q4:{g:15000,m:50000,l:20000,r:15000}},
- Amancay:{Junio:{g:9375,m:31250,l:12500,r:9375},Q3:{g:11719,m:39063,l:15625,r:11718},Q4:{g:14648,m:48828,l:19531,r:14649}},
- Essentia:{Junio:{g:7500,m:25000,l:10000,r:7500},Q3:{g:8250,m:27500,l:11000,r:8250},Q4:{g:9000,m:30000,l:12000,r:9000}},
- Brelia:{Junio:{g:6750,m:22500,l:9000,r:6750},Q3:{g:8250,m:27500,l:11000,r:8250},Q4:{g:9750,m:32500,l:13000,r:9750}}
+ Bolongo:{Junio:{g:13125,m:52500,l:13125,r:8750},Q3:{g:15000,m:50000,l:20000,r:15000},Q4:{g:15000,m:50000,l:20000,r:15000}},
+ Amancay:{Junio:{g:9375,m:37500,l:9375,r:6250},Q3:{g:11719,m:39063,l:15625,r:11718},Q4:{g:14648,m:48828,l:19531,r:14649}},
+ Essentia:{Junio:{g:7500,m:30000,l:7500,r:5000},Q3:{g:8250,m:27500,l:11000,r:8250},Q4:{g:9000,m:30000,l:12000,r:9000}},
+ Brelia:{Junio:{g:6750,m:27000,l:6750,r:4500},Q3:{g:8250,m:27500,l:11000,r:8250},Q4:{g:9750,m:32500,l:13000,r:9750}}
 };
 const PF={
  meta:{label:"Meta Ads",ck:"m",color:"var(--c-meta)",soft:"var(--c-meta-soft)",
@@ -423,16 +423,39 @@ function renderCmp(pf){
    </div>`;
 }
 
-document.getElementById('legend').innerHTML=CH.map(c=>`<span class="lg"><i style="background:var(${c.c})"></i>${c.label} <span style="color:var(--ink-faint)">${c.pct}</span></span>`).join('');
+const BRONZE="linear-gradient(90deg,#a0895a,#c9b783)";
+const metaGastado=d=>(TODATE.meta&&TODATE.meta[d.short]!=null)?Math.max(0,TODATE.meta[d.short]-SPEND.meta[d.short]):0;
 const planMax=Math.max(...plan4.flatMap(d=>Object.values(PLAN[d.short]).map(o=>o.g+o.m+o.l+o.r)));
 function renderPlan(per){
+  const isJun=per==='Junio';
+  const o0=PLAN[plan4[0].short][per], tot0=o0.g+o0.m+o0.l+o0.r;
+  document.getElementById('legend').innerHTML=
+    CH.map(c=>`<span class="lg"><i style="background:var(${c.c})"></i>${c.label} <span style="color:var(--ink-faint)">${(o0[c.k]/tot0*100).toFixed(0)}%</span></span>`).join('')
+    +(isJun?`<span class="lg"><i style="background:${BRONZE}"></i>Meta · gastado al ${CORTE}</span>`:'');
+  document.getElementById('planDesc').textContent=isJun
+    ?`Reparto junio rebalanceado hacia Meta leads: ${(o0.g/tot0*100).toFixed(0)}% Google · ${(o0.m/tot0*100).toFixed(0)}% Meta · ${(o0.l/tot0*100).toFixed(0)}% LPs GHL · ${(o0.r/tot0*100).toFixed(0)}% RMK. En la barra de Meta se muestra lo gastado al ${CORTE} y lo que falta por gastar.`
+    :`Reparto ${(o0.g/tot0*100).toFixed(0)}% Google · ${(o0.m/tot0*100).toFixed(0)}% Meta · ${(o0.l/tot0*100).toFixed(0)}% LPs GHL · ${(o0.r/tot0*100).toFixed(0)}% RMK. Vista del plan completo, independiente de la plataforma seleccionada arriba.`;
   document.getElementById('planRows').innerHTML=plan4.map((d,i)=>{
     const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r;
-    const segs=CH.map(c=>{const val=o[c.k];return `<div class="seg ${c.k}" data-w="${val/planMax*100}" data-l="${d.short} · ${c.label} (${c.pct})" data-v="${mxn(val,0)}" data-s="${(val/tot*100).toFixed(0)}% del total · ${per==='Junio'?'mensual':'trimestral'}"><span>${mxn(val,0)}</span></div>`}).join('');
+    const gast=isJun?Math.min(o.m,metaGastado(d)):0, falta=o.m-gast;
+    const segs=CH.map(c=>{
+      const val=o[c.k];
+      if(c.k==='m'&&gast>0){
+        return `<div class="seg m" style="background:${BRONZE}" data-w="${gast/planMax*100}" data-l="${d.short} · Meta gastado al ${CORTE}" data-v="${mxn(gast,0)}" data-s="${(gast/o.m*100).toFixed(0)}% del presupuesto Meta"><span>${mxn(gast,0)}</span></div>`
+             +`<div class="seg m" data-w="${falta/planMax*100}" data-l="${d.short} · Meta · falta por gastar" data-v="${mxn(falta,0)}" data-s="${(falta/o.m*100).toFixed(0)}% del presupuesto Meta"><span>${mxn(falta,0)}</span></div>`;
+      }
+      return `<div class="seg ${c.k}" data-w="${val/planMax*100}" data-l="${d.short} · ${c.label}" data-v="${mxn(val,0)}" data-s="${(val/tot*100).toFixed(0)}% del total · ${isJun?'mensual':'trimestral'}"><span>${mxn(val,0)}</span></div>`;
+    }).join('');
     return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
   }).join('');
-  const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r})), pmeta=sum(plan4.map(d=>PLAN[d.short][per].m)), pg=sum(plan4.map(d=>PLAN[d.short][per].g));
-  document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmeta,0)}</b> &nbsp;·&nbsp; Google: <b>${mxn(pg,0)}</b>`;
+  const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r}));
+  const pmeta=sum(plan4.map(d=>PLAN[d.short][per].m)), pg=sum(plan4.map(d=>PLAN[d.short][per].g));
+  if(isJun){
+    const gastMeta=sum(plan4.map(d=>Math.min(PLAN[d.short].Junio.m,metaGastado(d)))), faltaMeta=pmeta-gastMeta;
+    document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmeta,0)}</b> <span style="color:var(--ink-faint)">(gastado ${mxn(gastMeta,0)} · falta ${mxn(faltaMeta,0)})</span> &nbsp;·&nbsp; Google: <b>${mxn(pg,0)}</b>`;
+  }else{
+    document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmeta,0)}</b> &nbsp;·&nbsp; Google: <b>${mxn(pg,0)}</b>`;
+  }
   animateBars(document.getElementById('plan')); bindTips();
 }
 
