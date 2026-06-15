@@ -122,6 +122,8 @@
   .prow{padding:15px 0;border-top:1px solid var(--line2)}.prow:first-of-type{border-top:0}
   .prow .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
   .prow .name{font-size:15px;font-weight:600}.prow .tot{font-family:var(--serif);font-size:16px}
+  .plan-cap{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin:11px 0 5px}
+  .prow .stack+.plan-cap{margin-top:9px}
   .stack{height:34px;display:flex;border-radius:9px;overflow:hidden;background:var(--surface2)}
   .seg{height:100%;width:0;transition:width 1s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;justify-content:center;position:relative;min-width:0}
   .seg span{font-size:11.5px;font-weight:700;color:rgba(0,0,0,.74);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px}
@@ -297,7 +299,7 @@ const PF={
    cDesc:"Solo los 4 desarrollos con aumento. Gris = gasto Google de mayo; color = presupuesto Google de junio.",
    cap:"Gasto Google de mayo considerado: $2,500 por cuenta, según indicación."}
 };
-const CH=[{k:"g",label:"Google",pct:"15%",c:"--c-google"},{k:"m",label:"Meta",pct:"50%",c:"--c-meta"},{k:"l",label:"LPs GHL",pct:"20%",c:"--c-lp"},{k:"r",label:"RMK",pct:"15%",c:"--c-rmk"}];
+const CH=[{k:"g",label:"Google",pct:"15%",c:"--c-google"},{k:"m",label:"Leads Meta",pct:"50%",c:"--c-meta"},{k:"l",label:"LPs GHL",pct:"20%",c:"--c-lp"},{k:"r",label:"RMK",pct:"15%",c:"--c-rmk"}];
 
 const mxn=(n,d=0)=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
 const pct=n=>(n>=0?'+':'−')+Math.abs(n*100).toFixed(1)+'%';
@@ -426,35 +428,41 @@ function renderCmp(pf){
 const BRONZE="linear-gradient(90deg,#a0895a,#c9b783)";
 const metaGastado=d=>(TODATE.meta&&TODATE.meta[d.short]!=null)?Math.max(0,TODATE.meta[d.short]-SPEND.meta[d.short]):0;
 const planMax=Math.max(...plan4.flatMap(d=>Object.values(PLAN[d.short]).map(o=>o.g+o.m+o.l+o.r)));
+const pseg=(bg,cls,val,l,s)=>`<div class="seg ${cls}"${bg?` style="background:${bg}"`:''} data-w="${val/planMax*100}" data-l="${l}" data-v="${mxn(val,0)}" data-s="${s}"><span>${mxn(val,0)}</span></div>`;
 function renderPlan(per){
   const isJun=per==='Junio';
   const o0=PLAN[plan4[0].short][per], tot0=o0.g+o0.m+o0.l+o0.r;
   document.getElementById('legend').innerHTML=
     CH.map(c=>`<span class="lg"><i style="background:var(${c.c})"></i>${c.label} <span style="color:var(--ink-faint)">${(o0[c.k]/tot0*100).toFixed(0)}%</span></span>`).join('')
-    +(isJun?`<span class="lg"><i style="background:${BRONZE}"></i>Meta · gastado al ${CORTE}</span>`:'');
+    +(isJun?`<span class="lg"><i style="background:${BRONZE}"></i>Gastado al ${CORTE}</span>`:'');
   document.getElementById('planDesc').textContent=isJun
-    ?`Reparto junio rebalanceado hacia Meta leads: ${(o0.g/tot0*100).toFixed(0)}% Google · ${(o0.m/tot0*100).toFixed(0)}% Meta · ${(o0.l/tot0*100).toFixed(0)}% LPs GHL · ${(o0.r/tot0*100).toFixed(0)}% RMK. En la barra de Meta se muestra lo gastado al ${CORTE} y lo que falta por gastar.`
-    :`Reparto ${(o0.g/tot0*100).toFixed(0)}% Google · ${(o0.m/tot0*100).toFixed(0)}% Meta · ${(o0.l/tot0*100).toFixed(0)}% LPs GHL · ${(o0.r/tot0*100).toFixed(0)}% RMK. Vista del plan completo, independiente de la plataforma seleccionada arriba.`;
+    ?`Dos vistas del plan de junio (rebalanceado hacia Leads Meta): por objetivo y por plataforma (Google Ads vs Meta, que engloba Leads Meta + LPs GHL + RMK). En las barras de Meta se muestra lo gastado al ${CORTE} y lo que falta por gastar.`
+    :`Dos vistas del plan: por objetivo (Google · Leads Meta · LPs GHL · RMK) y por plataforma (Google Ads vs Meta, que engloba Leads Meta + LPs GHL + RMK).`;
   document.getElementById('planRows').innerHTML=plan4.map((d,i)=>{
-    const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r;
-    const gast=isJun?Math.min(o.m,metaGastado(d)):0, falta=o.m-gast;
-    const segs=CH.map(c=>{
-      const val=o[c.k];
-      if(c.k==='m'&&gast>0){
-        return `<div class="seg m" style="background:${BRONZE}" data-w="${gast/planMax*100}" data-l="${d.short} · Meta gastado al ${CORTE}" data-v="${mxn(gast,0)}" data-s="${(gast/o.m*100).toFixed(0)}% del presupuesto Meta"><span>${mxn(gast,0)}</span></div>`
-             +`<div class="seg m" data-w="${falta/planMax*100}" data-l="${d.short} · Meta · falta por gastar" data-v="${mxn(falta,0)}" data-s="${(falta/o.m*100).toFixed(0)}% del presupuesto Meta"><span>${mxn(falta,0)}</span></div>`;
-      }
-      return `<div class="seg ${c.k}" data-w="${val/planMax*100}" data-l="${d.short} · ${c.label}" data-v="${mxn(val,0)}" data-s="${(val/tot*100).toFixed(0)}% del total · ${isJun?'mensual':'trimestral'}"><span>${mxn(val,0)}</span></div>`;
+    const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r, gast=isJun?Math.min(o.m,metaGastado(d)):0;
+    const obj=CH.map(c=>{
+      if(c.k==='m'&&gast>0) return pseg(BRONZE,'m',gast,`${d.short} · Leads Meta · gastado al ${CORTE}`,`${(gast/o.m*100).toFixed(0)}% del presupuesto Leads Meta`)
+                                  +pseg('','m',o.m-gast,`${d.short} · Leads Meta · falta por gastar`,`${((o.m-gast)/o.m*100).toFixed(0)}% del presupuesto Leads Meta`);
+      return pseg('',c.k,o[c.k],`${d.short} · ${c.label}`,`${(o[c.k]/tot*100).toFixed(0)}% del total`);
     }).join('');
-    return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+    const metaPlat=o.m+o.l+o.r;
+    const plat=pseg('','g',o.g,`${d.short} · Google Ads`,`${(o.g/tot*100).toFixed(0)}% del total`)
+      +(gast>0?pseg(BRONZE,'m',gast,`${d.short} · Meta (plataforma) · gastado al ${CORTE}`,`${(gast/metaPlat*100).toFixed(0)}% del presupuesto Meta`)
+              +pseg('','m',metaPlat-gast,`${d.short} · Meta (plataforma) · falta por gastar`,`${((metaPlat-gast)/metaPlat*100).toFixed(0)}% del presupuesto Meta`)
+             :pseg('','m',metaPlat,`${d.short} · Meta (plataforma)`,`${(metaPlat/tot*100).toFixed(0)}% del total`));
+    return `<div class="prow" style="animation:fade .45s ${i*.06}s both">
+      <div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div>
+      <div class="plan-cap">Por objetivo</div><div class="stack">${obj}</div>
+      <div class="plan-cap">Por plataforma</div><div class="stack">${plat}</div>
+    </div>`;
   }).join('');
   const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r}));
-  const pmeta=sum(plan4.map(d=>PLAN[d.short][per].m)), pg=sum(plan4.map(d=>PLAN[d.short][per].g));
+  const pg=sum(plan4.map(d=>PLAN[d.short][per].g)), pmetaPlat=ptot-pg;
   if(isJun){
-    const gastMeta=sum(plan4.map(d=>Math.min(PLAN[d.short].Junio.m,metaGastado(d)))), faltaMeta=pmeta-gastMeta;
-    document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmeta,0)}</b> <span style="color:var(--ink-faint)">(gastado ${mxn(gastMeta,0)} · falta ${mxn(faltaMeta,0)})</span> &nbsp;·&nbsp; Google: <b>${mxn(pg,0)}</b>`;
+    const gastMeta=sum(plan4.map(d=>Math.min(PLAN[d.short].Junio.m,metaGastado(d)))), faltaMeta=pmetaPlat-gastMeta;
+    document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Google Ads: <b>${mxn(pg,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmetaPlat,0)}</b> <span style="color:var(--ink-faint)">(gastado ${mxn(gastMeta,0)} · falta ${mxn(faltaMeta,0)})</span>`;
   }else{
-    document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmeta,0)}</b> &nbsp;·&nbsp; Google: <b>${mxn(pg,0)}</b>`;
+    document.getElementById('pSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Google Ads: <b>${mxn(pg,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmetaPlat,0)}</b>`;
   }
   animateBars(document.getElementById('plan')); bindTips();
 }
