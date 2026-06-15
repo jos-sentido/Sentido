@@ -354,93 +354,35 @@ function renderGasto(pf){
 }
 
 function renderCmp(pf){
-  const C=PF[pf], sp=SPEND[pf], td=TODATE[pf];
+  const C=PF[pf], sp=SPEND[pf];
   document.getElementById('cPf').textContent=C.label;
-  const may4=sum(plan4.map(d=>sp[d.short])), jun4=sum(plan4.map(d=>PLAN[d.short].Junio[C.ck]));
-
-  if(!td){ // ---------- vista plan (p. ej. Google, sin gasto al día) ----------
-    document.getElementById('cDesc').textContent=C.cDesc;
-    const v=(jun4-may4)/may4;
-    const cards=[
-     {lbl:`${C.label} mayo · real`,val:mxn(may4,0),mt:"4 con aumento",accent:"#54586a"},
-     {lbl:`${C.label} junio · plan`,val:mxn(jun4,0),mt:"nuevo presupuesto",accent:C.color},
-     {lbl:"Variación",val:`<span class="chip ${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${pct(v)}</span>`,mt:"mayo → junio",accent:"var(--pos)"},
-     {lbl:"Aumento en pesos",val:mxn(jun4-may4,0),mt:`más inversión en ${C.label}`,accent:"var(--gold)"}
-    ];
-    document.getElementById('cCards').innerHTML=cards.map((c,i)=>cardHTML(c,i)).join('');
-    const cMax=Math.max(...plan4.flatMap(d=>[sp[d.short],PLAN[d.short].Junio[C.ck]]));
-    document.getElementById('cmpRows').innerHTML=plan4.map((d,i)=>{
-      const may=sp[d.short], jun=PLAN[d.short].Junio[C.ck], dif=jun-may, vv=dif/may, tot=may+jun;
-      return `<div class="crow" style="animation:fade .5s ${i*.07}s both">
-        <div class="top"><span class="name">${d.name}</span>
-          <span><span class="rtot tabnums">Total ${mxn(tot,0)}</span><span class="delta" style="color:${vv>=0?'var(--pos)':'var(--neg)'}"><small>Δ ${mxn(dif,0)}</small>${pct(vv)}</span></span></div>
-        <div class="barline"><span class="tag">Mayo</span><div class="track"><div class="fill mayo" data-w="${may/cMax*100}" data-l="${d.short} · ${C.label} mayo (real)" data-v="${mxn(may,2)}"></div></div><span class="amt tabnums">${mxn(may,0)}</span></div>
-        <div class="barline"><span class="tag">Junio</span><div class="track"><div class="fill" style="background:linear-gradient(90deg,${C.color},${C.soft})" data-w="${jun/cMax*100}" data-l="${d.short} · ${C.label} junio (plan)" data-v="${mxn(jun,0)}"></div></div><span class="amt tabnums">${mxn(jun,0)}</span></div>
-      </div>`;
-    }).join('');
-    const totAll=may4+jun4;
-    document.getElementById('cmpTotals').innerHTML=`
-     <div class="ttl">Totales ${C.label} · 4 con aumento — gastado + por gastar</div>
-     <div class="tstack">
-       <div class="tseg gastado" data-w="${may4/totAll*100}" data-l="Gastado · mayo (real)" data-v="${mxn(may4,2)}" data-s="${(may4/totAll*100).toFixed(0)}% del total"><span>Gastado · mayo · ${mxn(may4,0)}</span></div>
-       <div class="tseg" style="background:linear-gradient(90deg,${C.color},${C.soft});color:rgba(0,0,0,.74)" data-w="${jun4/totAll*100}" data-l="Por gastar · junio (plan)" data-v="${mxn(jun4,0)}" data-s="${(jun4/totAll*100).toFixed(0)}% del total"><span>Por gastar · junio · ${mxn(jun4,0)}</span></div>
-     </div>
-     <div class="tfigs">
-       <div class="tfig"><span class="l">Gastado · mayo</span><span class="v tabnums">${mxn(may4,0)}</span></div>
-       <div class="op">+</div>
-       <div class="tfig"><span class="l">Por gastar · junio</span><span class="v tabnums">${mxn(jun4,0)}</span></div>
-       <div class="op">=</div>
-       <div class="tfig total"><span class="l">Total mayo + junio</span><span class="v tabnums">${mxn(totAll,0)}</span></div>
-     </div>`;
-    return;
-  }
-
-  // ---------- vista de ejecución (Meta, con gasto real al día) ----------
-  document.getElementById('cDesc').textContent=`Solo los 4 desarrollos con aumento. Avance del presupuesto de junio en ${C.label} con gasto real al ${CORTE}: cuánto ya se ejecutó y cuánto falta por gastar.`;
-  const rows=plan4.map(d=>{
-    const may=sp[d.short], jPlan=PLAN[d.short].Junio[C.ck];
-    const jSpent=Math.max(0,td[d.short]-may), jFalta=Math.max(0,jPlan-jSpent);
-    return {d,may,jPlan,jSpent,jFalta};
-  });
-  const jSpentSum=sum(rows.map(x=>x.jSpent)), jFaltaSum=sum(rows.map(x=>x.jFalta));
-  const gastadoAlDia=may4+jSpentSum, avance=jSpentSum/jun4, totAll=may4+jun4;
+  document.getElementById('cDesc').textContent=`Solo los 4 desarrollos con aumento: gasto real de mayo vs presupuesto de junio (el aumento). El gastado a la fecha y lo que falta del periodo viven en la pestaña Plan.`;
+  const may4=sum(plan4.map(d=>sp[d.short])), jun4=sum(plan4.map(d=>PLAN[d.short].Junio[C.ck])), v=(jun4-may4)/may4;
   const cards=[
-   {lbl:`${C.label} junio · presupuesto`,val:mxn(jun4,0),mt:"4 con aumento",accent:C.color},
-   {lbl:"Gastado de junio · al día",val:mxn(jSpentSum,0),mt:`al ${CORTE}`,accent:"#a8946a"},
-   {lbl:"Falta por gastar · junio",val:mxn(jFaltaSum,0),mt:"presupuesto restante",accent:"var(--gold)"},
-   {lbl:"Avance de junio",val:`<span class="chip up">▲ ${(avance*100).toFixed(1)}%</span>`,mt:`${mxn(jSpentSum,0)} de ${mxn(jun4,0)}`,accent:"var(--pos)"}
+   {lbl:`${C.label} mayo · real`,val:mxn(may4,0),mt:"4 con aumento",accent:"#54586a"},
+   {lbl:`${C.label} junio · plan`,val:mxn(jun4,0),mt:"nuevo presupuesto",accent:C.color},
+   {lbl:"Variación",val:`<span class="chip ${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${pct(v)}</span>`,mt:"mayo → junio",accent:"var(--pos)"},
+   {lbl:"Aumento en pesos",val:mxn(jun4-may4,0),mt:`más inversión en ${C.label}`,accent:"var(--gold)"}
   ];
   document.getElementById('cCards').innerHTML=cards.map((c,i)=>cardHTML(c,i)).join('');
-  const cMax=Math.max(...rows.map(x=>Math.max(x.may,x.jPlan)));
-  const legend=`<div class="legend" style="margin-bottom:18px">
-    <span class="lg"><i style="background:linear-gradient(90deg,#3a3d49,#54586a)"></i>Mayo (real)</span>
-    <span class="lg"><i style="background:linear-gradient(90deg,#7d6f4f,#a8946a)"></i>Junio · gastado al ${CORTE}</span>
-    <span class="lg"><i style="background:linear-gradient(90deg,${C.color},${C.soft})"></i>Junio · falta por gastar</span></div>`;
-  document.getElementById('cmpRows').innerHTML=legend+rows.map((x,i)=>{
-    const {d,may,jPlan,jSpent,jFalta}=x, av=(jSpent/jPlan*100).toFixed(0);
+  const cMax=Math.max(...plan4.flatMap(d=>[sp[d.short],PLAN[d.short].Junio[C.ck]]));
+  document.getElementById('cmpRows').innerHTML=plan4.map((d,i)=>{
+    const may=sp[d.short], jun=PLAN[d.short].Junio[C.ck], dif=jun-may, vv=dif/may;
     return `<div class="crow" style="animation:fade .5s ${i*.07}s both">
       <div class="top"><span class="name">${d.name}</span>
-        <span><span class="rtot tabnums">Falta ${mxn(jFalta,0)}</span><span class="delta" style="color:var(--ink-dim)"><small>de ${mxn(jPlan,0)} plan</small>${av}% gastado</span></span></div>
+        <span><span class="rtot tabnums">+${mxn(dif,0)}</span><span class="delta" style="color:${vv>=0?'var(--pos)':'var(--neg)'}">${pct(vv)}</span></span></div>
       <div class="barline"><span class="tag">Mayo</span><div class="track"><div class="fill mayo" data-w="${may/cMax*100}" data-l="${d.short} · ${C.label} mayo (real)" data-v="${mxn(may,2)}"></div></div><span class="amt tabnums">${mxn(may,0)}</span></div>
-      <div class="barline"><span class="tag">Junio</span><div class="track split">
-        <div class="jseg" style="background:linear-gradient(90deg,#7d6f4f,#a8946a)" data-w="${jSpent/cMax*100}" data-l="${d.short} · gastado al ${CORTE}" data-v="${mxn(jSpent,2)}" data-s="${av}% del presupuesto de junio"></div>
-        <div class="jseg" style="background:linear-gradient(90deg,${C.color},${C.soft})" data-w="${jFalta/cMax*100}" data-l="${d.short} · falta por gastar" data-v="${mxn(jFalta,2)}" data-s="${(100-av)}% del presupuesto de junio"></div>
-      </div><span class="amt tabnums">${mxn(jPlan,0)}</span></div>
+      <div class="barline"><span class="tag">Junio</span><div class="track"><div class="fill" style="background:linear-gradient(90deg,${C.color},${C.soft})" data-w="${jun/cMax*100}" data-l="${d.short} · ${C.label} junio (plan)" data-v="${mxn(jun,0)}"></div></div><span class="amt tabnums">${mxn(jun,0)}</span></div>
     </div>`;
   }).join('');
   document.getElementById('cmpTotals').innerHTML=`
-   <div class="ttl">Ejecución ${C.label} · 4 con aumento — al ${CORTE}</div>
-   <div class="tstack">
-     <div class="tseg gastado" data-w="${may4/totAll*100}" data-l="Gastado · mayo (real)" data-v="${mxn(may4,2)}" data-s="${(may4/totAll*100).toFixed(0)}% del total"><span>Mayo · ${mxn(may4,0)}</span></div>
-     <div class="tseg" style="background:linear-gradient(90deg,#7d6f4f,#a8946a);color:rgba(0,0,0,.78)" data-w="${jSpentSum/totAll*100}" data-l="Gastado · junio al ${CORTE}" data-v="${mxn(jSpentSum,2)}" data-s="${(jSpentSum/totAll*100).toFixed(0)}% del total"><span>Junio al día · ${mxn(jSpentSum,0)}</span></div>
-     <div class="tseg" style="background:linear-gradient(90deg,${C.color},${C.soft});color:rgba(0,0,0,.74)" data-w="${jFaltaSum/totAll*100}" data-l="Falta por gastar · junio" data-v="${mxn(jFaltaSum,2)}" data-s="${(jFaltaSum/totAll*100).toFixed(0)}% del total"><span>Falta · ${mxn(jFaltaSum,0)}</span></div>
-   </div>
+   <div class="ttl">Totales ${C.label} · 4 con aumento — mayo (real) → junio (plan)</div>
    <div class="tfigs">
-     <div class="tfig"><span class="l">Gastado al día · 1 may–${CORTE}</span><span class="v tabnums">${mxn(gastadoAlDia,0)}</span></div>
-     <div class="op">+</div>
-     <div class="tfig"><span class="l">Falta por gastar · junio</span><span class="v tabnums">${mxn(jFaltaSum,0)}</span></div>
-     <div class="op">=</div>
-     <div class="tfig total"><span class="l">Total comprometido may+jun</span><span class="v tabnums">${mxn(totAll,0)}</span></div>
+     <div class="tfig"><span class="l">Mayo · real</span><span class="v tabnums">${mxn(may4,0)}</span></div>
+     <div class="op">→</div>
+     <div class="tfig"><span class="l">Junio · plan</span><span class="v tabnums">${mxn(jun4,0)}</span></div>
+     <div class="op" style="font-size:18px;color:var(--pos)">▲</div>
+     <div class="tfig total"><span class="l">Aumento</span><span class="v tabnums">${pct(v)} · ${mxn(jun4-may4,0)}</span></div>
    </div>`;
 }
 
