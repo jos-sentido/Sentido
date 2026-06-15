@@ -515,10 +515,18 @@ function renderCanal(per){
   document.getElementById('canalDesc').textContent=`Reparto por plataforma de los 4 desarrollos con aumento: Google Ads vs Meta (engloba Leads Meta + LPs GHL + RMK).${isJun?` En la barra de Meta se muestra lo gastado al ${CORTE} y lo que falta por gastar.`:''}`;
   document.getElementById('canalRows').innerHTML=plan4.map((d,i)=>{
     const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r, mp=o.m+o.l+o.r, gast=isJun?Math.min(o.m,metaGastado(d)):0;
-    const segs=seg('','g',o.g,`${d.short} · Google Ads`,`${(o.g/tot*100).toFixed(0)}% del total`)
-      +(gast>0?seg(BRONZE,'m',gast,`${d.short} · Meta · gastado al ${CORTE}`,`${(gast/mp*100).toFixed(0)}% del presupuesto Meta`)+seg('','m',mp-gast,`${d.short} · Meta · falta por gastar`,`${((mp-gast)/mp*100).toFixed(0)}% del presupuesto Meta`)
-              :seg('','m',mp,`${d.short} · Meta`,`${(mp/tot*100).toFixed(0)}% del total`));
-    return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+    const g=seg('','g',o.g,`${d.short} · Google Ads`,`${(o.g/tot*100).toFixed(0)}% del total`);
+    if(!isJun){
+      const segs=g+seg('','m',mp,`${d.short} · Meta`,`${(mp/tot*100).toFixed(0)}% del total`);
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+    }
+    const line1=g+seg(BRONZE,'m',gast,`${d.short} · Meta · gastado al ${CORTE}`,`${(gast/mp*100).toFixed(0)}% del presupuesto Meta`)+seg('','m',mp-gast,`${d.short} · Meta · falta por gastar`,`${((mp-gast)/mp*100).toFixed(0)}% del presupuesto Meta`);
+    const line2=g+seg('','m',mp,`${d.short} · Meta · total junio`,`${mxn(gast,0)} gastado + ${mxn(mp-gast,0)} por gastar`);
+    return `<div class="prow" style="animation:fade .45s ${i*.06}s both">
+      <div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div>
+      <div class="plan-cap">Gastado · por gastar</div><div class="stack">${line1}</div>
+      <div class="plan-cap">Total por canal</div><div class="stack">${line2}</div>
+    </div>`;
   }).join('');
   const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r})), pg=sum(plan4.map(d=>PLAN[d.short][per].g)), pmp=ptot-pg;
   const extra=isJun?(()=>{const g=sum(plan4.map(d=>Math.min(PLAN[d.short].Junio.m,metaGastado(d))));return ` <span style="color:var(--ink-faint)">(gastado ${mxn(g,0)} · falta ${mxn(pmp-g,0)})</span>`;})():'';
