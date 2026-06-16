@@ -125,6 +125,8 @@
   .prow .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
   .prow .name{font-size:15px;font-weight:600}.prow .tot{font-family:var(--serif);font-size:16px}
   .plan-cap{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin:11px 0 5px}
+  .prow-amts{display:none;font-size:11.5px;color:var(--ink-dim);margin-top:9px;line-height:1.6}
+  .prow-amts .dim{color:var(--ink-faint)}
   .warn{color:var(--neg);font-size:11px;font-weight:700;letter-spacing:.02em;margin-left:8px}
   .prow .stack+.plan-cap{margin-top:9px}
   .stack{height:34px;display:flex;border-radius:9px;overflow:hidden;background:var(--surface2)}
@@ -179,6 +181,8 @@
     .barline{grid-template-columns:48px 1fr}.barline .amt{grid-column:2;text-align:left;font-size:14px}
     .gal-grid{grid-template-columns:1fr 1fr;gap:11px}
     .lb-nav{width:40px;height:52px;font-size:24px}
+    .seg span{display:none}
+    .prow-amts{display:block}
   }
   @media(max-width:460px){.gal-grid{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -400,9 +404,6 @@ function syncP(scope){scope.querySelectorAll('.pbtn').forEach(x=>x.classList.tog
 function renderObjetivo(pf,per){
   const isJun=per==='Junio', isG=pf==='google';
   document.getElementById('oPf').textContent=PF[pf].label;
-  const max=isG?Math.max(...plan4.flatMap(d=>PERIODS.map(p=>PLAN[d.short][p].g)))
-               :Math.max(...plan4.flatMap(d=>PERIODS.map(p=>{const o=PLAN[d.short][p];return o.m+o.l+o.r;})));
-  const seg=(bg,cls,val,l,s)=>segHTML(max,bg,cls,val,l,s);
   if(isG){
     document.getElementById('legend').innerHTML=`<span class="lg"><i style="background:var(--c-google)"></i>Visitas a la página <span style="color:var(--ink-faint)">100%</span></span>`;
     document.getElementById('planDesc').textContent=`Presupuesto de Google Ads de los 4 desarrollos con aumento, dirigido al objetivo de visitas a la página.`;
@@ -422,14 +423,16 @@ function renderObjetivo(pf,per){
   document.getElementById('planRows').innerHTML=plan4.map((d,i)=>{
     const o=PLAN[d.short][per];
     if(isG){
+      const seg=(bg,cls,val,l,s)=>segHTML(o.g,bg,cls,val,l,s);
       const segs=seg('','g',o.g,`${d.short} · Visitas a la página (Google Ads)`,`Presupuesto Google · ${per}`);
-      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(o.g,0)}</span></div><div class="stack">${segs}</div></div>`;
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(o.g,0)}</span></div><div class="stack">${segs}</div><div class="prow-amts">Visitas a la página: <b>${mxn(o.g,0)}</b></div></div>`;
     }
     const tot=o.m+o.l+o.r;
+    const seg=(bg,cls,val,l,s)=>segHTML(tot,bg,cls,val,l,s);
     const lps=seg('','l',o.l,`${d.short} · LPs GHL`,`${(o.l/tot*100).toFixed(0)}% del presupuesto Meta · sin gasto aún`), rmk=seg('','r',o.r,`${d.short} · RMK`,`${(o.r/tot*100).toFixed(0)}% del presupuesto Meta · sin gasto aún`);
     if(!isJun){
       const segs=seg('','m',o.m,`${d.short} · Leads Meta`,`${(o.m/tot*100).toFixed(0)}% del presupuesto Meta`)+lps+rmk;
-      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div><div class="prow-amts">Leads Meta <b>${mxn(o.m,0)}</b> · LPs GHL <b>${mxn(o.l,0)}</b> · RMK <b>${mxn(o.r,0)}</b></div></div>`;
     }
     const spent=metaSpent(d), within=Math.min(spent,o.m), over=Math.max(0,spent-o.m), falta=Math.max(0,o.m-spent), leadsTot=Math.max(spent,o.m);
     const leads1=seg(BRONZE,'m',within,`${d.short} · Leads Meta · gastado ${RANGO}`,`${mxn(within,0)} de ${mxn(o.m,0)} presupuesto`)
@@ -441,6 +444,7 @@ function renderObjetivo(pf,per){
       <div class="top"><span class="name">${d.name}${over>0?' <span class="warn">⚠ Leads +'+mxn(over,0)+'</span>':''}</span><span class="tot tabnums">${mxn(tot,0)}</span></div>
       <div class="plan-cap">Gastado · por gastar</div><div class="stack">${line1}</div>
       <div class="plan-cap">Total por objetivo</div><div class="stack">${line2}</div>
+      <div class="prow-amts">Leads <b>${mxn(leadsTot,0)}</b> <span class="dim">(gastado ${mxn(within,0)}${over>0?' · +'+mxn(over,0)+' sobre':' · falta '+mxn(falta,0)})</span> · LPs GHL <b>${mxn(o.l,0)}</b> · RMK <b>${mxn(o.r,0)}</b></div>
     </div>`;
   }).join('');
   if(isG){ const pg=sum(plan4.map(d=>PLAN[d.short][per].g));
@@ -457,7 +461,6 @@ function renderObjetivo(pf,per){
 // ----- Plan por CANAL (cross-plataforma: Google Ads vs Meta) -----
 function renderCanal(per){
   const isJun=per==='Junio';
-  const seg=(bg,cls,val,l,s)=>segHTML(planMax,bg,cls,val,l,s);
   const o0=PLAN[plan4[0].short][per], tot0=o0.g+o0.m+o0.l+o0.r, mp0=o0.m+o0.l+o0.r;
   document.getElementById('canalLegend').innerHTML=
     `<span class="lg"><i style="background:var(--c-google)"></i>Google Ads <span style="color:var(--ink-faint)">${(o0.g/tot0*100).toFixed(0)}%</span></span>`
@@ -466,10 +469,11 @@ function renderCanal(per){
   document.getElementById('canalDesc').textContent=`Reparto por plataforma de los 4 desarrollos con aumento: Google Ads vs Meta (engloba Leads Meta + LPs GHL + RMK).${isJun?` En la barra de Meta se muestra el gastado real acumulado ${RANGO} (mayo + junio) y lo que falta del presupuesto.`:''}`;
   document.getElementById('canalRows').innerHTML=plan4.map((d,i)=>{
     const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r, mp=o.m+o.l+o.r, gast=isJun?Math.min(mp,metaSpent(d)):0;
+    const seg=(bg,cls,val,l,s)=>segHTML(tot,bg,cls,val,l,s);
     const g=seg('','g',o.g,`${d.short} · Google Ads`,`${(o.g/tot*100).toFixed(0)}% del total`);
     if(!isJun){
       const segs=g+seg('','m',mp,`${d.short} · Meta`,`${(mp/tot*100).toFixed(0)}% del total`);
-      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div></div>`;
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div><div class="prow-amts">Google Ads <b>${mxn(o.g,0)}</b> · Meta <b>${mxn(mp,0)}</b></div></div>`;
     }
     const line1=g+seg(BRONZE,'m',gast,`${d.short} · Meta · gastado ${RANGO}`,`${mxn(gast,0)} de ${mxn(mp,0)} presupuesto Meta`)+seg('','m',mp-gast,`${d.short} · Meta · falta por gastar`,`${((mp-gast)/mp*100).toFixed(0)}% del presupuesto Meta`);
     const line2=g+seg('','m',mp,`${d.short} · Meta · total`,`${mxn(gast,0)} gastado + ${mxn(mp-gast,0)} por gastar`);
@@ -477,6 +481,7 @@ function renderCanal(per){
       <div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div>
       <div class="plan-cap">Gastado · por gastar</div><div class="stack">${line1}</div>
       <div class="plan-cap">Total por canal</div><div class="stack">${line2}</div>
+      <div class="prow-amts">Google Ads <b>${mxn(o.g,0)}</b> · Meta <b>${mxn(mp,0)}</b> <span class="dim">(gastado ${mxn(gast,0)} · falta ${mxn(mp-gast,0)})</span></div>
     </div>`;
   }).join('');
   const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r})), pg=sum(plan4.map(d=>PLAN[d.short][per].g)), pmp=ptot-pg;
