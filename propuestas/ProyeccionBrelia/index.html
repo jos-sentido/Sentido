@@ -72,6 +72,10 @@
   .slider label{font-size:.85rem;color:var(--dim);white-space:nowrap}
   .slider input[type=range]{flex:1;accent-color:var(--accent)}
   .slider .out{font-weight:600;min-width:78px;text-align:right;font-variant-numeric:tabular-nums}
+  .reset{font-family:var(--font-sans);font-size:.8rem;font-weight:500;padding:7px 13px;border-radius:8px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent);cursor:pointer;white-space:nowrap;transition:.15s}
+  .reset:hover{filter:brightness(.97)}
+  .reset[disabled]{opacity:.5;cursor:default;border-color:var(--line);background:transparent;color:var(--dim)}
+  .approved-note{display:flex;align-items:center;gap:9px;font-size:.85rem;color:var(--dim);margin:-8px 0 24px}
   .alloc{display:flex;height:32px;width:100%;border-radius:9px;overflow:hidden;margin:6px 0}
   .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.8rem;color:var(--dim);margin-bottom:4px}
   .legend span{display:flex;align-items:center;gap:6px}
@@ -154,8 +158,10 @@
         <label>Inversión/mes</label>
         <input type="range" id="budget" min="20000" max="80000" step="1000" value="45000" />
         <span class="out" id="budgetOut">$45,000</span>
+        <button class="reset" id="reset" type="button" disabled>&#8634; Aprobado</button>
       </div>
     </div>
+    <p class="approved-note" id="approvedNote"><span class="tag">Presupuesto aprobado · $45,000/mes</span><span id="approvedMsg">Estás en el presupuesto aprobado.</span></p>
 
     <div class="grid cards-4" style="margin-bottom:24px">
       <div class="metric"><div class="k">Leads / mes</div><div class="v" id="mLeads">72</div></div>
@@ -239,7 +245,7 @@
 <script>
 (function(){
   var CPL={cons:{meta:680,lp:1020,google:380},base:{meta:623,lp:850,google:329},opt:{meta:567,lp:737,google:253}};
-  var HIST=46, scen='base';
+  var HIST=46, APPROVED=45000, scen='base';
   var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
   function split(b){var g=b*0.15,m=b*0.85;return{meta:m*71/101,lp:m*18/101,rmk:m*12/101,google:g};}
   function leadsFor(s,b){var x=split(b),c=CPL[s];return{meta:x.meta/c.meta,lp:x.lp/c.lp,google:x.google/c.google};}
@@ -275,6 +281,9 @@
     document.getElementById('mCpl').textContent=fmt(genBudget/tot);
     var d=Math.round((tot/HIST-1)*100);
     document.getElementById('mDelta').textContent=(d>=0?'+':'')+d+'%';
+    var atApproved=(budget===APPROVED);
+    document.getElementById('reset').disabled=atApproved;
+    document.getElementById('approvedMsg').textContent=atApproved?'Estás en el presupuesto aprobado.':('Explorando '+fmt(budget)+'/mes — toca “Aprobado” para volver a $45,000.');
     var datasets=[{k:'cons',c:'#B4B2A9'},{k:'base',c:'#378ADD'},{k:'opt',c:'#1D9E75'}].map(function(ds){
       var o=leadsFor(ds.k,budget);
       return {label:ds.k,backgroundColor:ds.c,borderRadius:4,data:[o.meta,o.lp,o.google].map(Math.round)};
@@ -286,6 +295,7 @@
         scales:{y:{beginAtZero:true,grid:{color:'rgba(31,28,23,.08)'},title:{display:true,text:'leads / mes'}},x:{grid:{display:false},ticks:{autoSkip:false}}}}});
   }
   document.getElementById('budget').addEventListener('input',render);
+  document.getElementById('reset').addEventListener('click',function(){document.getElementById('budget').value=APPROVED;render();});
   document.querySelectorAll('#seg button').forEach(function(btn){
     btn.addEventListener('click',function(){
       scen=btn.getAttribute('data-s');
