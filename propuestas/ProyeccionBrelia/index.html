@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Proyección de leads · Brelia — Nueva estrategia de pauta</title>
+<meta name="description" content="Proyección de leads para Brelia (PLP) bajo la nueva estrategia de pauta de $45,000/mes, con base en el desempeño real ene–jun 2026. Sentido Branding & Advertising." />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4EFE6; --surface:#FBF8F2; --surface-2:#EFE8DB;
+    --ink:#1F1C17; --dim:#6E6557; --line:rgba(31,28,23,.12);
+    --accent:#0F6E56; --accent-soft:#E1F5EE;
+    --purple:#534AB7; --teal:#1D9E75; --blue:#378ADD; --coral:#D85A30; --gray:#B4B2A9;
+    --font-display:'Fraunces',serif; --font-sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;letter-spacing:-.01em}
+  h1{font-size:clamp(2.4rem,6vw,4rem)}
+  h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.4rem}
+  h3{font-size:1.15rem;font-weight:600}
+  .eyebrow{font-family:var(--font-sans);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  p{color:var(--ink)}.dim{color:var(--dim)}
+  .lead{font-size:1.12rem;color:var(--dim);max-width:62ch}
+  /* hero */
+  .hero{padding:72px 0 56px;border-top:none;text-align:left}
+  .hero-logo{height:52px;width:auto;display:block;margin-bottom:2.6rem;opacity:.85}
+  @media(min-width:768px){.hero-logo{height:60px;margin-bottom:3.4rem}}
+  .hero h1{margin:.5rem 0 1rem}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.8rem}
+  .chip{font-size:.82rem;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--dim)}
+  .chip b{color:var(--ink);font-weight:600}
+  /* cards */
+  .grid{display:grid;gap:14px}
+  .cards-4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .cards-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .metric .k{font-size:.82rem;color:var(--dim);margin-bottom:6px}
+  .metric .v{font-family:var(--font-display);font-size:2rem;font-weight:600;letter-spacing:-.02em}
+  .metric .v.pos{color:var(--accent)}
+  .qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .qcard .top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .qcard .dot{width:30px;height:30px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.8rem;flex-shrink:0}
+  .qcard h3{font-size:1rem}
+  .qcard .up{margin-left:auto;color:var(--accent);font-size:1.1rem;line-height:1}
+  /* table */
+  .tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:.92rem}
+  .tbl th,.tbl td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+  .tbl th{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:600}
+  .tbl td b{font-weight:600}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .num{text-align:right;font-variant-numeric:tabular-nums}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+  @media(min-width:768px){.panel{padding:32px}}
+  /* controls */
+  .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:22px}
+  .seg{display:flex;gap:6px}
+  .seg button{font-family:var(--font-sans);font-size:.85rem;padding:7px 14px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--dim);cursor:pointer;transition:.15s}
+  .seg button:hover{background:var(--surface-2)}
+  .seg button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .slider{display:flex;align-items:center;gap:12px;flex:1;min-width:250px}
+  .slider label{font-size:.85rem;color:var(--dim);white-space:nowrap}
+  .slider input[type=range]{flex:1;accent-color:var(--accent)}
+  .slider .out{font-weight:600;min-width:78px;text-align:right;font-variant-numeric:tabular-nums}
+  .alloc{display:flex;height:32px;width:100%;border-radius:9px;overflow:hidden;margin:6px 0}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.8rem;color:var(--dim);margin-bottom:4px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .chart-box{position:relative;width:100%;height:300px;margin-top:8px}
+  .note{font-size:.85rem;color:var(--dim)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.04em;padding:3px 9px;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
+  .tag.muted{background:var(--surface-2);color:var(--dim)}
+  ul.clean{list-style:none;padding:0}
+  ul.clean li{padding:9px 0;border-bottom:1px solid var(--line);font-size:.93rem;color:var(--dim)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li b{color:var(--ink);font-weight:600}
+  .two{display:grid;gap:20px}
+  @media(min-width:820px){.two{grid-template-columns:1fr 1fr}}
+  /* closing */
+  .closing{background:var(--ink);color:#EDE7DA;text-align:center}
+  .closing h2{color:#fff}
+  .closing .lead{color:#BCB3A2;margin:1rem auto 0}
+  .closing-mark{height:36px;width:auto;opacity:.6;margin:2.4rem auto 0;display:block}
+  .foot{font-size:.85rem;color:#9A9182;margin-top:1.4rem}
+  .foot a{color:#BCB3A2}
+  .src{font-size:.8rem;color:var(--dim);margin-top:14px;font-style:italic}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <img src="/assets/logo-sentido-dark.png" alt="Sentido Branding & Advertising" class="hero-logo" />
+  <span class="eyebrow">Análisis de medios · Proyección</span>
+  <h1>Proyección de leads<br>para Brelia</h1>
+  <p class="lead">Qué esperar de la nueva estrategia de pauta con presupuesto ampliado a $45,000/mes, modelado sobre el desempeño real de la pauta de enero a junio de 2026.</p>
+  <div class="hero-meta">
+    <span class="chip">Cliente · <b>Brelia (PLP)</b></span>
+    <span class="chip">Pauta · <b>$45,000 / mes</b></span>
+    <span class="chip">Base · <b>desempeño real ene–jun 2026</b></span>
+    <span class="chip">Junio 2026</span>
+  </div>
+</header>
+
+<section class="wrap">
+  <span class="eyebrow">Resumen</span>
+  <h2>El titular</h2>
+  <p class="lead" style="margin-bottom:26px">Diversificar en cuatro objetivos con más presupuesto proyecta <b>~72 leads/mes</b> (+56% vs. el histórico), manteniendo el costo por lead estable. El salto no es solo de volumen: es un embudo más completo, medible y sostenido.</p>
+  <div class="grid cards-4">
+    <div class="metric"><div class="k">Leads / mes (base)</div><div class="v">≈ 72</div></div>
+    <div class="metric"><div class="k">vs. histórico (~46)</div><div class="v pos">+56%</div></div>
+    <div class="metric"><div class="k">CPL generación</div><div class="v">$564</div></div>
+    <div class="metric"><div class="k">Objetivos activos</div><div class="v">4</div></div>
+  </div>
+  <p class="note" style="margin-top:14px">Rango por escenario: <b>64 (conservador) – 72 (base) – 83 (optimista)</b> leads/mes. La métrica es <b>leads generados</b>; el seguimiento comercial en el CRM del cliente queda fuera de alcance.</p>
+</section>
+
+<section class="wrap">
+  <span class="eyebrow">Punto de partida</span>
+  <h2>Base histórica — estrategia anterior</h2>
+  <p class="lead">Periodo 1 ene – 18 jun 2026 (~5.5 meses). De aquí salen los costos por lead reales que anclan la proyección.</p>
+  <table class="tbl">
+    <thead><tr><th>Canal</th><th class="num">Resultado</th><th class="num">CPL / CPA</th><th class="num">Gasto</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><b>Meta Ads</b> (form nativo)</td><td class="num">218 leads</td><td class="num"><b>$566.85</b></td><td class="num">$123,574</td><td>Lead nativo</td></tr>
+      <tr><td><b>Google Ads</b> (Search)</td><td class="num">37 conv</td><td class="num"><b>~$253</b></td><td class="num">$9,351</td><td>Sin form / atribución</td></tr>
+      <tr><td><b>Total</b></td><td class="num">~46 / mes</td><td class="num">~$510</td><td class="num">~$24.2K/mes</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="src">Fuente: reporte de performance Meta + Google Ads (Sentido Medios), 1 ene – 18 jun 2026.</p>
+</section>
+
+<section class="wrap">
+  <span class="eyebrow">Modelo interactivo</span>
+  <h2>Proyección de leads</h2>
+  <p class="lead" style="margin-bottom:24px">Ajusta el escenario y el presupuesto para ver cómo se recalculan los leads por canal. Solo tres canales generan leads; RMK es permanencia de marca.</p>
+  <div class="panel">
+    <div class="controls">
+      <div class="seg" id="seg">
+        <button data-s="cons">Conservador</button>
+        <button data-s="base" class="on">Base</button>
+        <button data-s="opt">Optimista</button>
+      </div>
+      <div class="slider">
+        <label>Inversión/mes</label>
+        <input type="range" id="budget" min="20000" max="80000" step="1000" value="45000" />
+        <span class="out" id="budgetOut">$45,000</span>
+      </div>
+    </div>
+
+    <div class="grid cards-4" style="margin-bottom:24px">
+      <div class="metric"><div class="k">Leads / mes</div><div class="v" id="mLeads">72</div></div>
+      <div class="metric"><div class="k">vs. histórico (~46)</div><div class="v pos" id="mDelta">+56%</div></div>
+      <div class="metric"><div class="k">CPL generación</div><div class="v" id="mCpl">$564</div></div>
+      <div class="metric"><div class="k">Objetivos activos</div><div class="v">4</div></div>
+    </div>
+
+    <div class="note" style="margin-bottom:4px">Reparto del presupuesto</div>
+    <div class="alloc" id="alloc"></div>
+    <div class="legend" style="margin-bottom:26px">
+      <span><i class="sw" style="background:var(--purple)"></i>Meta Leads <b id="aMeta"></b></span>
+      <span><i class="sw" style="background:var(--teal)"></i>Landing Page <b id="aLp"></b></span>
+      <span><i class="sw" style="background:var(--blue)"></i>Google <b id="aGoo"></b></span>
+      <span><i class="sw" style="background:var(--coral)"></i>RMK <b id="aRmk"></b> · permanencia, 0 leads</span>
+    </div>
+
+    <div class="note" style="margin-bottom:6px">Leads/mes por canal de generación — rango por escenario</div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--gray)"></i>Conservador</span>
+      <span><i class="sw" style="background:var(--blue)"></i>Base</span>
+      <span><i class="sw" style="background:var(--teal)"></i>Optimista</span>
+    </div>
+    <div class="chart-box"><canvas id="chart" role="img" aria-label="Leads por canal de generación en tres escenarios">Meta Leads, Landing Page y Google con sus leads por escenario.</canvas></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <span class="eyebrow">Más allá del volumen</span>
+  <h2>Calidad esperada del lead</h2>
+  <p class="lead" style="margin-bottom:26px">El salto real está en cómo trabaja la mezcla: la calidad se vuelve medible, sube la intención promedio, RMK la sostiene hasta el contacto y mejora con el tiempo.</p>
+  <div class="grid cards-3" id="qual"></div>
+</section>
+
+<section class="wrap">
+  <span class="eyebrow">Sobre qué se sostiene</span>
+  <h2>Justificación de las cifras</h2>
+  <p class="lead">Ningún número se inventa: cada cifra es dato real del reporte ene–jun 2026, un múltiplo declarado sobre ese real, o input directo del cliente.</p>
+  <table class="tbl">
+    <thead><tr><th>Cifra</th><th>Base / referencia</th></tr></thead>
+    <tbody>
+      <tr><td><b>Histórico ~46 leads/mes</b></td><td>Dato real: 218 leads Meta + 37 conv Google ÷ 5.5 meses.</td></tr>
+      <tr><td><b>CPL Meta Leads $623</b></td><td>Dato real $566.85 (218 leads) + ~10% por saturación al escalar.</td></tr>
+      <tr><td><b>CPL Google $329</b></td><td>Dato real ~$253 (37 conv) + ~30% por escalar ~4× hacia keywords más caras.</td></tr>
+      <tr><td><b>CPL Landing Page $850</b></td><td>Sin histórico → 1.5× el CPL nativo (form con fricción = menos volumen, más calidad).</td></tr>
+      <tr><td><b>RMK = 0 leads</b></td><td>Por definición del objetivo: interacción / permanencia, no generación.</td></tr>
+      <tr><td><b>Reparto 15/85 y 71/18/12</b></td><td>Input directo del cliente.</td></tr>
+    </tbody>
+  </table>
+  <div class="two" style="margin-top:34px">
+    <div>
+      <h3 style="margin-bottom:10px">Lo que más puede mover la cifra</h3>
+      <ul class="clean">
+        <li><b>Landing Page</b> es el supuesto más incierto (sin histórico) y el de mayor upside si convierte bien.</li>
+        <li><b>RMK</b> no mueve el conteo de leads; su retorno está en los índices de contacto del CRM.</li>
+        <li><b>Google</b> puede acercarse al escenario optimista si se mantiene disciplina en keywords de alta intención.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:10px">Quick wins desde el día 1</h3>
+      <ul class="clean">
+        <li>Corregir el anuncio de Google: <b>$5.3 MDP / 1–3 rec</b> (hoy dice $4 MDP).</li>
+        <li><b>Reels-first</b> en Meta — el formato de menor CPL.</li>
+        <li><b>Avance de obra y % vendido</b> al frente — neutraliza la objeción #1 del mercado.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#7FD9BE">Cierre</span>
+    <h2>Más presupuesto, mejor repartido</h2>
+    <p class="lead">No es solo más leads: es un embudo más completo, medible por fuente, con una capa que protege y madura cada lead hasta el contacto — y que mejora solo con el tiempo.</p>
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-mark" />
+    <p class="foot">Sentido Branding &amp; Advertising · <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a><br>Proyección basada en desempeño real ene–jun 2026. Documento de trabajo para PLP.</p>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+  var CPL={cons:{meta:680,lp:1020,google:380},base:{meta:623,lp:850,google:329},opt:{meta:567,lp:737,google:253}};
+  var HIST=46, scen='base';
+  var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+  function split(b){var g=b*0.15,m=b*0.85;return{meta:m*71/101,lp:m*18/101,rmk:m*12/101,google:g};}
+  function leadsFor(s,b){var x=split(b),c=CPL[s];return{meta:x.meta/c.meta,lp:x.lp/c.lp,google:x.google/c.google};}
+  function total(o){return o.meta+o.lp+o.google;}
+
+  var QUAL=[
+    {n:'1',t:'Atribución',d:'De opaca a medible: cada lead llega etiquetado por fuente, campaña y creativo.'},
+    {n:'2',t:'Calificación',d:'Form propio que pregunta presupuesto, tipo de unidad e intención. Lead pre-calificado.'},
+    {n:'3',t:'Intención',d:'Search + Landing suben la temperatura promedio: gente que busca activamente o se auto-selecciona.'},
+    {n:'4',t:'Permanencia (RMK)',d:'Sostiene al lead captado mientras ventas lo trabaja; sube el índice de contacto y lo defiende de la competencia.'},
+    {n:'5',t:'Claim correcto',d:'Precio oficial $5.3 MDP en el anuncio: menos descalificación en la primera llamada.'},
+    {n:'6',t:'Confianza de entrega',d:'Avance de obra y % vendido neutralizan el miedo al retraso, la objeción #1 del mercado.'},
+    {n:'7',t:'Testing',d:'Más presupuesto y 4 frentes dan margen para A/B; la calidad promedio compone mes a mes.'}
+  ];
+  document.getElementById('qual').innerHTML=QUAL.map(function(q){
+    return '<div class="qcard"><div class="top"><span class="dot">'+q.n+'</span><h3>'+q.t+'</h3><span class="up">&#8599;</span></div><p class="dim" style="font-size:.9rem">'+q.d+'</p></div>';
+  }).join('');
+
+  var chart;
+  function render(){
+    var budget=+document.getElementById('budget').value;
+    document.getElementById('budgetOut').textContent=fmt(budget);
+    var b=split(budget);
+    document.getElementById('aMeta').textContent=fmt(b.meta);
+    document.getElementById('aLp').textContent=fmt(b.lp);
+    document.getElementById('aGoo').textContent=fmt(b.google);
+    document.getElementById('aRmk').textContent=fmt(b.rmk);
+    var cols={meta:'#534AB7',lp:'#1D9E75',google:'#378ADD',rmk:'#D85A30'};
+    var segs=[[b.meta,cols.meta],[b.lp,cols.lp],[b.google,cols.google],[b.rmk,cols.rmk]];
+    document.getElementById('alloc').innerHTML=segs.map(function(s){return '<div style="width:'+(s[0]/budget*100)+'%;background:'+s[1]+'"></div>';}).join('');
+    var L=leadsFor(scen,budget),tot=total(L),genBudget=b.meta+b.lp+b.google;
+    document.getElementById('mLeads').textContent=Math.round(tot);
+    document.getElementById('mCpl').textContent=fmt(genBudget/tot);
+    var d=Math.round((tot/HIST-1)*100);
+    document.getElementById('mDelta').textContent=(d>=0?'+':'')+d+'%';
+    var datasets=[{k:'cons',c:'#B4B2A9'},{k:'base',c:'#378ADD'},{k:'opt',c:'#1D9E75'}].map(function(ds){
+      var o=leadsFor(ds.k,budget);
+      return {label:ds.k,backgroundColor:ds.c,borderRadius:4,data:[o.meta,o.lp,o.google].map(Math.round)};
+    });
+    if(chart){chart.data.datasets=datasets;chart.update();return;}
+    chart=new Chart(document.getElementById('chart'),{type:'bar',
+      data:{labels:['Meta Leads','Landing Page','Google'],datasets:datasets},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{beginAtZero:true,grid:{color:'rgba(31,28,23,.08)'},title:{display:true,text:'leads / mes'}},x:{grid:{display:false},ticks:{autoSkip:false}}}}});
+  }
+  document.getElementById('budget').addEventListener('input',render);
+  document.querySelectorAll('#seg button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      scen=btn.getAttribute('data-s');
+      document.querySelectorAll('#seg button').forEach(function(b){b.classList.remove('on');});
+      btn.classList.add('on');render();
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
