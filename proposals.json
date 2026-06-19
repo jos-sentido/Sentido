@@ -1,0 +1,147 @@
+{
+  "proposals": [
+    {
+      "slug": "agua-costa-rica-vallarta",
+      "cliente": "Agua Costa Rica Vallarta",
+      "fecha": "2026-05-04",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "ampara",
+      "cliente": "AmPara Consultoría Inmobiliaria",
+      "fecha": "2026-05-26",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "clemente-70",
+      "cliente": "Clemente 70",
+      "fecha": "2026-05-22",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "desarrolladores",
+      "cliente": "Sistema para desarrolladores inmobiliarios",
+      "fecha": "2026-05-04",
+      "valor": null,
+      "servicios": [],
+      "estatus": "archivada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "fabiaa-clo",
+      "cliente": "Fabiaa Clo",
+      "fecha": "2026-05-04",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "g2b-constructora",
+      "cliente": "G2B Constructora",
+      "fecha": "2026-05-27",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "inmobiliarias",
+      "cliente": "Sistema para inmobiliarias",
+      "fecha": "2026-05-04",
+      "valor": null,
+      "servicios": [],
+      "estatus": "archivada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "jalie-vali",
+      "cliente": "JALIE-VALI Constructora",
+      "fecha": "2026-06-02",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "manufaktura",
+      "cliente": "Manufaktura Muebles",
+      "fecha": "2026-05-20",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "padel-club",
+      "cliente": "Padel Club",
+      "fecha": "2026-05-04",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "perforaciones-zacatecas",
+      "cliente": "Perforaciones Zacatecas",
+      "fecha": "2026-05-04",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "premium-used-car",
+      "cliente": "Premium Used Car",
+      "fecha": "2026-05-05",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    },
+    {
+      "slug": "studio-louva",
+      "cliente": "Studio Louva",
+      "fecha": "2026-06-10",
+      "valor": null,
+      "servicios": [],
+      "estatus": "enviada",
+      "notas": "",
+      "proximoPaso": "",
+      "fechaSeguimiento": null
+    }
+  ]
+}
