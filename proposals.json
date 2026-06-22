@@ -2,6 +2,7 @@
   "proposals": [
     {
       "slug": "agua-costa-rica-vallarta",
+      "tipo": "propuesta",
       "cliente": "Agua Costa Rica Vallarta",
       "fecha": "2026-05-04",
       "estatus": "enviada",
@@ -18,14 +19,15 @@
     },
     {
       "slug": "ampara",
+      "tipo": "propuesta",
       "cliente": "AmPara Consultoría Inmobiliaria",
       "fecha": "2026-05-26",
       "estatus": "enviada",
       "serviciosDisponibles": [
-        {"id": "redes",  "nombre": "Gestión de Redes Sociales",         "precio": 7500,  "tipo": "mensual"},
-        {"id": "gbp",    "nombre": "Google Business Profile",            "precio": 2500,  "tipo": "mensual"},
-        {"id": "gads",   "nombre": "Google Ads",                        "precio": 4000,  "tipo": "mensual"},
-        {"id": "crm",    "nombre": "CRM GoHighLevel",                   "precio": 4000,  "tipo": "mensual"},
+        {"id": "redes",  "nombre": "Gestión de Redes Sociales",            "precio": 7500,  "tipo": "mensual"},
+        {"id": "gbp",    "nombre": "Google Business Profile",              "precio": 2500,  "tipo": "mensual"},
+        {"id": "gads",   "nombre": "Google Ads",                           "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",    "nombre": "CRM GoHighLevel",                      "precio": 4000,  "tipo": "mensual"},
         {"id": "setup",  "nombre": "Setup: Diseño de sistema + Sitio web", "precio": 28000, "tipo": "unico"}
       ],
       "serviciosSeleccionados": [],
@@ -36,6 +38,7 @@
     },
     {
       "slug": "clemente-70",
+      "tipo": "propuesta",
       "cliente": "Clemente 70",
       "fecha": "2026-05-22",
       "estatus": "enviada",
@@ -52,18 +55,19 @@
     },
     {
       "slug": "desarrolladores",
+      "tipo": "comercial",
       "cliente": "Sistema para desarrolladores inmobiliarios",
       "fecha": "2026-05-04",
-      "estatus": "archivada",
+      "estatus": "activo",
+      "descripcion": "Presentación comercial del sistema integral para desarrolladores inmobiliarios.",
       "serviciosDisponibles": [],
       "serviciosSeleccionados": [],
       "notas": "",
-      "proximoPaso": "",
-      "fechaSeguimiento": null,
       "bitacora": []
     },
     {
       "slug": "fabiaa-clo",
+      "tipo": "propuesta",
       "cliente": "Fabiaa Clo",
       "fecha": "2026-05-04",
       "estatus": "enviada",
@@ -82,16 +86,17 @@
     },
     {
       "slug": "g2b-constructora",
+      "tipo": "propuesta",
       "cliente": "G2B Constructora",
       "fecha": "2026-05-27",
       "estatus": "enviada",
       "serviciosDisponibles": [
-        {"id": "sitio",   "nombre": "Sitio web institucional",           "precio": 25000, "tipo": "unico"},
-        {"id": "meta",    "nombre": "Paquete Meta (FB + IG)",            "precio": 7500,  "tipo": "mensual"},
-        {"id": "linkedin","nombre": "Complemento LinkedIn",              "precio": 3000,  "tipo": "mensual"},
-        {"id": "gbp-ads", "nombre": "GBP + Google Ads",                 "precio": 4500,  "tipo": "mensual"},
-        {"id": "crm",     "nombre": "Operación CRM mensual",            "precio": 4000,  "tipo": "mensual"},
-        {"id": "deck",    "nombre": "Diseño de presentación con IA",    "precio": 5000,  "tipo": "unico"}
+        {"id": "sitio",    "nombre": "Sitio web institucional",          "precio": 25000, "tipo": "unico"},
+        {"id": "meta",     "nombre": "Paquete Meta (FB + IG)",           "precio": 7500,  "tipo": "mensual"},
+        {"id": "linkedin", "nombre": "Complemento LinkedIn",             "precio": 3000,  "tipo": "mensual"},
+        {"id": "gbp-ads",  "nombre": "GBP + Google Ads",                "precio": 4500,  "tipo": "mensual"},
+        {"id": "crm",      "nombre": "Operación CRM mensual",           "precio": 4000,  "tipo": "mensual"},
+        {"id": "deck",     "nombre": "Diseño de presentación con IA",   "precio": 5000,  "tipo": "unico"}
       ],
       "serviciosSeleccionados": [],
       "notas": "",
@@ -101,18 +106,19 @@
     },
     {
       "slug": "inmobiliarias",
+      "tipo": "comercial",
       "cliente": "Sistema para inmobiliarias",
       "fecha": "2026-05-04",
-      "estatus": "archivada",
+      "estatus": "activo",
+      "descripcion": "Presentación comercial del sistema integral para agencias inmobiliarias.",
       "serviciosDisponibles": [],
       "serviciosSeleccionados": [],
       "notas": "",
-      "proximoPaso": "",
-      "fechaSeguimiento": null,
       "bitacora": []
     },
     {
       "slug": "jalie-vali",
+      "tipo": "propuesta",
       "cliente": "JALIE-VALI Constructora",
       "fecha": "2026-06-02",
       "estatus": "enviada",
@@ -127,6 +133,7 @@
     },
     {
       "slug": "manufaktura",
+      "tipo": "propuesta",
       "cliente": "Manufaktura Muebles",
       "fecha": "2026-05-20",
       "estatus": "enviada",
@@ -147,6 +154,7 @@
     },
     {
       "slug": "padel-club",
+      "tipo": "propuesta",
       "cliente": "Padel Club",
       "fecha": "2026-05-04",
       "estatus": "enviada",
@@ -161,13 +169,14 @@
     },
     {
       "slug": "perforaciones-zacatecas",
+      "tipo": "propuesta",
       "cliente": "Perforaciones Zacatecas",
       "fecha": "2026-05-04",
       "estatus": "enviada",
       "serviciosDisponibles": [
-        {"id": "fase1", "nombre": "Fase 01 · Software base + desarrollo",   "precio": 110000, "tipo": "unico"},
-        {"id": "fase2", "nombre": "Fase 02 · Módulos adicionales",          "precio": 40000,  "tipo": "unico"},
-        {"id": "mant",  "nombre": "Mantenimiento mensual (hosting + ops)",  "precio": 9000,   "tipo": "mensual"}
+        {"id": "fase1", "nombre": "Fase 01 · Software base + desarrollo",  "precio": 110000, "tipo": "unico"},
+        {"id": "fase2", "nombre": "Fase 02 · Módulos adicionales",         "precio": 40000,  "tipo": "unico"},
+        {"id": "mant",  "nombre": "Mantenimiento mensual (hosting + ops)", "precio": 9000,   "tipo": "mensual"}
       ],
       "serviciosSeleccionados": [],
       "notas": "",
@@ -177,17 +186,18 @@
     },
     {
       "slug": "premium-used-car",
+      "tipo": "propuesta",
       "cliente": "Premium Used Car",
       "fecha": "2026-05-05",
       "estatus": "enviada",
       "serviciosDisponibles": [
-        {"id": "sitio",    "nombre": "Sitio web",                          "precio": 20000, "tipo": "unico"},
-        {"id": "redes",    "nombre": "Gestión de Redes Sociales",          "precio": 7500,  "tipo": "mensual"},
-        {"id": "gbp",      "nombre": "Google My Business + SEO local",     "precio": 4000,  "tipo": "mensual"},
-        {"id": "gads",     "nombre": "Google Ads Search",                  "precio": 4000,  "tipo": "mensual"},
-        {"id": "meta-ads", "nombre": "Meta Ads (Instagram + Facebook)",    "precio": 6000,  "tipo": "mensual"},
-        {"id": "crm",      "nombre": "CRM + Automatización",               "precio": 3500,  "tipo": "mensual"},
-        {"id": "chat",     "nombre": "Chat + WhatsApp Business",           "precio": 3000,  "tipo": "mensual"}
+        {"id": "sitio",    "nombre": "Sitio web",                       "precio": 20000, "tipo": "unico"},
+        {"id": "redes",    "nombre": "Gestión de Redes Sociales",       "precio": 7500,  "tipo": "mensual"},
+        {"id": "gbp",      "nombre": "Google My Business + SEO local",  "precio": 4000,  "tipo": "mensual"},
+        {"id": "gads",     "nombre": "Google Ads Search",               "precio": 4000,  "tipo": "mensual"},
+        {"id": "meta-ads", "nombre": "Meta Ads (Instagram + Facebook)", "precio": 6000,  "tipo": "mensual"},
+        {"id": "crm",      "nombre": "CRM + Automatización",            "precio": 3500,  "tipo": "mensual"},
+        {"id": "chat",     "nombre": "Chat + WhatsApp Business",        "precio": 3000,  "tipo": "mensual"}
       ],
       "serviciosSeleccionados": [],
       "notas": "",
@@ -197,16 +207,17 @@
     },
     {
       "slug": "studio-louva",
+      "tipo": "propuesta",
       "cliente": "Studio Louva",
       "fecha": "2026-06-10",
       "estatus": "enviada",
       "serviciosDisponibles": [
-        {"id": "sitio", "nombre": "Sitio web estratégico",              "precio": 25000, "tipo": "unico"},
-        {"id": "marca", "nombre": "Consolidación de marca",             "precio": 15000, "tipo": "unico"},
-        {"id": "redes", "nombre": "Gestión de redes sociales",          "precio": 8500,  "tipo": "mensual"},
-        {"id": "gbp",   "nombre": "Google Business Profile + SEO local","precio": 2500,  "tipo": "mensual"},
-        {"id": "gads",  "nombre": "Google Ads",                         "precio": 4000,  "tipo": "mensual"},
-        {"id": "crm",   "nombre": "CRM y automatización",               "precio": 4000,  "tipo": "mensual"}
+        {"id": "sitio", "nombre": "Sitio web estratégico",               "precio": 25000, "tipo": "unico"},
+        {"id": "marca", "nombre": "Consolidación de marca",              "precio": 15000, "tipo": "unico"},
+        {"id": "redes", "nombre": "Gestión de redes sociales",           "precio": 8500,  "tipo": "mensual"},
+        {"id": "gbp",   "nombre": "Google Business Profile + SEO local", "precio": 2500,  "tipo": "mensual"},
+        {"id": "gads",  "nombre": "Google Ads",                          "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",   "nombre": "CRM y automatización",                "precio": 4000,  "tipo": "mensual"}
       ],
       "serviciosSeleccionados": [],
       "notas": "",

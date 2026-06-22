@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin · Propuestas Sentido</title>
+  <title>Admin · Sentido</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,6 +28,9 @@
       --s-ganada:       #2D6B4A; --s-ganada-t:     #5DC98A;
       --s-perdida:      #7A2B2B; --s-perdida-t:    #E88080;
       --s-archivada:    #2A2A38; --s-archivada-t:  #55524E;
+      --s-borrador:     #2A2A38; --s-borrador-t:   #7A7670;
+      --s-activo:       #2D6B4A; --s-activo-t:     #5DC98A;
+      --s-archivado:    #1A1A22; --s-archivado-t:  #3A3830;
     }
 
     html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 14px; }
@@ -36,10 +39,7 @@
     .view.active { display: flex; }
 
     /* ── LOGIN ── */
-    #view-login {
-      align-items: center; justify-content: center;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, #1A1A24 0%, var(--bg) 70%);
-    }
+    #view-login { align-items: center; justify-content: center; background: radial-gradient(ellipse 60% 50% at 50% 0%, #1A1A24 0%, var(--bg) 70%); }
     .login-box { width: 100%; max-width: 380px; padding: 48px 40px; background: var(--surface); border: 1px solid var(--border); }
     .login-logo { display: block; height: 32px; margin: 0 auto 40px; }
     .login-label { display: block; margin-bottom: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
@@ -63,17 +63,24 @@
     .topbar-logout { padding: 7px 14px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); transition: border-color .15s, color .15s; }
     .topbar-logout:hover { border-color: var(--gold-dim); color: var(--text); }
 
+    /* ── SECTION TABS ── */
+    .section-tabs { display: flex; background: var(--surface2); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .section-tab { padding: 14px 28px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); cursor: pointer; border: none; border-bottom: 2px solid transparent; background: none; transition: color .12s, border-color .12s; }
+    .section-tab:hover { color: var(--text); }
+    .section-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ── STATS ── */
     .stats { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); overflow-x: auto; scrollbar-width: none; }
     .stats::-webkit-scrollbar { display: none; }
-    .stat { flex: 1; min-width: 90px; display: flex; flex-direction: column; align-items: center; padding: 16px 12px; border-right: 1px solid var(--border); cursor: pointer; transition: background .12s; }
+    .stat { flex: 1; min-width: 80px; display: flex; flex-direction: column; align-items: center; padding: 14px 10px; border-right: 1px solid var(--border); cursor: pointer; transition: background .12s; }
     .stat:last-child { border-right: none; }
     .stat:hover, .stat.active { background: var(--surface2); }
-    .stat-n { font-family: var(--font-serif); font-size: 26px; font-style: italic; color: var(--text); line-height: 1; margin-bottom: 6px; }
-    .stat-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .stat-n { font-family: var(--font-serif); font-size: 24px; font-style: italic; color: var(--text); line-height: 1; margin-bottom: 5px; }
+    .stat-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-align: center; }
     .stat.active .stat-n { color: var(--gold); }
     .stat.active .stat-label { color: var(--gold-dim); }
 
-    .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 28px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .toolbar { display: flex; align-items: center; gap: 12px; padding: 14px 28px; border-bottom: 1px solid var(--border); background: var(--bg); }
     .search-wrap { position: relative; flex: 1; max-width: 320px; }
     .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
     .search-input { width: 100%; padding: 9px 12px 9px 36px; background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-size: 13px; outline: none; transition: border-color .15s; }
@@ -84,7 +91,7 @@
     .grid { padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; align-content: start; flex: 1; }
     .empty { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
 
-    /* card */
+    /* ── CARDS ── */
     .card { background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; transition: border-color .15s; }
     .card:hover { border-color: var(--border2); }
     .card-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 18px 18px 12px; }
@@ -92,6 +99,7 @@
     .card-date { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
     .card-body { padding: 0 18px 16px; flex: 1; }
     .card-client { font-family: var(--font-serif); font-size: 20px; font-style: italic; color: var(--text); line-height: 1.15; margin-bottom: 12px; }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
     .card-services { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; min-height: 20px; }
     .tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border2); padding: 3px 7px; }
     .card-valor { font-family: var(--font-mono); font-size: 11px; color: var(--gold); margin-bottom: 10px; }
@@ -103,12 +111,17 @@
     .btn-ghost { padding: 6px 10px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: border-color .12s, color .12s; }
     .btn-ghost:hover { border-color: var(--gold-dim); color: var(--text); }
 
+    /* status — propuestas */
     .s-enviada     { background: var(--s-enviada);     color: var(--s-enviada-t); }
     .s-vista       { background: var(--s-vista);       color: var(--s-vista-t); }
     .s-negociacion { background: var(--s-negociacion); color: var(--s-negociacion-t); }
     .s-ganada      { background: var(--s-ganada);      color: var(--s-ganada-t); }
     .s-perdida     { background: var(--s-perdida);     color: var(--s-perdida-t); }
     .s-archivada   { background: var(--s-archivada);   color: var(--s-archivada-t); }
+    /* status — comercial */
+    .s-borrador    { background: var(--s-borrador);    color: var(--s-borrador-t); }
+    .s-activo      { background: var(--s-activo);      color: var(--s-activo-t); }
+    .s-archivado   { background: var(--s-archivado);   color: var(--s-archivado-t); }
 
     /* ── DRAWER ── */
     .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 100; }
@@ -130,10 +143,9 @@
     .field-textarea { min-height: 80px; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .field-hint { margin-top: 5px; font-size: 11px; color: var(--muted); }
-
     .drawer-section { font-family: var(--font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 18px; }
 
-    /* ── SERVICE CHECKBOXES ── */
+    /* ── SERVICES ── */
     .svc-group { margin-bottom: 16px; }
     .svc-group-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; display: block; }
     .svc-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; margin-bottom: 4px; border: 1px solid var(--border); background: var(--bg); cursor: pointer; transition: border-color .12s, background .12s; user-select: none; }
@@ -148,8 +160,6 @@
     .svc-price { font-family: var(--font-mono); font-size: 11px; color: var(--muted); flex-shrink: 0; }
     .svc-item.checked .svc-price { color: var(--gold); }
     .svc-empty { font-size: 12px; color: var(--faint); font-style: italic; padding: 8px 0; }
-
-    /* totals */
     .svc-totals { display: flex; gap: 12px; margin-top: 14px; padding: 12px; background: var(--surface2); border: 1px solid var(--border); }
     .svc-total-item { flex: 1; }
     .svc-total-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
@@ -161,9 +171,7 @@
     .bitacora-form-title { font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .bitacora-add-btn { margin-top: 10px; padding: 9px 16px; background: none; border: 1px solid var(--gold-dim); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); transition: background .15s; }
     .bitacora-add-btn:hover { background: rgba(201,184,150,.08); }
-    .bitacora-add-btn:disabled { opacity: .4; cursor: not-allowed; }
-
-    .bitacora-timeline { display: flex; flex-direction: column; gap: 0; }
+    .bitacora-timeline { display: flex; flex-direction: column; }
     .bitacora-entry { display: flex; gap: 14px; position: relative; padding-bottom: 20px; }
     .bitacora-entry:last-child { padding-bottom: 0; }
     .bitacora-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding-top: 4px; }
@@ -179,7 +187,7 @@
     .bitacora-notas { font-size: 12px; color: var(--muted); line-height: 1.5; white-space: pre-wrap; }
     .bitacora-empty { font-size: 12px; color: var(--faint); font-style: italic; }
 
-    /* drawer footer buttons */
+    /* ── DRAWER FOOTER ── */
     .btn-save { flex: 1; padding: 12px; background: var(--gold); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #1A1A1A; font-weight: 700; transition: opacity .15s; }
     .btn-save:hover { opacity: .85; }
     .btn-save:disabled { opacity: .5; cursor: not-allowed; }
@@ -199,8 +207,8 @@
 
     @media (max-width: 600px) {
       .topbar { padding: 0 16px; }
-      .toolbar { padding: 12px 16px; flex-wrap: wrap; }
-      .grid { padding: 16px; }
+      .section-tab { padding: 12px 16px; }
+      .toolbar, .grid { padding: 12px 16px; }
       .drawer { width: 100vw; }
       .field-row { grid-template-columns: 1fr; }
       .svc-totals { flex-direction: column; gap: 8px; }
@@ -209,13 +217,11 @@
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="view-loading" class="view active">
   <div class="spinner"></div>
-  <p class="loading-text">Cargando propuestas</p>
+  <p class="loading-text">Cargando</p>
 </div>
 
-<!-- LOGIN -->
 <div id="view-login" class="view">
   <div class="login-box">
     <img src="https://propuestas.sentido.mx/assets/logo-sentido-light.png" alt="Sentido" class="login-logo">
@@ -226,31 +232,27 @@
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="view-dash" class="view">
   <header class="topbar">
     <img src="https://propuestas.sentido.mx/assets/logo-sentido-light.png" alt="Sentido" class="topbar-logo">
     <div class="topbar-sep"></div>
-    <span class="topbar-title">Propuestas</span>
+    <span class="topbar-title" id="topbar-title">Propuestas a clientes</span>
     <div class="topbar-spacer"></div>
-    <button class="topbar-add" id="btn-new">+ Nueva</button>
+    <button class="topbar-add" id="btn-new">+ Nuevo</button>
     <button class="topbar-logout" id="btn-logout">Salir</button>
   </header>
 
-  <div class="stats" id="stats-bar">
-    <div class="stat active" data-filter="all"><span class="stat-n" id="n-all">0</span><span class="stat-label">Total</span></div>
-    <div class="stat" data-filter="enviada"><span class="stat-n" id="n-enviada">0</span><span class="stat-label">Enviadas</span></div>
-    <div class="stat" data-filter="vista"><span class="stat-n" id="n-vista">0</span><span class="stat-label">Vistas</span></div>
-    <div class="stat" data-filter="en negociación"><span class="stat-n" id="n-negociacion">0</span><span class="stat-label">Negociando</span></div>
-    <div class="stat" data-filter="ganada"><span class="stat-n" id="n-ganada">0</span><span class="stat-label">Ganadas</span></div>
-    <div class="stat" data-filter="perdida"><span class="stat-n" id="n-perdida">0</span><span class="stat-label">Perdidas</span></div>
-    <div class="stat" data-filter="archivada"><span class="stat-n" id="n-archivada">0</span><span class="stat-label">Archivadas</span></div>
+  <div class="section-tabs" id="section-tabs">
+    <button class="section-tab active" data-tipo="propuesta">Propuestas a clientes</button>
+    <button class="section-tab" data-tipo="comercial">Activos comerciales</button>
   </div>
+
+  <div class="stats" id="stats-bar"></div>
 
   <div class="toolbar">
     <div class="search-wrap">
       <svg class="search-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="search-input" class="search-input" placeholder="Buscar cliente o slug…">
+      <input type="text" id="search-input" class="search-input" placeholder="Buscar…">
     </div>
     <select id="sort-select" class="sort-select">
       <option value="fecha-desc">Más reciente</option>
@@ -267,20 +269,24 @@
 <div class="drawer-overlay" id="drawer-overlay"></div>
 <aside class="drawer" id="drawer">
   <div class="drawer-head">
-    <span class="drawer-title" id="drawer-title">Nueva propuesta</span>
+    <span class="drawer-title" id="drawer-title">Nuevo registro</span>
     <button class="drawer-close" id="drawer-close">×</button>
   </div>
-  <div class="drawer-body" id="drawer-body">
+  <div class="drawer-body">
 
     <p class="drawer-section">Identificación</p>
     <div class="field">
       <label class="field-label">Slug / URL</label>
-      <input type="text" id="f-slug" class="field-input" placeholder="nombre-del-cliente">
-      <p class="field-hint">propuestas.sentido.mx/<span id="slug-preview">…</span></p>
+      <input type="text" id="f-slug" class="field-input" placeholder="nombre-del-slug">
+      <p class="field-hint" id="slug-hint">…</p>
     </div>
     <div class="field">
-      <label class="field-label">Cliente</label>
-      <input type="text" id="f-cliente" class="field-input" placeholder="Nombre del cliente o empresa">
+      <label class="field-label">Nombre</label>
+      <input type="text" id="f-cliente" class="field-input" placeholder="Nombre del cliente o activo">
+    </div>
+    <div class="field" id="f-desc-wrap" style="display:none">
+      <label class="field-label">Descripción breve</label>
+      <input type="text" id="f-descripcion" class="field-input" placeholder="Ej. Presentación comercial para desarrolladores">
     </div>
     <div class="field-row">
       <div class="field">
@@ -289,52 +295,57 @@
       </div>
       <div class="field">
         <label class="field-label">Estatus</label>
-        <select id="f-estatus" class="field-select">
-          <option value="enviada">Enviada</option>
-          <option value="vista">Vista</option>
-          <option value="en negociación">En negociación</option>
-          <option value="ganada">Ganada</option>
-          <option value="perdida">Perdida</option>
-          <option value="archivada">Archivada</option>
-        </select>
+        <select id="f-estatus" class="field-select"></select>
       </div>
     </div>
 
-    <p class="drawer-section" style="margin-top:8px">Servicios cotizados</p>
-    <div id="svc-list">
-      <p class="svc-empty">Abre una propuesta existente para ver sus servicios.</p>
-    </div>
-    <div class="svc-totals">
-      <div class="svc-total-item">
-        <div class="svc-total-label">Mensual</div>
-        <div class="svc-total-val zero" id="total-mensual">$0</div>
-      </div>
-      <div class="svc-total-item">
-        <div class="svc-total-label">Setup / Único</div>
-        <div class="svc-total-val zero" id="total-unico">$0</div>
+    <!-- SERVICIOS (solo propuestas) -->
+    <div id="svc-section">
+      <p class="drawer-section" style="margin-top:8px">Servicios cotizados</p>
+      <div id="svc-list"></div>
+      <div class="svc-totals">
+        <div class="svc-total-item">
+          <div class="svc-total-label">Mensual</div>
+          <div class="svc-total-val zero" id="total-mensual">$0</div>
+        </div>
+        <div class="svc-total-item">
+          <div class="svc-total-label">Setup / Único</div>
+          <div class="svc-total-val zero" id="total-unico">$0</div>
+        </div>
       </div>
     </div>
 
-    <p class="drawer-section" style="margin-top:24px">Seguimiento</p>
-    <div class="bitacora-form">
-      <div class="bitacora-form-title">Nueva entrada</div>
-      <div class="field-row" style="margin-bottom:10px">
-        <div class="field" style="margin:0">
-          <label class="field-label">Fecha</label>
-          <input type="date" id="b-fecha" class="field-input">
-        </div>
-        <div class="field" style="margin:0">
-          <label class="field-label">Próximo paso</label>
-          <input type="text" id="b-proximo" class="field-input" placeholder="Ej. Llamada de cierre">
-        </div>
-      </div>
+    <!-- NOTAS (ambos) -->
+    <div style="margin-top:24px">
+      <p class="drawer-section">Notas</p>
       <div class="field" style="margin:0">
-        <label class="field-label">Notas</label>
-        <textarea id="b-notas" class="field-textarea" style="min-height:60px" placeholder="Contexto, objeciones, acuerdos…"></textarea>
+        <textarea id="f-notas" class="field-textarea" placeholder="Contexto, observaciones…"></textarea>
       </div>
-      <button class="bitacora-add-btn" id="btn-add-entry">+ Agregar entrada</button>
     </div>
-    <div class="bitacora-timeline" id="bitacora-timeline"></div>
+
+    <!-- BITÁCORA (solo propuestas) -->
+    <div id="bitacora-section" style="margin-top:24px">
+      <p class="drawer-section">Seguimiento</p>
+      <div class="bitacora-form">
+        <div class="bitacora-form-title">Nueva entrada</div>
+        <div class="field-row" style="margin-bottom:10px">
+          <div class="field" style="margin:0">
+            <label class="field-label">Fecha</label>
+            <input type="date" id="b-fecha" class="field-input">
+          </div>
+          <div class="field" style="margin:0">
+            <label class="field-label">Próximo paso</label>
+            <input type="text" id="b-proximo" class="field-input" placeholder="Ej. Llamada de cierre">
+          </div>
+        </div>
+        <div class="field" style="margin:0">
+          <label class="field-label">Notas</label>
+          <textarea id="b-notas" class="field-textarea" style="min-height:60px" placeholder="Contexto, objeciones, acuerdos…"></textarea>
+        </div>
+        <button class="bitacora-add-btn" id="btn-add-entry">+ Agregar entrada</button>
+      </div>
+      <div class="bitacora-timeline" id="bitacora-timeline"></div>
+    </div>
 
   </div>
   <div class="drawer-foot">
@@ -353,17 +364,75 @@
 // ── STATE ────────────────────────────────────────────────
 let proposals = [];
 let sha = null;
+let currentTipo = 'propuesta';
 let filter = 'all', query = '', sort = 'fecha-desc';
 let editingSlug = null;
-let currentBitacora = [];   // bitácora for the open proposal (mutable during session)
+let currentBitacora = [];
 
-// ── VIEWS ────────────────────────────────────────────────
+// ── CONFIG BY TIPO ────────────────────────────────────────
+const TIPOS = {
+  propuesta: {
+    label:   'Propuestas a clientes',
+    urlBase: 'propuestas.sentido.mx/',
+    statuses: [
+      { value: 'enviada',        label: 'Enviada',        cls: 's-enviada' },
+      { value: 'vista',          label: 'Vista',          cls: 's-vista' },
+      { value: 'en negociación', label: 'En negociación', cls: 's-negociacion' },
+      { value: 'ganada',         label: 'Ganada',         cls: 's-ganada' },
+      { value: 'perdida',        label: 'Perdida',        cls: 's-perdida' },
+      { value: 'archivada',      label: 'Archivada',      cls: 's-archivada' },
+    ],
+    stats: [
+      { key: 'all',            label: 'Total' },
+      { key: 'enviada',        label: 'Enviadas' },
+      { key: 'vista',          label: 'Vistas' },
+      { key: 'en negociación', label: 'Negociando' },
+      { key: 'ganada',         label: 'Ganadas' },
+      { key: 'perdida',        label: 'Perdidas' },
+      { key: 'archivada',      label: 'Archivadas' },
+    ],
+  },
+  comercial: {
+    label:   'Activos comerciales',
+    urlBase: 'propuestas.sentido.mx/comercial/',
+    statuses: [
+      { value: 'borrador',  label: 'Borrador',  cls: 's-borrador' },
+      { value: 'activo',    label: 'Activo',    cls: 's-activo' },
+      { value: 'archivado', label: 'Archivado', cls: 's-archivado' },
+    ],
+    stats: [
+      { key: 'all',       label: 'Total' },
+      { key: 'activo',    label: 'Activos' },
+      { key: 'borrador',  label: 'Borradores' },
+      { key: 'archivado', label: 'Archivados' },
+    ],
+  },
+};
+
+function cfg() { return TIPOS[currentTipo]; }
+
+function statusCls(s) {
+  for (const t of Object.values(TIPOS)) {
+    const found = t.statuses.find(x => x.value === s);
+    if (found) return found.cls;
+  }
+  return 's-archivada';
+}
+function statusLabel(s) {
+  for (const t of Object.values(TIPOS)) {
+    const found = t.statuses.find(x => x.value === s);
+    if (found) return found.label;
+  }
+  return s;
+}
+
+// ── VIEWS ─────────────────────────────────────────────────
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-// ── BOOT ─────────────────────────────────────────────────
+// ── BOOT ──────────────────────────────────────────────────
 async function boot() {
   showView('view-loading');
   try {
@@ -378,7 +447,7 @@ async function boot() {
   } catch { showView('view-login'); }
 }
 
-// ── AUTH ─────────────────────────────────────────────────
+// ── AUTH ──────────────────────────────────────────────────
 document.getElementById('login-btn').addEventListener('click', doLogin);
 document.getElementById('login-pw').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
@@ -386,8 +455,7 @@ async function doLogin() {
   const pw  = document.getElementById('login-pw').value;
   const btn = document.getElementById('login-btn');
   const err = document.getElementById('login-error');
-  err.classList.remove('show');
-  btn.disabled = true; btn.textContent = 'Verificando…';
+  err.classList.remove('show'); btn.disabled = true; btn.textContent = 'Verificando…';
   try {
     const res = await apiFetch('POST', '/api/admin-login', { password: pw });
     if (res.ok) { await boot(); }
@@ -402,24 +470,39 @@ document.getElementById('btn-logout').addEventListener('click', async () => {
   showView('view-login');
 });
 
-// ── RENDER ───────────────────────────────────────────────
-function render() { updateStats(); renderGrid(); }
+// ── SECTION TABS ──────────────────────────────────────────
+document.getElementById('section-tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.section-tab'); if (!tab) return;
+  document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  currentTipo = tab.dataset.tipo;
+  filter = 'all'; query = '';
+  document.getElementById('search-input').value = '';
+  document.getElementById('topbar-title').textContent = cfg().label;
+  render();
+});
 
-function updateStats() {
-  const c = { all: proposals.length, enviada:0, vista:0, 'en negociación':0, ganada:0, perdida:0, archivada:0 };
-  proposals.forEach(p => { if (c[p.estatus] !== undefined) c[p.estatus]++; });
-  document.getElementById('n-all').textContent          = c.all;
-  document.getElementById('n-enviada').textContent      = c.enviada;
-  document.getElementById('n-vista').textContent        = c.vista;
-  document.getElementById('n-negociacion').textContent  = c['en negociación'];
-  document.getElementById('n-ganada').textContent       = c.ganada;
-  document.getElementById('n-perdida').textContent      = c.perdida;
-  document.getElementById('n-archivada').textContent    = c.archivada;
+// ── RENDER ────────────────────────────────────────────────
+function render() { buildStats(); renderGrid(); }
+
+function buildStats() {
+  const bar   = document.getElementById('stats-bar');
+  const items = proposals.filter(p => (p.tipo || 'propuesta') === currentTipo);
+  const c = { all: items.length };
+  items.forEach(p => { c[p.estatus] = (c[p.estatus] || 0) + 1; });
+  bar.innerHTML = cfg().stats.map(s => {
+    const active = (filter === s.key) ? ' active' : '';
+    return `<div class="stat${active}" data-filter="${esc(s.key)}"><span class="stat-n">${c[s.key] || 0}</span><span class="stat-label">${esc(s.label)}</span></div>`;
+  }).join('');
+  bar.querySelectorAll('.stat').forEach(st => {
+    st.addEventListener('click', () => { filter = st.dataset.filter; render(); });
+  });
 }
 
 function filtered() {
   return proposals
     .filter(p => {
+      if ((p.tipo || 'propuesta') !== currentTipo) return false;
       if (filter !== 'all' && p.estatus !== filter) return false;
       if (query) {
         const q = query.toLowerCase();
@@ -438,117 +521,106 @@ function filtered() {
 
 function calcMensual(p) {
   if (!p.serviciosDisponibles || !p.serviciosSeleccionados) return 0;
-  return p.serviciosDisponibles
-    .filter(s => s.tipo === 'mensual' && p.serviciosSeleccionados.includes(s.id))
-    .reduce((acc, s) => acc + s.precio, 0);
+  return p.serviciosDisponibles.filter(s => s.tipo === 'mensual' && p.serviciosSeleccionados.includes(s.id)).reduce((a,s) => a+s.precio, 0);
 }
 function calcUnico(p) {
   if (!p.serviciosDisponibles || !p.serviciosSeleccionados) return 0;
-  return p.serviciosDisponibles
-    .filter(s => s.tipo === 'unico' && p.serviciosSeleccionados.includes(s.id))
-    .reduce((acc, s) => acc + s.precio, 0);
+  return p.serviciosDisponibles.filter(s => s.tipo === 'unico' && p.serviciosSeleccionados.includes(s.id)).reduce((a,s) => a+s.precio, 0);
 }
 
 function renderGrid() {
   const grid = document.getElementById('proposal-grid');
   const list = filtered();
-  if (!list.length) { grid.innerHTML = '<p class="empty">Sin propuestas</p>'; return; }
-  grid.innerHTML = list.map(cardHTML).join('');
+  if (!list.length) { grid.innerHTML = '<p class="empty">Sin registros</p>'; return; }
+  grid.innerHTML = list.map(p => currentTipo === 'comercial' ? cardComercialHTML(p) : cardHTML(p)).join('');
   grid.querySelectorAll('.card').forEach(card => {
     card.querySelector('.btn-edit').addEventListener('click', () => openDrawer(card.dataset.slug));
     const lb = card.querySelector('.btn-link');
-    if (lb) lb.addEventListener('click', () => window.open(`https://propuestas.sentido.mx/${card.dataset.slug}`, '_blank'));
+    if (lb) lb.addEventListener('click', () => window.open(`https://${cfg().urlBase}${card.dataset.slug}`, '_blank'));
   });
 }
 
-function statusClass(s) {
-  return {'enviada':'s-enviada','vista':'s-vista','en negociación':'s-negociacion','ganada':'s-ganada','perdida':'s-perdida','archivada':'s-archivada'}[s] || 's-archivada';
-}
-function statusLabel(s) {
-  return {'enviada':'Enviada','vista':'Vista','en negociación':'Negociando','ganada':'Ganada','perdida':'Perdida','archivada':'Archivada'}[s] || s;
-}
-function fmtDate(iso) {
-  if (!iso) return '—';
-  const [y,m,d] = iso.split('-');
-  return `${d} ${'ene feb mar abr may jun jul ago sep oct nov dic'.split(' ')[+m-1]} ${y}`;
-}
-function fmtMXN(n) { return '$' + Number(n).toLocaleString('es-MX'); }
-function isUrgent(iso) { if (!iso) return false; return (new Date(iso+'T00:00:00') - new Date()) / 86400000 <= 2; }
-
 function cardHTML(p) {
-  const mensual = calcMensual(p);
-  const unico   = calcUnico(p);
+  const mensual = calcMensual(p), unico = calcUnico(p);
   const selSvcs = (p.serviciosDisponibles||[]).filter(s => (p.serviciosSeleccionados||[]).includes(s.id));
   const tagsHtml = selSvcs.map(s => `<span class="tag">${esc(s.nombre)}</span>`).join('') || '<span style="font-size:11px;color:var(--faint)">Sin servicios seleccionados</span>';
-
   let valorHtml = '';
   if (mensual || unico) {
     valorHtml = `<p class="card-valor">`;
     if (mensual) valorHtml += `${fmtMXN(mensual)} <span style="opacity:.5">/ mes</span>`;
     if (mensual && unico) valorHtml += ` <span style="opacity:.35">+</span> `;
-    if (unico) valorHtml += `${fmtMXN(unico)} <span style="opacity:.5">único</span>`;
+    if (unico)   valorHtml += `${fmtMXN(unico)} <span style="opacity:.5">único</span>`;
     valorHtml += ` <span style="opacity:.4">+ IVA</span></p>`;
   }
-
-  // last bitácora entry for "próximo paso"
-  const bit = (p.bitacora||[]);
-  const last = bit[0];
-  const nextHtml = last?.proximoPaso
-    ? `<div class="card-next"><span class="card-next-label">Próximo paso</span>${esc(last.proximoPaso)}</div>`
-    : '';
-
-  const seg = last?.fecha
-    ? `<span class="card-seg${isUrgent(last.fecha) ? ' urgent':''}">Seg. ${fmtDate(last.fecha)}</span>`
-    : '<span class="card-seg"></span>';
-
+  const last = (p.bitacora||[])[0];
+  const nextHtml = last?.proximoPaso ? `<div class="card-next"><span class="card-next-label">Próximo paso</span>${esc(last.proximoPaso)}</div>` : '';
+  const seg = last?.fecha ? `<span class="card-seg${isUrgent(last.fecha)?' urgent':''}">Seg. ${fmtDate(last.fecha)}</span>` : '<span class="card-seg"></span>';
   return `<div class="card" data-slug="${esc(p.slug)}">
-    <div class="card-head"><span class="card-status ${statusClass(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
-    <div class="card-body">
-      <p class="card-client">${esc(p.cliente)}</p>
-      <div class="card-services">${tagsHtml}</div>
-      ${valorHtml}${nextHtml}
-    </div>
+    <div class="card-head"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
+    <div class="card-body"><p class="card-client">${esc(p.cliente)}</p><div class="card-services">${tagsHtml}</div>${valorHtml}${nextHtml}</div>
     <div class="card-foot">${seg}<button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
   </div>`;
 }
 
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function cardComercialHTML(p) {
+  const descHtml = p.descripcion ? `<p class="card-desc">${esc(p.descripcion)}</p>` : '';
+  return `<div class="card" data-slug="${esc(p.slug)}">
+    <div class="card-head"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
+    <div class="card-body"><p class="card-client">${esc(p.cliente)}</p>${descHtml}</div>
+    <div class="card-foot"><span class="card-seg"></span><button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
+  </div>`;
+}
 
-// ── FILTERS ──────────────────────────────────────────────
-document.getElementById('stats-bar').addEventListener('click', e => {
-  const st = e.target.closest('.stat'); if (!st) return;
-  document.querySelectorAll('.stat').forEach(s => s.classList.remove('active'));
-  st.classList.add('active');
-  filter = st.dataset.filter; renderGrid();
-});
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtDate(iso) { if (!iso) return '—'; const [y,m,d] = iso.split('-'); return `${d} ${'ene feb mar abr may jun jul ago sep oct nov dic'.split(' ')[+m-1]} ${y}`; }
+function fmtMXN(n) { return '$' + Number(n).toLocaleString('es-MX'); }
+function isUrgent(iso) { if (!iso) return false; return (new Date(iso+'T00:00:00') - new Date()) / 86400000 <= 2; }
+function today() { return new Date().toISOString().slice(0,10); }
+
+// ── FILTERS ───────────────────────────────────────────────
 document.getElementById('search-input').addEventListener('input', e => { query = e.target.value.trim(); renderGrid(); });
 document.getElementById('sort-select').addEventListener('change', e => { sort = e.target.value; renderGrid(); });
 
-// ── DRAWER ───────────────────────────────────────────────
+// ── DRAWER ────────────────────────────────────────────────
 function openDrawer(slug) {
   editingSlug = slug || null;
   const isNew = !slug;
   const p = slug ? proposals.find(x => x.slug === slug) : null;
+  const tipo = p ? (p.tipo || 'propuesta') : currentTipo;
+  const isCom = tipo === 'comercial';
 
-  document.getElementById('drawer-title').textContent  = isNew ? 'Nueva propuesta' : 'Editar propuesta';
-  document.getElementById('btn-delete').style.display  = isNew ? 'none' : 'block';
-  document.getElementById('f-slug').value              = p ? p.slug : '';
-  document.getElementById('f-slug').disabled           = !isNew;
-  document.getElementById('f-cliente').value           = p ? p.cliente : '';
-  document.getElementById('f-fecha').value             = p ? (p.fecha || today()) : today();
-  document.getElementById('f-estatus').value           = p ? p.estatus : 'enviada';
-  document.getElementById('slug-preview').textContent  = p ? p.slug : '…';
+  document.getElementById('drawer-title').textContent = isNew
+    ? (isCom ? 'Nuevo activo comercial' : 'Nueva propuesta')
+    : (isCom ? 'Editar activo comercial' : 'Editar propuesta');
 
-  currentBitacora = p ? [...(p.bitacora || [])] : [];
+  document.getElementById('btn-delete').style.display = isNew ? 'none' : 'block';
+  document.getElementById('f-slug').value    = p ? p.slug : '';
+  document.getElementById('f-slug').disabled = !isNew;
+  document.getElementById('f-cliente').value = p ? p.cliente : '';
+  document.getElementById('f-fecha').value   = p ? (p.fecha || today()) : today();
+  document.getElementById('f-notas').value   = p ? (p.notas || '') : '';
 
-  renderSvcList(p);
-  renderBitacora();
-  resetBitacoraForm();
+  document.getElementById('slug-hint').textContent = `propuestas.sentido.mx/${isCom ? 'comercial/' : ''}${p ? p.slug : '…'}`;
+
+  document.getElementById('f-desc-wrap').style.display     = isCom ? 'block' : 'none';
+  document.getElementById('f-descripcion').value           = p ? (p.descripcion || '') : '';
+  document.getElementById('svc-section').style.display     = isCom ? 'none' : 'block';
+  document.getElementById('bitacora-section').style.display = isCom ? 'none' : 'block';
+
+  const sel = document.getElementById('f-estatus');
+  sel.innerHTML = cfg().statuses.map(s => `<option value="${esc(s.value)}">${esc(s.label)}</option>`).join('');
+  sel.value = p ? p.estatus : cfg().statuses[0].value;
+
+  if (!isCom) {
+    currentBitacora = p ? [...(p.bitacora || [])] : [];
+    renderSvcList(p);
+    renderBitacora();
+    resetBitacoraForm();
+  }
 
   document.getElementById('drawer-overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
-  if (!isNew) document.getElementById('f-estatus').focus();
-  else document.getElementById('f-cliente').focus();
+  document.getElementById('f-cliente').focus();
 }
 
 function closeDrawer() {
@@ -562,84 +634,53 @@ document.getElementById('drawer-close').addEventListener('click', closeDrawer);
 document.getElementById('btn-cancel').addEventListener('click', closeDrawer);
 document.getElementById('btn-new').addEventListener('click', () => openDrawer(null));
 document.getElementById('f-slug').addEventListener('input', e => {
-  document.getElementById('slug-preview').textContent = e.target.value || '…';
+  const isCom = currentTipo === 'comercial';
+  document.getElementById('slug-hint').textContent = `propuestas.sentido.mx/${isCom ? 'comercial/' : ''}${e.target.value || '…'}`;
 });
 
-// ── SERVICES ─────────────────────────────────────────────
+// ── SERVICES ──────────────────────────────────────────────
 function renderSvcList(p) {
-  const container  = document.getElementById('svc-list');
-  const disponibles = p ? (p.serviciosDisponibles || []) : [];
+  const container     = document.getElementById('svc-list');
+  const disponibles   = p ? (p.serviciosDisponibles || []) : [];
   const seleccionados = p ? (p.serviciosSeleccionados || []) : [];
-
   if (!disponibles.length) {
     container.innerHTML = '<p class="svc-empty">Esta propuesta no tiene servicios registrados.</p>';
-    updateTotals([]);
-    return;
+    updateTotals([]); return;
   }
-
   const mensual = disponibles.filter(s => s.tipo === 'mensual');
   const unico   = disponibles.filter(s => s.tipo === 'unico');
-
   let html = '';
-  if (mensual.length) {
-    html += `<div class="svc-group"><span class="svc-group-label">Mensuales</span>`;
-    html += mensual.map(s => svcItemHTML(s, seleccionados.includes(s.id))).join('');
-    html += `</div>`;
-  }
-  if (unico.length) {
-    html += `<div class="svc-group"><span class="svc-group-label">Única vez (setup)</span>`;
-    html += unico.map(s => svcItemHTML(s, seleccionados.includes(s.id))).join('');
-    html += `</div>`;
-  }
-
+  if (mensual.length) html += `<div class="svc-group"><span class="svc-group-label">Mensuales</span>${mensual.map(s => svcItemHTML(s, seleccionados.includes(s.id))).join('')}</div>`;
+  if (unico.length)   html += `<div class="svc-group"><span class="svc-group-label">Única vez (setup)</span>${unico.map(s => svcItemHTML(s, seleccionados.includes(s.id))).join('')}</div>`;
   container.innerHTML = html;
   container.querySelectorAll('.svc-item').forEach(item => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('checked');
-      updateTotals(getCheckedIds());
-    });
+    item.addEventListener('click', () => { item.classList.toggle('checked'); updateTotals(getCheckedIds()); });
   });
-
   updateTotals(seleccionados);
 }
 
 function svcItemHTML(s, checked) {
   const freq = s.tipo === 'mensual' ? '/mes' : 'único';
   return `<div class="svc-item${checked?' checked':''}" data-id="${esc(s.id)}">
-    <div class="svc-item-left">
-      <div class="svc-check"><span class="svc-check-mark">✓</span></div>
-      <span class="svc-name">${esc(s.nombre)}</span>
-    </div>
+    <div class="svc-item-left"><div class="svc-check"><span class="svc-check-mark">✓</span></div><span class="svc-name">${esc(s.nombre)}</span></div>
     <span class="svc-price">${fmtMXN(s.precio)} <span style="opacity:.6">${freq}</span></span>
   </div>`;
 }
 
-function getCheckedIds() {
-  return [...document.querySelectorAll('.svc-item.checked')].map(el => el.dataset.id);
-}
+function getCheckedIds() { return [...document.querySelectorAll('.svc-item.checked')].map(el => el.dataset.id); }
 
 function updateTotals(selectedIds) {
   const p = editingSlug ? proposals.find(x => x.slug === editingSlug) : null;
   const disponibles = p ? (p.serviciosDisponibles || []) : [];
   const ids = Array.isArray(selectedIds) ? selectedIds : getCheckedIds();
-
   let mensual = 0, unico = 0;
-  disponibles.forEach(s => {
-    if (ids.includes(s.id)) {
-      if (s.tipo === 'mensual') mensual += s.precio;
-      else if (s.tipo === 'unico') unico += s.precio;
-    }
-  });
-
-  const elM = document.getElementById('total-mensual');
-  const elU = document.getElementById('total-unico');
-  elM.textContent = fmtMXN(mensual);
-  elM.className = 'svc-total-val' + (mensual ? '' : ' zero');
-  elU.textContent = fmtMXN(unico);
-  elU.className = 'svc-total-val' + (unico ? '' : ' zero');
+  disponibles.forEach(s => { if (ids.includes(s.id)) { if (s.tipo === 'mensual') mensual += s.precio; else unico += s.precio; } });
+  const elM = document.getElementById('total-mensual'), elU = document.getElementById('total-unico');
+  elM.textContent = fmtMXN(mensual); elM.className = 'svc-total-val' + (mensual ? '' : ' zero');
+  elU.textContent = fmtMXN(unico);   elU.className = 'svc-total-val' + (unico   ? '' : ' zero');
 }
 
-// ── BITÁCORA ─────────────────────────────────────────────
+// ── BITÁCORA ──────────────────────────────────────────────
 function resetBitacoraForm() {
   document.getElementById('b-fecha').value   = today();
   document.getElementById('b-proximo').value = '';
@@ -648,29 +689,18 @@ function resetBitacoraForm() {
 
 function renderBitacora() {
   const container = document.getElementById('bitacora-timeline');
-  if (!currentBitacora.length) {
-    container.innerHTML = '<p class="bitacora-empty">Sin entradas todavía.</p>';
-    return;
-  }
+  if (!currentBitacora.length) { container.innerHTML = '<p class="bitacora-empty">Sin entradas todavía.</p>'; return; }
   container.innerHTML = currentBitacora.map((e, i) => `
-    <div class="bitacora-entry" data-idx="${i}">
+    <div class="bitacora-entry">
       <div class="bitacora-line"><div class="bitacora-dot"></div><div class="bitacora-trail"></div></div>
       <div class="bitacora-content">
-        <div class="bitacora-meta">
-          <span class="bitacora-fecha">${fmtDate(e.fecha)}</span>
-          <button class="bitacora-del" data-idx="${i}" title="Eliminar entrada">×</button>
-        </div>
+        <div class="bitacora-meta"><span class="bitacora-fecha">${fmtDate(e.fecha)}</span><button class="bitacora-del" data-idx="${i}">×</button></div>
         ${e.proximoPaso ? `<div class="bitacora-paso">${esc(e.proximoPaso)}</div>` : ''}
         ${e.notas       ? `<div class="bitacora-notas">${esc(e.notas)}</div>` : ''}
       </div>
     </div>`).join('');
-
   container.querySelectorAll('.bitacora-del').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = +btn.dataset.idx;
-      currentBitacora.splice(idx, 1);
-      renderBitacora();
-    });
+    btn.addEventListener('click', () => { currentBitacora.splice(+btn.dataset.idx, 1); renderBitacora(); });
   });
 }
 
@@ -679,89 +709,85 @@ document.getElementById('btn-add-entry').addEventListener('click', () => {
   const proximo = document.getElementById('b-proximo').value.trim();
   const notas   = document.getElementById('b-notas').value.trim();
   if (!fecha && !proximo && !notas) return showToast('Completa al menos un campo', true);
-
   currentBitacora.unshift({ fecha: fecha || today(), proximoPaso: proximo, notas, creadoEn: new Date().toISOString() });
-  renderBitacora();
-  resetBitacoraForm();
+  renderBitacora(); resetBitacoraForm();
 });
 
-// ── SAVE ─────────────────────────────────────────────────
+// ── SAVE ──────────────────────────────────────────────────
 document.getElementById('btn-save').addEventListener('click', saveDrawer);
 
 async function saveDrawer() {
   const slug    = document.getElementById('f-slug').value.trim().toLowerCase().replace(/\s+/g,'-');
   const cliente = document.getElementById('f-cliente').value.trim();
   if (!slug)    return showToast('El slug es requerido', true);
-  if (!cliente) return showToast('El cliente es requerido', true);
+  if (!cliente) return showToast('El nombre es requerido', true);
 
   const isNew = !editingSlug;
   if (isNew && proposals.find(p => p.slug === slug)) return showToast('Ya existe ese slug', true);
 
   const existente = editingSlug ? proposals.find(p => p.slug === editingSlug) : null;
-  const checkedIds = getCheckedIds();
+  const tipo = existente ? (existente.tipo || 'propuesta') : currentTipo;
+  const isCom = tipo === 'comercial';
 
   const updated = {
-    slug,
-    cliente,
-    fecha:                 document.getElementById('f-fecha').value || null,
-    estatus:               document.getElementById('f-estatus').value,
-    serviciosDisponibles:  existente?.serviciosDisponibles || [],
-    serviciosSeleccionados: checkedIds,
-    notas:                 '',
-    proximoPaso:           '',
-    fechaSeguimiento:      null,
-    bitacora:              currentBitacora
+    slug, tipo, cliente,
+    fecha:   document.getElementById('f-fecha').value || null,
+    estatus: document.getElementById('f-estatus').value,
+    ...(isCom ? {
+      descripcion:            document.getElementById('f-descripcion').value.trim(),
+      notas:                  document.getElementById('f-notas').value,
+      serviciosDisponibles:   [],
+      serviciosSeleccionados: [],
+      bitacora:               [],
+    } : {
+      serviciosDisponibles:   existente?.serviciosDisponibles || [],
+      serviciosSeleccionados: getCheckedIds(),
+      notas:                  document.getElementById('f-notas').value,
+      proximoPaso:            '',
+      fechaSeguimiento:       null,
+      bitacora:               currentBitacora,
+    })
   };
 
   const btn = document.getElementById('btn-save');
   btn.disabled = true; btn.textContent = 'Guardando…';
   try {
-    const next = isNew
-      ? [...proposals, updated]
-      : proposals.map(p => p.slug === editingSlug ? updated : p);
-    const res = await apiFetch('PUT', '/api/admin-proposals', { proposals: next, _sha: sha });
+    const next = isNew ? [...proposals, updated] : proposals.map(p => p.slug === editingSlug ? updated : p);
+    const res  = await apiFetch('PUT', '/api/admin-proposals', { proposals: next, _sha: sha });
     if (!res.ok) throw new Error(await res.text());
     const data = await res.json();
-    sha = data._sha || sha;
-    proposals = next;
-    render();
-    closeDrawer();
-    showToast('Guardado ✓');
+    sha = data._sha || sha; proposals = next;
+    render(); closeDrawer(); showToast('Guardado ✓');
   } catch { showToast('Error al guardar', true); }
   finally { btn.disabled = false; btn.textContent = 'Guardar'; }
 }
 
-// ── DELETE ───────────────────────────────────────────────
+// ── DELETE ────────────────────────────────────────────────
 document.getElementById('btn-delete').addEventListener('click', async () => {
   if (!editingSlug) return;
-  if (!confirm(`¿Eliminar la propuesta "${editingSlug}"?`)) return;
-  const btn = document.getElementById('btn-delete');
-  btn.disabled = true;
+  if (!confirm(`¿Eliminar "${editingSlug}"?`)) return;
+  const btn = document.getElementById('btn-delete'); btn.disabled = true;
   try {
     const next = proposals.filter(p => p.slug !== editingSlug);
     const res  = await apiFetch('PUT', '/api/admin-proposals', { proposals: next, _sha: sha });
     if (!res.ok) throw new Error();
     const data = await res.json();
     sha = data._sha || sha; proposals = next;
-    render(); closeDrawer(); showToast('Propuesta eliminada');
+    render(); closeDrawer(); showToast('Eliminado');
   } catch { showToast('Error al eliminar', true); }
   finally { btn.disabled = false; }
 });
 
-// ── TOAST ────────────────────────────────────────────────
+// ── TOAST ─────────────────────────────────────────────────
 let toastTimer;
 function showToast(msg, isError) {
   const el = document.getElementById('toast');
   clearTimeout(toastTimer);
-  el.textContent = msg;
-  el.className = 'toast' + (isError ? ' error' : '');
-  void el.offsetWidth;
-  el.classList.add('show');
+  el.textContent = msg; el.className = 'toast' + (isError ? ' error' : '');
+  void el.offsetWidth; el.classList.add('show');
   toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
 }
 
-// ── HELPERS ──────────────────────────────────────────────
-function today() { return new Date().toISOString().slice(0,10); }
 async function apiFetch(method, url, body) {
   return fetch(url, { method, headers: body ? {'Content-Type':'application/json'} : undefined, body: body ? JSON.stringify(body) : undefined, credentials: 'same-origin' });
 }
