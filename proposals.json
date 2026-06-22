@@ -4,144 +4,215 @@
       "slug": "agua-costa-rica-vallarta",
       "cliente": "Agua Costa Rica Vallarta",
       "fecha": "2026-05-04",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "redes",  "nombre": "Gestión de Redes Sociales (Meta)", "precio": 7500,  "tipo": "mensual"},
+        {"id": "gads",   "nombre": "Google Ads",                        "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",    "nombre": "CRM + Automatización + Reputación", "precio": 4000,  "tipo": "mensual"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "ampara",
       "cliente": "AmPara Consultoría Inmobiliaria",
       "fecha": "2026-05-26",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "redes",  "nombre": "Gestión de Redes Sociales",         "precio": 7500,  "tipo": "mensual"},
+        {"id": "gbp",    "nombre": "Google Business Profile",            "precio": 2500,  "tipo": "mensual"},
+        {"id": "gads",   "nombre": "Google Ads",                        "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",    "nombre": "CRM GoHighLevel",                   "precio": 4000,  "tipo": "mensual"},
+        {"id": "setup",  "nombre": "Setup: Diseño de sistema + Sitio web", "precio": 28000, "tipo": "unico"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "clemente-70",
       "cliente": "Clemente 70",
       "fecha": "2026-05-22",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "redes",  "nombre": "Gestión de Redes + Contenido Meta", "precio": 7500,  "tipo": "mensual"},
+        {"id": "gads",   "nombre": "Gestión Google Ads + Landings",     "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",    "nombre": "CRM + Automatización GoHighLevel",  "precio": 4000,  "tipo": "mensual"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "desarrolladores",
       "cliente": "Sistema para desarrolladores inmobiliarios",
       "fecha": "2026-05-04",
-      "valor": null,
-      "servicios": [],
       "estatus": "archivada",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "fabiaa-clo",
       "cliente": "Fabiaa Clo",
       "fecha": "2026-05-04",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "redes",  "nombre": "Plan mensual de Redes Sociales",    "precio": 10000, "tipo": "mensual"},
+        {"id": "sitio",  "nombre": "Sitio Shopify",                     "precio": 20000, "tipo": "unico"},
+        {"id": "crm",    "nombre": "CRM GoHighLevel",                   "precio": 4000,  "tipo": "mensual"},
+        {"id": "foto",   "nombre": "Sesión de foto",                    "precio": 3000,  "tipo": "unico"},
+        {"id": "video",  "nombre": "Sesión de video",                   "precio": 5500,  "tipo": "unico"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "g2b-constructora",
       "cliente": "G2B Constructora",
       "fecha": "2026-05-27",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "sitio",   "nombre": "Sitio web institucional",           "precio": 25000, "tipo": "unico"},
+        {"id": "meta",    "nombre": "Paquete Meta (FB + IG)",            "precio": 7500,  "tipo": "mensual"},
+        {"id": "linkedin","nombre": "Complemento LinkedIn",              "precio": 3000,  "tipo": "mensual"},
+        {"id": "gbp-ads", "nombre": "GBP + Google Ads",                 "precio": 4500,  "tipo": "mensual"},
+        {"id": "crm",     "nombre": "Operación CRM mensual",            "precio": 4000,  "tipo": "mensual"},
+        {"id": "deck",    "nombre": "Diseño de presentación con IA",    "precio": 5000,  "tipo": "unico"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "inmobiliarias",
       "cliente": "Sistema para inmobiliarias",
       "fecha": "2026-05-04",
-      "valor": null,
-      "servicios": [],
       "estatus": "archivada",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "jalie-vali",
       "cliente": "JALIE-VALI Constructora",
       "fecha": "2026-06-02",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "sitio", "nombre": "Sitio web institucional completo", "precio": 25000, "tipo": "unico"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "manufaktura",
       "cliente": "Manufaktura Muebles",
       "fecha": "2026-05-20",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "sitio-wp",      "nombre": "Sitio WordPress · renovación visual + técnica", "precio": 19500, "tipo": "unico"},
+        {"id": "sitio-webflow", "nombre": "Sitio Webflow (alternativa premium)",           "precio": 35000, "tipo": "unico"},
+        {"id": "brand-kit",     "nombre": "Diseño de Brand Kit digital",                   "precio": 12000, "tipo": "unico"},
+        {"id": "mant",          "nombre": "Mantenimiento mensual sitio",                   "precio": 4500,  "tipo": "mensual"},
+        {"id": "meta-ads",      "nombre": "Gestión Meta Ads",                              "precio": 5000,  "tipo": "mensual"},
+        {"id": "gads",          "nombre": "Gestión Google Ads",                            "precio": 8000,  "tipo": "mensual"},
+        {"id": "foto",          "nombre": "Sesión de fotografía (jornada)",                "precio": 8500,  "tipo": "unico"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "padel-club",
       "cliente": "Padel Club",
       "fecha": "2026-05-04",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "sistema", "nombre": "Sistema integral de captación y operación", "precio": 4000, "tipo": "mensual"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "perforaciones-zacatecas",
       "cliente": "Perforaciones Zacatecas",
       "fecha": "2026-05-04",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "fase1", "nombre": "Fase 01 · Software base + desarrollo",   "precio": 110000, "tipo": "unico"},
+        {"id": "fase2", "nombre": "Fase 02 · Módulos adicionales",          "precio": 40000,  "tipo": "unico"},
+        {"id": "mant",  "nombre": "Mantenimiento mensual (hosting + ops)",  "precio": 9000,   "tipo": "mensual"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "premium-used-car",
       "cliente": "Premium Used Car",
       "fecha": "2026-05-05",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "sitio",    "nombre": "Sitio web",                          "precio": 20000, "tipo": "unico"},
+        {"id": "redes",    "nombre": "Gestión de Redes Sociales",          "precio": 7500,  "tipo": "mensual"},
+        {"id": "gbp",      "nombre": "Google My Business + SEO local",     "precio": 4000,  "tipo": "mensual"},
+        {"id": "gads",     "nombre": "Google Ads Search",                  "precio": 4000,  "tipo": "mensual"},
+        {"id": "meta-ads", "nombre": "Meta Ads (Instagram + Facebook)",    "precio": 6000,  "tipo": "mensual"},
+        {"id": "crm",      "nombre": "CRM + Automatización",               "precio": 3500,  "tipo": "mensual"},
+        {"id": "chat",     "nombre": "Chat + WhatsApp Business",           "precio": 3000,  "tipo": "mensual"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "studio-louva",
       "cliente": "Studio Louva",
       "fecha": "2026-06-10",
-      "valor": null,
-      "servicios": [],
       "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "sitio", "nombre": "Sitio web estratégico",              "precio": 25000, "tipo": "unico"},
+        {"id": "marca", "nombre": "Consolidación de marca",             "precio": 15000, "tipo": "unico"},
+        {"id": "redes", "nombre": "Gestión de redes sociales",          "precio": 8500,  "tipo": "mensual"},
+        {"id": "gbp",   "nombre": "Google Business Profile + SEO local","precio": 2500,  "tipo": "mensual"},
+        {"id": "gads",  "nombre": "Google Ads",                         "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",   "nombre": "CRM y automatización",               "precio": 4000,  "tipo": "mensual"}
+      ],
+      "serviciosSeleccionados": [],
       "notas": "",
       "proximoPaso": "",
-      "fechaSeguimiento": null
+      "fechaSeguimiento": null,
+      "bitacora": []
     }
   ]
 }
