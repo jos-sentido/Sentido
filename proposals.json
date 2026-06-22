@@ -1,6 +1,25 @@
 {
   "proposals": [
     {
+      "slug": "ferrari-guadalajara",
+      "tipo": "propuesta",
+      "cliente": "Ferrari Guadalajara",
+      "fecha": "2026-06-22",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {"id": "redes",  "nombre": "Gestión de Redes Premium (IG + FB, incl. Meta Ads)", "precio": 7500,  "tipo": "mensual"},
+        {"id": "gbp",    "nombre": "Google Business Profile + SEO local",                "precio": 2500,  "tipo": "mensual"},
+        {"id": "gads",   "nombre": "Gestión de Google Ads",                              "precio": 4000,  "tipo": "mensual"},
+        {"id": "crm",    "nombre": "Captación + CRM de leads (seminuevos & nuevos)",     "precio": 4000,  "tipo": "mensual"},
+        {"id": "setup",  "nombre": "Setup único · Landing + catálogo digital seminuevos","precio": 20000, "tipo": "unico"}
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Plan integral lo restante del año. Diferenciador: ecosistema de seminuevos premium (Ferrari + Lamborghini + McLaren + Maserati). Plan recomendado $18,000/mes + IVA (dentro de rango $15K-$25K). Pauta Meta+Google directa a plataforma, aparte. Contacto: Santi Evva.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "agua-costa-rica-vallarta",
       "tipo": "propuesta",
       "cliente": "Agua Costa Rica Vallarta",
