@@ -165,6 +165,12 @@
     .svc-total-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
     .svc-total-val { font-family: var(--font-serif); font-size: 20px; font-style: italic; color: var(--gold); }
     .svc-total-val.zero { color: var(--faint); }
+    .svc-potencial { display: flex; gap: 16px; margin-top: 8px; padding: 10px 12px; border: 1px dashed var(--border2); }
+    .svc-potencial-col { flex: 1; }
+    .svc-potencial-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 3px; }
+    .svc-potencial-val { font-family: var(--font-mono); font-size: 13px; color: var(--gold-dim); }
+    .svc-potencial-val.zero { color: var(--border2); }
+    .card-potencial { font-family: var(--font-mono); font-size: 10px; color: var(--gold-dim); margin-bottom: 10px; }
 
     /* ── BITÁCORA ── */
     .bitacora-form { background: var(--bg); border: 1px solid var(--border2); padding: 14px; margin-bottom: 16px; }
@@ -258,7 +264,7 @@
       <option value="fecha-desc">Más reciente</option>
       <option value="fecha-asc">Más antiguo</option>
       <option value="cliente">Cliente A–Z</option>
-      <option value="valor-desc">Mayor valor</option>
+      <option value="valor-desc">Mayor potencial</option>
     </select>
   </div>
 
@@ -311,6 +317,16 @@
         <div class="svc-total-item">
           <div class="svc-total-label">Setup / Único</div>
           <div class="svc-total-val zero" id="total-unico">$0</div>
+        </div>
+      </div>
+      <div class="svc-potencial" id="svc-potencial">
+        <div class="svc-potencial-col">
+          <div class="svc-potencial-label">Potencial mensual</div>
+          <div class="svc-potencial-val zero" id="potencial-mensual">$0</div>
+        </div>
+        <div class="svc-potencial-col">
+          <div class="svc-potencial-label">Potencial setup</div>
+          <div class="svc-potencial-val zero" id="potencial-unico">$0</div>
         </div>
       </div>
     </div>
@@ -514,7 +530,7 @@ function filtered() {
       if (sort === 'fecha-desc') return (b.fecha||'').localeCompare(a.fecha||'');
       if (sort === 'fecha-asc')  return (a.fecha||'').localeCompare(b.fecha||'');
       if (sort === 'cliente')    return a.cliente.localeCompare(b.cliente);
-      if (sort === 'valor-desc') return calcMensual(b) - calcMensual(a);
+      if (sort === 'valor-desc') return calcPotencialMensual(b) - calcPotencialMensual(a);
       return 0;
     });
 }
@@ -526,6 +542,12 @@ function calcMensual(p) {
 function calcUnico(p) {
   if (!p.serviciosDisponibles || !p.serviciosSeleccionados) return 0;
   return p.serviciosDisponibles.filter(s => s.tipo === 'unico' && p.serviciosSeleccionados.includes(s.id)).reduce((a,s) => a+s.precio, 0);
+}
+function calcPotencialMensual(p) {
+  return (p.serviciosDisponibles||[]).filter(s => s.tipo === 'mensual').reduce((a,s) => a+s.precio, 0);
+}
+function calcPotencialUnico(p) {
+  return (p.serviciosDisponibles||[]).filter(s => s.tipo === 'unico').reduce((a,s) => a+s.precio, 0);
 }
 
 function renderGrid() {
@@ -542,6 +564,7 @@ function renderGrid() {
 
 function cardHTML(p) {
   const mensual = calcMensual(p), unico = calcUnico(p);
+  const potMensual = calcPotencialMensual(p), potUnico = calcPotencialUnico(p);
   const selSvcs = (p.serviciosDisponibles||[]).filter(s => (p.serviciosSeleccionados||[]).includes(s.id));
   const tagsHtml = selSvcs.map(s => `<span class="tag">${esc(s.nombre)}</span>`).join('') || '<span style="font-size:11px;color:var(--faint)">Sin servicios seleccionados</span>';
   let valorHtml = '';
@@ -552,12 +575,20 @@ function cardHTML(p) {
     if (unico)   valorHtml += `${fmtMXN(unico)} <span style="opacity:.5">único</span>`;
     valorHtml += ` <span style="opacity:.4">+ IVA</span></p>`;
   }
+  let potencialHtml = '';
+  if (potMensual || potUnico) {
+    potencialHtml = `<p class="card-potencial">Potencial `;
+    if (potMensual) potencialHtml += `${fmtMXN(potMensual)}<span style="opacity:.6">/mes</span>`;
+    if (potMensual && potUnico) potencialHtml += ` + `;
+    if (potUnico)   potencialHtml += `${fmtMXN(potUnico)}<span style="opacity:.6"> único</span>`;
+    potencialHtml += `</p>`;
+  }
   const last = (p.bitacora||[])[0];
   const nextHtml = last?.proximoPaso ? `<div class="card-next"><span class="card-next-label">Próximo paso</span>${esc(last.proximoPaso)}</div>` : '';
   const seg = last?.fecha ? `<span class="card-seg${isUrgent(last.fecha)?' urgent':''}">Seg. ${fmtDate(last.fecha)}</span>` : '<span class="card-seg"></span>';
   return `<div class="card" data-slug="${esc(p.slug)}">
     <div class="card-head"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
-    <div class="card-body"><p class="card-client">${esc(p.cliente)}</p><div class="card-services">${tagsHtml}</div>${valorHtml}${nextHtml}</div>
+    <div class="card-body"><p class="card-client">${esc(p.cliente)}</p><div class="card-services">${tagsHtml}</div>${valorHtml}${potencialHtml}${nextHtml}</div>
     <div class="card-foot">${seg}<button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
   </div>`;
 }
@@ -657,6 +688,11 @@ function renderSvcList(p) {
     item.addEventListener('click', () => { item.classList.toggle('checked'); updateTotals(getCheckedIds()); });
   });
   updateTotals(seleccionados);
+  const pm = disponibles.filter(s => s.tipo === 'mensual').reduce((a,s) => a+s.precio, 0);
+  const pu = disponibles.filter(s => s.tipo === 'unico').reduce((a,s) => a+s.precio, 0);
+  const elPM = document.getElementById('potencial-mensual'), elPU = document.getElementById('potencial-unico');
+  elPM.textContent = fmtMXN(pm); elPM.className = 'svc-potencial-val' + (pm ? '' : ' zero');
+  elPU.textContent = fmtMXN(pu); elPU.className = 'svc-potencial-val' + (pu ? '' : ' zero');
 }
 
 function svcItemHTML(s, checked) {
