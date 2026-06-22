@@ -284,15 +284,12 @@
   .moodboard .mb-cap::before { content: ""; width: 24px; height: 1px; background: var(--modena); }
   .mb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   @media (max-width: 640px){ .mb-grid { grid-template-columns: 1fr 1fr; } }
-  .mb-tile { aspect-ratio: 4/5; border: 1px solid var(--border); position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 14px; transition: border-color 0.3s; }
+  .mb-tile { aspect-ratio: 4/5; border: 1px solid var(--border); position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 14px; background: #060606; transition: border-color 0.3s; }
   .mb-tile:hover { border-color: var(--modena-dim); }
-  .mb-tile span { font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.82); font-weight: 500; }
-  .mb-tile.t1 { background: radial-gradient(circle at 70% 30%, rgba(204,0,0,0.50), #120505 70%); }
-  .mb-tile.t2 { background: linear-gradient(160deg, #1c1c1c, #050505); }
-  .mb-tile.t3 { background: radial-gradient(circle at 30% 70%, rgba(255,210,0,0.16), #0d0d0d 65%); }
-  .mb-tile.t4 { background: linear-gradient(200deg, #2a0606, #0a0a0a); }
-  .mb-tile.t5 { background: radial-gradient(circle at 50% 38%, rgba(204,0,0,0.34), #0a0303 72%); }
-  .mb-tile.t6 { background: linear-gradient(140deg, #181818, #060606); }
+  .mb-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .mb-tile:hover img { transform: scale(1.05); }
+  .mb-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.12) 42%, transparent 68%); pointer-events: none; }
+  .mb-tile span { position: relative; z-index: 2; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.92); font-weight: 500; }
 
   /* ── ROADMAP ── */
   .roadmap { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
@@ -496,12 +493,12 @@
     <div class="moodboard reveal">
       <div class="mb-cap">Dirección de arte de referencia · el tono que daríamos a la marca</div>
       <div class="mb-grid">
-        <div class="mb-tile t1"><span>Detalle de motor</span></div>
-        <div class="mb-tile t2"><span>Llegada de unidad</span></div>
-        <div class="mb-tile t3"><span>Seminuevo · destacado</span></div>
-        <div class="mb-tile t4"><span>Editorial nocturno</span></div>
-        <div class="mb-tile t5"><span>Entrega de llaves</span></div>
-        <div class="mb-tile t6"><span>Contraste de marca</span></div>
+        <figure class="mb-tile"><img src="/assets/ferrari-mood-1.webp" alt="Detalle editorial de un Ferrari Rosso Corsa" loading="lazy" /><span>Detalle de unidad</span></figure>
+        <figure class="mb-tile"><img src="/assets/ferrari-mood-2.webp" alt="Ferrari en showroom de lujo" loading="lazy" /><span>Showroom Ferrari</span></figure>
+        <figure class="mb-tile"><img src="/assets/ferrari-mood-3.webp" alt="McLaren seminuevo en estudio" loading="lazy" /><span>Seminuevo · McLaren</span></figure>
+        <figure class="mb-tile"><img src="/assets/ferrari-mood-4.webp" alt="Interior editorial de superdeportivo" loading="lazy" /><span>Interior &amp; detalle</span></figure>
+        <figure class="mb-tile"><img src="/assets/ferrari-mood-5.webp" alt="Entrega de llaves de un Ferrari" loading="lazy" /><span>Entrega de llaves</span></figure>
+        <figure class="mb-tile"><img src="/assets/ferrari-mood-6.webp" alt="Lamborghini seminuevo, detalle editorial" loading="lazy" /><span>Seminuevo · Lamborghini</span></figure>
       </div>
     </div>
   </div>
