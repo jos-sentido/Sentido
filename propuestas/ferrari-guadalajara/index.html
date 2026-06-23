@@ -290,6 +290,8 @@
   .mb-tile:hover video, .mb-tile:hover img { transform: scale(1.04); }
   .mb-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.12) 42%, transparent 68%); pointer-events: none; }
   .mb-tile span { position: relative; z-index: 2; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.92); font-weight: 500; }
+  .mb-disclaimer { margin-top: 18px; font-size: 0.76rem; color: var(--text-muted); line-height: 1.55; max-width: 78ch; }
+  .mb-disclaimer .ast { color: var(--rosso-bright); font-weight: 600; }
 
   /* ── ROADMAP ── */
   .roadmap { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
@@ -551,6 +553,7 @@
         <figure class="mb-tile"><video poster="/assets/ferrari-mood-5.webp" muted loop playsinline preload="none"><source src="/assets/ferrari-mood-5.mp4" type="video/mp4" /></video><span>Entrega de llaves</span></figure>
         <figure class="mb-tile"><video poster="/assets/ferrari-mood-6.webp" muted loop playsinline preload="none"><source src="/assets/ferrari-mood-6.mp4" type="video/mp4" /></video><span>Seminuevo · Lamborghini</span></figure>
       </div>
+      <p class="mb-disclaimer"><span class="ast">*</span> Material de referencia generado con inteligencia artificial. No son publicaciones reales ni la propuesta final de contenido — sirven únicamente como ejemplo práctico del tono y la dirección de arte que daríamos a la marca.</p>
     </div>
   </div>
 </section>
