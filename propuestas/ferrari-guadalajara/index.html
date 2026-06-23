@@ -325,6 +325,27 @@
   .guarantee .g-item { border-top: 2px solid var(--rosso); padding-top: 18px; }
   .guarantee .g-item h5 { font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--modena); font-weight: 600; margin-bottom: 9px; }
   .guarantee .g-item p { font-size: 0.9rem; color: var(--text-dim); }
+
+  /* ── DOS FRENTES ── */
+  .fronts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+  @media (max-width: 820px){ .fronts { grid-template-columns: 1fr; } }
+  .front { border: 1px solid var(--border); background: var(--surface); padding: 34px 34px; }
+  .front.f-marca { border-top: 3px solid var(--rosso); }
+  .front.f-semi { border-top: 3px solid var(--modena); }
+  .front .fr-kicker { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; display: block; }
+  .front.f-marca .fr-kicker { color: var(--rosso-bright); }
+  .front.f-semi .fr-kicker { color: var(--modena); }
+  .front h3 { font-size: 1.75rem; margin-bottom: 10px; }
+  .front .fr-sub { font-size: 0.92rem; color: var(--text-dim); margin-bottom: 22px; }
+  @media (min-width: 821px){ .front .fr-sub { min-height: 3.4em; } }
+  .front .fr-rows { border-top: 1px solid var(--border); }
+  .front .fr-row { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .front .fr-row:last-child { border-bottom: none; }
+  .front .fr-row dt { color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.68rem; padding-top: 3px; }
+  .front .fr-row dd { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
+  .fronts-note { margin-top: 26px; padding: 22px 26px; border-left: 2px solid var(--rosso); background: rgba(204,0,0,0.04); font-size: 0.98rem; color: var(--text-dim); line-height: 1.62; }
+  .fronts-note strong { color: var(--text); font-weight: 600; }
+  .systems-lead { margin-top: 58px; font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: var(--text); }
 </style>
 </head>
 <body>
@@ -411,7 +432,37 @@
 <section class="block alt" id="propuesta">
   <div class="container">
     <div class="section-label reveal"><span class="bar"></span><span>Lo que proponemos</span></div>
-    <h2 class="heading-xl reveal">Un plan integral para <em>lo que resta del año</em> — cuatro frentes que operan como uno.</h2>
+    <h2 class="heading-xl reveal">Dos negocios distintos. <em>Un mismo equipo.</em></h2>
+    <p class="body-col reveal" style="margin-top:20px;">La agencia Ferrari no es un solo reto de marketing — son dos, con lógicas opuestas. Construir la marca Ferrari no se parece en nada a mover inventario de seminuevos. Tratarlos igual es el error que evitamos.</p>
+
+    <div class="fronts">
+      <article class="front f-marca reveal">
+        <span class="fr-kicker">Frente 1 · La marca</span>
+        <h3>Ferrari nuevo</h3>
+        <p class="fr-sub">Un Ferrari no se vende: se construye el deseo de pertenecer.</p>
+        <dl class="fr-rows">
+          <div class="fr-row"><dt>Reto</dt><dd>Presencia y prestigio a la altura de la marca más deseada del mundo.</dd></div>
+          <div class="fr-row"><dt>Audiencia</dt><dd>Patrimonio, coleccionistas y entusiastas de la plaza.</dd></div>
+          <div class="fr-row"><dt>Objetivo</dt><dd>Comunidad, posicionamiento y lista de espera.</dd></div>
+          <div class="fr-row"><dt>Tono</dt><dd>Editorial, aspiracional, impecable.</dd></div>
+        </dl>
+      </article>
+      <article class="front f-semi reveal">
+        <span class="fr-kicker">Frente 2 · El inventario</span>
+        <h3>Seminuevos premium</h3>
+        <p class="fr-sub">Ferrari, Lamborghini, McLaren y Maserati — inventario que hoy rota por agenda cerrada.</p>
+        <dl class="fr-rows">
+          <div class="fr-row"><dt>Reto</dt><dd>Mover y consignar unidades de forma constante, no por suerte.</dd></div>
+          <div class="fr-row"><dt>Audiencia</dt><dd>Compradores de exóticos y dueños que buscan consignar.</dd></div>
+          <div class="fr-row"><dt>Objetivo</dt><dd>Rotación, leads calificados y cierres.</dd></div>
+          <div class="fr-row"><dt>Tono</dt><dd>Oportunidad, ficha clara, urgencia medida.</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="fronts-note reveal"><strong>Ahí está el diferenciador:</strong> un mismo equipo opera los dos frentes — pero con estrategia, contenido, pauta y métricas distintas para cada uno. La mayoría de las agencias los metería en un solo “manejo de redes”. Nosotros los trabajamos como lo que son: dos negocios, con un mismo estándar de marca.</div>
+
+    <p class="systems-lead reveal">Cuatro sistemas hacen el trabajo.</p>
 
     <div class="pillars">
       <!-- Pillar 1 — Redes + Meta Ads -->
@@ -582,7 +633,7 @@
   <div class="container">
     <div class="section-label reveal"><span class="bar"></span><span>La inversión</span></div>
     <h2 class="heading-xl reveal">Un plan dentro de tu rango — <em>todo incluido</em>, sin sorpresas.</h2>
-    <p class="body-col reveal" style="margin-top:20px;">Estructura modular y mensual. El escenario recomendado integra los cuatro frentes operativos en una sola cuota, con la gestión de Meta Ads incluida y un Google Business preferencial por contratar el paquete completo.</p>
+    <p class="body-col reveal" style="margin-top:20px;">Estructura modular y mensual. El escenario recomendado integra los cuatro sistemas operativos en una sola cuota, con la gestión de Meta Ads incluida y un Google Business preferencial por contratar el paquete completo.</p>
 
     <div class="inv-grid">
       <!-- Recomendado -->
