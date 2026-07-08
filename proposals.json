@@ -225,7 +225,7 @@
       "tipo": "propuesta",
       "cliente": "G2B Constructora",
       "fecha": "2026-05-27",
-      "estatus": "enviada",
+      "estatus": "ganada",
       "serviciosDisponibles": [
         {
           "id": "sitio",
@@ -264,7 +264,9 @@
           "tipo": "unico"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "sitio"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
