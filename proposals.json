@@ -1,6 +1,18 @@
 {
   "proposals": [
     {
+      "slug": "brochure",
+      "tipo": "comercial",
+      "cliente": "Brochure Sentido — Servicios & Sistema Vivo",
+      "fecha": "2026-05-18",
+      "estatus": "activo",
+      "descripcion": "Brochure general interactivo de Sentido — método, proceso, sistemas y capa de IA. Diseñado para prospección en frío por vendedores. Cierra con CTA + form integrado a /api/lead que dispara correo branded a jos@sentido.mx.",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
+      "notas": "",
+      "bitacora": []
+    },
+    {
       "slug": "ferrari-guadalajara",
       "tipo": "propuesta",
       "cliente": "Ferrari Guadalajara",
