@@ -20,9 +20,12 @@ function getCookie(header, name) {
   return m ? decodeURIComponent(m[1]) : null;
 }
 
+const VALID_TOKEN_ENVS = ['ADMIN_TOKEN', 'ADMIN_TOKEN_RODRIGO'];
+
 function isAuthed(req) {
   const token = getCookie(req.headers.cookie, 'admin_token');
-  return token && token === process.env.ADMIN_TOKEN;
+  if (!token) return false;
+  return VALID_TOKEN_ENVS.some(env => process.env[env] && token === process.env[env]);
 }
 
 function ghHeaders() {

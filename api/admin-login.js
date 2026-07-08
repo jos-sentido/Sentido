@@ -1,8 +1,17 @@
 // /api/admin-login — Valida la contraseña del admin y emite una cookie de sesión.
 //
-// Variables de entorno requeridas:
-//   ADMIN_PASSWORD — contraseña del panel privado
-//   ADMIN_TOKEN    — token de sesión (string largo aleatorio)
+// Variables de entorno requeridas (al menos el par principal):
+//   ADMIN_PASSWORD         — contraseña de Jos
+//   ADMIN_TOKEN            — token de sesión de Jos
+//
+// Variables opcionales para usuarios adicionales:
+//   ADMIN_PASSWORD_RODRIGO — contraseña de Rodrigo
+//   ADMIN_TOKEN_RODRIGO    — token de sesión de Rodrigo
+
+const USERS = [
+  { passwordEnv: 'ADMIN_PASSWORD',         tokenEnv: 'ADMIN_TOKEN' },
+  { passwordEnv: 'ADMIN_PASSWORD_RODRIGO', tokenEnv: 'ADMIN_TOKEN_RODRIGO' },
+];
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://propuestas.sentido.mx');
@@ -13,18 +22,18 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
   const { password } = req.body || {};
-  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-  const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
+  if (!password) return res.status(401).json({ error: 'Contraseña incorrecta' });
 
-  if (!ADMIN_PASSWORD || !ADMIN_TOKEN) {
-    return res.status(500).json({ error: 'Servidor mal configurado' });
+  for (const u of USERS) {
+    const pw    = process.env[u.passwordEnv];
+    const token = process.env[u.tokenEnv];
+    if (!pw || !token) continue;
+    if (password === pw) {
+      const maxAge = 60 * 60 * 24 * 30; // 30 días
+      res.setHeader('Set-Cookie', `admin_token=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${maxAge}`);
+      return res.status(200).json({ ok: true });
+    }
   }
 
-  if (!password || password !== ADMIN_PASSWORD) {
-    return res.status(401).json({ error: 'Contraseña incorrecta' });
-  }
-
-  const maxAge = 60 * 60 * 24 * 30; // 30 días
-  res.setHeader('Set-Cookie', `admin_token=${ADMIN_TOKEN}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${maxAge}`);
-  return res.status(200).json({ ok: true });
+  return res.status(401).json({ error: 'Contraseña incorrecta' });
 }
