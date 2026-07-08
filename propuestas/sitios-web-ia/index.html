@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Sitios Web con IA</title>
+<meta name="description" content="Sitios web producidos con un workflow potenciado por IA: estética premium, funcionalidades que antes eran carísimas — chatbots, cotizadores en tiempo real, formularios inteligentes — y entrega en menos de un mes. Desde $20,000 MXN." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0E10;
+    --bg-deep: #08080A;
+    --surface: #16161A;
+    --surface-elevated: #1E1E24;
+    --border: #2A2A32;
+    --border-strong: #3A3A45;
+    --accent: #E6B45A;
+    --accent-deep: #C9923A;
+    --accent-soft: #F2D399;
+    --accent-tint: rgba(230, 180, 90, 0.10);
+    --ink: #F5F1EA;
+    --ink-soft: #CFC8BC;
+    --ink-muted: #9A938A;
+    --ink-whisper: #6C665E;
+    --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #0E0E10; }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+  .reveal-d5 { transition-delay: 0.40s; }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(14, 14, 16, 0.82);
+    backdrop-filter: saturate(140%) blur(16px);
+    -webkit-backdrop-filter: saturate(140%) blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--border); }
+  .nav-inner {
+    max-width: 80rem; margin: 0 auto;
+    padding: 0.875rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  @media (min-width: 640px) { .nav-inner { padding: 1rem 1.5rem; } }
+  .nav-logo { display: flex; align-items: center; gap: 0.625rem; min-width: 0; }
+  .nav-logo img { height: 26px; display: block; opacity: 0.95; flex-shrink: 0; }
+  @media (min-width: 640px) { .nav-logo img { height: 30px; } }
+  .nav-logo .divider { width: 1px; height: 18px; background: var(--border-strong); flex-shrink: 0; }
+  .nav-logo .label {
+    font-family: var(--font-display); font-size: 13px; font-style: italic;
+    color: var(--ink-soft); letter-spacing: 0.01em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  @media (min-width: 640px) { .nav-logo .label { font-size: 15px; } }
+  @media (max-width: 460px) { .nav-logo .divider, .nav-logo .label { display: none; } }
+  .nav-links { display: none; gap: 2rem; }
+  @media (min-width: 960px) { .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); text-decoration: none; transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; font-weight: 500;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  @media (min-width: 640px) { .nav-cta { font-size: 12px; letter-spacing: 0.14em; } }
+
+  /* SECTION */
+  .section { width: 100%; padding: 4.5rem 1.25rem; position: relative; }
+  @media (min-width: 640px) { .section { padding: 5.5rem 1.5rem; } }
+  @media (min-width: 768px) { .section { padding: 7.5rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8.5rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-deep { background-color: var(--bg-deep); }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.875rem;
+    margin-bottom: 2rem; color: var(--accent);
+  }
+  .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .section-label .divider { height: 1px; width: 2.5rem; background-color: var(--accent); opacity: 0.5; }
+  .section-label span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; font-weight: 500; text-transform: uppercase; }
+
+  /* Typography */
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; color: var(--ink); line-height: 1.08; }
+  .h-xl { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.02em; }
+  .h-lg { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+  .h-md { font-size: clamp(1.5rem, 3vw, 2.125rem); }
+  .h-sm { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.2; }
+  .italic-accent { font-style: italic; color: var(--accent-soft); }
+
+  .p { font-size: 17px; line-height: 1.75; font-weight: 400; color: var(--ink-soft); }
+  .p.lg { font-size: 19px; line-height: 1.7; }
+  .p.muted { color: var(--ink-muted); }
+  .p.sm { font-size: 14px; line-height: 1.65; }
+  .p + .p { margin-top: 1.25rem; }
+  .p strong { color: var(--ink); font-weight: 500; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 7rem 1.25rem 4rem; position: relative; overflow: hidden;
+  }
+  @media (min-width: 640px) { .hero { padding: 8rem 1.5rem 5rem; } }
+  @media (min-width: 768px) { .hero { padding: 10rem 3rem 6rem; } }
+  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 6rem; } }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(55% 45% at 82% 15%, rgba(230, 180, 90, 0.13), transparent 70%),
+      radial-gradient(50% 50% at 8% 90%, rgba(230, 180, 90, 0.07), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.4;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px);
+    background-size: 100% 5.5rem;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-logo-sentido {
+    height: 52px; width: auto; display: block; margin-bottom: 3rem; opacity: 0.9;
+  }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 3.5rem; } }
+  .hero-meta {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  @media (min-width: 640px) { .hero-meta { gap: 0.875rem; font-size: 11px; letter-spacing: 0.24em; margin-bottom: 2.5rem; } }
+  .hero-meta .divider { height: 1px; width: 2rem; background: var(--accent); opacity: 0.5; }
+  @media (min-width: 640px) { .hero-meta .divider { width: 2.5rem; } }
+  .hero-brand {
+    font-family: var(--font-display); font-size: clamp(2.75rem, 8vw, 6rem);
+    font-weight: 400; line-height: 0.98; letter-spacing: -0.03em;
+    color: var(--ink); margin-bottom: 1.5rem;
+  }
+  .hero-brand em { font-style: italic; color: var(--accent-soft); }
+  .hero-subtitle {
+    font-family: var(--font-display); font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    font-style: italic; color: var(--ink-soft); max-width: 50rem;
+    margin-bottom: 3rem; line-height: 1.35;
+  }
+  .hero-details {
+    display: grid; grid-template-columns: 1fr; gap: 2rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--border); max-width: 52rem;
+  }
+  @media (min-width: 640px) { .hero-details { grid-template-columns: repeat(3, 1fr); } }
+  .hero-detail .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-whisper); margin-bottom: 0.5rem; }
+  .hero-detail .value { font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); }
+
+  /* Lede */
+  .lede {
+    font-family: var(--font-display); font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: 1.25; color: var(--ink); font-weight: 400; max-width: 54rem;
+  }
+  .lede em { font-style: italic; color: var(--accent-soft); }
+
+  /* Contrast / then-now */
+  .thennow { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 3rem; }
+  @media (min-width: 768px) { .thennow { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .tn-card { padding: 1.75rem 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
+  @media (min-width: 640px) { .tn-card { padding: 2.25rem; } }
+  .tn-card.before { background: var(--surface); }
+  .tn-card.after { background: linear-gradient(180deg, var(--surface-elevated) 0%, rgba(230,180,90,0.06) 100%); border-color: var(--accent-deep); }
+  .tn-card .tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; margin-bottom: 1rem; }
+  .tn-card.before .tag { color: var(--ink-muted); }
+  .tn-card.after .tag { color: var(--accent); }
+  .tn-card h4 { font-family: var(--font-display); font-size: 1.375rem; color: var(--ink); margin-bottom: 1rem; line-height: 1.2; }
+  .tn-card ul { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+  .tn-card ul li { position: relative; padding-left: 1.25rem; font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+  .tn-card ul li::before { content: ''; position: absolute; left: 0; top: 0.6rem; width: 5px; height: 5px; border-radius: 50%; }
+  .tn-card.before ul li::before { background: var(--ink-whisper); }
+  .tn-card.after ul li::before { background: var(--accent); }
+
+  /* FEATURES */
+  .features { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .feature {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.75rem 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  @media (min-width: 640px) { .feature { padding: 2.25rem; gap: 1.5rem; } }
+  .feature:hover { border-color: var(--accent-deep); transform: translateY(-2px); }
+  @media (min-width: 768px) { .feature { grid-template-columns: 190px 1fr; padding: 2.5rem; gap: 2.5rem; } }
+  .feature.headline { border-color: var(--accent-deep); background: linear-gradient(180deg, var(--surface-elevated) 0%, rgba(230,180,90,0.05) 100%); }
+  .feature-head { padding-top: 0.35rem; }
+  .feature-head .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-tint); border: 1px solid var(--accent-deep);
+    margin-bottom: 1rem;
+  }
+  .feature-head .icon svg { width: 24px; height: 24px; stroke: var(--accent); fill: none; stroke-width: 1.6; }
+  .feature-head .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .feature-head .num { display: block; font-family: var(--font-display); font-size: 2rem; font-style: italic; color: var(--ink-whisper); line-height: 1; margin-bottom: 0.6rem; }
+  .feature-body h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--ink); margin-bottom: 0.875rem; line-height: 1.15; }
+  .feature-body > p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; margin-bottom: 1.25rem; }
+  .feature-body .benefit {
+    display: inline-flex; align-items: flex-start; gap: 0.6rem;
+    background: var(--bg-deep); border: 1px solid var(--border);
+    border-left: 2px solid var(--accent); border-radius: 4px;
+    padding: 0.75rem 1rem; font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+  }
+  .feature-body .benefit strong { color: var(--accent-soft); font-weight: 500; }
+
+  /* Angle pillars */
+  .pillars { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3.5rem; }
+  @media (min-width: 768px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+  .pillar { padding-top: 1.75rem; border-top: 2px solid var(--accent); }
+  .pillar .num { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 1rem; }
+  .pillar h4 { font-family: var(--font-display); font-size: 1.375rem; color: var(--ink); margin-bottom: 0.875rem; }
+  .pillar p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* TIMELINE */
+  .timeline { margin-top: 3rem; }
+  .tl-bar {
+    display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+  }
+  @media (min-width: 768px) { .tl-bar { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; } }
+  .tl-step {
+    position: relative; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem 1.35rem;
+  }
+  @media (min-width: 640px) { .tl-step { padding: 1.75rem 1.5rem; } }
+  .tl-step .when {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+    color: var(--accent); margin-bottom: 0.85rem; display: inline-block;
+    padding: 0.25rem 0.6rem; background: var(--accent-tint); border-radius: 4px;
+  }
+  .tl-step h4 { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); margin-bottom: 0.6rem; }
+  .tl-step p { font-size: 13.75px; line-height: 1.6; color: var(--ink-soft); }
+  .tl-track {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .tl-track {
+      display: block; position: relative; height: 3px; margin: 1.75rem 0 0;
+      background: var(--border); border-radius: 2px; overflow: hidden;
+    }
+    .tl-track .fill {
+      position: absolute; inset: 0; width: 100%;
+      background: linear-gradient(90deg, var(--accent-deep), var(--accent), var(--accent-soft));
+      transform-origin: left; transform: scaleX(0);
+      transition: transform 1.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .tl-track.visible .fill { transform: scaleX(1); }
+  }
+  .tl-summary {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.75rem 2rem;
+    margin-top: 2.5rem; padding: 1.75rem; background: var(--bg-deep);
+    border: 1px solid var(--border); border-radius: 10px;
+  }
+  .tl-summary .big { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); color: var(--accent-soft); line-height: 1; }
+  .tl-summary .lbl { font-size: 14.5px; color: var(--ink-soft); max-width: 34rem; line-height: 1.6; }
+  .tl-note {
+    margin-top: 1.25rem; font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-muted); line-height: 1.7; letter-spacing: 0.01em;
+    max-width: 52rem;
+  }
+  .tl-note .star { color: var(--accent); }
+
+  /* INVERSION */
+  .invest-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.75rem 1.5rem; margin-top: 3rem;
+  }
+  @media (min-width: 640px) { .invest-card { padding: 2.5rem; } }
+  @media (min-width: 768px) { .invest-card { padding: 3.5rem; } }
+  .invest-card.featured {
+    border-color: var(--accent-deep); position: relative;
+    background: linear-gradient(180deg, var(--surface-elevated) 0%, rgba(230,180,90,0.06) 100%);
+  }
+  .invest-card.featured::before {
+    content: 'Precio de entrada'; position: absolute; top: -14px; left: 1.25rem;
+    background: var(--accent); color: #0E0E10; font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.35rem 0.875rem; border-radius: 999px; font-weight: 500;
+  }
+  @media (min-width: 640px) { .invest-card.featured::before { left: 2rem; } }
+  .invest-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 640px) { .invest-head { gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; } }
+  .invest-head h3 { font-family: var(--font-display); font-size: 1.45rem; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.2; }
+  @media (min-width: 640px) { .invest-head h3 { font-size: 1.75rem; } }
+  .invest-head .sub { font-size: 14px; color: var(--ink-muted); max-width: 32rem; line-height: 1.55; }
+  .invest-price { text-align: left; min-width: 0; }
+  @media (min-width: 640px) { .invest-price { text-align: right; min-width: 190px; } }
+  .invest-price .from { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+  .invest-price .amount { font-family: var(--font-display); font-size: clamp(2.25rem, 4.5vw, 3rem); color: var(--ink); font-weight: 400; line-height: 1; letter-spacing: -0.01em; }
+  .invest-price .cycle { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 0.5rem; }
+  .invest-price .iva { font-size: 11px; color: var(--ink-whisper); margin-top: 0.25rem; letter-spacing: 0.06em; }
+
+  .invest-items { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  .invest-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.875rem 0; border-bottom: 1px dashed var(--border); gap: 1rem; flex-wrap: wrap;
+  }
+  @media (min-width: 640px) { .invest-item { gap: 1.5rem; flex-wrap: nowrap; } }
+  .invest-item:last-child { border-bottom: none; }
+  .invest-item .desc { font-size: 15px; color: var(--ink); }
+  .invest-item .desc small { display: block; color: var(--ink-muted); font-size: 13px; margin-top: 0.15rem; }
+  .invest-item .val { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent-soft); font-weight: 500; white-space: nowrap; letter-spacing: 0.04em; }
+  .invest-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--ink-muted); line-height: 1.65; }
+  .invest-footer strong { color: var(--ink); font-weight: 500; }
+
+  /* Scaling modules */
+  .modules-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  @media (min-width: 640px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .modules-grid { grid-template-columns: repeat(3, 1fr); } }
+  .module {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.35rem 1.4rem; transition: border-color 0.3s ease;
+  }
+  .module:hover { border-color: var(--accent-deep); }
+  .module .mtag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.6rem; }
+  .module h5 { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); margin-bottom: 0.4rem; }
+  .module .price { font-family: var(--font-mono); font-size: 13px; color: var(--accent-soft); margin-bottom: 0.6rem; letter-spacing: 0.02em; }
+  .module p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.55; }
+
+  /* CTA FORM */
+  .cta-form-section { background: var(--bg-deep); }
+  .cta-form-wrap { max-width: 44rem; margin: 0 auto; }
+  .cta-form-section h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.12; margin-bottom: 1.25rem; }
+  .cta-form-section h2 em { font-style: italic; color: var(--accent-soft); }
+  .cta-form-section .lede-form { font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.4rem); font-style: italic; color: var(--ink-soft); max-width: 40rem; line-height: 1.4; }
+
+  #lead-form { display: grid; gap: 1.25rem; margin-top: 2.8rem; }
+  #lead-form label { display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input, #lead-form select, #lead-form textarea {
+    font-family: var(--font-sans); font-size: 1rem; color: #241C0C;
+    background: var(--accent-soft); border: 1px solid var(--accent-deep);
+    border-radius: 8px; padding: 0.95rem 1.1rem; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    text-transform: none; letter-spacing: 0;
+  }
+  #lead-form input::placeholder, #lead-form textarea::placeholder { color: #7A6836; }
+  #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
+    outline: none; background: #FBEED1; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(230,180,90,0.25);
+  }
+  #lead-form select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23241C0C' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  #lead-form textarea { resize: vertical; min-height: 96px; }
+  @media (min-width: 640px) { .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+  .form-submit {
+    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600;
+    letter-spacing: 0.02em; color: #0E0E10; background: var(--accent);
+    border: none; border-radius: 8px; padding: 1.05rem 1.5rem; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; margin-top: 0.5rem;
+  }
+  .form-submit:hover:not(:disabled) { background: var(--accent-soft); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.6; cursor: default; }
+  .form-status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-soft); opacity: 0; transition: opacity 0.3s; line-height: 1.6; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: #E88A6A; }
+
+  /* CLOSING */
+  .closing { background: var(--bg); padding: 5rem 1.25rem; text-align: center; position: relative; overflow: hidden; }
+  @media (min-width: 640px) { .closing { padding: 7rem 1.5rem; } }
+  @media (min-width: 768px) { .closing { padding: 8.5rem 3rem; } }
+  .closing::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(50% 60% at 50% 0%, rgba(230,180,90,0.10), transparent 70%);
+  }
+  .closing-inner { position: relative; z-index: 1; }
+  .closing .section-label { justify-content: center; }
+  .closing h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; color: var(--ink); font-weight: 400; max-width: 44rem; margin: 0 auto 2rem; }
+  .closing h2 em { color: var(--accent-soft); font-style: italic; }
+  .closing p { color: var(--ink-muted); font-size: 16.5px; max-width: 38rem; margin: 0 auto; line-height: 1.7; }
+  .closing-sentido-mark { height: 36px; width: auto; opacity: 0.6; margin-top: 3rem; }
+
+  /* FOOTER */
+  .foot {
+    background: var(--bg-deep); color: var(--ink-whisper);
+    padding: 2rem 1.25rem; text-align: center;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.8;
+  }
+  @media (min-width: 640px) { .foot { font-size: 11px; letter-spacing: 0.14em; padding: 2rem 1.5rem; } }
+  .foot a { color: var(--ink-soft); text-decoration: none; margin: 0 0.4rem; display: inline-block; }
+  .foot a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+      <span class="divider"></span>
+      <span class="label">Sitios Web con IA</span>
+    </div>
+    <div class="nav-links">
+      <a href="#contexto">Contexto</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#angulo">Ángulo</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#inversion">Inversión</a>
+    </div>
+    <a href="#responder" class="nav-cta">Cotizar el mío →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido reveal" />
+    <div class="hero-meta reveal">
+      <span>Producto Sentido</span>
+      <span class="divider"></span>
+      <span>Sitios web · Workflow con IA</span>
+    </div>
+    <h1 class="hero-brand reveal reveal-d1">Sitios web<br>producidos con <em>IA</em>.</h1>
+    <p class="hero-subtitle reveal reveal-d2">
+      El sitio que antes costaba una fortuna y tardaba meses — hoy con estética de altísimo nivel, funcionalidades avanzadas y entregado <em>en menos de un mes</em>.
+    </p>
+    <div class="hero-details reveal reveal-d3">
+      <div class="hero-detail">
+        <div class="label">Desde</div>
+        <div class="value">$20,000 MXN + IVA</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Entrega</div>
+        <div class="value">~2 semanas promedio</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Incluye</div>
+        <div class="value">Chatbot · Cotizador · CRM-ready</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTO -->
+<section class="section" id="contexto">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>01 · El porqué</span></div>
+    <p class="lede reveal reveal-d1">
+      Producir un sitio web con un <em>workflow potenciado por IA</em> cambió las reglas: entregamos en tiempos muy cortos, con una estética que antes solo alcanzaban los proyectos grandes, e integramos funcionalidades que hasta hace poco eran <em>carísimas de desarrollar</em>.
+    </p>
+    <div style="max-width: 54rem; margin-top: 2.5rem;">
+      <p class="p lg reveal reveal-d2">
+        Lo que cambió no es el gusto ni el criterio — eso lo pone Sentido, como siempre. Lo que cambió es la <strong>velocidad de ejecución</strong>. La IA nos deja iterar diseño, generar contenido visual y montar integraciones en una fracción del tiempo. El resultado llega a tus manos por una fracción del costo.
+      </p>
+      <p class="p lg reveal reveal-d3">
+        En corto: obtienes un sitio que <strong>antes costaba mucho más y tardaba meses</strong>, ahora accesible y rápido — sin sacrificar el nivel.
+      </p>
+    </div>
+
+    <div class="thennow">
+      <div class="tn-card before reveal reveal-d2">
+        <div class="tag">— El modelo de antes</div>
+        <h4>Caro, lento, rígido</h4>
+        <ul>
+          <li>Meses de desarrollo entre diseño, código y revisiones</li>
+          <li>Funcionalidades avanzadas cotizadas como proyectos aparte</li>
+          <li>Sesiones de foto y video costosas para tener buen contenido</li>
+          <li>Presupuestos que dejaban fuera a la mayoría de los negocios</li>
+        </ul>
+      </div>
+      <div class="tn-card after reveal reveal-d3">
+        <div class="tag">— El modelo Sentido con IA</div>
+        <h4>Accesible, veloz, completo</h4>
+        <ul>
+          <li>Sitio terminado en menos de un mes — ~2 semanas promedio</li>
+          <li>Chatbots, cotizadores y formularios inteligentes de serie</li>
+          <li>Contenido visual generado dentro del workflow, sin sesión cara</li>
+          <li>Estética premium a un precio que abre la puerta desde $20,000</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONALIDADES -->
+<section class="section section-surface" id="funcionalidades">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>02 · Lo que lleva dentro</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 50rem; margin-bottom: 1.5rem;">
+      Funcionalidades que antes eran <span class="italic-accent">carísimas de desarrollar</span> — hoy viables y accesibles.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 48rem;">
+      No es un sitio bonito y ya. Cada pieza tiene un trabajo: atender, capturar, cotizar, convertir. Esto es lo que integramos dentro del workflow con IA.
+    </p>
+
+    <div class="features">
+
+      <!-- 01 Chatbots -->
+      <div class="feature reveal reveal-d1">
+        <div class="feature-head">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-4a8 8 0 0 1 4.5-14A8 8 0 0 1 21 12Z"/><circle cx="9" cy="12" r="0.5"/><circle cx="13" cy="12" r="0.5"/><circle cx="17" cy="12" r="0.5"/></svg>
+          </div>
+          <span class="kicker">01 · Atención</span>
+        </div>
+        <div class="feature-body">
+          <h3>Chatbots inteligentes</h3>
+          <p>Un asistente que entiende lenguaje natural, resuelve las dudas frecuentes y guía al visitante hacia la acción — sin que nadie esté del otro lado a las 2 de la mañana. Se entrena con la información real del negocio: catálogo, precios, preguntas típicas, políticas.</p>
+          <div class="benefit"><span><strong>Beneficio:</strong> atención y captación automatizada 24/7. Ningún visitante se queda sin respuesta, y cada conversación puede terminar en un lead.</span></div>
+        </div>
+      </div>
+
+      <!-- 02 Formularios inteligentes -->
+      <div class="feature reveal reveal-d1">
+        <div class="feature-head">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          </div>
+          <span class="kicker">02 · Captura</span>
+        </div>
+        <div class="feature-body">
+          <h3>Formularios inteligentes</h3>
+          <p>Formularios que no solo recogen datos: los ponen a trabajar. Cada envío dispara una notificación directa al correo del negocio y se conecta fácilmente con un CRM para dar seguimiento ordenado a cada lead — sin que nada se pierda en una bandeja saturada.</p>
+          <div class="benefit"><span><strong>Beneficio:</strong> notificación inmediata + conexión con CRM. El seguimiento deja de depender de la memoria de alguien y pasa a ser un proceso.</span></div>
+        </div>
+      </div>
+
+      <!-- 03 Cotizadores en tiempo real -->
+      <div class="feature headline reveal reveal-d1">
+        <div class="feature-head">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h3M13 11h3M8 15h3M13 15h3"/><path d="M15.5 18.5l2 2 3-3.5"/></svg>
+          </div>
+          <span class="kicker">03 · Conversión</span>
+        </div>
+        <div class="feature-body">
+          <h3>Cotizadores en tiempo real</h3>
+          <p>El diferenciador fuerte. El visitante hace el ejercicio él mismo: elige opciones, ajusta cantidades, ve <em style="color:var(--accent-soft); font-style:italic;">cuánto le saldría</em> al instante. Y en el momento en que obtiene su número, ese resultado se convierte automáticamente en una solicitud — un lead calificado enviado por formulario, con todo el contexto de lo que cotizó.</p>
+          <div class="benefit"><span><strong>Beneficio:</strong> el sitio califica y captura en el mismo movimiento. Llega un lead que ya sabe lo que quiere y cuánto cuesta — el mejor tipo de prospecto para cerrar.</span></div>
+        </div>
+      </div>
+
+      <!-- 04 Contenido visual IA -->
+      <div class="feature reveal reveal-d1">
+        <div class="feature-head">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-6 6"/></svg>
+          </div>
+          <span class="kicker">04 · Contenido</span>
+        </div>
+        <div class="feature-body">
+          <h3>Contenido visual producido con IA</h3>
+          <p>Fotografías y videos generados y producidos dentro de nuestro workflow, integrados directamente al sitio. Escenas, ambientes y piezas visuales a la medida del proyecto — sin depender de agendar y pagar una sesión de producción cara para tener un sitio que se vea impecable desde el día uno.</p>
+          <div class="benefit"><span><strong>Beneficio:</strong> estética visual de nivel sin el costo ni el tiempo de una producción tradicional. El sitio nace con imagen propia.</span></div>
+        </div>
+      </div>
+
+      <!-- 05 Estética + velocidad -->
+      <div class="feature reveal reveal-d1">
+        <div class="feature-head">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12l1-9Z"/></svg>
+          </div>
+          <span class="kicker">05 · Diseño</span>
+        </div>
+        <div class="feature-body">
+          <h3>Estética premium y desarrollo veloz</h3>
+          <p>Diseño de alto nivel, hecho a medida — no una plantilla reciclada. El workflow con IA nos permite iterar el diseño rápido, probar variantes y afinar cada pantalla en días, no semanas. El criterio y la dirección creativa son de Sentido; la velocidad la pone la herramienta.</p>
+          <div class="benefit"><span><strong>Beneficio:</strong> un sitio que se ve como los que cuestan mucho más, entregado en la fracción del tiempo que tomaba lograrlo.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ÁNGULO -->
+<section class="section" id="angulo">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>03 · Por qué con Sentido</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
+      La IA acelera. El <span class="italic-accent">criterio</span> sigue siendo humano.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 48rem;">
+      La diferencia no está en tener acceso a la herramienta — hoy cualquiera la tiene. Está en saber dirigirla: qué diseñar, qué integrar, qué contar y qué dejar fuera. Eso es lo que Sentido pone sobre la mesa.
+    </p>
+
+    <div class="pillars">
+      <div class="pillar reveal reveal-d1">
+        <div class="num">— 01</div>
+        <h4>Dirección, no automatización a ciegas</h4>
+        <p>El workflow con IA está guiado por dirección creativa y estratégica. Cada decisión de diseño y cada funcionalidad responde al objetivo del negocio, no a lo que la máquina escupe por default.</p>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="num">— 02</div>
+        <h4>Pensado para convertir</h4>
+        <p>Chatbot, formularios y cotizador no están ahí de adorno. Están puestos donde empujan al visitante hacia una acción medible: preguntar, cotizar, dejar sus datos. El sitio trabaja, no solo se ve bien.</p>
+      </div>
+      <div class="pillar reveal reveal-d3">
+        <div class="num">— 03</div>
+        <h4>Listo para crecer</h4>
+        <p>Nace conectado a CRM y con las bases para sumar pauta, automatización o e-commerce cuando llegue el momento. Empiezas con lo esencial y el sitio escala contigo — sin rehacerlo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="section section-deep" id="cronograma">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>04 · Cronograma de trabajo</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
+      De arranque a sitio en el aire en <span class="italic-accent">menos de un mes</span>.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 48rem;">
+      El workflow con IA comprime el calendario sin comprimir la calidad. Este es el ritmo típico de un proyecto — con un promedio de alrededor de dos semanas de punta a punta.
+    </p>
+
+    <div class="timeline">
+      <div class="tl-bar">
+        <div class="tl-step reveal reveal-d1">
+          <span class="when">Días 1–2</span>
+          <h4>Arranque y contenidos</h4>
+          <p>Kickoff, recopilación de información, accesos y referencias. Definimos objetivo, mapa del sitio y funcionalidades a integrar.</p>
+        </div>
+        <div class="tl-step reveal reveal-d2">
+          <span class="when">Días 3–6</span>
+          <h4>Diseño e imagen</h4>
+          <p>Diseño a medida de las pantallas clave y generación del contenido visual con IA. Una ronda de revisión y ajuste.</p>
+        </div>
+        <div class="tl-step reveal reveal-d3">
+          <span class="when">Días 7–11</span>
+          <h4>Desarrollo e integraciones</h4>
+          <p>Construcción del sitio y montaje de chatbot, formularios inteligentes, cotizador y conexión con correo / CRM.</p>
+        </div>
+        <div class="tl-step reveal reveal-d4">
+          <span class="when">Días 12–14</span>
+          <h4>Pruebas y lanzamiento</h4>
+          <p>QA en móvil y desktop, ajustes finales, publicación en el dominio y entrega. El sitio entra al aire.</p>
+        </div>
+      </div>
+      <div class="tl-track"><div class="fill"></div></div>
+
+      <div class="tl-summary reveal">
+        <span class="big">~2 semanas</span>
+        <span class="lbl">es el promedio de entrega de punta a punta. Ningún proyecto pasa del mes bajo condiciones normales de trabajo.</span>
+      </div>
+
+      <p class="tl-note reveal">
+        <span class="star">*</span> Los tiempos indicados dependen del flujo de información y del cumplimiento de requerimientos por parte del cliente — entrega puntual de contenidos, textos y accesos, así como las aprobaciones en cada etapa. Si esa parte fluye, el calendario se cumple.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section class="section" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>05 · Inversión</span></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 50rem; margin-bottom: 1.5rem;">
+      <span class="italic-accent">Desde $20,000 MXN</span> — modular, escala según tu proyecto.
+    </h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 48rem;">
+      Los $20,000 son el <strong>piso</strong>: un sitio profesional con la estética y las bases del workflow con IA. A partir de ahí, la inversión sube según el número de funcionalidades, la complejidad del cotizador y el alcance de contenido. Se arma a la medida.
+    </p>
+
+    <!-- BASE -->
+    <div class="invest-card featured reveal reveal-d1">
+      <div class="invest-head">
+        <div>
+          <h3>Sitio web con IA · Proyecto base</h3>
+          <p class="sub">Diseño a medida + desarrollo + contenido visual con IA + las integraciones esenciales. El punto de partida sobre el que se construye todo.</p>
+        </div>
+        <div class="invest-price">
+          <div class="from">Desde</div>
+          <div class="amount">$20,000</div>
+          <div class="cycle">MXN · Único</div>
+          <div class="iva">+ IVA · 60% anticipo / 40% entrega</div>
+        </div>
+      </div>
+      <div class="invest-items">
+        <div class="invest-item">
+          <div class="desc">Diseño visual a medida
+            <small>Estética premium, mobile-first, dirección creativa Sentido</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Desarrollo del sitio con workflow IA
+            <small>Responsive, veloz, SEO técnico base, SSL, WhatsApp</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Contenido visual producido con IA
+            <small>Imágenes a la medida integradas al sitio, sin sesión de producción aparte</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Formularios inteligentes con notificación
+            <small>Aviso directo a correo, listos para conectar con CRM</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+        <div class="invest-item">
+          <div class="desc">Pruebas, lanzamiento y publicación
+            <small>QA cross-device, despliegue en el dominio, entrega</small>
+          </div>
+          <div class="val">Incluido</div>
+        </div>
+      </div>
+      <div class="invest-footer">
+        <strong>Pagos:</strong> 60% anticipo al iniciar · 40% a la entrega. <strong>No incluye:</strong> hosting, dominio, ni presupuesto de pauta publicitaria (se cotizan aparte cuando apliquen).
+      </div>
+    </div>
+
+    <!-- MÓDULOS -->
+    <h3 class="h-md reveal" style="margin-top: 4.5rem; margin-bottom: 1rem;">Módulos que suman al proyecto</h3>
+    <p class="p reveal" style="max-width: 48rem;">
+      La cotización final se arma sobre el proyecto base sumando lo que tu negocio necesite. Estos módulos son los que más mueven la aguja — se cotizan según complejidad.
+    </p>
+    <div class="modules-grid">
+      <div class="module reveal reveal-d1">
+        <div class="mtag">Atención</div>
+        <h5>Chatbot inteligente</h5>
+        <div class="price">Cotización según alcance</div>
+        <p>Asistente entrenado con la información del negocio para atender y captar 24/7. La inversión depende del volumen de información y los flujos de conversación.</p>
+      </div>
+      <div class="module reveal reveal-d2">
+        <div class="mtag">Conversión</div>
+        <h5>Cotizador en tiempo real</h5>
+        <div class="price">Cotización según complejidad</div>
+        <p>El ejercicio de cotización que el visitante hace solo y que se vuelve lead automático. El precio escala con la lógica y las variables del cálculo.</p>
+      </div>
+      <div class="module reveal reveal-d3">
+        <div class="mtag">Seguimiento</div>
+        <h5>Conexión e implementación CRM</h5>
+        <div class="price">Cotización según setup</div>
+        <p>Vincular los formularios y el cotizador a un CRM (GoHighLevel) para que cada lead entre a un pipeline con seguimiento ordenado y automatizado.</p>
+      </div>
+      <div class="module reveal reveal-d4">
+        <div class="mtag">Contenido</div>
+        <h5>Producción visual ampliada con IA</h5>
+        <div class="price">Cotización según volumen</div>
+        <p>Más piezas visuales o video producido con IA para secciones específicas, banners o campañas. Se suma según la cantidad y el tipo de material.</p>
+      </div>
+      <div class="module reveal reveal-d5">
+        <div class="mtag">Alcance</div>
+        <h5>Secciones y funcionalidades extra</h5>
+        <div class="price">Cotización a la medida</div>
+        <p>Catálogo extendido, blog, portal de clientes, integraciones adicionales. Todo lo que empuje el alcance más allá del sitio base.</p>
+      </div>
+      <div class="module reveal reveal-d5">
+        <div class="mtag">Continuidad</div>
+        <h5>Administración mensual del sitio</h5>
+        <div class="price">$3,500 MXN + IVA / mes</div>
+        <p>Actualizaciones, gráficos de promoción, análisis de estadísticas y administración de tráfico y conversiones. Opcional, contratable después del lanzamiento.</p>
+      </div>
+    </div>
+
+    <p class="p sm reveal" style="margin-top: 2rem; max-width: 48rem; color: var(--ink-muted);">
+      Todos los precios son en pesos mexicanos y no incluyen IVA salvo donde se indique. La cotización cerrada se define una vez conocido el alcance — número de funcionalidades, complejidad del cotizador y volumen de contenido.
+    </p>
+  </div>
+</section>
+
+<!-- CTA + FORMULARIO -->
+<section class="section cta-form-section" id="responder">
+  <div class="cta-form-wrap">
+    <div class="section-label reveal"><span class="dot"></span><span>Siguiente paso</span></div>
+    <h2 class="reveal reveal-d1">Armemos <em>el tuyo</em>.</h2>
+    <p class="lede-form reveal reveal-d2">Déjanos saber qué necesitas y te enviamos una cotización a la medida — con las funcionalidades que sí le sirven a tu negocio. Respondemos en menos de 24 h hábiles.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate class="reveal reveal-d3">
+      <input type="hidden" name="propuesta" value="sitios-web-ia" />
+
+      <div class="form-row">
+        <label>Nombre <span class="req">*</span>
+          <input name="nombre" type="text" required autocomplete="name" />
+        </label>
+        <label>Email <span class="req">*</span>
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>WhatsApp
+          <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+        </label>
+        <label>Negocio / Marca
+          <input name="negocio" type="text" placeholder="Nombre del proyecto" />
+        </label>
+      </div>
+
+      <label>¿Qué te interesa? <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Quiero cotizar mi sitio web con IA</option>
+          <option>Me interesa, pero quiero entender el alcance primero</option>
+          <option>Tengo un proyecto específico y quiero platicarlo</option>
+          <option>Solo estoy explorando por ahora</option>
+        </select>
+      </label>
+
+      <label>Cuéntanos del proyecto (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Tipo de negocio, si ya tienes sitio, funcionalidades que te llaman la atención (chatbot, cotizador...), fechas."></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar y recibir cotización →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="closing" id="cierre">
+  <div class="closing-inner">
+    <div class="section-label reveal"><span class="dot"></span><span>Sentido · Sitios Web con IA</span><span class="divider"></span></div>
+    <h2 class="reveal reveal-d1">
+      El sitio que antes era para pocos, <em>hoy es para tu negocio.</em>
+    </h2>
+    <p class="reveal reveal-d2">
+      Mismo nivel, una fracción del tiempo y del costo. Cuéntanos qué necesitas y en menos de un mes lo tienes en el aire — atendiendo, cotizando y captando por ti.
+    </p>
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-sentido-mark reveal reveal-d3" />
+  </div>
+</section>
+
+<footer class="foot">
+  <div>
+    <a href="https://sentido.mx">sentido.mx</a> ·
+    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> ·
+    <a href="https://instagram.com/sentido.mx">@sentido.mx</a>
+  </div>
+  <div style="margin-top:0.6rem; opacity:0.7;">Sentido Branding &amp; Advertising · 2026</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Timeline track fill on view
+  const track = document.querySelector('.tl-track');
+  if (track) {
+    const tio = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { track.classList.add('visible'); tio.unobserve(track); } });
+    }, { threshold: 0.4 });
+    tio.observe(track);
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+
+  // Lead form
+  const leadForm = document.getElementById('lead-form');
+  const statusEl = document.getElementById('lf-status');
+  const submitBtn = leadForm.querySelector('.form-submit');
+  leadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
+    const payload = {
+      Propuesta: leadForm.propuesta.value,
+      Nombre: leadForm.nombre.value.trim(),
+      Email: leadForm.email.value.trim(),
+      WhatsApp: leadForm.whatsapp.value.trim() || '—',
+      'Negocio': leadForm.negocio.value.trim() || '—',
+      'Interés': leadForm.paso.value,
+      Mensaje: leadForm.mensaje.value.trim() || '—',
+      Fuente: location.pathname,
+      Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+    };
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    try {
+      const res = await fetch(leadForm.dataset.webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Webhook ' + res.status);
+      statusEl.textContent = 'Recibido. Te respondemos en menos de 24 h hábiles a ' + payload.Email + '.';
+      statusEl.classList.add('visible');
+      leadForm.reset();
+      submitBtn.textContent = '✓ Enviado';
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx o por WhatsApp.';
+      statusEl.classList.add('visible', 'error');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar y recibir cotización →';
+    }
+  });
+</script>
+
+</body>
+</html>
