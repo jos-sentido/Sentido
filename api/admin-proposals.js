@@ -44,17 +44,24 @@ async function getFile() {
 }
 
 async function putFile(proposals, sha, message = 'admin: actualiza proposals.json') {
+  const encoded = Buffer.from(JSON.stringify({ proposals }, null, 2)).toString('base64');
   const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
-  const body = JSON.stringify({
-    message,
-    content: Buffer.from(JSON.stringify({ proposals }, null, 2)).toString('base64'),
-    sha,
-    branch: BRANCH
-  });
-  const res = await fetch(url, { method: 'PUT', headers: ghHeaders(), body });
-  if (!res.ok) throw new Error(`GitHub ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  return data.content.sha;
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const body = JSON.stringify({ message, content: encoded, sha, branch: BRANCH });
+    const res = await fetch(url, { method: 'PUT', headers: ghHeaders(), body });
+    if (res.ok) {
+      const data = await res.json();
+      return data.content.sha;
+    }
+    // GitHub 409 = SHA desactualizado; re-fetch y reintenta una vez
+    if (res.status === 409 && attempt === 0) {
+      const current = await getFile();
+      sha = current.sha;
+      continue;
+    }
+    throw new Error(`GitHub ${res.status}: ${await res.text()}`);
+  }
 }
 
 export default async function handler(req, res) {
