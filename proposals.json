@@ -287,7 +287,7 @@
       "tipo": "propuesta",
       "cliente": "JALIE-VALI Constructora",
       "fecha": "2026-06-02",
-      "estatus": "enviada",
+      "estatus": "ganada",
       "serviciosDisponibles": [
         {
           "id": "sitio",
@@ -296,7 +296,9 @@
           "tipo": "unico"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "sitio"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
