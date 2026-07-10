@@ -159,7 +159,10 @@
           "tipo": "unico"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "redes",
+        "gads"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
