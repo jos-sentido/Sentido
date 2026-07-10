@@ -421,7 +421,7 @@
       "tipo": "propuesta",
       "cliente": "Premium Used Car",
       "fecha": "2026-05-05",
-      "estatus": "enviada",
+      "estatus": "vista",
       "serviciosDisponibles": [
         {
           "id": "sitio",
