@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Murotech · Plan de Contenido — Blog y Redes</title>
+<meta name="description" content="Plan de contenido de Sentido para Murotech: blog SEO y redes sociales. Fase 2 — activación de gestión editorial. Julio 2026." />
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14110E;
+    --bg-deep: #0E0C0A;
+    --surface: #1C1815;
+    --surface-2: #221D19;
+    --line: #322C26;
+    --line-soft: #26211C;
+    --gold: #E4A233;
+    --gold-bright: #F3B348;
+    --gold-deep: #C8892B;
+    --ink: #EDE7DC;
+    --ink-soft: #A69B8B;
+    --ink-dim: #756B5F;
+    --good: #93BE86;
+    --good-bg: #1E2A1C;
+    --warn: #DB9160;
+    --warn-bg: #2C2016;
+    --cream: #F4EFE6;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 40px rgba(0,0,0,.30);
+    --disp: "Archivo", system-ui, sans-serif;
+    --body: "Inter", system-ui, -apple-system, sans-serif;
+    --mono: "Space Mono", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.62;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--gold); color: #14110E; }
+
+  /* ---------- background texture ---------- */
+  .bg-grad {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 600px at 82% -8%, rgba(228,162,51,.11), transparent 60%),
+      radial-gradient(900px 700px at -10% 12%, rgba(228,162,51,.05), transparent 55%),
+      linear-gradient(180deg, #16120F, #100D0B 60%, #0D0A08);
+  }
+
+  /* ---------- sticky nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 12px clamp(16px, 5vw, 40px);
+    background: rgba(20,17,14,.72);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border-bottom: 1px solid rgba(50,44,38,.7);
+  }
+  .nav img { height: 26px; width: auto; display: block; }
+  @media (min-width: 768px) { .nav img { height: 30px; } }
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+  .nav-label { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-dim); display: none; }
+  @media (min-width: 880px) { .nav-label { display: inline; } }
+  .nav-cta {
+    font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; color: #14110E; background: var(--gold);
+    padding: 9px 16px; border-radius: 999px; text-decoration: none; white-space: nowrap;
+    transition: background .18s ease, transform .18s ease;
+  }
+  .nav-cta:hover { background: var(--gold-bright); transform: translateY(-1px); }
+
+  .wrap { padding: clamp(28px, 6vw, 72px) clamp(16px, 5vw, 40px) 40px; }
+  .page { max-width: 1040px; margin: 0 auto; }
+
+  /* ---------- type ---------- */
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--gold); margin: 0 0 20px;
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  }
+  .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--gold); display: inline-block; }
+
+  h1 {
+    font-family: var(--disp); font-weight: 800; letter-spacing: -.025em;
+    text-wrap: balance; line-height: 1.02; margin: 0 0 22px;
+    font-size: clamp(33px, 6.4vw, 62px);
+  }
+  h1 .g { color: var(--gold-bright); }
+  .lede { font-size: clamp(16px, 2.3vw, 20px); color: var(--ink-soft); max-width: 60ch; margin: 0; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .meta { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); margin-top: 34px; display: flex; gap: 10px 26px; flex-wrap: wrap; }
+  .meta b { color: var(--ink-soft); font-weight: 400; }
+  .meta .lbl { color: var(--gold-deep); }
+
+  section { margin-top: clamp(52px, 8vw, 96px); }
+  .kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-dim); margin: 0 0 14px; }
+  .kicker b { color: var(--gold); font-weight: 400; }
+  h2 {
+    font-family: var(--disp); font-weight: 700; letter-spacing: -.02em;
+    font-size: clamp(24px, 4.2vw, 38px); margin: 0 0 10px; text-wrap: balance; line-height: 1.08;
+  }
+  .sec-intro { color: var(--ink-soft); max-width: 64ch; margin: 0 0 4px; font-size: clamp(15px, 2vw, 17px); }
+  h3 { font-family: var(--disp); font-weight: 700; font-size: 18px; margin: 0 0 6px; letter-spacing: -.01em; }
+  p { margin: 0 0 14px; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- hero logo ---------- */
+  .hero-logo-sentido { height: 52px; width: auto; display: block; margin-bottom: 40px; opacity: .9; }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 56px; } }
+
+  /* ---------- grids / cards ---------- */
+  .grid { display: grid; gap: 16px; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 780px) { .cols-3 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px; box-shadow: var(--shadow);
+  }
+  .card.accent { border-left: 3px solid var(--gold); }
+  .quote-card {
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--line); border-left: 3px solid var(--gold);
+    border-radius: 14px; padding: clamp(22px, 4vw, 34px); box-shadow: var(--shadow);
+  }
+  .quote-card p { margin: 0; font-size: clamp(16px, 2.2vw, 20px); line-height: 1.55; }
+  .quote-card b { color: var(--gold-bright); font-weight: 600; }
+
+  /* ---------- spec strip ---------- */
+  .specs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 22px; }
+  @media (max-width: 760px) { .specs { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 380px) { .specs { grid-template-columns: 1fr; } }
+  .spec {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 16px; text-align: left;
+  }
+  .spec .n { font-family: var(--disp); font-weight: 800; font-size: clamp(22px, 3vw, 27px); color: var(--gold-bright); letter-spacing: -.02em; line-height: 1; }
+  .spec .l { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-top: 9px; }
+
+  /* ---------- 3 layers ---------- */
+  .layers { display: grid; gap: 14px; grid-template-columns: repeat(3,1fr); margin-top: 22px; }
+  @media (max-width: 780px) { .layers { grid-template-columns: 1fr; } }
+  .layer { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
+  .layer::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+  .layer .tag { font-family: var(--mono); font-size: 11px; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; }
+  .layer p { font-size: 14.5px; color: var(--ink-soft); margin: 8px 0 0; }
+
+  /* ---------- tables ---------- */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); margin-top: 22px; }
+  table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 14px; background: var(--surface); }
+  thead th {
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--ink-soft); text-align: left; padding: 14px 16px; background: var(--surface-2);
+    border-bottom: 1px solid var(--line); white-space: nowrap; position: sticky; top: 0;
+  }
+  tbody td { padding: 15px 16px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background .15s ease; }
+  tbody tr:hover { background: var(--surface-2); }
+  td .date { font-family: var(--mono); font-size: 12.5px; color: var(--gold-deep); white-space: nowrap; font-weight: 700; }
+  td .t { font-weight: 600; color: var(--ink); }
+  td .sub { color: var(--ink-soft); font-size: 12.5px; display: block; margin-top: 3px; }
+  .serie { font-family: var(--mono); font-size: 12px; color: var(--gold); }
+  .kw { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+
+  .chip { display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .05em;
+    padding: 4px 10px; border-radius: 999px; white-space: nowrap; text-transform: uppercase; }
+  .chip.reel { background: var(--warn-bg); color: var(--warn); }
+  .chip.carr { background: var(--good-bg); color: var(--good); }
+  .chip.post { background: var(--line-soft); color: var(--ink-soft); border: 1px solid var(--line); }
+  .chip.blog { background: rgba(228,162,51,.12); color: var(--gold); border: 1px solid rgba(228,162,51,.4); }
+  .chip.ind { background: var(--line-soft); color: var(--ink-soft); border: 1px solid var(--line); }
+  .flag { color: var(--warn); font-family: var(--mono); font-size: 12px; font-weight: 700; }
+  .stage { font-family: var(--mono); font-size: 11.5px; color: var(--ink-dim); letter-spacing: .05em; }
+
+  /* ---------- redes mezcla ---------- */
+  .mezcla { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 0; }
+  .mezcla .chip { font-size: 12px; padding: 7px 14px; }
+
+  .pauta-note {
+    margin-top: 18px; padding: 16px 18px; border-radius: 12px;
+    background: var(--surface-2); border: 1px dashed var(--line);
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .pauta-note b { color: var(--ink); font-weight: 600; }
+  .pauta-note .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-deep); display: block; margin-bottom: 6px; }
+
+  /* ---------- inversion ---------- */
+  .price { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .price .n { font-family: var(--disp); font-weight: 800; font-size: 32px; color: var(--gold-bright); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+  .price .u { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); }
+  .total-card { background: linear-gradient(165deg, rgba(228,162,51,.14), var(--surface)); border: 1px solid var(--gold-deep); }
+  .total-card .n { font-size: 38px; }
+  .invest-foot { font-size: 13.5px; color: var(--ink-soft); margin-top: 18px; font-family: var(--mono); }
+
+  /* ---------- horizonte ---------- */
+  .horizon { display: grid; gap: 14px; grid-template-columns: repeat(3,1fr); margin-top: 22px; }
+  @media (max-width: 780px) { .horizon { grid-template-columns: 1fr; } }
+  .hz { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .hz .mo { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  .hz h3 { margin: 8px 0 6px; font-size: 16px; }
+  .hz p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  /* ---------- necesitamos ---------- */
+  ul.need { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+  ul.need li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; color: var(--ink-soft); }
+  ul.need li b { color: var(--ink); font-weight: 600; }
+  ul.need li::before { content: "→"; font-family: var(--mono); color: var(--gold); flex: none; font-weight: 700; }
+
+  /* ---------- CTA / form ---------- */
+  .cta {
+    margin-top: clamp(56px, 9vw, 104px);
+    background: linear-gradient(165deg, var(--surface-2), var(--bg-deep));
+    border: 1px solid var(--line); border-radius: 20px;
+    padding: clamp(28px, 5vw, 56px);
+  }
+  .cta h2 { font-size: clamp(26px, 4.6vw, 42px); }
+  .cta .lede { margin-bottom: 30px; }
+  form { display: grid; gap: 16px; max-width: 560px; }
+  label { display: grid; gap: 7px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+  .req { color: var(--gold); }
+  input, select, textarea {
+    font-family: var(--body); font-size: 15.5px; color: #201B14;
+    background: var(--cream); border: 1px solid #C9BEA9; border-radius: 10px;
+    padding: 13px 15px; width: 100%; -webkit-appearance: none; appearance: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  input::placeholder, textarea::placeholder { color: #8B8172; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23735F3A' d='M6 8 0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; padding-right: 40px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(228,162,51,.25); }
+  textarea { resize: vertical; min-height: 96px; }
+  .form-submit {
+    font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: #14110E; background: var(--gold);
+    border: none; border-radius: 10px; padding: 15px 22px; cursor: pointer;
+    justify-self: start; margin-top: 4px; transition: background .18s ease, transform .18s ease;
+  }
+  .form-submit:hover:not(:disabled) { background: var(--gold-bright); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: .65; cursor: default; }
+  .form-status { font-family: var(--mono); font-size: 13px; color: var(--good); opacity: 0; transition: opacity .2s ease; line-height: 1.5; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: var(--warn); }
+  .cta-alt { margin-top: 26px; font-size: 14px; color: var(--ink-soft); }
+  .cta-alt a { color: var(--gold); }
+
+  /* ---------- footer ---------- */
+  footer { margin-top: 64px; padding: 40px clamp(16px,5vw,40px) 60px; border-top: 1px solid var(--line); }
+  .footer-inner { max-width: 1040px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+  .closing-sentido-mark { height: 36px; width: auto; opacity: .6; }
+  .footer-meta { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); text-align: right; line-height: 1.7; }
+  .footer-meta a { color: var(--ink-soft); }
+  .footer-meta a:hover { color: var(--gold); }
+
+  /* ---------- reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="bg-grad"></div>
+
+<nav class="nav">
+  <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+  <div class="nav-right">
+    <span class="nav-label">Murotech · Plan de contenido</span>
+    <a href="#validar" class="nav-cta">Validar el plan →</a>
+  </div>
+</nav>
+
+<div class="wrap">
+<div class="page">
+
+  <header>
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido" />
+    <p class="eyebrow">Sentido × Murotech · Fase 2 — Contenido</p>
+    <h1>Murotech, la <span class="g">forma inteligente</span> de construir en México.</h1>
+    <p class="lede">El sitio y el blog ya están en producción. Ahora arranca la <strong>gestión editorial y de redes</strong>: el motor de contenido que convierte cada ventaja técnica del panel en algo que tu cliente encuentra, entiende y comparte.</p>
+    <div class="meta">
+      <span><span class="lbl">Cliente</span> <b>Murotech® · A&amp;GV Builders</b></span>
+      <span><span class="lbl">Fase</span> <b>2 — Contenido (blog + redes)</b></span>
+      <span><span class="lbl">Arranque</span> <b>Julio 2026</b></span>
+      <span><span class="lbl">Preparado por</span> <b>Sentido</b></span>
+    </div>
+  </header>
+
+  <!-- POR QUÉ -->
+  <section class="reveal">
+    <p class="kicker"><b>01</b> — Por qué</p>
+    <h2>El producto ya gana. Falta que lo encuentren.</h2>
+    <div class="quote-card" style="margin-top:20px">
+      <p>Murotech tiene un producto <b>técnicamente superior</b> —resiste más de 1,000&nbsp;°C al fuego, 5.8&nbsp;toneladas de carga, 0.01% de permeabilidad, sismo grado 8.5 y 47&nbsp;dB de aislamiento— pero hoy aparece <b>por su marca, no por lo que su cliente realmente busca</b>. El blog ataca el buscador. Las redes construyen autoridad y demostración. Los dos alimentan el mismo embudo hacia cotización.</p>
+    </div>
+
+    <div class="specs">
+      <div class="spec"><div class="n">+1,000°C</div><div class="l">Resistencia al fuego</div></div>
+      <div class="spec"><div class="n">5.8 t</div><div class="l">Carga estructural</div></div>
+      <div class="spec"><div class="n">0.01%</div><div class="l">Permeabilidad</div></div>
+      <div class="spec"><div class="n">8.5</div><div class="l">Grado sísmico</div></div>
+      <div class="spec"><div class="n">47 dB</div><div class="l">Aislamiento acústico</div></div>
+    </div>
+
+    <h3 style="margin:38px 0 4px">Un sistema de contenido en tres capas</h3>
+    <p class="sec-intro">Cada capa cumple un trabajo distinto en el embudo. Juntas, convierten atributos técnicos en tráfico, consideración y autoridad.</p>
+    <div class="layers">
+      <div class="layer"><span class="tag">Capa 1 · viral</span><h3 style="margin-top:8px">Pruebas extremas</h3><p>Fuego, agua, impacto, carga. La demostración dramática — el contenido que más se comparte en el sector.</p></div>
+      <div class="layer"><span class="tag">Capa 2 · convierte</span><h3 style="margin-top:8px">Academia técnica</h3><p>Instalación, comparativas y especificación. El contenido que convence al arquitecto y al especificador.</p></div>
+      <div class="layer"><span class="tag">Capa 3 · autoridad</span><h3 style="margin-top:8px">Casos de desempeño</h3><p>Micro-casos y proyectos reales documentados. La prueba de que el sistema ya funciona en obra.</p></div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="reveal">
+    <p class="kicker"><b>02</b> — Blog · calendario editorial</p>
+    <h2>Julio 2026 — 4 artículos</h2>
+    <p class="sec-intro">Cada artículo ataca una búsqueda real que hoy capturan directorios o competidores, y enlaza a la página de cualidad o a contacto que le corresponde. Detrás hay un banco de 24 ideas priorizadas para alimentar los meses siguientes.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Fecha</th><th>Artículo</th><th>Keyword principal</th><th>Categoría</th><th>Etapa</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="date">Mié 15 jul</span></td>
+            <td><span class="t">Muros impermeables: cómo responde el panel al agua y la humedad</span><span class="sub">Aterriza el 0.01% de permeabilidad → /cualidades/impermeabilidad/</span></td>
+            <td><span class="kw">muros impermeables</span></td>
+            <td><span class="chip ind">Industria</span></td>
+            <td><span class="stage">MOFU</span></td>
+          </tr>
+          <tr>
+            <td><span class="date">Lun 20 jul</span></td>
+            <td><span class="t">Aislamiento acústico en muros: cuántos decibeles necesita tu proyecto</span><span class="sub">Traduce los 47 dB a experiencia real → /cualidades/aislamiento-acustico/</span></td>
+            <td><span class="kw">aislamiento acustico muros</span></td>
+            <td><span class="chip ind">Industria</span></td>
+            <td><span class="stage">TOFU / MOFU</span></td>
+          </tr>
+          <tr>
+            <td><span class="date">Vie 24 jul</span></td>
+            <td><span class="t">Proveedor de paneles de concreto en Jalisco: qué evaluar antes de decidir</span><span class="sub">Captura demanda local de alta intención → /contacto/</span></td>
+            <td><span class="kw">proveedor paneles concreto Jalisco</span></td>
+            <td><span class="chip blog">Guías</span></td>
+            <td><span class="stage">BOFU</span></td>
+          </tr>
+          <tr>
+            <td><span class="date">Mié 29 jul</span></td>
+            <td><span class="t">Construcción antisísmica: qué hace resistente a un sistema de paneles</span><span class="sub">Tema de alta sensibilidad en México → /cualidades/resistencia-estructural/</span></td>
+            <td><span class="kw">construccion antisismica</span></td>
+            <td><span class="chip ind">Industria</span></td>
+            <td><span class="stage">TOFU / MOFU</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="invest-foot">Tono técnico, consultivo y sobrio — el mismo de los artículos ya publicados. 1,200–1,500 palabras, optimizados para SEO y cierre con CTA a contacto.</p>
+  </section>
+
+  <!-- REDES -->
+  <section class="reveal">
+    <p class="kicker"><b>03</b> — Redes · paquete y calendario</p>
+    <h2>9 piezas al mes, mes de lanzamiento en julio</h2>
+    <p class="sec-intro">Un paquete orgánico enfocado en contenido y comunidad, con la estrategia de 3 capas y las cinco series de marca. Las tres pruebas extremas arrancan como Reels: el formato que más tracción genera en construcción.</p>
+
+    <div class="card accent" style="margin-top:22px">
+      <h3>La mezcla mensual</h3>
+      <div class="mezcla">
+        <span class="chip reel">3 Reels</span>
+        <span class="chip carr">3 carruseles</span>
+        <span class="chip post">3 posts</span>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;margin:14px 0 0">Todas las piezas se adaptan también a Stories (IG + FB). Canales: Instagram <b style="color:var(--ink)">@murotech</b> + Facebook <b style="color:var(--ink)">@MurosMurotech</b>. Cadencia ~2 piezas por semana. Atención de comunidad de lunes a viernes.</p>
+      <div class="pauta-note">
+        <span class="tag">Pauta · Meta Ads</span>
+        Este paquete es <b>100% orgánico</b>. La inversión publicitaria (Meta Ads) que amplifica estas mismas piezas se activa como servicio aparte cuando quieras sumar alcance pagado — no se suma al fee mensual.
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Fecha</th><th>Formato</th><th>Serie</th><th>Concepto</th><th>Producción</th></tr></thead>
+        <tbody>
+          <tr><td><span class="date">Mar 14</span></td><td><span class="chip post">Post</span></td><td class="serie">#TécnicoMurotech</td><td><span class="t">Presentación: qué es Murotech</span><span class="sub">La forma inteligente de construir + por qué es distinto</span></td><td>Diseño</td></tr>
+          <tr><td><span class="date">Jue 16</span></td><td><span class="chip reel">Reel</span></td><td class="serie">#MurotechEnAcción</td><td><span class="t">Prueba de FUEGO</span><span class="sub">Panel expuesto a +1,000 °C con termómetro en pantalla</span></td><td><span class="flag">⚠ Producción</span></td></tr>
+          <tr><td><span class="date">Sáb 18</span></td><td><span class="chip carr">Carrusel</span></td><td class="serie">#MuroVsMuro</td><td><span class="t">Murotech vs muro tradicional</span><span class="sub">Comparativa de tiempo, limpieza y desempeño</span></td><td>Diseño</td></tr>
+          <tr><td><span class="date">Mar 21</span></td><td><span class="chip carr">Carrusel</span></td><td class="serie">#TécnicoMurotech</td><td><span class="t">Anatomía del panel</span><span class="sub">Silicato, núcleo EPS, machimbrado</span></td><td>Diseño + render</td></tr>
+          <tr><td><span class="date">Jue 23</span></td><td><span class="chip reel">Reel</span></td><td class="serie">#MurotechEnAcción</td><td><span class="t">Prueba de AGUA</span><span class="sub">Permeabilidad 0.01% — 48 horas bajo el agua</span></td><td><span class="flag">⚠ Producción</span></td></tr>
+          <tr><td><span class="date">Sáb 25</span></td><td><span class="chip post">Post</span></td><td class="serie">#ProyectoDestacado</td><td><span class="t">Proyecto emblemático</span><span class="sub">Caso real documentado + un dato duro</span></td><td><span class="flag">⚠ Foto</span></td></tr>
+          <tr><td><span class="date">Mar 28</span></td><td><span class="chip carr">Carrusel</span></td><td class="serie">#TécnicoMurotech</td><td><span class="t">5 datos técnicos que nadie te cuenta</span><span class="sub">Fuego, agua, acústica, carga, sismo</span></td><td>Diseño</td></tr>
+          <tr><td><span class="date">Jue 30</span></td><td><span class="chip reel">Reel</span></td><td class="serie">#MurotechEnAcción</td><td><span class="t">Prueba de IMPACTO</span><span class="sub">Golpe vs tablaroca vs block — adivina cuál aguanta</span></td><td><span class="flag">⚠ Producción</span></td></tr>
+          <tr><td><span class="date">Vie 31</span></td><td><span class="chip post">Post</span></td><td class="serie">#ConstruyeConIA</td><td><span class="t">Render arquitectónico con IA</span><span class="sub">Cierre de mes aspiracional</span></td><td>IA</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="invest-foot">⚠ Producción / Foto = pieza que requiere grabación real, material de archivo o foto con derechos. El resto se resuelve con diseño e IA. Cada pieza incluye copy, guion, arte y su adaptación a Stories.</p>
+  </section>
+
+  <!-- INVERSION -->
+  <section class="reveal">
+    <p class="kicker"><b>04</b> — Inversión</p>
+    <h2>Fase de contenido: $8,000 al mes</h2>
+    <p class="sec-intro">Dos servicios que trabajan juntos sobre el mismo embudo. Precios en pesos mexicanos, más IVA.</p>
+    <div class="grid cols-3" style="margin-top:22px">
+      <div class="card accent">
+        <h3>Blog con IA + SEO</h3>
+        <p style="color:var(--ink-soft);font-size:14px;margin:8px 0 0">Nivel Base · 4 artículos al mes, optimizados para keywords de producto y solución con gestión SEO.</p>
+        <div class="price"><span class="n">$3,500</span><span class="u">+ IVA / mes</span></div>
+      </div>
+      <div class="card accent">
+        <h3>Redes sociales</h3>
+        <p style="color:var(--ink-soft);font-size:14px;margin:8px 0 0">9 piezas al mes, 100% orgánico. IG + FB, adaptadas a Stories, con atención de comunidad L–V.</p>
+        <div class="price"><span class="n">$4,500</span><span class="u">+ IVA / mes</span></div>
+      </div>
+      <div class="card total-card">
+        <h3>Total mensual</h3>
+        <p style="color:var(--ink-soft);font-size:14px;margin:8px 0 0">La fase de contenido completa. Blog y redes alimentando el mismo embudo hacia cotización.</p>
+        <div class="price"><span class="n">$8,000</span><span class="u">+ IVA / mes</span></div>
+      </div>
+    </div>
+    <p class="invest-foot">La pauta publicitaria (Meta Ads), Google Ads, Google My Business, gestión de CRM y la producción de foto/video quedan disponibles como servicios independientes para activar cuando convenga.</p>
+  </section>
+
+  <!-- HORIZONTE -->
+  <section class="reveal">
+    <p class="kicker"><b>05</b> — Horizonte</p>
+    <h2>Julio arranca. El motor sigue.</h2>
+    <p class="sec-intro">El plan de julio es el lanzamiento. Detrás ya está trazado el rumbo de los meses siguientes, con el banco de 24 ideas priorizadas para el blog y la rotación de series en redes.</p>
+    <div class="horizon">
+      <div class="hz"><span class="mo">Julio</span><h3>Lanzamiento</h3><p>Diferenciación técnica + primer golpe local (BOFU). Las tres pruebas extremas en Reels para abrir con tracción.</p></div>
+      <div class="hz"><span class="mo">Agosto</span><h3>Comparativas + local</h3><p>Contenido de decisión y captura de demanda en Guadalajara. El blog empieza a rankear las keywords sembradas en julio.</p></div>
+      <div class="hz"><span class="mo">Septiembre</span><h3>Térmica + método</h3><p>Eficiencia térmica, instalación y verticales por segmento. La autoridad se consolida y el embudo madura.</p></div>
+    </div>
+  </section>
+
+  <!-- QUE NECESITAMOS -->
+  <section class="reveal">
+    <p class="kicker"><b>06</b> — Para accionar producción</p>
+    <h2>Lo que necesitamos de tu lado</h2>
+    <p class="sec-intro">Con la validación del plan y estos tres puntos, empezamos a producir de inmediato.</p>
+    <ul class="need">
+      <li><b>Accesos a redes:</b> perfiles de Instagram y Facebook para publicar y atender comunidad.</li>
+      <li><b>Producción de los Reels de prueba:</b> definir si grabamos una sesión de las pruebas extremas (fuego, agua, impacto) o arrancamos con material de archivo y apoyo de IA.</li>
+      <li><b>Fotos de proyectos:</b> confirmar imágenes de obra con derechos para los casos destacados.</li>
+    </ul>
+  </section>
+
+  <!-- CTA / FORM -->
+  <section class="cta reveal" id="validar">
+    <p class="eyebrow">Siguiente paso</p>
+    <h2>Valida el plan y accionamos producción.</h2>
+    <p class="lede">Marca dónde estás parado con el plan de julio. Te respondo personalmente en menos de 24 horas hábiles.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate>
+      <input type="hidden" name="propuesta" value="murotech-plan-contenido" />
+
+      <label>Nombre <span class="req">*</span>
+        <input name="nombre" type="text" autocomplete="name" required />
+      </label>
+
+      <label>Email <span class="req">*</span>
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+
+      <label>WhatsApp
+        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+      </label>
+
+      <label>¿Cómo vamos con el plan? <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Aprobado — accionemos la producción de julio</option>
+          <option>Aprobado con ajustes — comento cambios</option>
+          <option>Tengo preguntas antes de aprobar</option>
+          <option>Necesito un poco más de tiempo</option>
+        </select>
+      </label>
+
+      <label>Comentarios (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Ajustes, dudas o cualquier detalle…"></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar respuesta →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+
+    <p class="cta-alt">O escríbeme directo a <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · Instagram <a href="https://instagram.com/sentido.mx">@sentido.mx</a></p>
+  </section>
+
+</div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-sentido-mark" />
+    <div class="footer-meta">
+      Plan de contenido preparado por <b style="color:var(--ink-soft);font-weight:600">Sentido</b> para Murotech · Julio 2026<br>
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx">@sentido.mx</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // lead form → /api/lead (mapea a las claves que el backend renderiza)
+  (function () {
+    var form = document.getElementById('lead-form');
+    var statusEl = document.getElementById('lf-status');
+    var submitBtn = form.querySelector('.form-submit');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var email = form.email.value.trim();
+      var payload = {
+        Nombre: form.nombre.value.trim(),
+        Empresa: 'Murotech — Plan de contenido (Jul 2026)',
+        Email: email,
+        WhatsApp: form.whatsapp.value.trim() || '—',
+        'Necesita apoyo en': form.paso.value,
+        Contexto: form.mensaje.value.trim() || '—',
+        Propuesta: form.propuesta.value,
+        Fuente: location.pathname,
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.className = 'form-status';
+
+      fetch(form.dataset.webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (res) {
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + email + '.';
+        statusEl.className = 'form-status visible';
+        form.reset();
+        submitBtn.textContent = '✓ Enviado';
+      }).catch(function (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.className = 'form-status visible error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar respuesta →';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
