@@ -17,7 +17,7 @@
       "tipo": "propuesta",
       "cliente": "Ferrari Guadalajara",
       "fecha": "2026-06-22",
-      "estatus": "vista",
+      "estatus": "enviada",
       "serviciosDisponibles": [
         {
           "id": "redes",
