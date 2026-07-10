@@ -181,7 +181,7 @@
       "tipo": "propuesta",
       "cliente": "Fabiaa Clo",
       "fecha": "2026-05-04",
-      "estatus": "enviada",
+      "estatus": "vista",
       "serviciosDisponibles": [
         {
           "id": "redes",
