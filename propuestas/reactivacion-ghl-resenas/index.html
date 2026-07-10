@@ -467,6 +467,130 @@
     font-style: italic;
   }
 
+  /* ================= FLOW (recorrido visual) ================= */
+  .flow {
+    display: flex;
+    align-items: stretch;
+    margin-top: 56px;
+    flex-wrap: nowrap;
+  }
+  .flow-step {
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .flow-step:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
+  .flow-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+  }
+  .flow-icon { width: 30px; height: 30px; color: var(--accent); }
+  .flow-icon svg { width: 100%; height: 100%; display: block; }
+  .flow-step-name {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .flow-step-desc {
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .flow-sep {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.375rem;
+  }
+
+  /* ================= REPORT MOCK (preview de KPIs) ================= */
+  .report-mock {
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .report-mock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-elevated);
+    flex-wrap: wrap;
+  }
+  .report-mock-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .report-mock-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 4px 10px;
+    background: var(--accent-glow);
+  }
+  .report-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .kpi {
+    padding: 36px 28px;
+    border-right: 1px solid var(--border);
+  }
+  .kpi:last-child { border-right: none; }
+  .kpi-value {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .kpi-value span { font-size: 0.5em; color: var(--text-dim); margin-left: 2px; }
+  .kpi-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-top: 14px;
+    display: block;
+  }
+  .report-mock-note {
+    padding: 24px 32px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
   /* ================= SERVICES ================= */
   .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
   .service {
@@ -854,6 +978,12 @@
     .market-grid { grid-template-columns: 1fr; }
     .audiences { grid-template-columns: 1fr; }
     .services { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    .flow-sep { transform: rotate(90deg); padding: 10px 0; }
+    .report-kpis { grid-template-columns: 1fr 1fr; }
+    .kpi { border-bottom: 1px solid var(--border); }
+    .kpi:nth-child(2) { border-right: none; }
+    .kpi:nth-last-child(-n+2) { border-bottom: none; }
     .tiers { grid-template-columns: 1fr; }
     .rules { grid-template-columns: 1fr; }
     .note-cols { grid-template-columns: 1fr; }
@@ -1036,12 +1166,79 @@
     <div class="section-title reveal">
       <div>
         <span class="section-number">03 — CÓMO FUNCIONA</span>
-        <h2>Dos motores.<br />Uno arranca; el otro no para.</h2>
+        <h2>De tu base dormida<br />a clientes que vuelven.</h2>
       </div>
     </div>
 
     <p class="lede reveal">
-      El servicio se compone de un setup que se hace una sola vez al arranque — sin costo extra, embebido en el mes 1 — y una operación mensual continua que corre desde el primer mes. No hay "mes de armado" facturable donde no ves nada.
+      Tienes años de clientes, socios y prospectos guardados en hojas de cálculo, en tu punto de venta, en tu WhatsApp. Tomamos esa base, la ponemos en orden y la convertimos en un flujo automatizado de mensajes que venden — y te mostramos, con números, qué está funcionando. Así se ve el recorrido completo:
+    </p>
+
+    <!-- Recorrido visual del servicio -->
+    <div class="flow reveal">
+      <div class="flow-step">
+        <span class="flow-step-num">01</span>
+        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+        <span class="flow-step-name">Carga de tu base</span>
+        <span class="flow-step-desc">Importamos tus contactos desde Excel, tu punto de venta, WhatsApp o tu sistema de reservas.</span>
+      </div>
+      <div class="flow-sep">→</div>
+      <div class="flow-step">
+        <span class="flow-step-num">02</span>
+        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9z"/><path d="M18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17z"/></svg></span>
+        <span class="flow-step-name">Limpieza automática</span>
+        <span class="flow-step-desc">Eliminamos duplicados, corregimos datos y validamos correos y teléfonos.</span>
+      </div>
+      <div class="flow-sep">→</div>
+      <div class="flow-step">
+        <span class="flow-step-num">03</span>
+        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+        <span class="flow-step-name">Segmentación</span>
+        <span class="flow-step-desc">Agrupamos por comportamiento, antigüedad y tipo de cliente — sin trabajo manual.</span>
+      </div>
+      <div class="flow-sep">→</div>
+      <div class="flow-step">
+        <span class="flow-step-num">04</span>
+        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l6 2.5 2.5 6z"/><path d="M9 13l4-4"/></svg></span>
+        <span class="flow-step-name">Envíos multicanal</span>
+        <span class="flow-step-desc">Campañas de email y WhatsApp que reactivan a cada segmento en el momento justo.</span>
+      </div>
+      <div class="flow-sep">→</div>
+      <div class="flow-step">
+        <span class="flow-step-num">05</span>
+        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M2 20h20"/></svg></span>
+        <span class="flow-step-name">Métricas en vivo</span>
+        <span class="flow-step-desc">Medimos open rate, respuestas, reactivaciones y reseñas nuevas en tiempo real.</span>
+      </div>
+      <div class="flow-sep">→</div>
+      <div class="flow-step">
+        <span class="flow-step-num">06</span>
+        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 12h6"/><path d="M9 16h6"/></svg></span>
+        <span class="flow-step-name">Reportes automáticos</span>
+        <span class="flow-step-desc">Cada mes recibes un reporte claro con resultados y los próximos pasos.</span>
+      </div>
+    </div>
+
+    <!-- Preview de reporte con KPIs -->
+    <div class="report-mock reveal">
+      <div class="report-mock-head">
+        <span class="report-mock-title">Tu reporte mensual, en una vista</span>
+        <span class="report-mock-tag">Ejemplo ilustrativo</span>
+      </div>
+      <div class="report-kpis">
+        <div class="kpi"><div class="kpi-value">38<span>%</span></div><span class="kpi-label">Open rate email</span></div>
+        <div class="kpi"><div class="kpi-value">92<span>%</span></div><span class="kpi-label">Apertura WhatsApp</span></div>
+        <div class="kpi"><div class="kpi-value">+64</div><span class="kpi-label">Clientes reactivados</span></div>
+        <div class="kpi"><div class="kpi-value">+18</div><span class="kpi-label">Reseñas nuevas Google</span></div>
+      </div>
+      <div class="report-mock-note">
+        No es una caja negra. Cada mes ves exactamente qué se envió, qué abrió la gente, cuántos volvieron a comprar y cuántas reseñas nuevas entraron — con los próximos pasos ya definidos.
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 96px;">Cómo lo implementamos</h3>
+    <p class="reveal" style="color: var(--text-dim); margin: 16px 0 8px; max-width: 760px;">
+      Ese recorrido se sostiene sobre dos frentes: un setup que se hace una sola vez al arranque — sin costo extra, embebido en el mes 1 — y una operación mensual continua que corre desde el primer mes. No hay "mes de armado" facturable donde no ves nada.
     </p>
 
     <div class="services">
