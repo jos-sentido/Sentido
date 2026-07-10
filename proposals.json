@@ -549,7 +549,12 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "redes",
+        "gbp",
+        "gads",
+        "crm"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
