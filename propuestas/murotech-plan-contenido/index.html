@@ -444,46 +444,12 @@
     </ul>
   </section>
 
-  <!-- CTA / FORM -->
+  <!-- CIERRE -->
   <section class="cta reveal" id="validar">
     <p class="eyebrow">Siguiente paso</p>
     <h2>Valida el plan y accionamos producción.</h2>
-    <p class="lede">Marca dónde estás parado con el plan de julio. Te respondo personalmente en menos de 24 horas hábiles.</p>
-
-    <form id="lead-form" data-webhook="/api/lead" novalidate>
-      <input type="hidden" name="propuesta" value="murotech-plan-contenido" />
-
-      <label>Nombre <span class="req">*</span>
-        <input name="nombre" type="text" autocomplete="name" required />
-      </label>
-
-      <label>Email <span class="req">*</span>
-        <input name="email" type="email" autocomplete="email" required />
-      </label>
-
-      <label>WhatsApp
-        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
-      </label>
-
-      <label>¿Cómo vamos con el plan? <span class="req">*</span>
-        <select name="paso" required>
-          <option value="">Selecciona…</option>
-          <option>Aprobado — accionemos la producción de julio</option>
-          <option>Aprobado con ajustes — comento cambios</option>
-          <option>Tengo preguntas antes de aprobar</option>
-          <option>Necesito un poco más de tiempo</option>
-        </select>
-      </label>
-
-      <label>Comentarios (opcional)
-        <textarea name="mensaje" rows="4" placeholder="Ajustes, dudas o cualquier detalle…"></textarea>
-      </label>
-
-      <button type="submit" class="form-submit">Enviar respuesta →</button>
-      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
-    </form>
-
-    <p class="cta-alt">O escríbeme directo a <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · Instagram <a href="https://instagram.com/sentido.mx">@sentido.mx</a></p>
+    <p class="lede">Con tu visto bueno al plan de julio, arrancamos la producción de inmediato. Cualquier ajuste, lo afinamos juntos.</p>
+    <p class="cta-alt">Escríbeme directo a <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · Instagram <a href="https://instagram.com/sentido.mx">@sentido.mx</a></p>
   </section>
 
 </div>
@@ -508,53 +474,6 @@
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (e) { io.observe(e); });
-  })();
-
-  // lead form → /api/lead (mapea a las claves que el backend renderiza)
-  (function () {
-    var form = document.getElementById('lead-form');
-    var statusEl = document.getElementById('lf-status');
-    var submitBtn = form.querySelector('.form-submit');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-
-      var email = form.email.value.trim();
-      var payload = {
-        Nombre: form.nombre.value.trim(),
-        Empresa: 'Murotech — Plan de contenido (Jul 2026)',
-        Email: email,
-        WhatsApp: form.whatsapp.value.trim() || '—',
-        'Necesita apoyo en': form.paso.value,
-        Contexto: form.mensaje.value.trim() || '—',
-        Propuesta: form.propuesta.value,
-        Fuente: location.pathname,
-        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
-      };
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando…';
-      statusEl.className = 'form-status';
-
-      fetch(form.dataset.webhook, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (res) {
-        if (!res.ok) throw new Error('Webhook ' + res.status);
-        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + email + '.';
-        statusEl.className = 'form-status visible';
-        form.reset();
-        submitBtn.textContent = '✓ Enviado';
-      }).catch(function (err) {
-        console.error(err);
-        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
-        statusEl.className = 'form-status visible error';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar respuesta →';
-      });
-    });
   })();
 </script>
 </body>
