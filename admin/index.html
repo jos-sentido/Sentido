@@ -242,14 +242,15 @@
   <header class="topbar">
     <img src="https://propuestas.sentido.mx/assets/logo-sentido-light.png" alt="Sentido" class="topbar-logo">
     <div class="topbar-sep"></div>
-    <span class="topbar-title" id="topbar-title">Propuestas a clientes</span>
+    <span class="topbar-title" id="topbar-title">Propuestas a prospectos</span>
     <div class="topbar-spacer"></div>
     <button class="topbar-add" id="btn-new">+ Nuevo</button>
     <button class="topbar-logout" id="btn-logout">Salir</button>
   </header>
 
   <div class="section-tabs" id="section-tabs">
-    <button class="section-tab active" data-tipo="propuesta">Propuestas a clientes</button>
+    <button class="section-tab active" data-tipo="propuesta">Propuestas a prospectos</button>
+    <button class="section-tab" data-tipo="cliente">Clientes activos</button>
     <button class="section-tab" data-tipo="comercial">Activos comerciales</button>
   </div>
 
@@ -388,7 +389,7 @@ let currentBitacora = [];
 // ── CONFIG BY TIPO ────────────────────────────────────────
 const TIPOS = {
   propuesta: {
-    label:   'Propuestas a clientes',
+    label:   'Propuestas a prospectos',
     urlBase: 'propuestas.sentido.mx/',
     statuses: [
       { value: 'enviada',        label: 'Enviada',        cls: 's-enviada' },
@@ -406,6 +407,28 @@ const TIPOS = {
       { key: 'ganada',         label: 'Ganadas' },
       { key: 'perdida',        label: 'Perdidas' },
       { key: 'archivada',      label: 'Archivadas' },
+    ],
+  },
+  cliente: {
+    label:   'Clientes activos',
+    urlBase: 'propuestas.sentido.mx/',
+    statuses: [
+      { value: 'enviada',        label: 'Enviada',        cls: 's-enviada' },
+      { value: 'en producción',  label: 'En producción',  cls: 's-activo' },
+      { value: 'activa',         label: 'Activa',         cls: 's-activo' },
+      { value: 'en negociación', label: 'En negociación', cls: 's-negociacion' },
+      { value: 'ganada',         label: 'Ganada',         cls: 's-ganada' },
+      { value: 'pausada',        label: 'Pausada',        cls: 's-archivada' },
+      { value: 'archivada',      label: 'Archivada',      cls: 's-archivada' },
+    ],
+    stats: [
+      { key: 'all',           label: 'Total' },
+      { key: 'enviada',       label: 'Enviadas' },
+      { key: 'en producción', label: 'En producción' },
+      { key: 'activa',        label: 'Activas' },
+      { key: 'ganada',        label: 'Ganadas' },
+      { key: 'pausada',       label: 'Pausadas' },
+      { key: 'archivada',     label: 'Archivadas' },
     ],
   },
   comercial: {
