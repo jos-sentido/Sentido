@@ -250,7 +250,10 @@
           "tipo": "unico"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "redes",
+        "sitio"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
