@@ -1,33 +1,6 @@
 {
   "proposals": [
     {
-      "slug": "murotech-plan-contenido",
-      "tipo": "propuesta",
-      "cliente": "Murotech — Plan de Contenido (Blog + Redes)",
-      "fecha": "2026-07-10",
-      "estatus": "enviada",
-      "descripcion": "Fase 2 de contenido para Murotech (cliente activo): activación de blog SEO (4 art/mes) + redes sociales (9 piezas/mes orgánico). Página cliente-facing para validar el plan de julio 2026 antes de producir. CTA + form a /api/lead.",
-      "serviciosDisponibles": [
-        {
-          "id": "blog",
-          "nombre": "Blog con IA + Gestión SEO (Base, 4 art/mes)",
-          "precio": 3500,
-          "tipo": "mensual"
-        },
-        {
-          "id": "redes",
-          "nombre": "Gestión de Redes Sociales (9 piezas/mes, orgánico)",
-          "precio": 4500,
-          "tipo": "mensual"
-        }
-      ],
-      "serviciosSeleccionados": [],
-      "notas": "Cliente activo (sitio + blog ya en producción con Pixgel/Astro). Total fase contenido: $8,000+IVA/mes. Pauta Meta Ads, Google Ads, GMB, Odoo y producción foto/video quedan aparte. Esperando validación del plan de julio vía formulario.",
-      "proximoPaso": "Esperando validación del plan de julio vía formulario / WhatsApp",
-      "fechaSeguimiento": null,
-      "bitacora": []
-    },
-    {
       "slug": "brochure",
       "tipo": "comercial",
       "cliente": "Brochure Sentido — Servicios & Sistema Vivo",
@@ -504,7 +477,7 @@
       "tipo": "propuesta",
       "cliente": "Studio Louva",
       "fecha": "2026-06-10",
-      "estatus": "enviada",
+      "estatus": "vista",
       "serviciosDisponibles": [
         {
           "id": "sitio",
