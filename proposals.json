@@ -509,7 +509,14 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "redes",
+        "gbp",
+        "gads",
+        "meta-ads",
+        "crm",
+        "sitio"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
