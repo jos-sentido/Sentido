@@ -27,7 +27,14 @@
       "notas": "Cliente activo de Sentido — sitio + blog ya en producción (Astro/Pixgel). Total fase contenido: $8,000+IVA/mes. Pauta Meta Ads, Google Ads, GMB, Odoo y producción foto/video quedan aparte. Esperando validación del plan de julio vía formulario.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [
+        {
+          "fecha": "2026-07-10",
+          "proximoPaso": "enviar y validar",
+          "notas": "prepare estrategia y se enviara para aprobar y activar",
+          "creadoEn": "2026-07-10T15:31:05.285Z"
+        }
+      ]
     },
     {
       "slug": "brochure",
