@@ -50,7 +50,13 @@
           "tipo": "unico"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "redes",
+        "gbp",
+        "gads",
+        "crm",
+        "setup"
+      ],
       "notas": "Plan integral lo restante del año. Diferenciador: ecosistema de seminuevos premium (Ferrari + Lamborghini + McLaren + Maserati). Plan recomendado $18,000/mes + IVA (dentro de rango $15K-$25K). Pauta Meta+Google directa a plataforma, aparte. Contacto: Santi Evva.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
