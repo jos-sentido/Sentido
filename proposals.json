@@ -389,7 +389,7 @@
       "tipo": "propuesta",
       "cliente": "Perforaciones Zacatecas",
       "fecha": "2026-05-04",
-      "estatus": "enviada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "fase1",
