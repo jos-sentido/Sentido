@@ -354,7 +354,7 @@
       "tipo": "propuesta",
       "cliente": "Manufaktura Muebles",
       "fecha": "2026-05-20",
-      "estatus": "en negociación",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "sitio-wp",
