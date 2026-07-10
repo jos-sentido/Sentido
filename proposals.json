@@ -367,7 +367,7 @@
       "tipo": "propuesta",
       "cliente": "Padel Club",
       "fecha": "2026-05-04",
-      "estatus": "enviada",
+      "estatus": "ganada",
       "serviciosDisponibles": [
         {
           "id": "sistema",
@@ -376,7 +376,9 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "sistema"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
