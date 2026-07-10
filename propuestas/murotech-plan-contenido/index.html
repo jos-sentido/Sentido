@@ -162,7 +162,8 @@
   .layer p { font-size: 14.5px; color: var(--ink-soft); margin: 8px 0 0; }
 
   /* ---------- tables ---------- */
-  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); margin-top: 22px; }
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); margin-top: 22px; }
+  .swipe-hint { display: none; }
   table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 14px; background: var(--surface); }
   thead th {
     font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em;
@@ -271,6 +272,20 @@
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  /* ---------- mobile refinements ---------- */
+  @media (max-width: 720px) {
+    .swipe-hint {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold-deep); margin: 22px 0 -8px;
+    }
+    .swipe-hint::after { content: "→"; font-weight: 700; }
+    .tablewrap { margin-top: 12px; }
+    .nav-cta { padding: 11px 18px; }
+    .cta-alt { line-height: 2.1; }
+    .cta-alt a { display: inline-block; padding: 2px 0; }
+  }
 </style>
 </head>
 <body>
@@ -330,6 +345,7 @@
     <p class="kicker"><b>02</b> — Blog · calendario editorial</p>
     <h2>Julio 2026 — 4 artículos</h2>
     <p class="sec-intro">Cada artículo ataca una búsqueda real que hoy capturan directorios o competidores, y enlaza a la página de cualidad o a contacto que le corresponde. Detrás hay un banco de 24 ideas priorizadas para alimentar los meses siguientes.</p>
+    <p class="swipe-hint" aria-hidden="true">Desliza la tabla</p>
     <div class="tablewrap">
       <table>
         <thead><tr><th>Fecha</th><th>Artículo</th><th>Keyword principal</th><th>Categoría</th><th>Etapa</th></tr></thead>
@@ -388,6 +404,7 @@
       </div>
     </div>
 
+    <p class="swipe-hint" aria-hidden="true">Desliza la tabla</p>
     <div class="tablewrap">
       <table>
         <thead><tr><th>Fecha</th><th>Formato</th><th>Serie</th><th>Concepto</th><th>Producción</th></tr></thead>
