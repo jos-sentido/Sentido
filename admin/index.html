@@ -23,7 +23,7 @@
       --font-mono: 'Courier New', Menlo, monospace;
       --font-serif: Georgia, 'Times New Roman', serif;
       --s-enviada:      #55524E; --s-enviada-t:    #AAA39A;
-      --s-vista:        #3B6B9E; --s-vista-t:      #7EB8F5;
+      --s-presentada:   #3B6B9E; --s-presentada-t: #7EB8F5;
       --s-negociacion:  #8B7240; --s-negociacion-t:#C9A855;
       --s-ganada:       #2D6B4A; --s-ganada-t:     #5DC98A;
       --s-perdida:      #7A2B2B; --s-perdida-t:    #E88080;
@@ -113,7 +113,7 @@
 
     /* status — propuestas */
     .s-enviada     { background: var(--s-enviada);     color: var(--s-enviada-t); }
-    .s-vista       { background: var(--s-vista);       color: var(--s-vista-t); }
+    .s-presentada  { background: var(--s-presentada);  color: var(--s-presentada-t); }
     .s-negociacion { background: var(--s-negociacion); color: var(--s-negociacion-t); }
     .s-ganada      { background: var(--s-ganada);      color: var(--s-ganada-t); }
     .s-perdida     { background: var(--s-perdida);     color: var(--s-perdida-t); }
@@ -392,7 +392,7 @@ const TIPOS = {
     urlBase: 'propuestas.sentido.mx/',
     statuses: [
       { value: 'enviada',        label: 'Enviada',        cls: 's-enviada' },
-      { value: 'vista',          label: 'Vista',          cls: 's-vista' },
+      { value: 'presentada',      label: 'Presentada',     cls: 's-presentada' },
       { value: 'en negociación', label: 'En negociación', cls: 's-negociacion' },
       { value: 'ganada',         label: 'Ganada',         cls: 's-ganada' },
       { value: 'perdida',        label: 'Perdida',        cls: 's-perdida' },
@@ -401,7 +401,7 @@ const TIPOS = {
     stats: [
       { key: 'all',            label: 'Total' },
       { key: 'enviada',        label: 'Enviadas' },
-      { key: 'vista',          label: 'Vistas' },
+      { key: 'presentada',     label: 'Presentadas' },
       { key: 'en negociación', label: 'Negociando' },
       { key: 'ganada',         label: 'Ganadas' },
       { key: 'perdida',        label: 'Perdidas' },

@@ -61,7 +61,7 @@
       "tipo": "propuesta",
       "cliente": "Agua Costa Rica Vallarta",
       "fecha": "2026-05-04",
-      "estatus": "vista",
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -93,7 +93,7 @@
       "tipo": "propuesta",
       "cliente": "AmPara Consultoría Inmobiliaria",
       "fecha": "2026-05-26",
-      "estatus": "vista",
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -137,7 +137,7 @@
       "tipo": "propuesta",
       "cliente": "Clemente 70",
       "fecha": "2026-05-22",
-      "estatus": "vista",
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -181,7 +181,7 @@
       "tipo": "propuesta",
       "cliente": "Fabiaa Clo",
       "fecha": "2026-05-04",
-      "estatus": "vista",
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -421,7 +421,7 @@
       "tipo": "propuesta",
       "cliente": "Premium Used Car",
       "fecha": "2026-05-05",
-      "estatus": "vista",
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "sitio",
@@ -477,7 +477,7 @@
       "tipo": "propuesta",
       "cliente": "Studio Louva",
       "fecha": "2026-06-10",
-      "estatus": "vista",
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "sitio",
