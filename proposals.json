@@ -37,6 +37,18 @@
       ]
     },
     {
+      "slug": "reactivacion-ghl-resenas",
+      "tipo": "comercial",
+      "cliente": "Servicio · Motor de Reactivación + Reseñas",
+      "fecha": "2026-07-10",
+      "estatus": "activo",
+      "descripcion": "Activo comercial general del servicio productizado de Reactivación de Base (email + WhatsApp) + Motor de Reseñas Google, operado mes a mes sobre GoHighLevel. Página de venta parametrizada por sector, con tiers Starter/Growth/Scale, blindaje de scope y costos de terceros explícitos. Cierra con CTA + form integrado a /api/lead (hidden field Propuesta=reactivacion-ghl-resenas).",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
+      "notas": "",
+      "bitacora": []
+    },
+    {
       "slug": "brochure",
       "tipo": "comercial",
       "cliente": "Brochure Sentido — Servicios & Sistema Vivo",

@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Motor de Reactivación + Reseñas · Sentido</title>
+<meta name="description" content="Servicio mensual de Sentido: reactivamos tu base de datos con email y WhatsApp y operamos tu flujo de reseñas en Google — mes a mes, no llave en mano." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --surface: #0D0D11;
+    --surface-elevated: #15151B;
+    --surface-ghost: #0A0A0E;
+    --border: #1F1F26;
+    --border-strong: #2A2A33;
+    --text: #EDEAE4;
+    --text-dim: #8B8680;
+    --text-faint: #55524E;
+    --accent: #D2A75E;
+    --accent-dim: #6B542E;
+    --accent-glow: rgba(210, 167, 94, 0.08);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  section { scroll-margin-top: 64px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ================= NAV ================= */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+  }
+
+  .site-nav.hidden { transform: translateY(-100%); }
+  .site-nav.scrolled { background: rgba(5, 5, 5, 0.88); }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .nav-brand { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  .nav-mark { height: 22px; opacity: 0.85; transition: opacity 0.2s ease; }
+  .nav-brand:hover .nav-mark { opacity: 1; }
+  .nav-wordmark {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 0;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .nav-link:hover { color: var(--text); }
+  .nav-link.active { color: var(--accent); }
+  .nav-link.active::after { width: 100%; }
+
+  .nav-link.nav-cta {
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--accent-glow);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-link.nav-cta::after { display: none; }
+  .nav-link.nav-cta:hover { background: rgba(210, 167, 94, 0.18); border-color: var(--accent); }
+
+  /* ================= LAYOUT ================= */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+  section {
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  /* ================= TYPOGRAPHY ================= */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); }
+  h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+  h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  h4 { font-size: 1.375rem; }
+
+  .display-italic { font-style: italic; font-weight: 300; color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--text-faint);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 760px;
+  }
+
+  p { color: var(--text); font-size: 1.0625rem; line-height: 1.75; }
+  p + p { margin-top: 1.25rem; }
+  p.dim { color: var(--text-dim); }
+
+  strong { font-weight: 500; color: var(--text); }
+  em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+  /* ================= HERO ================= */
+  .hero {
+    min-height: 100vh;
+    padding: 48px 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-top, .hero-center, .hero-bottom { position: relative; z-index: 1; }
+  .hero > .container { width: 100%; }
+
+  .hero-top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  .sentido-logo-wrap { display: flex; align-items: center; margin-bottom: 40px; }
+
+  /* Logo Sentido en hero — 60px desktop / 52px mobile */
+  .sentido-mark { height: 60px; opacity: 0.95; display: block; }
+  .sentido-mark.hide { display: none; }
+  .sentido-wordmark {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 0;
+  }
+  .hero h1 { margin-bottom: 40px; max-width: 960px; }
+  .hero h1 .first-line { display: block; color: var(--text-dim); font-size: 0.62em; margin-bottom: 14px; }
+  .hero h1 .second-line { display: block; }
+
+  .hero-divider { width: 64px; height: 1px; background: var(--accent); margin: 40px 0; }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.125rem, 1.8vw, 1.4375rem);
+    color: var(--text-dim);
+    max-width: 660px;
+    line-height: 1.5;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .hero-meta-label { color: var(--text-faint); display: block; margin-bottom: 8px; font-size: 0.6875rem; }
+  .hero-meta-value { color: var(--text); }
+
+  /* ================= TWO COL ================= */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .pullquote {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.4;
+    color: var(--text);
+    padding: 32px 0 32px 32px;
+    border-left: 2px solid var(--accent);
+    margin: 48px 0;
+  }
+  .pullquote .attribution {
+    display: block;
+    margin-top: 24px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ================= MARKET / STATS GRID ================= */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 56px 0 32px;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+  .market-cell {
+    padding: 40px 32px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-ghost);
+  }
+  .market-number {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .market-number .unit { font-size: 0.5em; color: var(--text-dim); margin-left: 4px; }
+  .market-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .market-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.5; }
+  .source-note {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+
+  /* ================= FINDINGS ================= */
+  .findings { margin-top: 48px; }
+  .finding {
+    display: grid;
+    grid-template-columns: 60px 1fr 1.4fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+  .finding:last-child { border-bottom: 1px solid var(--border); }
+  .finding-num { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); letter-spacing: 0.1em; }
+  .finding-title { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--text); }
+  .finding-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
+
+  /* ================= DIFERENCIAL BANNER ================= */
+  .diff-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    margin-top: 48px;
+    position: relative;
+  }
+  .diff-banner::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; width: 48px; height: 1px;
+    background: var(--accent);
+  }
+  .diff-banner::after {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; width: 1px; height: 48px;
+    background: var(--accent);
+  }
+  .diff-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 24px;
+  }
+  .diff-quote {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .diff-quote em { font-style: italic; color: var(--accent); }
+
+  /* ================= AUDIENCES / VERTICALS ================= */
+  .audiences { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .audience {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    transition: border-color 0.3s ease;
+  }
+  .audience:hover { border-color: var(--accent-dim); }
+  .audience-priority {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .audience-title { font-family: var(--font-display); font-size: 1.375rem; margin-bottom: 16px; color: var(--text); }
+  .audience-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
+
+  .checklist { list-style: none; padding: 0; margin: 40px 0 0; max-width: 760px; }
+  .checklist li {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.6;
+    padding: 14px 0 14px 32px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .checklist li::before {
+    content: '→';
+    position: absolute;
+    left: 0; top: 14px;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+
+  /* ================= SERVICES ================= */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+  .service {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .service:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
+  .service-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+  .service-letter {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent-dim);
+  }
+  .service-price-head { text-align: right; }
+  .service-price { font-family: var(--font-mono); font-size: 1.0625rem; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
+  .service-period {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: block;
+    margin-top: 4px;
+  }
+  .service-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; margin-bottom: 20px; color: var(--text); }
+  .service-lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .service-items { list-style: none; padding: 0; }
+  .service-items li {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.5;
+    padding: 8px 0 8px 20px;
+    position: relative;
+  }
+  .service-items li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 17px;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+  .service-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border: 1px solid var(--accent-dim);
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  /* ================= TIMELINE / TABLE ================= */
+  .table-wrap { border: 1px solid var(--border); background: var(--surface); margin: 32px 0; overflow: hidden; }
+  .table-label {
+    padding: 20px 32px;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 20px 32px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9375rem; }
+  th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+  td { color: var(--text); font-weight: 300; }
+  td.num { font-family: var(--font-mono); text-align: right; color: var(--text); font-weight: 400; }
+  tr:last-child td { border-bottom: none; }
+
+  .hard-rule {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--accent-glow);
+    border-left: 2px solid var(--accent);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ================= PRICING TIERS ================= */
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 48px; }
+  .tier { background: var(--surface); padding: 40px 32px; display: flex; flex-direction: column; }
+  .tier.featured { background: var(--surface-elevated); }
+  .tier-name {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 20px;
+  }
+  .tier.featured .tier-name { color: var(--accent); }
+  .tier-price {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .tier.featured .tier-price { color: var(--accent); }
+  .tier-price small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-faint); letter-spacing: 0.08em; display: block; margin-top: 8px; }
+  .tier-meta {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .tier-meta strong { color: var(--text); }
+  .tier-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border: 1px solid var(--accent-dim);
+    align-self: flex-start;
+    margin-top: 20px;
+  }
+
+  .rules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .rule-box { border: 1px solid var(--border); background: var(--surface-ghost); padding: 28px 24px; }
+  .rule-title { font-family: var(--font-display); font-size: 1.125rem; color: var(--text); margin-bottom: 8px; }
+  .rule-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.5; }
+
+  /* ================= NOTE COLUMNS (terceros + no incluye) ================= */
+  .note-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+  .note-box { border: 1px dashed var(--border-strong); background: var(--surface); padding: 36px 32px; }
+  .note-box.blindaje { border-style: solid; border-left: 2px solid var(--accent); }
+  .note-heading {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .note-box ul { list-style: none; padding: 0; }
+  .note-box li {
+    font-size: 0.9375rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    padding: 10px 0 10px 20px;
+    position: relative;
+    border-top: 1px solid var(--border);
+  }
+  .note-box li:first-child { border-top: none; }
+  .note-box li::before { content: '·'; position: absolute; left: 4px; top: 8px; color: var(--accent); font-size: 1.2rem; }
+  .note-box li strong { color: var(--text); }
+
+  /* ================= FORM ================= */
+  .form-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    margin-top: 48px;
+    position: relative;
+  }
+  .form-wrap::before { content: ''; position: absolute; top: -1px; left: -1px; width: 48px; height: 1px; background: var(--accent); }
+  .form-wrap::after { content: ''; position: absolute; top: -1px; left: -1px; width: 1px; height: 48px; background: var(--accent); }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field.full { grid-column: 1 / -1; }
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .form-label .req { color: var(--accent); margin-left: 4px; }
+
+  .form-input, .form-select, .form-textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    background-color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 14px 16px;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(26, 26, 26, 0.45); font-weight: 300; }
+  .form-input:hover, .form-select:hover, .form-textarea:hover { background-color: #DDBE82; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #1A1A1A;
+    background-color: #E4C98D;
+    box-shadow: 0 0 0 3px rgba(210, 167, 94, 0.18);
+  }
+  .form-textarea { resize: vertical; min-height: 100px; font-family: var(--font-sans); }
+
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #1A1A1A 50%), linear-gradient(135deg, #1A1A1A 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .form-select option { background: var(--surface); color: var(--text); }
+
+  .checkbox-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px; }
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--accent-dim);
+    background: rgba(210, 167, 94, 0.08);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.875rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .checkbox-label:hover { border-color: var(--accent); background: rgba(210, 167, 94, 0.18); }
+  .checkbox-label input { accent-color: var(--accent); cursor: pointer; }
+  .checkbox-label:has(input:checked) { border-color: var(--accent); background: var(--accent); color: #1A1A1A; font-weight: 500; }
+
+  .form-submit-row { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .form-submit {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  .form-submit:hover:not(:disabled) { background: #E0C286; transform: translateY(-2px); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-submit .arrow-symbol { transition: transform 0.25s ease; }
+  .form-submit:hover:not(:disabled) .arrow-symbol { transform: translateX(4px); }
+  .arrow-symbol { font-family: var(--font-display); font-style: italic; display: inline-block; }
+
+  .form-note {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+  .form-status {
+    margin-top: 24px;
+    padding: 18px 24px;
+    border-left: 2px solid var(--accent);
+    background: var(--accent-glow);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.5;
+    display: none;
+  }
+  .form-status.visible { display: block; }
+  .form-status.error { border-left-color: #c97b5a; background: rgba(201, 123, 90, 0.08); }
+
+  /* ================= CIERRE ================= */
+  .closing {
+    padding: 160px 0;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--bg) 0%, var(--surface-ghost) 100%);
+    border-top: 1px solid var(--border);
+  }
+  .closing-tesis {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+  .closing-tesis em { font-style: italic; color: var(--accent); }
+  .closing-mark { width: 40px; height: 1px; background: var(--accent); margin: 48px auto; }
+  .closing-sig {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .closing-sig strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ================= FOOTER ================= */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0;
+    background: var(--bg);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-mark { height: 36px; opacity: 0.8; }
+  .footer-wordmark { display: none; font-family: var(--font-display); font-style: italic; font-size: 1.25rem; color: var(--text); }
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ================= REVEAL ================= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 900px) {
+    .nav-inner { padding: 0 20px; gap: 16px; height: 56px; }
+    .nav-mark { height: 18px; }
+    .nav-links { gap: 16px; }
+    .nav-link { font-size: 0.625rem; letter-spacing: 0.14em; }
+    html { scroll-padding-top: 56px; }
+    section { scroll-margin-top: 56px; padding: 80px 0; }
+    .two-col { grid-template-columns: 1fr; gap: 48px; }
+    .market-grid { grid-template-columns: 1fr; }
+    .audiences { grid-template-columns: 1fr; }
+    .services { grid-template-columns: 1fr; }
+    .tiers { grid-template-columns: 1fr; }
+    .rules { grid-template-columns: 1fr; }
+    .note-cols { grid-template-columns: 1fr; }
+    .finding { grid-template-columns: 1fr; gap: 12px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+    .sentido-mark { height: 52px; }
+    .sentido-logo-wrap { margin-bottom: 28px; }
+    th, td { padding: 16px 20px; font-size: 0.875rem; }
+    .diff-banner, .service, .form-wrap, .tier, .note-box { padding: 28px 24px; }
+    .form-grid { grid-template-columns: 1fr; gap: 18px; }
+    .checkbox-grid { grid-template-columns: 1fr 1fr; }
+    .container, .container-narrow { padding: 0 24px; }
+  }
+  @media (max-width: 520px) {
+    .checkbox-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <span class="nav-wordmark">Sentido</span>
+    </a>
+    <div class="nav-links">
+      <a href="#oportunidad" class="nav-link" data-section="oportunidad">Oportunidad</a>
+      <a href="#servicio" class="nav-link" data-section="servicio">El servicio</a>
+      <a href="#proceso" class="nav-link" data-section="proceso">Proceso</a>
+      <a href="#inversion" class="nav-link" data-section="inversion">Inversión</a>
+      <a href="#hablemos" class="nav-link nav-cta" data-section="hablemos">Hablemos</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-top">
+      <span class="status-pill">
+        <span class="status-dot"></span>
+        Servicio Sentido
+      </span>
+    </div>
+  </div>
+
+  <div class="container hero-center">
+    <div class="sentido-logo-wrap">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="sentido-mark" onerror="this.classList.add('hide'); this.nextElementSibling.style.display='inline-block';" />
+      <span class="sentido-wordmark">Sentido</span>
+    </div>
+    <span class="eyebrow reveal">Motor de Reactivación + Reseñas · Reactivación de Base con Email &amp; WhatsApp</span>
+    <h1 class="reveal" style="margin-top: 24px;">
+      <span class="first-line">Tu base de datos ya es oro.</span>
+      <span class="second-line">Solo le falta volver a <span class="display-italic">comprar</span>.</span>
+    </h1>
+    <div class="hero-divider reveal"></div>
+    <p class="hero-sub reveal">
+      Un servicio mensual donde operamos tu GoHighLevel por ti: campañas de email y WhatsApp que reactivan a los clientes que ya tienes, más gestión continua de tu flujo de reseñas en Google. No te dejamos el sistema y te deseamos suerte — lo operamos contigo, mes a mes.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="hero-bottom">
+      <div>
+        <span class="hero-meta-label">Un servicio de</span>
+        <span class="hero-meta-value">Sentido Branding &amp; Advertising</span>
+      </div>
+      <div style="text-align: right;">
+        <span class="hero-meta-label">Formato</span>
+        <span class="hero-meta-value">Operación mensual · sin amarres</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 01 · LA OPORTUNIDAD ================= -->
+<section id="oportunidad">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">01 — LA OPORTUNIDAD</span>
+        <h2>El activo más caro<br />de ignorar ya lo tienes.</h2>
+      </div>
+    </div>
+
+    <div class="two-col reveal">
+      <div>
+        <p>Todo negocio con años de operación acumula lo mismo: una lista de clientes, socios y prospectos que compraron, reservaron o preguntaron alguna vez — y que hoy están dormidos. Nadie les vuelve a escribir de forma consistente. Nadie los reactiva. Esa base es, casi siempre, el activo más subutilizado del negocio.</p>
+        <p class="dim">La producción de nuevos leads cuesta. Reactivar a quien ya te conoce, no tanto. La brecha entre ambos es donde se pierde — o se gana — el margen.</p>
+      </div>
+      <div>
+        <blockquote class="pullquote">
+          El seguimiento manual no escala. Los mensajes uno por uno dependen de quién esté de turno, consumen tiempo y se pierden. Lo que no está sistematizado, no ocurre.
+          <span class="attribution">Principio operativo del servicio</span>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="market-grid reveal">
+      <div class="market-cell">
+        <span class="market-label">Costo de adquisición</span>
+        <div class="market-number">5–7<span class="unit">×</span></div>
+        <div class="market-desc">Más caro adquirir un cliente nuevo que reactivar uno que ya compró alguna vez.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Decisión local</span>
+        <div class="market-number">88<span class="unit">%</span></div>
+        <div class="market-desc">De los usuarios consulta las reseñas de Google antes de elegir un negocio local.</div>
+      </div>
+      <div class="market-cell">
+        <span class="market-label">Apertura de mensajes</span>
+        <div class="market-number">90<span class="unit">%+</span></div>
+        <div class="market-desc">Tasa de apertura de WhatsApp — muy por encima del email por sí solo.</div>
+      </div>
+    </div>
+
+    <p class="source-note reveal">
+      Reseñas de Google = boca a boca moderno. Cada estrella adicional se traduce en más ventas orgánicas, sin gastar en pauta.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 02 · QUÉ ES ================= -->
+<section id="servicio">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">02 — QUÉ ES</span>
+        <h2>Operación, no entrega<br />llave en mano.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Sentido opera tu GoHighLevel por ti. Cada mes creamos las campañas de email y WhatsApp que reactivan tu base, montamos nuevas automatizaciones y gestionamos el flujo de reseñas en Google. No es un sistema que te entregamos y armas solo — es un motor que trabaja mes a mes, con nosotros al volante.
+    </p>
+
+    <div class="diff-banner reveal">
+      <div class="diff-label">El diferencial vs. competencia</div>
+      <p class="diff-quote">No te dejamos el sistema y te deseamos suerte.<br /><em>Operamos las campañas mes a mes contigo.</em></p>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 96px;">Para quién es</h3>
+    <p class="reveal" style="color: var(--text-dim); margin: 16px 0 8px; max-width: 760px;">
+      Cualquier negocio con una base de datos subutilizada, ubicación física con reservas o afluencia, presencia relevante en Google Maps y sin un equipo interno de CRM o automatización.
+    </p>
+
+    <div class="audiences">
+      <div class="audience reveal">
+        <div class="audience-priority">Perfil 01</div>
+        <h4 class="audience-title">Clubes y fitness</h4>
+        <p class="audience-desc">Clubes deportivos, gimnasios y boutique fitness con socios históricos y renovaciones que reactivar.</p>
+      </div>
+      <div class="audience reveal">
+        <div class="audience-priority">Perfil 02</div>
+        <h4 class="audience-title">Clínicas y salud</h4>
+        <p class="audience-desc">Estética, dental, veterinaria y especialistas con pacientes recurrentes y citas que agendar de nuevo.</p>
+      </div>
+      <div class="audience reveal">
+        <div class="audience-priority">Perfil 03</div>
+        <h4 class="audience-title">Hospitalidad y retail local</h4>
+        <p class="audience-desc">Restaurantes con reservas, spas, salones, wellness y retail con clientela repetida que fidelizar.</p>
+      </div>
+    </div>
+
+    <ul class="checklist reveal">
+      <li>Base de datos existente subutilizada — socios, clientes o leads históricos</li>
+      <li>Ubicación física con reservas, citas o afluencia recurrente</li>
+      <li>Presencia relevante en Google Maps que optimizar y capitalizar</li>
+      <li>Sin equipo interno de CRM ni de marketing automation</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 03 · COMPONENTES ================= -->
+<section id="componentes">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">03 — CÓMO FUNCIONA</span>
+        <h2>Dos motores.<br />Uno arranca; el otro no para.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      El servicio se compone de un setup que se hace una sola vez al arranque — sin costo extra, embebido en el mes 1 — y una operación mensual continua que corre desde el primer mes. No hay "mes de armado" facturable donde no ves nada.
+    </p>
+
+    <div class="services">
+      <!-- A · Setup -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">A</div>
+          <div class="service-price-head">
+            <div class="service-price">Incluido</div>
+            <span class="service-period">Mes 1 · sin costo extra</span>
+          </div>
+        </div>
+        <h3 class="service-title">Setup inicial</h3>
+        <p class="service-lede">Se hace una sola vez, embebido en el fee del primer mes. Deja el motor listo para operar.</p>
+        <ul class="service-items">
+          <li>Configuración completa de cuenta o sub-cuenta GoHighLevel</li>
+          <li>Importación, limpieza y segmentación de tu base de datos actual</li>
+          <li>Conexión y configuración de WhatsApp Business API</li>
+          <li>Optimización de Google Business Profile: categorías, atributos, fotos, servicios</li>
+          <li>Diseño del flujo de reseñas: positivo → reseña pública / negativo → feedback privado</li>
+          <li>Plantillas base de email y WhatsApp listas para operar</li>
+          <li>Pipeline visual de leads y oportunidades configurado</li>
+        </ul>
+        <span class="service-tag">Sin costo de setup · diferencial</span>
+      </div>
+
+      <!-- B · Operación -->
+      <div class="service reveal">
+        <div class="service-head">
+          <div class="service-letter">B</div>
+          <div class="service-price-head">
+            <div class="service-price">Cada mes</div>
+            <span class="service-period">Incluye el mes 1</span>
+          </div>
+        </div>
+        <h3 class="service-title">Operación mensual continua</h3>
+        <p class="service-lede">El motor que trabaja mes a mes. Campañas nuevas, automatizaciones nuevas, gestión continua.</p>
+        <ul class="service-items">
+          <li>Creación de campañas de email marketing del mes según objetivos</li>
+          <li>Creación de campañas de WhatsApp del mes según objetivos</li>
+          <li>Nuevas automatizaciones: workflows, secuencias y triggers</li>
+          <li>Gestión continua del flujo de reseñas en Google Business Profile</li>
+          <li>Seguimiento a inactivos, nurturing de leads y reactivaciones</li>
+          <li>Ajustes y optimización con base en resultados: qué abre, qué convierte, qué tirar</li>
+          <li>Reporte mensual de desempeño con próximos pasos</li>
+        </ul>
+        <span class="service-tag">Desde el mes 1 hay campañas corriendo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 · PROCESO ================= -->
+<section id="proceso">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">04 — EL PROCESO</span>
+        <h2>Cuatro hitos.<br />Sin meses en blanco.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      El timeline estándar. La regla dura: desde el mes 1 hay campañas en vivo. El setup no bloquea la operación — corren en paralelo.
+    </p>
+
+    <div class="table-wrap reveal">
+      <div class="table-label">
+        <span>Timeline de operación</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fase</th>
+            <th>Cuándo</th>
+            <th>Qué pasa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Onboarding técnico</td>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">Mes 1 · Sem 1–2</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Setup GHL, WhatsApp API, Google Business e importación de la base.</td>
+          </tr>
+          <tr>
+            <td>Arranque de operación</td>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">Mes 1 · Sem 3–4</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Primeras campañas en vivo, automatizaciones base activas, flujo de reseñas operando.</td>
+          </tr>
+          <tr>
+            <td>Ciclo recurrente</td>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">Mes 2 en adelante</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Campañas nuevas cada mes, automatizaciones nuevas, gestión continua.</td>
+          </tr>
+          <tr>
+            <td>Cierre de mes</td>
+            <td style="font-family: var(--font-mono); color: var(--text-dim);">Fin de cada mes</td>
+            <td style="color: var(--text-dim); font-size: 0.875rem;">Reporte de desempeño + planeación del siguiente mes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hard-rule reveal">
+      Regla dura — desde el mes 1 hay campañas corriendo. No existe un mes de armado facturable donde el cliente no ve nada.
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · INVERSIÓN ================= -->
+<section id="inversion">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">05 — INVERSIÓN</span>
+        <h2>Fee mensual fijo.<br />Cero sorpresas.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Tres tiers según el tamaño de tu base y el volumen de operación. El setup va incluido sin costo adicional dentro del mes 1 — no se cobra aparte. Sin amarres a largo plazo.
+    </p>
+
+    <div class="tiers reveal">
+      <div class="tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-price">$4,000<small>MXN + IVA / mes</small></div>
+        <div class="tier-meta">
+          <strong>Base &lt; 2,000 contactos.</strong> 2 campañas al mes. Negocio local pequeño: club, clínica o restaurante que arranca su sistema de reactivación.
+        </div>
+        <span class="tier-badge">Ancla base</span>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name">Growth</div>
+        <div class="tier-price">$7,500<small>MXN + IVA / mes</small></div>
+        <div class="tier-meta">
+          <strong>Base 2,000–10,000.</strong> 4 campañas al mes + workflows más complejos. Negocio consolidado con múltiples segmentos que atender por separado.
+        </div>
+        <span class="tier-badge">Más elegido</span>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Scale</div>
+        <div class="tier-price">$12,000<small>+ MXN + IVA / mes</small></div>
+        <div class="tier-meta">
+          <strong>Base 10,000+.</strong> Multi-sucursal, integraciones con POS o sistema de reservas. Cadenas y franquicias con operación distribuida.
+        </div>
+        <span class="tier-badge">Multi-sucursal</span>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top: 80px; margin-bottom: 24px;">Reglas comerciales</h3>
+    <div class="rules reveal">
+      <div class="rule-box">
+        <div class="rule-title">Sin amarres</div>
+        <div class="rule-desc">Nada de contratos a largo plazo. El servicio se sostiene por resultados, no por cláusulas.</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-title">Cancelación con 30 días</div>
+        <div class="rule-desc">Un aviso con 30 días de anticipación y listo. Sin penalizaciones ni letras chiquitas.</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-title">Setup sin costo</div>
+        <div class="rule-desc">La configuración inicial va incluida dentro del mes 1. No se cobra aparte — es parte del diferencial.</div>
+      </div>
+    </div>
+
+    <!-- Costos de terceros + Blindaje de scope -->
+    <div class="note-cols reveal">
+      <div class="note-box">
+        <div class="note-heading">Costos de terceros · no incluidos en el fee</div>
+        <ul>
+          <li><strong>WhatsApp Business API (Meta):</strong> ~$500 MXN/mes, variable según volumen. Se cobra directo al método de pago del cliente. Sentido lo deja configurado; no lo administra ni lo intermedia.</li>
+          <li><strong>Licencia GoHighLevel:</strong> incluida si el cliente entra a sub-cuenta bajo la agencia Sentido. Si prefiere cuenta propia, va aparte.</li>
+          <li><strong>Integraciones de POS o reservas</strong> que requieran Zapier/Make de pago se cotizan por separado.</li>
+        </ul>
+      </div>
+      <div class="note-box blindaje">
+        <div class="note-heading">Lo que no cubre</div>
+        <ul>
+          <li>El servicio se enfoca exclusivamente en <strong>reactivación de base</strong> (email + WhatsApp) y <strong>gestión del flujo de reseñas</strong> en Google.</li>
+          <li>No incluye diseño web, branding, gestión de redes sociales, pauta publicitaria ni producción de contenido foto/video.</li>
+          <li>Si el cliente quiere expandir hacia esos frentes, se cotizan por separado como servicios adicionales de Sentido.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 · HABLEMOS ================= -->
+<section id="hablemos">
+  <div class="container">
+    <div class="section-title reveal">
+      <div>
+        <span class="section-number">06 — HABLEMOS</span>
+        <h2>Pon a trabajar tu base.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">
+      Si tienes una base de datos dormida y una ubicación que depende de reservas o afluencia, este servicio está hecho para ti. El formulario tarda menos de un minuto. Un estratega de Sentido te responde en menos de 24 horas hábiles para agendar una llamada.
+    </p>
+
+    <div class="form-wrap reveal">
+      <form id="lead-form" data-webhook="/api/lead" novalidate>
+        <input type="hidden" name="propuesta" value="reactivacion-ghl-resenas" />
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="lf-nombre">Nombre completo <span class="req">*</span></label>
+            <input class="form-input" id="lf-nombre" name="nombre" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-empresa">Empresa o marca <span class="req">*</span></label>
+            <input class="form-input" id="lf-empresa" name="empresa" type="text" autocomplete="organization" required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-email">Correo electrónico <span class="req">*</span></label>
+            <input class="form-input" id="lf-email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-whatsapp">WhatsApp <span class="req">*</span></label>
+            <input class="form-input" id="lf-whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+52 ..." required />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-giro">Giro del negocio</label>
+            <select class="form-select" id="lf-giro" name="giro">
+              <option value="">Selecciona un giro</option>
+              <option value="club-fitness">Club deportivo / gimnasio / fitness</option>
+              <option value="clinica-salud">Clínica / estética / dental / veterinaria</option>
+              <option value="restaurante">Restaurante / hospitalidad</option>
+              <option value="spa-wellness">Spa / salón / wellness</option>
+              <option value="retail">Retail local</option>
+              <option value="b2b">Servicios B2B</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="lf-base">Tamaño aproximado de tu base</label>
+            <select class="form-select" id="lf-base" name="base">
+              <option value="">Selecciona un rango</option>
+              <option value="menos-2000">Menos de 2,000 contactos</option>
+              <option value="2000-10000">2,000 – 10,000 contactos</option>
+              <option value="mas-10000">Más de 10,000 contactos</option>
+              <option value="no-se">No lo sé con certeza</option>
+            </select>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label">¿Qué te interesa activar? <span class="req">*</span></label>
+            <div class="checkbox-grid">
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="reactivacion" /> Reactivar mi base</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="whatsapp" /> Campañas de WhatsApp</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="email" /> Email marketing</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="resenas" /> Motor de reseñas Google</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="ghl" /> Operar mi GoHighLevel</label>
+              <label class="checkbox-label"><input type="checkbox" name="interes" value="no-se" /> Aún no estoy seguro</label>
+            </div>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label" for="lf-contexto">Algo de contexto (opcional)</label>
+            <textarea class="form-textarea" id="lf-contexto" name="contexto" placeholder="Cuéntanos qué tan grande es tu base, qué has intentado antes, o qué te trajo hasta aquí."></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit-row">
+          <span class="form-note">Respuesta en &lt; 24h hábiles · jos@sentido.mx</span>
+          <button class="form-submit" type="submit">
+            Agendar llamada
+            <span class="arrow-symbol">→</span>
+          </button>
+        </div>
+
+        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CIERRE ================= -->
+<section class="closing">
+  <div class="container-narrow">
+    <p class="closing-tesis reveal">
+      La venta más rentable<br />no está allá afuera.<br />
+      <em>Ya está en tu base de datos.</em>
+    </p>
+    <div class="closing-mark"></div>
+    <div class="closing-sig">
+      Un servicio de <strong>Sentido</strong> · Branding &amp; Advertising
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#top" class="nav-brand">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="footer-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <span class="footer-wordmark">Sentido</span>
+    </a>
+    <span class="footer-meta">Motor de Reactivación + Reseñas · jos@sentido.mx</span>
+  </div>
+</footer>
+
+<script>
+  // ================= REVEAL ON SCROLL =================
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.market-grid .reveal, .audiences .reveal, .services .reveal, .rules .reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+
+  // ================= NAV BEHAVIOR =================
+  const nav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const sectionToNav = {
+    'oportunidad': 'oportunidad',
+    'servicio': 'servicio',
+    'componentes': 'servicio',
+    'proceso': 'proceso',
+    'inversion': 'inversion',
+    'hablemos': 'hablemos'
+  };
+
+  const setActiveLink = (sectionId) => {
+    const targetNav = sectionToNav[sectionId];
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === targetNav);
+    });
+  };
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveLink(entry.target.id);
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+  ['oportunidad', 'servicio', 'componentes', 'proceso', 'inversion', 'hablemos'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) spyObserver.observe(el);
+  });
+
+  let lastScroll = 0;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', currentScroll > 40);
+        if (currentScroll > 200) {
+          if (currentScroll > lastScroll + 6) nav.classList.add('hidden');
+          else if (currentScroll < lastScroll - 6) nav.classList.remove('hidden');
+        } else {
+          nav.classList.remove('hidden');
+        }
+        lastScroll = currentScroll;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // ================= LEAD FORM =================
+  const form = document.getElementById('lead-form');
+  const statusEl = document.getElementById('lf-status');
+  const submitBtn = form ? form.querySelector('.form-submit') : null;
+
+  function showStatus(msg, isError) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.classList.add('visible');
+    statusEl.classList.toggle('error', !!isError);
+  }
+
+  function collectInterest() {
+    return Array.from(form.querySelectorAll('input[name="interes"]:checked')).map(i => i.value);
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const interes = collectInterest();
+      if (interes.length === 0) {
+        showStatus('Selecciona al menos una opción en "¿Qué te interesa activar?".', true);
+        return;
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const webhook = form.dataset.webhook;
+
+      const payload = {
+        Nombre: form.nombre.value.trim(),
+        Empresa: form.empresa.value.trim(),
+        Email: form.email.value.trim(),
+        WhatsApp: form.whatsapp.value.trim(),
+        Giro: form.giro.value || 'sin especificar',
+        'Tamaño de base': form.base.value || 'sin especificar',
+        'Interés en': interes.join(', '),
+        Contexto: form.contexto.value.trim() || '—',
+        Propuesta: form.propuesta.value,
+        Fuente: 'servicio-reactivacion-ghl-resenas',
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.arrow-symbol').textContent = '…';
+
+      try {
+        if (webhook) {
+          const res = await fetch(webhook, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('Webhook respondió ' + res.status);
+        } else {
+          console.log('[reactivacion-ghl-resenas] lead (sin webhook):', payload);
+          await new Promise(r => setTimeout(r, 600));
+        }
+        showStatus('Recibido. Un estratega de Sentido te responde en menos de 24 horas hábiles a ' + payload.Email + '.', false);
+        form.reset();
+        submitBtn.querySelector('.arrow-symbol').textContent = '✓';
+      } catch (err) {
+        console.error(err);
+        showStatus('No pudimos enviar tu mensaje. Escríbenos directo a jos@sentido.mx o por WhatsApp y lo resolvemos.', true);
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.arrow-symbol').textContent = '→';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
