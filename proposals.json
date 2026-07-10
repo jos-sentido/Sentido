@@ -453,7 +453,9 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "fase1"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
