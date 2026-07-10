@@ -17,7 +17,7 @@
       "tipo": "propuesta",
       "cliente": "Ferrari Guadalajara",
       "fecha": "2026-06-22",
-      "estatus": "enviada",
+      "estatus": "vista",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -52,7 +52,7 @@
       ],
       "serviciosSeleccionados": [],
       "notas": "Plan integral lo restante del año. Diferenciador: ecosistema de seminuevos premium (Ferrari + Lamborghini + McLaren + Maserati). Plan recomendado $18,000/mes + IVA (dentro de rango $15K-$25K). Pauta Meta+Google directa a plataforma, aparte. Contacto: Santi Evva.",
-      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
     },
