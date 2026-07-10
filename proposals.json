@@ -115,7 +115,11 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "redes",
+        "gads",
+        "crm"
+      ],
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
