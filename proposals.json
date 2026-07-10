@@ -93,7 +93,7 @@
       "tipo": "propuesta",
       "cliente": "AmPara Consultoría Inmobiliaria",
       "fecha": "2026-05-26",
-      "estatus": "enviada",
+      "estatus": "vista",
       "serviciosDisponibles": [
         {
           "id": "redes",
