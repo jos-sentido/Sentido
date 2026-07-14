@@ -603,6 +603,58 @@ strong { font-weight: 700; }
   .mt-article { padding: var(--mt-space-lg) var(--mt-space-md); }
   .mt-prose { font-size: 1.02rem; }
 }
+
+/* ---------- ENRIQUECIDO: puntos clave ---------- */
+.mt-keypoints { background: var(--mt-gray-100); border-left: 4px solid var(--mt-yellow); border-radius: var(--mt-radius); padding: var(--mt-space-md) var(--mt-space-lg); margin: 0 0 var(--mt-space-xl); }
+.mt-keypoints__title { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 1.05rem; color: var(--mt-black); margin: 0 0 var(--mt-space-sm); }
+.mt-keypoints ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
+.mt-keypoints li { position: relative; padding-left: 1.5rem; font-size: 1rem; color: var(--mt-gray-700); line-height: 1.6; }
+.mt-keypoints li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; background: var(--mt-yellow); transform: rotate(45deg); }
+.mt-keypoints strong { color: var(--mt-black); font-weight: 700; }
+
+/* ---------- ENRIQUECIDO: figura / diagrama ---------- */
+.mt-figure { margin: var(--mt-space-xl) 0; }
+.mt-figure__title { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 1.2rem; margin: 0 0 0.2rem; color: var(--mt-black); }
+.mt-figure__sub { font-size: 0.9rem; color: var(--mt-gray-500); margin: 0 0 var(--mt-space-md); }
+.mt-figure__caption { font-size: 0.82rem; color: var(--mt-gray-500); font-style: italic; margin: var(--mt-space-md) 0 0; }
+.mt-figscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); background: var(--mt-white); }
+.mt-figscroll svg { display: block; width: 100%; min-width: 520px; height: auto; }
+.mt-diagram-legend { list-style: none; margin: var(--mt-space-md) 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.mt-diagram-legend li { position: relative; padding-left: 2.2rem; font-size: 0.95rem; color: var(--mt-gray-700); line-height: 1.5; }
+.mt-diagram-legend li b { color: var(--mt-black); }
+.mt-diagram-legend .num { position: absolute; left: 0; top: 0; width: 1.55rem; height: 1.55rem; background: var(--mt-yellow); color: var(--mt-black); font-family: var(--mt-font-display); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+/* ---------- ENRIQUECIDO: tablas con scroll en movil ---------- */
+.mt-tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: var(--mt-space-xl) 0; border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); }
+.mt-tablewrap .mt-table { margin: 0; min-width: 540px; font-size: 0.98rem; }
+.mt-table caption { caption-side: top; text-align: left; font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 1.1rem; color: var(--mt-black); background: var(--mt-white); padding: var(--mt-space-md) var(--mt-space-md) var(--mt-space-sm); }
+.mt-pill { display: inline-block; font-family: var(--mt-font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.72rem; padding: 0.15rem 0.6rem; border-radius: 2px; white-space: nowrap; }
+.mt-pill--max { background: var(--mt-yellow); color: var(--mt-black); }
+.mt-pill--high { background: var(--mt-black); color: var(--mt-white); }
+.mt-pill--mid { background: var(--mt-gray-100); color: var(--mt-gray-700); border: 1px solid var(--mt-gray-300); }
+
+/* ---------- ENRIQUECIDO: split 2 columnas ---------- */
+.mt-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--mt-space-md); margin: var(--mt-space-xl) 0; }
+.mt-split__col { border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); overflow: hidden; }
+.mt-split__head { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 0.95rem; padding: var(--mt-space-sm) var(--mt-space-md); }
+.mt-split__col--yes .mt-split__head { background: var(--mt-yellow); color: var(--mt-black); }
+.mt-split__col--dep .mt-split__head { background: var(--mt-black); color: var(--mt-white); }
+.mt-split ul { list-style: none; margin: 0; padding: var(--mt-space-md); display: grid; gap: 0.6rem; }
+.mt-split li { position: relative; padding-left: 1.5rem; font-size: 0.95rem; color: var(--mt-gray-700); line-height: 1.5; }
+.mt-split li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+.mt-split__col--yes li::before { content: "\2713"; color: var(--mt-yellow-hover); }
+.mt-split__col--dep li::before { content: "\0021"; color: var(--mt-black); }
+@media (max-width: 640px) { .mt-split { grid-template-columns: 1fr; } }
+
+/* ---------- ENRIQUECIDO: checklist ---------- */
+.mt-checklist { border: 1px solid var(--mt-gray-300); border-left: 4px solid var(--mt-yellow); border-radius: var(--mt-radius); padding: var(--mt-space-md) var(--mt-space-lg); margin: var(--mt-space-xl) 0; }
+.mt-checklist ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.mt-checklist li { position: relative; padding-left: 2rem; font-size: 1rem; color: var(--mt-gray-700); line-height: 1.55; }
+.mt-checklist li::before { content: ""; position: absolute; left: 0; top: 0.12em; width: 1.05rem; height: 1.05rem; border: 2px solid var(--mt-yellow); border-radius: 2px; }
+
+/* ---------- ENRIQUECIDO: FAQ dentro del articulo ---------- */
+.mt-prose .mt-faq { max-width: none; margin: var(--mt-space-md) 0 0; }
+.mt-faq__body p { margin: 0; }
 </style>
 </head>
 <body>
@@ -617,6 +669,15 @@ strong { font-weight: 700; }
 
 <article class="mt-article">
   <div class="mt-prose">
+        <div class="mt-keypoints">
+          <p class="mt-keypoints__title">Puntos clave</p>
+          <ul>
+            <li>En sistemas constructivos, el proveedor pesa tanto como el material: el desempeño depende de una <strong>instalación correcta y de soporte técnico</strong>.</li>
+            <li>Un <strong>fabricante local</strong> (Murotech fabrica en Guadalajara) resuelve suministro, dudas y visitas técnicas con tiempos que un intermediario no ofrece.</li>
+            <li>La garantía suele estar condicionada a instalar conforme al manual; importa más <strong>"¿qué condiciones debe cumplir la instalación?"</strong> que "¿tiene garantía?".</li>
+          </ul>
+        </div>
+
         <h2>Por qué el proveedor importa tanto como el material</h2>
         <p>Cuando se busca un panel de concreto para una obra, es fácil concentrarse solo en el producto: el precio por metro, el espesor, las especificaciones. Pero en sistemas constructivos el proveedor pesa tanto como el material, porque el desempeño final depende de que el sistema se instale como debe y de que haya alguien que responda cuando surja una duda técnica.</p>
         <p>Un panel bien fabricado, instalado con un procedimiento equivocado, no rinde. Y un problema en obra sin soporte técnico se vuelve costoso. Por eso, antes de comparar precios, conviene evaluar quién está detrás del producto.</p>
@@ -625,12 +686,39 @@ strong { font-weight: 700; }
         <p>No es lo mismo comprarle a quien fabrica el panel que a un intermediario que lo revende. Con un fabricante local tienes acceso directo al conocimiento técnico del producto, a la disponibilidad real de material y a un respaldo más claro ante cualquier tema.</p>
         <p>En Jalisco esto tiene una ventaja práctica: la cercanía. Un proveedor con planta en Guadalajara puede resolver suministro, dudas y visitas técnicas con tiempos de respuesta que un intermediario lejano no ofrece. Para una obra con calendario, esa diferencia se nota.</p>
         <p>Murotech fabrica en Guadalajara —en la Zona Industrial— y atiende proyectos en el occidente del país, lo que permite acompañar la obra de cerca en lugar de solo entregar producto.</p>
+
+        <div class="mt-tablewrap">
+          <table class="mt-table">
+            <caption>Fabricante local vs. revendedor</caption>
+            <thead><tr><th>Aspecto</th><th>Fabricante local (Murotech)</th><th>Revendedor / intermediario</th></tr></thead>
+            <tbody>
+              <tr><td>Conocimiento técnico</td><td>Directo del fabricante</td><td>Limitado o de segunda mano</td></tr>
+              <tr><td>Soporte en obra</td><td>Visitas y acompañamiento técnico</td><td>Poco o nulo</td></tr>
+              <tr><td>Tiempos de suministro</td><td>Cercano; entregas por etapas</td><td>Dependiente de terceros</td></tr>
+              <tr><td>Garantía</td><td>Respaldo directo, condiciones claras</td><td>Cadena de responsabilidad difusa</td></tr>
+              <tr><td>Ubicación</td><td>Planta en Guadalajara (Zona Industrial)</td><td>Variable / lejana</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>Soporte técnico e instalación: la variable que define la garantía</h2>
         <p>Este es el punto que más se subestima. En un sistema constructivo, la garantía suele estar condicionada a que la instalación se haya hecho conforme al manual del fabricante. Si el sistema se instala con criterios de otro material —otras pastas, otras uniones, sin los refuerzos correctos— el resultado cambia y la garantía puede no aplicar.</p>
         <p>Por eso, más que preguntar "¿tiene garantía?", conviene preguntar "¿qué condiciones debe cumplir la instalación para que la garantía aplique?" y "¿me acompañan técnicamente para lograrlo?". Un buen proveedor no solo vende el panel: explica el procedimiento, capacita al instalador si hace falta y está disponible para revisar detalles críticos.</p>
         <h2>Qué preguntar antes de comprar (checklist)</h2>
         <p>Antes de cerrar con un proveedor de paneles en Jalisco, vale la pena confirmar:</p>
-        <ul><li><strong>¿Fabrican o revenden?</strong> Y dónde está la planta.</li><li><strong>¿Qué soporte técnico ofrecen</strong> durante la instalación?</li><li><strong>¿Bajo qué condiciones aplica la garantía?</strong></li><li><strong>¿Entregan ficha técnica y especificaciones</strong> documentadas?</li><li><strong>¿Qué espesores manejan</strong> y cuál recomiendan para tu tipo de proyecto?</li><li><strong>¿Tienen disponibilidad y logística</strong> para tus tiempos de obra?</li><li><strong>¿Pueden mostrar aplicaciones reales</strong> en proyectos similares al tuyo?</li></ul>
+
+        <div class="mt-checklist">
+          <ul>
+            <li>¿Fabrican o revenden? ¿Dónde está la planta?</li>
+            <li>¿Qué soporte técnico ofrecen durante la instalación?</li>
+            <li>¿Bajo qué condiciones aplica la garantía?</li>
+            <li>¿Entregan ficha técnica y especificaciones documentadas?</li>
+            <li>¿Qué espesores manejan y cuál recomiendan para mi proyecto?</li>
+            <li>¿Tienen disponibilidad y logística para mis tiempos de obra?</li>
+            <li>¿Pueden mostrar aplicaciones reales en proyectos similares?</li>
+          </ul>
+        </div>
+
         <p>Las respuestas a estas preguntas dicen más sobre el resultado final que el precio por metro cuadrado.</p>
         <h2>Especificación, ficha técnica y respaldo documental</h2>
         <p>Un proveedor serio entrega documentación: ficha técnica, especificaciones y procedimiento de instalación. Esto no es un trámite, es lo que permite que el proyectista especifique bien, que el instalador ejecute correctamente y que el cliente sepa qué está comprando.</p>
@@ -641,6 +729,25 @@ strong { font-weight: 700; }
         <h2>Cómo cotizar un proyecto con Murotech</h2>
         <p>Para cotizar bien, lo ideal es compartir la información básica del proyecto: ubicación, tipo de uso (vivienda, hotel, industrial, etc.), superficie aproximada y condiciones particulares. Con eso se puede recomendar el espesor adecuado, estimar material y anticipar los detalles técnicos relevantes.</p>
         <p>Si estás evaluando proveedores de paneles de concreto en Jalisco, la mejor forma de comparar no es solo el precio, sino qué respaldo técnico viene con el producto. Comparte los datos de tu proyecto y te ayudamos a definir la mejor solución.</p>
+        <h2>Preguntas frecuentes</h2>
+        <div class="mt-faq">
+          <details class="mt-faq__item" open>
+            <summary>¿Dónde fabrica Murotech?</summary>
+            <div class="mt-faq__body"><p>En Guadalajara, en la Zona Industrial, y atiende proyectos en el occidente del país, lo que permite acompañar la obra de cerca.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿Por qué conviene un fabricante local en lugar de un revendedor?</summary>
+            <div class="mt-faq__body"><p>Por acceso directo al conocimiento técnico, mejor soporte en obra, tiempos de suministro más cortos y un respaldo de garantía más claro.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿Qué determina que la garantía aplique?</summary>
+            <div class="mt-faq__body"><p>Que la instalación se haya hecho conforme al manual del fabricante, con sus pastas, uniones y refuerzos. Por eso el soporte técnico es clave.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿Qué información necesito para cotizar?</summary>
+            <div class="mt-faq__body"><p>Ubicación, tipo de uso, superficie aproximada y condiciones particulares; con eso se recomienda espesor y se estima material.</p></div>
+          </details>
+        </div>
         <p class="mt-article-cta"><a class="mt-btn mt-btn--primary" href="https://murotech.com.mx/contacto/">Solicitar cotización</a></p>
   </div>
   <div class="mt-article-foot">

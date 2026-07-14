@@ -603,6 +603,58 @@ strong { font-weight: 700; }
   .mt-article { padding: var(--mt-space-lg) var(--mt-space-md); }
   .mt-prose { font-size: 1.02rem; }
 }
+
+/* ---------- ENRIQUECIDO: puntos clave ---------- */
+.mt-keypoints { background: var(--mt-gray-100); border-left: 4px solid var(--mt-yellow); border-radius: var(--mt-radius); padding: var(--mt-space-md) var(--mt-space-lg); margin: 0 0 var(--mt-space-xl); }
+.mt-keypoints__title { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 1.05rem; color: var(--mt-black); margin: 0 0 var(--mt-space-sm); }
+.mt-keypoints ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
+.mt-keypoints li { position: relative; padding-left: 1.5rem; font-size: 1rem; color: var(--mt-gray-700); line-height: 1.6; }
+.mt-keypoints li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; background: var(--mt-yellow); transform: rotate(45deg); }
+.mt-keypoints strong { color: var(--mt-black); font-weight: 700; }
+
+/* ---------- ENRIQUECIDO: figura / diagrama ---------- */
+.mt-figure { margin: var(--mt-space-xl) 0; }
+.mt-figure__title { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 1.2rem; margin: 0 0 0.2rem; color: var(--mt-black); }
+.mt-figure__sub { font-size: 0.9rem; color: var(--mt-gray-500); margin: 0 0 var(--mt-space-md); }
+.mt-figure__caption { font-size: 0.82rem; color: var(--mt-gray-500); font-style: italic; margin: var(--mt-space-md) 0 0; }
+.mt-figscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); background: var(--mt-white); }
+.mt-figscroll svg { display: block; width: 100%; min-width: 520px; height: auto; }
+.mt-diagram-legend { list-style: none; margin: var(--mt-space-md) 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.mt-diagram-legend li { position: relative; padding-left: 2.2rem; font-size: 0.95rem; color: var(--mt-gray-700); line-height: 1.5; }
+.mt-diagram-legend li b { color: var(--mt-black); }
+.mt-diagram-legend .num { position: absolute; left: 0; top: 0; width: 1.55rem; height: 1.55rem; background: var(--mt-yellow); color: var(--mt-black); font-family: var(--mt-font-display); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+/* ---------- ENRIQUECIDO: tablas con scroll en movil ---------- */
+.mt-tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: var(--mt-space-xl) 0; border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); }
+.mt-tablewrap .mt-table { margin: 0; min-width: 540px; font-size: 0.98rem; }
+.mt-table caption { caption-side: top; text-align: left; font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 1.1rem; color: var(--mt-black); background: var(--mt-white); padding: var(--mt-space-md) var(--mt-space-md) var(--mt-space-sm); }
+.mt-pill { display: inline-block; font-family: var(--mt-font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.72rem; padding: 0.15rem 0.6rem; border-radius: 2px; white-space: nowrap; }
+.mt-pill--max { background: var(--mt-yellow); color: var(--mt-black); }
+.mt-pill--high { background: var(--mt-black); color: var(--mt-white); }
+.mt-pill--mid { background: var(--mt-gray-100); color: var(--mt-gray-700); border: 1px solid var(--mt-gray-300); }
+
+/* ---------- ENRIQUECIDO: split 2 columnas ---------- */
+.mt-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--mt-space-md); margin: var(--mt-space-xl) 0; }
+.mt-split__col { border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); overflow: hidden; }
+.mt-split__head { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 0.95rem; padding: var(--mt-space-sm) var(--mt-space-md); }
+.mt-split__col--yes .mt-split__head { background: var(--mt-yellow); color: var(--mt-black); }
+.mt-split__col--dep .mt-split__head { background: var(--mt-black); color: var(--mt-white); }
+.mt-split ul { list-style: none; margin: 0; padding: var(--mt-space-md); display: grid; gap: 0.6rem; }
+.mt-split li { position: relative; padding-left: 1.5rem; font-size: 0.95rem; color: var(--mt-gray-700); line-height: 1.5; }
+.mt-split li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+.mt-split__col--yes li::before { content: "\2713"; color: var(--mt-yellow-hover); }
+.mt-split__col--dep li::before { content: "\0021"; color: var(--mt-black); }
+@media (max-width: 640px) { .mt-split { grid-template-columns: 1fr; } }
+
+/* ---------- ENRIQUECIDO: checklist ---------- */
+.mt-checklist { border: 1px solid var(--mt-gray-300); border-left: 4px solid var(--mt-yellow); border-radius: var(--mt-radius); padding: var(--mt-space-md) var(--mt-space-lg); margin: var(--mt-space-xl) 0; }
+.mt-checklist ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.mt-checklist li { position: relative; padding-left: 2rem; font-size: 1rem; color: var(--mt-gray-700); line-height: 1.55; }
+.mt-checklist li::before { content: ""; position: absolute; left: 0; top: 0.12em; width: 1.05rem; height: 1.05rem; border: 2px solid var(--mt-yellow); border-radius: 2px; }
+
+/* ---------- ENRIQUECIDO: FAQ dentro del articulo ---------- */
+.mt-prose .mt-faq { max-width: none; margin: var(--mt-space-md) 0 0; }
+.mt-faq__body p { margin: 0; }
 </style>
 </head>
 <body>
@@ -617,6 +669,15 @@ strong { font-weight: 700; }
 
 <article class="mt-article">
   <div class="mt-prose">
+        <div class="mt-keypoints">
+          <p class="mt-keypoints__title">Puntos clave</p>
+          <ul>
+            <li>Ningún muro es 100% impermeable en toda condición; lo relevante es <strong>cuánta agua absorbe</strong> y qué tan bien resiste la humedad.</li>
+            <li>El panel Murotech tiene una permeabilidad muy baja (<strong>del orden de 0.01 %</strong>): no funciona como una esponja que retiene agua.</li>
+            <li>La mayoría de las filtraciones no vienen del muro, sino de <strong>uniones, azoteas y detalles mal resueltos</strong>.</li>
+          </ul>
+        </div>
+
         <h2>Qué significa realmente que un muro sea "impermeable"</h2>
         <p>Conviene empezar por aclarar algo, porque la palabra "impermeable" suele generar una expectativa equivocada: <strong>ningún muro es 100% impermeable en toda condición</strong>. Un muro con muy baja absorción de agua es muy distinto de una barrera que garantiza que nunca habrá una filtración, pase lo que pase. La mayoría de las filtraciones en una obra no vienen del material del muro, sino de detalles mal resueltos: uniones, azoteas, instalaciones, remates y mano de obra.</p>
         <p>Dicho eso, lo que sí puede tener un muro es una <strong>resistencia real al agua y a la humedad</strong>: absorber muy poca agua, no retenerla, no degradarse con ella y no favorecer el moho. En el panel Murotech eso se traduce en una permeabilidad muy baja —del orden de 0.01 %—, lo que significa que el cuerpo del panel no funciona como una esponja que absorbe agua y la libera hacia el interior.</p>
@@ -625,7 +686,59 @@ strong { font-weight: 700; }
         <p>El panel Murotech está formado por dos capas exteriores de silicato de calcio y un núcleo de cemento, poliestireno expandible, arena, polímeros y aditivos. Esa combinación aporta estructura y, al mismo tiempo, limita la absorción de agua.</p>
         <p>El silicato de calcio es un material estable frente a la humedad: no se descompone ni se oxida, y resiste el moho. El núcleo no está diseñado para almacenar agua. A eso se suma el sistema de machimbrado en los bordes, que —bien ejecutado con pasta base y sellador— reduce las juntas por donde el agua suele encontrar camino.</p>
         <p>El punto técnico clave es que el agua rara vez entra por el centro de un muro. Entra por las uniones, los remates y los puntos donde el muro se encuentra con otro material. Ahí es donde el detalle de instalación, más que el material, decide el resultado.</p>
+
+        <figure class="mt-figure">
+          <p class="mt-figure__title">Por dónde entra el agua a un muro</p>
+          <p class="mt-figure__sub">Corte esquemático: el cuerpo del panel resiste; los riesgos están en los detalles</p>
+          <div class="mt-figscroll"><svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corte esquemático de un muro con los cuatro puntos por donde el agua puede filtrarse">
+  <rect x="30" y="56" width="540" height="20" fill="#444444"/>
+  <rect x="30" y="50" width="540" height="6" fill="#FFBC00"/>
+  <rect x="534" y="30" width="36" height="46" fill="#444444"/>
+  <rect x="70" y="76" width="460" height="208" fill="#ECEAE4" stroke="#1A1A1A" stroke-width="2"/>
+  <line x1="300" y1="76" x2="300" y2="284" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="7 6"/>
+  <rect x="108" y="140" width="92" height="84" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="50" y="284" width="500" height="26" fill="#444444"/>
+  <text x="410" y="196" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="700" font-size="19" fill="#1A1A1A" letter-spacing="0.5">CUERPO DEL PANEL</text>
+  <text x="410" y="217" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="14" fill="#444444">Baja absorción (~0.01%)</text>
+  <g font-family="'Barlow Condensed',sans-serif" font-weight="700" font-size="18" fill="#1A1A1A" text-anchor="middle">
+    <circle cx="300" cy="118" r="16" fill="#FFBC00" stroke="#1A1A1A" stroke-width="2"/><text x="300" y="118" dominant-baseline="central">1</text>
+    <circle cx="474" cy="297" r="16" fill="#FFBC00" stroke="#1A1A1A" stroke-width="2"/><text x="474" y="297" dominant-baseline="central">2</text>
+    <circle cx="522" cy="45" r="16" fill="#FFBC00" stroke="#1A1A1A" stroke-width="2"/><text x="522" y="45" dominant-baseline="central">3</text>
+    <circle cx="154" cy="140" r="16" fill="#FFBC00" stroke="#1A1A1A" stroke-width="2"/><text x="154" y="140" dominant-baseline="central">4</text>
+  </g>
+</svg></div>
+          <ol class="mt-diagram-legend">
+            <li><span class="num">1</span><b>Uniones entre paneles</b> — si no llevan pasta, sello y membrana, el agua pasa.</li>
+            <li><span class="num">2</span><b>Encuentros con concreto o metal</b> — juntas frías si no se sella con espuma de poliuretano.</li>
+            <li><span class="num">3</span><b>Azotea / pretil</b> — sin pendiente ni impermeabilizante, hay filtración.</li>
+            <li><span class="num">4</span><b>Remates de vanos</b> (puertas y ventanas) — puntos expuestos.</li>
+          </ol>
+          <p class="mt-figure__caption">El material resiste; las filtraciones aparecen en los detalles de instalación.</p>
+        </figure>
+
         <h2>Qué sí resuelve y qué no</h2>
+
+        <div class="mt-split">
+          <div class="mt-split__col mt-split__col--yes">
+            <div class="mt-split__head">Lo que sí aporta el panel</div>
+            <ul>
+              <li>Baja absorción de agua (~0.01%)</li>
+              <li>Resistencia al moho y a la humedad</li>
+              <li>No se descompone ni se oxida</li>
+              <li>Menos salitre y manchas en interiores</li>
+            </ul>
+          </div>
+          <div class="mt-split__col mt-split__col--dep">
+            <div class="mt-split__head">Lo que depende de la instalación, no del material</div>
+            <ul>
+              <li>Azoteas requieren impermeabilizante y pendiente</li>
+              <li>Uniones con pasta, sello y membrana</li>
+              <li>Desagües y remates bien resueltos</li>
+              <li>Acabados con sus tiempos de secado</li>
+            </ul>
+          </div>
+        </div>
+
         <p><strong>Lo que sí aporta el panel:</strong> baja absorción de agua, buen comportamiento ante la humedad ambiental, resistencia al moho y a la degradación por agua. Esto ayuda a reducir problemas frecuentes como el salitre, las manchas de humedad y el deterioro de acabados, especialmente en interiores y espacios con exigencia sanitaria.</p>
         <p><strong>Lo que no debe esperarse:</strong> que el material, por sí solo, resuelva una azotea sin impermeabilizante, un desagüe mal hecho, una unión sin sello o un pretil sin pendiente. En esos casos habrá filtración aunque el panel absorba muy poca agua, porque el problema no está en el muro.</p>
         <p>Comunicarlo así no debilita el producto: lo vuelve creíble. Un comprador técnico desconfía de lo que promete impermeabilidad total y confía en lo que explica sus condiciones reales.</p>
@@ -647,6 +760,25 @@ strong { font-weight: 700; }
         <h2>Conclusión</h2>
         <p>Un buen comportamiento frente al agua es el resultado de un material adecuado bien instalado. El panel de concreto aligerado Murotech absorbe muy poca agua, resiste el moho y no se degrada con la humedad, pero es el sistema completo —uniones, sellos, azoteas y acabados— el que mantiene una obra seca en el tiempo. Ningún muro es 100% impermeable en toda condición; lo que sí puede ofrecer es una protección real y predecible cuando se especifica y se instala bien.</p>
         <p>Si tu proyecto está en zona húmeda, costera o con exigencia sanitaria, definir bien estos detalles desde el inicio es lo que convierte una buena propiedad del material en un desempeño confiable en obra.</p>
+        <h2>Preguntas frecuentes</h2>
+        <div class="mt-faq">
+          <details class="mt-faq__item" open>
+            <summary>¿El panel Murotech es 100% impermeable?</summary>
+            <div class="mt-faq__body"><p>No. Ningún muro lo es en toda condición. El panel absorbe muy poca agua y resiste la humedad, pero la estanqueidad final depende de uniones, azoteas y acabados bien ejecutados.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿Por qué una azotea con panel sigue necesitando impermeabilizante?</summary>
+            <div class="mt-faq__body"><p>Porque es la superficie más expuesta a lluvia y encharcamiento, y cualquier falla de instalación se vuelve filtración. El impermeabilizante actúa como capa de seguridad, además de la baja absorción del panel.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿El panel sirve para zonas costeras o de mucha lluvia?</summary>
+            <div class="mt-faq__body"><p>Sí, por su baja absorción y su resistencia al moho, pero exige cuidar más los detalles: sellos en vanos, protección de metales y doble malla en fachadas expuestas.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿De dónde vienen la mayoría de las filtraciones?</summary>
+            <div class="mt-faq__body"><p>De uniones sin sellar, azoteas sin pendiente o remates mal resueltos; es decir, del proceso de instalación, no del cuerpo del panel.</p></div>
+          </details>
+        </div>
         <p class="mt-article-cta"><a class="mt-btn mt-btn--primary" href="https://murotech.com.mx/contacto/">Solicitar revisión de proyecto</a></p>
   </div>
   <div class="mt-article-foot">
