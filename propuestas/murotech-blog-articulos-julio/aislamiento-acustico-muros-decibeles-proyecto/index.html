@@ -603,6 +603,55 @@ strong { font-weight: 700; }
   .mt-article { padding: var(--mt-space-lg) var(--mt-space-md); }
   .mt-prose { font-size: 1.02rem; }
 }
+
+/* ---------- ENRIQUECIDO: puntos clave ---------- */
+.mt-keypoints {
+  background: var(--mt-gray-100);
+  border-left: 4px solid var(--mt-yellow);
+  border-radius: var(--mt-radius);
+  padding: var(--mt-space-md) var(--mt-space-lg);
+  margin: 0 0 var(--mt-space-xl);
+}
+.mt-keypoints__title {
+  font-family: var(--mt-font-display);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--mt-black);
+  margin: 0 0 var(--mt-space-sm);
+}
+.mt-keypoints ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
+.mt-keypoints li { position: relative; padding-left: 1.5rem; font-size: 1rem; color: var(--mt-gray-700); line-height: 1.6; }
+.mt-keypoints li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; background: var(--mt-yellow); transform: rotate(45deg); }
+.mt-keypoints strong { color: var(--mt-black); font-weight: 700; }
+
+/* ---------- ENRIQUECIDO: figura / escala dB ---------- */
+.mt-figure { margin: var(--mt-space-xl) 0; }
+.mt-figure__title { font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 1.2rem; margin: 0 0 0.2rem; color: var(--mt-black); }
+.mt-figure__sub { font-size: 0.9rem; color: var(--mt-gray-500); margin: 0 0 calc(var(--mt-space-md) + 6px); }
+.mt-scale { position: relative; height: 52px; border-radius: var(--mt-radius); background: linear-gradient(90deg, #C0392B 0%, #E8A400 46%, #2E7D46 100%); border: 1px solid var(--mt-gray-300); }
+.mt-scale__marker { position: absolute; top: -8px; bottom: -8px; width: 3px; background: var(--mt-black); }
+.mt-scale__marker span { position: absolute; top: -27px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-family: var(--mt-font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.72rem; background: var(--mt-black); color: var(--mt-yellow); padding: 3px 8px; border-radius: 2px; }
+.mt-scale__ticks { display: flex; justify-content: space-between; margin-top: 0.55rem; font-family: var(--mt-font-body); font-size: 0.8rem; color: var(--mt-gray-500); }
+.mt-scale__legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--mt-space-md); margin-top: var(--mt-space-lg); }
+.mt-scale__legend div { border-top: 2px solid var(--mt-gray-300); padding-top: 0.55rem; font-size: 0.85rem; color: var(--mt-gray-700); line-height: 1.45; }
+.mt-scale__legend b { display: block; font-family: var(--mt-font-body); font-weight: 700; color: var(--mt-black); font-size: 0.82rem; margin-bottom: 0.15rem; letter-spacing: 0.3px; }
+.mt-figure__caption { font-size: 0.82rem; color: var(--mt-gray-500); font-style: italic; margin: var(--mt-space-md) 0 0; }
+@media (max-width: 560px) { .mt-scale__legend { grid-template-columns: 1fr; gap: var(--mt-space-sm); } }
+
+/* ---------- ENRIQUECIDO: tablas con scroll en móvil ---------- */
+.mt-tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: var(--mt-space-xl) 0; border: 1px solid var(--mt-gray-300); border-radius: var(--mt-radius); }
+.mt-tablewrap .mt-table { margin: 0; min-width: 540px; font-size: 0.98rem; }
+.mt-table caption { caption-side: top; text-align: left; font-family: var(--mt-font-display); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; font-size: 1.1rem; color: var(--mt-black); background: var(--mt-white); padding: var(--mt-space-md) var(--mt-space-md) var(--mt-space-sm); }
+.mt-pill { display: inline-block; font-family: var(--mt-font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.72rem; padding: 0.15rem 0.6rem; border-radius: 2px; white-space: nowrap; }
+.mt-pill--max { background: var(--mt-yellow); color: var(--mt-black); }
+.mt-pill--high { background: var(--mt-black); color: var(--mt-white); }
+.mt-pill--mid { background: var(--mt-gray-100); color: var(--mt-gray-700); border: 1px solid var(--mt-gray-300); }
+
+/* ---------- ENRIQUECIDO: FAQ dentro del artículo ---------- */
+.mt-prose .mt-faq { max-width: none; margin: var(--mt-space-md) 0 0; }
+.mt-faq__body p { margin: 0; }
 </style>
 </head>
 <body>
@@ -617,14 +666,53 @@ strong { font-weight: 700; }
 
 <article class="mt-article">
   <div class="mt-prose">
+        <div class="mt-keypoints">
+          <p class="mt-keypoints__title">Puntos clave</p>
+          <ul>
+            <li>El aislamiento acústico mide <strong>cuánto ruido bloquea</strong> un muro entre espacios, no cuánto se absorbe en su interior.</li>
+            <li>El panel Murotech ronda los <strong>47 dB</strong>: un nivel suficiente para que una conversación en tono normal deje de entenderse del otro lado.</li>
+            <li>El desempeño final lo define el <strong>eslabón más débil</strong>: una puerta o un ducto mal resueltos comprometen incluso al mejor muro.</li>
+          </ul>
+        </div>
+
         <h2>Qué es el aislamiento acústico y por qué se mide en decibeles</h2>
         <p>El aislamiento acústico es la capacidad de un muro para reducir cuánto ruido pasa de un lado a otro. No se trata de "absorber" el sonido dentro de una habitación —eso es acondicionamiento acústico—, sino de <strong>impedir que el ruido de un espacio se cuele al de al lado</strong>.</p>
         <p>Se mide en decibeles (dB) de reducción: cuántos decibeles pierde un sonido al atravesar el muro. Entre más alto el número, más aísla. Un panel Murotech tiene una resistencia acústica del orden de 47 dB, lo que lo ubica en un rango útil para separar habitaciones, departamentos u oficinas donde la privacidad sonora importa.</p>
         <p>El punto clave es que el aislamiento no depende solo del número del material, sino de cómo se resuelve el muro completo: uniones, puertas, ductos y encuentros. Un muro con buen desempeño puede arruinarse por un detalle mal ejecutado.</p>
+
+        <figure class="mt-figure">
+          <p class="mt-figure__title">Qué se percibe según cuánto aísla el muro</p>
+          <p class="mt-figure__sub">Reducción de ruido, en decibeles (valores de referencia)</p>
+          <div class="mt-scale" role="img" aria-label="Escala de aislamiento acústico de 25 a 55 decibeles; el panel Murotech se ubica en 47 decibeles">
+            <div class="mt-scale__marker" style="left: 73.3%;"><span>Murotech · 47 dB</span></div>
+          </div>
+          <div class="mt-scale__ticks"><span>25 dB</span><span>35 dB</span><span>45 dB</span><span>55 dB</span></div>
+          <div class="mt-scale__legend">
+            <div><b>25–30 dB</b>Se entiende la conversación del otro lado.</div>
+            <div><b>40–47 dB</b>La conversación normal deja de entenderse. Aquí trabaja Murotech.</div>
+            <div><b>55+ dB</b>El ruido cotidiano casi no se percibe.</div>
+          </div>
+          <p class="mt-figure__caption">Valores de referencia. El desempeño real depende de puertas, ductos y uniones, no solo del muro.</p>
+        </figure>
+
         <h2>Cuántos decibeles necesita cada tipo de proyecto</h2>
-        <p>No todos los proyectos necesitan lo mismo. Como referencia práctica:</p>
-        <ul><li><strong>Vivienda dentro de una misma casa</strong> (entre recámaras): se busca privacidad básica; conversaciones que no se entiendan del otro lado.</li><li><strong>Vivienda vertical</strong> (entre departamentos): la exigencia sube, porque el vecino es otra familia con otros horarios.</li><li><strong>Oficinas</strong>: salas de junta y direcciones necesitan confidencialidad; áreas abiertas, menos.</li><li><strong>Hoteles</strong>: es un tema de experiencia y de reputación. Un huésped que oye la habitación de al lado califica peor y no repite.</li><li><strong>Hospitales</strong>: privacidad del paciente y descanso, además de requisitos normativos.</li></ul>
-        <p>La conversación técnica correcta no es "¿este muro aísla?", sino "¿cuánto aislamiento necesita este espacio y cómo lo logro con el sistema completo?".</p>
+        <p>No todos los proyectos necesitan lo mismo: la exigencia cambia según el uso del espacio y quién lo ocupa.</p>
+
+        <div class="mt-tablewrap">
+          <table class="mt-table">
+            <caption>Nivel de aislamiento recomendado por tipo de espacio</caption>
+            <thead><tr><th>Tipo de espacio</th><th>Exigencia</th><th>Por qué</th></tr></thead>
+            <tbody>
+              <tr><td>Recámaras (misma casa)</td><td><span class="mt-pill mt-pill--mid">Básica</span></td><td>Privacidad simple entre habitaciones.</td></tr>
+              <tr><td>Vivienda vertical (entre departamentos)</td><td><span class="mt-pill mt-pill--high">Alta</span></td><td>El vecino es otra familia, con otros horarios.</td></tr>
+              <tr><td>Oficinas y salas de junta</td><td><span class="mt-pill mt-pill--high">Alta</span></td><td>Confidencialidad de las conversaciones.</td></tr>
+              <tr><td>Hoteles</td><td><span class="mt-pill mt-pill--max">Muy alta</span></td><td>Un huésped que escucha la habitación contigua califica peor y no repite.</td></tr>
+              <tr><td>Hospitales</td><td><span class="mt-pill mt-pill--max">Muy alta</span></td><td>Privacidad del paciente, descanso y cumplimiento normativo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>La pregunta técnica correcta no es "¿este muro aísla?", sino "¿cuánto aislamiento necesita este espacio y cómo se logra con el sistema completo?".</p>
         <h2>Qué significan 47 dB en la práctica</h2>
         <p>Los números en abstracto dicen poco. Como referencia, cada reducción de decibeles hace que el sonido se perciba notablemente más bajo del otro lado. Un muro que reduce alrededor de 47 dB ayuda a que una conversación en tono normal deje de entenderse en el espacio contiguo, y a que ruidos cotidianos —una televisión, una llamada, pasos— lleguen atenuados en lugar de claros.</p>
         <p>Esto no convierte a un cuarto en una cabina de grabación, pero sí marca la diferencia entre un espacio donde se invade la privacidad y uno donde cada área funciona con independencia. En hotelería y vivienda vertical, esa diferencia es justamente lo que el usuario percibe como "calidad de construcción".</p>
@@ -632,9 +720,22 @@ strong { font-weight: 700; }
         <p>El aislamiento acústico depende de varios factores: la masa del muro, su composición y la continuidad con la que está construido. El panel Murotech combina las capas de silicato de calcio con un núcleo que incluye poliestireno expandible, lo que le da una estructura que dificulta el paso del sonido.</p>
         <p>Pero, igual que con la humedad, el desempeño real se juega en la continuidad. Un muro con buen material pero con juntas abiertas, ductos sin tratar o encuentros mal sellados deja "puentes" por donde el sonido pasa. El sistema —panel, uniones con pasta, sellos y acabados— es lo que sostiene el aislamiento en toda la superficie.</p>
         <h2>Los detalles que arruinan el aislamiento</h2>
-        <p>En acústica, el eslabón más débil define el resultado. Los puntos que más comprometen el aislamiento suelen ser:</p>
-        <ul><li><strong>Puertas</strong>: una puerta ligera o mal sellada deja pasar mucho más ruido que el muro entero.</li><li><strong>Ductos e instalaciones</strong>: registros, salidas de aire y pasos de tubería que conectan dos espacios se vuelven caminos directos para el sonido.</li><li><strong>Uniones y encuentros</strong>: juntas abiertas entre paneles, o con losa y estructura, sin sellar.</li><li><strong>Contactos eléctricos enfrentados</strong>: cajas colocadas espalda con espalda en el mismo muro.</li></ul>
-        <p>Ninguno de estos es culpa del panel, pero todos reducen su desempeño si no se resuelven. Por eso el aislamiento se especifica a nivel de sistema y de detalle, no solo de material.</p>
+        <p>En acústica, el eslabón más débil define el resultado. Estos son los puntos que más comprometen el desempeño, y ninguno depende del panel en sí:</p>
+
+        <div class="mt-tablewrap">
+          <table class="mt-table">
+            <caption>Puntos que comprometen el aislamiento y cómo resolverlos</caption>
+            <thead><tr><th>Punto</th><th>Riesgo</th><th>Cómo se resuelve</th></tr></thead>
+            <tbody>
+              <tr><td>Puertas</td><td><span class="mt-pill mt-pill--max">Muy alto</span></td><td>Puerta sólida y sello perimetral; una puerta ligera deja pasar más ruido que el muro completo.</td></tr>
+              <tr><td>Ductos e instalaciones</td><td><span class="mt-pill mt-pill--high">Alto</span></td><td>Tratar las trayectorias que conectan dos espacios (aire, tubería, registros).</td></tr>
+              <tr><td>Uniones entre paneles</td><td><span class="mt-pill mt-pill--mid">Medio</span></td><td>Pasta y sello en juntas; continuidad en encuentros con losa y estructura.</td></tr>
+              <tr><td>Contactos enfrentados</td><td><span class="mt-pill mt-pill--mid">Medio</span></td><td>Desfasar las cajas eléctricas en lugar de colocarlas espalda con espalda.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Ninguno de estos puntos depende del panel, pero todos reducen su desempeño si no se resuelven. Por eso el aislamiento se especifica a nivel de sistema y de detalle, y no solo de material.</p>
         <h2>Hoteles y hospitales: cuando el ruido es un problema de negocio</h2>
         <p>En hotelería, el ruido entre habitaciones afecta directamente las reseñas, las calificaciones y la recompra. Un sistema que aísla bien entre cuartos protege la experiencia del huésped y, con ella, el ingreso del hotel. Lo mismo aplica a desarrollos residenciales que quieren diferenciarse por confort.</p>
         <p>En hospitales, el aislamiento es parte del cuidado: privacidad entre pacientes, descanso y cumplimiento de requisitos. Aquí el panel suma, además, otras propiedades relevantes como la resistencia al fuego y la higiene, que trabajan junto con la acústica.</p>
@@ -643,7 +744,28 @@ strong { font-weight: 700; }
         <p>Lo más rentable es definir el nivel de aislamiento por tipo de espacio antes de construir, no al final. Eso implica decidir dónde se necesita más privacidad, cómo se resuelven puertas y ductos, y qué detalle llevan las uniones críticas.</p>
         <p>Puedes revisar el detalle de esta propiedad en la página de <a href="https://murotech.com.mx/cualidades/aislamiento-acustico/">aislamiento acústico</a>, y contrastarla con las demás cualidades del sistema según tu proyecto. Si estás desarrollando un hotel, un edificio de departamentos o un espacio donde el ruido es un tema, lo mejor es revisarlo con un asesor para que el aislamiento quede resuelto como sistema y no como una expectativa.</p>
         <h2>Conclusión</h2>
-        <p>El aislamiento acústico no es un número mágico del material, sino el resultado de elegir el nivel correcto para cada espacio y ejecutarlo bien en todo el muro. El panel Murotech ofrece una base sólida —del orden de 47 dB— que, bien especificada y con los detalles resueltos, ayuda a que hoteles, hospitales, oficinas y vivienda funcionen con la privacidad sonora que su uso exige.</p>
+        <p>El aislamiento acústico no es un número aislado del material, sino el resultado de elegir el nivel correcto para cada espacio y ejecutarlo bien en todo el muro. El panel Murotech ofrece una base sólida —del orden de 47 dB— que, bien especificada y con los detalles resueltos, ayuda a que hoteles, hospitales, oficinas y vivienda funcionen con la privacidad sonora que su uso exige.</p>
+
+        <h2>Preguntas frecuentes</h2>
+        <div class="mt-faq">
+          <details class="mt-faq__item" open>
+            <summary>¿47 dB es suficiente para un hotel?</summary>
+            <div class="mt-faq__body"><p>Es una base sólida entre habitaciones, siempre que puertas, ductos y uniones estén bien resueltos. En hotelería, el resultado final depende tanto de esos detalles como del muro.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿El aislamiento acústico es lo mismo que la insonorización?</summary>
+            <div class="mt-faq__body"><p>No. Aislar consiste en impedir que el ruido pase entre espacios; la insonorización suele referirse a controlar el sonido dentro de un mismo espacio (acondicionamiento). El panel trabaja sobre el aislamiento entre áreas.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿Qué influye más, el muro o las puertas?</summary>
+            <div class="mt-faq__body"><p>Habitualmente el eslabón más débil: una puerta ligera o un ducto sin tratar deja pasar más ruido que el muro completo. Por eso la acústica se especifica a nivel de sistema, no solo de material.</p></div>
+          </details>
+          <details class="mt-faq__item">
+            <summary>¿Se puede mejorar el aislamiento después de construir?</summary>
+            <div class="mt-faq__body"><p>Es posible, pero implica mayor costo y menor rendimiento que resolverlo desde el diseño. Definir el nivel por tipo de espacio antes de construir es lo más rentable.</p></div>
+          </details>
+        </div>
+
         <p class="mt-article-cta"><a class="mt-btn mt-btn--primary" href="https://murotech.com.mx/contacto/">Solicitar revisión de proyecto</a></p>
   </div>
   <div class="mt-article-foot">
