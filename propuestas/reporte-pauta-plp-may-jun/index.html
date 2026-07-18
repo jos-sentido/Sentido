@@ -214,7 +214,7 @@
   <nav class="tabs" id="tabs">
     <button class="tab active" data-t="gasto">Análisis de gasto<span class="k">6 desarrollos · mayo</span></button>
     <button class="tab" data-t="cmp">Comparativa<span class="k">4 con aumento · may→jun</span></button>
-    <button class="tab" data-t="plan">Plan por objetivo<span class="k">4 con aumento · jun/Q3/Q4</span></button>
+    <button class="tab" data-t="plan">Plan por objetivo<span class="k">4 jun · 6 Q3/Q4</span></button>
   </nav>
 
   <section class="panel active" id="gasto">
@@ -250,7 +250,7 @@
   </section>
 
   <section id="canal" style="display:none;animation:fade .5s ease both">
-    <div class="phead"><h2>Plan por canal · Google Ads vs Meta · 4 con aumento</h2>
+    <div class="phead"><h2>Plan por canal · Google Ads vs Meta</h2>
       <p id="canalDesc"></p></div>
     <div class="ptools">
       <div class="pswitch">
@@ -312,7 +312,9 @@ const PLAN={
  Bolongo:{Junio:{g:13125,m:52500,l:13125,r:8750},Q3:{g:35000,m:38235,l:15294,r:11471},Q4:{g:35000,m:38235,l:15294,r:11471}},
  Amancay:{Junio:{g:9375,m:39788,l:7621,r:5716},Q3:{g:27344,m:29871,l:11948,r:8962},Q4:{g:27344,m:29871,l:11948,r:8962}},
  Essentia:{Junio:{g:7500,m:36816,l:3248,r:2436},Q3:{g:19250,m:21029,l:8412,r:6309},Q4:{g:19250,m:21029,l:8412,r:6309}},
- Brelia:{Junio:{g:6750,m:33499,l:2715,r:2036},Q3:{g:19250,m:21029,l:8412,r:6309},Q4:{g:19250,m:21029,l:8412,r:6309}}
+ Brelia:{Junio:{g:6750,m:33499,l:2715,r:2036},Q3:{g:19250,m:21029,l:8412,r:6309},Q4:{g:19250,m:21029,l:8412,r:6309}},
+ Heredit:{Q3:{g:2500,m:19500,l:0,r:0},Q4:{g:2500,m:19500,l:0,r:0}},
+ "Península Mzt":{Q3:{g:5000,m:22000,l:0,r:0},Q4:{g:5000,m:22000,l:0,r:0}}
 };
 const PF={
  meta:{label:"Meta Ads",ck:"m",color:"var(--c-meta)",soft:"var(--c-meta-soft)",
@@ -330,6 +332,8 @@ const pct=n=>(n>=0?'+':'−')+Math.abs(n*100).toFixed(1)+'%';
 const sum=a=>a.reduce((s,x)=>s+x,0);
 const cardHTML=(c,i)=>`<div class="card" style="--accent:${c.accent};animation:fade .6s ${i*.07}s both"><div class="lbl">${c.lbl}</div><div class="val tabnums">${c.val}</div><div class="mt">${c.mt}</div></div>`;
 const plan4=DEVS.filter(d=>d.plan);
+// Desarrollos activos en el plan por periodo (junio = los 4 con ejecución; Q3/Q4 suman Heredit y Península)
+const planDevs=per=>DEVS.filter(d=>PLAN[d.short]&&PLAN[d.short][per]);
 let platform='meta', period='Junio';
 
 function renderGasto(pf){
@@ -402,25 +406,25 @@ function syncP(scope){scope.querySelectorAll('.pbtn').forEach(x=>x.classList.tog
 
 // ----- Plan por OBJETIVO (por plataforma seleccionada) -----
 function renderObjetivo(pf,per){
-  const isJun=per==='Junio', isG=pf==='google';
+  const isJun=per==='Junio', isG=pf==='google', pd=planDevs(per), n=pd.length;
   document.getElementById('oPf').textContent=PF[pf].label;
   if(isG){
     document.getElementById('legend').innerHTML=`<span class="lg"><i style="background:var(--c-google)"></i>Visitas a la página <span style="color:var(--ink-faint)">100%</span></span>`;
-    document.getElementById('planDesc').textContent=`Presupuesto de Google Ads de los 4 desarrollos con aumento, dirigido al objetivo de visitas a la página.`;
+    document.getElementById('planDesc').textContent=`Presupuesto de Google Ads de los ${n} desarrollos del plan, dirigido al objetivo de visitas a la página.`;
   }else{
-    const o0=PLAN[plan4[0].short][per], mt0=o0.m+o0.l+o0.r;
-    const anyOver=isJun&&plan4.some(d=>metaSpent(d)>PLAN[d.short].Junio.m);
-    document.getElementById('legend').innerHTML=
-      `<span class="lg"><i style="background:var(--c-meta)"></i>Leads Meta <span style="color:var(--ink-faint)">${(o0.m/mt0*100).toFixed(0)}%</span></span>`
-      +`<span class="lg"><i style="background:var(--c-lp)"></i>LPs GHL <span style="color:var(--ink-faint)">${(o0.l/mt0*100).toFixed(0)}%</span></span>`
-      +`<span class="lg"><i style="background:var(--c-rmk)"></i>RMK <span style="color:var(--ink-faint)">${(o0.r/mt0*100).toFixed(0)}%</span></span>`
-      +(isJun?`<span class="lg"><i style="background:${BRONZE}"></i>Gastado ${RANGO}</span>`:'')
-      +(anyOver?`<span class="lg"><i style="background:var(--neg)"></i>Sobre-ejecutado</span>`:'');
+    const amL=sum(pd.map(d=>PLAN[d.short][per].m)), alL=sum(pd.map(d=>PLAN[d.short][per].l)), arL=sum(pd.map(d=>PLAN[d.short][per].r)), mt0=amL+alL+arL;
+    const anyOver=isJun&&pd.some(d=>metaSpent(d)>PLAN[d.short].Junio.m);
+    const chips=[`<span class="lg"><i style="background:var(--c-meta)"></i>Leads Meta <span style="color:var(--ink-faint)">${(amL/mt0*100).toFixed(0)}%</span></span>`];
+    if(alL>0)chips.push(`<span class="lg"><i style="background:var(--c-lp)"></i>LPs GHL <span style="color:var(--ink-faint)">${(alL/mt0*100).toFixed(0)}%</span></span>`);
+    if(arL>0)chips.push(`<span class="lg"><i style="background:var(--c-rmk)"></i>RMK <span style="color:var(--ink-faint)">${(arL/mt0*100).toFixed(0)}%</span></span>`);
+    if(isJun)chips.push(`<span class="lg"><i style="background:${BRONZE}"></i>Gastado ${RANGO}</span>`);
+    if(anyOver)chips.push(`<span class="lg"><i style="background:var(--neg)"></i>Sobre-ejecutado</span>`);
+    document.getElementById('legend').innerHTML=chips.join('');
     document.getElementById('planDesc').textContent=isJun
-      ?`Objetivos dentro de Meta de los 4 desarrollos con aumento. El "gastado" es el acumulado real ${RANGO} (todo el gasto de Meta fue a Leads); LPs GHL y RMK aún no han gastado.`
-      :`Objetivos dentro de Meta de los 4 desarrollos con aumento: Leads Meta, LPs GHL y RMK.`;
+      ?`Objetivos dentro de Meta de los ${n} desarrollos con aumento. El "gastado" es el acumulado real ${RANGO} (todo el gasto de Meta fue a Leads); LPs GHL y RMK aún no han gastado.`
+      :`Objetivos dentro de Meta de los ${n} desarrollos del plan: Leads Meta, LPs GHL y RMK (Heredit y Península van 100% a Leads).`;
   }
-  document.getElementById('planRows').innerHTML=plan4.map((d,i)=>{
+  document.getElementById('planRows').innerHTML=pd.map((d,i)=>{
     const o=PLAN[d.short][per];
     if(isG){
       const seg=(bg,cls,val,l,s)=>segHTML(o.g,bg,cls,val,l,s);
@@ -429,10 +433,11 @@ function renderObjetivo(pf,per){
     }
     const tot=o.m+o.l+o.r;
     const seg=(bg,cls,val,l,s)=>segHTML(tot,bg,cls,val,l,s);
-    const lps=seg('','l',o.l,`${d.short} · LPs GHL`,`${(o.l/tot*100).toFixed(0)}% del presupuesto Meta · sin gasto aún`), rmk=seg('','r',o.r,`${d.short} · RMK`,`${(o.r/tot*100).toFixed(0)}% del presupuesto Meta · sin gasto aún`);
+    const lps=o.l>0?seg('','l',o.l,`${d.short} · LPs GHL`,`${(o.l/tot*100).toFixed(0)}% del presupuesto Meta${isJun?' · sin gasto aún':''}`):'', rmk=o.r>0?seg('','r',o.r,`${d.short} · RMK`,`${(o.r/tot*100).toFixed(0)}% del presupuesto Meta${isJun?' · sin gasto aún':''}`):'';
+    const cs=[];if(o.l>0)cs.push(`LPs GHL <b>${mxn(o.l,0)}</b>`);if(o.r>0)cs.push(`RMK <b>${mxn(o.r,0)}</b>`);const csStr=cs.length?' · '+cs.join(' · '):'';
     if(!isJun){
       const segs=seg('','m',o.m,`${d.short} · Leads Meta`,`${(o.m/tot*100).toFixed(0)}% del presupuesto Meta`)+lps+rmk;
-      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div><div class="prow-amts">Leads Meta <b>${mxn(o.m,0)}</b> · LPs GHL <b>${mxn(o.l,0)}</b> · RMK <b>${mxn(o.r,0)}</b></div></div>`;
+      return `<div class="prow" style="animation:fade .45s ${i*.06}s both"><div class="top"><span class="name">${d.name}</span><span class="tot tabnums">${mxn(tot,0)}</span></div><div class="stack">${segs}</div><div class="prow-amts">Leads Meta <b>${mxn(o.m,0)}</b>${csStr}</div></div>`;
     }
     const spent=metaSpent(d), within=Math.min(spent,o.m), over=Math.max(0,spent-o.m), falta=Math.max(0,o.m-spent), leadsTot=Math.max(spent,o.m);
     const leads1=seg(BRONZE,'m',within,`${d.short} · Leads Meta · gastado ${RANGO}`,`${mxn(within,0)} de ${mxn(o.m,0)} presupuesto`)
@@ -444,15 +449,16 @@ function renderObjetivo(pf,per){
       <div class="top"><span class="name">${d.name}${over>0?' <span class="warn">⚠ Leads +'+mxn(over,0)+'</span>':''}</span><span class="tot tabnums">${mxn(tot,0)}</span></div>
       <div class="plan-cap">Gastado · por gastar</div><div class="stack">${line1}</div>
       <div class="plan-cap">Total por objetivo</div><div class="stack">${line2}</div>
-      <div class="prow-amts">Leads <b>${mxn(leadsTot,0)}</b> <span class="dim">(gastado ${mxn(within,0)}${over>0?' · +'+mxn(over,0)+' sobre':' · falta '+mxn(falta,0)})</span> · LPs GHL <b>${mxn(o.l,0)}</b> · RMK <b>${mxn(o.r,0)}</b></div>
+      <div class="prow-amts">Leads <b>${mxn(leadsTot,0)}</b> <span class="dim">(gastado ${mxn(within,0)}${over>0?' · +'+mxn(over,0)+' sobre':' · falta '+mxn(falta,0)})</span>${csStr}</div>
     </div>`;
   }).join('');
-  if(isG){ const pg=sum(plan4.map(d=>PLAN[d.short][per].g));
+  if(isG){ const pg=sum(pd.map(d=>PLAN[d.short][per].g));
     document.getElementById('pSum').innerHTML=`Google ${per}: <b>${mxn(pg,0)}</b> &nbsp;·&nbsp; objetivo: Visitas a la página`;
   }else{
-    const pm=sum(plan4.map(d=>PLAN[d.short][per].m)), pl=sum(plan4.map(d=>PLAN[d.short][per].l)), pr=sum(plan4.map(d=>PLAN[d.short][per].r));
-    const extra=isJun?(()=>{const g=sum(plan4.map(d=>metaSpent(d)));return ` <span style="color:var(--ink-faint)">(gastado ${mxn(g,0)} ${RANGO})</span>`;})():'';
-    document.getElementById('pSum').innerHTML=`Meta ${per}: <b>${mxn(pm+pl+pr,0)}</b> &nbsp;·&nbsp; Leads ${mxn(pm,0)}${extra} &nbsp;·&nbsp; LPs ${mxn(pl,0)} &nbsp;·&nbsp; RMK ${mxn(pr,0)} <span style="color:var(--ink-faint)">sin gasto</span>`;
+    const pm=sum(pd.map(d=>PLAN[d.short][per].m)), pl=sum(pd.map(d=>PLAN[d.short][per].l)), pr=sum(pd.map(d=>PLAN[d.short][per].r));
+    const extra=isJun?(()=>{const g=sum(pd.map(d=>metaSpent(d)));return ` <span style="color:var(--ink-faint)">(gastado ${mxn(g,0)} ${RANGO})</span>`;})():'';
+    const parts=[`Leads ${mxn(pm,0)}${extra}`];if(pl>0)parts.push(`LPs ${mxn(pl,0)}`);if(pr>0)parts.push(`RMK ${mxn(pr,0)}`);
+    document.getElementById('pSum').innerHTML=`Meta ${per}: <b>${mxn(pm+pl+pr,0)}</b> &nbsp;·&nbsp; ${parts.join(' &nbsp;·&nbsp; ')}${isJun?' <span style="color:var(--ink-faint)">sin gasto</span>':''}`;
   }
   syncP(document.getElementById('plan'));
   animateBars(document.getElementById('plan')); bindTips();
@@ -460,14 +466,14 @@ function renderObjetivo(pf,per){
 
 // ----- Plan por CANAL (cross-plataforma: Google Ads vs Meta) -----
 function renderCanal(per){
-  const isJun=per==='Junio';
-  const o0=PLAN[plan4[0].short][per], tot0=o0.g+o0.m+o0.l+o0.r, mp0=o0.m+o0.l+o0.r;
+  const isJun=per==='Junio', pd=planDevs(per), n=pd.length;
+  const ptot=sum(pd.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r})), pg=sum(pd.map(d=>PLAN[d.short][per].g)), pmp=ptot-pg;
   document.getElementById('canalLegend').innerHTML=
-    `<span class="lg"><i style="background:var(--c-google)"></i>Google Ads <span style="color:var(--ink-faint)">${(o0.g/tot0*100).toFixed(0)}%</span></span>`
-    +`<span class="lg"><i style="background:var(--c-meta)"></i>Meta <span style="color:var(--ink-faint)">${(mp0/tot0*100).toFixed(0)}%</span></span>`
+    `<span class="lg"><i style="background:var(--c-google)"></i>Google Ads <span style="color:var(--ink-faint)">${(pg/ptot*100).toFixed(0)}%</span></span>`
+    +`<span class="lg"><i style="background:var(--c-meta)"></i>Meta <span style="color:var(--ink-faint)">${(pmp/ptot*100).toFixed(0)}%</span></span>`
     +(isJun?`<span class="lg"><i style="background:${BRONZE}"></i>Meta · gastado ${RANGO}</span>`:'');
-  document.getElementById('canalDesc').textContent=`Reparto por plataforma de los 4 desarrollos con aumento: Google Ads vs Meta (engloba Leads Meta + LPs GHL + RMK).${isJun?` En la barra de Meta se muestra el gastado real acumulado ${RANGO} (mayo + junio) y lo que falta del presupuesto.`:''}`;
-  document.getElementById('canalRows').innerHTML=plan4.map((d,i)=>{
+  document.getElementById('canalDesc').textContent=`Reparto por plataforma de los ${n} desarrollos del plan: Google Ads vs Meta (engloba Leads Meta + LPs GHL + RMK).${isJun?` En la barra de Meta se muestra el gastado real acumulado ${RANGO} (mayo + junio) y lo que falta del presupuesto.`:''}`;
+  document.getElementById('canalRows').innerHTML=pd.map((d,i)=>{
     const o=PLAN[d.short][per], tot=o.g+o.m+o.l+o.r, mp=o.m+o.l+o.r, gast=isJun?Math.min(mp,metaSpent(d)):0;
     const seg=(bg,cls,val,l,s)=>segHTML(tot,bg,cls,val,l,s);
     const g=seg('','g',o.g,`${d.short} · Google Ads`,`${(o.g/tot*100).toFixed(0)}% del total`);
@@ -484,8 +490,7 @@ function renderCanal(per){
       <div class="prow-amts">Google Ads <b>${mxn(o.g,0)}</b> · Meta <b>${mxn(mp,0)}</b> <span class="dim">(gastado ${mxn(gast,0)} · falta ${mxn(mp-gast,0)})</span></div>
     </div>`;
   }).join('');
-  const ptot=sum(plan4.map(d=>{const o=PLAN[d.short][per];return o.g+o.m+o.l+o.r})), pg=sum(plan4.map(d=>PLAN[d.short][per].g)), pmp=ptot-pg;
-  const extra=isJun?(()=>{const g=sum(plan4.map(d=>Math.min(PLAN[d.short].Junio.m+PLAN[d.short].Junio.l+PLAN[d.short].Junio.r,metaSpent(d))));return ` <span style="color:var(--ink-faint)">(gastado ${mxn(g,0)} · por gastar ${mxn(pmp-g,0)})</span>`;})():'';
+  const extra=isJun?(()=>{const g=sum(pd.map(d=>Math.min(PLAN[d.short].Junio.m+PLAN[d.short].Junio.l+PLAN[d.short].Junio.r,metaSpent(d))));return ` <span style="color:var(--ink-faint)">(gastado ${mxn(g,0)} · por gastar ${mxn(pmp-g,0)})</span>`;})():'';
   document.getElementById('cSum').innerHTML=`Total ${per}: <b>${mxn(ptot,0)}</b> &nbsp;·&nbsp; Google Ads: <b>${mxn(pg,0)}</b> &nbsp;·&nbsp; Meta: <b>${mxn(pmp,0)}</b>${extra}`;
   syncP(document.getElementById('canal'));
   animateBars(document.getElementById('canal')); bindTips();
