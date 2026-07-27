@@ -7,6 +7,10 @@
       "destination": "/admin/index.html"
     },
     {
+      "source": "/sitio",
+      "destination": "/sitio/index.html"
+    },
+    {
       "source": "/comercial/:slug",
       "destination": "/propuestas/:slug"
     },
