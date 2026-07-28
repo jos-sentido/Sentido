@@ -86,18 +86,8 @@ a { color: inherit; text-decoration: none; }
   opacity: var(--tono, 0.16);
 }
 
-/* Registros de densidad — como en un grabado real */
-.buril--fino   { --paso: 3.5px; --tono: 0.10; }
-.buril--medio  { --paso: 5px;   --tono: 0.17; }
-.buril--denso  { --paso: 3px;   --peso: 0.9px; --tono: 0.26; }
-.buril--diag   { --ang: 45deg; }
-.buril--contra { --ang: 135deg; --paso: 6px; --tono: 0.08; }
-
-/* Degradado de trama: el buril se abre, como en el grabado clásico */
-.buril--abre {
-  -webkit-mask-image: linear-gradient(var(--mask-ang, 180deg), #000, transparent);
-  mask-image: linear-gradient(var(--mask-ang, 180deg), #000, transparent);
-}
+/* Cada campo fija --ang, --paso, --peso, --tono y --trazo en su contexto.
+   La densidad es el énfasis: se sube --tono, nunca se añade elevación. */
 
 /* Pleca de imprenta */
 .pleca {
@@ -195,7 +185,7 @@ em { font-style: normal; font-weight: var(--fuerte); color: var(--hueso); }
 
 .regla { height: 1px; background: var(--linea); border: 0; }
 
-/* Título de sección — Bodoni y una pleca, sin numeración decorativa */
+/* Título de sección — pleca y titular, sin numeración decorativa */
 .cabeza { margin-bottom: clamp(38px, 4.6vw, 62px); max-width: 72ch; }
 .cabeza .pleca { width: 56px; margin-bottom: 26px; }
 .cabeza h2 { margin-bottom: 20px; }
@@ -407,10 +397,9 @@ em { font-style: normal; font-weight: var(--fuerte); color: var(--hueso); }
 .declara p {
   position: relative; font-family: var(--archivo); font-weight: var(--ligera);
   font-size: clamp(1.625rem, 4vw, 3.25rem); line-height: 1.12;
-  letter-spacing: -0.035em; color: var(--hueso); max-width: 20ch; margin: 0 auto;
+  letter-spacing: -0.035em; color: var(--tinta); max-width: 20ch; margin: 0 auto;
   text-align: center; text-wrap: balance;
 }
-.declara p { color: var(--tinta); }
 .declara p .tenue { color: #6B6459; }
 
 /* ═══════════════ COLUMNAS ═══════════════ */
