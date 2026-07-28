@@ -56,6 +56,9 @@ def head(title, desc, canonical, extra=""):
 <title>{title}</title>
 <meta name="description" content="{desc}" />
 <meta name="theme-color" content="#0B0A09" />
+<!-- Preview bajo propuestas.sentido.mx: no debe indexarse ni competir con sentido.mx.
+     Quitar esta línea cuando el sitio se publique en su dominio definitivo. -->
+<meta name="robots" content="noindex, nofollow" />
 <link rel="canonical" href="https://sentido.mx{canonical}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Sentido · Branding &amp; Advertising" />
@@ -1418,5 +1421,5 @@ if __name__ == "__main__":
     for _p in POSTS:
         build_post(_p)
     build_contacto()
-    build_sitemap()
+    # sitemap: se genera al publicar en el dominio definitivo, no en preview
     print("Listo.")
