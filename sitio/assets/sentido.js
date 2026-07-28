@@ -1,132 +1,96 @@
 /* ═══════════════════════════════════════════════════════════════
-   SENTIDO · sentido.mx — comportamiento compartido
-   Nav, progreso, reveals, menú móvil, formulario de contacto.
+   SENTIDO · sentido.mx
+   Navegación, menú móvil y formulario. El movimiento vive en CSS:
+   un solo momento autoral al cargar la portada, no reveals sueltos.
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
 
-  /* ───────────── Nav: ocultar al bajar, mostrar al subir ───────────── */
+  /* ── Barra: se esconde al bajar, vuelve al subir ── */
   var nav = document.querySelector('.nav');
-  var lastY = window.scrollY;
+  var previo = window.scrollY;
+  var pendiente = false;
 
-  function onScroll() {
+  function alScroll() {
     var y = window.scrollY;
-
     if (nav) {
-      nav.classList.toggle('is-scrolled', y > 12);
-      var goingDown = y > lastY && y > 240;
-      var panelOpen = document.querySelector('.nav-panel.is-open');
-      nav.classList.toggle('is-hidden', goingDown && !panelOpen);
+      nav.classList.toggle('bajo', y > 10);
+      var baja = y > previo && y > 260;
+      nav.classList.toggle('oculto', baja && !document.querySelector('.panel.abierto'));
     }
-
-    var bar = document.querySelector('.progress');
-    if (bar) {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
-    }
-
-    lastY = y;
+    previo = y;
   }
 
-  var ticking = false;
   window.addEventListener('scroll', function () {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(function () { onScroll(); ticking = false; });
+    if (pendiente) return;
+    pendiente = true;
+    window.requestAnimationFrame(function () { alScroll(); pendiente = false; });
   }, { passive: true });
-  onScroll();
+  alScroll();
 
-  /* ───────────── Menú móvil ───────────── */
-  var toggle = document.querySelector('.nav-toggle');
-  var panel = document.querySelector('.nav-panel');
+  /* ── Menú móvil ── */
+  var btn = document.querySelector('.nav-btn');
+  var panel = document.querySelector('.panel');
 
-  if (toggle && panel) {
-    toggle.addEventListener('click', function () {
-      var open = panel.classList.toggle('is-open');
-      toggle.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-      if (open) nav.classList.remove('is-hidden');
+  if (btn && panel) {
+    btn.addEventListener('click', function () {
+      var abierto = panel.classList.toggle('abierto');
+      btn.classList.toggle('abierto', abierto);
+      btn.setAttribute('aria-expanded', String(abierto));
+      document.body.style.overflow = abierto ? 'hidden' : '';
+      if (abierto && nav) nav.classList.remove('oculto');
     });
 
     panel.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        panel.classList.remove('is-open');
-        toggle.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
+      if (!e.target.closest('a')) return;
+      panel.classList.remove('abierto');
+      btn.classList.remove('abierto');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && panel.classList.contains('is-open')) toggle.click();
+      if (e.key === 'Escape' && panel.classList.contains('abierto')) btn.click();
     });
   }
 
-  /* ───────────── Reveal al hacer scroll ───────────── */
-  var reveals = document.querySelectorAll('.reveal');
-
-  if (!('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('is-in'); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        io.unobserve(entry.target);
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
-
-    reveals.forEach(function (el) { io.observe(el); });
-  }
-
-  /* ───────────── Logo: fallback a wordmark si no carga ───────────── */
-  document.querySelectorAll('img[data-fallback]').forEach(function (img) {
-    img.addEventListener('error', function () {
-      var fb = document.createElement('span');
-      fb.className = 'brand-fallback';
-      fb.textContent = 'Sentido';
-      img.replaceWith(fb);
-    });
-  });
-
-  /* ───────────── Año en el footer ───────────── */
-  document.querySelectorAll('[data-year]').forEach(function (el) {
+  /* ── Año del pie ── */
+  document.querySelectorAll('[data-anio]').forEach(function (el) {
     el.textContent = String(new Date().getFullYear());
   });
 
-  /* ───────────── Formulario de contacto → /api/lead ───────────── */
+  /* ── Formulario → /api/lead ── */
   var form = document.getElementById('lead-form');
   if (!form) return;
 
-  var statusEl = document.getElementById('lead-status');
-  var submitBtn = form.querySelector('[data-submit]');
-  var arrowEl = submitBtn ? submitBtn.querySelector('.arw') : null;
+  var estado = document.getElementById('lead-estado');
+  var enviar = form.querySelector('[data-enviar]');
+  var flecha = enviar ? enviar.querySelector('.fl') : null;
 
-  function setStatus(msg, isError) {
-    if (!statusEl) return;
-    statusEl.textContent = msg;
-    statusEl.classList.add('is-visible');
-    statusEl.classList.toggle('is-error', !!isError);
+  function aviso(texto, esError) {
+    if (!estado) return;
+    estado.textContent = texto;
+    estado.classList.add('visible');
+    estado.classList.toggle('error', !!esError);
   }
 
-  function checkedValues(name) {
-    return Array.prototype.slice
-      .call(form.querySelectorAll('input[name="' + name + '"]:checked'))
-      .map(function (i) { return i.value; });
-  }
-
-  function val(name) {
-    var el = form.elements[name];
+  function valor(nombre) {
+    var el = form.elements[nombre];
     return el && el.value ? el.value.trim() : '';
+  }
+
+  function marcados() {
+    return Array.prototype.slice
+      .call(form.querySelectorAll('input[name="interes"]:checked'))
+      .map(function (i) { return i.value; });
   }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    var interes = checkedValues('interes');
+    var interes = marcados();
     if (interes.length === 0) {
-      setStatus('Selecciona al menos una opción en "¿En qué necesitas apoyo?".', true);
+      aviso('Marca al menos una opción en «¿En qué necesitas apoyo?» para saber por dónde empezar.', true);
       return;
     }
     if (!form.checkValidity()) {
@@ -134,41 +98,41 @@
       return;
     }
 
-    var email = val('email');
-    var payload = {
-      Nombre: val('nombre'),
-      Empresa: val('empresa'),
-      Email: email,
-      WhatsApp: val('whatsapp'),
-      'Sitio / IG': val('sitio') || '—',
+    var correo = valor('email');
+    var datos = {
+      Nombre: valor('nombre'),
+      Empresa: valor('empresa'),
+      Email: correo,
+      WhatsApp: valor('whatsapp'),
+      'Sitio / IG': valor('sitio') || '—',
       'Necesita apoyo en': interes.join(', '),
-      Presupuesto: val('presupuesto') || 'sin especificar',
-      'Cuándo arranca': val('tiempo') || 'sin especificar',
-      Contexto: val('contexto') || '—',
+      Presupuesto: valor('presupuesto') || 'sin especificar',
+      'Cuándo arranca': valor('tiempo') || 'sin especificar',
+      Contexto: valor('contexto') || '—',
       Fuente: form.dataset.fuente || 'sentido.mx',
       Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
     };
 
-    if (submitBtn) submitBtn.disabled = true;
-    if (arrowEl) arrowEl.textContent = '…';
-    setStatus('Enviando…', false);
+    if (enviar) enviar.disabled = true;
+    if (flecha) flecha.textContent = '·';
+    aviso('Enviando…', false);
 
     fetch(form.dataset.webhook || '/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(datos)
     })
-      .then(function (res) {
-        if (!res.ok) throw new Error('El servidor respondió ' + res.status);
-        setStatus('Recibido. Un estratega de Sentido te responde en menos de 24 horas hábiles a ' + email + '.', false);
+      .then(function (r) {
+        if (!r.ok) throw new Error('El servidor respondió ' + r.status);
+        aviso('Recibido. Un estratega de Sentido te responde en menos de 24 horas hábiles a ' + correo + '.', false);
         form.reset();
-        if (arrowEl) arrowEl.textContent = '✓';
+        if (flecha) flecha.textContent = '✓';
       })
       .catch(function (err) {
         console.error('[sentido] lead:', err);
-        setStatus('No pudimos enviar tu mensaje. Escríbenos directo a jos@sentido.mx o por WhatsApp y lo resolvemos.', true);
-        if (submitBtn) submitBtn.disabled = false;
-        if (arrowEl) arrowEl.textContent = '→';
+        aviso('No pudimos enviar tu mensaje. Escríbenos directo a jos@sentido.mx o por WhatsApp y lo resolvemos.', true);
+        if (enviar) enviar.disabled = false;
+        if (flecha) flecha.textContent = '→';
       });
   });
 })();
