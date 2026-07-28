@@ -381,7 +381,7 @@ ONBOARDING = [
 SECTORS = [
     ("Inmobiliario y constructoras",
      "Desarrolladores, constructoras y consultoría inmobiliaria",
-     "Es el sector donde más profundo hemos operado el sistema completo: landing pages por desarrollo, campañas de captación segmentadas por perfil de comprador, CRM con pipeline de bróker y seguimiento automatizado desde el primer mensaje hasta el apartado.",
+     "Es un sector donde hemos operado el sistema completo: landing pages por desarrollo, campañas de captación segmentadas por perfil de comprador, CRM con pipeline de bróker y seguimiento automatizado desde el primer mensaje hasta el apartado.",
      ["Landings por desarrollo con cotizador", "Pipeline de bróker en CRM", "Meta + Google segmentado por zona", "Remarketing por etapa de decisión"]),
     ("Industrial y manufactura",
      "Materiales de construcción, procesos y proveeduría B2B",
@@ -517,9 +517,9 @@ POSTS = [
 
 <h2>La aritmética que casi nadie corre</h2>
 
-<p>El principio operativo es conocido y rara vez se actúa sobre él: adquirir un cliente nuevo cuesta entre cinco y siete veces más que reactivar a uno que ya te compró alguna vez. La brecha entre ambos costos es donde se pierde — o se gana — el margen del negocio.</p>
+<p>El principio es conocido en la industria y rara vez se actúa sobre él: se estima que adquirir un cliente nuevo cuesta entre cinco y siete veces más que reactivar a uno que ya compró. La brecha entre ambos costos es donde se pierde — o se gana — el margen del negocio.</p>
 
-<p>A eso se suman dos hechos del comportamiento actual: alrededor del 88% de los usuarios consulta las reseñas de Google antes de elegir un negocio local, y las tasas de apertura de WhatsApp superan el 90%, muy por encima del email por sí solo. Son dos canales con acceso directo a gente que ya te conoce, y ambos suelen estar desatendidos.</p>
+<p>A eso se suman dos referencias de industria ampliamente citadas: cerca del 88% de los usuarios consulta reseñas de Google antes de elegir un negocio local, y las tasas de apertura de WhatsApp se reportan por encima del 90%, muy por arriba del email por sí solo. Son cifras del sector, no mediciones de Sentido. Son dos canales con acceso directo a gente que ya te conoce, y ambos suelen estar desatendidos.</p>
 
 <blockquote>La producción de leads nuevos cuesta. Reactivar a quien ya te conoce, no tanto.</blockquote>
 
@@ -568,7 +568,7 @@ def ojo(clase=""):
         <div class="ojo-rombo r2"></div>
         <div class="ojo-rombo r1"></div>
         <div class="ojo-trama"><div class="buril"></div></div>
-        <img class="ojo-img" src="{OJO}" alt="" />
+        <div class="ojo-img" role="img" aria-label="Sentido"></div>
       </div>"""
 
 
@@ -925,8 +925,7 @@ def build_servicios_index():
     <div class="wrap">
       <div class="cols cols-2">
         <div>
-          <span class="rotulo">Pauta publicitaria</span>
-          <h3 style="margin:16px 0 14px">El presupuesto de pauta va aparte.</h3>
+          <h3 style="margin-bottom:14px">El presupuesto de pauta va aparte.</h3>
           <p class="chico apagado">
             Los módulos de redes Meta y Google Ads requieren presupuesto de pauta, pero ese
             presupuesto va directo a Meta y Google con el medio de pago del cliente: no es
@@ -935,8 +934,7 @@ def build_servicios_index():
           </p>
         </div>
         <div>
-          <span class="rotulo">Cómo se combinan</span>
-          <h3 style="margin:16px 0 14px">Algunos activan todo. Otros arrancan con dos.</h3>
+          <h3 style="margin-bottom:14px">Algunos activan todo. Otros arrancan con dos.</h3>
           <p class="chico apagado">
             Algunos clientes activan los cinco módulos mensuales desde el día uno; otros
             arrancan con dos o tres y suman conforme el sistema demuestra tracción. El sitio web
@@ -1038,13 +1036,11 @@ def build_servicio(x):
     <div class="wrap">
       <div class="cols cols-2">
         <div>
-          <span class="rotulo">IA aplicada</span>
-          <h3 style="margin:16px 0 16px">Dónde entra la máquina.</h3>
+          <h3 style="margin-bottom:16px">Dónde entra la máquina.</h3>
           <p class="cuerpo apagado">{x['ia']}</p>
         </div>
         <div>
-          <span class="rotulo">Para quién es</span>
-          <h3 style="margin:16px 0 16px">Cuándo tiene sentido activarlo.</h3>
+          <h3 style="margin-bottom:16px">Cuándo tiene sentido activarlo.</h3>
           <p class="cuerpo apagado">{x['for_whom']}</p>
         </div>
       </div>
@@ -1350,14 +1346,13 @@ def build_contacto():
                 </div>
 
                 <div class="campo">
-                  <label class="etiq" for="f-presupuesto">Presupuesto mensual aproximado</label>
+                  <label class="etiq" for="f-presupuesto">¿En qué punto estás?</label>
                   <select class="sel" id="f-presupuesto" name="presupuesto">
-                    <option value="">Selecciona un rango</option>
-                    <option value="menos-10k">Menos de $10,000 MXN</option>
-                    <option value="10-20k">$10,000 – $20,000 MXN</option>
-                    <option value="20-40k">$20,000 – $40,000 MXN</option>
-                    <option value="40k-mas">Más de $40,000 MXN</option>
-                    <option value="por-definir">Por definir</option>
+                    <option value="">Selecciona una opción</option>
+                    <option value="sin-inversion">Todavía no invierto en marketing</option>
+                    <option value="invierto-sin-plan">Ya invierto, pero sin estrategia clara</option>
+                    <option value="presupuesto-asignado">Tengo presupuesto asignado para este año</option>
+                    <option value="por-definir">Depende del alcance que propongan</option>
                   </select>
                 </div>
                 <div class="campo">
