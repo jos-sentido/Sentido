@@ -12,6 +12,7 @@ Sentido/
 ├── assets/
 │   ├── logo-sentido-light.png      ← logo blanco, para fondos oscuros
 │   └── logo-sentido-dark.png       ← logo negro, para fondos claros
+├── sitio/                          ← sitio institucional nuevo (ver abajo)
 └── propuestas/
     ├── premium-used-car/
     │   └── index.html
@@ -24,6 +25,7 @@ Sentido/
 
 ```
 propuestas.sentido.mx/                        → landing raíz
+propuestas.sentido.mx/sitio                   → sitio institucional nuevo (preview)
 propuestas.sentido.mx/premium-used-car        → propuesta Premium Used Car
 propuestas.sentido.mx/[nombre-kebab]          → siguientes propuestas
 ```
