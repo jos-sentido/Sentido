@@ -115,21 +115,26 @@ proyecto, hay que absolutizarlos a `https://propuestas.sentido.mx/...`.
 
 ---
 
-## Sobre el logo
+## Uso del logo
 
-La barra y el pie usan `assets/logo-sentido-light-h.png`: un **lockup horizontal
-derivado** del logo original, porque `logo-sentido-light.png` es un lockup
-vertical de proporción 1.12 y en una barra de 80px la firma queda ilegible.
+Reglas de marca definidas por el cliente. **El logo no se recompone**: no se
+coloca el ojo al lado del nombre ni se arma ninguna variante que no exista en
+el archivo original. Solo hay tres aplicaciones válidas:
 
-Se compuso separando las dos piezas del archivo original —el rombo con el ojo
-por un lado, la firma «Sentido» con su descriptor por el otro— y montándolas en
-horizontal. No se redibujó nada: son los mismos trazos del PNG original.
+| Aplicación | Archivo | Dónde se usa |
+|---|---|---|
+| **Completo**, composición original | `logo-sentido-light.png` | Pie de página (132px de alto) |
+| **Solo el nombre** — cuando el completo no acomoda y hay que identificar a la agencia | `logo-sentido-nombre-light.png` | Barra de navegación (46px de alto) |
+| **Solo el ojo** — uso decorativo | `isotipo-sentido.png` | Portada (como máscara de la trama) y favicon |
 
-Se generó también `logo-sentido-dark-h.png` para fondos claros.
+El elemento «nombre» se extrajo del archivo original recortando su bloque tal
+como está compuesto ahí —firma manuscrita con su descriptor— sin redibujar ni
+reacomodar nada. Existe también `logo-sentido-nombre-dark.png` para fondos
+claros.
 
-**Limitación real:** al derivarse de un PNG, estas piezas no escalan sin pérdida.
-Para producción conviene reemplazarlas por una versión horizontal en vector
-(SVG) hecha desde el archivo maestro. Los nombres pueden quedar igual.
+**Limitación:** al derivarse de un PNG, el elemento nombre no escala sin
+pérdida. Conviene sustituirlo por SVG desde el archivo maestro; el nombre del
+archivo puede quedar igual.
 
 ## Pendientes antes de publicar
 
@@ -138,6 +143,6 @@ Para producción conviene reemplazarlas por una versión horizontal en vector
       quién autorizó aparecer públicamente.
 - [ ] Revisar que el WhatsApp `+52 1 322 225 3390` sea el correcto para el sitio público
       (se tomó del brochure).
-- [ ] Sustituir los lockups horizontales derivados por SVG desde el archivo maestro.
+- [ ] Sustituir el elemento nombre por SVG desde el archivo maestro.
 - [ ] Definir imagen `og:image` para compartir en redes.
 - [ ] Decidir si el blog sigue creciendo aquí o migra a un CMS.

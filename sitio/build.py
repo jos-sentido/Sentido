@@ -13,7 +13,11 @@ ROOT = pathlib.Path("/home/user/Sentido/sitio")
 BASE = "/sitio"          # → "" si el sitio pasa a la raíz de un dominio propio
 ASSETS = f"{BASE}/assets"
 OJO = "/assets/isotipo-sentido.png"          # marca sola, para el favicon
-LOGO = "/assets/logo-sentido-light-h.png"   # lockup horizontal, derivado del logo original
+# Reglas de marca: el logo se usa completo en su composición original, o
+# separado en sus elementos — solo el ojo (decorativo) o solo el nombre
+# (cuando el completo no acomoda y hay que identificar a la agencia).
+NOMBRE = "/assets/logo-sentido-nombre-light.png"   # elemento «nombre»
+LOGO   = "/assets/logo-sentido-light.png"          # completo, sin recomponer
 WA = "https://wa.me/5213222253390"
 MAIL = "jos@sentido.mx"
 
@@ -84,7 +88,7 @@ def nav(activa=None):
     return f"""<header class="nav">
   <div class="nav-int">
     <a class="marca" href="{BASE}/" aria-label="Sentido — inicio">
-      <img src="{LOGO}" alt="Sentido · Branding &amp; Advertising" />
+      <img src="{NOMBRE}" alt="Sentido · Branding &amp; Advertising" />
     </a>
     <nav class="nav-links" aria-label="Principal">{links}</nav>
     <a class="boton boton--linea nav-cta" href="{BASE}/contacto">Hablemos</a>
