@@ -12,7 +12,12 @@ import pathlib
 ROOT = pathlib.Path("/home/user/Sentido/sitio")
 BASE = "/sitio"          # → "" si el sitio pasa a la raíz de un dominio propio
 ASSETS = f"{BASE}/assets"
-OJO = "/assets/isotipo-sentido.png"
+OJO = "/assets/isotipo-sentido.png"          # marca sola, para el favicon
+# Reglas de marca: el logo se usa completo en su composición original, o
+# separado en sus elementos — solo el ojo (decorativo) o solo el nombre
+# (cuando el completo no acomoda y hay que identificar a la agencia).
+NOMBRE = "/assets/logo-sentido-nombre-light.png"   # elemento «nombre»
+LOGO   = "/assets/logo-sentido-light.png"          # completo, sin recomponer
 WA = "https://wa.me/5213222253390"
 MAIL = "jos@sentido.mx"
 
@@ -83,7 +88,7 @@ def nav(activa=None):
     return f"""<header class="nav">
   <div class="nav-int">
     <a class="marca" href="{BASE}/" aria-label="Sentido — inicio">
-      <img src="{OJO}" alt="" /><b>Sentido</b>
+      <img src="{NOMBRE}" alt="Sentido · Branding &amp; Advertising" />
     </a>
     <nav class="nav-links" aria-label="Principal">{links}</nav>
     <a class="boton boton--linea nav-cta" href="{BASE}/contacto">Hablemos</a>
@@ -121,7 +126,7 @@ def pie():
   <div class="wrap">
     <div class="pie-alto">
       <div class="pie-marca">
-        <img src="{OJO}" alt="Sentido" />
+        <img src="{LOGO}" alt="Sentido · Branding &amp; Advertising" />
         <p>Marca, pauta, tecnología y datos en un mismo sistema — para que cada peso invertido en marketing produzca leads, ventas y clientes que regresan.</p>
       </div>
       <div class="pie-col">

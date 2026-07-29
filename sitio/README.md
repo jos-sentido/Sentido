@@ -115,6 +115,27 @@ proyecto, hay que absolutizarlos a `https://propuestas.sentido.mx/...`.
 
 ---
 
+## Uso del logo
+
+Reglas de marca definidas por el cliente. **El logo no se recompone**: no se
+coloca el ojo al lado del nombre ni se arma ninguna variante que no exista en
+el archivo original. Solo hay tres aplicaciones válidas:
+
+| Aplicación | Archivo | Dónde se usa |
+|---|---|---|
+| **Completo**, composición original | `logo-sentido-light.png` | Pie de página (132px de alto) |
+| **Solo el nombre** — cuando el completo no acomoda y hay que identificar a la agencia | `logo-sentido-nombre-light.png` | Barra de navegación (46px de alto) |
+| **Solo el ojo** — uso decorativo | `isotipo-sentido.png` | Portada (como máscara de la trama) y favicon |
+
+El elemento «nombre» se extrajo del archivo original recortando su bloque tal
+como está compuesto ahí —firma manuscrita con su descriptor— sin redibujar ni
+reacomodar nada. Existe también `logo-sentido-nombre-dark.png` para fondos
+claros.
+
+**Limitación:** al derivarse de un PNG, el elemento nombre no escala sin
+pérdida. Conviene sustituirlo por SVG desde el archivo maestro; el nombre del
+archivo puede quedar igual.
+
 ## Pendientes antes de publicar
 
 - [ ] **Confirmar los nombres de cliente** de la página Casos (lista `PROJECTS` en `build.py`).
@@ -122,5 +143,6 @@ proyecto, hay que absolutizarlos a `https://propuestas.sentido.mx/...`.
       quién autorizó aparecer públicamente.
 - [ ] Revisar que el WhatsApp `+52 1 322 225 3390` sea el correcto para el sitio público
       (se tomó del brochure).
+- [ ] Sustituir el elemento nombre por SVG desde el archivo maestro.
 - [ ] Definir imagen `og:image` para compartir en redes.
 - [ ] Decidir si el blog sigue creciendo aquí o migra a un CMS.
