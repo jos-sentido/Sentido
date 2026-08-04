@@ -1,6 +1,56 @@
 {
   "proposals": [
     {
+      "slug": "reel-yacht",
+      "tipo": "propuesta",
+      "cliente": "Reel Yacht Charters — Los Cabos (charter náutico)",
+      "fecha": "2026-08-04",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "sitio",
+          "nombre": "Auditoría + Reestructura del sitio (técnica y contenido)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes (IG+FB) — Meta Ads incluido",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Google Ads · gestión",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM + Automatización + Reputación",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gbp",
+          "nombre": "Perfil de Google (preferencial con Redes)",
+          "precio": 2500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "sitio-admin",
+          "nombre": "Administración del sitio (opcional)",
+          "precio": 3500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Reel Yacht Charters (reelyacht.com.mx) — charter de yates en Los Cabos/Cabo San Lucas, experiencias: snorkel, avistamiento de ballenas, sunset, pesca deportiva. Flota Don Luis 43ft + Baby Bolaz 51ft. Problema: sitio sin trafico ni ranking en mercado de alta intencion dominado por competidores y OTAs. Propuesta integral: auditoria+reestructura ($20k unico) + Motor Integral $18,000/mes (SEO y Meta Ads incluidos, GBP preferencial). Pauta aparte: Google $8-15k, Meta $5-12k. Temporada clave ballenas Dic-Abr. Esperando respuesta via formulario.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "webrentadepasdanitellez",
       "tipo": "propuesta",
       "cliente": "Plataforma de rentas — Los Cabos (Dani Tellez)",

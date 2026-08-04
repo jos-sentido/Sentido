@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Reel Yacht Charters</title>
+<meta name="description" content="Estrategia integral de marketing digital para Reel Yacht Charters — auditoría, reestructura del sitio, SEO, redes, Google Ads y Meta Ads para convertir búsquedas de yates en Cabo San Lucas en reservas directas." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #071A24;
+    --bg-deep: #04121A;
+    --surface: #0C2531;
+    --surface-elevated: #123141;
+    --border: #1C3A49;
+    --border-accent: #27505F;
+    --accent: #C9A24B;
+    --accent-bright: #E4C377;
+    --accent-dim: #8B7038;
+    --teal: #57B0A6;
+    --teal-dim: #3B8079;
+    --text: #F1ECE1;
+    --text-dim: #A7BCC2;
+    --text-muted: #6E8992;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --maxw: 1120px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ambient sea gradient */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(1100px 600px at 78% -8%, rgba(201,162,75,0.10), transparent 60%),
+      radial-gradient(900px 700px at 10% 108%, rgba(87,176,166,0.10), transparent 62%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.6rem; position: relative; z-index: 1; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s ease-out, transform .8s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .rd1 { transition-delay: .08s; } .rd2 { transition-delay: .16s; }
+  .rd3 { transition-delay: .24s; } .rd4 { transition-delay: .32s; }
+
+  /* Typography */
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; }
+  .eyebrow {
+    font-family: var(--font-sans); font-size: .72rem; font-weight: 600;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--accent);
+    display: inline-block; margin-bottom: 1.1rem;
+  }
+  .lede { font-size: 1.18rem; color: var(--text-dim); font-weight: 300; max-width: 60ch; }
+  em, .it { font-style: italic; color: var(--accent-bright); }
+  a { color: var(--accent-bright); }
+
+  /* Sticky nav */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(7,26,36,0.82);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .nav-logo { height: 26px; width: auto; opacity: .95; }
+  .nav-links { display: none; gap: 1.9rem; }
+  .nav-links a {
+    font-family: var(--font-sans); font-size: .78rem; font-weight: 500; letter-spacing: .04em;
+    color: var(--text-dim); text-decoration: none; text-transform: uppercase; transition: color .25s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent-bright); }
+  .nav-cta {
+    font-family: var(--font-sans); font-size: .74rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--bg-deep); background: var(--accent); padding: .55rem 1.1rem; border-radius: 40px; text-decoration: none;
+    transition: background .25s;
+  }
+  .nav-cta:hover { background: var(--accent-bright); }
+  @media (min-width: 900px) { .nav-links { display: flex; } }
+
+  /* Sections */
+  section { padding: 5.5rem 0; position: relative; }
+  @media (min-width: 768px) { section { padding: 7rem 0; } }
+  .section-num {
+    font-family: var(--font-sans); font-size: .72rem; font-weight: 600; letter-spacing: .24em;
+    color: var(--text-muted); text-transform: uppercase; margin-bottom: .9rem; display: block;
+  }
+
+  /* HERO */
+  .hero { padding: 3.2rem 0 4.5rem; min-height: 88vh; display: flex; align-items: center; }
+  .hero-logo {
+    height: 52px; width: auto; display: block; margin-bottom: 2.8rem; opacity: .9;
+  }
+  @media (min-width: 768px) { .hero-logo { height: 60px; margin-bottom: 3.6rem; } }
+  .hero-kicker {
+    font-family: var(--font-sans); font-size: .8rem; font-weight: 600; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 1.4rem;
+  }
+  .hero h1 { font-size: clamp(2.9rem, 8vw, 5.6rem); margin-bottom: 1.6rem; }
+  .hero h1 .line2 { color: var(--text-dim); }
+  .hero-sub { font-size: 1.25rem; color: var(--text-dim); max-width: 56ch; margin-bottom: 2.6rem; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.4rem 2.6rem; border-top: 1px solid var(--border); padding-top: 1.8rem; }
+  .hero-meta div { min-width: 120px; }
+  .hero-meta .k { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .35rem; }
+  .hero-meta .v { font-family: var(--font-display); font-size: 1.35rem; color: var(--text); }
+
+  /* Diagnostic */
+  .diag-grid { display: grid; gap: 1rem; margin-top: 2.8rem; }
+  @media (min-width: 720px) { .diag-grid { grid-template-columns: repeat(3, 1fr); } }
+  .diag-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.7rem 1.5rem;
+  }
+  .diag-card .stat { font-family: var(--font-display); font-size: 2.5rem; color: var(--accent-bright); line-height: 1; margin-bottom: .5rem; }
+  .diag-card .lbl { font-size: .92rem; color: var(--text-dim); }
+
+  /* Pull quote */
+  .pull {
+    font-family: var(--font-display); font-style: italic; font-size: clamp(1.7rem, 4vw, 2.7rem);
+    line-height: 1.28; color: var(--text); max-width: 20ch; margin: 0 auto; text-align: center;
+  }
+  .pull .hl { color: var(--accent-bright); font-style: normal; }
+
+  /* Section header */
+  .sh { max-width: 62ch; margin-bottom: 3rem; }
+  .sh h2 { font-size: clamp(2.1rem, 5vw, 3.3rem); margin-bottom: 1.2rem; }
+
+  /* Findings list */
+  .findings { display: grid; gap: 0; border-top: 1px solid var(--border); }
+  .finding { display: grid; grid-template-columns: 1fr; gap: .5rem 2rem; padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 760px) { .finding { grid-template-columns: 1.1fr 1.4fr; } }
+  .finding .f-problem { display: flex; gap: .9rem; }
+  .finding .f-dot { color: var(--accent); font-size: 1.1rem; line-height: 1.5; flex-shrink: 0; }
+  .finding .f-problem h4 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; color: var(--text); }
+  .finding .f-fix { color: var(--text-dim); font-size: .98rem; }
+  .finding .f-fix .tag {
+    display: inline-block; font-family: var(--font-sans); font-size: .66rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--teal); border: 1px solid var(--teal-dim); border-radius: 30px;
+    padding: .22rem .7rem; margin-top: .8rem;
+  }
+
+  /* Phase cards (audit) */
+  .audit-card {
+    background: linear-gradient(150deg, var(--surface-elevated), var(--surface));
+    border: 1px solid var(--border-accent); border-radius: 18px; padding: 2.4rem 2rem;
+  }
+  .checklist { list-style: none; display: grid; gap: 1rem; margin-top: 1.6rem; }
+  @media (min-width: 700px) { .checklist { grid-template-columns: 1fr 1fr; } }
+  .checklist li { display: flex; gap: .8rem; font-size: .98rem; color: var(--text-dim); }
+  .checklist li::before { content: "→"; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+
+  /* Two-col restructure */
+  .split { display: grid; gap: 1rem; }
+  @media (min-width: 760px) { .split { grid-template-columns: 1fr 1fr; } }
+  .split-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 1.8rem; }
+  .split-card h3 { font-size: 1.6rem; margin-bottom: .5rem; color: var(--text); }
+  .split-card .sub { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; }
+  .split-card ul { list-style: none; display: grid; gap: .75rem; }
+  .split-card ul li { display: flex; gap: .7rem; font-size: .96rem; color: var(--text-dim); }
+  .split-card ul li::before { content: "◇"; color: var(--accent); font-size: .8rem; flex-shrink: 0; margin-top: .18rem; }
+
+  /* Service blocks */
+  .svc { display: grid; gap: 1.1rem; }
+  .svc-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 2.2rem 2rem;
+    display: grid; gap: 1.4rem;
+  }
+  @media (min-width: 820px) { .svc-card { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+  .svc-card.feature { border-color: var(--border-accent); background: linear-gradient(155deg, var(--surface-elevated), var(--surface)); }
+  .svc-head .idx { font-family: var(--font-sans); font-size: .72rem; letter-spacing: .2em; color: var(--accent); text-transform: uppercase; margin-bottom: .7rem; }
+  .svc-head h3 { font-size: 1.85rem; margin-bottom: .8rem; color: var(--text); }
+  .svc-head p { color: var(--text-dim); font-size: 1rem; }
+  .svc-head ul { list-style: none; margin-top: 1.1rem; display: grid; gap: .6rem; }
+  .svc-head ul li { display: flex; gap: .65rem; font-size: .93rem; color: var(--text-dim); }
+  .svc-head ul li::before { content: "→"; color: var(--teal); flex-shrink: 0; }
+  .svc-price { border-left: 1px solid var(--border); padding-left: 1.6rem; }
+  @media (max-width: 819px) { .svc-price { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 1.4rem; } }
+  .svc-price .amount { font-family: var(--font-display); font-size: 2.3rem; color: var(--accent-bright); line-height: 1; }
+  .svc-price .per { font-size: .82rem; color: var(--text-muted); margin-top: .3rem; }
+  .svc-price .note { font-size: .85rem; color: var(--text-dim); margin-top: 1rem; }
+
+  /* Ad-spend sub block (adjacent to operating service) */
+  .adspend {
+    margin-top: 1.3rem; background: rgba(87,176,166,0.07); border: 1px dashed var(--teal-dim);
+    border-radius: 12px; padding: 1.1rem 1.2rem;
+  }
+  .adspend .h { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: .4rem; }
+  .adspend .amt { font-family: var(--font-display); font-size: 1.5rem; color: var(--text); }
+  .adspend p { font-size: .82rem; color: var(--text-muted); margin-top: .35rem; }
+
+  /* Roadmap */
+  .road { display: grid; gap: 0; border-left: 2px solid var(--border-accent); margin-left: .5rem; }
+  .road-item { position: relative; padding: 0 0 2.6rem 2rem; }
+  .road-item:last-child { padding-bottom: 0; }
+  .road-item::before {
+    content: ""; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 4px var(--bg);
+  }
+  .road-item .phase { font-family: var(--font-sans); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .3rem; }
+  .road-item h4 { font-family: var(--font-display); font-size: 1.5rem; color: var(--text); margin-bottom: .5rem; }
+  .road-item p { color: var(--text-dim); font-size: .96rem; max-width: 58ch; }
+  .road-item .when { font-size: .8rem; color: var(--teal); margin-top: .5rem; font-weight: 500; }
+
+  /* Investment / bundle */
+  .invest-grid { display: grid; gap: 1.1rem; }
+  @media (min-width: 860px) { .invest-grid { grid-template-columns: 1.15fr .85fr; align-items: start; } }
+  .bundle {
+    background: linear-gradient(160deg, var(--surface-elevated), var(--surface)); border: 1px solid var(--accent-dim);
+    border-radius: 20px; padding: 2.4rem 2.1rem; position: relative; overflow: hidden;
+  }
+  .bundle::after { content: "RECOMENDADO"; position: absolute; top: 1.4rem; right: -2.4rem; transform: rotate(45deg);
+    background: var(--accent); color: var(--bg-deep); font-size: .6rem; font-weight: 700; letter-spacing: .18em; padding: .3rem 3rem; }
+  .bundle h3 { font-size: 1.9rem; color: var(--text); margin-bottom: .4rem; }
+  .bundle .bsub { color: var(--text-dim); font-size: .95rem; margin-bottom: 1.6rem; }
+  .bundle .line { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--border); font-size: .95rem; }
+  .bundle .line span:first-child { color: var(--text-dim); }
+  .bundle .line span:last-child { color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bundle .line .free { color: var(--teal); font-weight: 500; }
+  .bundle .total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.5rem; }
+  .bundle .total .t-lbl { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
+  .bundle .total .t-amt { font-family: var(--font-display); font-size: 2.7rem; color: var(--accent-bright); }
+  .bundle .total .t-amt small { font-size: .95rem; color: var(--text-muted); }
+
+  .aside-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.9rem 1.7rem; }
+  .aside-card + .aside-card { margin-top: 1.1rem; }
+  .aside-card h4 { font-family: var(--font-display); font-size: 1.4rem; color: var(--text); margin-bottom: .5rem; }
+  .aside-card p { font-size: .9rem; color: var(--text-dim); }
+  .aside-card .big { font-family: var(--font-display); font-size: 2rem; color: var(--accent-bright); margin-bottom: .2rem; }
+  .aside-card .sm { font-size: .78rem; color: var(--text-muted); }
+
+  .note-box {
+    background: rgba(201,162,75,0.06); border: 1px solid var(--accent-dim); border-radius: 12px;
+    padding: 1.2rem 1.3rem; font-size: .9rem; color: var(--text-dim); margin-top: 1.3rem;
+    display: flex; gap: .8rem;
+  }
+  .note-box .ic { color: var(--accent); flex-shrink: 0; }
+
+  /* Closing */
+  .closing { text-align: center; padding: 6rem 0 4rem; }
+  .closing h2 { font-size: clamp(2.4rem, 6vw, 4rem); max-width: 18ch; margin: 0 auto 1.6rem; }
+  .closing p { color: var(--text-dim); max-width: 52ch; margin: 0 auto; font-size: 1.1rem; }
+  .closing-mark { height: 36px; width: auto; opacity: .6; margin-top: 3rem; }
+
+  /* CTA form */
+  .cta-form-section { background: var(--bg-deep); border-top: 1px solid var(--border); }
+  .cta-form-inner { max-width: 720px; }
+  .cta-form-inner h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 1rem; }
+  #lead-form { display: grid; gap: 1.2rem; margin-top: 2.4rem; }
+  @media (min-width: 640px) { #lead-form { grid-template-columns: 1fr 1fr; } #lead-form .full { grid-column: 1 / -1; } }
+  #lead-form label { display: flex; flex-direction: column; gap: .5rem; font-size: .8rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--text-dim); }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input, #lead-form select, #lead-form textarea {
+    font-family: var(--font-sans); font-size: 1rem; font-weight: 400; color: #14202a;
+    background: var(--text); border: 1px solid #d7cdb4; border-radius: 10px; padding: .85rem .95rem;
+    width: 100%; transition: border-color .2s, box-shadow .2s;
+  }
+  #lead-form input::placeholder, #lead-form textarea::placeholder { color: #7d8a90; }
+  #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,162,75,0.25);
+  }
+  .form-submit {
+    font-family: var(--font-sans); font-size: 1rem; font-weight: 600; letter-spacing: .03em;
+    color: var(--bg-deep); background: var(--accent); border: none; border-radius: 10px; padding: 1rem 1.4rem;
+    cursor: pointer; transition: background .25s, transform .15s;
+  }
+  .form-submit:hover { background: var(--accent-bright); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: .6; cursor: default; transform: none; }
+  .form-status { grid-column: 1 / -1; font-size: .92rem; color: var(--teal); min-height: 1.2rem; opacity: 0; transition: opacity .3s; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: #e8a48a; }
+
+  /* Footer */
+  footer { background: var(--bg-deep); padding: 3rem 0; border-top: 1px solid var(--border); }
+  .foot { display: flex; flex-wrap: wrap; gap: 1.4rem; justify-content: space-between; align-items: center; }
+  .foot img { height: 30px; opacity: .85; }
+  .foot .contact { font-size: .88rem; color: var(--text-dim); text-align: right; }
+  .foot .contact a { color: var(--accent-bright); text-decoration: none; }
+
+  .divider-label { text-align: center; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.4rem; }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="wrap">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-logo" />
+      <div class="nav-links">
+        <a href="#diagnostico">Diagnóstico</a>
+        <a href="#auditoria">Auditoría</a>
+        <a href="#reestructura">Reestructura</a>
+        <a href="#motor">Estrategia</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#inversion">Inversión</a>
+      </div>
+      <a href="#responder" class="nav-cta">Responder</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido — Branding & Advertising" class="hero-logo" />
+      <div class="hero-kicker reveal">Propuesta estratégica · Reel Yacht Charters</div>
+      <h1 class="reveal rd1">El mejor yate del Mar de Cortés<br><span class="line2">que nadie encuentra en Google.</span></h1>
+      <p class="hero-sub reveal rd2">Tu flota navega. Tu marca no. En un mercado donde el turista reserva desde su teléfono semanas antes de aterrizar en Los Cabos, ser invisible en la búsqueda significa regalarle cada reserva a la competencia y a las plataformas de comisión.</p>
+      <div class="hero-meta reveal rd3">
+        <div><div class="k">Prospecto</div><div class="v">Reel Yacht Charters</div></div>
+        <div><div class="k">Sector</div><div class="v">Charter náutico · Los Cabos</div></div>
+        <div><div class="k">Preparado por</div><div class="v">Sentido</div></div>
+        <div><div class="k">Fecha</div><div class="v">Agosto 2026</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DIAGNÓSTICO -->
+  <section id="diagnostico">
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="section-num">01 — El diagnóstico</span>
+        <h2>Tienes un producto premium en un mercado de altísima intención. Y estás fuera del mapa.</h2>
+        <p class="lede">Cabo San Lucas es uno de los destinos de charter más buscados de México. El turista de Estados Unidos y Canadá planea su día en yate <em>antes</em> de llegar: busca "cabo yacht charter", "whale watching cabo", "sunset cruise", compara, y reserva. Todo ese tráfico de alta intención hoy se lo llevan tus competidores directos y los intermediarios.</p>
+      </div>
+
+      <div class="diag-grid">
+        <div class="diag-card reveal rd1">
+          <div class="stat">0</div>
+          <div class="lbl">Tráfico orgánico relevante. El sitio no aparece para las búsquedas que generan reservas — ni en inglés ni en español.</div>
+        </div>
+        <div class="diag-card reveal rd2">
+          <div class="stat">2</div>
+          <div class="lbl">Yates de gama alta (Don Luis 43ft · Baby Bolaz 51ft) listos para vender experiencias, sin un canal que los llene.</div>
+        </div>
+        <div class="diag-card reveal rd3">
+          <div class="stat">20–30%</div>
+          <div class="lbl">De comisión que se llevan Viator, GetYourGuide y agencias por cada reserva que no llega directo a ti.</div>
+        </div>
+      </div>
+
+      <div class="note-box reveal" style="margin-top:2.2rem;">
+        <span class="ic">◆</span>
+        <div>El problema no es el producto. Snorkel, avistamiento de ballenas, sunset y pesca deportiva en el Mar de Cortés se venden solos <strong>cuando el cliente correcto los encuentra</strong>. El problema es que hoy la marca no existe en el único lugar donde ese cliente busca: el buscador, el mapa y el feed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section style="padding:4rem 0;">
+    <div class="wrap">
+      <p class="pull reveal">La flota ya está lista. Falta construir el <span class="hl">canal que la llena</span>.</p>
+    </div>
+  </section>
+
+  <!-- FASE 1 AUDITORÍA -->
+  <section id="auditoria">
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="section-num">02 — Fase 1 · Punto de partida</span>
+        <h2>Antes de invertir un peso en pauta, entendemos por qué el sitio no convierte.</h2>
+        <p class="lede">Nada arranca a ciegas. El primer entregable es una auditoría estratégica del sitio: el mapa exacto de lo que está frenando el tráfico y las reservas. De ahí sale todo el plan.</p>
+      </div>
+
+      <div class="audit-card reveal rd1">
+        <div class="svc-head" style="margin-bottom:.4rem;">
+          <div class="idx">Entregable 1 · Auditoría estratégica del sitio</div>
+          <h3 style="font-size:1.9rem;">Qué revisamos</h3>
+        </div>
+        <ul class="checklist">
+          <li>Indexación y presencia real en Google (por qué no rankea, qué páginas conoce Google)</li>
+          <li>SEO on-page: títulos, meta descripciones, encabezados, estructura de URLs bilingüe</li>
+          <li>Velocidad de carga y experiencia móvil (donde reserva el turista)</li>
+          <li>Arquitectura de la información: cómo navega el usuario hacia la reserva</li>
+          <li>Palabras clave que compran tus competidores y tú estás dejando libres</li>
+          <li>Flujo de reserva actual: fricciones entre "me interesa" y "pagué"</li>
+          <li>Fichas de experiencias (snorkel, ballenas, sunset, pesca) y su potencial SEO</li>
+          <li>Estado de tu perfil de Google, reseñas y ficha en el mapa</li>
+        </ul>
+        <div class="note-box" style="margin-top:1.6rem;">
+          <span class="ic">◆</span>
+          <div>La auditoría se entrega como documento accionable y es <strong>el primer entregable de la reestructura</strong> — no un extra suelto. Sobre ella se prioriza cada peso de inversión.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REESTRUCTURA -->
+  <section id="reestructura">
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="section-num">03 — Fase 1 · Cimientos</span>
+        <h2>Reestructura del sitio: técnica y de contenido, pensada para vender y para rankear.</h2>
+        <p class="lede">Sobre los hallazgos de la auditoría, reconstruimos el sitio para que sea rápido, indexable y diseñado alrededor de una sola meta: convertir la búsqueda en reserva directa. Es el cimiento sin el cual la pauta desperdicia presupuesto.</p>
+      </div>
+
+      <div class="split">
+        <div class="split-card reveal rd1">
+          <div class="sub">Frente técnico</div>
+          <h3>Que Google lo entienda</h3>
+          <ul>
+            <li>Estructura mobile-first y velocidad de carga optimizada</li>
+            <li>SEO técnico: URLs limpias, etiquetas, sitemap, datos estructurados de negocio local y experiencias</li>
+            <li>Arquitectura bilingüe (inglés primario para el turista, español para el mercado local)</li>
+            <li>Pixels y etiquetas de Meta y Google listos para medir cada reserva</li>
+            <li>Flujo de reserva directa sin fricción — menos dependencia de intermediarios</li>
+          </ul>
+        </div>
+        <div class="split-card reveal rd2">
+          <div class="sub">Frente de contenido</div>
+          <h3>Que el turista quiera reservar</h3>
+          <ul>
+            <li>Página por experiencia (snorkel, avistamiento de ballenas, sunset, pesca deportiva) optimizada para su búsqueda</li>
+            <li>Fichas de flota (Don Luis · Baby Bolaz) con narrativa, aforo y prueba visual</li>
+            <li>Copy editorial que transmite el nivel premium del Mar de Cortés</li>
+            <li>Llamados a la acción claros y reseñas visibles — la moneda de este mercado</li>
+            <li>Base de blog orientada a las preguntas que hace el viajero antes de reservar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTOR / ESTRATEGIA INTEGRAL -->
+  <section id="motor">
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="section-num">04 — El motor de crecimiento</span>
+        <h2>Con los cimientos listos, encendemos los cuatro canales que llenan la flota.</h2>
+        <p class="lede">Cada canal ataca un momento distinto del viajero: el que ya busca, el que aún sueña con el viaje, el que compara en el mapa y el que ya te contactó. Trabajando juntos se refuerzan; la pauta va siempre junto al canal que la opera.</p>
+      </div>
+
+      <div class="svc">
+
+        <!-- SEO + Contenido -->
+        <div class="svc-card feature reveal rd1">
+          <div class="svc-head">
+            <div class="idx">Canal 01 · Posicionamiento orgánico</div>
+            <h3>SEO y contenido continuo</h3>
+            <p>Convertimos la reestructura en posiciones. Contenido y optimización mes a mes para ganar terreno en las búsquedas que generan reservas — sin pagar por cada clic.</p>
+            <ul>
+              <li>Optimización on-page continua sobre experiencias y flota</li>
+              <li>Contenido de blog orientado al viajero (temporadas, guías, ballenas)</li>
+              <li>Palabras clave bilingües de alta intención</li>
+            </ul>
+          </div>
+          <div class="svc-price">
+            <div class="amount">Incluido</div>
+            <div class="per">como incentivo del motor integral</div>
+            <div class="note">El SEO continuo se incluye sin costo adicional cuando se contrata el motor de crecimiento completo. Es el retorno compuesto de todo lo demás.</div>
+          </div>
+        </div>
+
+        <!-- Redes + Meta Ads adyacente -->
+        <div class="svc-card reveal rd1">
+          <div class="svc-head">
+            <div class="idx">Canal 02 · Marca y demanda</div>
+            <h3>Redes sociales orgánicas</h3>
+            <p>El producto es visual por naturaleza: yates, ballenas, el Arco, atardeceres. Construimos deseo y aspiración con contenido consistente en Instagram y Facebook, y alimentamos la temporada alta.</p>
+            <ul>
+              <li>15 piezas mensuales con mix de formatos (reels, carruseles, historias)</li>
+              <li>Narrativa premium bilingüe alineada a la marca</li>
+              <li>Comunidad y atención a mensajes entre semana</li>
+            </ul>
+          </div>
+          <div class="svc-price">
+            <div class="amount">$7,500</div>
+            <div class="per">+ IVA / mes</div>
+            <div class="adspend">
+              <div class="h">Pauta · Meta Ads (opera este canal)</div>
+              <div class="amt">Gestión incluida</div>
+              <p>La gestión de Meta Ads ($4,000/mes individual) va <strong>incluida</strong> al contratar Redes. Presupuesto de pauta recomendado: <strong>$5,000–$12,000 / mes</strong>, directo a Meta — separado del honorario. Retargeting al viajero que ya vio tus experiencias.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Ads + GBP adyacente -->
+        <div class="svc-card reveal rd1">
+          <div class="svc-head">
+            <div class="idx">Canal 03 · Captación de alta intención</div>
+            <h3>Google Ads + Perfil de Negocio</h3>
+            <p>Aquí está el dinero: el turista que escribe "private yacht charter cabo" está a un clic de reservar. Aparecemos justo en ese momento, y reforzamos con tu ficha en el mapa y reseñas.</p>
+            <ul>
+              <li>Campañas de búsqueda sobre términos de alta intención (EN/ES)</li>
+              <li>Segmentación por experiencia y por temporada</li>
+              <li>Optimización y reportes mensuales de reservas</li>
+            </ul>
+          </div>
+          <div class="svc-price">
+            <div class="amount">$4,000</div>
+            <div class="per">+ IVA / mes · gestión Google Ads</div>
+            <div class="adspend">
+              <div class="h">Pauta · Google Ads (opera este canal)</div>
+              <div class="amt">$8,000–$15,000 / mes</div>
+              <p>Presupuesto recomendado directo a Google, <strong>separado del honorario</strong>, ajustado por temporada (arriba en avistamiento de ballenas, Dic–Abr).</p>
+            </div>
+            <div class="note" style="border-top:1px solid var(--border); padding-top:1rem;">
+              <strong style="color:var(--accent-bright);">+ Perfil de Google (GBP): $2,500 + IVA/mes</strong> — precio preferencial por contratar con Redes. Alta, verificación, ficha en el mapa, gestión de reseñas y posicionamiento local.
+            </div>
+          </div>
+        </div>
+
+        <!-- CRM + Reputación -->
+        <div class="svc-card reveal rd1">
+          <div class="svc-head">
+            <div class="idx">Canal 04 · Conversión y reputación</div>
+            <h3>CRM, automatización y reseñas</h3>
+            <p>Ningún lead se enfría. Cada consulta de WhatsApp, formulario o DM entra a un embudo con seguimiento automático — y después de cada charter, pedimos la reseña que este mercado premia.</p>
+            <ul>
+              <li>Pipeline comercial con seguimiento automatizado (WhatsApp, email, SMS)</li>
+              <li>Captura y asignación inteligente de leads desde todos los canales</li>
+              <li>Automatización de reseñas y gestión de reputación en Google/TripAdvisor</li>
+            </ul>
+          </div>
+          <div class="svc-price">
+            <div class="amount">$4,000</div>
+            <div class="per">+ IVA / mes</div>
+            <div class="note">Incluye implementación sin costo. La reputación digital es el factor decisivo entre dos yates del mismo precio.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-box reveal" style="margin-top:1.6rem;">
+        <span class="ic">📸</span>
+        <div><strong>Producción de contenido (foto y video):</strong> se cotiza de forma eventual e independiente, nunca dentro del fee mensual. Sesión fotográfica $3,000 · sesión de video $5,500 + IVA. Muy recomendable para un producto tan visual — la calidad de imagen es parte del precio percibido.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="section-num">05 — El roadmap</span>
+        <h2>Cómo se ve el trayecto, fase por fase.</h2>
+        <p class="lede">Ordenado para que cada inversión se apoye en la anterior — y para llegar con todo encendido a la temporada de ballenas (Dic–Abr), la ventana más rentable del año.</p>
+      </div>
+
+      <div class="road">
+        <div class="road-item reveal rd1">
+          <div class="phase">Fase 1 · Semanas 1–2</div>
+          <h4>Auditoría y diagnóstico</h4>
+          <p>Radiografía completa del sitio, SEO, indexación, reservas y presencia en el mapa. El plan deja de ser opinión y se vuelve mapa.</p>
+        </div>
+        <div class="road-item reveal rd1">
+          <div class="phase">Fase 2 · Semanas 2–6</div>
+          <h4>Reestructura técnica y de contenido</h4>
+          <p>Sitio rápido, indexable, bilingüe y diseñado para reservar directo. Pixels y medición listos. El cimiento del que dependen todos los canales.</p>
+        </div>
+        <div class="road-item reveal rd1">
+          <div class="phase">Fase 3 · Mes 2</div>
+          <h4>Encendido del motor</h4>
+          <p>Perfil de Google y reseñas activos, redes orgánicas en marcha, CRM capturando leads y primeras campañas de Google Ads sobre búsquedas de alta intención.</p>
+          <div class="when">Primeras reservas directas atribuibles</div>
+        </div>
+        <div class="road-item reveal rd1">
+          <div class="phase">Fase 4 · Meses 3–4</div>
+          <h4>Escala y retargeting</h4>
+          <p>Meta Ads persiguiendo al viajero que ya te descubrió, contenido madurando el SEO, reseñas acumulándose. Los canales empiezan a reforzarse entre sí.</p>
+        </div>
+        <div class="road-item reveal rd1">
+          <div class="phase">Temporada · Dic–Abr</div>
+          <h4>Capitalizar la temporada de ballenas</h4>
+          <p>Con el sistema probado y afinado, front-load de presupuesto en la ventana de mayor demanda del año. Llegamos con la casa en orden, no improvisando.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVERSIÓN -->
+  <section id="inversion">
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="section-num">06 — La inversión</span>
+        <h2>Modular. Arrancas por el cimiento y sumas motor a tu ritmo.</h2>
+        <p class="lede">Un cimiento único (auditoría + reestructura) y un motor mensual que puedes contratar completo o por módulos. Todos los precios en MXN, IVA explícito.</p>
+      </div>
+
+      <div class="divider-label reveal">Cimiento · inversión única</div>
+      <div class="svc-card feature reveal rd1" style="margin-bottom:2.6rem;">
+        <div class="svc-head">
+          <div class="idx">Fase 1 · Fundamentos</div>
+          <h3>Auditoría estratégica + reestructura del sitio</h3>
+          <p>Incluye el diagnóstico completo como primer entregable, la reconstrucción técnica y de contenido, arquitectura bilingüe, SEO on-page, medición y flujo de reserva directa.</p>
+        </div>
+        <div class="svc-price">
+          <div class="amount">$20,000</div>
+          <div class="per">+ IVA · pago único (60% anticipo / 40% entrega)</div>
+          <div class="note">Sin este cimiento, la pauta desperdicia presupuesto enviando tráfico a un sitio que no convierte.</div>
+        </div>
+      </div>
+
+      <div class="divider-label reveal">Motor de crecimiento · mensual</div>
+      <div class="invest-grid">
+        <div class="bundle reveal rd1">
+          <h3>Motor Integral</h3>
+          <p class="bsub">Los cuatro canales trabajando juntos, con los incentivos de contratar en combo.</p>
+          <div class="line"><span>Gestión de Redes (IG + FB)</span><span>$7,500</span></div>
+          <div class="line"><span>Google Ads · gestión</span><span>$4,000</span></div>
+          <div class="line"><span>CRM + Automatización + Reputación</span><span>$4,000</span></div>
+          <div class="line"><span>Perfil de Google (preferencial)</span><span>$2,500</span></div>
+          <div class="line"><span>Meta Ads · gestión</span><span class="free">Incluido</span></div>
+          <div class="line"><span>SEO y contenido continuo</span><span class="free">Incluido</span></div>
+          <div class="total">
+            <span class="t-lbl">Total mensual</span>
+            <span class="t-amt">$18,000 <small>+ IVA</small></span>
+          </div>
+        </div>
+
+        <div>
+          <div class="aside-card reveal rd2">
+            <h4>Contratación modular</h4>
+            <p>¿Prefieres arrancar más ligero? Cada canal se puede contratar por separado: Redes $7,500 · Google Ads $4,000 · CRM+Reputación $4,000 · Perfil de Google $4,500 individual. El combo integral desbloquea Meta Ads y SEO incluidos, y GBP preferencial.</p>
+          </div>
+          <div class="aside-card reveal rd3">
+            <div class="big">+ Pauta aparte</div>
+            <div class="sm">Presupuesto de anuncios directo a las plataformas, separado del honorario:</div>
+            <div style="margin-top:.9rem; font-size:.9rem; color:var(--text-dim);">
+              Google Ads: <strong style="color:var(--text);">$8,000–$15,000/mes</strong><br>
+              Meta Ads: <strong style="color:var(--text);">$5,000–$12,000/mes</strong>
+            </div>
+          </div>
+          <div class="aside-card reveal rd3">
+            <h4>Administración del sitio</h4>
+            <div class="sm" style="margin-bottom:.4rem;">Opcional, recomendado tras la reestructura.</div>
+            <p><strong style="color:var(--accent-bright);">$3,500 + IVA/mes</strong> — actualizaciones, promociones, análisis de tráfico y conversiones.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-box reveal" style="margin-top:2rem;">
+        <span class="ic">💰</span>
+        <div>La pauta publicitaria siempre es adicional y va directa a Google y Meta — no es honorario de Sentido. La producción de foto/video se cotiza por evento. Pagos mensuales por adelantado; inversión única 60/40.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="wrap">
+      <h2 class="reveal">Tu yate ya es la mejor experiencia del Mar de Cortés. Hagamos que el mundo lo encuentre.</h2>
+      <p class="reveal rd1">Empezamos por el diagnóstico, construimos el cimiento y encendemos el motor. Paso a paso, con todo medido, llegando con fuerza a la temporada que importa.</p>
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-mark reveal rd2" />
+    </div>
+  </section>
+
+  <!-- CTA FORM -->
+  <section id="responder" class="cta-form-section">
+    <div class="wrap cta-form-inner reveal">
+      <span class="eyebrow">Siguiente paso</span>
+      <h2>Respondamos.</h2>
+      <p class="lede">Marca dónde estás parado y te respondo personalmente en menos de 24 h hábiles. Sin compromiso — arrancamos por donde tenga más sentido para Reel Yacht.</p>
+
+      <form id="lead-form" data-webhook="/api/lead" novalidate>
+        <input type="hidden" name="propuesta" value="reel-yacht" />
+
+        <label>Nombre <span class="req">*</span>
+          <input name="nombre" type="text" required autocomplete="name" />
+        </label>
+
+        <label>Email <span class="req">*</span>
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+
+        <label>WhatsApp
+          <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+        </label>
+
+        <label>Siguiente paso <span class="req">*</span>
+          <select name="paso" required>
+            <option value="">Selecciona…</option>
+            <option>Avancemos — agendemos kickoff</option>
+            <option>Me interesa pero quiero ajustar el alcance</option>
+            <option>Tengo preguntas antes de decidir</option>
+            <option>Necesito un poco más de tiempo</option>
+          </select>
+        </label>
+
+        <label class="full">Mensaje (opcional)
+          <textarea name="mensaje" rows="4" placeholder="Cuéntame lo que tengas en mente sobre la flota, la temporada o las reservas…"></textarea>
+        </label>
+
+        <button type="submit" class="form-submit full">Enviar respuesta →</button>
+        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido — Branding & Advertising" />
+      <div class="contact">
+        <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a><br>
+        Propuesta preparada para Reel Yacht Charters · Agosto 2026
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    // Nav scroll-spy
+    var sections = ['diagnostico','auditoria','reestructura','motor','roadmap','inversion']
+      .map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var navlinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navlinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+
+    // Lead form
+    var form = document.getElementById('lead-form');
+    var statusEl = document.getElementById('lf-status');
+    var submitBtn = form.querySelector('.form-submit');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var payload = {
+        Propuesta: form.propuesta.value,
+        Nombre: form.nombre.value.trim(),
+        Email: form.email.value.trim(),
+        WhatsApp: form.whatsapp.value.trim() || '—',
+        'Siguiente paso': form.paso.value,
+        Mensaje: form.mensaje.value.trim() || '—',
+        Fuente: location.pathname,
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+
+      try {
+        var res = await fetch(form.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        form.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar respuesta →';
+      }
+    });
+  </script>
+</body>
+</html>
