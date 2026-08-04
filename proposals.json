@@ -1,6 +1,50 @@
 {
   "proposals": [
     {
+      "slug": "asian-story",
+      "tipo": "propuesta",
+      "cliente": "Asian Story — Guadalajara (e-commerce textiles/moda artesanal del mundo)",
+      "fecha": "2026-08-04",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "shopify",
+          "nombre": "Migración Tienda Nube → Shopify (catálogo, theme, config, pasarelas, redirects 301/SEO, lanzamiento)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "meta",
+          "nombre": "Gestión Meta Ads (estrategia + performance)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión Google Ads (Shopping + Search)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "sitio-admin",
+          "nombre": "Administración del sitio (opcional)",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gbp",
+          "nombre": "Google Business Profile — showroom GDL (opcional)",
+          "precio": 4500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Contacto: Regina Yañez Ochoa. Ya hubo reunión de primer acercamiento. Foco central = migración a Shopify ($20k unico). Módulo 2 = estrategia + pauta Meta/Google ($8k/mes gestión, pauta directa a plataformas aparte). NO ofrecer contenido/diseño de redes: lo maneja el equipo interno. Arranque recomendado: Módulo 1 + Módulo 2 en paralelo. 58K seguidores en IG, showroom con cita en Guadalajara.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "reel-yacht",
       "tipo": "propuesta",
       "cliente": "Reel Yacht Charters — Los Cabos (charter náutico)",
