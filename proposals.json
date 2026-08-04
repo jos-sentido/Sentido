@@ -1,6 +1,26 @@
 {
   "proposals": [
     {
+      "slug": "webrentadepasdanitellez",
+      "tipo": "propuesta",
+      "cliente": "Plataforma de rentas — Los Cabos (Dani Tellez)",
+      "fecha": "2026-08-04",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "desarrollo",
+          "nombre": "Desarrollo de plataforma de rentas (edificio de departamentos, Los Cabos)",
+          "precio": 30000,
+          "tipo": "unico"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Prospecto: Dani Tellez. Proyecto solo desarrollo web (plataforma de rentas para edificio de departamentos en Los Cabos, BCS). Inversión total $30,000 MXN + IVA, sin marketing/pauta. Esperando respuesta vía formulario.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "murotech-plan-contenido",
       "tipo": "cliente",
       "cliente": "Murotech — Plan de Contenido (Blog + Redes)",
