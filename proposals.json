@@ -1,6 +1,50 @@
 {
   "proposals": [
     {
+      "slug": "remax-cabo-sanctuary",
+      "tipo": "propuesta",
+      "cliente": "RE/MAX Cabo Sanctuary — Inmobiliaria de lujo, Los Cabos BCS (sistema integral de captación de leads)",
+      "fecha": "2026-08-07",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "redes-meta",
+          "nombre": "Meta Ads + Gestión de Redes (IG + FB, Meta Ads incluido)",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión de Google Ads (Search performance)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM + Automatización (GoHighLevel, implementación sin costo)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "sitio",
+          "nombre": "Rediseño web + conexión al sistema (desde)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "audiovisual",
+          "nombre": "Producción audiovisual por proyecto (a cotizar a la medida)",
+          "precio": 0,
+          "tipo": "unico"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado $15,500/mes + IVA (Redes+Meta / Google Ads / CRM, con GBP incluido) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "belleza-a-domicilio",
       "tipo": "propuesta",
       "cliente": "Belleza a Domicilio — Nacional (marca nueva, propuesta en frío · branding Sentido)",

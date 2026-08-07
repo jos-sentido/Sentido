@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · RE/MAX Cabo Sanctuary</title>
+<meta name="description" content="Propuesta estratégica de Sentido: un sistema integral de captación de leads de calidad para RE/MAX Cabo Sanctuary — pauta, sitio, CRM y seguimiento, conectados." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F1EA;
+    --surface: #FFFFFF;
+    --surface-2: #FBF7F1;
+    --surface-3: #F1EADF;
+    --ink: #16273D;
+    --ink-soft: #46566B;
+    --muted: #8B94A1;
+    --line: #E6DED2;
+    --line-strong: #D8CEBE;
+    --accent: #E01A34;
+    --accent-deep: #B0122A;
+    --accent-wash: rgba(224, 26, 52, 0.06);
+    --accent-wash-2: rgba(224, 26, 52, 0.10);
+    --navy-wash: rgba(22, 39, 61, 0.04);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --maxw: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  section { scroll-margin-top: 70px; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-block;
+  }
+  .kicker.muted { color: var(--muted); }
+
+  a { color: inherit; }
+
+  /* ===================== NAV ===================== */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(246, 241, 234, 0.82);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--line);
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s ease;
+  }
+  .site-nav.hidden { transform: translateY(-100%); }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 0 28px; height: 62px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .nav-mark { height: 26px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 26px; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft); text-decoration: none; white-space: nowrap; padding: 4px 0;
+    border-bottom: 1.5px solid transparent; transition: color .2s, border-color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--accent); border-color: var(--accent); }
+  @media (max-width: 860px) { .nav-links { gap: 18px; } .nav-links a { font-size: 0.6rem; } }
+  @media (max-width: 620px) { .nav-cta-link { display: none; } }
+
+  /* ===================== HERO ===================== */
+  .hero { padding: 132px 0 90px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; top: -20%; right: -10%; width: 60%; height: 120%;
+    background: radial-gradient(circle at 70% 30%, var(--accent-wash-2), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-logo-sentido { height: 52px; width: auto; display: block; margin-bottom: 3rem; opacity: 0.85; }
+  .prospect-wordmark {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--ink-soft); display: flex; align-items: center; gap: 14px; margin-bottom: 1.6rem;
+  }
+  .prospect-wordmark .bar { width: 30px; height: 2px; background: var(--accent); }
+  .hero h1 { font-size: clamp(2.5rem, 6.4vw, 4.6rem); max-width: 15ch; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2.1vw, 1.32rem); color: var(--ink-soft); max-width: 46ch;
+    margin-top: 1.8rem; font-weight: 300; line-height: 1.55;
+  }
+  .hero-meta {
+    margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 2.2rem;
+    padding-top: 1.6rem; border-top: 1px solid var(--line);
+  }
+  .hero-meta div { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta .lbl { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .hero-meta .val { font-family: var(--font-display); font-size: 1.02rem; color: var(--ink); }
+
+  @media (min-width: 768px) {
+    .hero-logo-sentido { height: 60px; margin-bottom: 4rem; }
+  }
+
+  /* ===================== SECTION SCAFFOLD ===================== */
+  .section { padding: 88px 0; border-top: 1px solid var(--line); }
+  .section.tint { background: var(--surface-2); }
+  .section-head { max-width: 62ch; margin-bottom: 3.4rem; }
+  .section-head .num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; }
+  .section-head h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-top: 1rem; }
+  .section-head p { font-size: 1.1rem; color: var(--ink-soft); margin-top: 1.3rem; font-weight: 300; line-height: 1.6; }
+  .lead-line { font-size: 1.18rem; color: var(--ink); font-weight: 300; }
+
+  /* ===================== STAT GRID ===================== */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .stat { background: var(--surface); padding: 1.8rem 1.5rem; }
+  .stat .fig { font-family: var(--font-display); font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: var(--accent); letter-spacing: -0.02em; }
+  .stat .lbl { font-size: 0.86rem; color: var(--ink-soft); margin-top: 0.5rem; line-height: 1.4; }
+  .stat .src { font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); margin-top: 0.7rem; letter-spacing: 0.04em; }
+  @media (max-width: 820px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .stats { grid-template-columns: 1fr; } }
+
+  .insight {
+    margin-top: 3rem; padding: 2.4rem 2.2rem; background: var(--ink); color: #EEF1F5; border-radius: 16px;
+    position: relative; overflow: hidden;
+  }
+  .insight::before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background: var(--accent); }
+  .insight .k { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: #E8899A; }
+  .insight p { font-family: var(--font-display); font-size: clamp(1.3rem, 2.8vw, 1.9rem); line-height: 1.32; margin-top: 1rem; font-weight: 300; }
+  .insight p strong { color: #fff; font-weight: 500; font-style: italic; }
+
+  /* ===================== DIAGNOSTIC ===================== */
+  .diag-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
+  @media (max-width: 720px) { .diag-grid { grid-template-columns: 1fr; } }
+  .diag {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.7rem 1.6rem;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .diag:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(22,39,61,.07); }
+  .diag .tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .diag h3 { font-size: 1.28rem; margin: 0.7rem 0 0.6rem; }
+  .diag p { font-size: 0.96rem; color: var(--ink-soft); font-weight: 300; }
+
+  /* ===================== SYSTEM / FLOW ===================== */
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; margin-top: 1rem; }
+  .flow-node {
+    background: var(--surface); border: 1px solid var(--line-strong); border-radius: 13px; padding: 1.4rem 1.1rem;
+    position: relative; text-align: center;
+  }
+  .flow-node .n { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); letter-spacing: 0.16em; }
+  .flow-node h4 { font-family: var(--font-display); font-size: 1.08rem; margin: 0.5rem 0 0.4rem; }
+  .flow-node p { font-size: 0.8rem; color: var(--ink-soft); font-weight: 300; line-height: 1.4; }
+  .flow-node .arrow {
+    position: absolute; right: -0.9rem; top: 50%; transform: translateY(-50%); z-index: 2;
+    color: var(--accent); font-size: 1.1rem; font-weight: 700;
+  }
+  .flow-node:last-child .arrow { display: none; }
+  @media (max-width: 900px) {
+    .flow { grid-template-columns: 1fr; gap: 0.9rem; }
+    .flow-node .arrow { right: 50%; top: auto; bottom: -1.1rem; transform: translateX(50%) rotate(90deg); }
+  }
+  .system-note {
+    margin-top: 2.2rem; font-size: 1.06rem; color: var(--ink); font-weight: 300; line-height: 1.6;
+    padding-left: 1.4rem; border-left: 3px solid var(--accent); max-width: 66ch;
+  }
+
+  /* ===================== MODULES ===================== */
+  .module { border-top: 1px solid var(--line); padding: 2.6rem 0; display: grid; grid-template-columns: 200px 1fr; gap: 2.4rem; }
+  .module:first-of-type { border-top: none; }
+  @media (max-width: 760px) { .module { grid-template-columns: 1fr; gap: 1.2rem; } }
+  .module-aside { position: relative; }
+  .module-aside .idx { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent); letter-spacing: 0.16em; }
+  .module-aside h3 { font-size: 1.5rem; margin-top: 0.6rem; }
+  .module-aside .role { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.7rem; display: block; }
+  .module-body p { font-size: 1rem; color: var(--ink-soft); font-weight: 300; margin-bottom: 1rem; }
+  .module-body ul { list-style: none; display: grid; gap: 0.55rem; margin: 0.4rem 0 0; }
+  .module-body li { font-size: 0.94rem; color: var(--ink); padding-left: 1.4rem; position: relative; font-weight: 300; }
+  .module-body li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .price-inline { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); margin-top: 1.3rem; }
+  .price-inline span { color: var(--muted); font-size: 0.9rem; font-family: var(--font-sans); }
+
+  .pauta-note {
+    margin-top: 1.3rem; background: var(--accent-wash); border: 1px dashed var(--accent); border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+  }
+  .pauta-note .pk { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-deep); }
+  .pauta-note p { font-size: 0.9rem; color: var(--ink); margin: 0.4rem 0 0; font-weight: 400; }
+  .pauta-note strong { font-weight: 600; }
+
+  .combo-badge {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #fff; background: var(--accent); padding: 3px 9px; border-radius: 20px; margin-top: 0.9rem;
+  }
+
+  /* ===================== INVERSION ===================== */
+  .inv-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.6rem; align-items: start; }
+  @media (max-width: 820px) { .inv-grid { grid-template-columns: 1fr; } }
+  .inv-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2rem 1.9rem; }
+  .inv-card.hero-card { border: 1.5px solid var(--accent); box-shadow: 0 18px 40px rgba(224,26,52,.10); position: relative; }
+  .inv-card.hero-card .rec { position: absolute; top: -0.75rem; left: 1.9rem; background: var(--accent); color: #fff; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
+  .inv-card h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
+  .inv-card .cap { font-size: 0.86rem; color: var(--muted); margin-bottom: 1.4rem; }
+  .inv-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+  .inv-row:last-of-type { border-bottom: none; }
+  .inv-row .name { font-size: 0.94rem; color: var(--ink); }
+  .inv-row .name small { display: block; color: var(--muted); font-size: 0.76rem; }
+  .inv-row .amt { font-family: var(--font-mono); font-size: 0.9rem; color: var(--ink); white-space: nowrap; }
+  .inv-row .amt.free { color: var(--accent); }
+  .inv-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.3rem; padding-top: 1.2rem; border-top: 2px solid var(--ink); }
+  .inv-total .t-lbl { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .inv-total .t-amt { font-family: var(--font-display); font-size: 1.7rem; color: var(--accent); }
+  .inv-total .t-amt small { font-size: 0.8rem; color: var(--muted); font-family: var(--font-sans); }
+
+  .inv-note { font-family: var(--font-sans); font-size: 0.84rem; color: var(--ink-soft); margin-top: 1.2rem; line-height: 1.55; font-weight: 300; }
+  .inv-note b { color: var(--ink); font-weight: 600; }
+
+  .pauta-strip { margin-top: 1.6rem; background: var(--ink); color: #EEF1F5; border-radius: 16px; padding: 1.9rem 1.9rem; }
+  .pauta-strip .k { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #E8899A; }
+  .pauta-strip h3 { color: #fff; font-size: 1.3rem; margin: 0.7rem 0 0.4rem; }
+  .pauta-strip p { font-size: 0.9rem; color: #C6CDD6; font-weight: 300; margin-bottom: 1.2rem; }
+  .pauta-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 560px) { .pauta-lines { grid-template-columns: 1fr; } }
+  .pauta-lines .pl { border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 1rem 1.1rem; }
+  .pauta-lines .pl .plc { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #E8899A; }
+  .pauta-lines .pl .plr { font-family: var(--font-display); font-size: 1.35rem; color: #fff; margin-top: 0.3rem; }
+  .pauta-lines .pl small { color: #9AA4B0; font-size: 0.76rem; display: block; margin-top: 0.2rem; }
+
+  /* ===================== HORIZON ===================== */
+  .horizon { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  @media (max-width: 760px) { .horizon { grid-template-columns: 1fr; } }
+  .hz { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.8rem 1.6rem; }
+  .hz .when { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .hz h3 { font-size: 1.35rem; margin: 0.6rem 0 0.7rem; }
+  .hz p { font-size: 0.94rem; color: var(--ink-soft); font-weight: 300; }
+
+  /* ===================== CLOSING ===================== */
+  .closing { padding: 96px 0; background: var(--ink); color: #EEF1F5; text-align: center; }
+  .closing h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); max-width: 20ch; margin: 0 auto; line-height: 1.16; }
+  .closing h2 em { font-style: italic; color: #F06178; }
+  .closing p { color: #AAB3BF; font-weight: 300; font-size: 1.1rem; max-width: 52ch; margin: 1.6rem auto 0; }
+
+  /* ===================== CTA FORM ===================== */
+  .cta { padding: 84px 0; }
+  .cta-inner { max-width: 760px; margin: 0 auto; }
+  .cta h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+  .cta .lede { color: var(--ink-soft); font-weight: 300; font-size: 1.08rem; margin: 1rem 0 2.2rem; max-width: 52ch; }
+  form { display: grid; gap: 1.1rem; }
+  label { display: grid; gap: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink); letter-spacing: 0.01em; }
+  .req { color: var(--accent); }
+  input, select, textarea {
+    font-family: var(--font-sans); font-size: 1rem; color: var(--ink);
+    background: var(--surface); border: 1.5px solid var(--line-strong); border-radius: 10px;
+    padding: 0.85rem 1rem; width: 100%; transition: border-color .2s, box-shadow .2s;
+  }
+  input::placeholder, textarea::placeholder { color: var(--muted); }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-wash-2); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+  .form-submit {
+    justify-self: start; margin-top: 0.4rem; font-family: var(--font-sans); font-size: 0.98rem; font-weight: 600;
+    color: #fff; background: var(--accent); border: none; border-radius: 10px; padding: 0.95rem 1.9rem; cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .form-submit:hover:not(:disabled) { background: var(--accent-deep); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+  .form-status { font-size: 0.9rem; color: var(--ink-soft); opacity: 0; transition: opacity .3s; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: var(--accent-deep); }
+
+  .contact-alt {
+    margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem;
+  }
+  .contact-alt .whats {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem;
+    color: var(--ink); text-decoration: none; border: 1.5px solid var(--line-strong); border-radius: 30px; padding: 0.6rem 1.2rem;
+    transition: border-color .2s, background .2s;
+  }
+  .contact-alt .whats:hover { border-color: var(--accent); background: var(--accent-wash); }
+  .contact-alt .whats .dot { width: 8px; height: 8px; border-radius: 50%; background: #25D366; }
+  .contact-alt .em { font-size: 0.9rem; color: var(--ink-soft); }
+  .contact-alt .em a { color: var(--accent-deep); text-decoration: none; }
+
+  /* ===================== FOOTER ===================== */
+  .site-footer { padding: 56px 0 64px; text-align: center; border-top: 1px solid var(--line); }
+  .closing-sentido-mark { height: 36px; width: auto; opacity: 0.6; margin: 0 auto 1.4rem; display: block; }
+  .site-footer .copy { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--muted); line-height: 1.9; }
+  .site-footer .copy a { color: var(--ink-soft); text-decoration: none; }
+
+  /* ===================== REVEAL ===================== */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand"><img src="/assets/logo-sentido-dark.png" alt="Sentido" class="nav-mark" /></a>
+    <div class="nav-links">
+      <a href="#contexto" data-target="contexto">Contexto</a>
+      <a href="#diagnostico" data-target="diagnostico">Diagnóstico</a>
+      <a href="#sistema" data-target="sistema">El Sistema</a>
+      <a href="#modulos" data-target="modulos">Componentes</a>
+      <a href="#inversion" data-target="inversion">Inversión</a>
+      <a href="#horizonte" data-target="horizonte">Horizonte</a>
+      <a href="#contacto" data-target="contacto" class="nav-cta-link">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <img src="/assets/logo-sentido-dark.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido" />
+    <div class="prospect-wordmark"><span class="bar"></span> Para RE/MAX Cabo Sanctuary · Los Cabos, BCS</div>
+    <h1>El inventario ya no gana solo. Gana quien <em>captura y da seguimiento</em> mejor.</h1>
+    <p class="hero-sub">Una propuesta para convertir la presencia digital de RE/MAX Cabo Sanctuary en un sistema integral de captación de leads de calidad — pauta, sitio, CRM y seguimiento, conectados como una sola máquina de venta.</p>
+    <div class="hero-meta">
+      <div><span class="lbl">Preparada para</span><span class="val">RE/MAX Cabo Sanctuary</span></div>
+      <div><span class="lbl">Enfoque</span><span class="val">Sistema integral de leads</span></div>
+      <div><span class="lbl">Fecha</span><span class="val">7 de agosto, 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== 01 CONTEXTO ===================== -->
+<section class="section" id="contexto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">01 — Contexto</span>
+      <h2>Los Cabos vive su mejor momento… y su momento más competido.</h2>
+      <p class="lead-line">El mercado está en récord de demanda, pero el inventario se duplicó en doce meses. La consecuencia es clara: hay más propiedades excelentes persiguiendo al mismo comprador. La ventaja ya no está en el listado — está en el sistema que lo convierte.</p>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="fig">$1.59 B</div>
+        <div class="lbl">USD en ventas residenciales en Los Cabos durante 2025.</div>
+        <div class="src">Reportes de mercado Los Cabos 2025–2026</div>
+      </div>
+      <div class="stat">
+        <div class="fig">+39%</div>
+        <div class="lbl">Alza en volumen bajo contrato en Q1 2026 vs. Q4 2025.</div>
+        <div class="src">Reporte trimestral Q1 2026</div>
+      </div>
+      <div class="stat">
+        <div class="fig">~82%</div>
+        <div class="lbl">De los turistas que llegan al aeropuerto tienen residencia en EE. UU.: el comprador es, ante todo, extranjero.</div>
+        <div class="src">Perfil de comprador Los Cabos</div>
+      </div>
+      <div class="stat">
+        <div class="fig">1,100 → 2,500+</div>
+        <div class="lbl">Listados activos en ~12 meses: el mercado se inclinó hacia el comprador.</div>
+        <div class="src">Inventario Los Cabos mid-2025</div>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <span class="k">La lectura</span>
+      <p>Cuando había 1,100 propiedades, ganaba quien tenía el mejor listado. Con 2,500+, gana quien <strong>captura al lead correcto y lo acompaña</strong> desde el primer clic hasta la firma. El comprador extranjero investiga en línea, meses antes de volar a Cabo. El sistema que lo reciba en ese momento se lleva la operación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 DIAGNÓSTICO ===================== -->
+<section class="section tint" id="diagnostico">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">02 — Diagnóstico</span>
+      <h2>El activo es sólido. La captación está fragmentada.</h2>
+      <p>RE/MAX Cabo Sanctuary tiene lo más difícil de conseguir: inventario premium, cobertura de todo el corredor, un equipo amplio y la fuerza de una marca global. El punto de fuga no está en el producto — está en cómo el interés digital se convierte, se rutea y se le da seguimiento.</p>
+    </div>
+
+    <div class="diag-grid">
+      <div class="diag reveal">
+        <span class="tag">Captación</span>
+        <h3>El interés llega disperso</h3>
+        <p>Tráfico orgánico, portales, redes y referidos entran por canales distintos, sin un embudo único que los reciba. Un lead de $4M USD merece la misma ruta clara que cualquier consulta — hoy dependen del canal por el que entraron.</p>
+      </div>
+      <div class="diag reveal">
+        <span class="tag">Sitio</span>
+        <h3>El sitio informa, pero convierte poco</h3>
+        <p>La experiencia muestra propiedades con buena fotografía, pero no está diseñada como motor de conversión: captura del lead, ruteo al asesor correcto y conexión directa con el seguimiento. Cada visita sin dato capturado es una operación que se enfría.</p>
+      </div>
+      <div class="diag reveal">
+        <span class="tag">Seguimiento</span>
+        <h3>El seguimiento vive en cabezas, no en un sistema</h3>
+        <p>Con un ciclo de compra de meses y un comprador a distancia, el seguimiento manual no escala. Sin CRM, los leads tibios se pierden por olvido, no por falta de interés. Ahí se va la mayor parte del valor.</p>
+      </div>
+      <div class="diag reveal">
+        <span class="tag">Contenido</span>
+        <h3>El contenido no trabaja como pauta</h3>
+        <p>Las propiedades premium piden producción audiovisual a su altura, pensada desde el inicio para pautar y generar leads — no solo para publicar. El video correcto es la mejor herramienta de prospección para un comprador que aún no vuela a Cabo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 SISTEMA ===================== -->
+<section class="section" id="sistema">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">03 — La propuesta</span>
+      <h2>Un solo sistema, cinco piezas conectadas.</h2>
+      <p>No proponemos cinco servicios sueltos. Proponemos una máquina de captación donde cada pieza alimenta a la siguiente: la pauta atrae al comprador correcto, el sitio lo convierte, el CRM lo captura y el seguimiento automatizado lo lleva a la firma. Todo medible, de punta a punta.</p>
+    </div>
+
+    <div class="flow reveal">
+      <div class="flow-node">
+        <div class="n">01</div>
+        <h4>Pauta</h4>
+        <p>Meta + Google atraen al comprador extranjero por intención e interés.</p>
+        <div class="arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="n">02</div>
+        <h4>Sitio</h4>
+        <p>Rediseñado para convertir: captura, filtra y rutea cada lead.</p>
+        <div class="arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="n">03</div>
+        <h4>CRM</h4>
+        <p>El lead entra a un embudo con etapas y asignación automática.</p>
+        <div class="arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="n">04</div>
+        <h4>Seguimiento</h4>
+        <p>WhatsApp, email y SMS automatizados mantienen vivo al comprador.</p>
+        <div class="arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="n">05</div>
+        <h4>Cierre</h4>
+        <p>El asesor recibe leads calientes, ordenados y con historial.</p>
+      </div>
+    </div>
+
+    <p class="system-note reveal">Alimentando todo el sistema: producción audiovisual por proyecto, creada desde el inicio para pautar. El objetivo no es volumen de leads — es <strong>calidad</strong>: menos formularios basura, más compradores reales que llegan al asesor listos para conversar.</p>
+  </div>
+</section>
+
+<!-- ===================== 04 MÓDULOS ===================== -->
+<section class="section tint" id="modulos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">04 — Componentes</span>
+      <h2>Las cinco piezas, en detalle.</h2>
+      <p>Cotización modular: cada pieza opera por sí sola, pero rinde a máximo cuando trabaja conectada a las demás.</p>
+    </div>
+
+    <!-- MÓDULO 1 -->
+    <div class="module reveal">
+      <div class="module-aside">
+        <span class="idx">Pieza 01</span>
+        <h3>Producción audiovisual por proyecto</h3>
+        <span class="role">Combustible del sistema</span>
+      </div>
+      <div class="module-body">
+        <p>El comprador decide a distancia. El video y la fotografía de cada desarrollo o propiedad son la herramienta de prospección más poderosa que tienen — siempre que se produzcan pensando en pautar, no solo en publicar.</p>
+        <ul>
+          <li>Dirección de contenido orientada a captación (recorridos, lifestyle, drone, detalle)</li>
+          <li>Piezas adaptadas a cada plataforma: reels verticales, cortes para pauta, master para el sitio</li>
+          <li>Producción eventual e independiente, cotizada a la medida por proyecto</li>
+        </ul>
+        <div class="price-inline">A cotizar por proyecto <span>· referencia: sesión foto desde $3,000 · sesión video desde $5,500 + IVA</span></div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2 -->
+    <div class="module reveal">
+      <div class="module-aside">
+        <span class="idx">Pieza 02</span>
+        <h3>Meta Ads + Gestión de Redes</h3>
+        <span class="role">Atracción por interés</span>
+      </div>
+      <div class="module-body">
+        <p>Redes y Meta Ads operan como una sola unidad: el contenido construye la marca y la pauta la pone frente al comprador correcto. El objetivo es una estrategia de leads de <strong>calidad</strong> — segmentación fina por perfil, geografía (EE. UU., Canadá) e intención, no alcance vacío.</p>
+        <ul>
+          <li>Gestión de contenido y comunidad (Facebook + Instagram), 15 publicaciones mensuales con mix de formatos</li>
+          <li>Meta Ads: campañas de prospección + remarketing con formularios y captura conectada al CRM</li>
+          <li>Segmentación por perfil de comprador extranjero de segunda residencia / inversión</li>
+          <li>Reportes de leads y costo por lead calificado, no solo métricas de vanidad</li>
+        </ul>
+        <div class="price-inline">$7,500 <span>+ IVA / mes</span></div>
+        <div class="combo-badge">Meta Ads incluido en la gestión de redes</div>
+        <div class="pauta-note">
+          <span class="pk">Pauta Meta — va directa a la plataforma</span>
+          <p><strong>$5,000 – $15,000 + IVA / mes</strong>, escalable según la meta de leads. Este monto es inversión publicitaria en Meta, no honorario de Sentido — se administra por separado y se reporta al detalle.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3 -->
+    <div class="module reveal">
+      <div class="module-aside">
+        <span class="idx">Pieza 03</span>
+        <h3>Google Ads</h3>
+        <span class="role">Captura por intención</span>
+      </div>
+      <div class="module-body">
+        <p>Cuando alguien busca "Cabo real estate" o "condos San José del Cabo", ya tiene intención de compra. Google Ads captura ese momento y lo mete al mismo embudo — el lead más caliente del sistema, conectado directo al CRM.</p>
+        <ul>
+          <li>Campañas de búsqueda por zona, tipo de propiedad y rango de precio</li>
+          <li>Performance orientado a conversión (formularios / consultas), no a clics</li>
+          <li>Palabras clave negativas y optimización continua para filtrar tráfico no calificado</li>
+          <li>Conversiones y leads integrados al mismo CRM que el resto del sistema</li>
+        </ul>
+        <div class="price-inline">$4,000 <span>+ IVA / mes de gestión</span></div>
+        <div class="pauta-note">
+          <span class="pk">Pauta Google — va directa a la plataforma</span>
+          <p><strong>$5,000 – $15,000 + IVA / mes</strong> recomendado según zonas y competencia. Es presupuesto de medios que se paga a Google, separado del honorario de gestión.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4 -->
+    <div class="module reveal">
+      <div class="module-aside">
+        <span class="idx">Pieza 04</span>
+        <h3>Rediseño web + conexión</h3>
+        <span class="role">Motor de conversión</span>
+      </div>
+      <div class="module-body">
+        <p>El sitio deja de ser un catálogo y se vuelve el centro del sistema: recibe toda la pauta, convierte la visita en lead y lo entrega ordenado al CRM. Cada elemento existe para mover al comprador un paso más cerca del asesor.</p>
+        <ul>
+          <li>Rediseño mobile-first orientado a conversión, a la altura del inventario premium</li>
+          <li>Captura de leads en cada ficha de propiedad, con ruteo al asesor correcto</li>
+          <li>Integración con pixels, tags y campañas de Meta y Google</li>
+          <li>Conexión directa al CRM: cada formulario entra al embudo en tiempo real</li>
+          <li>SEO técnico y de contenido para sostener tráfico orgánico calificado</li>
+        </ul>
+        <div class="price-inline">Desde $20,000 <span>+ IVA · inversión única (60% / 40%)</span></div>
+        <p class="inv-note" style="margin-top:0.8rem;">Alcance final según integraciones de inventario y volumen de fichas — se confirma en el kickoff.</p>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5 -->
+    <div class="module reveal">
+      <div class="module-aside">
+        <span class="idx">Pieza 05</span>
+        <h3>CRM + Automatización</h3>
+        <span class="role">Columna vertebral</span>
+      </div>
+      <div class="module-body">
+        <p>El CRM es lo que convierte la captación en cierres. Todo lead — venga de Meta, Google, el sitio o un referido — cae en un solo embudo, se asigna al asesor indicado y recibe seguimiento automatizado que no depende de que alguien se acuerde.</p>
+        <ul>
+          <li>Pipeline comercial con etapas (Lead · Contacto · Visita · Seguimiento · Ganado / Perdido)</li>
+          <li>Captura automática y asignación inteligente de leads por zona o asesor</li>
+          <li>Seguimiento automatizado por WhatsApp + email + SMS para un ciclo de compra largo</li>
+          <li>Calendarios compartidos, landing pages y formularios integrados</li>
+          <li>Tablero de conversión: de dónde viene cada lead y en qué etapa se cierra o se enfría</li>
+        </ul>
+        <div class="price-inline">$4,000 <span>+ IVA / mes</span></div>
+        <div class="combo-badge">Implementación sin costo con el mantenimiento activo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 05 INVERSIÓN ===================== -->
+<section class="section" id="inversion">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">05 — Inversión</span>
+      <h2>Modular, transparente, con la pauta siempre a la vista.</h2>
+      <p>El sistema completo cuesta menos que una sola operación perdida por falta de seguimiento. Todo en pesos mexicanos, con IVA marcado. La pauta se muestra siempre por separado: es inversión de medios, no honorario.</p>
+    </div>
+
+    <div class="inv-grid">
+      <div class="inv-card hero-card reveal">
+        <span class="rec">Recomendado · Sistema integral</span>
+        <h3>Operación mensual</h3>
+        <div class="cap">Las tres piezas recurrentes que mantienen la máquina viva.</div>
+        <div class="inv-row"><div class="name">Meta Ads + Gestión de Redes <small>Meta Ads incluido</small></div><div class="amt">$7,500</div></div>
+        <div class="inv-row"><div class="name">Google Ads <small>gestión y optimización</small></div><div class="amt">$4,000</div></div>
+        <div class="inv-row"><div class="name">CRM + Automatización <small>implementación sin costo</small></div><div class="amt">$4,000</div></div>
+        <div class="inv-row"><div class="name">Google Business Profile <small>incentivo del combo</small></div><div class="amt free">Incluido</div></div>
+        <div class="inv-total"><span class="t-lbl">Total mensual</span><span class="t-amt">$15,500 <small>+ IVA / mes</small></span></div>
+        <p class="inv-note"><b>Incentivo del sistema integral:</b> al contratar Ads + Redes + CRM juntos, Google Business Profile queda incluido. Mensualidades por adelantado.</p>
+      </div>
+
+      <div class="inv-card reveal">
+        <h3>Inversión única</h3>
+        <div class="cap">La base sobre la que corre todo el sistema.</div>
+        <div class="inv-row"><div class="name">Rediseño web + conexión al sistema <small>60% inicio / 40% entrega</small></div><div class="amt">desde $20,000</div></div>
+        <div class="inv-row"><div class="name">Producción audiovisual <small>eventual, por proyecto</small></div><div class="amt">a cotizar</div></div>
+        <div class="inv-total"><span class="t-lbl">Arranque</span><span class="t-amt">desde $20,000 <small>+ IVA</small></span></div>
+        <p class="inv-note">La producción audiovisual se cotiza a la medida de cada proyecto y se factura de forma independiente — nunca dentro del fee mensual.</p>
+      </div>
+    </div>
+
+    <div class="pauta-strip reveal">
+      <span class="k">Presupuesto de pauta — directo a la plataforma</span>
+      <h3>La pauta se invierte, no se cobra.</h3>
+      <p>Estos montos van directos a Meta y Google como inversión publicitaria. No forman parte del honorario de Sentido; se administran, optimizan y reportan por separado, y escalan según tu meta de leads.</p>
+      <div class="pauta-lines">
+        <div class="pl"><span class="plc">Pauta Meta</span><div class="plr">$5,000 – $15,000</div><small>+ IVA / mes · escalable</small></div>
+        <div class="pl"><span class="plc">Pauta Google</span><div class="plr">$5,000 – $15,000</div><small>+ IVA / mes · según zonas</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 HORIZONTE ===================== -->
+<section class="section tint" id="horizonte">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">06 — Horizonte</span>
+      <h2>Cómo se ve el sistema en el tiempo.</h2>
+    </div>
+    <div class="horizon">
+      <div class="hz reveal">
+        <span class="when">Mes 1 – 3</span>
+        <h3>Cimientos</h3>
+        <p>Sitio conectado y CRM configurado con pipeline vivo. Primeras campañas de Meta y Google atrayendo leads al embudo. Se establece la línea base: costo por lead y por lead calificado.</p>
+      </div>
+      <div class="hz reveal">
+        <span class="when">Mes 4 – 6</span>
+        <h3>Optimización</h3>
+        <p>La pauta se afina con datos reales: se recorta lo que no convierte y se escala lo que sí. El seguimiento automatizado empieza a rescatar leads tibios. La calidad del lead sube; el costo por lead calificado baja.</p>
+      </div>
+      <div class="hz reveal">
+        <span class="when">Mes 7 – 12</span>
+        <h3>Escala</h3>
+        <p>Sistema predecible: se sabe cuánto invertir para generar equis leads calificados. La producción audiovisual por proyecto se convierte en el motor de nuevas campañas de alto rendimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING ===================== -->
+<section class="closing">
+  <div class="wrap">
+    <h2>En un mercado de 2,500 propiedades, la mejor ubicación es <em>el sistema</em> que convierte.</h2>
+    <p>RE/MAX Cabo Sanctuary ya tiene el inventario y la marca. Lo que falta es la máquina que capture cada oportunidad y no deje enfriar ni una.</p>
+  </div>
+</section>
+
+<!-- ===================== CTA + FORM ===================== -->
+<section class="cta" id="contacto">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h2>Contactemos.</h2>
+      <p class="lede">Cuéntanos dónde está parado RE/MAX Cabo Sanctuary hoy y te contactamos personalmente en menos de 24 h hábiles. Si prefieres, escríbenos directo — los canales están abajo.</p>
+
+      <form id="lead-form" data-webhook="/api/lead" novalidate>
+        <input type="hidden" name="propuesta" value="remax-cabo-sanctuary" />
+
+        <div class="form-row">
+          <label>Nombre <span class="req">*</span>
+            <input name="nombre" type="text" required autocomplete="name" />
+          </label>
+          <label>Email <span class="req">*</span>
+            <input name="email" type="email" required autocomplete="email" />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>WhatsApp
+            <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+          </label>
+          <label>Siguiente paso <span class="req">*</span>
+            <select name="paso" required>
+              <option value="">Selecciona…</option>
+              <option>Avancemos — agendemos kickoff</option>
+              <option>Me interesa, quiero ajustar el alcance</option>
+              <option>Tengo preguntas antes de decidir</option>
+              <option>Necesito un poco más de tiempo</option>
+            </select>
+          </label>
+        </div>
+
+        <label>Mensaje (opcional)
+          <textarea name="mensaje" rows="4" placeholder="Cuéntanos qué tienes en mente…"></textarea>
+        </label>
+
+        <button type="submit" class="form-submit">Enviar mensaje →</button>
+        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+      </form>
+
+      <div class="contact-alt">
+        <a class="whats" href="https://wa.me/523331672223?text=Hola%2C%20vi%20la%20propuesta%20de%20Sentido%20para%20RE%2FMAX%20Cabo%20Sanctuary%20y%20me%20interesa%20conversar." target="_blank" rel="noopener">
+          <span class="dot"></span> WhatsApp directo · +52 333 167 22 23
+        </a>
+        <span class="em"><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <img src="/assets/logo-sentido-dark.png" alt="Sentido" class="closing-sentido-mark" />
+  <div class="copy">
+    Sentido Branding &amp; Advertising · 2026 · Propuesta confidencial RE/MAX Cabo Sanctuary<br>
+    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+  </div>
+</footer>
+
+<script>
+  // ---- Reveal on scroll ----
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // ---- Hide/show nav on scroll ----
+  (function () {
+    var nav = document.getElementById('siteNav');
+    var last = 0;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      if (y > last && y > 300) nav.classList.add('hidden'); else nav.classList.remove('hidden');
+      last = y;
+    }, { passive: true });
+  })();
+
+  // ---- Scroll-spy ----
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var map = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute('data-target');
+      var sec = document.getElementById(id);
+      if (sec) map[id] = { link: a, sec: sec };
+    });
+    var ids = Object.keys(map);
+    if (!ids.length) return;
+    function onScroll() {
+      var pos = window.scrollY + 130, current = null;
+      ids.forEach(function (id) { if (map[id].sec.offsetTop <= pos) current = id; });
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (current) map[current].link.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // ---- Lead form ----
+  (function () {
+    var form = document.getElementById('lead-form');
+    if (!form) return;
+    var statusEl = document.getElementById('lf-status');
+    var submitBtn = form.querySelector('.form-submit');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var payload = {
+        Propuesta: form.propuesta.value,
+        Nombre: form.nombre.value.trim(),
+        Email: form.email.value.trim(),
+        WhatsApp: form.whatsapp.value.trim() || '—',
+        'Siguiente paso': form.paso.value,
+        Mensaje: form.mensaje.value.trim() || '—',
+        Fuente: 'propuestas.sentido.mx/remax-cabo-sanctuary',
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.classList.remove('error');
+
+      try {
+        var res = await fetch(form.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te contactamos en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        form.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar mensaje →';
+      }
+    });
+  })();
+</script>
+</body>
+</html>
