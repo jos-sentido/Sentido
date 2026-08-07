@@ -202,7 +202,7 @@
       "tipo": "propuesta",
       "cliente": "Plataforma de rentas — Los Cabos (Dani Tellez)",
       "fecha": "2026-08-04",
-      "estatus": "enviada",
+      "estatus": "ganada",
       "serviciosDisponibles": [
         {
           "id": "desarrollo",
@@ -211,9 +211,11 @@
           "tipo": "unico"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "desarrollo"
+      ],
       "notas": "Prospecto: Dani Tellez. Proyecto solo desarrollo web (plataforma de rentas para edificio de departamentos en Los Cabos, BCS). Inversión total $30,000 MXN + IVA, sin marketing/pauta. Esperando respuesta vía formulario.",
-      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
     },
