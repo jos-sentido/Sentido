@@ -414,6 +414,21 @@
   .form-status.visible { opacity: 1; }
   .form-status.error { color: #B5502F; }
 
+  /* WhatsApp CTA (reemplaza el form cuando el contacto ya es tibio) */
+  .cta-panel { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.1rem; }
+  .wa-cta {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--madder); color: #FFF6EF; text-decoration: none;
+    padding: 1.15rem 2rem; border-radius: 4px;
+    font-family: var(--font-sans); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; font-size: 0.95rem;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .wa-cta:hover { background: #A2482E; transform: translateY(-1px); }
+  .wa-cta svg { width: 21px; height: 21px; flex-shrink: 0; }
+  .cta-note { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.6; }
+  .cta-note a { color: var(--madder); text-decoration: none; }
+
   /* ---------- Footer ---------- */
   .site-footer { background: #241E1A; color: #B3A895; padding: 2.5rem 1.25rem 3rem; }
   @media (min-width: 768px) { .site-footer { padding: 2.75rem 2rem 3.25rem; } }
@@ -611,7 +626,7 @@
 
       <div class="note">
         <span class="ni">📌</span>
-        <p><strong>Continuidad opcional.</strong> Una vez migrada, la tienda puede sostenerse con <strong>Administración del sitio ($3,500 + IVA/mes)</strong> —gráficos de promoción, actualizaciones y análisis de conversión— y con administración de pedidos por tabulador según volumen. Se detalla en Inversión; no es obligatorio para arrancar.</p>
+        <p><strong>Continuidad opcional.</strong> Una vez migrada, la tienda puede sostenerse con <strong>Administración del sitio ($3,500 + IVA/mes)</strong>: gráficos de promoción, actualizaciones y análisis de conversión. Se detalla en Inversión; no es obligatorio para arrancar.</p>
       </div>
     </div>
 
@@ -727,10 +742,6 @@
           <div class="ir-name">Google Business Profile <small>Descubrimiento local del showroom en Guadalajara: Maps, reseñas, "cerca de mí"</small></div>
           <div class="ir-price">$4,500 <small>+ IVA / mes</small></div>
         </div>
-        <div class="inv-row optional">
-          <div class="ir-name">Administración de pedidos e-commerce <small>Por tabulador según volumen — desde 1–15 pedidos</small></div>
-          <div class="ir-price">desde $3,000 <small>+ IVA / mes</small></div>
-        </div>
       </div>
       <div class="note">
         <span class="ni">📌</span>
@@ -779,7 +790,7 @@
     <div class="form-wrap reveal reveal-d1">
       <div class="form-intro">
         <h3>Contactemos, <em>Regina.</em></h3>
-        <p>Marca dónde estás parada y te respondo personalmente en menos de 24 horas hábiles. Sin compromiso: también sirve para ajustar el alcance o resolver dudas antes de decidir.</p>
+        <p>Ya platicamos del panorama, así que aquí no hay formularios que llenar. El siguiente paso es simple: escríbeme por WhatsApp y aterrizamos el arranque, los tiempos o cualquier ajuste al alcance.</p>
         <div class="form-aside">
           <span class="k">Directo:</span> <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a><br>
           <span class="k">Instagram:</span> <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a><br>
@@ -787,38 +798,13 @@
         </div>
       </div>
 
-      <form id="lead-form" data-webhook="/api/lead" novalidate>
-        <input type="hidden" name="propuesta" value="asian-story" />
-
-        <label>Nombre <span class="req">*</span>
-          <input name="nombre" type="text" required autocomplete="name" />
-        </label>
-
-        <label>Email <span class="req">*</span>
-          <input name="email" type="email" required autocomplete="email" />
-        </label>
-
-        <label>WhatsApp
-          <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
-        </label>
-
-        <label>Siguiente paso <span class="req">*</span>
-          <select name="paso" required>
-            <option value="">Selecciona…</option>
-            <option>Avancemos — agendemos kickoff</option>
-            <option>Me interesa pero quiero ajustar el alcance</option>
-            <option>Tengo preguntas antes de decidir</option>
-            <option>Necesito un poco más de tiempo</option>
-          </select>
-        </label>
-
-        <label>Mensaje (opcional)
-          <textarea name="mensaje" rows="4" placeholder="Cuéntame qué tienes en mente…"></textarea>
-        </label>
-
-        <button type="submit" class="form-submit">Enviar mensaje →</button>
-        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
-      </form>
+      <div class="cta-panel">
+        <a class="wa-cta" href="https://wa.me/5213331672223?text=Hola%20Jos%2C%20vi%20la%20propuesta%20de%20Asian%20Story%20y%20me%20gustar%C3%ADa%20avanzar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.652a11.882 11.882 0 005.71 1.454h.005c6.585 0 11.946-5.359 11.949-11.893a11.821 11.821 0 00-3.484-8.46z"/></svg>
+          <span>Escríbeme por WhatsApp</span>
+        </a>
+        <p class="cta-note">Te respondo personalmente, normalmente el mismo día. También en <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>.</p>
+      </div>
     </div>
   </div>
 </section>
