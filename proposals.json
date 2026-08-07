@@ -708,7 +708,7 @@
       "tipo": "propuesta",
       "cliente": "Premium Used Car",
       "fecha": "2026-05-05",
-      "estatus": "presentada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "sitio",
