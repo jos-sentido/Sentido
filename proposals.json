@@ -332,7 +332,7 @@
       "tipo": "propuesta",
       "cliente": "Agua Costa Rica Vallarta",
       "fecha": "2026-05-04",
-      "estatus": "presentada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "redes",
