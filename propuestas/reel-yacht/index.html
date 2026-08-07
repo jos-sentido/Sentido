@@ -298,6 +298,21 @@
 
   .divider-label { text-align: center; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.4rem; }
 
+  /* WhatsApp CTA */
+  .wa-cta {
+    display: inline-flex; align-items: center; gap: .85rem; margin-top: 2.4rem;
+    font-family: var(--font-sans); font-size: 1.08rem; font-weight: 600; letter-spacing: .01em;
+    color: var(--bg-deep); background: var(--accent); text-decoration: none;
+    padding: 1.1rem 1.9rem; border-radius: 46px;
+    box-shadow: 0 10px 30px rgba(201,162,75,0.22); transition: background .25s, transform .18s, box-shadow .25s;
+  }
+  .wa-cta:hover { background: var(--accent-bright); transform: translateY(-2px); box-shadow: 0 14px 38px rgba(201,162,75,0.32); }
+  .wa-cta:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
+  .wa-cta .wa-icon { width: 24px; height: 24px; flex-shrink: 0; }
+  .wa-cta .wa-arrow { font-size: 1.15rem; transition: transform .2s; }
+  .wa-cta:hover .wa-arrow { transform: translateX(4px); }
+  .wa-sub { font-size: .82rem; color: var(--text-muted); margin-top: 1.1rem; letter-spacing: .04em; }
+
   /* Configurador */
   .configurator {
     background: linear-gradient(160deg, var(--surface-elevated), var(--surface));
@@ -870,40 +885,14 @@
     <div class="wrap cta-form-inner reveal">
       <span class="eyebrow">Siguiente paso</span>
       <h2>Hablemos.</h2>
-      <p class="lede">Marca dónde estás parado y te respondo personalmente en menos de 24 h hábiles. Sin compromiso — arrancamos por donde tenga más sentido para Reel Yacht.</p>
+      <p class="lede">Ya platicamos lo esencial; esta propuesta lo deja por escrito. Cuando quieras revisar los siguientes pasos, ajustar el alcance o arrancar, escríbeme directo por WhatsApp y te respondo personalmente.</p>
 
-      <form id="lead-form" data-webhook="/api/lead" novalidate>
-        <input type="hidden" name="propuesta" value="reel-yacht" />
-
-        <label>Nombre <span class="req">*</span>
-          <input name="nombre" type="text" required autocomplete="name" />
-        </label>
-
-        <label>Email <span class="req">*</span>
-          <input name="email" type="email" required autocomplete="email" />
-        </label>
-
-        <label>WhatsApp
-          <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
-        </label>
-
-        <label>Siguiente paso <span class="req">*</span>
-          <select name="paso" required>
-            <option value="">Selecciona…</option>
-            <option>Avancemos — agendemos kickoff</option>
-            <option>Me interesa pero quiero ajustar el alcance</option>
-            <option>Tengo preguntas antes de decidir</option>
-            <option>Necesito un poco más de tiempo</option>
-          </select>
-        </label>
-
-        <label class="full">Mensaje (opcional)
-          <textarea name="mensaje" rows="4" placeholder="Cuéntame lo que tengas en mente sobre la flota, la temporada o las reservas…"></textarea>
-        </label>
-
-        <button type="submit" class="form-submit full">Enviar respuesta →</button>
-        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
-      </form>
+      <a class="wa-cta" href="https://wa.me/5213331672223?text=Hola%20Jos%2C%20vi%20la%20propuesta%20de%20Reel%20Yacht%20y%20quiero%20platicar%20los%20siguientes%20pasos." target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp a Jos de Sentido">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.65.14-.19.29-.74.93-.91 1.12-.17.19-.34.22-.62.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.56-.89-2.14-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.38 0 1.41 1.02 2.77 1.17 2.96.14.19 2.01 3.06 4.86 4.29.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34zM12.04 2.5c-5.25 0-9.5 4.25-9.5 9.5 0 1.67.44 3.3 1.28 4.74L2.5 21.5l4.9-1.28c1.39.76 2.96 1.16 4.56 1.16h.01c5.25 0 9.5-4.25 9.5-9.5 0-2.54-.99-4.92-2.78-6.72C16.9 3.49 14.53 2.5 12.04 2.5z"/></svg>
+        <span>Escríbeme por WhatsApp</span>
+        <span class="wa-arrow" aria-hidden="true">→</span>
+      </a>
+      <p class="wa-sub">+52 33 3167 2223 · Jos, Sentido</p>
     </div>
   </section>
 
@@ -1005,49 +994,6 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
-
-    // Lead form
-    var form = document.getElementById('lead-form');
-    var statusEl = document.getElementById('lf-status');
-    var submitBtn = form.querySelector('.form-submit');
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-
-      var payload = {
-        Propuesta: form.propuesta.value,
-        Nombre: form.nombre.value.trim(),
-        Email: form.email.value.trim(),
-        WhatsApp: form.whatsapp.value.trim() || '—',
-        'Siguiente paso': form.paso.value,
-        Mensaje: form.mensaje.value.trim() || '—',
-        Fuente: location.pathname,
-        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
-      };
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando…';
-
-      try {
-        var res = await fetch(form.dataset.webhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Webhook ' + res.status);
-        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + payload.Email + '.';
-        statusEl.classList.add('visible');
-        form.reset();
-        submitBtn.textContent = '✓ Enviado';
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
-        statusEl.classList.add('visible', 'error');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar respuesta →';
-      }
-    });
   </script>
 </body>
 </html>
