@@ -297,6 +297,52 @@
   .foot .contact a { color: var(--accent-bright); text-decoration: none; }
 
   .divider-label { text-align: center; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.4rem; }
+
+  /* Configurador */
+  .configurator {
+    background: linear-gradient(160deg, var(--surface-elevated), var(--surface));
+    border: 1px solid var(--border-accent); border-radius: 20px; padding: 2.2rem 1.9rem;
+  }
+  @media (min-width: 700px) { .configurator { padding: 2.6rem 2.4rem; } }
+  .cfg-head { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; align-items: baseline; justify-content: space-between; margin-bottom: 1.6rem; }
+  .cfg-head h3 { font-size: 1.7rem; color: var(--text); }
+  .cfg-preset {
+    font-family: var(--font-sans); font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-bright); background: transparent; border: 1px solid var(--accent-dim); border-radius: 40px;
+    padding: .5rem 1.1rem; cursor: pointer; transition: background .2s, color .2s;
+  }
+  .cfg-preset:hover { background: var(--accent); color: var(--bg-deep); border-color: var(--accent); }
+  .cfg-group-label { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--teal); margin: 1.4rem 0 .7rem; font-weight: 600; }
+  .cfg-item {
+    display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem; border-radius: 12px;
+    border: 1px solid var(--border); background: rgba(4,18,26,0.35); cursor: pointer;
+    transition: border-color .2s, background .2s; margin-bottom: .7rem;
+  }
+  .cfg-item:hover { border-color: var(--border-accent); }
+  .cfg-item.on { border-color: var(--accent); background: rgba(201,162,75,0.08); }
+  .cfg-check {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid var(--border-accent);
+    display: grid; place-items: center; transition: background .2s, border-color .2s;
+  }
+  .cfg-item.on .cfg-check { background: var(--accent); border-color: var(--accent); }
+  .cfg-check svg { width: 13px; height: 13px; opacity: 0; transition: opacity .2s; }
+  .cfg-item.on .cfg-check svg { opacity: 1; }
+  .cfg-item .cfg-body { flex: 1; min-width: 0; }
+  .cfg-item .cfg-name { font-size: .98rem; color: var(--text); font-weight: 400; }
+  .cfg-item .cfg-desc { font-size: .78rem; color: var(--text-muted); margin-top: .15rem; }
+  .cfg-item .cfg-amt { font-family: var(--font-display); font-size: 1.35rem; color: var(--accent-bright); white-space: nowrap; }
+  .cfg-item .cfg-amt small { font-size: .68rem; color: var(--text-muted); font-family: var(--font-sans); }
+  .cfg-item.unico.on { border-color: var(--teal); background: rgba(87,176,166,0.08); }
+  .cfg-item.unico.on .cfg-check { background: var(--teal); border-color: var(--teal); }
+  .cfg-totals { border-top: 1px solid var(--border-accent); margin-top: 1.6rem; padding-top: 1.5rem; display: grid; gap: .9rem; }
+  .cfg-total-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .cfg-total-row .lbl { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); }
+  .cfg-total-row .val { font-family: var(--font-display); font-size: 2.2rem; color: var(--accent-bright); font-variant-numeric: tabular-nums; }
+  .cfg-total-row .val small { font-size: .8rem; color: var(--text-muted); font-family: var(--font-sans); }
+  .cfg-total-row.unico .val { font-size: 1.5rem; color: var(--teal); }
+  .cfg-flag { font-size: .82rem; color: var(--teal); margin-top: .3rem; min-height: 1.1rem; transition: opacity .3s; }
+  .cfg-note { font-size: .8rem; color: var(--text-muted); margin-top: 1.2rem; display: flex; gap: .6rem; }
+  .cfg-note .ic { color: var(--accent); flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -448,34 +494,73 @@
   <section id="reestructura">
     <div class="wrap">
       <div class="sh reveal">
-        <span class="section-num">03 — Fase 1 · Cimientos</span>
-        <h2>Reestructura del sitio: técnica y de contenido, pensada para vender y para rankear.</h2>
-        <p class="lede">Sobre los hallazgos de la auditoría, reconstruimos el sitio para que sea rápido, indexable y diseñado alrededor de una sola meta: convertir la búsqueda en reserva directa. Es el cimiento sin el cual la pauta desperdicia presupuesto.</p>
+        <span class="section-num">03 — Fase 1 · El cimiento</span>
+        <h2>La renovación del sitio no es un extra. Es la base sobre la que se apoya todo el marketing.</h2>
+        <p class="lede">No hablamos de retoques ni de un maquillaje visual. Hablamos de reconstruir el sitio de Reel Yacht desde su estructura — técnica y de contenido — para que sea rápido, indexable, bilingüe y diseñado alrededor de una sola meta: convertir la búsqueda en reserva directa. Cada peso que se invierte después en redes, SEO o pauta aterriza aquí; si el cimiento está mal construido, ese presupuesto se desperdicia.</p>
       </div>
 
+      <!-- Qué se rehace -->
+      <div class="audit-card reveal rd1" style="margin-bottom:1.6rem;">
+        <div class="svc-head" style="margin-bottom:1.2rem;">
+          <div class="idx">Alcance de la renovación · qué se reconstruye</div>
+          <h3 style="font-size:1.9rem;">Dos frentes, un mismo sitio</h3>
+        </div>
+        <div class="split" style="margin-top:0;">
+          <div class="split-card" style="background:var(--surface); border-color:var(--border);">
+            <div class="sub">Frente técnico</div>
+            <h3>Que Google lo entienda y el móvil lo aguante</h3>
+            <ul>
+              <li>Arquitectura de la información reconstruida: cómo se ordenan experiencias, flota y reserva</li>
+              <li>Estructura mobile-first y velocidad de carga optimizada — el turista reserva desde el teléfono</li>
+              <li><strong>SEO técnico on-page incluido:</strong> títulos, meta, encabezados y URLs limpias bilingües</li>
+              <li>Datos estructurados de negocio local y de cada experiencia, sitemap e indexación correcta</li>
+              <li>Pixels y etiquetas de Meta y Google instalados para medir cada reserva desde el día uno</li>
+              <li>Integración con el CRM: cada consulta del sitio entra directo al embudo, sin fugas</li>
+            </ul>
+          </div>
+          <div class="split-card" style="background:var(--surface); border-color:var(--border);">
+            <div class="sub">Frente de contenido</div>
+            <h3>Que el turista quiera reservar</h3>
+            <ul>
+              <li>Arquitectura bilingüe EN/ES real — inglés primario para el turista, español para el mercado local</li>
+              <li>Una página por experiencia (snorkel, ballenas, sunset, pesca deportiva), optimizada para su búsqueda</li>
+              <li>Fichas de flota (Don Luis · Baby Bolaz) con narrativa, aforo y prueba visual</li>
+              <li>Copy editorial que transmite el nivel premium del Mar de Cortés</li>
+              <li>Llamados a la acción claros y reseñas visibles — la moneda de decisión de este mercado</li>
+              <li>Flujo de reserva directa sin fricción, para depender menos de los intermediarios</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Por qué es el cimiento -->
       <div class="split">
         <div class="split-card reveal rd1">
-          <div class="sub">Frente técnico</div>
-          <h3>Que Google lo entienda</h3>
+          <div class="sub">Por qué va primero</div>
+          <h3>El cimiento del que depende el motor</h3>
           <ul>
-            <li>Estructura mobile-first y velocidad de carga optimizada</li>
-            <li>SEO técnico: URLs limpias, etiquetas, sitemap, datos estructurados de negocio local y experiencias</li>
-            <li>Arquitectura bilingüe (inglés primario para el turista, español para el mercado local)</li>
-            <li>Pixels y etiquetas de Meta y Google listos para medir cada reserva</li>
-            <li>Flujo de reserva directa sin fricción — menos dependencia de intermediarios</li>
+            <li>La pauta manda tráfico a páginas que sí cargan, sí convencen y sí dejan reservar</li>
+            <li>El SEO necesita una estructura indexable para poder rankear — no se puede posicionar un sitio que Google no entiende</li>
+            <li>El CRM solo captura leads si el sitio los entrega bien conectados</li>
+            <li>La medición (pixels, conversiones) permite optimizar cada canal con datos reales</li>
           </ul>
         </div>
         <div class="split-card reveal rd2">
-          <div class="sub">Frente de contenido</div>
-          <h3>Que el turista quiera reservar</h3>
+          <div class="sub">Qué recibe Reel Yacht</div>
+          <h3>El entregable, concreto</h3>
           <ul>
-            <li>Página por experiencia (snorkel, avistamiento de ballenas, sunset, pesca deportiva) optimizada para su búsqueda</li>
-            <li>Fichas de flota (Don Luis · Baby Bolaz) con narrativa, aforo y prueba visual</li>
-            <li>Copy editorial que transmite el nivel premium del Mar de Cortés</li>
-            <li>Llamados a la acción claros y reseñas visibles — la moneda de este mercado</li>
-            <li>Base de blog orientada a las preguntas que hace el viajero antes de reservar</li>
+            <li>Un sitio reconstruido, rápido y responsive, listo para producción</li>
+            <li>Arquitectura bilingüe con página por experiencia y por yate</li>
+            <li>SEO técnico on-page y datos estructurados implementados</li>
+            <li>Medición y pixels configurados, flujo de reserva directa activo</li>
+            <li>Diagnóstico técnico inicial como punto de partida documentado</li>
           </ul>
         </div>
+      </div>
+
+      <div class="note-box reveal" style="margin-top:1.6rem;">
+        <span class="ic">◆</span>
+        <div>Es un <strong>pago único de $20,000 + IVA</strong> (60% anticipo / 40% entrega). Todo lo mensual — redes, Google Ads, contenido, CRM — se construye encima de este cimiento. Por eso es la Fase 1: sin el sitio bien hecho, el resto rinde a media máquina.</div>
       </div>
     </div>
   </section>
@@ -690,6 +775,80 @@
         </div>
       </div>
 
+      <div class="divider-label reveal" style="margin-top:3.4rem;">Configura tu inversión</div>
+      <div class="configurator reveal rd1" id="configurator">
+        <div class="cfg-head">
+          <h3>Arma tu propio plan</h3>
+          <button type="button" class="cfg-preset" id="cfg-selall">Seleccionar todo · Motor Integral</button>
+        </div>
+
+        <div class="cfg-group-label">Servicios mensuales</div>
+        <div id="cfg-mensuales">
+          <label class="cfg-item on" data-price="3500" data-kind="mensual">
+            <span class="cfg-check"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#04121A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="cfg-body">
+              <span class="cfg-name">Blog automatizado + administración del sitio</span>
+              <span class="cfg-desc">2 entradas/mes, actualizaciones y análisis</span>
+            </span>
+            <span class="cfg-amt">$3,500 <small>/mes</small></span>
+          </label>
+
+          <label class="cfg-item on" data-price="7500" data-kind="mensual">
+            <span class="cfg-check"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#04121A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="cfg-body">
+              <span class="cfg-name">Gestión de redes (IG + FB)</span>
+              <span class="cfg-desc">Meta Ads · gestión incluida</span>
+            </span>
+            <span class="cfg-amt">$7,500 <small>/mes</small></span>
+          </label>
+
+          <label class="cfg-item on" data-price="4000" data-kind="mensual">
+            <span class="cfg-check"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#04121A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="cfg-body">
+              <span class="cfg-name">Google Ads · gestión</span>
+              <span class="cfg-desc">Campañas de búsqueda de alta intención</span>
+            </span>
+            <span class="cfg-amt">$4,000 <small>/mes</small></span>
+          </label>
+
+          <label class="cfg-item on" data-price="4000" data-kind="mensual">
+            <span class="cfg-check"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#04121A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="cfg-body">
+              <span class="cfg-name">CRM + reputación + Perfil de Google</span>
+              <span class="cfg-desc">Automatización, reseñas y presencia en el mapa</span>
+            </span>
+            <span class="cfg-amt">$4,000 <small>/mes</small></span>
+          </label>
+        </div>
+
+        <div class="cfg-group-label">Cimiento · pago único</div>
+        <label class="cfg-item unico on" data-price="20000" data-kind="unico">
+          <span class="cfg-check"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#04121A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="cfg-body">
+            <span class="cfg-name">Reestructura y renovación del sitio web</span>
+            <span class="cfg-desc">Pago único · 60/40 — no se suma al mensual</span>
+          </span>
+          <span class="cfg-amt">$20,000 <small>único</small></span>
+        </label>
+
+        <div class="cfg-totals">
+          <div class="cfg-total-row">
+            <span class="lbl">Total mensual</span>
+            <span class="val" id="cfg-monthly">$19,000 <small>+ IVA</small></span>
+          </div>
+          <div class="cfg-flag" id="cfg-flag">Equivale al Motor Integral completo.</div>
+          <div class="cfg-total-row unico" id="cfg-unico-row">
+            <span class="lbl">Cimiento único</span>
+            <span class="val" id="cfg-once">$20,000 <small>+ IVA</small></span>
+          </div>
+        </div>
+
+        <div class="cfg-note">
+          <span class="ic">💰</span>
+          <span>La pauta publicitaria va aparte y directa a las plataformas (Google Ads $8,000–$15,000/mes · Meta Ads $5,000–$12,000/mes) — no se incluye en este total. Producción de foto/video se cotiza por evento.</span>
+        </div>
+      </div>
+
       <div class="note-box reveal" style="margin-top:2rem;">
         <span class="ic">💰</span>
         <div>La pauta publicitaria siempre es adicional y va directa a Google y Meta — no es honorario de Sentido. La producción de foto/video se cotiza por evento. Pagos mensuales por adelantado; inversión única 60/40.</div>
@@ -767,6 +926,72 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    // Configurador de inversión
+    (function () {
+      var cfg = document.getElementById('configurator');
+      if (!cfg) return;
+      var items = Array.prototype.slice.call(cfg.querySelectorAll('.cfg-item'));
+      var monthlyEl = document.getElementById('cfg-monthly');
+      var onceEl = document.getElementById('cfg-once');
+      var onceRow = document.getElementById('cfg-unico-row');
+      var flag = document.getElementById('cfg-flag');
+      var selall = document.getElementById('cfg-selall');
+      var MOTOR_TOTAL = 19000;
+      var fmt = function (n) { return '$' + n.toLocaleString('en-US'); };
+
+      function recalc() {
+        var monthly = 0, once = 0, monthlyCount = 0, monthlyTotalCount = 0;
+        items.forEach(function (it) {
+          var kind = it.getAttribute('data-kind');
+          var price = parseInt(it.getAttribute('data-price'), 10);
+          if (kind === 'mensual') monthlyTotalCount++;
+          if (it.classList.contains('on')) {
+            if (kind === 'mensual') { monthly += price; monthlyCount++; }
+            else once += price;
+          }
+        });
+        monthlyEl.innerHTML = fmt(monthly) + ' <small>+ IVA</small>';
+        // Once row visibility
+        if (once > 0) { onceRow.style.display = 'flex'; onceEl.innerHTML = fmt(once) + ' <small>+ IVA</small>'; }
+        else { onceRow.style.display = 'none'; }
+        // Flag
+        if (monthly === MOTOR_TOTAL && monthlyCount === monthlyTotalCount) {
+          flag.textContent = 'Equivale al Motor Integral completo — todos los canales trabajando juntos.';
+          flag.style.opacity = '1';
+        } else if (monthlyCount === 0) {
+          flag.textContent = 'Selecciona al menos un servicio mensual.';
+          flag.style.opacity = '1';
+        } else {
+          flag.textContent = monthlyCount + ' de ' + monthlyTotalCount + ' servicios mensuales seleccionados.';
+          flag.style.opacity = '1';
+        }
+        // Preset button state
+        var allOn = items.every(function (it) { return it.classList.contains('on'); });
+        selall.textContent = allOn ? 'Todo seleccionado ✓' : 'Seleccionar todo · Motor Integral';
+      }
+
+      items.forEach(function (it) {
+        it.addEventListener('click', function (e) {
+          e.preventDefault();
+          it.classList.toggle('on');
+          recalc();
+        });
+        it.setAttribute('role', 'checkbox');
+        it.setAttribute('tabindex', '0');
+        it.setAttribute('aria-checked', 'true');
+        it.addEventListener('keydown', function (e) {
+          if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); it.classList.toggle('on'); it.setAttribute('aria-checked', it.classList.contains('on')); recalc(); }
+        });
+      });
+
+      selall.addEventListener('click', function () {
+        items.forEach(function (it) { it.classList.add('on'); it.setAttribute('aria-checked', 'true'); });
+        recalc();
+      });
+
+      recalc();
+    })();
 
     // Nav scroll-spy
     var sections = ['diagnostico','auditoria','reestructura','motor','roadmap','inversion']
