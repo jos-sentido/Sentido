@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Propuesta · Belleza a Domicilio · Lumé × Sentido</title>
-<meta name="description" content="Propuesta estratégica de Sentido: crear una marca nacional de belleza a domicilio en México —identidad, plataforma de reservas y pagos, y un motor de adquisición digital en Google y Meta." />
-<meta property="og:title" content="Propuesta · Belleza a Domicilio · Lumé × Sentido" />
-<meta property="og:description" content="Una marca nueva, una plataforma de reservas y pagos, y un motor de captación digital para la belleza a domicilio en México." />
+<title>Propuesta · Agencia de Belleza Nacional · Sentido</title>
+<meta name="description" content="Propuesta estratégica de Sentido para una Agencia de Belleza Nacional en México: construcción de marca, plataforma de reservas y pagos, y un motor de adquisición digital en Google y Meta." />
+<meta property="og:title" content="Propuesta · Agencia de Belleza Nacional · Sentido" />
+<meta property="og:description" content="Construcción de marca, plataforma de reservas y pagos, y motor de captación digital para una Agencia de Belleza Nacional en México." />
 <!-- Favicon Sentido -->
 <link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
 <link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
@@ -16,19 +16,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FBF4F1;               /* luminous blush cream */
-    --surface: #F6E8E2;          /* soft rose sand */
-    --surface-elevated: #FFFCFA; /* near-white lift */
-    --border: #EFDDD6;
-    --border-strong: #E2C8BF;
-    --ink: #2E2228;              /* warm plum near-black */
-    --ink-soft: #5A4B51;
-    --ink-muted: #8C7880;
-    --ink-whisper: #B7A4AB;
-    --rose: #B24C63;             /* single accent — rosewood */
-    --rose-bright: #C75E77;
-    --rose-soft: #E7BCC7;
-    --plum: #2E2228;             /* dark chip / footer family */
+    --bg: #141210;               /* warm near-black */
+    --surface: #1D1A17;          /* deep charcoal */
+    --surface-elevated: #26221E; /* charcoal lift */
+    --border: #2E2A25;
+    --border-strong: #433C33;
+    --ink: #EDE6D8;              /* bone / hueso — main text */
+    --ink-soft: #C4BAA8;
+    --ink-muted: #93886F;
+    --ink-whisper: #837962;
+    --rose: #D9C7A3;             /* single accent — warm bone/beige */
+    --rose-bright: #EADCBB;
+    --rose-soft: #B8A67F;
+    --plum: #090807;             /* darkest band — total row / footer */
     --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --maxw: 74rem;
@@ -46,7 +46,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  ::selection { background: var(--rose); color: #FFF4F7; }
+  ::selection { background: var(--rose); color: var(--bg); }
   a { color: inherit; }
 
   /* ---------- Reveal ---------- */
@@ -67,7 +67,7 @@
   /* ---------- Nav (sticky con backdrop) ---------- */
   .site-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(251, 244, 241, 0.86);
+    background: rgba(18, 16, 14, 0.82);
     backdrop-filter: saturate(150%) blur(16px);
     -webkit-backdrop-filter: saturate(150%) blur(16px);
     border-bottom: 1px solid transparent;
@@ -104,11 +104,11 @@
   .site-nav-links a.active::after { width: 100%; }
   .nav-cta {
     font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
-    color: #FFF4F7; background: var(--rose); text-decoration: none;
+    color: var(--bg); background: var(--rose); text-decoration: none;
     padding: 0.6rem 1.05rem; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
     transition: background 0.2s ease;
   }
-  .nav-cta:hover { background: #9A3E53; }
+  .nav-cta:hover { background: var(--rose-bright); }
 
   /* ---------- Layout ---------- */
   .section { width: 100%; padding: 4.5rem 1.25rem; position: relative; }
@@ -149,8 +149,8 @@
   .hero::before {
     content: ''; position: absolute; inset: 0;
     background:
-      radial-gradient(120% 80% at 100% 0%, rgba(178,76,99,0.13), transparent 55%),
-      radial-gradient(90% 70% at 0% 100%, rgba(178,76,99,0.07), transparent 55%);
+      radial-gradient(120% 80% at 100% 0%, rgba(217,199,163,0.12), transparent 55%),
+      radial-gradient(90% 70% at 0% 100%, rgba(217,199,163,0.06), transparent 55%);
     pointer-events: none;
   }
   .hero-inner { max-width: var(--maxw); margin: 0 auto; position: relative; z-index: 2; }
@@ -270,10 +270,10 @@
   }
   .module-badge {
     font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-    color: #FFF4F7; background: var(--plum); padding: 0.4rem 0.8rem; border-radius: 2px; flex-shrink: 0;
+    color: var(--bg); background: var(--rose); padding: 0.4rem 0.8rem; border-radius: 2px; flex-shrink: 0;
     margin-top: 0.4rem;
   }
-  .module-badge.alt { background: var(--rose); }
+  .module-badge.alt { background: var(--rose-bright); }
   .module-head .mt { flex: 1; min-width: 220px; }
   .module-head h3 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); color: var(--ink); }
   .module-head h3 em { font-style: italic; color: var(--rose); }
@@ -355,7 +355,7 @@
   .inv-row .ir-price { font-family: var(--font-display); font-size: 1.35rem; color: var(--ink); white-space: nowrap; text-align: right; }
   .inv-row .ir-price small { font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); display: block; }
   .inv-row.total { background: var(--plum); }
-  .inv-row.total .ir-name { color: #F5E6EB; font-family: var(--font-display); font-size: 1.15rem; }
+  .inv-row.total .ir-name { color: var(--ink); font-family: var(--font-display); font-size: 1.15rem; }
   .inv-row.total .ir-price { color: var(--rose-bright); }
   .inv-row.optional .ir-name { color: var(--ink-soft); }
   .inv-row.optional .ir-price { color: var(--ink-soft); }
@@ -381,7 +381,7 @@
   @media (min-width: 768px) { .closing { padding: 7rem 2rem 3.5rem; } }
   .closing::before {
     content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(100% 60% at 50% 0%, rgba(178,76,99,0.10), transparent 60%);
+    background: radial-gradient(100% 60% at 50% 0%, rgba(217,199,163,0.09), transparent 60%);
   }
   .closing-inner { max-width: var(--maxw); margin: 0 auto; position: relative; z-index: 2; }
   .closing .section-label { color: var(--ink-muted); }
@@ -414,43 +414,43 @@
   #lead-form input[type="text"], #lead-form input[type="email"], #lead-form input[type="tel"],
   #lead-form select, #lead-form textarea {
     width: 100%; margin-top: 0.45rem;
-    background: #FFFFFF; border: 1px solid var(--border-strong); border-radius: 3px;
-    padding: 0.95rem 1.1rem; font-family: var(--font-sans); font-size: 1rem; color: var(--ink); font-weight: 400;
+    background: #FBF7EF; border: 1px solid var(--border-strong); border-radius: 3px;
+    padding: 0.95rem 1.1rem; font-family: var(--font-sans); font-size: 1rem; color: #211D18; font-weight: 400;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  #lead-form input::placeholder, #lead-form textarea::placeholder { color: rgba(46,34,40,0.4); }
+  #lead-form input::placeholder, #lead-form textarea::placeholder { color: rgba(33,29,24,0.45); }
   #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
-    outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px rgba(178,76,99,0.18);
+    outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px rgba(217,199,163,0.30);
   }
   #lead-form select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B24C63' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A98F53' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.6rem; cursor: pointer;
   }
   #lead-form textarea { resize: vertical; min-height: 108px; }
   .form-submit {
-    margin-top: 0.5rem; background: var(--rose); color: #FFF4F7; border: none; border-radius: 3px;
+    margin-top: 0.5rem; background: var(--rose); color: #17140F; border: none; border-radius: 3px;
     padding: 1.05rem 2rem; font-family: var(--font-sans); font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.08em; font-size: 0.92rem; cursor: pointer; justify-self: start;
     transition: background 0.2s ease, transform 0.15s ease;
   }
-  .form-submit:hover:not(:disabled) { background: #9A3E53; transform: translateY(-1px); }
+  .form-submit:hover:not(:disabled) { background: var(--rose-bright); transform: translateY(-1px); }
   .form-submit:disabled { opacity: 0.55; cursor: not-allowed; }
   .form-status { margin-top: 0.5rem; font-size: 0.92rem; color: var(--rose); opacity: 0; transition: opacity 0.3s ease; line-height: 1.6; }
   .form-status.visible { opacity: 1; }
-  .form-status.error { color: #B5502F; }
+  .form-status.error { color: #E6A07E; }
   .wa-inline { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--rose); text-decoration: none; font-weight: 600; }
   .wa-inline svg { width: 17px; height: 17px; }
 
   /* ---------- Footer ---------- */
-  .site-footer { background: #291D22; color: #B7A6AD; padding: 2.5rem 1.25rem 3rem; }
+  .site-footer { background: #0C0B09; color: #B3A88F; padding: 2.5rem 1.25rem 3rem; }
   @media (min-width: 768px) { .site-footer { padding: 2.75rem 2rem 3.25rem; } }
   .footer-inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
   .closing-sentido-mark { height: 36px; width: auto; opacity: 0.7; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.82rem; letter-spacing: 0.04em; }
-  .footer-links a { color: #D0C0C7; text-decoration: none; transition: color 0.2s ease; }
+  .footer-links a { color: #D9C7A3; text-decoration: none; transition: color 0.2s ease; }
   .footer-links a:hover { color: var(--rose-bright); }
-  .footer-legal { width: 100%; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #453640; font-size: 0.76rem; color: #93838B; letter-spacing: 0.03em; }
+  .footer-legal { width: 100%; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #2C2822; font-size: 0.76rem; color: #7C725E; letter-spacing: 0.03em; }
 </style>
 </head>
 <body>
@@ -459,9 +459,9 @@
 <nav class="site-nav" id="siteNav">
   <div class="site-nav-inner">
     <div class="nav-brand">
-      <img src="/assets/logo-sentido-dark.png" alt="Sentido" />
+      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
       <span class="divider"></span>
-      <span class="label">Belleza a domicilio</span>
+      <span class="label">Agencia de Belleza Nacional</span>
     </div>
     <div class="site-nav-links">
       <a href="#contexto" data-target="contexto">Contexto</a>
@@ -477,16 +477,14 @@
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-inner">
-    <img src="/assets/logo-sentido-dark.png" alt="Sentido Branding &amp; Advertising" class="hero-logo-sentido" />
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="hero-logo-sentido" />
     <div class="hero-eyebrow">
       <span>Propuesta estratégica</span>
       <span class="sep"></span>
-      <span class="prospect">Belleza a domicilio · Nacional</span>
+      <span class="prospect">Agencia de Belleza Nacional</span>
       <span class="sep"></span>
       <span>Agosto 2026</span>
     </div>
-    <div class="hero-wordmark">Lum<span class="acc">é</span><span class="tm">marca propuesta</span></div>
-    <div class="hero-wm-note">Nombre de trabajo · 3 rutas de naming a elección en la sección 02</div>
     <h1>La belleza profesional que <em>llega a donde estás.</em> Una marca, una plataforma, un país entero por atender.</h1>
     <p class="hero-sub">La categoría de <strong>maquillaje, peinado y uñas a domicilio</strong> ya funciona en México —pero se reserva por WhatsApp y se corre sin marca fuerte ni tecnología propia. Esta propuesta construye lo que falta: una <strong>marca nacional</strong>, una <strong>plataforma de reservas y pagos en línea</strong>, y un <strong>motor de captación</strong> en Google y Meta que llene la agenda.</p>
     <div class="hero-meta">
@@ -537,25 +535,13 @@
   <div class="inner">
     <div class="section-label reveal"><span class="dot"></span><span>02 · La marca &amp; la identidad</span><span class="rule"></span></div>
     <h2 class="h2 reveal" style="max-width:20ch;">Como aún no hay marca, <em>empezamos por ahí.</em></h2>
-    <p class="body-p reveal reveal-d1" style="max-width:44rem;">En esta categoría el nombre lo es casi todo: se comparte de boca en boca, se etiqueta en historias de novias y XV, y se busca en Google. Antes de programar una sola pantalla, Sentido define una marca que se sostenga a nivel nacional y se sienta premium sin volverse fría. Tres rutas de naming —tú eliges el rumbo, nosotros lo aterrizamos.</p>
+    <p class="body-p reveal reveal-d1" style="max-width:46rem;">En esta categoría el nombre lo es casi todo: se comparte de boca en boca, se etiqueta en historias de novias y XV, y se busca en Google. Por eso el primer trabajo de Sentido no es una pantalla —es la marca. En la fase de branding construimos el <strong>territorio, el nombre, el sistema visual y el tono de voz</strong> de la marca, para que nazca con una identidad que se sostenga a nivel nacional y se sienta premium sin volverse fría. Aquí explicamos <strong>cómo lo trabajamos y qué recibes</strong>; el resultado se desarrolla contigo dentro de la fase, no antes.</p>
 
-    <div class="name-grid">
-      <div class="name-card lead-name reveal">
-        <span class="flag">Ruta recomendada</span>
-        <div class="nm">Lum<em>é</em></div>
-        <div class="rt">Luz · glow · lo que resplandece</div>
-        <p>Corto, memorable y disponible como usuario en redes y dominio. Evoca el "glow" del resultado sin decir la palabra maquillaje. Funciona igual de bien en un ícono de app que en el toldo de un evento.</p>
-      </div>
-      <div class="name-card reveal reveal-d1">
-        <div class="nm">Aur<em>elia</em></div>
-        <div class="rt">Oro · calidez · ritual</div>
-        <p>Más femenino y editorial. Comunica lujo accesible y cuidado artesanal. Ideal si el posicionamiento se inclina fuerte a novias, XV y eventos de alto valor.</p>
-      </div>
-      <div class="name-card reveal reveal-d2">
-        <div class="nm">A la <em>Casa</em></div>
-        <div class="rt">Claro · directo · descriptivo</div>
-        <p>Ruta descriptiva y cercana: dice qué hace en dos palabras. Más fácil de posicionar en búsqueda, menos "boutique". Una alternativa si la prioridad es SEO y claridad sobre aspiracional.</p>
-      </div>
+    <div class="flow reveal">
+      <div class="flow-step"><div class="fk">1</div><h4>Territorio de marca</h4><p>Definimos posicionamiento, personalidad y promesa frente a Foriu, GoodLook y el resto de la categoría. Es el mapa que guía todo lo demás.</p></div>
+      <div class="flow-step"><div class="fk">2</div><h4>Naming + disponibilidad</h4><p>Exploramos rutas de nombre alineadas al territorio y validamos dominio y redes disponibles antes de comprometer nada.</p></div>
+      <div class="flow-step"><div class="fk">3</div><h4>Sistema visual</h4><p>Logotipo, tipografías y colorimetría. Una identidad pensada para pantalla primero: el ícono de la app, el feed y el kit del profesional.</p></div>
+      <div class="flow-step"><div class="fk">4</div><h4>Tono y aplicación</h4><p>Voz de marca y aplicables listos para operar: posts, ficha de servicio, correo de confirmación de reserva y más.</p></div>
     </div>
 
     <div class="module" style="margin-top:3.5rem;">
@@ -563,37 +549,23 @@
         <span class="module-badge">Fase 1 · Fundamento</span>
         <div class="mt">
           <h3>Branding completo <em>de marca nueva</em></h3>
-          <p class="ms">Todo lo que se necesita para lanzar con una identidad sólida y consistente en cada punto de contacto: la app, el sitio, las redes, el kit del profesional que llega a la casa.</p>
+          <p class="ms">Lo que recibes al cerrar la fase: una identidad sólida y consistente para cada punto de contacto —la app, el sitio, las redes, el kit del profesional que llega a la casa.</p>
         </div>
         <div class="price-flag">$15,000 <small>+ IVA · único</small></div>
       </div>
       <div class="deliverables">
         <div class="deliv"><span class="di">a</span><div><h4>Naming + validación</h4><p>Desarrollo del nombre y <b>verificación de dominio y redes disponibles</b> antes de comprometer la marca. El naming está incluido en esta fase.</p></div></div>
-        <div class="deliv"><span class="di">b</span><div><h4>Logotipo e isotipo</h4><p>Símbolo que funcione en el ícono de la app, en firma de correo y en un espectacular por igual.</p></div></div>
-        <div class="deliv"><span class="di">c</span><div><h4>Dos tipografías institucionales + colorimetría</h4><p>Sistema visual luminoso y premium —cálido, femenino, sin caer en el rosa genérico— pensado para pantalla primero.</p></div></div>
+        <div class="deliv"><span class="di">b</span><div><h4>Logotipo e isotipo</h4><p>Un símbolo que funcione en el ícono de la app, en firma de correo y en un espectacular por igual.</p></div></div>
+        <div class="deliv"><span class="di">c</span><div><h4>Dos tipografías institucionales + colorimetría</h4><p>El sistema visual completo —jerarquías, uso de color y tipografía— documentado para aplicarse de forma consistente en cada canal, con prioridad en pantalla.</p></div></div>
         <div class="deliv"><span class="di">d</span><div><h4>10 aplicables de marca</h4><p>Plantillas listas: posts, historias, portada, kit del profesional, ficha de servicio, correo de confirmación de reserva.</p></div></div>
         <div class="deliv"><span class="di">e</span><div><h4>Gráficos ejemplo de comunicación</h4><p>Piezas modelo que fijan el tono de voz y el estilo visual para que todo lo que salga después se vea de la misma familia.</p></div></div>
         <div class="deliv"><span class="di">f</span><div><h4>Manual + editables</h4><p>PDF final con la identidad y los archivos editables, para que la marca viva más allá de la entrega.</p></div></div>
       </div>
     </div>
 
-    <div class="brand-attrs reveal">
-      <div class="attr"><div class="ak">01</div><h4>Premium, no caro</h4><p>Se ve de confianza y de buen gusto; el precio no es la barrera.</p></div>
-      <div class="attr"><div class="ak">02</div><h4>Cálida y cercana</h4><p>Entra a la casa de alguien en un día importante. La marca acompaña, no intimida.</p></div>
-      <div class="attr"><div class="ak">03</div><h4>Luminosa</h4><p>Paleta clara y aire visual —el "glow" es el producto, no una banda oscura de museo.</p></div>
-      <div class="attr"><div class="ak">04</div><h4>Digital primero</h4><p>Diseñada para verse impecable en un ícono de app y en un feed antes que en papel.</p></div>
-    </div>
-
-    <div class="palette reveal reveal-d1">
-      <div class="swatch"><div class="chip" style="background:#FBF4F1;"></div><span class="sk">Base</span><span class="sh">Blush cream</span></div>
-      <div class="swatch"><div class="chip" style="background:#F6E8E2;"></div><span class="sk">Superficie</span><span class="sh">Rose sand</span></div>
-      <div class="swatch"><div class="chip" style="background:#B24C63;"></div><span class="sk">Acento</span><span class="sh">Rosewood</span></div>
-      <div class="swatch"><div class="chip" style="background:#2E2228;"></div><span class="sk">Tinta</span><span class="sh">Plum espresso</span></div>
-      <div class="swatch"><div class="chip" style="background:#E7BCC7;"></div><span class="sk">Detalle</span><span class="sh">Soft rose</span></div>
-    </div>
-    <div class="note reveal reveal-d1" style="margin-top:1.5rem;">
-      <span class="ni">🎨</span>
-      <p>La paleta y el nombre de arriba son la <strong>dirección propuesta por Sentido</strong> para arrancar la conversación. Se afinan contigo en la primera etapa del branding: aquí mostramos rumbo, no un cierre.</p>
+    <div class="note reveal reveal-d1" style="margin-top:2.5rem;">
+      <span class="ni">📌</span>
+      <p><strong>Por qué esto importa aquí.</strong> Es la categoría donde la marca es el activo más difícil de copiar: la que se recuerda, se recomienda y se busca por nombre. Por eso el branding es la fase que sostiene todo lo demás. El territorio, el nombre, el sistema visual y la guía de marca se <strong>desarrollan y validan contigo dentro de esta fase</strong> —no se producen ni se muestran en esta propuesta.</p>
     </div>
   </div>
 </section>
@@ -619,7 +591,7 @@
           <h3>Desarrollo de la <em>plataforma web</em></h3>
           <p class="ms">Sitio y sistema de reservas con pago en línea, panel de administración y módulo de profesionales. Mobile-first —porque aquí casi todo se reserva desde el teléfono.</p>
         </div>
-        <div class="price-flag">$20,000 <small>+ IVA · único</small></div>
+        <div class="price-flag">$35,000 <small>+ IVA · único</small></div>
       </div>
       <div class="deliverables">
         <div class="deliv"><span class="di">a</span><div><h4>Catálogo de servicios por categoría</h4><p>Maquillaje (social, novia, XV, airbrush), peinado, uñas —con descripción, duración y precio por servicio y por paquete.</p></div></div>
@@ -632,17 +604,17 @@
         <div class="deliv"><span class="di">h</span><div><h4>Base técnica de crecimiento</h4><p>Responsive mobile-first, SEO de URLs, tags y píxeles para medir, SSL y WhatsApp integrado.</p></div></div>
       </div>
 
-      <div class="note" style="margin-top:1.6rem;">
-        <span class="ni">📌</span>
-        <p><strong>Tienda de productos, cuando toque.</strong> La venta de productos de belleza dentro de la plataforma (como hace GoodLook) se integra sobre esta misma base cuando el catálogo esté listo. Se suma como extensión, no obliga a rehacer nada.</p>
+      <div class="inv-block" style="margin-top:2.2rem;">
+        <div class="inv-caption">Próximas fases de desarrollo · no incluidas en esta propuesta<span class="rule"></span></div>
+        <div class="deliverables" style="margin-top:0;">
+          <div class="deliv"><span class="di">→</span><div><h4>Tienda de productos</h4><p>La venta de productos de belleza dentro de la plataforma (como hace GoodLook) es una <b>fase futura de desarrollo</b>, fuera del alcance de esta propuesta. Se construye sobre esta misma base y se <b>cotiza aparte por proyecto</b> cuando se defina el catálogo.</p></div></div>
+          <div class="deliv"><span class="di">→</span><div><h4>App nativa dedicada</h4><p>Una app propia estilo GoodLook es el siguiente escalón una vez validada la demanda. Es un <b>desarrollo mayor, fuera de esta propuesta</b>, que se <b>cotiza aparte por proyecto</b> al definir alcance y volumen. La plataforma web ya resuelve reserva y pago desde el día uno, también en móvil.</p></div></div>
+        </div>
       </div>
-      <div class="note">
-        <span class="ni">📱</span>
-        <p><strong>App nativa dedicada — fase posterior.</strong> Una app propia estilo GoodLook es el siguiente escalón natural una vez validada la demanda con la plataforma web. Es un desarrollo mayor y se <strong>cotiza a medida (por validar)</strong> cuando definamos alcance y volumen; la plataforma web ya resuelve reserva y pago desde el día uno, incluyendo desde el móvil.</p>
-      </div>
-      <div class="note">
+
+      <div class="note" style="margin-top:1.8rem;">
         <span class="ni">🔧</span>
-        <p><strong>Operación continua (opcional).</strong> Una vez en vivo, la plataforma puede sostenerse con <strong>Administración del sitio ($3,500 + IVA/mes)</strong>: gráficos de promoción, actualizaciones y análisis de conversión. Se detalla en Inversión.</p>
+        <p><strong>Administración del sitio (opcional · operación).</strong> Una vez en vivo, la plataforma puede sostenerse con <strong>Administración del sitio ($3,500 + IVA/mes)</strong>, acotada a: <strong>ajustes de contenido</strong>, <strong>gestión de detalles técnicos para el marketing digital</strong> (tags, píxeles, integraciones) y <strong>arreglo de bugs</strong>. Las <strong>mejoras o nuevas funcionalidades se cotizan por proyecto</strong> y no entran en esta mensualidad. Se detalla en Inversión.</p>
       </div>
     </div>
   </div>
@@ -716,9 +688,39 @@
           <p class="ms">No son requisito para arrancar. Se activan cuando el volumen de reservas los pida —y potencian todo lo anterior.</p>
         </div>
       </div>
-      <div class="deliverables">
-        <div class="deliv"><span class="di">+</span><div><h4>Gestión de Redes Sociales — $7,500 + IVA/mes</h4><p>Contenido orgánico de marca en Instagram y TikTok que alimenta a la pauta y construye comunidad. Con esto, la gestión de Meta Ads queda <b>incluida</b>.</p></div></div>
-        <div class="deliv"><span class="di">+</span><div><h4>CRM + Reputación — $4,000 + IVA/mes</h4><p>Seguimiento automatizado de cada lead por WhatsApp/email, recordatorios de cita, y motor de reseñas para posicionar en Google Maps ciudad por ciudad.</p></div></div>
+      <div class="channel-pair">
+        <div class="channel">
+          <div class="ch-top">
+            <h4>Gestión de Redes Sociales</h4>
+            <div class="ch-fee"><span>gestión</span><b>$7,500 + IVA/mes</b></div>
+          </div>
+          <ul>
+            <li>15 publicaciones mensuales con mix de formatos: reels, carruseles, posts e historias</li>
+            <li>Producción gráfica de cada pieza con la identidad de la marca</li>
+            <li>Gestión de las cuentas de Facebook e Instagram</li>
+            <li>Gestión de comunidad y respuesta a interacciones</li>
+            <li>Reporte mensual de desempeño</li>
+          </ul>
+          <div class="ch-pauta">
+            <b>Incluye la gestión de Meta Ads sin costo extra</b> y Google Business Profile preferencial a $2,500/mes. La pauta publicitaria va aparte, directo a la plataforma. Volumen de piezas negociable según necesidad.
+          </div>
+        </div>
+
+        <div class="channel">
+          <div class="ch-top">
+            <h4>CRM + Reputación</h4>
+            <div class="ch-fee"><span>gestión</span><b>$4,000 + IVA/mes</b></div>
+          </div>
+          <ul>
+            <li>Pipeline comercial con captura y asignación automática de leads</li>
+            <li>Seguimiento automatizado por WhatsApp, email y SMS</li>
+            <li>Recordatorios de cita para reducir ausencias</li>
+            <li>Motor de reseñas para posicionar en Google Maps ciudad por ciudad</li>
+          </ul>
+          <div class="ch-pauta">
+            La implementación queda <b>sin costo</b> al contratar el mantenimiento mensual.
+          </div>
+        </div>
       </div>
       <div class="note" style="margin-top:1.2rem;">
         <span class="ni">📸</span>
@@ -745,11 +747,11 @@
         </div>
         <div class="inv-row">
           <div class="ir-name">Plataforma web de reservas y pagos <small>Catálogo · reserva con fecha/hora/ubicación · pagos en línea · módulo de profesionales · paquetes de evento · panel admin · reseñas</small></div>
-          <div class="ir-price">$20,000 <small>+ IVA · 60/40</small></div>
+          <div class="ir-price">$35,000 <small>+ IVA · 60/40</small></div>
         </div>
         <div class="inv-row total">
           <div class="ir-name">Total de arranque · marca + plataforma</div>
-          <div class="ir-price">$35,000 <small style="color:var(--rose-soft)">+ IVA · inversión única</small></div>
+          <div class="ir-price">$50,000 <small style="color:var(--rose-soft)">+ IVA · inversión única</small></div>
         </div>
       </div>
       <div class="note">
@@ -786,11 +788,11 @@
       <div class="inv-caption">Complementos opcionales · cuando tenga sentido sumarlos<span class="rule"></span></div>
       <div class="inv-table">
         <div class="inv-row optional">
-          <div class="ir-name">Administración de la plataforma <small>Gráficos de promoción, actualizaciones menores, análisis de conversión y tráfico</small></div>
+          <div class="ir-name">Administración del sitio <small>Ajustes de contenido · detalles técnicos para el marketing digital · arreglo de bugs. Mejoras y nuevas funcionalidades se cotizan por proyecto aparte.</small></div>
           <div class="ir-price">$3,500 <small>+ IVA / mes</small></div>
         </div>
         <div class="inv-row optional">
-          <div class="ir-name">Gestión de Redes Sociales <small>Contenido orgánico IG + TikTok · incluye la gestión de Meta Ads sin costo extra</small></div>
+          <div class="ir-name">Gestión de Redes Sociales <small>15 publicaciones/mes con mix (reels, carruseles, posts, historias) en Facebook e Instagram · incluye gestión de Meta Ads sin costo extra</small></div>
           <div class="ir-price">$7,500 <small>+ IVA / mes</small></div>
         </div>
         <div class="inv-row optional">
@@ -806,7 +808,7 @@
 
     <div class="note reveal" style="margin-top:2rem;">
       <span class="ni">🧾</span>
-      <p><strong>Arranque recomendado.</strong> Marca + plataforma ($35,000 + IVA único) para lanzar con producto e identidad sólidos, más gestión de adquisición ($8,000 + IVA/mes) y pauta directa a plataformas desde la apertura —para que la agenda no arranque en cero. Pagos: inversiones únicas 50/50 y 60/40; mensuales por adelantado.</p>
+      <p><strong>Arranque recomendado.</strong> Marca + plataforma ($50,000 + IVA único) para lanzar con producto e identidad sólidos, más gestión de adquisición ($8,000 + IVA/mes) y pauta directa a plataformas desde la apertura —para que la agenda no arranque en cero. Pagos: inversiones únicas 50/50 y 60/40; mensuales por adelantado.</p>
     </div>
   </div>
 </section>
@@ -897,7 +899,7 @@
       <a href="https://propuestas.sentido.mx">propuestas.sentido.mx</a>
     </div>
     <div class="footer-legal">
-      Propuesta preparada para un proyecto de belleza a domicilio de alcance nacional · Agosto 2026. "Lumé", "Aurelia" y las paletas mostradas son propuestas de marca sujetas a validación. Precios en MXN, IVA marcado. Vigencia 30 días naturales. La pauta publicitaria es inversión directa en plataformas y se cotiza por separado del honorario de gestión. La app nativa dedicada se cotiza a medida. Sentido Branding &amp; Advertising.
+      Propuesta preparada para una Agencia de Belleza Nacional · Agosto 2026. La marca (nombre, logotipo, sistema visual) se desarrolla dentro de la fase de branding y no se presenta en este documento. Precios en MXN, IVA marcado. Vigencia 30 días naturales. La pauta publicitaria es inversión directa en plataformas y se cotiza por separado del honorario de gestión. La tienda de productos y la app nativa dedicada son fases de desarrollo posteriores y se cotizan aparte por proyecto. Sentido Branding &amp; Advertising.
     </div>
   </div>
 </footer>

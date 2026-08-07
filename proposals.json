@@ -16,7 +16,7 @@
         {
           "id": "plataforma",
           "nombre": "Plataforma web de reservas y pagos (booking + pagos + panel admin + reseñas)",
-          "precio": 20000,
+          "precio": 35000,
           "tipo": "unico"
         },
         {
@@ -51,7 +51,7 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Prospecto en frío: agencia/plataforma de belleza a domicilio nacional sin marca cerrada. Sentido propone la marca (nombre de trabajo 'Lumé', alts Aurelia / A la Casa). Refs del cliente: Foriu y GoodLook. Arranque recomendado: marca $15k + plataforma $20k (único $35k) + adquisición $8k/mes + pauta directa. App nativa = cotización a medida por validar.",
+      "notas": "Prospecto en frío: Agencia de Belleza Nacional (belleza a domicilio) sin marca cerrada. Sentido VENDE el servicio de branding (no entrega la marca en la propuesta). Refs del cliente: Foriu y GoodLook. Arranque recomendado: branding $15k + plataforma $35k (único $50k) + adquisición $8k/mes + pauta directa. Tienda de productos y app nativa = fases futuras, por proyecto. Admin del sitio $3,500/mes = contenido + detalles técnicos mkt + bugs; mejoras por proyecto.",
       "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
       "fechaSeguimiento": null,
       "bitacora": []
