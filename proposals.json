@@ -149,7 +149,7 @@
       "tipo": "propuesta",
       "cliente": "Reel Yacht Charters — Los Cabos (charter náutico)",
       "fecha": "2026-08-04",
-      "estatus": "enviada",
+      "estatus": "ganada",
       "serviciosDisponibles": [
         {
           "id": "sitio",
@@ -182,11 +182,20 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "sitio"
+      ],
       "notas": "Reel Yacht Charters (reelyacht.com.mx) — charter de yates en Los Cabos/Cabo San Lucas, experiencias: snorkel, avistamiento de ballenas, sunset, pesca deportiva. Flota Don Luis 43ft + Baby Bolaz 51ft. Problema: sitio sin trafico ni ranking en mercado de alta intencion dominado por competidores y OTAs. Propuesta: Fase 1 reestructura/renovacion del sitio con SEO tecnico incluido ($20,000 unico) + Motor Integral $19,000/mes (Blog+admin sitio $3,500, Redes $7,500 con Meta Ads incluido, Google Ads $4,000, CRM+Reputacion+Perfil de Google (GBP) fusionado $4,000). Pauta aparte: Google $8-15k, Meta $5-12k. Temporada clave ballenas Dic-Abr. Esperando respuesta via formulario.",
-      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [
+        {
+          "fecha": "2026-08-07",
+          "proximoPaso": "",
+          "notas": "van a confirmar si tambien activamos mkt digital",
+          "creadoEn": "2026-08-07T23:31:16.242Z"
+        }
+      ]
     },
     {
       "slug": "webrentadepasdanitellez",
