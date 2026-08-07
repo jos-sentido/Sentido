@@ -26,12 +26,6 @@
           "tipo": "mensual"
         },
         {
-          "id": "meta",
-          "nombre": "Gestión Meta Ads (IG + TikTok, prospección + retargeting)",
-          "precio": 4000,
-          "tipo": "mensual"
-        },
-        {
           "id": "admin-sitio",
           "nombre": "Administración de la plataforma (opcional)",
           "precio": 3500,
@@ -39,7 +33,7 @@
         },
         {
           "id": "redes",
-          "nombre": "Gestión de Redes Sociales (opcional · incluye Meta Ads)",
+          "nombre": "Gestión de Redes Sociales (incluye gestión de Meta Ads + GBP preferencial $2,500)",
           "precio": 7500,
           "tipo": "mensual"
         },
@@ -51,7 +45,7 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Prospecto en frío: Agencia de Belleza Nacional (belleza a domicilio) sin marca cerrada. Sentido VENDE el servicio de branding (no entrega la marca en la propuesta). Refs del cliente: Foriu y GoodLook. Arranque recomendado: branding $15k + plataforma $35k (único $50k) + adquisición $8k/mes + pauta directa. Tienda de productos y app nativa = fases futuras, por proyecto. Admin del sitio $3,500/mes = contenido + detalles técnicos mkt + bugs; mejoras por proyecto.",
+      "notas": "Prospecto en frío: Agencia de Belleza Nacional (belleza a domicilio) sin marca cerrada. Sentido VENDE el servicio de branding (no entrega la marca). Refs: Foriu y GoodLook. Arranque recomendado: branding $15k + plataforma $35k (único $50k) + gestión Google Ads $4k/mes + pauta directa. Meta Ads NO se cobra aparte: su gestión va incluida en Gestión de Redes ($7,500/mes). Tienda de productos y app nativa = fases futuras por proyecto. Admin sitio $3,500/mes.",
       "proximoPaso": "Esperando contacto vía WhatsApp / correo",
       "fechaSeguimiento": null,
       "bitacora": []
