@@ -1,6 +1,62 @@
 {
   "proposals": [
     {
+      "slug": "belleza-a-domicilio",
+      "tipo": "propuesta",
+      "cliente": "Belleza a Domicilio — Nacional (marca nueva, propuesta en frío · branding Sentido)",
+      "fecha": "2026-08-07",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "branding",
+          "nombre": "Branding completo de marca nueva (naming + identidad)",
+          "precio": 15000,
+          "tipo": "unico"
+        },
+        {
+          "id": "plataforma",
+          "nombre": "Plataforma web de reservas y pagos (booking + pagos + panel admin + reseñas)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión Google Ads (Search + PMax + GBP por ciudad)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "meta",
+          "nombre": "Gestión Meta Ads (IG + TikTok, prospección + retargeting)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "admin-sitio",
+          "nombre": "Administración de la plataforma (opcional)",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes Sociales (opcional · incluye Meta Ads)",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM + Reputación (opcional)",
+          "precio": 4000,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Prospecto en frío: agencia/plataforma de belleza a domicilio nacional sin marca cerrada. Sentido propone la marca (nombre de trabajo 'Lumé', alts Aurelia / A la Casa). Refs del cliente: Foriu y GoodLook. Arranque recomendado: marca $15k + plataforma $20k (único $35k) + adquisición $8k/mes + pauta directa. App nativa = cotización a medida por validar.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "asian-story",
       "tipo": "propuesta",
       "cliente": "Asian Story — Guadalajara (e-commerce textiles/moda artesanal del mundo)",
