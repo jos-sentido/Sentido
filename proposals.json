@@ -40,12 +40,12 @@
         {
           "id": "gestion-sitio",
           "nombre": "Gestión de sitio (blog SEO + integración de conversiones + mantenimiento)",
-          "precio": 7000,
+          "precio": 4000,
           "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado $22,500/mes + IVA (Redes+Meta / Google Ads / CRM, con Gestión de sitio $7,000 y GBP incluido) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
+      "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado: subtotal recurrente $19,500/mes, -10% sistema integral = $17,550/mes + IVA + IVA (Redes+Meta / Google Ads / CRM, con Gestión de sitio $4,000 y GBP incluido; -10% solo si se contrata el sistema recurrente completo, aplica solo al honorario, no a pauta/mensajeria/rediseno/audiovisual) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
       "proximoPaso": "Esperando contacto vía WhatsApp (cierre sin formulario)",
       "fechaSeguimiento": null,
       "bitacora": []
