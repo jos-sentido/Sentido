@@ -16,20 +16,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #141210;               /* warm near-black */
-    --surface: #1D1A17;          /* deep charcoal */
-    --surface-elevated: #26221E; /* charcoal lift */
-    --border: #2E2A25;
-    --border-strong: #433C33;
+    --bg: #131315;               /* neutral near-black (cool/neutral) */
+    --surface: #1D1D20;          /* neutral charcoal */
+    --surface-elevated: #26262A; /* neutral charcoal lift */
+    --border: #2E2E33;
+    --border-strong: #43434A;
     --hi: #FFFFFF;               /* emphasis / gradient-to-white highlight */
-    --ink: #F1F0EE;              /* near-white neutral — main text */
-    --ink-soft: #C6C4C1;         /* light gray */
-    --ink-muted: #8F8D89;        /* mid gray */
-    --ink-whisper: #6B6965;      /* dim gray */
+    --ink: #F2F2F3;              /* near-white neutral — main text */
+    --ink-soft: #C6C6C8;         /* light neutral gray */
+    --ink-muted: #8E8E92;        /* mid neutral gray */
+    --ink-whisper: #6A6A6E;      /* dim neutral gray */
     --rose: #D9C7A3;             /* ACCENT ONLY — warm bone/beige for lines, numbers, hovers */
     --rose-bright: #EADCBB;
     --rose-soft: #B8A67F;
-    --plum: #090807;             /* darkest band — total row / footer */
+    --plum: #0B0B0D;             /* neutral darkest band — total row / footer */
     --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --maxw: 74rem;
@@ -68,7 +68,7 @@
   /* ---------- Nav (sticky con backdrop) ---------- */
   .site-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(18, 16, 14, 0.82);
+    background: rgba(19, 19, 21, 0.82);
     backdrop-filter: saturate(150%) blur(16px);
     -webkit-backdrop-filter: saturate(150%) blur(16px);
     border-bottom: 1px solid transparent;
@@ -424,14 +424,14 @@
   .cta-note a:hover { text-decoration: underline; }
 
   /* ---------- Footer ---------- */
-  .site-footer { background: #0C0B09; color: #B3A88F; padding: 2.5rem 1.25rem 3rem; }
+  .site-footer { background: #0B0B0D; color: #ABABAF; padding: 2.5rem 1.25rem 3rem; }
   @media (min-width: 768px) { .site-footer { padding: 2.75rem 2rem 3.25rem; } }
   .footer-inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
   .closing-sentido-mark { height: 36px; width: auto; opacity: 0.7; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.82rem; letter-spacing: 0.04em; }
-  .footer-links a { color: #C6C4C1; text-decoration: none; transition: color 0.2s ease; }
+  .footer-links a { color: #C6C6C8; text-decoration: none; transition: color 0.2s ease; }
   .footer-links a:hover { color: var(--rose-bright); }
-  .footer-legal { width: 100%; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #2C2822; font-size: 0.76rem; color: #7C725E; letter-spacing: 0.03em; }
+  .footer-legal { width: 100%; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #2A2A2E; font-size: 0.76rem; color: #78787C; letter-spacing: 0.03em; }
 </style>
 </head>
 <body>
