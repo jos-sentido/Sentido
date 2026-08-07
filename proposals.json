@@ -36,11 +36,17 @@
           "nombre": "Producción audiovisual por proyecto (a cotizar a la medida)",
           "precio": 0,
           "tipo": "unico"
+        },
+        {
+          "id": "gestion-sitio",
+          "nombre": "Gestión de sitio (blog SEO + integración de conversiones + mantenimiento)",
+          "precio": 7000,
+          "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado $15,500/mes + IVA (Redes+Meta / Google Ads / CRM, con GBP incluido) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
-      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado $22,500/mes + IVA (Redes+Meta / Google Ads / CRM, con Gestión de sitio $7,000 y GBP incluido) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
+      "proximoPaso": "Esperando contacto vía WhatsApp (cierre sin formulario)",
       "fechaSeguimiento": null,
       "bitacora": []
     },
@@ -60,7 +66,7 @@
         {
           "id": "plataforma",
           "nombre": "Plataforma web de reservas y pagos (booking + pagos + panel admin + reseñas)",
-          "precio": 35000,
+          "precio": 43000,
           "tipo": "unico"
         },
         {
@@ -89,7 +95,7 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Prospecto en frío: Agencia de Belleza Nacional (belleza a domicilio) sin marca cerrada. Sentido VENDE el servicio de branding (no entrega la marca). Refs: Foriu y GoodLook. Arranque recomendado: branding $15k + plataforma $35k (único $50k) + gestión Google Ads $4k/mes + pauta directa. Meta Ads NO se cobra aparte: su gestión va incluida en Gestión de Redes ($7,500/mes). Tienda de productos y app nativa = fases futuras por proyecto. Admin sitio $3,500/mes.",
+      "notas": "Prospecto en frío: Agencia de Belleza Nacional (belleza a domicilio) sin marca cerrada. Sentido VENDE el servicio de branding (no entrega la marca). Refs: Foriu y GoodLook. Arranque recomendado: branding $15k + plataforma $43k (único $58k) + gestión Google Ads $4k/mes + pauta directa. Meta Ads NO se cobra aparte: su gestión va incluida en Gestión de Redes ($7,500/mes). Tienda de productos y app nativa = fases futuras por proyecto. Admin sitio $3,500/mes.",
       "proximoPaso": "Esperando contacto vía WhatsApp / correo",
       "fechaSeguimiento": null,
       "bitacora": []
