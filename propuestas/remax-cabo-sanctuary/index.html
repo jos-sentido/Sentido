@@ -147,7 +147,7 @@
     position: relative; overflow: hidden;
   }
   .insight::before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background: var(--accent); }
-  .insight .k { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: #E8899A; }
+  .insight .k { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
   .insight p { font-family: var(--font-display); font-size: clamp(1.3rem, 2.8vw, 1.9rem); line-height: 1.32; margin-top: 1rem; font-weight: 300; }
   .insight p strong { color: #fff; font-weight: 500; font-style: italic; }
 
@@ -237,13 +237,13 @@
   .inv-note b { color: var(--ink); font-weight: 600; }
 
   .pauta-strip { margin-top: 1.6rem; background: var(--ink); color: #EEF1F5; border-radius: 16px; padding: 1.9rem 1.9rem; }
-  .pauta-strip .k { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #E8899A; }
+  .pauta-strip .k { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
   .pauta-strip h3 { color: #fff; font-size: 1.3rem; margin: 0.7rem 0 0.4rem; }
   .pauta-strip p { font-size: 0.9rem; color: #C6CDD6; font-weight: 300; margin-bottom: 1.2rem; }
   .pauta-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   @media (max-width: 560px) { .pauta-lines { grid-template-columns: 1fr; } }
   .pauta-lines .pl { border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 1rem 1.1rem; }
-  .pauta-lines .pl .plc { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #E8899A; }
+  .pauta-lines .pl .plc { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
   .pauta-lines .pl .plr { font-family: var(--font-display); font-size: 1.35rem; color: #fff; margin-top: 0.3rem; }
   .pauta-lines .pl small { color: #9AA4B0; font-size: 0.76rem; display: block; margin-top: 0.2rem; }
 
@@ -258,7 +258,7 @@
   /* ===================== CLOSING ===================== */
   .closing { padding: 96px 0; background: var(--ink); color: #EEF1F5; text-align: center; }
   .closing h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); max-width: 20ch; margin: 0 auto; line-height: 1.16; }
-  .closing h2 em { font-style: italic; color: #F06178; }
+  .closing h2 em { font-style: italic; color: var(--accent); }
   .closing p { color: #AAB3BF; font-weight: 300; font-size: 1.1rem; max-width: 52ch; margin: 1.6rem auto 0; }
 
   /* ===================== CTA FORM ===================== */
@@ -288,6 +288,15 @@
   .form-status { font-size: 0.9rem; color: var(--ink-soft); opacity: 0; transition: opacity .3s; }
   .form-status.visible { opacity: 1; }
   .form-status.error { color: var(--accent-deep); }
+
+  .whats-cta {
+    display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 0.6rem;
+    font-family: var(--font-sans); font-size: 1.06rem; font-weight: 600; color: #fff;
+    background: var(--accent); border-radius: 34px; padding: 1.05rem 2.1rem; text-decoration: none;
+    transition: background .2s, transform .2s; box-shadow: 0 14px 32px rgba(224,26,52,.20);
+  }
+  .whats-cta:hover { background: var(--accent-deep); transform: translateY(-2px); }
+  .whats-cta .dot { width: 11px; height: 11px; border-radius: 50%; background: #25D366; box-shadow: 0 0 0 4px rgba(37,211,102,.25); }
 
   .contact-alt {
     margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid var(--line);
@@ -358,14 +367,14 @@
 
     <div class="stats reveal">
       <div class="stat">
-        <div class="fig">1,100 → 2,500+</div>
-        <div class="lbl">Listados activos en ~12 meses: hoy hay más del doble de propiedades compitiendo por el mismo comprador.</div>
-        <div class="src">Inventario Los Cabos mid-2025</div>
+        <div class="fig">Más oferta</div>
+        <div class="lbl">El inventario se expandió de forma acelerada en el último año: hoy hay mucha más competencia por el mismo comprador que hace poco.</div>
+        <div class="src">Mercado Los Cabos 2025</div>
       </div>
       <div class="stat">
-        <div class="fig">+127%</div>
-        <div class="lbl">Creció el inventario en un año: mucha oferta que antes no existía, ahora peleando por atención.</div>
-        <div class="src">Derivado de inventario Los Cabos</div>
+        <div class="fig">En pantalla</div>
+        <div class="lbl">El comprador investiga y filtra en línea meses antes de visitar: la primera impresión ocurre en pantalla, no en Cabo.</div>
+        <div class="src">Comportamiento de compra</div>
       </div>
       <div class="stat">
         <div class="fig">~82%</div>
@@ -381,7 +390,7 @@
 
     <div class="insight reveal">
       <span class="k">La lectura</span>
-      <p>Cuando había 1,100 propiedades, ganaba quien tenía el mejor listado. Con 2,500+, gana quien <strong>captura al lead correcto y lo acompaña</strong> desde el primer clic hasta la firma. El comprador extranjero investiga en línea, meses antes de volar a Cabo. El sistema que lo reciba en ese momento se lleva la operación.</p>
+      <p>Cuando la oferta era escasa, ganaba quien tenía el mejor listado. Ahora que hay mucha más oferta compitiendo, gana quien <strong>captura al lead correcto y lo acompaña</strong> desde el primer clic hasta la firma. El comprador extranjero investiga en línea, meses antes de volar a Cabo. El sistema que lo reciba en ese momento se lleva la operación.</p>
     </div>
   </div>
 </section>
@@ -543,20 +552,31 @@
     <div class="module reveal">
       <div class="module-aside">
         <span class="idx">Pieza 04</span>
-        <h3>Rediseño web + conexión</h3>
+        <h3>Rediseño web + gestión de sitio</h3>
         <span class="role">Motor de conversión</span>
       </div>
       <div class="module-body">
-        <p>El sitio deja de ser un catálogo y se vuelve el centro del sistema: recibe toda la pauta, convierte la visita en lead y lo entrega ordenado al CRM. Cada elemento existe para mover al comprador un paso más cerca del asesor.</p>
+        <p>El sitio deja de ser un catálogo y se vuelve el centro del sistema: recibe toda la pauta, convierte la visita en lead y lo entrega ordenado al CRM. Son dos frentes distintos — un rediseño de arranque y una gestión mensual que lo mantiene vivo y midiendo bien.</p>
+
+        <p style="font-weight:500;color:var(--ink);margin:0 0 .4rem;">Rediseño web — proyecto único de arranque</p>
         <ul>
           <li>Rediseño mobile-first orientado a conversión, a la altura del inventario premium</li>
           <li>Captura de leads en cada ficha de propiedad, con ruteo al asesor correcto</li>
           <li>Integración con pixels, tags y campañas de Meta y Google</li>
           <li>Conexión directa al CRM: cada formulario entra al embudo en tiempo real</li>
-          <li>SEO técnico y de contenido para sostener tráfico orgánico calificado</li>
+          <li>Base de SEO técnico para sostener tráfico orgánico calificado</li>
         </ul>
         <div class="price-inline">Desde $20,000 <span>+ IVA · inversión única (60% / 40%)</span></div>
         <p class="inv-note" style="margin-top:0.8rem;">Alcance final según integraciones de inventario y volumen de fichas — se confirma en el kickoff.</p>
+
+        <p style="font-weight:500;color:var(--ink);margin:1.7rem 0 .4rem;">Gestión de sitio — mensual y recurrente</p>
+        <p>Ya en línea, el sitio necesita contenido constante para posicionar y medición limpia para que la pauta rinda. Este frente es recurrente y distinto del rediseño de arranque.</p>
+        <ul>
+          <li>Mantenimiento y gestión continua del sitio</li>
+          <li>Blog: publicación de contenido para SEO y posicionamiento orgánico</li>
+          <li>Integración de conversiones para la pauta: tracking, píxeles y eventos que alimentan Meta y Google Ads</li>
+        </ul>
+        <div class="price-inline">$7,000 <span>+ IVA / mes</span></div>
       </div>
     </div>
 
@@ -572,7 +592,7 @@
         <ul>
           <li>Pipeline comercial con etapas (Lead · Contacto · Visita · Seguimiento · Ganado / Perdido)</li>
           <li>Captura automática y asignación inteligente de leads por zona o asesor</li>
-          <li>Seguimiento automatizado por WhatsApp + email + SMS para un ciclo de compra largo</li>
+          <li>Seguimiento automatizado por WhatsApp + email + SMS para un ciclo de compra largo — el fee cubre configuración y gestión; los envíos tienen un costo adicional variable según el número de líneas y el volumen de mensajería</li>
           <li>Calendarios compartidos, landing pages y formularios integrados</li>
           <li>Tablero de conversión: de dónde viene cada lead y en qué etapa se cierra o se enfría</li>
         </ul>
@@ -596,12 +616,13 @@
       <div class="inv-card hero-card reveal">
         <span class="rec">Recomendado · Sistema integral</span>
         <h3>Operación mensual</h3>
-        <div class="cap">Las tres piezas recurrentes que mantienen la máquina viva.</div>
+        <div class="cap">Las piezas recurrentes que mantienen la máquina viva.</div>
         <div class="inv-row"><div class="name">Meta Ads + Gestión de Redes <small>Meta Ads incluido</small></div><div class="amt">$7,500</div></div>
         <div class="inv-row"><div class="name">Google Ads <small>gestión y optimización</small></div><div class="amt">$4,000</div></div>
         <div class="inv-row"><div class="name">CRM + Automatización <small>implementación sin costo</small></div><div class="amt">$4,000</div></div>
+        <div class="inv-row"><div class="name">Gestión de sitio <small>blog + conversiones + mantenimiento</small></div><div class="amt">$7,000</div></div>
         <div class="inv-row"><div class="name">Google Business Profile <small>incentivo del combo</small></div><div class="amt free">Incluido</div></div>
-        <div class="inv-total"><span class="t-lbl">Total mensual</span><span class="t-amt">$15,500 <small>+ IVA / mes</small></span></div>
+        <div class="inv-total"><span class="t-lbl">Total mensual</span><span class="t-amt">$22,500 <small>+ IVA / mes</small></span></div>
         <p class="inv-note"><b>Incentivo del sistema integral:</b> al contratar Ads + Redes + CRM juntos, Google Business Profile queda incluido. Mensualidades por adelantado.</p>
       </div>
 
@@ -657,7 +678,7 @@
 <!-- ===================== CLOSING ===================== -->
 <section class="closing">
   <div class="wrap">
-    <h2>En un mercado de 2,500 propiedades, la mejor ubicación es <em>el sistema</em> que convierte.</h2>
+    <h2>Cuando el inventario ya no es escaso, la mejor ubicación es <em>el sistema</em> que convierte.</h2>
     <p>RE/MAX Cabo Sanctuary ya tiene el inventario y la marca. Lo que falta es la máquina que capture cada oportunidad y no deje enfriar ni una.</p>
   </div>
 </section>
@@ -667,48 +688,14 @@
   <div class="wrap">
     <div class="cta-inner">
       <h2>Contactemos.</h2>
-      <p class="lede">Cuéntanos dónde está parado RE/MAX Cabo Sanctuary hoy y te contactamos personalmente en menos de 24 h hábiles. Si prefieres, escríbenos directo — los canales están abajo.</p>
+      <p class="lede">¿Listos para poner a trabajar el sistema? Escríbenos directo por WhatsApp y platicamos dónde está parado RE/MAX Cabo Sanctuary hoy — te contestamos personalmente.</p>
 
-      <form id="lead-form" data-webhook="/api/lead" novalidate>
-        <input type="hidden" name="propuesta" value="remax-cabo-sanctuary" />
-
-        <div class="form-row">
-          <label>Nombre <span class="req">*</span>
-            <input name="nombre" type="text" required autocomplete="name" />
-          </label>
-          <label>Email <span class="req">*</span>
-            <input name="email" type="email" required autocomplete="email" />
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>WhatsApp
-            <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
-          </label>
-          <label>Siguiente paso <span class="req">*</span>
-            <select name="paso" required>
-              <option value="">Selecciona…</option>
-              <option>Avancemos — agendemos kickoff</option>
-              <option>Me interesa, quiero ajustar el alcance</option>
-              <option>Tengo preguntas antes de decidir</option>
-              <option>Necesito un poco más de tiempo</option>
-            </select>
-          </label>
-        </div>
-
-        <label>Mensaje (opcional)
-          <textarea name="mensaje" rows="4" placeholder="Cuéntanos qué tienes en mente…"></textarea>
-        </label>
-
-        <button type="submit" class="form-submit">Enviar mensaje →</button>
-        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
-      </form>
+      <a class="whats-cta" href="https://wa.me/523331672223?text=Hola%2C%20vi%20la%20propuesta%20de%20Sentido%20para%20RE%2FMAX%20Cabo%20Sanctuary%20y%20quiero%20platicar." target="_blank" rel="noopener">
+        <span class="dot"></span> Escríbenos por WhatsApp →
+      </a>
 
       <div class="contact-alt">
-        <a class="whats" href="https://wa.me/523331672223?text=Hola%2C%20vi%20la%20propuesta%20de%20Sentido%20para%20RE%2FMAX%20Cabo%20Sanctuary%20y%20me%20interesa%20conversar." target="_blank" rel="noopener">
-          <span class="dot"></span> WhatsApp directo · +52 333 167 22 23
-        </a>
-        <span class="em"><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a></span>
+        <span class="em">O si prefieres: <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a> · WhatsApp +52 333 167 22 23</span>
       </div>
     </div>
   </div>
@@ -764,53 +751,6 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-  })();
-
-  // ---- Lead form ----
-  (function () {
-    var form = document.getElementById('lead-form');
-    if (!form) return;
-    var statusEl = document.getElementById('lf-status');
-    var submitBtn = form.querySelector('.form-submit');
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-
-      var payload = {
-        Propuesta: form.propuesta.value,
-        Nombre: form.nombre.value.trim(),
-        Email: form.email.value.trim(),
-        WhatsApp: form.whatsapp.value.trim() || '—',
-        'Siguiente paso': form.paso.value,
-        Mensaje: form.mensaje.value.trim() || '—',
-        Fuente: 'propuestas.sentido.mx/remax-cabo-sanctuary',
-        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
-      };
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando…';
-      statusEl.classList.remove('error');
-
-      try {
-        var res = await fetch(form.dataset.webhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Webhook ' + res.status);
-        statusEl.textContent = 'Recibido. Te contactamos en menos de 24 h hábiles a ' + payload.Email + '.';
-        statusEl.classList.add('visible');
-        form.reset();
-        submitBtn.textContent = '✓ Enviado';
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx o por WhatsApp.';
-        statusEl.classList.add('visible', 'error');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar mensaje →';
-      }
-    });
   })();
 </script>
 </body>
