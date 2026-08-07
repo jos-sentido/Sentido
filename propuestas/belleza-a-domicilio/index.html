@@ -322,6 +322,11 @@
   .channel h4 { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink); }
   .channel .ch-fee { font-size: 0.82rem; color: var(--ink-muted); text-align: right; }
   .channel .ch-fee b { display: block; font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); }
+  /* Móvil: apila título arriba y precio/etiqueta debajo (full-width) */
+  @media (max-width: 480px) {
+    .channel .ch-top { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .channel .ch-fee { text-align: left; }
+  }
   .channel ul { list-style: none; margin-top: 1rem; }
   .channel li { font-size: 0.9rem; color: var(--ink-soft); padding: 0.3rem 0 0.3rem 1.1rem; position: relative; }
   .channel li::before { content: '—'; position: absolute; left: 0; color: var(--rose); }
