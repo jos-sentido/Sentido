@@ -10,7 +10,7 @@
         {
           "id": "arq-marca",
           "nombre": "Fase 0 — Arquitectura de marca + manual maestro",
-          "precio": 45000,
+          "precio": 30000,
           "tipo": "unico"
         },
         {
@@ -28,7 +28,7 @@
         {
           "id": "sitio-grupo",
           "nombre": "Fase 1 — Sitio del grupo",
-          "precio": 38000,
+          "precio": 25000,
           "tipo": "unico"
         },
         {
@@ -74,7 +74,7 @@
         "plan-visibilidad",
         "plan-autoridad"
       ],
-      "notas": "7 unidades bajo un mismo grupo. Arranque recomendado Ola 1: Desarrolladora + Constructora + Supervisión + núcleo = $44,550/mes (-10%). Fase 0 esas 3 + paraguas = $127,000.",
+      "notas": "7 unidades bajo un mismo grupo. Arranque recomendado Ola 1: Desarrolladora + Constructora + Supervisión + núcleo = $44,550/mes (-10%). Fase 0 esas 3 + paraguas = $112,000.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
