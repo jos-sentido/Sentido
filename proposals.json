@@ -1,6 +1,85 @@
 {
   "proposals": [
     {
+      "slug": "grupo-louva",
+      "tipo": "propuesta",
+      "cliente": "Grupo Louva",
+      "fecha": "2026-08-17",
+      "estatus": "borrador",
+      "serviciosDisponibles": [
+        {
+          "id": "arq-marca",
+          "nombre": "Fase 0 — Arquitectura de marca + manual maestro",
+          "precio": 45000,
+          "tipo": "unico"
+        },
+        {
+          "id": "id-paraguas",
+          "nombre": "Fase 0 — Identidad marca paraguas",
+          "precio": 28000,
+          "tipo": "unico"
+        },
+        {
+          "id": "id-unidad",
+          "nombre": "Fase 0 — Identidad por unidad (c/u)",
+          "precio": 18000,
+          "tipo": "unico"
+        },
+        {
+          "id": "sitio-grupo",
+          "nombre": "Fase 1 — Sitio del grupo",
+          "precio": 38000,
+          "tipo": "unico"
+        },
+        {
+          "id": "sitio-unidad",
+          "nombre": "Fase 1 — Sitio por unidad (c/u)",
+          "precio": 18000,
+          "tipo": "unico"
+        },
+        {
+          "id": "landing-proyecto",
+          "nombre": "Fase 1 — Landing por proyecto (Desarrolladora)",
+          "precio": 12000,
+          "tipo": "unico"
+        },
+        {
+          "id": "nucleo",
+          "nombre": "Núcleo de operación del grupo",
+          "precio": 12000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "plan-autoridad",
+          "nombre": "Plan Autoridad (por unidad)",
+          "precio": 9500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "plan-visibilidad",
+          "nombre": "Plan Visibilidad (por unidad)",
+          "precio": 11500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "plan-comercial",
+          "nombre": "Plan Comercial (Desarrolladora)",
+          "precio": 16500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [
+        "nucleo",
+        "plan-comercial",
+        "plan-visibilidad",
+        "plan-autoridad"
+      ],
+      "notas": "7 unidades bajo un mismo grupo. Arranque recomendado Ola 1: Desarrolladora + Constructora + Supervisión + núcleo = $44,550/mes (-10%). Fase 0 esas 3 + paraguas = $127,000.",
+      "proximoPaso": "",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "remax-cabo-sanctuary",
       "tipo": "propuesta",
       "cliente": "RE/MAX Cabo Sanctuary — Inmobiliaria de lujo, Los Cabos BCS (sistema integral de captación de leads)",

@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Grupo Louva · Sentido</title>
+<meta name="description" content="Arquitectura de marca y marketing digital para las siete unidades de negocio del Grupo Louva: cada una con identidad y estrategia propia para su nicho, todas legibles como un mismo grupo." />
+<!-- Favicon Sentido -->
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Paleta heredada de louvastudio.com — navy técnico + azul blueprint */
+    --bg: #050C18;
+    --bg-deep: #020812;
+    --surface: #0B1828;
+    --surface-elevated: #112338;
+    --border: rgba(157, 192, 245, 0.10);
+    --border-strong: rgba(157, 192, 245, 0.22);
+    --text: #E6EDF6;
+    --text-dim: #93A6BE;
+    --text-faint: #56697F;
+    --accent: #7FB0F2;
+    --accent-bright: #A9CBFA;
+    --accent-soft: rgba(127, 176, 242, 0.12);
+    --accent-line: rgba(127, 176, 242, 0.35);
+    --grid-line: rgba(127, 176, 242, 0.05);
+    --warn: #E0A86A;
+    --success: #6FBF96;
+    --cream: #EDE6D8;
+
+    /* Color por unidad de negocio — heredado del organigrama del grupo */
+    --u-pre: #4FC3A1;   /* Gerencia de Preconstrucción */
+    --u-obr: #4A90E2;   /* Gerencia de Obra */
+    --u-bim: #F0B429;   /* Proyectos BIM */
+    --u-des: #8AA7E0;   /* Desarrolladora */
+    --u-arq: #F0873C;   /* Arquitectura */
+    --u-con: #A473CC;   /* Constructora */
+    --u-sup: #35B4C4;   /* Supervisión */
+
+    --font-display: 'Sora', -apple-system, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text); font-family: var(--font-sans);
+    font-weight: 300; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .section { padding: 5rem 1.5rem; position: relative; }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+  .narrow { max-width: 52rem; }
+
+  .blueprint {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .display-heading {
+    font-family: var(--font-display); font-weight: 600; line-height: 1.08;
+    letter-spacing: -0.02em; color: var(--text);
+  }
+  .display-heading.lg { font-size: clamp(1.8rem, 4.2vw, 2.9rem); }
+  .display-heading.md { font-size: clamp(1.4rem, 2.8vw, 2rem); }
+  .accent-text { color: var(--accent); }
+
+  .paragraph { font-size: 1.05rem; line-height: 1.8; color: var(--text); }
+  .paragraph.lg { font-size: 1.18rem; }
+  .paragraph.muted { color: var(--text-dim); }
+  .paragraph strong { color: var(--text); font-weight: 500; }
+  .max-w-3xl { max-width: 48rem; }
+  .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 1.5rem; } .mt-3 { margin-top: 2.5rem; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 1rem; font-family: var(--font-mono);
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 2.5rem;
+  }
+  .section-label .divider { height: 1px; width: 3rem; background: var(--accent); opacity: 0.7; }
+  .section-label span { color: var(--accent); font-weight: 500; font-family: var(--font-mono); }
+
+  /* ---------- NAV ---------- */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(5, 12, 24, 0.82);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 80rem; margin: 0 auto; padding: 0.85rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  }
+  .site-nav .nav-logo { height: 26px; width: auto; opacity: 0.95; }
+  @media (min-width: 768px) { .site-nav .nav-logo { height: 30px; } }
+  .site-nav-links { display: none; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-dim); text-decoration: none;
+    transition: color 0.2s; position: relative; padding-bottom: 2px;
+  }
+  .site-nav-links a:hover, .site-nav-links a.active { color: var(--accent); }
+  .site-nav-links a.active::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px; background: var(--accent);
+  }
+  .nav-cta {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--bg); background: var(--accent);
+    padding: 0.55rem 1.1rem; border-radius: 2px; text-decoration: none;
+    font-weight: 600; transition: background 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--accent-bright); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 7rem 1.5rem 4rem; background: var(--bg-deep); position: relative; overflow: hidden;
+  }
+  @media (min-width: 768px) { .hero { padding: 8rem 3rem 5rem; } }
+  @media (min-width: 1024px) { .hero { padding: 9rem 5rem 6rem; } }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 52px 52px; opacity: 0.7; pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 80%;
+    background: radial-gradient(circle, rgba(127,176,242,0.10) 0%, transparent 70%); pointer-events: none;
+  }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+  .hero-logo-sentido { height: 52px; width: auto; display: block; margin-bottom: 3rem; opacity: 0.85; }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 4rem; } }
+  .hero-prospect {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.04; letter-spacing: -0.025em;
+    color: var(--text); max-width: 20ch;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-dim); font-weight: 300;
+    max-width: 46rem; margin-top: 2rem; line-height: 1.7;
+  }
+  /* Barra cromática de las 7 unidades bajo el hero */
+  .hero-spectrum { display: flex; gap: 3px; margin-top: 2.8rem; max-width: 30rem; }
+  .hero-spectrum i { display: block; height: 4px; flex: 1; border-radius: 2px; }
+  .hero-scroll {
+    margin-top: 2.5rem; font-family: var(--font-mono); font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-scroll .line { width: 2.5rem; height: 1px; background: var(--accent-line); }
+
+  /* ---------- STAT STRIP ---------- */
+  .stat-strip {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 768px) { .stat-strip { grid-template-columns: repeat(4, 1fr); } }
+  .stat-cell { background: var(--bg); padding: 2.2rem 1.5rem; }
+  .stat-num {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--accent); line-height: 1; letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-dim); margin-top: 0.7rem; line-height: 1.5;
+  }
+
+  /* ---------- FINDINGS ---------- */
+  .finding-grid { display: grid; gap: 1px; background: var(--border); margin-top: 3rem; }
+  @media (min-width: 768px) { .finding-grid { grid-template-columns: 1fr 1fr; } }
+  .finding { background: var(--surface); padding: 2.2rem; position: relative; }
+  .finding-tag {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .finding-tag.gap { color: var(--warn); }
+  .finding-tag.strength { color: var(--success); }
+  .finding-tag.risk { color: #E0736A; }
+  .finding-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .finding h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--text); margin-bottom: 0.6rem; }
+  .finding p { font-size: 0.96rem; color: var(--text-dim); line-height: 1.7; }
+  .finding p strong { color: var(--text); font-weight: 500; }
+
+  /* ---------- MODELOS DE ARQUITECTURA DE MARCA ---------- */
+  .model-grid { display: grid; gap: 1px; background: var(--border); margin-top: 3rem; }
+  @media (min-width: 900px) { .model-grid { grid-template-columns: repeat(3, 1fr); } }
+  .model { background: var(--surface); padding: 2.2rem 1.9rem; position: relative; }
+  .model.chosen { background: var(--surface-elevated); }
+  .model.chosen::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--u-pre), var(--u-obr), var(--u-bim), var(--u-arq), var(--u-con), var(--u-sup));
+  }
+  .model-verdict {
+    font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 1rem; display: inline-block; padding: 0.28rem 0.65rem; border-radius: 999px;
+  }
+  .model-verdict.no { color: var(--warn); border: 1px solid rgba(224,168,106,0.35); }
+  .model-verdict.yes { color: var(--bg-deep); background: var(--accent-bright); font-weight: 600; }
+  .model h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin-bottom: 0.6rem; }
+  .model p { font-size: 0.93rem; color: var(--text-dim); line-height: 1.7; }
+  .model p + p { margin-top: 0.8rem; }
+
+  /* ---------- MAPA DE UNIDADES ---------- */
+  .unit-grid { display: grid; gap: 1.25rem; margin-top: 3rem; }
+  @media (min-width: 800px) { .unit-grid { grid-template-columns: 1fr 1fr; } }
+  .unit {
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--u);
+    border-radius: 3px; padding: 1.9rem 1.8rem; transition: border-color 0.25s, transform 0.25s;
+  }
+  .unit:hover { transform: translateY(-2px); border-color: var(--border-strong); border-left-color: var(--u); }
+  .unit-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .unit-name { font-family: var(--font-display); font-weight: 600; font-size: 1.22rem; color: var(--text); }
+  .unit-type {
+    font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--u); border: 1px solid var(--u); padding: 0.22rem 0.55rem; border-radius: 999px; white-space: nowrap;
+  }
+  .unit-fn { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.06em; margin-top: 0.5rem; }
+  .unit-rows { margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .unit-row { display: grid; grid-template-columns: 88px 1fr; gap: 0.9rem; align-items: start; }
+  .unit-row dt {
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--u); padding-top: 0.15rem;
+  }
+  .unit-row dd { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+  .unit-row dd strong { color: var(--text); font-weight: 500; }
+  .unit-plan {
+    margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text-faint);
+  }
+  .unit-plan b { color: var(--u); font-weight: 500; }
+
+  /* ---------- SERVICE CARDS ---------- */
+  .services-grid { display: grid; gap: 1.5rem; margin-top: 1rem; }
+  @media (min-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+  .service-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 3px; padding: 2rem; position: relative; transition: border-color 0.25s, transform 0.25s;
+  }
+  .service-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .service-card.featured { border-color: var(--accent-line); background: var(--surface-elevated); }
+  .service-card.full { grid-column: 1 / -1; }
+  .service-num {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
+    letter-spacing: 0.1em; margin-bottom: 1.2rem; display: block;
+  }
+  .service-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; color: var(--text); margin-bottom: 0.5rem; }
+  .service-obj { font-size: 0.92rem; color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.04em; margin-bottom: 1.2rem; }
+  .service-card p.desc { font-size: 0.97rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.3rem; }
+  .service-card p.desc strong { color: var(--text); font-weight: 500; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .service-list li { font-size: 0.9rem; color: var(--text); padding-left: 1.4rem; position: relative; line-height: 1.55; }
+  .service-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+  .service-price {
+    border-top: 1px solid var(--border); padding-top: 1.2rem;
+    display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .service-price .amount { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--text); }
+  .service-price .amount small { font-size: 0.8rem; color: var(--text-dim); font-weight: 400; font-family: var(--font-mono); }
+  .service-price .terms { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.05em; }
+  .applies {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--text-faint);
+    margin-bottom: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+  }
+  .applies i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; }
+
+  /* Pauta — adyacente al servicio operador */
+  .ad-note {
+    margin-top: 1.4rem; position: relative;
+    background: linear-gradient(180deg, rgba(127,176,242,0.16), rgba(127,176,242,0.07));
+    border: 1px solid var(--accent-line); border-left: 4px solid var(--accent);
+    border-radius: 6px; padding: 1.15rem 1.25rem 1.2rem;
+    box-shadow: 0 4px 22px rgba(127,176,242,0.10);
+  }
+  .ad-note .ad-tag {
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--bg-deep); background: var(--accent-bright); font-weight: 600;
+    margin-bottom: 0.65rem; display: inline-block; padding: 0.32rem 0.7rem; border-radius: 999px;
+  }
+  .ad-note .ad-tag::before { content: "📣 "; }
+  .ad-note p { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
+  .ad-note .ad-amount { color: var(--accent-bright); font-weight: 600; font-family: var(--font-mono); }
+
+  /* ---------- INVESTMENT ---------- */
+  .inv-table { margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+  .inv-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border); align-items: center;
+  }
+  .inv-row:last-child { border-bottom: none; }
+  .inv-row.head { background: var(--surface); }
+  .inv-row.head .inv-name { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .inv-name { font-size: 0.98rem; color: var(--text); }
+  .inv-name small { display: block; color: var(--text-faint); font-size: 0.8rem; margin-top: 0.25rem; }
+  .inv-amount { font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-bright); white-space: nowrap; font-weight: 500; }
+  .inv-row.total { background: var(--accent-soft); }
+  .inv-row.total .inv-name { font-family: var(--font-display); font-weight: 600; color: var(--text); font-size: 1.05rem; }
+  .inv-row.total .inv-amount { color: var(--accent-bright); font-size: 1.15rem; font-weight: 600; }
+  .save { color: var(--success); font-weight: 500; }
+
+  .bundle {
+    margin-top: 2rem; background: var(--surface-elevated); border: 1px solid var(--accent-line);
+    border-radius: 3px; padding: 1.8rem 2rem;
+  }
+  .bundle .bundle-tag {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem; display: inline-block;
+  }
+  .bundle h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.6rem; }
+  .bundle p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.7; }
+
+  .note {
+    margin-top: 1.8rem; display: flex; gap: 0.9rem; padding: 1.1rem 1.3rem;
+    background: var(--surface); border-left: 2px solid var(--accent); border-radius: 0 3px 3px 0;
+  }
+  .note .ico { color: var(--accent); flex-shrink: 0; font-size: 1rem; }
+  .note p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.65; }
+  .note p strong { color: var(--text); font-weight: 500; }
+
+  /* ---------- OLAS / HORIZONTE ---------- */
+  .wave-grid { display: grid; gap: 1px; background: var(--border); margin-top: 3rem; }
+  @media (min-width: 768px) { .wave-grid { grid-template-columns: repeat(3, 1fr); } }
+  .wave-cell { background: var(--surface); padding: 2.2rem 1.8rem; }
+  .wave-when { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .wave-cell h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; margin-bottom: 0.7rem; }
+  .wave-cell p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.7; }
+  .wave-units { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .wave-units span {
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid currentColor;
+  }
+
+  /* ---------- CTA FORM ---------- */
+  .cta-form-section { background: var(--bg-deep); }
+  .cta-form-inner { max-width: 44rem; margin: 0 auto; }
+  .cta-form-section h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
+  .cta-form-section .lede { color: var(--text-dim); font-size: 1.12rem; margin-top: 1.2rem; max-width: 38rem; }
+  #lead-form { display: grid; gap: 1.25rem; margin-top: 2.8rem; }
+  #lead-form label { display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input, #lead-form select, #lead-form textarea {
+    background: var(--cream); color: #1A2433; border: 1px solid transparent; border-radius: 3px;
+    padding: 0.95rem 1.1rem; font-family: var(--font-sans); font-size: 1rem; font-weight: 400; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #lead-form input::placeholder, #lead-form textarea::placeholder { color: #6B7686; }
+  #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  #lead-form select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231A2433' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  #lead-form textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    margin-top: 0.5rem; background: var(--accent); color: var(--bg-deep); border: none; border-radius: 3px;
+    padding: 1.05rem 1.5rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.01em;
+    cursor: pointer; transition: background 0.2s, transform 0.1s; justify-self: start;
+  }
+  .form-submit:hover:not(:disabled) { background: var(--accent-bright); }
+  .form-submit:active { transform: translateY(1px); }
+  .form-submit:disabled { opacity: 0.6; cursor: default; }
+  .form-status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--success); opacity: 0; transition: opacity 0.3s; line-height: 1.6; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: var(--warn); }
+
+  /* ---------- CLOSING ---------- */
+  .closing { background: var(--bg); padding: 6rem 1.5rem; text-align: center; position: relative; overflow: hidden; }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem; } }
+  .closing::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 52px 52px; opacity: 0.5; pointer-events: none;
+  }
+  .closing-inner { max-width: 50rem; margin: 0 auto; position: relative; z-index: 2; }
+  .closing-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; }
+  .closing-statement { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 4.5vw, 3rem); line-height: 1.18; letter-spacing: -0.02em; }
+  .closing-statement em { font-style: normal; color: var(--accent); }
+  .closing-sub { color: var(--text-dim); font-size: 1.05rem; line-height: 1.75; margin-top: 1.8rem; }
+  .closing-spectrum { display: flex; gap: 3px; max-width: 20rem; margin: 2.5rem auto 0; }
+  .closing-spectrum i { display: block; height: 4px; flex: 1; border-radius: 2px; }
+  .closing-sentido-mark { height: 36px; width: auto; opacity: 0.6; margin-top: 2.5rem; }
+  .closing-meta { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: center; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; }
+  .closing-meta a, .closing-meta span { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .closing-meta a:hover { color: var(--accent); }
+
+  footer { background: var(--bg-deep); padding: 2rem 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+  footer .copy { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.08em; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-logo" />
+    <div class="site-nav-links">
+      <a href="#contexto" data-target="contexto">Contexto</a>
+      <a href="#diagnostico" data-target="diagnostico">Diagnóstico</a>
+      <a href="#angulo" data-target="angulo">El ángulo</a>
+      <a href="#unidades" data-target="unidades">Las 7 unidades</a>
+      <a href="#propuesta" data-target="propuesta">Propuesta</a>
+      <a href="#inversion" data-target="inversion">Inversión</a>
+    </div>
+    <a href="#contactemos" class="nav-cta">Contáctanos</a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="hero-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="hero-logo-sentido" />
+    <div class="hero-prospect">Propuesta estratégica · Grupo Louva</div>
+    <h1>No es una empresa con siete áreas. Son <em>siete empresas</em> con un mismo apellido.</h1>
+    <p class="hero-sub">
+      Arquitectura, BIM, Constructora, Preconstrucción, Gerencia de Obra, Supervisión y Desarrolladora
+      le venden a cuatro mercados distintos, con criterios de compra distintos y ciclos de decisión
+      distintos. Hoy las siete comparten una sola voz. Esta propuesta plantea lo contrario:
+      que cada una tenga identidad y motor comercial propios — y que aun así se reconozca,
+      en cualquier punto de contacto, que todas son del mismo grupo.
+    </p>
+    <div class="hero-spectrum" aria-hidden="true">
+      <i style="background:var(--u-pre)"></i><i style="background:var(--u-obr)"></i><i style="background:var(--u-bim)"></i><i style="background:var(--u-des)"></i><i style="background:var(--u-arq)"></i><i style="background:var(--u-con)"></i><i style="background:var(--u-sup)"></i>
+    </div>
+    <div class="hero-scroll"><span class="line"></span> Desplázate para ver el diagnóstico</div>
+  </div>
+</header>
+
+<!-- ============== STAT STRIP ============== -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-num">7</div><div class="stat-label">Unidades de negocio operando bajo un mismo grupo</div></div>
+  <div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">Mercados distintos: desarrolladores, constructoras, capital y comprador final</div></div>
+  <div class="stat-cell"><div class="stat-num">1</div><div class="stat-label">Sola marca hablando hoy por todas ellas</div></div>
+  <div class="stat-cell"><div class="stat-num">+213%</div><div class="stat-label">Crecimiento del inventario de vivienda vertical en México, 2017–2024</div></div>
+</div>
+
+<!-- ============== CONTEXTO ============== -->
+<section class="section" id="contexto">
+  <div class="section-inner narrow">
+    <div class="section-label reveal"><span class="divider"></span><span>01</span> El contexto</div>
+    <h2 class="display-heading lg reveal">El grupo creció más rápido de lo que creció su forma de presentarse.</h2>
+    <p class="paragraph lg muted mt-3 reveal">
+      Louva empezó resolviendo proyectos. Hoy resuelve el ciclo completo de un desarrollo: lo imagina
+      (Arquitectura), lo modela (BIM), lo cuantifica antes de excavar (Preconstrucción), lo dirige
+      (Gerencia de Obra), lo construye (Constructora), lo vigila (Supervisión) y —cuando el proyecto
+      es propio— lo origina y lo vende (Desarrolladora).
+    </p>
+    <p class="paragraph muted mt-2 reveal">
+      Esa integración vertical es poco común en el mercado mexicano y es, por sí sola, un argumento
+      de venta enorme. Pero tiene una consecuencia que casi nadie anticipa: <strong>una estructura
+      que crece hacia adentro necesita crecer también hacia afuera.</strong> Siete negocios que
+      atienden a públicos distintos no se pueden comunicar con un solo discurso sin que alguno
+      quede mal contado.
+    </p>
+    <p class="paragraph muted mt-2 reveal">
+      Un fondo que busca quién supervise su capital no compra por las mismas razones que un
+      desarrollador que busca quién le modele en BIM, ni que una familia que busca dónde comprar
+      departamento. Cuando las tres conversaciones ocurren en el mismo lugar y con el mismo tono,
+      las tres pierden filo.
+    </p>
+    <p class="paragraph muted mt-2 reveal">
+      Esta propuesta parte de ahí: el grupo ya tiene el producto. Lo que falta es la
+      <strong>arquitectura</strong> que permita a cada unidad competir en su nicho — sin que el
+      grupo se fragmente en el intento.
+    </p>
+  </div>
+</section>
+
+<!-- ============== DIAGNÓSTICO ============== -->
+<section class="section section-surface section-divider blueprint" id="diagnostico">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>02</span> Diagnóstico</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Qué gana el grupo con esta estructura — y qué está perdiendo hoy por no comunicarla.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Revisamos el organigrama del grupo, el sitio actual, redes y presencia en buscadores.
+      El patrón es claro: una operación integrada y madura, con una huella digital que todavía
+      la cuenta como si fuera un solo despacho.
+    </p>
+
+    <div class="finding-grid reveal">
+      <div class="finding">
+        <span class="finding-tag strength">Fortaleza</span>
+        <h4>Cobertura del ciclo completo</h4>
+        <p>Muy pocos grupos en México pueden acompañar un desarrollo desde la viabilidad financiera hasta la entrega y la supervisión de calidad. <strong>Esa integración es el activo de marca más valioso que tienen</strong> — y hoy no está articulado en ninguna parte.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag strength">Fortaleza</span>
+        <h4>Base técnica ya reconocible</h4>
+        <p>La estética actual de Louva —navy profundo, códigos de plano, tipografía técnica— ya comunica precisión. Hay un ADN visual real del que puede derivar el sistema de las siete marcas. No se parte de un lienzo en blanco.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>Una sola voz para cuatro mercados</h4>
+        <p>Desarrolladores, constructoras, fondos e inversionistas y comprador final tienen criterios de compra opuestos. Hoy los cuatro reciben el mismo mensaje, así que ninguno recibe el suyo. <strong>El grupo compite en cuatro canchas con un solo uniforme.</strong></p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>La desarrolladora vive en un discurso B2B</h4>
+        <p>Seis unidades le venden a empresas; la Desarrolladora le vende a personas. Es el único negocio del grupo con ticket masivo, ciclo emocional y necesidad de pauta de volumen — y hoy está alojado en una narrativa técnica pensada para otro comprador.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag gap">Brecha</span>
+        <h4>La venta cruzada no ocurre sola</h4>
+        <p>Un cliente que llega por Arquitectura debería poder terminar contratando BIM, Constructora y Supervisión. Sin un sistema que haga visible el parentesco entre unidades, cada venta empieza de cero y el valor de la integración se queda dentro de la empresa.</p>
+      </div>
+      <div class="finding">
+        <span class="finding-tag risk">Riesgo</span>
+        <h4>Siete marcas improvisadas en 18 meses</h4>
+        <p>Si cada unidad resuelve su identidad por su cuenta conforme la va necesitando —un logo aquí, un Instagram allá— el resultado predecible es un grupo que no se ve como grupo. <strong>Corregir eso después cuesta varias veces más que definirlo ahora.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EL ÁNGULO ============== -->
+<section class="section section-divider" id="angulo">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>03</span> El ángulo</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Siete marcas con autonomía real, un solo sistema que las hace familia.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Antes de diseñar nada, hay una decisión estructural que tomar: cuánta independencia tiene cada
+      unidad frente al grupo. Existen tres caminos y la elección determina todo lo demás —
+      presupuesto, velocidad y capacidad de competir por nicho.
+    </p>
+
+    <div class="model-grid reveal">
+      <div class="model">
+        <span class="model-verdict no">No recomendado</span>
+        <h4>Marca única</h4>
+        <p>Todo se comunica bajo un solo nombre y las unidades son departamentos internos.</p>
+        <p>Es lo más barato y lo que ya ocurre hoy. El costo es competitivo: obliga a hablarle igual a un fondo institucional y a un comprador de departamento, y deja fuera la posibilidad de posicionarse como especialista en cada nicho.</p>
+      </div>
+      <div class="model chosen">
+        <span class="model-verdict yes">★ Recomendado</span>
+        <h4>Marcas endosadas por el grupo</h4>
+        <p>Cada unidad tiene nombre, personalidad, canales y estrategia propios — y lleva el endoso visible del grupo como sello de respaldo.</p>
+        <p>Cada negocio compite en su cancha con lenguaje de especialista, y al mismo tiempo hereda la credibilidad de una estructura que cubre el ciclo completo. Es lo que hace posible la venta cruzada sin diluir a nadie.</p>
+      </div>
+      <div class="model">
+        <span class="model-verdict no">No recomendado</span>
+        <h4>Marcas totalmente independientes</h4>
+        <p>Siete marcas sin relación visible entre sí, cada una construyendo reputación desde cero.</p>
+        <p>Máxima libertad, mínima economía de escala: se pierde el activo más fuerte del grupo (la integración vertical) y se multiplica por siete el costo y el tiempo de construir confianza.</p>
+      </div>
+    </div>
+
+    <p class="paragraph muted mt-3 reveal max-w-3xl">
+      La propuesta adopta el modelo intermedio. En la práctica significa un sistema con reglas
+      claras: qué es constante en las siete marcas (estructura del nombre, el sello del grupo,
+      la lógica tipográfica, los códigos técnicos heredados) y qué es libre en cada una
+      (color propietario, tono, tipo de contenido, canales y mezcla de medios).
+    </p>
+    <div class="note reveal">
+      <span class="ico">🧭</span>
+      <p><strong>Sobre alcance:</strong> esta propuesta describe el enfoque y el método. Los nombres, logotipos y sistemas visuales de cada unidad se desarrollan durante el proyecto, con validación del grupo en cada etapa — no se anticipan aquí.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LAS 7 UNIDADES ============== -->
+<section class="section section-surface section-divider blueprint" id="unidades">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>04</span> Las siete unidades</div>
+    <h2 class="display-heading lg reveal max-w-3xl">A quién le vende cada una, y por qué eso cambia toda su estrategia digital.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Este es el mapa que ordena la inversión. Cada unidad recibe el motor que su mercado exige —
+      no un paquete idéntico repartido siete veces. La denominación funcional que aparece abajo es
+      la del organigrama actual; el nombre comercial de cada marca se define en la Fase 0.
+    </p>
+
+    <div class="unit-grid">
+
+      <!-- ARQUITECTURA -->
+      <div class="unit reveal" style="--u: var(--u-arq)">
+        <div class="unit-head">
+          <div class="unit-name">Arquitectura</div>
+          <div class="unit-type">B2B · Visual</div>
+        </div>
+        <div class="unit-fn">Diseño · Anteproyectos · Proyectos · Presentación</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Desarrolladores, propietarios de terreno y clientes privados de proyecto único.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Criterio estético y confianza en el despacho.</strong> Es la unidad más emocional del grupo: se elige por portafolio, no por tabulador.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>Portafolio como argumento central, Instagram y Pinterest como vitrina, LinkedIn para el comprador institucional. Alta densidad de imagen y render.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Visibilidad</b></div>
+      </div>
+
+      <!-- PROYECTOS BIM -->
+      <div class="unit reveal" style="--u: var(--u-bim)">
+        <div class="unit-head">
+          <div class="unit-name">Proyectos BIM</div>
+          <div class="unit-type">B2B · Técnico</div>
+        </div>
+        <div class="unit-fn">Modelado 3D · Coordinación · Documentación</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Otras constructoras, despachos de arquitectura, gerencias de proyecto y corporativos con obra propia.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Capacidad técnica demostrable.</strong> Es una compra racional, con búsqueda activa y comparación de proveedores. Nadie contrata BIM por impulso.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>Google Ads sobre términos de alta intención, LinkedIn como plaza principal y contenido que demuestra proceso: detección de interferencias, coordinación de ingenierías, entregables reales.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Autoridad</b></div>
+      </div>
+
+      <!-- CONSTRUCTORA -->
+      <div class="unit reveal" style="--u: var(--u-con)">
+        <div class="unit-head">
+          <div class="unit-name">Constructora</div>
+          <div class="unit-type">B2B · Visual</div>
+        </div>
+        <div class="unit-fn">BIM · Civil · Eléctrico</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Desarrolladores, industria, retail y proyectos institucionales.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Obra entregada y capacidad de ejecución.</strong> El ticket es el más alto del grupo y el ciclo el más largo: la marca aquí trabaja para acortar la desconfianza.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>Casos de obra documentados en video, avances en tiempo real, cifras de entrega. Meta y LinkedIn para presencia, Google Ads para captura de intención.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Visibilidad</b></div>
+      </div>
+
+      <!-- GERENCIA DE PRECONSTRUCCIÓN -->
+      <div class="unit reveal" style="--u: var(--u-pre)">
+        <div class="unit-head">
+          <div class="unit-name">Gerencia de Preconstrucción</div>
+          <div class="unit-type">B2B · Consultivo</div>
+        </div>
+        <div class="unit-fn">Planeación · Costos · Análisis · Estrategia</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Inversionistas, fondos y desarrolladores en la etapa previa a comprometer capital.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Criterio y rigor analítico.</strong> Es la unidad de mayor palanca comercial: quien entra aquí suele quedarse para todo el ciclo. Volumen bajo, valor altísimo.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>Autoridad, no alcance. LinkedIn con contenido de criterio (análisis de costos, escenarios, riesgos), y captación selectiva. Aquí no se busca tráfico masivo sino la conversación correcta.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Autoridad</b></div>
+      </div>
+
+      <!-- GERENCIA DE OBRA -->
+      <div class="unit reveal" style="--u: var(--u-obr)">
+        <div class="unit-head">
+          <div class="unit-name">Gerencia de Obra</div>
+          <div class="unit-type">B2B · Técnico</div>
+        </div>
+        <div class="unit-fn">Planeación · Ejecución · Control · Entrega</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Desarrolladores con proyecto ya definido que necesitan quién lo dirija sin construirlo ellos.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Control, cumplimiento de tiempo y costo.</strong> Se contrata para eliminar un dolor concreto: obras que se salen de programa y de presupuesto.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>Google Ads sobre búsqueda de alta intención, LinkedIn con casos de recuperación de programa y control de costos. Contenido orientado a evidencia, no a inspiración.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Autoridad</b></div>
+      </div>
+
+      <!-- SUPERVISIÓN -->
+      <div class="unit reveal" style="--u: var(--u-sup)">
+        <div class="unit-head">
+          <div class="unit-name">Supervisión</div>
+          <div class="unit-type">B2B · Consultivo</div>
+        </div>
+        <div class="unit-fn">Control de calidad · Seguridad · Reportes · Seguimiento</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Fondos, bancos e inversionistas que necesitan un tercero que vigile su capital dentro de la obra.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Independencia y credibilidad.</strong> Es la unidad donde la marca más importa: se está comprando la palabra de quien reporta. La percepción de imparcialidad es el producto.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>Posicionamiento en búsqueda de alta intención, LinkedIn institucional y contenido sobre metodología de reporte y control. Tono sobrio, cero espectáculo.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Autoridad</b></div>
+      </div>
+
+      <!-- DESARROLLADORA -->
+      <div class="unit reveal" style="--u: var(--u-des)">
+        <div class="unit-head">
+          <div class="unit-name">Desarrollo · Desarrolladora</div>
+          <div class="unit-type">B2C · Comercial</div>
+        </div>
+        <div class="unit-fn">Planeación de proyectos · Gestión de terrenos · Diseño de producto · Viabilidad financiera</div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Comprador final e inversionista patrimonial. Es la única unidad del grupo que le vende a personas, no a empresas.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Aspiración, ubicación y confianza en el desarrollador.</strong> Ciclo emocional, decisión compartida en pareja o familia, y una ventana de venta atada al avance de obra.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>El más intensivo del grupo: pauta de volumen en Meta, landing por proyecto, CRM con seguimiento comercial y contenido de venta continuo. Aquí el marketing no acompaña la venta — <strong>es</strong> la venta.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Comercial</b></div>
+      </div>
+
+    </div>
+
+    <div class="note reveal">
+      <span class="ico">🔗</span>
+      <p><strong>El endoso es lo que multiplica.</strong> Cuando un fondo llega por Supervisión y reconoce que el mismo grupo también hace Preconstrucción y Gerencia de Obra, la conversación deja de ser por un servicio y pasa a ser por el ciclo. Ese salto es exactamente lo que el sistema de marca está diseñado para producir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LOS SISTEMAS ============== -->
+<section class="section section-divider" id="propuesta">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>05</span> Los sistemas que proponemos</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Tres fases: primero el sistema de marca, luego la plataforma, después el motor mensual.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      El orden no es negociable por una razón práctica: no se pueden construir sitios ni campañas
+      de siete marcas que todavía no existen. Lo que sí es modular es cuántas unidades entran
+      y cuándo — el grupo decide el ritmo.
+    </p>
+
+    <div class="services-grid mt-3">
+
+      <!-- FASE 0 -->
+      <div class="service-card featured full reveal">
+        <span class="service-num">FASE 0 · Fundamento del grupo</span>
+        <h3>Sistema de arquitectura de marca</h3>
+        <div class="service-obj">Definir las reglas antes de que cada unidad improvise las suyas</div>
+        <p class="desc">
+          Es el trabajo del que dependen todos los demás. Definimos la relación entre el grupo y sus
+          unidades: jerarquía, sistema de nombres, reglas de endoso, territorio verbal y el lenguaje
+          visual común del que deriva cada marca. Después construimos la identidad de la marca paraguas
+          y la identidad de cada unidad que entre al proyecto — cada una con carácter propio y con el
+          sello del grupo. <strong>Todo queda gobernado por un manual maestro</strong> que permite que
+          la octava marca, cuando llegue, nazca ya dentro del sistema.
+        </p>
+        <ul class="service-list">
+          <li>Arquitectura de marca del grupo: jerarquía, endoso y sistema de nombres</li>
+          <li>Territorio verbal: qué dice el grupo y qué dice cada unidad</li>
+          <li>Identidad de la marca paraguas (holding)</li>
+          <li>Identidad por unidad: símbolo, color propietario, aplicaciones y tono</li>
+          <li>Manual maestro que rige todas las marcas, presentes y futuras</li>
+          <li>Kit de aplicación: papelería, presentaciones, señalética de obra y plantillas digitales</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$45,000 <small>+ IVA · sistema base</small></div>
+          <div class="terms">+ $28,000 marca paraguas · + $18,000 por unidad</div>
+        </div>
+      </div>
+
+      <!-- FASE 1 -->
+      <div class="service-card reveal">
+        <span class="service-num">FASE 1 · Plataforma</span>
+        <h3>Sitio del grupo + sitio por unidad</h3>
+        <div class="service-obj">Que cada unidad tenga casa propia con la puerta del grupo abierta</div>
+        <p class="desc">
+          Un sitio paraguas que cuenta la integración vertical y funciona como prueba del respaldo,
+          más un sitio por unidad con narrativa, servicios y casos de su propio nicho. Todos sobre la
+          misma plataforma técnica: se construyen una vez, se replican con la piel y el contenido de
+          cada marca, y se mantienen desde un solo lugar. Navegación cruzada entre unidades para que
+          la venta cruzada ocurra sin fricción.
+        </p>
+        <ul class="service-list">
+          <li>Sitio del grupo: estructura, ciclo completo y directorio de unidades</li>
+          <li>Sitio por unidad con narrativa y casos de su mercado</li>
+          <li>SEO técnico por nicho, no genérico del grupo</li>
+          <li>Formularios integrados al CRM con ruteo por unidad</li>
+          <li>Navegación cruzada y endoso visible en cada sitio</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$38,000 <small>+ IVA · sitio del grupo</small></div>
+          <div class="terms">+ $18,000 por unidad · 60/40</div>
+        </div>
+      </div>
+
+      <!-- NÚCLEO DE GRUPO -->
+      <div class="service-card reveal">
+        <span class="service-num">FASE 2 · Núcleo</span>
+        <h3>Núcleo de operación del grupo</h3>
+        <div class="service-obj">Un solo cerebro comercial para las siete marcas</div>
+        <p class="desc">
+          Es la capa que hace que siete marcas no se conviertan en siete gastos desconectados.
+          Un CRM único con un pipeline por unidad, ruteo automático de cada lead a la marca que
+          corresponde, y visibilidad de la venta cruzada: qué cliente entró por dónde y a qué otra
+          unidad puede escalar. Incluye el gobierno de marca — la vigilancia de que las siete sigan
+          las reglas del sistema — y un reporte consolidado para dirección.
+        </p>
+        <ul class="service-list">
+          <li>CRM GoHighLevel con pipeline independiente por unidad</li>
+          <li>Ruteo automático de leads y detección de oportunidades cruzadas</li>
+          <li>Gobierno de marca: revisión de consistencia entre las unidades activas</li>
+          <li>Reporte mensual consolidado del grupo + desglose por unidad</li>
+          <li>Sesión estratégica mensual con dirección</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$12,000 <small>+ IVA / mes</small></div>
+          <div class="terms">Setup incluido · transversal a todas</div>
+        </div>
+      </div>
+
+      <!-- PLAN AUTORIDAD -->
+      <div class="service-card reveal">
+        <span class="service-num">FASE 2 · Plan por unidad</span>
+        <h3>Plan Autoridad</h3>
+        <div class="service-obj">Para las unidades que se ganan con criterio, no con alcance</div>
+        <div class="applies">
+          <i style="background:var(--u-bim)"></i><i style="background:var(--u-pre)"></i><i style="background:var(--u-obr)"></i><i style="background:var(--u-sup)"></i>
+          BIM · Preconstrucción · Gerencia de Obra · Supervisión
+        </div>
+        <p class="desc">
+          Mercados chicos, tickets grandes y compradores que investigan antes de contactar.
+          La estrategia no busca volumen: busca ser la referencia técnica del nicho y estar
+          presente exactamente cuando alguien busca resolver ese problema. LinkedIn opera como
+          plaza principal, con Instagram como espejo adaptado.
+        </p>
+        <ul class="service-list">
+          <li>8 publicaciones/mes de contenido técnico y de criterio</li>
+          <li>LinkedIn como canal principal + Instagram espejo</li>
+          <li>Gestión de Google Ads sobre términos de alta intención del nicho</li>
+          <li>Google Business Profile y SEO local de la unidad</li>
+          <li>Producción de piezas explicativas asistida con IA</li>
+          <li>Reporte mensual de costo por lead calificado</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$9,500 <small>+ IVA / mes · por unidad</small></div>
+          <div class="terms">Gestión de Google Ads incluida</div>
+        </div>
+        <div class="ad-note">
+          <span class="ad-tag">Pauta Google Ads — opera con este plan</span>
+          <p>Presupuesto de medios directo a Google, sugerido en <span class="ad-amount">$6,000–$15,000 / mes por unidad</span> según competencia del término. Es presupuesto de plataforma, no honorario de Sentido — el grupo mantiene control total del gasto.</p>
+        </div>
+      </div>
+
+      <!-- PLAN VISIBILIDAD -->
+      <div class="service-card reveal">
+        <span class="service-num">FASE 2 · Plan por unidad</span>
+        <h3>Plan Visibilidad</h3>
+        <div class="service-obj">Para las unidades que se ganan mostrando obra</div>
+        <div class="applies">
+          <i style="background:var(--u-arq)"></i><i style="background:var(--u-con)"></i>
+          Arquitectura · Constructora
+        </div>
+        <p class="desc">
+          Aquí el portafolio es el argumento y la imagen es el producto. Cadencia editorial más alta,
+          más peso audiovisual y presencia en los canales donde se decide con los ojos. Se combina
+          alcance en Meta con captación de intención en Google, porque el comprador transita entre
+          descubrir y buscar activamente.
+        </p>
+        <ul class="service-list">
+          <li>12 publicaciones/mes con mayor densidad audiovisual</li>
+          <li>Instagram y Facebook como plaza principal + LinkedIn espejo B2B</li>
+          <li>Gestión de campañas en Meta y en Google Ads</li>
+          <li>Google Business Profile y SEO local de la unidad</li>
+          <li>Tratamiento editorial de casos y avances de obra</li>
+          <li>Reporte mensual de alcance, interacción y leads</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$11,500 <small>+ IVA / mes · por unidad</small></div>
+          <div class="terms">Gestión de Meta + Google incluida</div>
+        </div>
+        <div class="ad-note">
+          <span class="ad-tag">Pauta Meta + Google Ads — opera con este plan</span>
+          <p>Presupuesto de medios directo a las plataformas, sugerido en <span class="ad-amount">$8,000–$20,000 / mes por unidad</span> repartido entre ambas según objetivo. No es honorario de Sentido.</p>
+        </div>
+      </div>
+
+      <!-- PLAN COMERCIAL -->
+      <div class="service-card reveal">
+        <span class="service-num">FASE 2 · Plan por unidad</span>
+        <h3>Plan Comercial</h3>
+        <div class="service-obj">Para la única unidad que le vende a personas</div>
+        <div class="applies">
+          <i style="background:var(--u-des)"></i>
+          Desarrolladora
+        </div>
+        <p class="desc">
+          La Desarrolladora no necesita autoridad de nicho: necesita <strong>volumen calificado de
+          prospectos con seguimiento hasta el cierre</strong>. Es el plan más intensivo del grupo
+          porque el marketing aquí carga con la venta completa. Landing dedicada por proyecto,
+          pauta de volumen, y un embudo que no suelta al prospecto entre el primer clic y la visita
+          a sala de ventas.
+        </p>
+        <ul class="service-list">
+          <li>15 publicaciones/mes con enfoque de venta y producto</li>
+          <li>Meta Ads como motor principal + Google Ads de marca y proyecto</li>
+          <li>Landing dedicada por proyecto en venta</li>
+          <li>Embudo completo: captación, calificación, seguimiento y agendado</li>
+          <li>Automatizaciones de seguimiento por WhatsApp y correo</li>
+          <li>Reporte semanal de leads, citas y costo por oportunidad</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$16,500 <small>+ IVA / mes</small></div>
+          <div class="terms">Landing por proyecto: $12,000 c/u</div>
+        </div>
+        <div class="ad-note">
+          <span class="ad-tag">Pauta Meta + Google Ads — opera con este plan</span>
+          <p>Es la unidad que más presupuesto de medios requiere: <span class="ad-amount">$25,000–$60,000 / mes</span> según etapa de venta y número de proyectos activos. Presupuesto directo a plataforma, con control total del grupo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== INVERSIÓN ============== -->
+<section class="section section-surface section-divider blueprint" id="inversion">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>06</span> Inversión</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Por fase y por unidad. El grupo decide cuántas marcas entran y en qué orden.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      Separamos la inversión única (marca y plataforma) de la operación mensual. Cada unidad se
+      cotiza igual, así que el número final depende solo de cuántas se activen. La pauta publicitaria
+      va directa a las plataformas y nunca se suma al honorario de gestión.
+    </p>
+
+    <!-- FASE 0 -->
+    <div class="inv-table reveal">
+      <div class="inv-row head"><div class="inv-name">Fase 0 — Sistema de marca del grupo <small style="text-transform:none;letter-spacing:0">inversión única</small></div><div class="inv-amount">MXN</div></div>
+      <div class="inv-row"><div class="inv-name">Arquitectura de marca + manual maestro <small>reglas, jerarquía, endoso y territorio verbal</small></div><div class="inv-amount">$45,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Identidad de la marca paraguas <small>la marca del grupo</small></div><div class="inv-amount">$28,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Identidad por unidad de negocio <small>$18,000 c/u · las 7 unidades = $126,000</small></div><div class="inv-amount">$126,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Descuento por sistema completo (7 unidades) <small>−12% al desarrollarlas como un solo proyecto</small></div><div class="inv-amount"><span class="save">− $24,000</span></div></div>
+      <div class="inv-row total"><div class="inv-name">Fase 0 completa — las 8 marcas</div><div class="inv-amount">$175,000 + IVA</div></div>
+    </div>
+    <div class="note reveal">
+      <span class="ico">🧩</span>
+      <p><strong>Fase 0 es modular.</strong> Si arrancan con tres unidades en lugar de siete, la inversión es de $45,000 + $28,000 + $54,000 = <strong>$127,000 + IVA</strong>, y cada unidad que se sume después entra a $18,000 sin rehacer nada — precisamente porque el sistema ya está definido.</p>
+    </div>
+
+    <!-- FASE 1 -->
+    <div class="inv-table reveal" style="margin-top:2.5rem;">
+      <div class="inv-row head"><div class="inv-name">Fase 1 — Plataforma web <small style="text-transform:none;letter-spacing:0">inversión única · 60% anticipo / 40% entrega</small></div><div class="inv-amount">MXN</div></div>
+      <div class="inv-row"><div class="inv-name">Sitio del grupo <small>narrativa del ciclo completo + directorio de unidades</small></div><div class="inv-amount">$38,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Sitio por unidad <small>$18,000 c/u · misma plataforma, narrativa propia</small></div><div class="inv-amount">$18,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Landing por proyecto de la Desarrolladora <small>eventual, según proyectos en venta</small></div><div class="inv-amount">$12,000 + IVA</div></div>
+      <div class="inv-row total"><div class="inv-name">Plataforma completa (grupo + 7 unidades)</div><div class="inv-amount">$164,000 + IVA</div></div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="inv-table reveal" style="margin-top:2.5rem;">
+      <div class="inv-row head"><div class="inv-name">Fase 2 — Operación mensual <small style="text-transform:none;letter-spacing:0">honorarios de gestión, sin pauta</small></div><div class="inv-amount">MXN / mes</div></div>
+      <div class="inv-row"><div class="inv-name">Núcleo de operación del grupo <small>CRM único, ruteo, gobierno de marca y reporte consolidado</small></div><div class="inv-amount">$12,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Autoridad <small>por unidad · BIM, Preconstrucción, Gerencia de Obra, Supervisión</small></div><div class="inv-amount">$9,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Visibilidad <small>por unidad · Arquitectura, Constructora</small></div><div class="inv-amount">$11,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Comercial <small>Desarrolladora</small></div><div class="inv-amount">$16,500 + IVA</div></div>
+    </div>
+
+    <!-- ESCALA -->
+    <div class="inv-table reveal" style="margin-top:2.5rem;">
+      <div class="inv-row head"><div class="inv-name">Descuento por número de unidades activas <small style="text-transform:none;letter-spacing:0">aplica sobre el total de la operación mensual, núcleo incluido</small></div><div class="inv-amount">Ajuste</div></div>
+      <div class="inv-row"><div class="inv-name">1 a 2 unidades activas</div><div class="inv-amount">Precio de lista</div></div>
+      <div class="inv-row"><div class="inv-name">3 a 4 unidades activas</div><div class="inv-amount"><span class="save">− 10%</span></div></div>
+      <div class="inv-row"><div class="inv-name">5 a 7 unidades activas</div><div class="inv-amount"><span class="save">− 18%</span></div></div>
+    </div>
+
+    <!-- ESCENARIO RECOMENDADO -->
+    <div class="bundle reveal">
+      <span class="bundle-tag">★ Escenario recomendado — arranque por Ola 1</span>
+      <h4>Tres unidades operando, no siete al mismo tiempo</h4>
+      <p>
+        Activar las siete de golpe es caro y difícil de sostener con calidad. Recomendamos abrir con
+        las tres de mayor retorno comercial inmediato — <strong>Desarrolladora</strong> (ingreso
+        directo), <strong>Constructora</strong> (ticket más alto) y <strong>Supervisión</strong>
+        (puerta de entrada al capital institucional) — más el núcleo del grupo.
+      </p>
+      <p style="margin-top:0.9rem;">
+        Operación mensual: núcleo $12,000 + Comercial $16,500 + Visibilidad $11,500 + Autoridad $9,500
+        = $49,500, con <span class="save">−10% por tres unidades activas</span> →
+        <span class="save"><strong>$44,550 + IVA / mes</strong></span>. Fase 0 para esas tres marcas
+        más la paraguas: <strong>$127,000 + IVA</strong>. Las cuatro unidades restantes entran en
+        olas posteriores, sobre un sistema que ya funciona y con datos reales de la primera.
+      </p>
+    </div>
+
+    <div class="note reveal">
+      <span class="ico">💰</span>
+      <p><strong>La pauta publicitaria es aparte y va directa a la plataforma.</strong> Los rangos sugeridos están indicados en cada plan: $6,000–$15,000 por unidad en Autoridad, $8,000–$20,000 en Visibilidad y $25,000–$60,000 en la Desarrolladora. Es presupuesto de medios, no honorario de Sentido — el grupo mantiene control total del gasto y puede ajustarlo mes a mes.</p>
+    </div>
+    <div class="note reveal">
+      <span class="ico">📸</span>
+      <p>La producción de contenido en obra (sesiones de foto y video) se cotiza de forma independiente y eventual — fotografía desde $3,000 y video desde $5,500 + IVA por sesión — y nunca se incluye en el honorario mensual. Para el grupo conviene programar sesiones que sirvan a varias unidades a la vez.</p>
+    </div>
+    <div class="note reveal">
+      <span class="ico">📌</span>
+      <p>Todos los precios en MXN y el IVA está marcado en cada partida. Fase 0 se factura 50% al inicio y 50% contra entrega del manual maestro. Fase 1 opera 60/40. La operación mensual se contrata con periodo mínimo de seis meses, que es el plazo realista para que un sistema de marca nuevo produzca datos legibles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== OLAS / HORIZONTE ============== -->
+<section class="section section-divider" id="horizonte">
+  <div class="section-inner">
+    <div class="section-label reveal"><span class="divider"></span><span>07</span> Horizonte</div>
+    <h2 class="display-heading lg reveal max-w-3xl">Cómo se despliegan las siete marcas sin saturar la operación.</h2>
+    <p class="paragraph muted mt-2 reveal max-w-3xl">
+      El sistema se define una vez para las siete; el despliegue ocurre por olas. Cada ola entra
+      sobre una estructura ya probada, con menos fricción y mejores decisiones que la anterior.
+    </p>
+
+    <div class="wave-grid reveal">
+      <div class="wave-cell">
+        <div class="wave-when">Ola 1 · Mes 1–4</div>
+        <h4>Sistema definido, tres marcas vivas</h4>
+        <p>Arquitectura de marca del grupo cerrada y manual maestro entregado — las reglas ya existen para las siete. Marca paraguas y las tres primeras unidades con identidad terminada, sitio en línea y CRM capturando. El grupo empieza a verse como grupo.</p>
+        <div class="wave-units">
+          <span style="color:var(--u-des)">Desarrolladora</span>
+          <span style="color:var(--u-con)">Constructora</span>
+          <span style="color:var(--u-sup)">Supervisión</span>
+        </div>
+      </div>
+      <div class="wave-cell">
+        <div class="wave-when">Ola 2 · Mes 5–8</div>
+        <h4>El bloque técnico entra al mercado</h4>
+        <p>Con datos reales de la primera ola, se activan las unidades de servicio técnico especializado. Cada una hereda el sistema ya validado, así que su lanzamiento cuesta menos y llega más afinado. Empieza a medirse la venta cruzada entre unidades.</p>
+        <div class="wave-units">
+          <span style="color:var(--u-bim)">Proyectos BIM</span>
+          <span style="color:var(--u-obr)">Gerencia de Obra</span>
+        </div>
+      </div>
+      <div class="wave-cell">
+        <div class="wave-when">Ola 3 · Mes 9–12</div>
+        <h4>El grupo completo, operando como sistema</h4>
+        <p>Las siete marcas activas, cada una compitiendo en su nicho y todas alimentando el mismo pipeline. Un lead que entra por cualquier puerta puede recorrer el ciclo completo dentro del grupo. La integración vertical deja de ser una virtud interna y se vuelve un argumento comercial medible.</p>
+        <div class="wave-units">
+          <span style="color:var(--u-arq)">Arquitectura</span>
+          <span style="color:var(--u-pre)">Preconstrucción</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA + FORM ============== -->
+<section class="section cta-form-section blueprint" id="contactemos">
+  <div class="cta-form-inner">
+    <h2 class="reveal">Ordenemos las siete marcas antes de que se ordenen solas.</h2>
+    <p class="lede reveal">Cuéntanos cómo ven el arranque y con qué unidades tendría más sentido empezar. Lo contemplamos para llegar con una ruta concreta a nuestra próxima reunión.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate class="reveal">
+      <input type="hidden" name="propuesta" value="grupo-louva" />
+
+      <label>Nombre <span class="req">*</span>
+        <input name="nombre" type="text" required autocomplete="name" />
+      </label>
+
+      <label>Email <span class="req">*</span>
+        <input name="email" type="email" required autocomplete="email" />
+      </label>
+
+      <label>WhatsApp / Teléfono
+        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+      </label>
+
+      <label>¿Con qué unidades tendría sentido arrancar?
+        <select name="unidades">
+          <option value="">Selecciona…</option>
+          <option>La ola recomendada — Desarrolladora, Constructora y Supervisión</option>
+          <option>Solo el sistema de marca del grupo, por ahora</option>
+          <option>Las siete unidades al mismo tiempo</option>
+          <option>Otras unidades — lo explico abajo</option>
+          <option>Todavía no lo definimos</option>
+        </select>
+      </label>
+
+      <label>Siguiente paso <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Avancemos — agendemos kickoff</option>
+          <option>Me interesa pero quiero ajustar el alcance</option>
+          <option>Tengo preguntas antes de decidir</option>
+          <option>Necesito un poco más de tiempo</option>
+        </select>
+      </label>
+
+      <label>Mensaje (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Comentarios, dudas o ajustes que quieras dejar por escrito."></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ============== CLOSING ============== -->
+<section class="closing">
+  <div class="closing-inner">
+    <div class="closing-eyebrow">De siete áreas a siete marcas</div>
+    <h2 class="closing-statement">
+      El grupo ya <em>cubre el ciclo completo</em> de un desarrollo.<br>
+      Falta que el mercado lo vea así.
+    </h2>
+    <p class="closing-sub">
+      Sentido construye el sistema que le da a cada unidad una identidad con la que compita en su
+      propio nicho, y al grupo el respaldo visible que convierte siete conversaciones separadas
+      en una sola relación comercial de ciclo completo.
+    </p>
+
+    <div class="closing-spectrum" aria-hidden="true">
+      <i style="background:var(--u-pre)"></i><i style="background:var(--u-obr)"></i><i style="background:var(--u-bim)"></i><i style="background:var(--u-des)"></i><i style="background:var(--u-arq)"></i><i style="background:var(--u-con)"></i><i style="background:var(--u-sup)"></i>
+    </div>
+
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="closing-sentido-mark" />
+
+    <div class="closing-meta">
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+      <span>propuestas.sentido.mx</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="copy">Sentido Branding &amp; Advertising · 2026 · Propuesta confidencial Grupo Louva</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Scroll spy nav
+  const navLinks = document.querySelectorAll('.site-nav-links a');
+  const sections = Array.from(navLinks).map((a) => {
+    const id = a.getAttribute('data-target');
+    return { link: a, section: document.getElementById(id) };
+  }).filter((s) => s.section);
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        navLinks.forEach((l) => l.classList.remove('active'));
+        const match = sections.find((s) => s.section === e.target);
+        if (match) match.link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach((s) => spy.observe(s.section));
+
+  // Lead form — POST a /api/lead (Resend + correo branded a jos@sentido.mx)
+  const leadForm = document.getElementById('lead-form');
+  if (leadForm) {
+    const statusEl = document.getElementById('lf-status');
+    const submitBtn = leadForm.querySelector('.form-submit');
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
+      const payload = {
+        Propuesta: leadForm.propuesta.value,
+        Nombre: leadForm.nombre.value.trim(),
+        Email: leadForm.email.value.trim(),
+        WhatsApp: leadForm.whatsapp.value.trim() || '—',
+        'Unidades de arranque': leadForm.unidades.value || '—',
+        'Siguiente paso': leadForm.paso.value,
+        Mensaje: leadForm.mensaje.value.trim() || '—',
+        Fuente: location.pathname,
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.classList.remove('visible', 'error');
+      try {
+        const res = await fetch(leadForm.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te respondo en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        leadForm.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbeme directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar →';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
