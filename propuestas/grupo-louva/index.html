@@ -285,6 +285,19 @@
   }
   .applies i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; }
 
+  /* Desglose de partidas dentro del plan */
+  .breakdown { border-top: 1px solid var(--border); margin-top: 0.2rem; padding-top: 1.1rem; }
+  .bd-title {
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-faint); margin-bottom: 0.85rem;
+  }
+  .bd-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 0.9rem; align-items: baseline;
+    padding: 0.42rem 0; font-size: 0.88rem; color: var(--text-dim);
+  }
+  .bd-row b { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text); font-weight: 500; white-space: nowrap; }
+  .bd-row.inc b { color: var(--success); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
   /* Pauta — adyacente al servicio operador */
   .ad-note {
     margin-top: 1.4rem; position: relative;
@@ -809,18 +822,28 @@
           Mercados chicos, tickets grandes y compradores que investigan antes de contactar.
           La estrategia no busca volumen: busca ser la referencia técnica del nicho y estar
           presente exactamente cuando alguien busca resolver ese problema. LinkedIn opera como
-          plaza principal, con Instagram como espejo adaptado.
+          plaza principal, con Facebook e Instagram como espejo adaptado.
         </p>
         <ul class="service-list">
           <li>8 publicaciones/mes de contenido técnico y de criterio</li>
-          <li>LinkedIn como canal principal + Instagram espejo</li>
+          <li>3 redes gestionadas: LinkedIn como canal principal + Facebook e Instagram espejo</li>
           <li>Gestión de Google Ads sobre términos de alta intención del nicho</li>
           <li>Google Business Profile y SEO local de la unidad</li>
           <li>Producción de piezas explicativas asistida con IA</li>
           <li>Reporte mensual de costo por lead calificado</li>
         </ul>
+
+        <div class="breakdown">
+          <div class="bd-title">Desglose del plan · MXN / mes</div>
+          <div class="bd-row"><span>Gestión de redes — LinkedIn, Facebook e Instagram</span><b>$6,000</b></div>
+          <div class="bd-row"><span>Gestión de Google Ads</span><b>$4,000</b></div>
+          <div class="bd-row inc"><span>Google Business Profile + SEO local</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Gestión de Meta Ads</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Producción asistida con IA + reporte mensual</span><b>Incluido</b></div>
+        </div>
+
         <div class="service-price">
-          <div class="amount">$9,500 <small>+ IVA / mes · por unidad</small></div>
+          <div class="amount">$10,000 <small>+ IVA / mes · por unidad</small></div>
           <div class="terms">Gestión de Google Ads incluida</div>
         </div>
         <div class="ad-note">
@@ -852,6 +875,15 @@
           <li>Tratamiento editorial de casos y avances de obra</li>
           <li>Reporte mensual de alcance, interacción y leads</li>
         </ul>
+        <div class="breakdown">
+          <div class="bd-title">Desglose del plan · MXN / mes</div>
+          <div class="bd-row"><span>Gestión de redes — Facebook, Instagram y LinkedIn <small style="display:block;color:var(--text-faint);font-size:0.78rem">12 publicaciones/mes, mayor densidad audiovisual</small></span><b>$7,500</b></div>
+          <div class="bd-row"><span>Gestión de Google Ads</span><b>$4,000</b></div>
+          <div class="bd-row inc"><span>Google Business Profile + SEO local</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Gestión de Meta Ads</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Tratamiento editorial de casos y obra + reporte mensual</span><b>Incluido</b></div>
+        </div>
+
         <div class="service-price">
           <div class="amount">$11,500 <small>+ IVA / mes · por unidad</small></div>
           <div class="terms">Gestión de Meta + Google incluida</div>
@@ -886,6 +918,16 @@
           <li>Automatizaciones de seguimiento por WhatsApp y correo</li>
           <li>Reporte semanal de leads, citas y costo por oportunidad</li>
         </ul>
+        <div class="breakdown">
+          <div class="bd-title">Desglose del plan · MXN / mes</div>
+          <div class="bd-row"><span>Gestión de redes — Facebook, Instagram y LinkedIn <small style="display:block;color:var(--text-faint);font-size:0.78rem">15 publicaciones/mes con enfoque de venta y producto</small></span><b>$7,500</b></div>
+          <div class="bd-row"><span>Gestión de Google Ads</span><b>$4,000</b></div>
+          <div class="bd-row"><span>Embudo comercial y automatizaciones <small style="display:block;color:var(--text-faint);font-size:0.78rem">calificación, seguimiento por WhatsApp y correo, agendado</small></span><b>$5,000</b></div>
+          <div class="bd-row inc"><span>Google Business Profile + SEO local</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Gestión de Meta Ads — motor principal</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Reporte semanal de leads, citas y costo por oportunidad</span><b>Incluido</b></div>
+        </div>
+
         <div class="service-price">
           <div class="amount">$16,500 <small>+ IVA / mes</small></div>
           <div class="terms">Landing por proyecto: $12,000 c/u</div>
@@ -938,9 +980,9 @@
     <div class="inv-table reveal" style="margin-top:2.5rem;">
       <div class="inv-row head"><div class="inv-name">Fase 2 — Operación mensual <small style="text-transform:none;letter-spacing:0">honorarios de gestión, sin pauta</small></div><div class="inv-amount">MXN / mes</div></div>
       <div class="inv-row"><div class="inv-name">Núcleo de operación del grupo <small>CRM único, ruteo, gobierno de marca y reporte consolidado</small></div><div class="inv-amount">$15,000 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Plan Autoridad <small>por unidad · BIM, Preconstrucción, Gerencia de Obra, Supervisión</small></div><div class="inv-amount">$9,500 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Plan Visibilidad <small>por unidad · Arquitectura, Constructora</small></div><div class="inv-amount">$11,500 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Plan Comercial <small>Desarrolladora</small></div><div class="inv-amount">$16,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Autoridad <small>por unidad · BIM, Preconstrucción, Gerencia de Obra, Supervisión · redes $6,000 + Google Ads $4,000</small></div><div class="inv-amount">$10,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Visibilidad <small>por unidad · Arquitectura, Constructora · redes $7,500 + Google Ads $4,000</small></div><div class="inv-amount">$11,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Comercial <small>Desarrolladora · redes $7,500 + Google Ads $4,000 + embudo $5,000</small></div><div class="inv-amount">$16,500 + IVA</div></div>
     </div>
 
     <!-- ESCALA -->
@@ -962,9 +1004,9 @@
         (puerta de entrada al capital institucional) — más el núcleo del grupo.
       </p>
       <p style="margin-top:0.9rem;">
-        Operación mensual: núcleo $15,000 + Comercial $16,500 + Visibilidad $11,500 + Autoridad $9,500
-        = $52,500, con <span class="save">−10% por tres unidades activas</span> →
-        <span class="save"><strong>$47,250 + IVA / mes</strong></span>. Fase 0 para esas tres marcas
+        Operación mensual: núcleo $15,000 + Comercial $16,500 + Visibilidad $11,500 + Autoridad $10,000
+        = $53,000, con <span class="save">−10% por tres unidades activas</span> →
+        <span class="save"><strong>$47,700 + IVA / mes</strong></span>. Fase 0 para esas tres marcas
         más la paraguas: <strong>$112,000 + IVA</strong>. Las cuatro unidades restantes entran en
         olas posteriores, sobre un sistema que ya funciona y con datos reales de la primera.
       </p>
