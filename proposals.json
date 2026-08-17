@@ -46,7 +46,7 @@
         {
           "id": "nucleo",
           "nombre": "Núcleo de operación del grupo",
-          "precio": 12000,
+          "precio": 15000,
           "tipo": "mensual"
         },
         {
@@ -74,7 +74,7 @@
         "plan-visibilidad",
         "plan-autoridad"
       ],
-      "notas": "7 unidades bajo un mismo grupo. Arranque recomendado Ola 1: Desarrolladora + Constructora + Supervisión + núcleo = $44,550/mes (-10%). Fase 0 esas 3 + paraguas = $112,000.",
+      "notas": "7 unidades bajo un mismo grupo. Arranque recomendado Ola 1: Desarrolladora + Constructora + Supervisión + núcleo = $47,250/mes (-10%). Fase 0 esas 3 + paraguas = $112,000.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
