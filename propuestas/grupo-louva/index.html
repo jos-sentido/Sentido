@@ -279,6 +279,23 @@
   .service-price .amount { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--text); }
   .service-price .amount small { font-size: 0.8rem; color: var(--text-dim); font-weight: 400; font-family: var(--font-mono); }
   .service-price .terms { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.05em; }
+  /* Precio de lista tachado + ahorro por volumen */
+  .price-was {
+    font-family: var(--font-mono); font-size: 1.05rem; font-weight: 400;
+    color: var(--text-faint); text-decoration: line-through;
+    text-decoration-color: var(--warn); text-decoration-thickness: 2px;
+    margin-right: 0.6rem;
+  }
+  .price-save {
+    display: inline-block; margin-left: 0.6rem; vertical-align: middle;
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--bg-deep); background: var(--success); font-weight: 600;
+    padding: 0.28rem 0.6rem; border-radius: 999px;
+  }
+  .price-why {
+    width: 100%; margin-top: 0.7rem; font-size: 0.84rem; color: var(--text-dim); line-height: 1.6;
+  }
+  .price-why strong { color: var(--success); font-weight: 500; }
   .applies {
     font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--text-faint);
     margin-bottom: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
@@ -763,7 +780,15 @@
         </ul>
         <div class="service-price">
           <div class="amount">$30,000 <small>+ IVA · sistema base</small></div>
-          <div class="terms">+ $28,000 marca paraguas · + $18,000 por unidad</div>
+          <div class="terms">50% inicio / 50% contra manual maestro</div>
+          <p class="price-why">
+            Sobre el sistema base: <strong>marca paraguas $28,000</strong> y la identidad de cada
+            unidad a <span class="price-was" style="font-size:0.95rem;">$30,000</span><strong>$20,000</strong>
+            <span class="price-save">−33% por volumen</span><br>
+            El precio de lista para desarrollar una identidad de este alcance es $30,000. Al construir
+            las siete dentro del mismo sistema, cada una baja a $20,000 — <strong>$10,000 menos por
+            marca</strong>.
+          </p>
         </div>
       </div>
 
@@ -776,9 +801,9 @@
           No construimos ocho sitios desde cero. Construimos <strong>una plataforma técnica común</strong>
           —misma arquitectura, mismo sistema de componentes, mismo panel de administración— y encima
           de ella montamos el sitio del grupo y el de cada unidad, cada uno con su piel, su narrativa
-          y su contenido. Esa es la razón por la que un sitio de unidad cuesta $18,000 en lugar de lo
-          que costaría suelto: el trabajo pesado de estructura, rendimiento, SEO técnico e integración
-          al CRM se hace una vez y lo heredan todos. También significa que todos se actualizan y se
+          y su contenido. Esa es la razón por la que un sitio de unidad cuesta $18,000 en lugar de los
+          $25,000 que costaría suelto: el trabajo pesado de estructura, rendimiento, SEO técnico e
+          integración al CRM se hace una vez y lo heredan todos. También significa que todos se actualizan y se
           mantienen desde un solo lugar, y que la octava unidad —cuando llegue— se publica en semanas,
           no en meses.
         </p>
@@ -833,8 +858,16 @@
           <li>Endoso del grupo y navegación cruzada hacia las otras unidades</li>
         </ul>
         <div class="service-price">
-          <div class="amount">$18,000 <small>+ IVA · por unidad</small></div>
+          <div class="amount">
+            <span class="price-was">$25,000</span>$18,000 <small>+ IVA · por unidad</small>
+            <span class="price-save">−28% por volumen</span>
+          </div>
           <div class="terms">60/40 · sobre la plataforma común</div>
+          <p class="price-why">
+            El precio de lista de un sitio de este alcance es $25,000. Al desarrollarlos como un solo
+            proyecto sobre la plataforma común, cada unidad baja a $18,000 —
+            <strong>$7,000 menos por marca</strong>.
+          </p>
         </div>
         <div class="ad-note" style="background:linear-gradient(180deg, rgba(138,167,224,0.14), rgba(138,167,224,0.06)); border-color:rgba(138,167,224,0.35); border-left-color:var(--u-des); box-shadow:none;">
           <span class="ad-tag" style="background:var(--u-des); color:var(--bg-deep);">Caso aparte — Desarrolladora</span>
@@ -920,7 +953,7 @@
           Arquitectura · Constructora
         </div>
         <p class="desc">
-          Aquí el portafolio es el argumento y la imagen es el producto. Cadencia editorial más alta,
+          Aquí el portafolio es el argumento y la imagen es el producto. Más publicaciones al mes,
           más peso audiovisual y presencia en los canales donde se decide con los ojos. Se combina
           alcance en Meta con captación de intención en Google, porque el comprador transita entre
           descubrir y buscar activamente.
@@ -930,7 +963,7 @@
           <li>Instagram y Facebook como plaza principal + LinkedIn espejo B2B</li>
           <li>Gestión de campañas en Meta y en Google Ads</li>
           <li>Google Business Profile y SEO local de la unidad</li>
-          <li>Tratamiento editorial de casos y avances de obra</li>
+          <li>Proyectos y obra convertidos en casos: selección, redacción y armado de las piezas</li>
           <li>Reporte mensual de alcance, interacción y leads</li>
         </ul>
         <div class="breakdown">
@@ -939,7 +972,7 @@
           <div class="bd-row"><span>Gestión de Google Ads</span><b>$4,000</b></div>
           <div class="bd-row inc"><span>Google Business Profile + SEO local</span><b>Incluido</b></div>
           <div class="bd-row inc"><span>Gestión de Meta Ads</span><b>Incluido</b></div>
-          <div class="bd-row inc"><span>Tratamiento editorial de casos y obra + reporte mensual</span><b>Incluido</b></div>
+          <div class="bd-row inc"><span>Armado de casos a partir de su obra + reporte mensual</span><b>Incluido</b></div>
         </div>
 
         <div class="service-price">
@@ -1016,20 +1049,20 @@
       <div class="inv-row head"><div class="inv-name">Fase 0 — Sistema de marca del grupo <small style="text-transform:none;letter-spacing:0">inversión única</small></div><div class="inv-amount">MXN</div></div>
       <div class="inv-row"><div class="inv-name">Arquitectura de marca + manual maestro <small>reglas, jerarquía, endoso y territorio verbal</small></div><div class="inv-amount">$30,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Identidad de la marca paraguas <small>la marca del grupo</small></div><div class="inv-amount">$28,000 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Identidad por unidad de negocio <small>$18,000 c/u · las 7 unidades = $126,000</small></div><div class="inv-amount">$126,000 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Descuento por sistema completo (7 unidades) <small>−12% al desarrollarlas como un solo proyecto</small></div><div class="inv-amount"><span class="save">− $22,000</span></div></div>
-      <div class="inv-row total"><div class="inv-name">Fase 0 completa — las 8 marcas</div><div class="inv-amount">$162,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Identidad por unidad de negocio <small>lista $30,000 c/u · $20,000 al construirlas dentro del mismo sistema · 7 unidades</small></div><div class="inv-amount"><span style="color:var(--text-faint);text-decoration:line-through;text-decoration-color:var(--warn);margin-right:0.5rem;">$210,000</span>$140,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Ahorro por volumen ya aplicado <small>$10,000 menos en cada una de las 7 identidades</small></div><div class="inv-amount"><span class="save">− $70,000</span></div></div>
+      <div class="inv-row total"><div class="inv-name">Fase 0 completa — las 8 marcas</div><div class="inv-amount">$198,000 + IVA</div></div>
     </div>
     <div class="note reveal">
       <span class="ico">🧩</span>
-      <p><strong>El sistema se define una sola vez y sirve para las siete.</strong> Por eso el precio por unidad baja a $18,000 y el descuento del 12% se activa al desarrollarlas como un solo proyecto: las reglas, el territorio verbal y el manual maestro se construyen una vez y los heredan todas las marcas — incluida la octava, cuando llegue.</p>
+      <p><strong>El sistema se define una sola vez y sirve para las siete.</strong> Por eso la identidad de cada unidad baja de $30,000 a $20,000: las reglas, el territorio verbal y el manual maestro se construyen una vez y los heredan todas las marcas — incluida la octava, cuando llegue. El ahorro por volumen en Fase 0 es de <strong>$70,000</strong>.</p>
     </div>
 
     <!-- FASE 1 -->
     <div class="inv-table reveal" style="margin-top:2.5rem;">
       <div class="inv-row head"><div class="inv-name">Fase 1 — Plataforma web <small style="text-transform:none;letter-spacing:0">inversión única · 60% anticipo / 40% entrega</small></div><div class="inv-amount">MXN</div></div>
       <div class="inv-row"><div class="inv-name">Sitio del grupo <small>narrativa del ciclo completo + directorio de unidades</small></div><div class="inv-amount">$25,000 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Sitio por unidad <small>$18,000 c/u · misma plataforma, narrativa propia</small></div><div class="inv-amount">$18,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Sitio por unidad <small>lista $25,000 c/u · $18,000 al desarrollarlos como un solo proyecto</small></div><div class="inv-amount"><span style="color:var(--text-faint);text-decoration:line-through;text-decoration-color:var(--warn);margin-right:0.5rem;">$25,000</span>$18,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Landing por proyecto de la Desarrolladora <small>eventual, según proyectos en venta</small></div><div class="inv-amount">$12,000 + IVA</div></div>
       <div class="inv-row total"><div class="inv-name">Plataforma completa (grupo + 7 unidades)</div><div class="inv-amount">$151,000 + IVA</div></div>
     </div>
@@ -1066,7 +1099,7 @@
         Operación mensual completa: núcleo $15,000 + Comercial $16,500 + 2 Visibilidad $23,000 +
         4 Autoridad $40,000 = $94,500, con <span class="save">−18% por las siete unidades activas</span> →
         <span class="save"><strong>$77,490 + IVA / mes</strong></span>, un ahorro de
-        <span class="save">$17,010 cada mes</span>. Fase 0 completa <strong>$162,000 + IVA</strong>
+        <span class="save">$17,010 cada mes</span>. Fase 0 completa <strong>$198,000 + IVA</strong>
         y plataforma web completa <strong>$151,000 + IVA</strong>.
       </p>
       <p style="margin-top:0.9rem;">

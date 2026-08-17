@@ -21,8 +21,8 @@
         },
         {
           "id": "id-unidad",
-          "nombre": "Fase 0 — Identidad por unidad (c/u)",
-          "precio": 18000,
+          "nombre": "Fase 0 — Identidad por unidad (c/u) — lista $30,000, volumen $20,000",
+          "precio": 20000,
           "tipo": "unico"
         },
         {
@@ -33,7 +33,7 @@
         },
         {
           "id": "sitio-unidad",
-          "nombre": "Fase 1 — Sitio por unidad (c/u)",
+          "nombre": "Fase 1 — Sitio por unidad (c/u) — lista $25,000, volumen $18,000",
           "precio": 18000,
           "tipo": "unico"
         },
@@ -79,7 +79,7 @@
         "plan-visibilidad",
         "plan-autoridad"
       ],
-      "notas": "7 unidades bajo un mismo grupo. Escenario recomendado = grupo COMPLETO: mensual $94,500 -18% = $77,490/mes; Fase 0 $162,000; plataforma web $151,000. Las 3 olas son calendario de despliegue a 12 meses, no etapas de decision.",
+      "notas": "7 unidades bajo un mismo grupo. Escenario recomendado = grupo COMPLETO: mensual $94,500 -18% = $77,490/mes; Fase 0 $198,000 (identidad por unidad lista 30k -> 20k, ahorro 70k); plataforma web $151,000 (sitio por unidad lista 25k -> 18k). Sin cronograma fijo: cada marca se activa cuando el grupo decida. CTA a WhatsApp, sin form.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
