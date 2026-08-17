@@ -45,7 +45,7 @@
         },
         {
           "id": "nucleo",
-          "nombre": "Núcleo de operación del grupo",
+          "nombre": "Núcleo de operación del grupo — base $8,000 + $1,000 por unidad activa",
           "precio": 15000,
           "tipo": "mensual"
         },
@@ -79,7 +79,7 @@
         "plan-visibilidad",
         "plan-autoridad"
       ],
-      "notas": "7 unidades bajo un mismo grupo. Escenario recomendado = grupo COMPLETO: mensual $94,500 -18% = $77,490/mes; Fase 0 $198,000 (identidad por unidad lista 30k -> 20k, ahorro 70k); plataforma web $151,000 (sitio por unidad lista 25k -> 18k). Sin cronograma fijo: cada marca se activa cuando el grupo decida. CTA a WhatsApp, sin form.",
+      "notas": "7 unidades bajo un mismo grupo. Escenario recomendado = grupo COMPLETO: mensual $94,500 -18% = $77,490/mes; Fase 0 $198,000 (identidad por unidad lista 30k -> 20k, ahorro 70k); plataforma web $151,000 (sitio por unidad lista 25k -> 18k). Sin cronograma fijo: cada marca se activa cuando el grupo decida. CTA a WhatsApp, sin form. Nucleo se acumula: base 8k + 1k por unidad activa (7 = 15k).",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
