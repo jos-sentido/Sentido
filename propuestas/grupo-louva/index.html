@@ -354,6 +354,57 @@
   .inv-row.total .inv-amount { color: var(--accent-bright); font-size: 1.15rem; font-weight: 600; }
   .save { color: var(--success); font-weight: 500; }
 
+  /* ---------- CALCULADORA ---------- */
+  .calc {
+    margin-top: 2rem; background: var(--surface-elevated);
+    border: 1px solid var(--accent-line); border-radius: 3px; padding: 2rem 1.8rem;
+  }
+  @media (min-width: 768px) { .calc { padding: 2.4rem 2.2rem; } }
+  .calc-head h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .calc-head p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.7; max-width: 42rem; }
+  .calc-units { display: grid; gap: 0.7rem; margin-top: 1.8rem; grid-template-columns: 1fr 1fr; }
+  @media (min-width: 700px) { .calc-units { grid-template-columns: repeat(4, 1fr); } }
+  .cu {
+    display: flex; flex-direction: column; gap: 0.25rem; text-align: left;
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--u);
+    border-radius: 3px; padding: 0.85rem 0.9rem; cursor: pointer; color: var(--text-dim);
+    font-family: var(--font-sans); transition: background 0.18s, border-color 0.18s, color 0.18s;
+  }
+  .cu:hover { border-color: var(--border-strong); color: var(--text); }
+  .cu .cu-n { font-size: 0.92rem; font-weight: 500; line-height: 1.3; }
+  .cu .cu-p { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
+  .cu[aria-pressed="true"] { background: color-mix(in srgb, var(--u) 16%, var(--surface)); color: var(--text); border-color: var(--u); }
+  .cu[aria-pressed="true"] .cu-p { color: var(--u); }
+  .calc-dev {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.1rem; margin-top: 1.4rem;
+    padding: 0.9rem 1.1rem; background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--u-des); border-radius: 3px;
+  }
+  .calc-dev[hidden] { display: none; }
+  .cd-label { font-size: 0.9rem; color: var(--text); }
+  .cd-hint { font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-faint); letter-spacing: 0.05em; }
+  .stepper { display: inline-flex; align-items: center; gap: 0.2rem; }
+  .stepper button {
+    width: 28px; height: 28px; border-radius: 3px; border: 1px solid var(--border-strong);
+    background: var(--surface-elevated); color: var(--text); cursor: pointer;
+    font-family: var(--font-mono); font-size: 1rem; line-height: 1; transition: background 0.15s;
+  }
+  .stepper button:hover { background: var(--accent-soft); }
+  .stepper span { min-width: 2rem; text-align: center; font-family: var(--font-mono); font-size: 0.95rem; color: var(--text); }
+  .calc-out { margin-top: 1.8rem; border-top: 1px solid var(--border); }
+  .co-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline;
+    padding: 0.85rem 0; border-bottom: 1px solid var(--border);
+  }
+  .co-row:last-child { border-bottom: none; }
+  .co-row > span { font-size: 0.95rem; color: var(--text-dim); }
+  .co-row > span small { display: block; color: var(--text-faint); font-size: 0.78rem; margin-top: 0.2rem; }
+  .co-row b { font-family: var(--font-mono); font-size: 1rem; color: var(--text); font-weight: 500; white-space: nowrap; }
+  .co-row.co-block b { color: var(--accent-bright); font-size: 1.15rem; }
+  .co-row.big b { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; }
+  #co-disc.on { color: var(--success); }
+  .calc-note { margin-top: 1.2rem; font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.04em; line-height: 1.6; }
+
   .bundle {
     margin-top: 2rem; background: var(--surface-elevated); border: 1px solid var(--accent-line);
     border-radius: 3px; padding: 1.8rem 2rem;
@@ -1156,6 +1207,43 @@
       <div class="inv-row total"><div class="inv-name">5 a 7 unidades activas <small>★ mejor economía por unidad</small></div><div class="inv-amount"><span class="save">− 18%</span></div></div>
     </div>
 
+    <!-- CALCULADORA -->
+    <div class="calc reveal" id="calc">
+      <div class="calc-head">
+        <h4>Arme su escenario</h4>
+        <p>Seleccione las unidades que el grupo activaría y vea cómo queda la inversión, con el descuento por volumen ya aplicado.</p>
+      </div>
+
+      <div class="calc-units" role="group" aria-label="Unidades a activar">
+        <button type="button" class="cu" data-plan="11500" data-dev="0" style="--u:var(--u-arq)"><span class="cu-n">Arquitectura</span><span class="cu-p">Visibilidad</span></button>
+        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-bim)"><span class="cu-n">Proyectos BIM</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="11500" data-dev="0" style="--u:var(--u-con)"><span class="cu-n">Constructora</span><span class="cu-p">Visibilidad</span></button>
+        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-pre)"><span class="cu-n">Preconstrucción</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-obr)"><span class="cu-n">Gerencia de Obra</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-sup)"><span class="cu-n">Supervisión</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="11500" data-dev="1" style="--u:var(--u-des)"><span class="cu-n">Desarrolladora</span><span class="cu-p">Comercial</span></button>
+      </div>
+
+      <div class="calc-dev" id="calc-dev" hidden>
+        <span class="cd-label">Desarrollos en comercialización</span>
+        <div class="stepper">
+          <button type="button" id="dev-minus" aria-label="Quitar desarrollo">−</button>
+          <span id="dev-count">1</span>
+          <button type="button" id="dev-plus" aria-label="Agregar desarrollo">+</button>
+        </div>
+        <span class="cd-hint">Landing $12,000 única + embudo $1,500 / mes por cada uno</span>
+      </div>
+
+      <div class="calc-out">
+        <div class="co-row"><span>Unidades activas</span><b id="co-n">0</b></div>
+        <div class="co-row"><span>Descuento por volumen</span><b id="co-disc">Precio de lista</b></div>
+        <div class="co-row co-block"><span>Inversión única <small>Fase 0 $55,000 + $38,000 por unidad</small></span><b id="co-once">$0</b></div>
+        <div class="co-row co-block big"><span>Operación mensual <small>núcleo + plan de cada unidad</small></span><b id="co-month">$0</b></div>
+      </div>
+
+      <p class="calc-note">Cifras en MXN, antes de IVA. No incluye presupuesto de pauta, que va directo a las plataformas.</p>
+    </div>
+
     <div class="note reveal">
       <span class="ico">💰</span>
       <p><strong>La pauta publicitaria es aparte y va directa a la plataforma.</strong> Los rangos sugeridos están indicados en cada plan: $6,000–$15,000 por unidad en Autoridad, $8,000–$20,000 en Visibilidad y $25,000–$60,000 en la Desarrolladora. Es presupuesto de medios, no honorario de Sentido — el grupo mantiene control total del gasto y puede ajustarlo mes a mes.</p>
@@ -1304,6 +1392,51 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Calculadora de escenario
+  (() => {
+    const calc = document.getElementById('calc');
+    if (!calc) return;
+    const FASE0 = 55000, POR_UNIDAD = 38000, NUCLEO = 2150;
+    const LANDING = 12000, EMBUDO = 1500;
+    const units = [...calc.querySelectorAll('.cu')];
+    const devBox = document.getElementById('calc-dev');
+    const devCount = document.getElementById('dev-count');
+    const fmt = (n) => '$' + n.toLocaleString('es-MX');
+    let devs = 1;
+
+    units.forEach((u) => {
+      u.setAttribute('aria-pressed', 'false');
+      u.addEventListener('click', () => {
+        u.setAttribute('aria-pressed', u.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        render();
+      });
+    });
+    document.getElementById('dev-minus').addEventListener('click', () => { devs = Math.max(1, devs - 1); render(); });
+    document.getElementById('dev-plus').addEventListener('click', () => { devs = Math.min(12, devs + 1); render(); });
+
+    function render() {
+      const on = units.filter((u) => u.getAttribute('aria-pressed') === 'true');
+      const n = on.length;
+      const hasDev = on.some((u) => u.dataset.dev === '1');
+      devBox.hidden = !hasDev;
+      devCount.textContent = devs;
+
+      const rate = n >= 5 ? 0.18 : n >= 3 ? 0.10 : 0;
+      let once = n ? FASE0 + n * POR_UNIDAD : 0;
+      let month = on.reduce((sum, u) => sum + NUCLEO + Number(u.dataset.plan), 0);
+      if (hasDev) { once += devs * LANDING; month += devs * EMBUDO; }
+      const monthFinal = Math.round(month * (1 - rate));
+
+      document.getElementById('co-n').textContent = n + (n === 1 ? ' unidad' : ' unidades');
+      const disc = document.getElementById('co-disc');
+      disc.textContent = rate ? '− ' + Math.round(rate * 100) + '%  (ahorro ' + fmt(month - monthFinal) + ' / mes)' : 'Precio de lista';
+      disc.classList.toggle('on', rate > 0);
+      document.getElementById('co-once').textContent = fmt(once);
+      document.getElementById('co-month').textContent = n ? fmt(monthFinal) + ' / mes' : '$0';
+    }
+    render();
+  })();
 
   // Scroll spy nav
   const navLinks = document.querySelectorAll('.site-nav-links a');
