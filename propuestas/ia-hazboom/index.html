@@ -112,6 +112,8 @@
     text-transform:uppercase;color:var(--dimmer);
   }
   .hero h1{max-width:16ch}
+  .br-desk{display:none}
+  @media(min-width:640px){.br-desk{display:inline}}
   .hero h1 .hl{color:var(--accent)}
   .hero .lede{margin-top:2rem;max-width:52ch}
   .hero-strip{
@@ -248,6 +250,10 @@
   }
   .total-label{font-family:var(--display);font-weight:600;font-size:1.05rem}
   .total-amt{text-align:right}
+  @media(max-width:520px){
+    .total{flex-direction:column;align-items:flex-start;gap:.5rem}
+    .total-amt{text-align:left}
+  }
   .total-amt .big{
     font-family:var(--mono);font-weight:700;font-size:clamp(1.5rem,4vw,2rem);
     letter-spacing:-.04em;display:block;line-height:1.1;
@@ -396,7 +402,7 @@
       <img class="hero-prospect" src="/propuestas/ia-hazboom/logo-prospecto.png" alt="IA HAZBOOM" />
       <span class="hero-date">Propuesta · Agosto 2026</span>
     </div>
-    <h1 class="rv">Ustedes le cuidan el margen<br>a cada restaurante.<br><span class="hl">Cuidemos el suyo.</span></h1>
+    <h1 class="rv">Ustedes le cuidan el margen<br class="br-desk">a cada restaurante.<br><span class="hl">Cuidemos el suyo.</span></h1>
     <p class="lede rv">Un agente de IA que atiende, perfila y filtra en WhatsApp, conectado a GoHighLevel para que ningún restaurante interesado se quede esperando — más el marketing digital que lo mantiene lleno.</p>
     <div class="hero-strip rv">
       <span>Agente IA en WhatsApp</span>
