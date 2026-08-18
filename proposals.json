@@ -53,76 +53,74 @@
       "serviciosDisponibles": [
         {
           "id": "arq-marca",
-          "nombre": "Fase 0 — Identidad de marca del grupo (logo, sistema visual, manual + arquitectura de marca)",
+          "nombre": "Fase 0 · El grupo — Identidad de marca del grupo (logo, sistema visual, manual + arquitectura)",
           "precio": 30000,
           "tipo": "unico"
         },
         {
-          "id": "id-unidad",
-          "nombre": "Fase 0 — Identidad por unidad (c/u) — lista $30,000, volumen $20,000",
-          "precio": 20000,
-          "tipo": "unico"
-        },
-        {
           "id": "sitio-grupo",
-          "nombre": "Fase 1 — Sitio del grupo",
+          "nombre": "Fase 0 · El grupo — Sitio del grupo",
           "precio": 25000,
           "tipo": "unico"
         },
         {
+          "id": "id-unidad",
+          "nombre": "Por unidad — Identidad de la unidad (lista $30,000, volumen $20,000)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
           "id": "sitio-unidad",
-          "nombre": "Fase 1 — Sitio por unidad (c/u) — lista $25,000, volumen $18,000",
+          "nombre": "Por unidad — Sitio de la unidad (lista $25,000, volumen $18,000)",
           "precio": 18000,
           "tipo": "unico"
         },
         {
-          "id": "landing-proyecto",
-          "nombre": "Fase 1 — Landing por proyecto (Desarrolladora)",
-          "precio": 12000,
-          "tipo": "unico"
-        },
-        {
           "id": "nucleo",
-          "nombre": "Núcleo de operación del grupo — $2,150 por unidad activa",
+          "nombre": "Mensual por unidad activa — Núcleo de operación",
           "precio": 2150,
           "tipo": "mensual"
         },
         {
           "id": "plan-autoridad",
-          "nombre": "Plan Autoridad (por unidad) — redes $6,000 + Google Ads $4,000",
+          "nombre": "Mensual por unidad — Plan Autoridad (BIM, Preconstrucción, Gerencia de Obra, Supervisión)",
           "precio": 10000,
           "tipo": "mensual"
         },
         {
           "id": "plan-visibilidad",
-          "nombre": "Plan Visibilidad (por unidad) — redes $7,500 + Google Ads $4,000",
+          "nombre": "Mensual por unidad — Plan Visibilidad (Arquitectura, Constructora)",
           "precio": 11500,
           "tipo": "mensual"
         },
         {
           "id": "plan-comercial",
-          "nombre": "Plan Comercial (Desarrolladora) — redes $7,500 + Google Ads $4,000",
+          "nombre": "Mensual por unidad — Plan Comercial (Desarrolladora)",
           "precio": 11500,
           "tipo": "mensual"
         },
         {
+          "id": "landing-proyecto",
+          "nombre": "Desarrolladora — Landing por desarrollo (pago único)",
+          "precio": 12000,
+          "tipo": "unico"
+        },
+        {
           "id": "embudo-desarrollo",
-          "nombre": "Embudo GHL por desarrollo en comercialización",
+          "nombre": "Desarrolladora — Embudo GHL por desarrollo en venta (mensual)",
           "precio": 1500,
           "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [
         "arq-marca",
-        "id-unidad",
         "sitio-grupo",
+        "id-unidad",
         "sitio-unidad",
         "nucleo",
-        "plan-comercial",
-        "plan-visibilidad",
         "plan-autoridad"
       ],
-      "notas": "7 unidades bajo un mismo grupo. Cotizacion en 2 bloques, SIN totales de las 7. FASE 0 (el grupo, una vez): identidad de marca del grupo $30,000 + sitio del grupo $25,000 = $55,000. POR UNIDAD (unica): identidad 30k->20k + sitio 25k->18k = $38,000 por marca activada. MENSUAL por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500). Solo Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Tabulador de volumen al final: 1-2 lista, 3-4 -10%, 5-7 -18%. Sin cronograma fijo. CTA a WhatsApp, sin form.",
+      "notas": "ESCENARIO CARGADO = el grupo + 1 unidad (Plan Autoridad). Unico $93,000 · mensual $12,150. Cada unidad adicional suma $38,000 unico y $2,150 + su plan al mes. MODELO: Fase 0 del grupo (marca $30,000 + sitio $25,000 = $55,000, una sola vez). Por unidad activada: identidad 30k->20k + sitio 25k->18k = $38,000. Mensual por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500). Solo Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Descuento por volumen sobre la mensual: 1-2 lista, 3-4 -10%, 5-7 -18%. La pagina trae calculadora interactiva. Sin cronograma fijo. CTA a WhatsApp, sin formulario.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
