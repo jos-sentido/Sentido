@@ -49,7 +49,7 @@
       "tipo": "propuesta",
       "cliente": "Grupo Louva",
       "fecha": "2026-08-17",
-      "estatus": "borrador",
+      "estatus": "enviada",
       "serviciosDisponibles": [
         {
           "id": "arq-marca",
@@ -113,12 +113,12 @@
         }
       ],
       "serviciosSeleccionados": [
+        "nucleo",
+        "plan-autoridad",
         "arq-marca",
         "sitio-grupo",
         "id-unidad",
-        "sitio-unidad",
-        "nucleo",
-        "plan-autoridad"
+        "sitio-unidad"
       ],
       "notas": "ESCENARIO CARGADO = el grupo + 1 unidad (Plan Autoridad). Unico $93,000 · mensual $12,150. Cada unidad adicional suma $38,000 unico y $2,150 + su plan al mes. MODELO: Fase 0 del grupo (marca $30,000 + sitio $25,000 = $55,000, una sola vez). Por unidad activada: identidad 30k->20k + sitio 25k->18k = $38,000. Mensual por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500). Solo Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Descuento por volumen sobre la mensual: 1-2 lista, 3-4 -10%, 5-7 -18%. La pagina trae calculadora interactiva. Sin cronograma fijo. CTA a WhatsApp, sin formulario.",
       "proximoPaso": "",
