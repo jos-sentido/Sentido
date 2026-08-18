@@ -1,6 +1,50 @@
 {
   "proposals": [
     {
+      "slug": "ia-hazboom",
+      "tipo": "propuesta",
+      "cliente": "IA HAZBOOM",
+      "fecha": "2026-08-17",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "agente-setup",
+          "nombre": "Desarrollo del Agente de IA (WhatsApp + GHL)",
+          "precio": 10000,
+          "tipo": "unico"
+        },
+        {
+          "id": "agente",
+          "nombre": "Operación del Agente de IA",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes Sociales (Meta Ads incluida)",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión de Google Ads",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM GoHighLevel + Automatización",
+          "precio": 4000,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Plataforma de gestión de delivery para restaurantes (Uber Eats, Rappi, DiDi), base en Guadalajara. Recomendado: agente IA + CRM + redes + Google Ads = $10,000 setup y $19,000/mes + IVA. Tokens del modelo por cuenta propia del cliente con su API key. Cierre con formulario y WhatsApp.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "grupo-louva",
       "tipo": "propuesta",
       "cliente": "Grupo Louva",
