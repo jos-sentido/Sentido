@@ -53,7 +53,7 @@
       "serviciosDisponibles": [
         {
           "id": "arq-marca",
-          "nombre": "Fase 0 — Fundamento del grupo (arquitectura de marca + manual maestro + marca del holding)",
+          "nombre": "Fase 0 — Identidad de marca del grupo (logo, sistema visual, manual + arquitectura de marca)",
           "precio": 30000,
           "tipo": "unico"
         },
@@ -122,7 +122,7 @@
         "plan-visibilidad",
         "plan-autoridad"
       ],
-      "notas": "7 unidades bajo un mismo grupo. Cotizacion en 2 bloques, SIN totales de las 7. FASE 0 (el grupo, una vez): fundamento de marca $30,000 + sitio del grupo $25,000 = $55,000. POR UNIDAD (unica): identidad 30k->20k + sitio 25k->18k = $38,000 por marca activada. MENSUAL por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500). Solo Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Tabulador de volumen al final: 1-2 lista, 3-4 -10%, 5-7 -18%. Sin cronograma fijo. CTA a WhatsApp, sin form.",
+      "notas": "7 unidades bajo un mismo grupo. Cotizacion en 2 bloques, SIN totales de las 7. FASE 0 (el grupo, una vez): identidad de marca del grupo $30,000 + sitio del grupo $25,000 = $55,000. POR UNIDAD (unica): identidad 30k->20k + sitio 25k->18k = $38,000 por marca activada. MENSUAL por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500). Solo Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Tabulador de volumen al final: 1-2 lista, 3-4 -10%, 5-7 -18%. Sin cronograma fijo. CTA a WhatsApp, sin form.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
