@@ -1,6 +1,50 @@
 {
   "proposals": [
     {
+      "slug": "propuestamodularte",
+      "tipo": "propuesta",
+      "cliente": "Modularte",
+      "fecha": "2026-08-26",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "web",
+          "nombre": "Renovación Estratégica de Sitio Web",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "seo",
+          "nombre": "Gestión SEO + Blog Automatizado con IA",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Campaña Google Ads – Fase Posicionamiento",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes Sociales Estratégica",
+          "precio": 6500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM y Automatización – Fase 2",
+          "precio": 4500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Construcción modular en México. Ecosistema de posicionamiento y captación. Paquete Estratégico Integral: Google Ads + Redes + CRM incluye SEO + Blog sin costo, quedando en 15,000/mes + IVA (vs 18,500 regular) más 20,000 únicos de sitio web (60/40). Pauta recomendada aparte: Google Ads 6,000–10,000 y Meta Ads 4,000–8,000 mensuales, pago directo a plataformas. Propuesta armada por el cliente y publicada tal cual; no incluye formulario de contacto ni CTA de cierre.",
+      "proximoPaso": "Enviar propuesta y dar seguimiento",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "ia-hazboom",
       "tipo": "propuesta",
       "cliente": "IA HAZBOOM",
