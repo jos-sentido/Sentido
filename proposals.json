@@ -8,8 +8,14 @@
       "estatus": "enviada",
       "serviciosDisponibles": [
         {
+          "id": "web",
+          "nombre": "Renovación Estratégica de Sitio Web (fuera de Joomla)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
           "id": "gads",
-          "nombre": "Gestión Google Ads — Búsqueda + Remarketing",
+          "nombre": "Gestión Google Ads — Captura inducida + Adquisición",
           "precio": 4500,
           "tipo": "mensual"
         },
@@ -24,10 +30,16 @@
           "nombre": "Perfil de Negocio de Google (Zapopan)",
           "precio": 2500,
           "tipo": "mensual"
+        },
+        {
+          "id": "webadmin",
+          "nombre": "Administración mensual del sitio",
+          "precio": 3500,
+          "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Pararrayos y tierras físicas industriales, Zapopan Jal. Propuesta de Google Ads con análisis de demanda de búsqueda nacional. Hallazgos críticos: sin SSL válido, Universal Analytics muerto desde 2023, sin landings por servicio."
+      "notas": "Pararrayos y tierras físicas industriales, Zapopan Jal. Google Ads con bloque de captura de demanda inducida por brigadas de protección civil + renovación de sitio fuera de Joomla. Hallazgos críticos: sin SSL válido, Universal Analytics muerto desde 2023, sin landings por servicio. Gestión con descuento especial de 6,500 a 4,500."
     },
     {
       "slug": "propuestamodularte",
