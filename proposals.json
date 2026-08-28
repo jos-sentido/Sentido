@@ -1,6 +1,35 @@
 {
   "proposals": [
     {
+      "slug": "massatierra",
+      "tipo": "propuesta",
+      "cliente": "Massatierra",
+      "fecha": "2026-08-28",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "gads",
+          "nombre": "Gestión Google Ads — Búsqueda + Remarketing",
+          "precio": 4500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "pauta",
+          "nombre": "Presupuesto de pauta recomendado (a Google)",
+          "precio": 15000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gbp",
+          "nombre": "Perfil de Negocio de Google (Zapopan)",
+          "precio": 2500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Pararrayos y tierras físicas industriales, Zapopan Jal. Propuesta de Google Ads con análisis de demanda de búsqueda nacional. Hallazgos críticos: sin SSL válido, Universal Analytics muerto desde 2023, sin landings por servicio."
+    },
+    {
       "slug": "propuestamodularte",
       "tipo": "propuesta",
       "cliente": "Modularte",
