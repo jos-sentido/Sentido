@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Propuesta · Grupo Louva · Sentido</title>
-<meta name="description" content="Arquitectura de marca y marketing digital para las siete unidades de negocio del Grupo Louva: cada una con identidad y estrategia propia para su nicho, todas legibles como un mismo grupo." />
+<meta name="description" content="Arquitectura de marca y marketing digital para las ocho unidades de negocio del Grupo LOUVA: cada una con identidad y estrategia propia para su nicho, todas legibles como un mismo grupo." />
 <!-- Favicon Sentido -->
 <link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
 <link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
@@ -41,6 +41,7 @@
     --u-arq: #F0873C;   /* Arquitectura */
     --u-con: #A473CC;   /* Constructora */
     --u-sup: #35B4C4;   /* Supervisión */
+    --u-sis: #E8709F;   /* Catálogo de precios */
 
     --font-display: 'Sora', -apple-system, sans-serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -237,6 +238,13 @@
     color: var(--u); border: 1px solid var(--u); padding: 0.22rem 0.55rem; border-radius: 999px; white-space: nowrap;
   }
   .unit-fn { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.06em; margin-top: 0.5rem; }
+  .unit-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+  .utag {
+    font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.22rem 0.55rem; border-radius: 999px;
+  }
+  .utag.named { color: var(--text-dim); border: 1px solid var(--border-strong); }
+  .utag.naming { color: var(--bg-deep); background: var(--u); font-weight: 600; }
   .unit-rows { margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.9rem; }
   .unit-row { display: grid; grid-template-columns: 88px 1fr; gap: 0.9rem; align-items: start; }
   .unit-row dt {
@@ -551,13 +559,13 @@
   <div class="hero-inner">
     <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" class="hero-logo-sentido" />
     <div class="hero-prospect">Propuesta estratégica · Grupo Louva</div>
-    <h1>Cada unidad compite sola. <em>Las siete</em> respaldan cada venta.</h1>
+    <h1>Cada unidad compite sola. <em>Las ocho</em> respaldan cada venta.</h1>
     <p class="hero-sub">
-      Arquitectura, BIM, Constructora, Preconstrucción, Gerencia de Obra, Supervisión y Desarrolladora
-      cubren juntas el ciclo entero de un desarrollo. Ese respaldo cruzado es el activo más difícil de
-      replicar que tiene el grupo — y hoy no está construido en ninguna parte. Vamos a construirlo:
-      identidad y motor comercial propios para cada unidad, y un sistema que deje ver, en cualquier
-      punto de contacto, que detrás de cada una están las otras seis.
+      Ocho empresas que cubren juntas el ciclo entero de un desarrollo — de la viabilidad financiera
+      a la entrega, más el catálogo de precios que le sirve a toda la industria. Ese respaldo cruzado
+      es el activo más difícil de replicar que tiene el grupo, y hoy no está construido en ninguna
+      parte. Vamos a construirlo sobre la marca LOUVA que ya existe: identidad propia para cada
+      unidad y un motor comercial hecho a la medida de su mercado.
     </p>
     <div class="hero-spectrum" aria-hidden="true">
       <i style="background:var(--u-pre)"></i><i style="background:var(--u-obr)"></i><i style="background:var(--u-bim)"></i><i style="background:var(--u-des)"></i><i style="background:var(--u-arq)"></i><i style="background:var(--u-con)"></i><i style="background:var(--u-sup)"></i>
@@ -568,9 +576,9 @@
 
 <!-- ============== STAT STRIP ============== -->
 <div class="stat-strip">
-  <div class="stat-cell"><div class="stat-num">7</div><div class="stat-label">Unidades de negocio operando bajo un mismo grupo</div></div>
-  <div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">Mercados distintos: desarrolladores, constructoras, capital y comprador final</div></div>
-  <div class="stat-cell"><div class="stat-num">1</div><div class="stat-label">Sola marca hablando hoy por todas ellas</div></div>
+  <div class="stat-cell"><div class="stat-num">8</div><div class="stat-label">Unidades de negocio operando bajo un mismo grupo</div></div>
+  <div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">De las ocho necesitan nombre nuevo; las otras cuatro ya lo tienen</div></div>
+  <div class="stat-cell"><div class="stat-num">1</div><div class="stat-label">Manual de identidad existente: el de LOUVA, base de todo el sistema</div></div>
   <div class="stat-cell"><div class="stat-num">+213%</div><div class="stat-label">Crecimiento del inventario de vivienda vertical en México, 2017–2024</div></div>
 </div>
 
@@ -625,8 +633,8 @@
       </div>
       <div class="finding">
         <span class="finding-tag strength">Fortaleza</span>
-        <h4>Base técnica ya reconocible</h4>
-        <p>La estética actual de Louva —navy profundo, códigos de plano, tipografía técnica— ya comunica precisión. Hay un ADN visual real del que puede derivar el sistema de las siete marcas. No se parte de un lienzo en blanco.</p>
+        <h4>LOUVA ya tiene manual de identidad</h4>
+        <p>La marca del holding está resuelta y documentada. <strong>No hay que inventar el lenguaje visual del grupo: hay que extenderlo a un sistema que aguante ocho marcas.</strong> Eso ahorra la parte más lenta y más cara de un proyecto de arquitectura de marca.</p>
       </div>
       <div class="finding">
         <span class="finding-tag gap">Brecha</span>
@@ -640,13 +648,13 @@
       </div>
       <div class="finding">
         <span class="finding-tag gap">Brecha</span>
-        <h4>La venta cruzada no ocurre sola</h4>
-        <p>Un cliente que llega por Arquitectura debería poder terminar contratando BIM, Constructora y Supervisión. Sin un sistema que haga visible el parentesco entre unidades, cada venta empieza de cero y el valor de la integración se queda dentro de la empresa.</p>
+        <h4>Medio grupo tiene nombre, medio grupo no</h4>
+        <p>LOUVA Estudio, LOUVA Gerencia de Obra, Supervisión LOUVA y FYRMA ya operan con nombre — pero ninguna tiene identidad ni manual. Las otras cuatro ni siquiera se llaman de alguna forma. <strong>Es un sistema a medio construir, y esa mitad decide cómo se ve el grupo entero.</strong></p>
       </div>
       <div class="finding">
         <span class="finding-tag risk">Riesgo</span>
-        <h4>Siete marcas improvisadas en 18 meses</h4>
-        <p>Si cada unidad resuelve su identidad por su cuenta conforme la va necesitando —un logo aquí, un Instagram allá— el resultado predecible es un grupo que no se ve como grupo. <strong>Corregir eso después cuesta varias veces más que definirlo ahora.</strong></p>
+        <h4>Ocho marcas improvisadas en 18 meses</h4>
+        <p>Si cada unidad resuelve su identidad por su cuenta conforme la va necesitando —un logo aquí, un Instagram allá— el resultado predecible es un grupo que no se ve como grupo. Con cuatro nombres ya circulando sin sistema, ese reloj <strong>ya está corriendo</strong>.</p>
       </div>
     </div>
   </div>
@@ -680,13 +688,13 @@
         <span class="model-verdict no">No recomendado</span>
         <h4>Marcas totalmente independientes</h4>
         <p>Siete marcas sin relación visible entre sí, cada una construyendo reputación desde cero.</p>
-        <p>Máxima libertad, mínima economía de escala: se pierde el activo más fuerte del grupo (la integración vertical) y se multiplica por siete el costo y el tiempo de construir confianza.</p>
+        <p>Máxima libertad, mínima economía de escala: se pierde el activo más fuerte del grupo (la integración vertical) y se multiplica por ocho el costo y el tiempo de construir confianza.</p>
       </div>
     </div>
 
     <p class="paragraph muted mt-3 reveal max-w-3xl">
       La propuesta adopta el modelo intermedio. En la práctica significa un sistema con reglas
-      claras: qué es constante en las siete marcas (estructura del nombre, el sello del grupo,
+      claras: qué es constante en las ocho marcas (estructura del nombre, el sello del grupo,
       la lógica tipográfica, los códigos técnicos heredados) y qué es libre en cada una
       (color propietario, tono, tipo de contenido, canales y mezcla de medios).
     </p>
@@ -700,11 +708,11 @@
 <!-- ============== LAS 7 UNIDADES ============== -->
 <section class="section section-surface section-divider blueprint" id="unidades">
   <div class="section-inner">
-    <div class="section-label reveal"><span class="divider"></span><span>04</span> Las siete unidades</div>
+    <div class="section-label reveal"><span class="divider"></span><span>04</span> Las ocho unidades</div>
     <h2 class="display-heading lg reveal max-w-3xl">A quién le vende cada una, y por qué eso cambia toda su estrategia digital.</h2>
     <p class="paragraph muted mt-2 reveal max-w-3xl">
       Este es el mapa que ordena la inversión. Cada unidad recibe el motor que su mercado exige —
-      no un paquete idéntico repartido siete veces. La denominación funcional que aparece abajo es
+      no un paquete idéntico repartido ocho veces. La denominación funcional que aparece abajo es
       la del organigrama actual; el nombre comercial de cada marca se define en la Fase 0.
     </p>
 
@@ -717,6 +725,7 @@
           <div class="unit-type">B2B · Visual</div>
         </div>
         <div class="unit-fn">Diseño · Anteproyectos · Proyectos · Presentación</div>
+        <div class="unit-tags"><span class="utag naming">Requiere naming</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Desarrolladores, propietarios de terreno y clientes privados de proyecto único.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Criterio estético y confianza en el despacho.</strong> Es la unidad más emocional del grupo: se elige por portafolio, no por tabulador.</dd></div>
@@ -732,6 +741,7 @@
           <div class="unit-type">B2B · Técnico</div>
         </div>
         <div class="unit-fn">Modelado 3D · Coordinación · Documentación</div>
+        <div class="unit-tags"><span class="utag named">LOUVA Estudio</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Otras constructoras, despachos de arquitectura, gerencias de proyecto y corporativos con obra propia.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Capacidad técnica demostrable.</strong> Es una compra racional, con búsqueda activa y comparación de proveedores. Nadie contrata BIM por impulso.</dd></div>
@@ -747,6 +757,7 @@
           <div class="unit-type">B2B · Visual</div>
         </div>
         <div class="unit-fn">BIM · Civil · Eléctrico</div>
+        <div class="unit-tags"><span class="utag named">FYRMA</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Desarrolladores, industria, retail y proyectos institucionales.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Obra entregada y capacidad de ejecución.</strong> El ticket es el más alto del grupo y el ciclo el más largo: la marca aquí trabaja para acortar la desconfianza.</dd></div>
@@ -762,6 +773,7 @@
           <div class="unit-type">B2B · Consultivo</div>
         </div>
         <div class="unit-fn">Planeación · Costos · Análisis · Estrategia</div>
+        <div class="unit-tags"><span class="utag naming">Requiere naming</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Inversionistas, fondos y desarrolladores en la etapa previa a comprometer capital.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Criterio y rigor analítico.</strong> Es la unidad de mayor palanca comercial: quien entra aquí suele quedarse para todo el ciclo. Volumen bajo, valor altísimo.</dd></div>
@@ -777,6 +789,7 @@
           <div class="unit-type">B2B · Técnico</div>
         </div>
         <div class="unit-fn">Planeación · Ejecución · Control · Entrega</div>
+        <div class="unit-tags"><span class="utag named">LOUVA Gerencia de Obra</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Desarrolladores con proyecto ya definido que necesitan quién lo dirija sin construirlo ellos.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Control, cumplimiento de tiempo y costo.</strong> Se contrata para eliminar un dolor concreto: obras que se salen de programa y de presupuesto.</dd></div>
@@ -792,6 +805,7 @@
           <div class="unit-type">B2B · Consultivo</div>
         </div>
         <div class="unit-fn">Control de calidad · Seguridad · Reportes · Seguimiento</div>
+        <div class="unit-tags"><span class="utag named">Supervisión LOUVA</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Fondos, bancos e inversionistas que necesitan un tercero que vigile su capital dentro de la obra.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Independencia y credibilidad.</strong> Es la unidad donde la marca más importa: se está comprando la palabra de quien reporta. La percepción de imparcialidad es el producto.</dd></div>
@@ -807,6 +821,7 @@
           <div class="unit-type">B2C · Comercial</div>
         </div>
         <div class="unit-fn">Planeación de proyectos · Gestión de terrenos · Diseño de producto · Viabilidad financiera</div>
+        <div class="unit-tags"><span class="utag naming">Requiere naming</span></div>
         <dl class="unit-rows">
           <div class="unit-row"><dt>Le vende a</dt><dd>Comprador final e inversionista patrimonial. Es la única unidad del grupo que le vende a personas, no a empresas.</dd></div>
           <div class="unit-row"><dt>Compra por</dt><dd><strong>Aspiración, ubicación y confianza en el desarrollador.</strong> Ciclo emocional, decisión compartida en pareja o familia, y una ventana de venta atada al avance de obra.</dd></div>
@@ -815,11 +830,27 @@
         <div class="unit-plan">Plan sugerido: <b>Comercial</b></div>
       </div>
 
+      <!-- CATÁLOGO DE PRECIOS -->
+      <div class="unit reveal" style="--u: var(--u-sis)">
+        <div class="unit-head">
+          <div class="unit-name">Catálogo de precios unitarios</div>
+          <div class="unit-type">Producto digital</div>
+        </div>
+        <div class="unit-fn">Base de datos · Precios unitarios · Actualización constante</div>
+        <div class="unit-tags"><span class="utag naming">Requiere naming</span><span class="utag named">No es un servicio: es un producto</span></div>
+        <dl class="unit-rows">
+          <div class="unit-row"><dt>Le vende a</dt><dd>Constructoras, despachos, gerencias y cualquiera que cotice obra en México — incluidas las otras unidades del grupo.</dd></div>
+          <div class="unit-row"><dt>Compra por</dt><dd><strong>Confiabilidad del dato y qué tan actualizado está.</strong> Es la única unidad que no vende horas: vende acceso a información que le ahorra tiempo y errores a quien cotiza.</dd></div>
+          <div class="unit-row"><dt>Motor</dt><dd>No vive en redes sociales. Se promueve donde se busca resolver el problema: Google Ads de alta intención, LinkedIn, demostraciones y correo. Necesita un sitio comercial de producto, no un sitio de despacho.</dd></div>
+        </dl>
+        <div class="unit-plan">Plan sugerido: <b>Producto</b> · requiere además el desarrollo del sistema</div>
+      </div>
+
     </div>
 
     <div class="note reveal">
       <span class="ico">🔗</span>
-      <p><strong>El respaldo es lo que multiplica.</strong> Cuando un fondo llega por Supervisión y reconoce que el mismo grupo también hace Preconstrucción y Gerencia de Obra, la conversación deja de ser por un servicio y pasa a ser por el ciclo. Ese salto es exactamente lo que el sistema de marca está diseñado para producir.</p>
+      <p><strong>El respaldo es lo que multiplica.</strong> Cuando un fondo llega por Supervisión LOUVA y reconoce que el mismo grupo también hace preconstrucción y gerencia de obra, la conversación deja de ser por un servicio y pasa a ser por el ciclo. Sin un sistema que haga visible ese parentesco, cada venta empieza de cero y el valor de la integración se queda dentro de la empresa.</p>
     </div>
   </div>
 </section>
@@ -841,38 +872,36 @@
     <div class="services-grid">
       <div class="service-card featured reveal">
         <span class="service-num">FASE 0 · El grupo</span>
-        <h3>Identidad de marca del grupo</h3>
-        <div class="service-obj">El branding del holding y las reglas que rigen a las siete marcas</div>
+        <h3>Arquitectura de marca del grupo</h3>
+        <div class="service-obj">Las reglas que convierten a LOUVA en un sistema de ocho marcas</div>
         <p class="desc">
-          Aquí se desarrolla el <strong>branding del holding</strong>: logotipo, sistema visual,
-          tipografías, color y manual de marca. Es la identidad corporativa que firma a las siete —
-          la que aparece en el sitio del grupo, en documentos, en obra y como sello dentro de cada
-          marca de unidad. Es la cara con la que el grupo se presenta ante fondos, bancos y clientes
-          institucionales.
+          <strong>La marca del holding ya existe y tiene manual</strong>, así que no se rehace: se
+          extiende. Partimos de la identidad LOUVA y definimos el sistema que la convierte en marca
+          paraguas — cómo se relacionan el grupo y sus unidades, cómo se nombran, cómo aparece el
+          sello del grupo en cada una y qué le toca decir a cada quién.
         </p>
         <p class="desc">
-          Junto con esa marca se definen las <strong>reglas del sistema</strong>: cómo se relacionan
-          el grupo y sus unidades, cómo se nombran, cómo aparece el sello del grupo en cada una y qué
-          le toca decir a cada quién. Todo queda escrito en un manual maestro que permite que la
-          octava marca, cuando llegue, nazca ya dentro del sistema en vez de negociarse desde cero.
+          Es el trabajo del que dependen todos los demás, y el que evita que las cuatro marcas que
+          ya circulan con nombre se sigan resolviendo por separado. Todo queda escrito en un
+          <strong>manual maestro</strong> que permite que la novena marca, cuando llegue, nazca ya
+          dentro del sistema en vez de negociarse desde cero.
         </p>
         <ul class="service-list">
-          <li>Logotipo del grupo, con sus variantes y usos</li>
-          <li>Sistema visual: color, tipografías y elementos gráficos del holding</li>
-          <li>Manual de marca del grupo</li>
-          <li>Arquitectura de marca: jerarquía, sistema de nombres y reglas del sello del grupo</li>
+          <li>Auditoría del manual LOUVA actual y su extensión a marca paraguas</li>
+          <li>Arquitectura de marca: jerarquía y relación entre el grupo y sus ocho unidades</li>
+          <li>Sistema de nombres: la regla con la que se nombra cualquier marca del grupo</li>
+          <li>Reglas del sello del grupo: cómo y dónde aparece LOUVA en cada unidad</li>
           <li>Territorio verbal: qué dice el grupo y qué dice cada unidad</li>
           <li>Manual maestro que rige todas las marcas de unidad, presentes y futuras</li>
-          <li>Kit de aplicación: papelería, presentaciones y señalética de obra</li>
+          <li>Kit de aplicación del grupo: papelería, presentaciones y señalética de obra</li>
         </ul>
 
         <div class="service-price">
-          <div class="amount">$30,000 <small>+ IVA · único</small></div>
+          <div class="amount">$25,000 <small>+ IVA · único</small></div>
           <div class="terms">50% inicio / 50% contra manual maestro</div>
           <p class="price-why">
-            Incluye el branding completo del holding —logo, sistema visual y manual— más las reglas
-            del sistema. No incluye la identidad de las unidades: esas se cotizan aparte, en la
-            tarjeta siguiente.
+            No incluye rehacer la marca LOUVA —ya está resuelta— ni la identidad de las unidades,
+            que se cotiza por separado en la tarjeta siguiente.
           </p>
         </div>
       </div>
@@ -891,7 +920,7 @@
         </p>
         <ul class="service-list">
           <li>Narrativa del ciclo completo: de la viabilidad financiera a la entrega</li>
-          <li>Directorio de las siete unidades, con acceso directo al sitio de cada una</li>
+          <li>Directorio de las ocho unidades, con acceso directo al sitio de cada una</li>
           <li>Casos de proyectos donde intervinieron varias unidades del grupo</li>
           <li>Trayectoria, estructura corporativa y credenciales del holding</li>
           <li>Contacto institucional ruteado a dirección, no a ventas</li>
@@ -925,31 +954,43 @@
         <div class="service-obj">Una identidad propia por unidad, derivada del sistema</div>
         <p class="desc">
           Aquí es donde nace cada empresa como marca. A partir de las reglas ya definidas,
-          desarrollamos la identidad de cada unidad: su nombre comercial dentro del sistema, su
-          símbolo, su color propietario y su tono — <strong>con carácter suficiente para competir
-          sola en su nicho</strong> y con el sello del grupo que la respalda. La de Supervisión
-          debe transmitir independencia; la de Arquitectura, criterio de diseño; la de la
-          Desarrolladora, producto vendible. Son siete marcas distintas, no siete versiones de
-          la misma.
+          desarrollamos la identidad de cada unidad: su símbolo, su color propietario y su tono —
+          <strong>con carácter suficiente para competir sola en su nicho</strong> y con el sello del
+          grupo que la respalda. La de Supervisión LOUVA debe transmitir independencia; la de
+          Arquitectura, criterio de diseño; la de la Desarrolladora, producto vendible. Son ocho
+          marcas distintas, no ocho versiones de la misma.
+        </p>
+        <p class="desc">
+          <strong>Cuatro unidades ya tienen nombre y cuatro no</strong>, así que se cotizan distinto:
+          donde hace falta bautizar la empresa, el naming va incluido en la partida; donde el nombre
+          ya está en uso, partimos de él y la identidad cuesta menos.
         </p>
         <ul class="service-list">
-          <li>Nombre comercial de la unidad dentro del sistema de nombres del grupo</li>
           <li>Símbolo y logotipo propios, con sus variantes de uso</li>
           <li>Color propietario y paleta de la marca</li>
           <li>Tono de voz y mensajes clave para su comprador específico</li>
           <li>Aplicaciones: papelería, presentaciones, uniformes, señalética y plantillas digitales</li>
           <li>Manual de la marca, derivado del manual maestro del grupo</li>
+          <li>Naming: sólo en las unidades que aún no tienen nombre</li>
         </ul>
+
+        <div class="breakdown">
+          <div class="bd-title">Con naming · Arquitectura, Preconstrucción, Desarrolladora y Catálogo de precios</div>
+          <div class="bd-row"><span>Nombre comercial dentro del sistema del grupo + identidad completa</span><b><span class="price-was" style="font-size:0.85rem;">$30,000</span>$20,000</b></div>
+        </div>
+        <div class="breakdown">
+          <div class="bd-title">Sin naming · LOUVA Estudio, LOUVA Gerencia de Obra, Supervisión LOUVA y FYRMA</div>
+          <div class="bd-row"><span>Identidad completa partiendo del nombre que ya usan</span><b><span class="price-was" style="font-size:0.85rem;">$24,000</span>$16,000</b></div>
+        </div>
+
         <div class="service-price">
-          <div class="amount">
-            <span class="price-was">$30,000</span>$20,000 <small>+ IVA · por unidad</small>
+          <div class="amount">$16,000 – $20,000 <small>+ IVA · por unidad</small>
             <span class="price-save">−33% por volumen</span>
           </div>
           <div class="terms">50% / 50% · se cotiza por cada unidad que entra</div>
           <p class="price-why">
-            Precio de lista $30,000. Aplica <strong>descuento por volumen</strong> al desarrollar las
-            marcas del grupo: $20,000 por unidad. Con las siete, el ahorro es de
-            <strong>$70,000</strong>.
+            Precio de lista $30,000 con naming y $24,000 sin él. Aplica <strong>descuento por
+            volumen</strong> al desarrollar las marcas del grupo dentro del mismo sistema.
           </p>
         </div>
       </div>
@@ -960,7 +1001,7 @@
         <div class="service-obj">Que cada marca compita en su nicho con casa propia</div>
         <p class="desc">
           Cada unidad recibe su propio sitio, con su dominio, su identidad y una narrativa escrita
-          para su comprador —no para el promedio de los siete. El sitio de Supervisión habla de
+          para su comprador —no para el promedio de las ocho. El sitio de Supervisión habla de
           independencia y metodología de reporte; el de BIM demuestra coordinación e interferencias
           resueltas; el de la Desarrolladora vende producto inmobiliario. <strong>Mismo motor,
           discurso distinto.</strong> Todos llevan el sello del grupo y enlazan a las otras unidades,
@@ -993,14 +1034,80 @@
 
     </div>
 
+    <div class="hb-title reveal" style="margin-top:3.5rem;"><span class="hb-num">Caso aparte</span> El catálogo de precios · producto digital</div>
+    <p class="hb-note reveal">
+      Es la única unidad que no vende servicios profesionales, sino acceso a un sistema. Además de
+      marca y sitio necesita que el producto exista — y eso se cotiza distinto.
+    </p>
+    <div class="services-grid" style="margin-top:1.8rem;">
+
+      <div class="service-card featured reveal" style="--u: var(--u-sis)">
+        <span class="service-num">CATÁLOGO · Definición</span>
+        <h3>Definición funcional del sistema</h3>
+        <div class="service-obj">Saber exactamente qué se va a construir, antes de construirlo</div>
+        <p class="desc">
+          El producto todavía se está definiendo, y cotizar un desarrollo sin alcance cerrado sale
+          caro para ambos lados. Este es el paso que lo resuelve: <strong>un taller de definición
+          del que sale el documento con el que el desarrollo se puede cotizar con precisión</strong>
+          — qué hace el sistema, con qué datos, para quién y en qué orden se construye.
+        </p>
+        <ul class="service-list">
+          <li>Sesiones de definición con el equipo que conoce los precios unitarios</li>
+          <li>Modelo de datos: qué se guarda, cómo se estructura y cómo se actualiza</li>
+          <li>Flujos de usuario y alcance del primer lanzamiento</li>
+          <li>Wireframes de las pantallas principales</li>
+          <li>Modelo de negocio: suscripción, licencias o acceso por proyecto</li>
+          <li>Documento de alcance con el que se cotiza el desarrollo por fases</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$18,000 <small>+ IVA · único</small></div>
+          <div class="terms">50% / 50% · 3 a 4 semanas</div>
+          <p class="price-why">
+            El <strong>desarrollo del sistema se cotiza al cerrar esta definición</strong>, por fases
+            y con alcance escrito. Es el único modo honesto de ponerle precio a un software que
+            todavía se está dibujando.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="--u: var(--u-sis)">
+        <span class="service-num">CATÁLOGO · Plataforma</span>
+        <h3>Sitio comercial del producto</h3>
+        <div class="service-obj">Vender acceso, no explicar un despacho</div>
+        <p class="desc">
+          Un sitio de producto, no de servicios: qué resuelve el catálogo, para quién, cómo se ve por
+          dentro, qué incluye cada plan y cómo se contrata. Lleva demostración del sistema, precios
+          o solicitud de acceso, y está construido para convertir visitas en pruebas y pruebas en
+          suscripciones — con analítica para saber en qué punto se caen.
+        </p>
+        <ul class="service-list">
+          <li>Narrativa de producto: problema, solución y prueba de que el dato es confiable</li>
+          <li>Demostración visual del sistema y sus pantallas</li>
+          <li>Planes, precios y flujo de alta o solicitud de acceso</li>
+          <li>SEO técnico sobre búsquedas de costos y precios unitarios de construcción</li>
+          <li>Integración al CRM con seguimiento de prueba a suscripción</li>
+          <li>Analítica de embudo y eventos de conversión</li>
+        </ul>
+        <div class="service-price">
+          <div class="amount">$25,000 <small>+ IVA · único</small></div>
+          <div class="terms">60% anticipo / 40% entrega</div>
+          <p class="price-why">
+            Cuesta más que un sitio de unidad ($18,000) porque no es un sitio institucional: es una
+            herramienta de venta de producto, con demostración, planes y embudo medido.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
     <div class="hb-title reveal"><span class="hb-num">Mensual</span> Operación · se cobra por unidad activa</div>
     <div class="services-grid" style="margin-top:1.8rem;">
       <div class="service-card reveal">
         <span class="service-num">MENSUAL · Núcleo</span>
         <h3>Núcleo de operación del grupo</h3>
-        <div class="service-obj">Un solo cerebro comercial para las siete marcas</div>
+        <div class="service-obj">Un solo cerebro comercial para las ocho marcas</div>
         <p class="desc">
-          Es la capa que hace que siete marcas no se conviertan en siete gastos desconectados.
+          Es la capa que hace que ocho marcas no se conviertan en ocho gastos desconectados.
           Un CRM único donde <strong>cada unidad tiene su propio pipeline, sus propias
           automatizaciones de seguimiento y su propia gestión comercial</strong>, mientras dirección
           ve el consolidado del grupo y la venta cruzada: qué cliente entró por dónde y a qué otra
@@ -1011,7 +1118,7 @@
           <strong>Se cobra por unidad activa, sin cuota de entrada.</strong> El trabajo es
           proporcional al número de marcas operando: cada unidad que entra suma su propio espacio
           en el CRM, sus automatizaciones y su gestión. Si opera una, se paga una; si operan las
-          siete, se paga por las siete.
+          ocho, se paga por las ocho.
         </p>
 
         <div class="breakdown">
@@ -1165,6 +1272,45 @@
         </div>
       </div>
 
+      <!-- PLAN PRODUCTO -->
+      <div class="service-card reveal">
+        <span class="service-num">MENSUAL · Plan por unidad</span>
+        <h3>Plan Producto</h3>
+        <div class="service-obj">Para la unidad que vende acceso a un sistema</div>
+        <div class="applies">
+          <i style="background:var(--u-sis)"></i>
+          Catálogo de precios unitarios
+        </div>
+        <p class="desc">
+          El catálogo no se vende con publicaciones bonitas: se vende demostrando que el dato sirve.
+          El motor va donde alguien ya está buscando cómo cotizar más rápido — <strong>búsqueda de
+          alta intención, LinkedIn y correo</strong> — y trabaja el ciclo completo de un producto
+          por suscripción: atraer, hacer probar, convertir y retener.
+        </p>
+        <ul class="service-list">
+          <li>Gestión de Google Ads sobre búsquedas de costos y precios de obra</li>
+          <li>LinkedIn: contenido de producto y prospección hacia constructoras y despachos</li>
+          <li>Correo: secuencias de alta, activación de prueba y reactivación</li>
+          <li>8 piezas/mes que demuestran el uso del sistema, no relleno de marca</li>
+          <li>Seguimiento de altas, pruebas y suscripciones activas en el CRM</li>
+          <li>Reporte mensual de costo por prueba y por suscripción</li>
+        </ul>
+        <div class="breakdown">
+          <div class="bd-title">Desglose del plan · MXN / mes</div>
+          <div class="bd-row"><span>Gestión de Google Ads y LinkedIn</span><b>$6,000</b></div>
+          <div class="bd-row"><span>Contenido de producto y secuencias de correo</span><b>$5,500</b></div>
+          <div class="bd-row inc"><span>Seguimiento de prueba a suscripción + reporte mensual</span><b>Incluido</b></div>
+        </div>
+        <div class="service-price">
+          <div class="amount">$11,500 <small>+ IVA / mes</small></div>
+          <div class="terms">Arranca cuando el sistema esté en línea</div>
+        </div>
+        <div class="ad-note">
+          <span class="ad-tag">Pauta Google + LinkedIn — opera con este plan</span>
+          <p>Presupuesto de medios directo a las plataformas, sugerido en <span class="ad-amount">$10,000–$25,000 / mes</span> según etapa de lanzamiento. No es honorario de Sentido.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1175,10 +1321,10 @@
     <div class="section-label reveal"><span class="divider"></span><span>06</span> Inversión</div>
     <h2 class="display-heading lg reveal max-w-3xl">Primero el grupo. Después, cada marca que se active.</h2>
     <p class="paragraph muted mt-2 reveal max-w-3xl">
-      Dos bloques y nada más. La Fase 0 resuelve el grupo y se paga una sola vez. De ahí en
-      adelante todo se cotiza por unidad, al mismo precio para cualquiera de las siete — el grupo
-      decide cuántas activa y en qué momento. La pauta publicitaria va directa a las plataformas y
-      nunca se suma al honorario de gestión.
+      La Fase 0 resuelve el grupo y se paga una sola vez. De ahí en adelante todo se cotiza por
+      unidad: mismo alcance para las ocho, con dos precios según la unidad ya tenga nombre o haya
+      que bautizarla. El grupo decide cuántas activa y en qué momento. La pauta publicitaria va
+      directa a las plataformas y nunca se suma al honorario de gestión.
     </p>
 
     <!-- BLOQUE 1 · EL GRUPO -->
@@ -1186,20 +1332,25 @@
     <p class="hb-note reveal">Se hace una vez y queda vigente para todas las marcas, las de hoy y las que el grupo sume después.</p>
     <div class="inv-table reveal" style="margin-top:1.5rem;">
       <div class="inv-row head"><div class="inv-name">Inversión única</div><div class="inv-amount">MXN</div></div>
-      <div class="inv-row"><div class="inv-name">Identidad de marca del grupo <small>branding del holding: logotipo, sistema visual y manual de marca, más la arquitectura que rige a las siete</small></div><div class="inv-amount">$30,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Arquitectura de marca del grupo <small>sistema de nombres, reglas del sello y manual maestro, sobre la identidad LOUVA existente</small></div><div class="inv-amount">$25,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Sitio del grupo <small>narrativa del ciclo completo, directorio de unidades y plataforma técnica común</small></div><div class="inv-amount">$25,000 + IVA</div></div>
-      <div class="inv-row total"><div class="inv-name">Fase 0</div><div class="inv-amount">$55,000 + IVA</div></div>
+      <div class="inv-row total"><div class="inv-name">Fase 0</div><div class="inv-amount">$50,000 + IVA</div></div>
+    </div>
+    <div class="note reveal">
+      <span class="ico">🧩</span>
+      <p><strong>La identidad LOUVA ya existe y tiene manual, así que no se rehace.</strong> La Fase 0 la extiende a marca paraguas: el sistema de nombres, las reglas del sello y el manual maestro del que derivan las ocho unidades. Eso ahorra la parte más lenta de un proyecto de arquitectura de marca y es exactamente lo que hoy falta.</p>
     </div>
 
     <!-- BLOQUE 2 · POR UNIDAD -->
     <div class="hb-title reveal" style="margin-top:3.5rem;"><span class="hb-num">Por unidad</span> Cada marca que se activa</div>
-    <p class="hb-note reveal">Mismo precio para cualquiera de las siete. Se cotiza sólo por las unidades que el grupo decida activar.</p>
+    <p class="hb-note reveal">Mismo alcance para las ocho. Se cotiza sólo por las unidades que el grupo decida activar.</p>
 
     <div class="inv-table reveal" style="margin-top:1.5rem;">
       <div class="inv-row head"><div class="inv-name">Inversión única, por unidad</div><div class="inv-amount">MXN</div></div>
-      <div class="inv-row"><div class="inv-name">Identidad de la unidad <small>nombre, símbolo, color propietario, tono, aplicaciones y manual de marca</small></div><div class="inv-amount"><span style="color:var(--text-faint);text-decoration:line-through;text-decoration-color:var(--warn);margin-right:0.5rem;">$30,000</span>$20,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Identidad <span style="color:var(--text)">con naming</span> <small>Arquitectura, Preconstrucción, Desarrolladora y Catálogo de precios</small></div><div class="inv-amount"><span style="color:var(--text-faint);text-decoration:line-through;text-decoration-color:var(--warn);margin-right:0.5rem;">$30,000</span>$20,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Identidad <span style="color:var(--text)">sin naming</span> <small>LOUVA Estudio, LOUVA Gerencia de Obra, Supervisión LOUVA y FYRMA</small></div><div class="inv-amount"><span style="color:var(--text-faint);text-decoration:line-through;text-decoration-color:var(--warn);margin-right:0.5rem;">$24,000</span>$16,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Sitio de la unidad <small>narrativa de su nicho, casos, SEO propio y formulario ruteado a su pipeline</small></div><div class="inv-amount"><span style="color:var(--text-faint);text-decoration:line-through;text-decoration-color:var(--warn);margin-right:0.5rem;">$25,000</span>$18,000 + IVA</div></div>
-      <div class="inv-row total"><div class="inv-name">Por cada unidad activada</div><div class="inv-amount">$38,000 + IVA</div></div>
+      <div class="inv-row total"><div class="inv-name">Por cada unidad activada <small>identidad + sitio</small></div><div class="inv-amount">$34,000 – $38,000 + IVA</div></div>
     </div>
 
     <div class="inv-table reveal" style="margin-top:2rem;">
@@ -1208,6 +1359,7 @@
       <div class="inv-row"><div class="inv-name">Plan Autoridad <small>BIM, Preconstrucción, Gerencia de Obra, Supervisión · redes $6,000 + Google Ads $4,000</small></div><div class="inv-amount">$10,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Plan Visibilidad <small>Arquitectura, Constructora · redes $7,500 + Google Ads $4,000</small></div><div class="inv-amount">$11,500 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Plan Comercial <small>Desarrolladora · redes $7,500 + Google Ads $4,000</small></div><div class="inv-amount">$11,500 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Plan Producto <small>Catálogo de precios · Google Ads y LinkedIn $6,000 + contenido y correo $5,500</small></div><div class="inv-amount">$11,500 + IVA</div></div>
     </div>
     <div class="note reveal">
       <span class="ico">📐</span>
@@ -1216,9 +1368,11 @@
 
     <!-- EXTRAS DESARROLLADORA -->
     <div class="inv-table reveal" style="margin-top:2rem;">
-      <div class="inv-row head"><div class="inv-name">Sólo Desarrolladora <small style="text-transform:none;letter-spacing:0">se cotiza por cada desarrollo en comercialización</small></div><div class="inv-amount">MXN</div></div>
-      <div class="inv-row"><div class="inv-name">Landing del desarrollo <small>producto, ubicación, plantas, precios y formulario de agendado · pago único</small></div><div class="inv-amount">$12,000 + IVA</div></div>
-      <div class="inv-row"><div class="inv-name">Embudo de venta en GoHighLevel <small>mientras el desarrollo esté en venta · mensual</small></div><div class="inv-amount">$1,500 + IVA / mes</div></div>
+      <div class="inv-row head"><div class="inv-name">Casos aparte <small style="text-transform:none;letter-spacing:0">partidas que sólo aplican a una unidad</small></div><div class="inv-amount">MXN</div></div>
+      <div class="inv-row"><div class="inv-name">Landing del desarrollo <small>Desarrolladora · producto, ubicación, plantas, precios y agendado · pago único</small></div><div class="inv-amount">$12,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Embudo de venta en GoHighLevel <small>Desarrolladora · mientras el desarrollo esté en venta</small></div><div class="inv-amount">$1,500 + IVA / mes</div></div>
+      <div class="inv-row"><div class="inv-name">Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza sobre este entregable</small></div><div class="inv-amount">$18,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Sitio comercial del producto <small>Catálogo de precios · reemplaza al sitio de unidad</small></div><div class="inv-amount">$25,000 + IVA</div></div>
     </div>
 
     <!-- TABULADOR DE DESCUENTOS -->
@@ -1239,13 +1393,14 @@
       </div>
 
       <div class="calc-units" role="group" aria-label="Unidades a activar">
-        <button type="button" class="cu" data-plan="11500" data-dev="0" style="--u:var(--u-arq)"><span class="cu-n">Arquitectura</span><span class="cu-p">Visibilidad</span></button>
-        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-bim)"><span class="cu-n">Proyectos BIM</span><span class="cu-p">Autoridad</span></button>
-        <button type="button" class="cu" data-plan="11500" data-dev="0" style="--u:var(--u-con)"><span class="cu-n">Constructora</span><span class="cu-p">Visibilidad</span></button>
-        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-pre)"><span class="cu-n">Preconstrucción</span><span class="cu-p">Autoridad</span></button>
-        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-obr)"><span class="cu-n">Gerencia de Obra</span><span class="cu-p">Autoridad</span></button>
-        <button type="button" class="cu" data-plan="10000" data-dev="0" style="--u:var(--u-sup)"><span class="cu-n">Supervisión</span><span class="cu-p">Autoridad</span></button>
-        <button type="button" class="cu" data-plan="11500" data-dev="1" style="--u:var(--u-des)"><span class="cu-n">Desarrolladora</span><span class="cu-p">Comercial</span></button>
+        <button type="button" class="cu" data-plan="11500" data-id="20000" data-site="18000" data-dev="0" style="--u:var(--u-arq)"><span class="cu-n">Arquitectura</span><span class="cu-p">Visibilidad · con naming</span></button>
+        <button type="button" class="cu" data-plan="10000" data-id="16000" data-site="18000" data-dev="0" style="--u:var(--u-bim)"><span class="cu-n">LOUVA Estudio</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="11500" data-id="16000" data-site="18000" data-dev="0" style="--u:var(--u-con)"><span class="cu-n">FYRMA</span><span class="cu-p">Visibilidad</span></button>
+        <button type="button" class="cu" data-plan="10000" data-id="20000" data-site="18000" data-dev="0" style="--u:var(--u-pre)"><span class="cu-n">Preconstrucción</span><span class="cu-p">Autoridad · con naming</span></button>
+        <button type="button" class="cu" data-plan="10000" data-id="16000" data-site="18000" data-dev="0" style="--u:var(--u-obr)"><span class="cu-n">LOUVA Gerencia de Obra</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="10000" data-id="16000" data-site="18000" data-dev="0" style="--u:var(--u-sup)"><span class="cu-n">Supervisión LOUVA</span><span class="cu-p">Autoridad</span></button>
+        <button type="button" class="cu" data-plan="11500" data-id="20000" data-site="18000" data-dev="1" style="--u:var(--u-des)"><span class="cu-n">Desarrolladora</span><span class="cu-p">Comercial · con naming</span></button>
+        <button type="button" class="cu" data-plan="11500" data-id="20000" data-site="25000" data-sys="1" data-dev="0" style="--u:var(--u-sis)"><span class="cu-n">Catálogo de precios</span><span class="cu-p">Producto · con naming</span></button>
       </div>
 
       <div class="calc-dev" id="calc-dev" hidden>
@@ -1260,17 +1415,18 @@
 
       <div class="calc-out">
         <div class="co-row"><span>Unidades activas</span><b id="co-n">0</b></div>
-        <div class="co-row co-block"><span>Inversión única de las unidades <small>$38,000 por unidad — identidad $20,000 + sitio $18,000</small></span><b id="co-once">$0</b></div>
+        <div class="co-row co-block"><span>Inversión única de las unidades <small id="co-once-d">identidad + sitio de cada unidad</small></span><b id="co-once">$0</b></div>
 
         <div class="co-sub">Operación mensual</div>
         <div class="co-row sm"><span>Núcleo de operación <small id="co-nuc-d">$2,150 por unidad activa</small></span><b id="co-nuc">$0</b></div>
         <div class="co-row sm"><span>Planes de las unidades <small id="co-plan-d">un plan por unidad, según su mercado</small></span><b id="co-plan">$0</b></div>
         <div class="co-row sm" id="co-emb-row" hidden><span>Embudos de desarrollo <small id="co-emb-d">$1,500 por desarrollo en venta</small></span><b id="co-emb">$0</b></div>
+        <div class="co-row sm" id="co-sys-row" hidden><span>Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza aparte</small></span><b id="co-sys">$0</b></div>
         <div class="co-row sm"><span>Descuento por volumen</span><b id="co-disc">Precio de lista</b></div>
         <div class="co-row co-block big"><span>Total mensual</span><b id="co-month">$0</b></div>
       </div>
 
-      <p class="calc-note">Cifras en MXN, antes de IVA. No incluye la Fase 0 del grupo ($55,000, única) ni el presupuesto de pauta, que va directo a las plataformas.</p>
+      <p class="calc-note">Cifras en MXN, antes de IVA. No incluye la Fase 0 del grupo ($50,000, única), el desarrollo del sistema del catálogo ni el presupuesto de pauta, que va directo a las plataformas.</p>
     </div>
 
     <div class="note reveal">
@@ -1298,9 +1454,9 @@
     <div class="section-label reveal"><span class="divider"></span><span>07</span> Horizonte</div>
     <h2 class="display-heading lg reveal max-w-3xl">Un horizonte para el grupo, y uno propio para cada marca que se activa.</h2>
     <p class="paragraph muted mt-2 reveal max-w-3xl">
-      El holding es la base: se resuelve una vez y queda listo para sostener a las siete. A partir de
+      El holding es la base: se resuelve una vez y queda listo para sostener a las ocho. A partir de
       ahí, cada marca corre su propio horizonte desde el momento en que se activa — sea una o sean
-      las siete, en el orden que el grupo decida. No hay una fila de espera: la curva se repite igual
+      las ocho, en el orden que el grupo decida. No hay una fila de espera: la curva se repite igual
       para cada unidad, y las que entran después llegan más rápido porque el sistema ya está armado.
     </p>
 
@@ -1328,7 +1484,7 @@
     <div class="horizon-block reveal">
       <div class="hb-title"><span class="hb-num">Por marca</span> Desde su activación</div>
       <p class="hb-note">
-        Esta curva es idéntica para cualquiera de las siete. Se cuenta desde que la unidad entra,
+        Esta curva es idéntica para cualquiera de las ocho. Se cuenta desde que la unidad entra,
         no desde que arranca el proyecto del grupo.
       </p>
       <div class="wave-grid">
@@ -1388,14 +1544,14 @@
 <!-- ============== CLOSING ============== -->
 <section class="closing">
   <div class="closing-inner">
-    <div class="closing-eyebrow">De siete áreas a siete marcas</div>
+    <div class="closing-eyebrow">De ocho áreas a ocho marcas</div>
     <h2 class="closing-statement">
       El grupo ya <em>cubre el ciclo completo</em> de un desarrollo.<br>
       Falta que el mercado lo vea así.
     </h2>
     <p class="closing-sub">
       Sentido construye el sistema que le da a cada unidad una identidad con la que compita en su
-      propio nicho, y al grupo el respaldo visible que convierte siete conversaciones separadas
+      propio nicho, y al grupo el respaldo visible que convierte ocho conversaciones separadas
       en una sola relación comercial de ciclo completo.
     </p>
 
@@ -1430,8 +1586,7 @@
   (() => {
     const calc = document.getElementById('calc');
     if (!calc) return;
-    const POR_UNIDAD = 38000, NUCLEO = 2150;
-    const LANDING = 12000, EMBUDO = 1500;
+    const NUCLEO = 2150, LANDING = 12000, EMBUDO = 1500, DEF_SISTEMA = 18000;
     const units = [...calc.querySelectorAll('.cu')];
     const devBox = document.getElementById('calc-dev');
     const devCount = document.getElementById('dev-count');
@@ -1456,13 +1611,22 @@
       devCount.textContent = devs;
 
       const rate = n >= 5 ? 0.18 : n >= 3 ? 0.10 : 0;
-      let once = n * POR_UNIDAD;
+      const hasSys = on.some((u) => u.dataset.sys === '1');
+      let once = on.reduce((sum, u) => sum + Number(u.dataset.id) + Number(u.dataset.site), 0);
       let month = on.reduce((sum, u) => sum + NUCLEO + Number(u.dataset.plan), 0);
       if (hasDev) { once += devs * LANDING; month += devs * EMBUDO; }
+      if (hasSys) { once += DEF_SISTEMA; }
       const monthFinal = Math.round(month * (1 - rate));
 
       document.getElementById('co-n').textContent = n + (n === 1 ? ' unidad' : ' unidades');
       document.getElementById('co-once').textContent = fmt(once);
+      const conNaming = on.filter((u) => Number(u.dataset.id) === 20000).length;
+      document.getElementById('co-once-d').textContent = n
+        ? conNaming + ' con naming · ' + (n - conNaming) + ' sin naming'
+        : 'identidad + sitio de cada unidad';
+      const sysRow = document.getElementById('co-sys-row');
+      sysRow.hidden = !hasSys;
+      document.getElementById('co-sys').textContent = fmt(hasSys ? DEF_SISTEMA : 0);
 
       const nucleo = n * NUCLEO;
       const planes = on.reduce((sum, u) => sum + Number(u.dataset.plan), 0);

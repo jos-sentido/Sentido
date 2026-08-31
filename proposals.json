@@ -145,8 +145,8 @@
       "serviciosDisponibles": [
         {
           "id": "arq-marca",
-          "nombre": "Fase 0 · El grupo — Identidad de marca del grupo (logo, sistema visual, manual + arquitectura)",
-          "precio": 30000,
+          "nombre": "Fase 0 · El grupo — Arquitectura de marca (sistema de nombres, reglas del sello y manual maestro sobre LOUVA existente)",
+          "precio": 25000,
           "tipo": "unico"
         },
         {
@@ -156,14 +156,20 @@
           "tipo": "unico"
         },
         {
-          "id": "id-unidad",
-          "nombre": "Por unidad — Identidad de la unidad (lista $30,000, volumen $20,000)",
+          "id": "id-naming",
+          "nombre": "Por unidad — Identidad CON naming (Arquitectura, Preconstrucción, Desarrolladora, Catálogo) · lista $30,000",
           "precio": 20000,
           "tipo": "unico"
         },
         {
+          "id": "id-sin-naming",
+          "nombre": "Por unidad — Identidad SIN naming (LOUVA Estudio, LOUVA Gerencia de Obra, Supervisión LOUVA, FYRMA) · lista $24,000",
+          "precio": 16000,
+          "tipo": "unico"
+        },
+        {
           "id": "sitio-unidad",
-          "nombre": "Por unidad — Sitio de la unidad (lista $25,000, volumen $18,000)",
+          "nombre": "Por unidad — Sitio de la unidad · lista $25,000",
           "precio": 18000,
           "tipo": "unico"
         },
@@ -175,13 +181,13 @@
         },
         {
           "id": "plan-autoridad",
-          "nombre": "Mensual por unidad — Plan Autoridad (BIM, Preconstrucción, Gerencia de Obra, Supervisión)",
+          "nombre": "Mensual por unidad — Plan Autoridad (LOUVA Estudio, Preconstrucción, LOUVA Gerencia de Obra, Supervisión LOUVA)",
           "precio": 10000,
           "tipo": "mensual"
         },
         {
           "id": "plan-visibilidad",
-          "nombre": "Mensual por unidad — Plan Visibilidad (Arquitectura, Constructora)",
+          "nombre": "Mensual por unidad — Plan Visibilidad (Arquitectura, FYRMA)",
           "precio": 11500,
           "tipo": "mensual"
         },
@@ -190,6 +196,24 @@
           "nombre": "Mensual por unidad — Plan Comercial (Desarrolladora)",
           "precio": 11500,
           "tipo": "mensual"
+        },
+        {
+          "id": "plan-producto",
+          "nombre": "Mensual por unidad — Plan Producto (Catálogo de precios)",
+          "precio": 11500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "def-sistema",
+          "nombre": "Catálogo — Definición funcional del sistema (el desarrollo se cotiza sobre este entregable)",
+          "precio": 18000,
+          "tipo": "unico"
+        },
+        {
+          "id": "sitio-producto",
+          "nombre": "Catálogo — Sitio comercial del producto (reemplaza al sitio de unidad)",
+          "precio": 25000,
+          "tipo": "unico"
         },
         {
           "id": "landing-proyecto",
@@ -205,17 +229,14 @@
         }
       ],
       "serviciosSeleccionados": [
-        "nucleo",
-        "plan-autoridad",
-        "plan-visibilidad",
-        "plan-comercial",
-        "embudo-desarrollo",
         "arq-marca",
         "sitio-grupo",
-        "id-unidad",
-        "sitio-unidad"
+        "id-sin-naming",
+        "sitio-unidad",
+        "nucleo",
+        "plan-autoridad"
       ],
-      "notas": "ESCENARIO CARGADO = el grupo + 1 unidad (Plan Autoridad). Unico $93,000 · mensual $12,150. Cada unidad adicional suma $38,000 unico y $2,150 + su plan al mes. MODELO: Fase 0 del grupo (marca $30,000 + sitio $25,000 = $55,000, una sola vez). Por unidad activada: identidad 30k->20k + sitio 25k->18k = $38,000. Mensual por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500). Solo Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Descuento por volumen sobre la mensual: 1-2 lista, 3-4 -10%, 5-7 -18%. La pagina trae calculadora interactiva. Sin cronograma fijo. CTA a WhatsApp, sin formulario.",
+      "notas": "8 UNIDADES (antes 7). El holding sigue siendo LOUVA y YA TIENE manual de identidad: la Fase 0 no lo rehace, lo extiende a marca paraguas. 4 requieren naming (Arquitectura, Gerencia de Preconstruccion, Desarrolladora, Catalogo de precios) y 4 ya tienen nombre sin identidad (LOUVA Estudio=BIM, LOUVA Gerencia de Obra, Supervision LOUVA, FYRMA=constructora). ESCENARIO CARGADO = grupo + 1 unidad sin naming con Plan Autoridad: unico $84,000 · mensual $12,150. MODELO: Fase 0 $50,000 (arquitectura de marca $25,000 + sitio del grupo $25,000). Por unidad: identidad $20,000 con naming / $16,000 sin naming + sitio $18,000. Mensual por unidad activa: nucleo $2,150 + un plan (Autoridad $10,000 / Visibilidad $11,500 / Comercial $11,500 / Producto $11,500). CATALOGO DE PRECIOS: producto digital, no servicio. Definicion funcional $18,000 y EL DESARROLLO DEL SISTEMA SE COTIZA SOBRE ESE ENTREGABLE (pendiente). Sitio comercial del producto $25,000 en vez del sitio de unidad. Desarrolladora: landing $12,000 unico + embudo GHL $1,500/mes por desarrollo en venta. Descuento por volumen sobre la mensual: 1-2 lista, 3-4 -10%, 5-7+ -18%. Calculadora interactiva en la pagina. CTA a WhatsApp.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": [
