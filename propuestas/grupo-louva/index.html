@@ -1417,13 +1417,18 @@
 
       <div class="calc-out">
         <div class="co-row"><span>Unidades activas</span><b id="co-n">0</b></div>
-        <div class="co-row co-block"><span>Inversión única de las unidades <small id="co-once-d">identidad + sitio de cada unidad</small></span><b id="co-once">$0</b></div>
+
+        <div class="co-sub">Inversión única</div>
+        <div class="co-row sm"><span>Identidad de las unidades <small id="co-id-d">con o sin naming, según la unidad</small></span><b id="co-id">$0</b></div>
+        <div class="co-row sm"><span>Sitio de las unidades <small id="co-site-d">$18,000 por unidad</small></span><b id="co-site">$0</b></div>
+        <div class="co-row sm" id="co-land-row" hidden><span>Landing por desarrollo <small id="co-land-d">$12,000 por desarrollo</small></span><b id="co-land">$0</b></div>
+        <div class="co-row sm" id="co-sys-row" hidden><span>Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza aparte</small></span><b class="save">Sin costo</b></div>
+        <div class="co-row co-block"><span>Total inversión única</span><b id="co-once">$0</b></div>
 
         <div class="co-sub">Operación mensual</div>
         <div class="co-row sm"><span>Núcleo de operación <small id="co-nuc-d">$2,150 por unidad activa</small></span><b id="co-nuc">$0</b></div>
         <div class="co-row sm"><span>Planes de las unidades <small id="co-plan-d">un plan por unidad, según su mercado</small></span><b id="co-plan">$0</b></div>
         <div class="co-row sm" id="co-emb-row" hidden><span>Embudos de desarrollo <small id="co-emb-d">$1,500 por desarrollo en venta</small></span><b id="co-emb">$0</b></div>
-        <div class="co-row sm" id="co-sys-row" hidden><span>Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza aparte</small></span><b id="co-sys" class="save">Sin costo</b></div>
         <div class="co-row sm"><span>Descuento por volumen</span><b id="co-disc">Precio de lista</b></div>
         <div class="co-row co-block big"><span>Total mensual</span><b id="co-month">$0</b></div>
       </div>
@@ -1621,10 +1626,26 @@
 
       document.getElementById('co-n').textContent = n + (n === 1 ? ' unidad' : ' unidades');
       document.getElementById('co-once').textContent = fmt(once);
+
+      const ids = on.reduce((sum, u) => sum + Number(u.dataset.id), 0);
+      const sites = on.reduce((sum, u) => sum + Number(u.dataset.site), 0);
       const conNaming = on.filter((u) => Number(u.dataset.id) === 20000).length;
-      document.getElementById('co-once-d').textContent = n
-        ? conNaming + ' con naming · ' + (n - conNaming) + ' sin naming'
-        : 'identidad + sitio de cada unidad';
+      document.getElementById('co-id').textContent = fmt(ids);
+      document.getElementById('co-id-d').textContent = n
+        ? conNaming + ' con naming ($20,000) · ' + (n - conNaming) + ' sin naming ($16,000)'
+        : 'con o sin naming, según la unidad';
+      document.getElementById('co-site').textContent = fmt(sites);
+      const sitiosUnidad = n - (hasSys ? 1 : 0);
+      document.getElementById('co-site-d').textContent = !n
+        ? '$18,000 por unidad'
+        : (hasSys
+            ? (sitiosUnidad ? sitiosUnidad + ' × $18,000 + sitio comercial del catálogo $25,000'
+                            : 'sitio comercial del catálogo $25,000')
+            : n + ' × $18,000');
+      const landRow = document.getElementById('co-land-row');
+      landRow.hidden = !hasDev;
+      document.getElementById('co-land').textContent = fmt(hasDev ? devs * LANDING : 0);
+      document.getElementById('co-land-d').textContent = devs + ' × $12,000';
       document.getElementById('co-sys-row').hidden = !hasSys;
 
       const nucleo = n * NUCLEO;
