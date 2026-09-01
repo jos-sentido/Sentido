@@ -1047,9 +1047,9 @@
         <div class="service-obj">Saber exactamente qué se va a construir, antes de construirlo</div>
         <p class="desc">
           El producto todavía se está definiendo, y cotizar un desarrollo sin alcance cerrado sale
-          caro para ambos lados. Este es el paso que lo resuelve: <strong>un taller de definición
-          del que sale el documento con el que el desarrollo se puede cotizar con precisión</strong>
-          — qué hace el sistema, con qué datos, para quién y en qué orden se construye.
+          caro para ambos lados. Este es el paso que lo resuelve, y <strong>lo hacemos sin costo</strong>:
+          un taller de definición del que sale el documento con el que el desarrollo se puede cotizar
+          con precisión — qué hace el sistema, con qué datos, para quién y en qué orden se construye.
         </p>
         <ul class="service-list">
           <li>Sesiones de definición con el equipo que conoce los precios unitarios</li>
@@ -1060,12 +1060,14 @@
           <li>Documento de alcance con el que se cotiza el desarrollo por fases</li>
         </ul>
         <div class="service-price">
-          <div class="amount">$18,000 <small>+ IVA · único</small></div>
-          <div class="terms">50% / 50% · 3 a 4 semanas</div>
+          <div class="amount" style="color:var(--success)">Sin costo</div>
+          <div class="terms">3 a 4 semanas</div>
           <p class="price-why">
-            El <strong>desarrollo del sistema se cotiza al cerrar esta definición</strong>, por fases
-            y con alcance escrito. Es el único modo honesto de ponerle precio a un software que
-            todavía se está dibujando.
+            <strong>Esta etapa no se cobra.</strong> Es el trabajo que nos permite cotizarles bien y
+            que a ustedes les deja un documento de alcance propio, sirva o no para trabajar con
+            nosotros. El <strong>desarrollo del sistema se cotiza al cerrarla</strong>, por fases y
+            con alcance escrito: es el único modo honesto de ponerle precio a un software que todavía
+            se está dibujando.
           </p>
         </div>
       </div>
@@ -1371,7 +1373,7 @@
       <div class="inv-row head"><div class="inv-name">Casos aparte <small style="text-transform:none;letter-spacing:0">partidas que sólo aplican a una unidad</small></div><div class="inv-amount">MXN</div></div>
       <div class="inv-row"><div class="inv-name">Landing del desarrollo <small>Desarrolladora · producto, ubicación, plantas, precios y agendado · pago único</small></div><div class="inv-amount">$12,000 + IVA</div></div>
       <div class="inv-row"><div class="inv-name">Embudo de venta en GoHighLevel <small>Desarrolladora · mientras el desarrollo esté en venta</small></div><div class="inv-amount">$1,500 + IVA / mes</div></div>
-      <div class="inv-row"><div class="inv-name">Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza sobre este entregable</small></div><div class="inv-amount">$18,000 + IVA</div></div>
+      <div class="inv-row"><div class="inv-name">Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza sobre este entregable</small></div><div class="inv-amount"><span class="save">Sin costo</span></div></div>
       <div class="inv-row"><div class="inv-name">Sitio comercial del producto <small>Catálogo de precios · reemplaza al sitio de unidad</small></div><div class="inv-amount">$25,000 + IVA</div></div>
     </div>
 
@@ -1421,12 +1423,12 @@
         <div class="co-row sm"><span>Núcleo de operación <small id="co-nuc-d">$2,150 por unidad activa</small></span><b id="co-nuc">$0</b></div>
         <div class="co-row sm"><span>Planes de las unidades <small id="co-plan-d">un plan por unidad, según su mercado</small></span><b id="co-plan">$0</b></div>
         <div class="co-row sm" id="co-emb-row" hidden><span>Embudos de desarrollo <small id="co-emb-d">$1,500 por desarrollo en venta</small></span><b id="co-emb">$0</b></div>
-        <div class="co-row sm" id="co-sys-row" hidden><span>Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza aparte</small></span><b id="co-sys">$0</b></div>
+        <div class="co-row sm" id="co-sys-row" hidden><span>Definición funcional del sistema <small>Catálogo de precios · el desarrollo se cotiza aparte</small></span><b id="co-sys" class="save">Sin costo</b></div>
         <div class="co-row sm"><span>Descuento por volumen</span><b id="co-disc">Precio de lista</b></div>
         <div class="co-row co-block big"><span>Total mensual</span><b id="co-month">$0</b></div>
       </div>
 
-      <p class="calc-note">Cifras en MXN, antes de IVA. No incluye la Fase 0 del grupo ($50,000, única), el desarrollo del sistema del catálogo ni el presupuesto de pauta, que va directo a las plataformas.</p>
+      <p class="calc-note">Cifras en MXN, antes de IVA. No incluye la Fase 0 del grupo ($50,000, única), el desarrollo del sistema del catálogo —que se cotiza al cerrar su definición— ni el presupuesto de pauta, que va directo a las plataformas.</p>
     </div>
 
     <div class="note reveal">
@@ -1586,7 +1588,7 @@
   (() => {
     const calc = document.getElementById('calc');
     if (!calc) return;
-    const NUCLEO = 2150, LANDING = 12000, EMBUDO = 1500, DEF_SISTEMA = 18000;
+    const NUCLEO = 2150, LANDING = 12000, EMBUDO = 1500;
     const units = [...calc.querySelectorAll('.cu')];
     const devBox = document.getElementById('calc-dev');
     const devCount = document.getElementById('dev-count');
@@ -1615,7 +1617,6 @@
       let once = on.reduce((sum, u) => sum + Number(u.dataset.id) + Number(u.dataset.site), 0);
       let month = on.reduce((sum, u) => sum + NUCLEO + Number(u.dataset.plan), 0);
       if (hasDev) { once += devs * LANDING; month += devs * EMBUDO; }
-      if (hasSys) { once += DEF_SISTEMA; }
       const monthFinal = Math.round(month * (1 - rate));
 
       document.getElementById('co-n').textContent = n + (n === 1 ? ' unidad' : ' unidades');
@@ -1624,9 +1625,7 @@
       document.getElementById('co-once-d').textContent = n
         ? conNaming + ' con naming · ' + (n - conNaming) + ' sin naming'
         : 'identidad + sitio de cada unidad';
-      const sysRow = document.getElementById('co-sys-row');
-      sysRow.hidden = !hasSys;
-      document.getElementById('co-sys').textContent = fmt(hasSys ? DEF_SISTEMA : 0);
+      document.getElementById('co-sys-row').hidden = !hasSys;
 
       const nucleo = n * NUCLEO;
       const planes = on.reduce((sum, u) => sum + Number(u.dataset.plan), 0);
