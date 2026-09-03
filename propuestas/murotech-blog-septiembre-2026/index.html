@@ -1183,6 +1183,23 @@ caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:8px;font-
 .blog-faq summary{cursor:pointer;font-weight:600;padding:10px 0}
 .blog-faq__body{padding:0 0 10px;color:#48505a}
 @media(max-width:560px){.rev-index td:nth-child(3){display:none}}
+.rev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:4px}
+.rev-carditem{display:flex;flex-direction:column;text-align:left;padding:0;border:1px solid #e4e7ea;border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;font-family:inherit;color:inherit;transition:box-shadow .15s,border-color .15s,transform .15s}
+.rev-carditem:hover{box-shadow:0 10px 26px rgba(20,30,45,.12);transform:translateY(-2px)}
+.rev-carditem.is-active{border-color:var(--yellow,#ffbc00);box-shadow:0 0 0 2px var(--yellow,#ffbc00)}
+.rev-cardimg{display:block;height:150px;background-size:cover;background-position:center;background-color:#dfe3e7}
+.rev-cardbody{display:flex;flex-direction:column;gap:7px;padding:15px 17px 17px}
+.rev-cardtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rev-cardcat{background:#eef2f6;color:#33414f;font-weight:600;font-size:11.5px;padding:3px 10px;border-radius:999px}
+.rev-cardmeta{color:#79808a;font-size:12px}
+.rev-cardtitle{font-family:var(--font-heading,"Barlow"),Arial,sans-serif;font-weight:700;font-size:16.5px;line-height:1.25;color:#1a1a1a}
+.rev-carddesc{color:#5a6068;font-size:13px;line-height:1.5}
+.rev-cardgo{color:#0d4b8f;font-weight:700;font-size:13px;margin-top:1px}
+.rev-selhint{font-size:13px;color:#79808a;margin:16px 0 -6px;text-align:center}
+.rev-post{display:none}
+.rev-post.is-active{display:block;animation:revfade .28s ease}
+@keyframes revfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.rev-grid{grid-template-columns:1fr}}
 </style></head>
 <body>
 <header class="rev-hero">
@@ -1195,12 +1212,45 @@ caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:8px;font-
 <div class="rev-wrap">
   <div class="rev-card">
     <h2>Las 4 entradas de este mes</h2>
-    <p class="sub">Publicación escalonada (una por semana). Se autopublican en su fecha; hoy no están en vivo.</p>
-    <table class="rev-index"><tbody><tr><td><strong>9 de septiembre de 2026</strong></td><td><a href="#paneles-prefabricados-de-concreto-que-son">Qué son los paneles prefabricados de concreto y en qué obras conviene especificarlos</a></td><td>Industria</td></tr><tr><td><strong>16 de septiembre de 2026</strong></td><td><a href="#aislamiento-termico-muros-ahorro-aire-acondicionado">Aislamiento térmico en muros: cuánto baja el aire acondicionado en tu obra</a></td><td>Industria</td></tr><tr><td><strong>23 de septiembre de 2026</strong></td><td><a href="#panel-concreto-vs-tablaroca-durock">Panel de concreto vs. tablaroca y durock: qué sistema especificar según la obra</a></td><td>Comparativas</td></tr><tr><td><strong>30 de septiembre de 2026</strong></td><td><a href="#losa-panel-vs-losa-tradicional">Losa de panel vs. losa tradicional: peso, tiempos y cuándo conviene cada una</a></td><td>Comparativas</td></tr></tbody></table>
+    <p class="sub">Publicación escalonada (una por semana). Se autopublican en su fecha; hoy no están en vivo. <strong>Haz clic en una tarjeta para leer la entrada completa abajo.</strong></p>
+    <div class="rev-grid"><button class="rev-carditem is-active" type="button" data-target="paneles-prefabricados-de-concreto-que-son" aria-label="Ver entrada: Qué son los paneles prefabricados de concreto y en qué obras conviene especificarlos">
+  <span class="rev-cardimg" style="background-image:url('https://murotech.com.mx/assets/web-mt-scaled.jpg')"></span>
+  <span class="rev-cardbody">
+    <span class="rev-cardtop"><span class="rev-cardcat">Industria</span><span class="rev-cardmeta">9 de septiembre de 2026 · 9 min de lectura</span></span>
+    <span class="rev-cardtitle">Qué son los paneles prefabricados de concreto y en qué obras conviene especificarlos</span>
+    <span class="rev-carddesc">Qué es un panel prefabricado de concreto aligerado, de qué está hecho, qué espesores existen y en qué tipo de obra…</span>
+    <span class="rev-cardgo">Ver entrada →</span>
+  </span>
+</button><button class="rev-carditem" type="button" data-target="aislamiento-termico-muros-ahorro-aire-acondicionado" aria-label="Ver entrada: Aislamiento térmico en muros: cuánto baja el aire acondicionado en tu obra">
+  <span class="rev-cardimg" style="background-image:url('https://murotech.com.mx/assets/termico-fondo.jpg')"></span>
+  <span class="rev-cardbody">
+    <span class="rev-cardtop"><span class="rev-cardcat">Industria</span><span class="rev-cardmeta">16 de septiembre de 2026 · 8 min de lectura</span></span>
+    <span class="rev-cardtitle">Aislamiento térmico en muros: cuánto baja el aire acondicionado en tu obra</span>
+    <span class="rev-carddesc">Cómo el aislamiento térmico del muro reduce el consumo de aire acondicionado en una obra: 41% de ahorro operativo y…</span>
+    <span class="rev-cardgo">Ver entrada →</span>
+  </span>
+</button><button class="rev-carditem" type="button" data-target="panel-concreto-vs-tablaroca-durock" aria-label="Ver entrada: Panel de concreto vs. tablaroca y durock: qué sistema especificar según la obra">
+  <span class="rev-cardimg" style="background-image:url('https://murotech.com.mx/assets/construcciones-comerciales.jpg')"></span>
+  <span class="rev-cardbody">
+    <span class="rev-cardtop"><span class="rev-cardcat">Comparativas</span><span class="rev-cardmeta">23 de septiembre de 2026 · 9 min de lectura</span></span>
+    <span class="rev-cardtitle">Panel de concreto vs. tablaroca y durock: qué sistema especificar según la obra</span>
+    <span class="rev-carddesc">Comparativa técnica entre panel de concreto aligerado, tablaroca y durock: capacidad estructural, fuego, aislamiento,…</span>
+    <span class="rev-cardgo">Ver entrada →</span>
+  </span>
+</button><button class="rev-carditem" type="button" data-target="losa-panel-vs-losa-tradicional" aria-label="Ver entrada: Losa de panel vs. losa tradicional: peso, tiempos y cuándo conviene cada una">
+  <span class="rev-cardimg" style="background-image:url('https://murotech.com.mx/assets/losas-y-entre-pisos.jpg')"></span>
+  <span class="rev-cardbody">
+    <span class="rev-cardtop"><span class="rev-cardcat">Comparativas</span><span class="rev-cardmeta">30 de septiembre de 2026 · 8 min de lectura</span></span>
+    <span class="rev-cardtitle">Losa de panel vs. losa tradicional: peso, tiempos y cuándo conviene cada una</span>
+    <span class="rev-carddesc">Comparativa entre losa con panel aligerado y losa maciza tradicional: peso sobre la estructura, tiempos de obra,…</span>
+    <span class="rev-cardgo">Ver entrada →</span>
+  </span>
+</button></div>
     <p class="rev-note"><strong>Enfoque B2B:</strong> el ángulo se ajustó a la audiencia real de Murotech (constructores/desarrolladores que especifican materiales), no a autoconstrucción de casas. Cada entrada ataca una keyword de intención y enlaza a páginas de cualidades y a <code>/contacto/</code>.</p>
   </div>
+  <p class="rev-selhint">Entrada seleccionada ↓</p>
   
-<section class="rev-post" id="paneles-prefabricados-de-concreto-que-son">
+<section class="rev-post is-active" id="paneles-prefabricados-de-concreto-que-son" data-post="paneles-prefabricados-de-concreto-que-son">
   <div class="rev-post__head">
     <span class="rev-badge">Programado: 9 de septiembre de 2026</span>
     <span class="rev-cat">Industria</span>
@@ -1338,7 +1388,7 @@ caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:8px;font-
 <p class="rev-cta"><a href="https://murotech.com.mx/contacto/" target="_blank" rel="noopener">Solicitar especificaciones para tu proyecto →</a></p>
   </div>
 </section>
-<section class="rev-post" id="aislamiento-termico-muros-ahorro-aire-acondicionado">
+<section class="rev-post" id="aislamiento-termico-muros-ahorro-aire-acondicionado" data-post="aislamiento-termico-muros-ahorro-aire-acondicionado">
   <div class="rev-post__head">
     <span class="rev-badge">Programado: 16 de septiembre de 2026</span>
     <span class="rev-cat">Industria</span>
@@ -1456,7 +1506,7 @@ caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:8px;font-
 <p class="rev-cta"><a href="https://murotech.com.mx/contacto/" target="_blank" rel="noopener">Estimar el ahorro térmico de tu proyecto →</a></p>
   </div>
 </section>
-<section class="rev-post" id="panel-concreto-vs-tablaroca-durock">
+<section class="rev-post" id="panel-concreto-vs-tablaroca-durock" data-post="panel-concreto-vs-tablaroca-durock">
   <div class="rev-post__head">
     <span class="rev-badge">Programado: 23 de septiembre de 2026</span>
     <span class="rev-cat">Comparativas</span>
@@ -1535,7 +1585,7 @@ caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:8px;font-
 <p class="rev-cta"><a href="https://murotech.com.mx/contacto/" target="_blank" rel="noopener">Solicitar asesoría técnica para tu obra →</a></p>
   </div>
 </section>
-<section class="rev-post" id="losa-panel-vs-losa-tradicional">
+<section class="rev-post" id="losa-panel-vs-losa-tradicional" data-post="losa-panel-vs-losa-tradicional">
   <div class="rev-post__head">
     <span class="rev-badge">Programado: 30 de septiembre de 2026</span>
     <span class="rev-cat">Comparativas</span>
@@ -1650,6 +1700,20 @@ caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:8px;font-
 <p class="rev-cta"><a href="https://murotech.com.mx/contacto/" target="_blank" rel="noopener">Consultar la losa adecuada para tu proyecto →</a></p>
   </div>
 </section>
-  <p style="text-align:center;color:#8b9099;font-size:13px;margin-top:10px">Documento de revisión interno · Sentido Branding &amp; Advertising · no indexable</p>
+  <p style="text-align:center;color:#8b9099;font-size:13px;margin-top:26px">Documento de revisión interno · Sentido Branding &amp; Advertising · no indexable</p>
 </div>
+<script>
+(function(){
+  var cards=document.querySelectorAll('.rev-carditem');
+  var posts=document.querySelectorAll('.rev-post');
+  function show(slug, doScroll){
+    cards.forEach(function(c){ c.classList.toggle('is-active', c.dataset.target===slug); });
+    posts.forEach(function(p){ p.classList.toggle('is-active', p.dataset.post===slug); });
+    if(doScroll){ var el=document.getElementById(slug); if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); } }
+  }
+  cards.forEach(function(c){
+    c.addEventListener('click', function(){ show(c.dataset.target, true); });
+  });
+})();
+</script>
 </body></html>
