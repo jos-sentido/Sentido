@@ -1,0 +1,244 @@
+<!--
+  Hoja de espécimen del sistema visual de Sentido.
+  Página escrita a mano (no la genera build.py): documenta el sistema
+  renderizándolo con su propio CSS, así que nunca puede mentir sobre él.
+  No está enlazada desde la navegación. Ver SISTEMA-VISUAL.md.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sistema visual · Sentido</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="/assets/isotipo-sentido.png" />
+<link rel="preload" href="/sitio/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<style>
+  .esp { padding: clamp(52px, 6vw, 88px) 0; border-top: 1px solid var(--linea); position: relative; }
+  .esp > .wrap > .rotulo { display: block; margin-bottom: 22px; }
+  .esp h2 { margin-bottom: 14px; }
+  .esp .cuerpo { margin-bottom: 40px; }
+
+  .rej { display: grid; gap: 1px; background: var(--linea); border: 1px solid var(--linea); }
+  .rej-4 { grid-template-columns: repeat(4, 1fr); }
+  .rej-3 { grid-template-columns: repeat(3, 1fr); }
+  .celda { background: var(--tinta); padding: 22px; }
+
+  .muestra { height: 76px; border: 1px solid var(--linea-2); margin-bottom: 14px; }
+  .dato { font-size: 0.8125rem; line-height: 1.6; color: var(--hueso-3); }
+  .dato b { display: block; color: var(--hueso); font-weight: 600; font-size: 0.875rem; margin-bottom: 3px; }
+  .ratio { font-weight: 700; font-size: 0.6875rem; letter-spacing: 0.14em; color: var(--hueso-4); }
+
+  .campo { position: relative; height: 110px; border: 1px solid var(--linea-2); overflow: hidden; margin-bottom: 12px; }
+  .escala-fila { display: flex; align-items: baseline; gap: 26px; padding: 16px 0; border-bottom: 1px solid var(--linea); flex-wrap: wrap; }
+  .escala-fila .rotulo { min-width: 132px; }
+  .plancha-papel { background: var(--hueso); --trazo: var(--tinta); position: relative; overflow: hidden; padding: 40px 26px; }
+  .plancha-papel p { position: relative; color: var(--tinta); font-weight: 300; font-size: 1.5rem; letter-spacing: -0.03em; }
+  .no { display: grid; grid-template-columns: 20px 1fr; gap: 14px; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 13px; color: var(--hueso-2); }
+  .no span:first-child { color: var(--hueso-4); font-weight: 700; }
+</style>
+</head>
+<body>
+<a class="salta" href="#main">Saltar al contenido</a>
+
+<main id="main">
+
+  <section class="portada portada--int">
+    <div class="buril"></div>
+    <div class="portada-rej">
+      <div>
+        <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" style="height:52px;width:auto;margin-bottom:30px" />
+        <h1><span class="ligera">Sistema</span><br /><span class="alta">visual</span>.</h1>
+        <p class="sub">
+          El sistema renderizado con su propio CSS. Derivado del isotipo de la marca:
+          la trama de buril es el material, el rombo es el módulo, y el contraste
+          tipográfico es de peso, nunca de familia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOR -->
+  <section class="esp">
+    <div class="wrap">
+      <span class="rotulo">01 · Color</span>
+      <h2>Dos materiales: tinta y papel.</h2>
+      <p class="cuerpo apagado">Nunca negro puro ni blanco puro. Cada valor de texto trae su contraste medido contra la tinta.</p>
+
+      <div class="rej rej-4" style="margin-bottom:1px">
+        <div class="celda"><div class="muestra" style="background:#0B0A09"></div><div class="dato"><b>--tinta</b>#0B0A09<br /><span class="ratio">fondo universal</span></div></div>
+        <div class="celda"><div class="muestra" style="background:#100E0C"></div><div class="dato"><b>--tinta-2</b>#100E0C<br /><span class="ratio">plancha elevada</span></div></div>
+        <div class="celda"><div class="muestra" style="background:#171410"></div><div class="dato"><b>--tinta-3</b>#171410<br /><span class="ratio">campo de formulario</span></div></div>
+        <div class="celda"><div class="muestra" style="background:#1E1A15"></div><div class="dato"><b>--tinta-4</b>#1E1A15<br /><span class="ratio">escalón alto</span></div></div>
+      </div>
+      <div class="rej rej-4">
+        <div class="celda"><div class="muestra" style="background:#F1EADC"></div><div class="dato"><b>--hueso</b>#F1EADC<br /><span class="ratio">16.52:1 · títulos</span></div></div>
+        <div class="celda"><div class="muestra" style="background:#B6AE9E"></div><div class="dato"><b>--hueso-2</b>#B6AE9E<br /><span class="ratio">8.98:1 · cuerpo</span></div></div>
+        <div class="celda"><div class="muestra" style="background:#948C80"></div><div class="dato"><b>--hueso-3</b>#948C80<br /><span class="ratio">5.96:1 · secundario</span></div></div>
+        <div class="celda"><div class="muestra" style="background:#857E72"></div><div class="dato"><b>--hueso-4</b>#857E72<br /><span class="ratio">4.92:1 · piso</span></div></div>
+      </div>
+
+      <div class="plancha-papel" style="margin-top:34px">
+        <div class="buril" style="--ang:90deg;--paso:4px;--tono:0.16"></div>
+        <p>Una sola plancha de hueso por página. El mismo buril, dibujado en tinta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOGRAFÍA -->
+  <section class="esp">
+    <div class="wrap">
+      <span class="rotulo">02 · Tipografía</span>
+      <h2>Una familia. El contraste es de peso.</h2>
+      <p class="cuerpo apagado">Archivo variable, 100–900. El titular de dos pesos y la caja hueso vienen del feed real de la marca.</p>
+
+      <div style="border-top:1px solid var(--linea);margin-bottom:40px">
+        <div class="escala-fila"><span class="rotulo">h1 · 800</span><span style="font-size:3.25rem;font-weight:800;letter-spacing:-.032em;line-height:1;color:var(--hueso)">Sistema</span></div>
+        <div class="escala-fila"><span class="rotulo">h2 · 800</span><span style="font-size:2.25rem;font-weight:800;letter-spacing:-.032em;color:var(--hueso)">Cuatro capas</span></div>
+        <div class="escala-fila"><span class="rotulo">h3 · 800</span><span style="font-size:1.5rem;font-weight:800;letter-spacing:-.032em;color:var(--hueso)">Alcance</span></div>
+        <div class="escala-fila"><span class="rotulo">Entrada · 300</span><span style="font-size:1.375rem;font-weight:300;letter-spacing:-.02em;color:var(--hueso)">La marca, la pauta y el CRM</span></div>
+        <div class="escala-fila"><span class="rotulo">Cuerpo · 400</span><span style="font-size:1.0625rem;color:var(--hueso-2)">Texto corrido, tope de 68 caracteres</span></div>
+        <div class="escala-fila"><span class="rotulo">Rótulo · 700</span><span class="rotulo">Única voz de etiqueta</span></div>
+      </div>
+
+      <div class="rej rej-3">
+        <div class="celda">
+          <span class="rotulo">Titular de dos pesos</span>
+          <p style="margin-top:16px;font-size:1.75rem;line-height:1.05;letter-spacing:-.032em;color:var(--hueso)"><span style="font-weight:300">No se trata de</span><br /><span style="font-weight:800">más publicidad</span></p>
+        </div>
+        <div class="celda">
+          <span class="rotulo">Caja hueso</span>
+          <p style="margin-top:16px;font-size:1.75rem;line-height:1.05;letter-spacing:-.032em;font-weight:800;color:var(--hueso)">Falta el <span class="alta">sistema</span></p>
+        </div>
+        <div class="celda">
+          <span class="rotulo">Pleca de sección</span>
+          <div class="pleca" style="width:56px;margin:22px 0 14px"></div>
+          <p class="dato">Abre cada sección. Reemplaza al eyebrow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BURIL -->
+  <section class="esp">
+    <div class="wrap">
+      <span class="rotulo">03 · El material</span>
+      <h2>Trama de buril.</h2>
+      <p class="cuerpo apagado">Cinco propiedades fijadas por contexto. La densidad es el énfasis: para destacar se sube <code>--tono</code>, nunca se añade sombra.</p>
+
+      <div class="rej rej-4">
+        <div class="celda"><div class="campo"><div class="buril" style="--ang:90deg;--paso:5px;--tono:.16"></div></div><div class="dato"><b>Base</b>90° · paso 5px · tono .16</div></div>
+        <div class="celda"><div class="campo"><div class="buril" style="--ang:90deg;--paso:3px;--peso:.9px;--tono:.26"></div></div><div class="dato"><b>Denso</b>90° · paso 3px · tono .26</div></div>
+        <div class="celda"><div class="campo"><div class="buril" style="--ang:118deg;--paso:5px;--tono:.16"></div></div><div class="dato"><b>Inclinado</b>118° · paso 5px</div></div>
+        <div class="celda"><div class="campo"><div class="buril" style="--ang:104deg;--paso:5px;--tono:.2;-webkit-mask-image:linear-gradient(115deg,#000,transparent 70%);mask-image:linear-gradient(115deg,#000,transparent 70%)"></div></div><div class="dato"><b>Abierto</b>enmascarado, como en el grabado</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROMBO Y LOGO -->
+  <section class="esp">
+    <div class="wrap">
+      <span class="rotulo">04 · El módulo y la marca</span>
+      <h2>El rombo hace lo que harían los íconos.</h2>
+
+      <div class="rej rej-3">
+        <div class="celda">
+          <span class="rotulo">Rombo</span>
+          <ul class="lista" style="margin-top:18px">
+            <li>Viñeta de toda lista</li>
+            <li>Página activa en el menú</li>
+            <li>Estado de las cuatro capas</li>
+          </ul>
+        </div>
+        <div class="celda">
+          <span class="rotulo">El ojo grabado</span>
+          <div class="ojo-caja" style="max-width:150px;margin:14px 0 0">
+            <div class="ojo-rombo r3"></div><div class="ojo-rombo r2"></div><div class="ojo-rombo r1"></div>
+            <div class="ojo-trama"><div class="buril"></div></div>
+            <div class="ojo-img" role="img" aria-label="Sentido"></div>
+          </div>
+        </div>
+        <div class="celda">
+          <span class="rotulo">Uso del logo</span>
+          <p class="dato" style="margin-top:16px">Completo en su composición original, solo el nombre cuando el completo no acomoda, o solo el ojo como decoración. <b style="margin-top:10px">Nunca se recompone.</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTES -->
+  <section class="esp">
+    <div class="wrap">
+      <span class="rotulo">05 · Componentes</span>
+      <h2>Filas grabadas, no tarjetas.</h2>
+
+      <div class="plancha" style="margin-bottom:38px">
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Módulo mensual</span><h3>Gestión de Redes Meta</h3></div>
+          <div><p>La fila es el componente de listado del sistema. Al hover sube la densidad de trama; no hay elevación ni sombra.</p></div>
+          <div class="ver">Ver</div>
+        </div>
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Inversión única</span><h3>Sitio Web Estratégico</h3></div>
+          <div><p>Separadas por regla de 1px, nunca por caja. Nada de tarjetas dentro de tarjetas.</p></div>
+          <div class="ver">Ver</div>
+        </div>
+      </div>
+
+      <div class="acciones" style="margin-bottom:38px">
+        <span class="boton">Botón sólido <span class="fl">→</span></span>
+        <span class="boton boton--linea">Botón de línea</span>
+        <span class="enlace">Enlace</span>
+      </div>
+
+      <div class="rej rej-3">
+        <div class="celda"><span class="rotulo">Profundidad</span><p class="dato" style="margin-top:14px">Ninguna sombra lleva blur. La única del sistema es el desplazamiento de impresión del botón.</p></div>
+        <div class="celda"><span class="rotulo">Movimiento</span><p class="dato" style="margin-top:14px">Un solo momento autoral por página. El texto se graba de izquierda a derecha; el ojo abre; los rombos se trazan.</p></div>
+        <div class="celda"><span class="rotulo">Medida</span><p class="dato" style="margin-top:14px">Contenido 1300px, lectura 780px, párrafo 68 caracteres. Más aire arriba del encabezado que debajo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECHAZOS -->
+  <section class="esp">
+    <div class="wrap">
+      <span class="rotulo">06 · Lo que el sistema rechaza</span>
+      <h2>Cada ausencia es una decisión.</h2>
+      <div class="cols cols-2" style="margin-top:36px">
+        <div>
+          <div class="no"><span>—</span><span>Tarjetas, y tarjetas dentro de tarjetas</span></div>
+          <div class="no"><span>—</span><span>Íconos: el rombo cubre esa función</span></div>
+          <div class="no"><span>—</span><span>Monoespaciada como disfraz técnico</span></div>
+          <div class="no"><span>—</span><span>Serif: la familia es una y es grotesca</span></div>
+          <div class="no"><span>—</span><span>Eyebrow sobre cada sección</span></div>
+        </div>
+        <div>
+          <div class="no"><span>—</span><span>Numeración decorativa 01 / 02 / 03</span></div>
+          <div class="no"><span>—</span><span>Gradientes, glass, glow</span></div>
+          <div class="no"><span>—</span><span>Imágenes fotográficas</span></div>
+          <div class="no"><span>—</span><span>Texto en gris: todo se tinta desde el hueso</span></div>
+          <div class="no"><span>—</span><span>Negro puro y blanco puro</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="buril"></div>
+  <div class="wrap">
+    <div class="pie-bajo" style="margin-top:0;border-top:none;padding-top:0">
+      <p>Sistema visual · Sentido</p>
+      <p class="firma">branding / advertising · desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/sitio/assets/sentido.js" defer></script>
+</body>
+</html>
