@@ -1,6 +1,50 @@
 {
   "proposals": [
     {
+      "slug": "blackrock-maquinaria",
+      "tipo": "propuesta",
+      "cliente": "BlackRock Maquinaria",
+      "fecha": "2026-09-07",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "branding",
+          "nombre": "Sistema de Marca (identidad)",
+          "precio": 15000,
+          "tipo": "unico"
+        },
+        {
+          "id": "web",
+          "nombre": "Sitio Web Estratégico (catálogo + captación)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "redes",
+          "nombre": "Presencia en Redes (FB+IG, incluye gestión Meta Ads)",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión Google Ads (búsqueda de compra)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gbp",
+          "nombre": "Perfil de Negocio de Google (preferente en combo)",
+          "precio": 2500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Distribuidor SINOMACH-HI de maquinaria pesada en Mexico (excavadoras, cargadores, motoconformadoras, compactadores, bulldozers). Cliente pidio 4 servicios: branding, web, redes, Google Ads. Hallazgo critico: presencia digital nula (sin sitio localizable, sin redes oficiales, cero captura de demanda en Google) en un mercado que crece por mineria+nearshoring y con rivales chinos (XCMG/LiuGong/SANY) ya organizados. Paleta industrial graphite/steel/amber. Unico $35K (marca+web), mensual $14K gestion, pauta aparte: Meta 5-12K / Google 8-15K. Recomendado: contratar ecosistema integral (GBP preferente + Meta gestion incluida + SEO base).",
+      "proximoPaso": "Esperando respuesta via formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "massatierra",
       "tipo": "propuesta",
       "cliente": "Massatierra",

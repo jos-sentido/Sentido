@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · BlackRock Maquinaria — Marca, Sitio y Adquisición Digital</title>
+<meta name="description" content="Estrategia de marca, sitio web, redes y Google Ads para BlackRock Maquinaria, distribuidor SINOMACH-HI de maquinaria pesada en México. Propuesta de Sentido." />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<meta property="og:title" content="Propuesta · BlackRock Maquinaria" />
+<meta property="og:description" content="Marca, sitio web, redes y Google Ads para posicionar a BlackRock Maquinaria en el mercado de maquinaria pesada en México. Por Sentido." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF0F2;
+    --surface:#FFFFFF;
+    --surface-2:#E2E5E9;
+    --ink:#16181C;
+    --ink-2:#23262C;
+    --text:#22252B;
+    --text-dim:#6B707A;
+    --accent:#D97706;
+    --accent-bright:#F59E0B;
+    --accent-soft:rgba(217,119,6,.10);
+    --line:#D3D7DD;
+    --font-display:'Archivo',system-ui,sans-serif;
+    --font-sans:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:78px;-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-weight:400;line-height:1.65;font-size:16.5px;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink);line-height:1.08;letter-spacing:-.02em;margin:0;font-weight:800;}
+  p{margin:0 0 1.15rem;}
+  a{color:var(--accent);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.4rem;}
+  section{padding:5rem 0;}
+  @media(min-width:768px){section{padding:7rem 0;}}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:100;background:rgba(238,240,242,.86);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);border-bottom:1px solid var(--line);}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:.7rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+  .nav img{height:24px;width:auto;}
+  @media(min-width:768px){.nav img{height:28px;}}
+  .nav-links{display:none;gap:1.05rem;}
+  @media(min-width:1200px){.nav-links{display:flex;}}
+  .nav-links a{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;font-weight:500;transition:color .2s;}
+  .nav-links a:hover,.nav-links a.on{color:var(--accent);}
+  .nav-cta{font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;background:var(--ink);color:#fff;padding:.55rem 1.1rem;border-radius:6px;text-decoration:none;white-space:nowrap;}
+
+  /* HERO */
+  .hero{padding:3.5rem 0 4.5rem;position:relative;overflow:hidden;}
+  @media(min-width:768px){.hero{padding:5rem 0 7rem;}}
+  .hero::after{content:"";position:absolute;top:-25%;right:-12%;width:60vw;height:60vw;max-width:680px;max-height:680px;border-radius:50%;background:radial-gradient(circle,rgba(217,119,6,.14),transparent 66%);pointer-events:none;}
+  .hero-logo-sentido{height:52px;width:auto;display:block;margin-bottom:3rem;opacity:.85;}
+  @media(min-width:768px){.hero-logo-sentido{height:60px;margin-bottom:4.5rem;}}
+  .brandmark{font-family:var(--font-display);font-weight:900;letter-spacing:-.03em;font-size:.95rem;color:var(--ink);text-transform:uppercase;}
+  .brandmark span{color:var(--accent);}
+  .eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;}
+  .hero h1{font-size:clamp(2.4rem,7.2vw,4.7rem);font-weight:900;letter-spacing:-.035em;margin-bottom:1.6rem;text-transform:uppercase;}
+  .hero h1 em{font-style:normal;color:var(--accent);}
+  .hero .lede{font-size:clamp(1.05rem,2.4vw,1.32rem);color:var(--text-dim);max-width:52ch;line-height:1.55;}
+  .hero-meta{margin-top:3rem;display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);border-top:1px solid var(--line);padding-top:1.4rem;}
+
+  /* BLOCKS */
+  .kicker{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem;display:block;}
+  .h2{font-size:clamp(1.85rem,4.8vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1.5rem;max-width:22ch;text-transform:uppercase;}
+  .lede-2{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-dim);max-width:64ch;}
+  .dark{background:var(--ink);color:#C6CAD1;}
+  .dark h2,.dark h3,.dark h4{color:#fff;}
+  .dark .lede-2{color:#A6ABB4;}
+  .dark .kicker{color:var(--accent-bright);}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.6rem;}
+  .grid{display:grid;gap:1.1rem;}
+  @media(min-width:760px){.g2{grid-template-columns:1fr 1fr;} .g3{grid-template-columns:repeat(3,1fr);}}
+
+  /* STAT ROW */
+  .stats{display:grid;gap:1.1rem;margin-top:2.4rem;}
+  @media(min-width:700px){.stats{grid-template-columns:repeat(3,1fr);}}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.5rem;}
+  .stat .n{font-family:var(--font-display);font-size:clamp(2rem,5vw,2.7rem);font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:1;}
+  .stat .n em{font-style:normal;color:var(--accent);}
+  .stat .l{font-size:.86rem;color:var(--text-dim);margin-top:.7rem;}
+  .stat .src{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#A2A8B2;margin-top:.7rem;}
+
+  /* FINDINGS */
+  .finding{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-left:3px solid var(--accent-bright);border-radius:0 12px 12px 0;padding:1.4rem 1.5rem;margin-bottom:.9rem;}
+  .finding.crit{border-left-color:#E0533A;}
+  .finding-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.55rem;flex-wrap:wrap;}
+  .tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;padding:.2rem .55rem;border-radius:4px;background:rgba(245,158,11,.16);color:var(--accent-bright);font-weight:600;}
+  .tag.crit{background:rgba(224,83,58,.16);color:#F08A72;}
+  .finding h4{font-size:1.04rem;font-weight:700;color:#fff;}
+  .finding p{margin:0;font-size:.93rem;color:#A6ABB4;}
+
+  /* TABLE */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:680px;font-size:.9rem;}
+  th{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:.9rem 1rem;color:var(--text-dim);border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;background:var(--surface-2);}
+  td{padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top;font-size:.9rem;}
+  tr:last-child td{border-bottom:none;}
+  td.name{font-weight:600;color:var(--ink);white-space:nowrap;}
+  .pill{display:inline-block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;padding:.16rem .5rem;border-radius:4px;font-weight:600;}
+  .p-hi{background:rgba(30,135,75,.14);color:#1E874B;}
+  .p-md{background:rgba(216,155,18,.16);color:#B47A05;}
+  .p-lo{background:rgba(224,83,58,.13);color:#C8452F;}
+
+  /* SERVICE BLOCK */
+  .svc{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:1.2rem;}
+  .svc-h{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:1.5rem 1.6rem 1.1rem;flex-wrap:wrap;}
+  .svc-h .idx{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem;}
+  .svc-h h3{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;}
+  .svc-h .obj{font-size:.94rem;color:var(--text-dim);margin:.5rem 0 0;max-width:60ch;}
+  .svc-price{text-align:right;white-space:nowrap;}
+  .svc-price .amt{font-family:var(--font-display);font-size:1.55rem;font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1;}
+  .svc-price .amt small{display:block;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);font-weight:400;margin-top:.4rem;}
+  .svc-b{padding:0 1.6rem 1.6rem;}
+  .svc-list{list-style:none;padding:0;margin:0;display:grid;gap:.5rem;}
+  @media(min-width:640px){.svc-list{grid-template-columns:1fr 1fr;}}
+  .svc-list li{position:relative;padding-left:1.4rem;font-size:.9rem;color:var(--text);}
+  .svc-list li::before{content:"";position:absolute;left:0;top:.5rem;width:7px;height:7px;border-radius:2px;background:var(--accent);}
+
+  /* PAUTA SUB-BLOCK (adjacent to operator) */
+  .pauta{margin:1.2rem 1.6rem 1.6rem;background:var(--accent-soft);border:1px dashed rgba(217,119,6,.42);border-radius:12px;padding:1.15rem 1.3rem;}
+  .pauta .lbl{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+  .pauta .rng{font-family:var(--font-display);font-weight:800;color:var(--ink);font-size:1.05rem;letter-spacing:-.02em;}
+  .pauta p{margin:.45rem 0 0;font-size:.85rem;color:var(--text-dim);}
+
+  /* INVERSION */
+  .inv-grid{display:grid;gap:1.1rem;margin-top:1.5rem;}
+  @media(min-width:760px){.inv-grid{grid-template-columns:1fr 1fr;}}
+  .inv-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.7rem;}
+  .inv-card h4{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);font-weight:500;margin-bottom:1.1rem;}
+  .inv-line{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-top:1px solid var(--line);font-size:.93rem;}
+  .inv-line:first-of-type{border-top:none;}
+  .inv-line .lbl{color:var(--text);}
+  .inv-line .lbl small{display:block;color:var(--text-dim);font-size:.78rem;margin-top:.15rem;}
+  .inv-line .v{font-family:var(--font-mono);font-weight:600;color:var(--ink);white-space:nowrap;}
+  .inv-total{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:2px solid var(--ink);}
+  .inv-total .lbl{font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:.9rem;letter-spacing:.02em;color:var(--ink);}
+  .inv-total .v{font-family:var(--font-display);font-size:1.7rem;font-weight:900;color:var(--ink);letter-spacing:-.03em;}
+  .inv-total .v small{font-size:.65rem;font-family:var(--font-mono);color:var(--text-dim);font-weight:400;display:block;text-align:right;margin-top:.25rem;letter-spacing:.06em;text-transform:uppercase;}
+
+  .bundle{background:var(--ink);color:#fff;border-radius:16px;padding:1.8rem;margin-top:1.3rem;position:relative;overflow:hidden;}
+  .bundle::after{content:"";position:absolute;bottom:-40%;right:-8%;width:44vw;height:44vw;max-width:420px;max-height:420px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.22),transparent 66%);pointer-events:none;}
+  .bundle .b-lbl{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-bright);font-weight:600;margin-bottom:.9rem;}
+  .bundle h4{color:#fff;font-size:1.3rem;margin-bottom:.7rem;}
+  .bundle ul{margin:.9rem 0 0;padding-left:1.15rem;color:#C6CAD1;font-size:.92rem;}
+  .bundle li{margin-bottom:.4rem;}
+  .bundle li strong{color:var(--accent-bright);font-weight:600;}
+
+  .note{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:1.15rem 1.35rem;font-size:.85rem;color:var(--text-dim);margin-top:1.1rem;}
+  .note strong{color:var(--ink);}
+
+  /* HORIZONTE */
+  .hz{border-left:2px solid rgba(255,255,255,.16);padding-left:1.6rem;margin-bottom:2.2rem;position:relative;}
+  .hz::before{content:"";position:absolute;left:-6px;top:.5rem;width:10px;height:10px;border-radius:50%;background:var(--accent-bright);}
+  .hz .m{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:.5rem;}
+  .hz h4{font-size:1.15rem;margin-bottom:.5rem;color:#fff;}
+  .hz p{font-size:.94rem;color:#A6ABB4;margin:0;}
+
+  /* CLOSING / FORM */
+  .closing{background:var(--ink);color:#C6CAD1;}
+  .closing .big{font-size:clamp(1.9rem,5.4vw,3.3rem);font-weight:900;letter-spacing:-.03em;color:#fff;max-width:20ch;margin-bottom:1.5rem;text-transform:uppercase;}
+  form{margin-top:2.5rem;display:grid;gap:1rem;max-width:640px;}
+  label{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:#9096A0;margin-bottom:.45rem;}
+  .req{color:var(--accent-bright);}
+  input,select,textarea{width:100%;background:#F5F6F8;border:1px solid #3A3E45;border-radius:9px;padding:.85rem 1rem;font-family:var(--font-sans);font-size:.98rem;color:#16181C;}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent-bright);outline-offset:1px;}
+  textarea{min-height:104px;resize:vertical;}
+  button[type=submit]{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:1rem 2.4rem;font-family:var(--font-display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;cursor:pointer;justify-self:start;transition:transform .15s,background .2s;}
+  button[type=submit]:hover{background:#B45309;transform:translateY(-1px);}
+  button[disabled]{opacity:.55;cursor:wait;}
+  .form-msg{font-size:.92rem;margin-top:.3rem;min-height:1.2em;}
+  .alt{margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.14);font-size:.92rem;color:#A6ABB4;}
+  .alt a{color:var(--accent-bright);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(245,158,11,.4);}
+  .closing-sentido-mark{height:36px;width:auto;opacity:.6;margin-top:3rem;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <img src="/assets/logo-sentido-dark.png" alt="Sentido" />
+    <div class="nav-links">
+      <a href="#contexto">Contexto</a>
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#competencia">Competencia</a>
+      <a href="#estrategia">Estrategia</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#inversion">Inversión</a>
+      <a href="#horizonte">Horizonte</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Contactemos</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <img src="/assets/logo-sentido-dark.png" alt="Sentido" class="hero-logo-sentido" />
+    <!-- Identificador del prospecto (texto neutro, no propuesta de logo). Reemplazar por el logotipo oficial de BlackRock cuando esté disponible. -->
+    <div class="brandmark" style="margin-bottom:1.4rem;">BLACK<span>ROCK</span> · MAQUINARIA</div>
+    <div class="eyebrow">Distribuidor SINOMACH-HI en México · Propuesta estratégica</div>
+    <h1>Fierro que <em>mueve toneladas</em>. Marca que aún no mueve un solo clic.</h1>
+    <p class="lede">BlackRock representa una de las líneas de maquinaria pesada más completas de China en un mercado mexicano que crece por minería y nearshoring. Pero hoy, para quien busca en línea, BlackRock no existe. Esta propuesta construye la marca, el sitio y la maquinaria de adquisición digital que la ponen frente a quien firma la orden de compra.</p>
+    <div class="hero-meta">
+      <span>Marca · Sitio · Redes · Google Ads</span>
+      <span>Sector: Maquinaria pesada / construcción</span>
+      <span>Sentido · 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ CONTEXTO ============ -->
+<section id="contexto">
+  <div class="wrap reveal">
+    <span class="kicker">01 · El momento</span>
+    <h2 class="h2">El mercado se está moviendo. La marca china ya no es el problema.</h2>
+    <p class="lede-2">México compra maquinaria de construcción a un ritmo sostenido, empujado por la expansión minera y por la ola de nearshoring que llena el país de naves industriales y centros de distribución. En ese mismo periodo, las marcas chinas dejaron de ser "la opción barata" para volverse una decisión de compra legítima: XCMG, LiuGong y SANY llevan años ganando terreno con distribución formal, refacciones y respaldo. SINOMACH-HI —con herencia de una empresa estatal Fortune 500 y una línea completa de excavadoras, cargadores, motoconformadoras, compactadores y bulldozers— compite exactamente en esa conversación.</p>
+    <p class="lede-2" style="margin-top:1.1rem;">La ventaja de producto ya está. Lo que falta es que, cuando un constructor, un contratista minero o un rentador de equipo busque su próxima máquina, encuentre a BlackRock antes que al distribuidor de la marca de al lado.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="n">32<em>K</em>+</div>
+        <div class="l">Unidades de equipo de construcción vendidas en México en 2025, con crecimiento proyectado hacia ~38.6K unidades para 2031 (CAGR ~3.1%).</div>
+        <div class="src">Fuente: Mexico Construction Equipment Industry Report 2026–2031</div>
+      </div>
+      <div class="stat">
+        <div class="n">Excavación</div>
+        <div class="l">El segmento de movimiento de tierras —liderado por excavadoras— concentra la mayor participación del mercado, impulsado por la expansión del sector minero.</div>
+        <div class="src">Fuente: Mordor / Industry Report México</div>
+      </div>
+      <div class="stat">
+        <div class="n">Near<em>shoring</em></div>
+        <div class="l">La demanda de equipo de manejo de materiales sube por nearshoring y e-commerce, con inversiones industriales de miles de millones de dólares en centros de distribución.</div>
+        <div class="src">Fuente: Industry Report México 2026</div>
+      </div>
+    </div>
+    <div class="note"><strong>Nota de método.</strong> Las cifras de mercado provienen de reportes públicos de la industria de equipo de construcción en México y se citan como marco de contexto, no como proyección de ventas de BlackRock. Cualquier meta comercial se define en conjunto durante el arranque.</div>
+  </div>
+</section>
+
+<!-- ============ DIAGNOSTICO ============ -->
+<section id="diagnostico" class="dark">
+  <div class="wrap reveal">
+    <span class="kicker">02 · Diagnóstico digital</span>
+    <h2 class="h2">Hoy, BlackRock es invisible en el único lugar donde se investiga una compra grande.</h2>
+    <p class="lede-2">Antes de escribir una sola línea de estrategia, buscamos a BlackRock Maquinaria como lo haría un comprador: por su nombre, por marca y por tipo de máquina. Esto es lo que encontramos.</p>
+
+    <div style="margin-top:2.4rem;">
+      <div class="finding crit">
+        <div class="finding-top"><span class="tag crit">Crítico</span><h4>Sin sitio web localizable</h4></div>
+        <p>No aparece un sitio propio de BlackRock Maquinaria en los dominios evidentes ni indexado en buscadores. Una compra de maquinaria pesada se investiga a fondo antes de contactar: sin sitio, la evaluación termina antes de empezar y el prospecto se va con quien sí tiene una ficha que mostrar.</p>
+      </div>
+      <div class="finding crit">
+        <div class="finding-top"><span class="tag crit">Crítico</span><h4>Marca sin sistema definido</h4></div>
+        <p>No existe un sistema de identidad consistente (logotipo, color, tipografía, aplicaciones) que se pueda desplegar en fichas de equipo, redes, unidades, uniformes y documentación comercial. En un sector donde el respaldo se percibe visualmente, la ausencia de marca se lee como falta de solidez frente a rivales que proyectan estructura.</p>
+      </div>
+      <div class="finding">
+        <div class="finding-top"><span class="tag">Alto</span><h4>Presencia social nula o dispersa</h4></div>
+        <p>No hay una cuenta oficial reconocible de BlackRock Maquinaria en las plataformas donde contratistas y rentadores hoy comparan equipo, ven máquinas trabajando y validan que un distribuidor está activo. El catálogo SINOMACH-HI 2025 da material de sobra; falta el canal que lo publique con constancia.</p>
+      </div>
+      <div class="finding">
+        <div class="finding-top"><span class="tag">Alto</span><h4>Cero captura de demanda en Google</h4></div>
+        <p>Quien escribe "excavadora en venta", "cargador frontal precio" o el nombre de un modelo específico está listo para cotizar. Hoy esa demanda —de alto valor por ticket— la capitalizan otros distribuidores. BlackRock no compite por ella porque no está presente en el buscador.</p>
+      </div>
+      <div class="finding">
+        <div class="finding-top"><span class="tag">Alto</span><h4>Sin punto en el mapa</h4></div>
+        <p>Sin un Perfil de Negocio de Google verificado, BlackRock no aparece cuando alguien busca distribuidores de maquinaria por zona ni acumula reseñas —la señal de confianza que más pesa en una decisión de este tamaño.</p>
+      </div>
+    </div>
+    <div class="note" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#A6ABB4;margin-top:1.6rem;"><strong style="color:#fff;">La lectura.</strong> No hay que reparar activos débiles: hay que construirlos. Eso es una ventaja. Se arranca sin arrastrar decisiones viejas y se levanta un ecosistema coherente desde el primer día — con la marca, el mensaje y las conversiones alineados de origen.</div>
+  </div>
+</section>
+
+<!-- ============ COMPETENCIA ============ -->
+<section id="competencia">
+  <div class="wrap reveal">
+    <span class="kicker">03 · Terreno competitivo</span>
+    <h2 class="h2">Contra quién se compite por el mismo clic.</h2>
+    <p class="lede-2">El comprador de maquinaria pesada casi nunca busca una sola marca: compara. Estos son los frentes que BlackRock enfrenta en línea y dónde está el espacio para diferenciarse.</p>
+
+    <div class="tablewrap" style="margin-top:2rem;">
+      <table>
+        <thead>
+          <tr><th>Frente</th><th>Perfil</th><th>Presencia digital</th><th>Dónde está el hueco</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Distribuidores de marca china<br><small style="color:var(--text-dim);font-weight:400;">XCMG · LiuGong · SANY · Changlin</small></td>
+            <td>Rivales directos por precio y valor. Décadas de operación en México en algunos casos.</td>
+            <td><span class="pill p-hi">Organizada</span> Sitios por marca, catálogo, red de sucursales y refacciones.</td>
+            <td>Su presencia está estandarizada y algo impersonal. BlackRock puede ganar con cercanía, respuesta ágil y una marca propia con carácter.</td>
+          </tr>
+          <tr>
+            <td class="name">Distribuidores SINOMACH<br><small style="color:var(--text-dim);font-weight:400;">de la misma línea / equipo vial</small></td>
+            <td>Comercializan la misma marca que BlackRock, a veces por segmento (equipo vial, excavación).</td>
+            <td><span class="pill p-md">Media</span> Fichas de modelo y catálogo, presencia desigual por región.</td>
+            <td>Competir por ser <em>el</em> referente SINOMACH-HI en México, con cobertura de portafolio completo y sitio superior.</td>
+          </tr>
+          <tr>
+            <td class="name">Premium establecido<br><small style="color:var(--text-dim);font-weight:400;">Caterpillar · Komatsu · John Deere · Volvo CE</small></td>
+            <td>Marcas aspiracionales, ticket alto, respaldo consolidado.</td>
+            <td><span class="pill p-hi">Dominante</span> Marca fuerte, cobertura total, top of mind.</td>
+            <td>No se compite de frente: se compite en la conversación de "mismo trabajo, mejor relación valor-precio, respaldo real".</td>
+          </tr>
+          <tr>
+            <td class="name">Marketplaces y usado<br><small style="color:var(--text-dim);font-weight:400;">MercadoLibre · grupos · reventa</small></td>
+            <td>Donde muchos empiezan a buscar equipo por precio.</td>
+            <td><span class="pill p-md">Alta visibilidad</span> Volumen, pero sin marca ni respaldo de distribuidor.</td>
+            <td>Capturar a ese comprador y llevarlo a un distribuidor formal, con garantía y refacciones, es la jugada natural de BlackRock.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede-2" style="margin-top:1.8rem;max-width:60ch;"><strong style="color:var(--ink);">El ángulo de BlackRock:</strong> ser el distribuidor SINOMACH-HI que se ve tan sólido como el fierro que vende. Portafolio completo, respaldo claro y una marca con presencia real donde el comprador investiga — antes de que la competencia aparezca.</p>
+  </div>
+</section>
+
+<!-- ============ ESTRATEGIA ============ -->
+<section id="estrategia" class="dark">
+  <div class="wrap reveal">
+    <span class="kicker">04 · La estrategia</span>
+    <h2 class="h2">Cuatro piezas que se sostienen entre sí.</h2>
+    <p class="lede-2">No son cuatro servicios sueltos: son un solo sistema de adquisición. La marca da la cara, el sitio convierte, las redes construyen presencia y prueba, y Google captura a quien ya está buscando comprar. Cada pieza alimenta a la siguiente.</p>
+    <div class="grid g2" style="margin-top:2.4rem;">
+      <div class="card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);">
+        <div style="font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:.6rem;">Cimiento</div>
+        <h3 style="color:#fff;font-size:1.15rem;margin-bottom:.5rem;">Marca + Sitio</h3>
+        <p style="color:#A6ABB4;font-size:.93rem;margin:0;">La identidad y el sitio son el activo permanente: lo que se ve cuando alguien investiga, evalúa y compara. Se construyen una vez y sostienen todo lo demás.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);">
+        <div style="font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:.6rem;">Motor</div>
+        <h3 style="color:#fff;font-size:1.15rem;margin-bottom:.5rem;">Redes + Google Ads</h3>
+        <p style="color:#A6ABB4;font-size:.93rem;margin:0;">Lo recurrente: presencia constante que genera confianza y una máquina de captación que trae cotizaciones de compradores con intención real, mes con mes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="wrap reveal">
+    <span class="kicker">05 · Los servicios</span>
+    <h2 class="h2">Qué construye Sentido, pieza por pieza.</h2>
+    <p class="lede-2" style="margin-bottom:2.6rem;">Cada bloque describe el enfoque del trabajo y su inversión. Los diseños, textos y piezas finales se desarrollan durante la ejecución, con revisión de BlackRock en cada etapa.</p>
+
+    <!-- BRANDING -->
+    <div class="svc">
+      <div class="svc-h">
+        <div>
+          <div class="idx">Servicio 01 · Inversión única</div>
+          <h3>Sistema de Marca</h3>
+          <p class="obj">Darle a BlackRock una identidad sólida y consistente que se pueda desplegar en fichas de equipo, redes, unidades, documentación y punto de venta — y que proyecte el respaldo de un distribuidor serio.</p>
+        </div>
+        <div class="svc-price"><span class="amt">$15,000<small>+ IVA · 50/50</small></span></div>
+      </div>
+      <div class="svc-b">
+        <ul class="svc-list">
+          <li>Diseño / consolidación de logotipo institucional</li>
+          <li>Dos tipografías institucionales</li>
+          <li>Colorimetría y sistema visual</li>
+          <li>10 aplicables de marca</li>
+          <li>Gráficos ejemplo para comunicación comercial</li>
+          <li>Manual de identidad en PDF + archivos editables</li>
+        </ul>
+        <div class="note"><strong>Enfoque, no entregable en esta propuesta:</strong> aquí se describe el alcance del sistema de marca. Las propuestas de logotipo, color y aplicaciones se desarrollan y presentan durante el proceso, para revisión y aprobación de BlackRock.</div>
+      </div>
+    </div>
+
+    <!-- SITIO WEB -->
+    <div class="svc">
+      <div class="svc-h">
+        <div>
+          <div class="idx">Servicio 02 · Inversión única</div>
+          <h3>Sitio Web Estratégico</h3>
+          <p class="obj">El activo que convierte: un sitio de catálogo y captación pensado para que un comprador evalúe el portafolio SINOMACH-HI, entienda el respaldo y pida cotización — rápido y desde el celular, donde se investiga en obra.</p>
+        </div>
+        <div class="svc-price"><span class="amt">$20,000<small>+ IVA · 60/40</small></span></div>
+      </div>
+      <div class="svc-b">
+        <ul class="svc-list">
+          <li>Arquitectura por líneas de equipo (excavadoras, cargadores, motoconformadoras, compactadores, bulldozers, montacargas, grúas)</li>
+          <li>Fichas de modelo con especificaciones y llamado a cotizar</li>
+          <li>Diseño responsive mobile-first</li>
+          <li>Formularios de cotización y contacto por WhatsApp</li>
+          <li>Estructura SEO (URLs, títulos, base para posicionamiento)</li>
+          <li>Tags y pixels para medición y remarketing</li>
+          <li>Módulo administrable · SSL · buscador de equipo</li>
+        </ul>
+        <div class="note"><strong>No incluye:</strong> servidor, dominio, fotografía y video de producto (se cotizan como producción independiente). Administración mensual del sitio disponible desde <strong>$3,500 + IVA / mes</strong> si BlackRock quiere actualización continua de inventario y promociones.</div>
+      </div>
+    </div>
+
+    <!-- REDES + META ADS (pauta adyacente) -->
+    <div class="svc">
+      <div class="svc-h">
+        <div>
+          <div class="idx">Servicio 03 · Mensual</div>
+          <h3>Presencia en Redes Sociales</h3>
+          <p class="obj">Convertir el catálogo SINOMACH-HI en presencia viva: máquinas trabajando, modelos destacados, respaldo y casos — el flujo constante que construye confianza y mantiene a BlackRock visible entre compras.</p>
+        </div>
+        <div class="svc-price"><span class="amt">$7,500<small>+ IVA / mes</small></span></div>
+      </div>
+      <div class="svc-b">
+        <ul class="svc-list">
+          <li>15 publicaciones mensuales con mix de formatos</li>
+          <li>Facebook e Instagram (donde el sector compara equipo)</li>
+          <li>Reels y carruseles de máquinas y especificaciones</li>
+          <li>Historias, animados y copys por pieza</li>
+          <li>Línea gráfica derivada del nuevo sistema de marca</li>
+          <li>Gestión de Meta Ads incluida (sin honorario aparte)</li>
+        </ul>
+      </div>
+      <!-- PAUTA adyacente al operador (Meta) -->
+      <div class="pauta">
+        <div class="lbl">💰 Pauta Meta Ads · va directo a la plataforma</div>
+        <div class="rng">$5,000 – $12,000 + IVA / mes</div>
+        <p>Presupuesto de anuncios recomendado en Meta, <strong>separado del honorario</strong> y pagado directamente a la plataforma. La <strong>gestión</strong> de esta pauta ya está incluida en el servicio de redes; aquí solo se define cuánto se invierte en alcance y remarketing. Rango sugerido según agresividad de crecimiento; se ajusta con BlackRock.</p>
+      </div>
+    </div>
+
+    <!-- GOOGLE ADS + GBP (pauta adyacente) -->
+    <div class="svc">
+      <div class="svc-h">
+        <div>
+          <div class="idx">Servicio 04 · Mensual</div>
+          <h3>Google Ads + Perfil de Negocio</h3>
+          <p class="obj">Capturar a quien ya está buscando comprar. Aparecer cuando alguien escribe "excavadora en venta", un modelo específico o "distribuidor de maquinaria" por zona — y traer esa cotización de alto valor a BlackRock, no a la competencia.</p>
+        </div>
+        <div class="svc-price"><span class="amt">$4,000<small>+ IVA / mes · gestión</small></span></div>
+      </div>
+      <div class="svc-b">
+        <ul class="svc-list">
+          <li>Campañas de búsqueda por línea de equipo y modelo</li>
+          <li>Investigación de palabras clave de intención de compra</li>
+          <li>Segmentación geográfica por zona de cobertura</li>
+          <li>Palabras clave negativas y optimización continua</li>
+          <li>Reportes de resultados y costo por cotización</li>
+          <li>Perfil de Negocio de Google (Maps + reseñas)</li>
+        </ul>
+        <div class="note" style="margin-top:1.1rem;">Incluye <strong>Perfil de Negocio de Google</strong> a precio preferente de <strong>$2,500 + IVA / mes</strong> (vs. $4,500 individual) por contratarse junto con el ecosistema — para aparecer en el mapa y acumular reseñas por ubicación.</div>
+      </div>
+      <!-- PAUTA adyacente al operador (Google) -->
+      <div class="pauta">
+        <div class="lbl">💰 Pauta Google Ads · va directo a la plataforma</div>
+        <div class="rng">$8,000 – $15,000 + IVA / mes</div>
+        <p>Presupuesto de anuncios recomendado en Google, <strong>separado del honorario de gestión</strong> y pagado directamente a la plataforma. En maquinaria pesada el ticket es alto y una sola venta paga muchos meses de pauta, por lo que se sugiere el rango superior para competir por las búsquedas de mayor intención. Se ajusta según resultados y estacionalidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVERSION ============ -->
+<section id="inversion" style="background:var(--surface-2);">
+  <div class="wrap reveal">
+    <span class="kicker">06 · Inversión</span>
+    <h2 class="h2">Números claros, separados por naturaleza.</h2>
+    <p class="lede-2">Se separan las inversiones únicas (el activo que se construye una vez) de las mensuales (el motor que opera cada mes) y de la pauta (que va directa a las plataformas). Todo con IVA explícito.</p>
+
+    <div class="inv-grid">
+      <div class="inv-card">
+        <h4>Inversión única · Activos</h4>
+        <div class="inv-line"><span class="lbl">Sistema de Marca<small>50% anticipo / 50% entrega</small></span><span class="v">$15,000</span></div>
+        <div class="inv-line"><span class="lbl">Sitio Web Estratégico<small>60% anticipo / 40% entrega</small></span><span class="v">$20,000</span></div>
+        <div class="inv-total"><span class="lbl">Total único</span><span class="v">$35,000<small>+ IVA</small></span></div>
+      </div>
+      <div class="inv-card">
+        <h4>Inversión mensual · Honorarios de operación</h4>
+        <div class="inv-line"><span class="lbl">Presencia en Redes (FB + IG)<small>incluye gestión de Meta Ads</small></span><span class="v">$7,500</span></div>
+        <div class="inv-line"><span class="lbl">Gestión Google Ads<small>búsqueda de intención de compra</small></span><span class="v">$4,000</span></div>
+        <div class="inv-line"><span class="lbl">Perfil de Negocio de Google<small>precio preferente en combo</small></span><span class="v">$2,500</span></div>
+        <div class="inv-total"><span class="lbl">Total mensual</span><span class="v">$14,000<small>+ IVA / mes</small></span></div>
+      </div>
+    </div>
+
+    <div class="note" style="background:var(--surface);margin-top:1.1rem;">
+      <strong>💰 Pauta publicitaria — aparte y directa a la plataforma.</strong> No se suma a los honorarios. Meta Ads: <strong>$5,000–$12,000 + IVA/mes</strong>. Google Ads: <strong>$8,000–$15,000 + IVA/mes</strong>. La gestión de ambas ya está incluida en los servicios de arriba; estos montos son el presupuesto de anuncios que BlackRock define y paga directo a Google y Meta. La producción de fotografía y video de equipo se cotiza como servicio independiente cuando se requiera.
+    </div>
+
+    <!-- BUNDLE INCENTIVE -->
+    <div class="bundle">
+      <div class="b-lbl">Ecosistema integral · Recomendado</div>
+      <h4>Contratar las cuatro piezas juntas</h4>
+      <p style="color:#C6CAD1;max-width:60ch;">Cuando marca, sitio, redes y Google Ads arrancan como un solo sistema, el ecosistema se construye coherente de origen — y se activan incentivos:</p>
+      <ul>
+        <li><strong>Gestión de Meta Ads incluida</strong> dentro del servicio de redes (sin honorario adicional).</li>
+        <li><strong>Perfil de Negocio de Google a $2,500</strong> en lugar de $4,500 individual.</li>
+        <li><strong>SEO de base incluido</strong> en la estructura del sitio, sin costo aparte.</li>
+        <li>Una sola línea de marca desplegada de forma consistente en todos los canales desde el día uno.</li>
+      </ul>
+    </div>
+    <div class="note" style="background:var(--surface);"><strong>Pagos.</strong> Inversiones únicas 50/50 o 60/40 según servicio. Mensuales por adelantado. Se puede arrancar por fases (marca y sitio primero, motor mensual después) o todo en paralelo — como convenga a la operación de BlackRock.</div>
+  </div>
+</section>
+
+<!-- ============ HORIZONTE ============ -->
+<section id="horizonte" class="dark">
+  <div class="wrap reveal">
+    <span class="kicker">07 · El horizonte</span>
+    <h2 class="h2">Cómo se ve esto avanzando.</h2>
+    <div style="margin-top:2.6rem;max-width:70ch;">
+      <div class="hz">
+        <div class="m">Primeros 90 días</div>
+        <h4>De invisible a presente</h4>
+        <p>Marca lista y desplegándose. Sitio en línea con el portafolio SINOMACH-HI y captación activa. Perfil de Google verificado. Primeras campañas de búsqueda corriendo y redes publicando con constancia. BlackRock deja de ser un nombre sin rastro y empieza a aparecer donde se investiga.</p>
+      </div>
+      <div class="hz">
+        <div class="m">6 meses</div>
+        <h4>Flujo de cotizaciones y datos</h4>
+        <p>Google Ads optimizado sobre datos reales: se sabe qué modelos y búsquedas traen cotizaciones y a qué costo. Redes con comunidad creciendo y reseñas acumulándose en el mapa. La marca empieza a reconocerse en su zona de cobertura.</p>
+      </div>
+      <div class="hz" style="margin-bottom:0;">
+        <div class="m">12 meses</div>
+        <h4>Referente SINOMACH-HI en México</h4>
+        <p>Un ecosistema que trabaja solo: activo digital sólido, presencia constante y una máquina de adquisición predecible. La base para escalar cobertura, sumar líneas de servicio (refacciones, renta, postventa) o abrir nuevas plazas con el mismo sistema probado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE / CONTACTO ============ -->
+<section id="contacto" class="closing">
+  <div class="wrap reveal">
+    <span class="kicker">08 · Contactemos</span>
+    <h2 class="big">El fierro ya está. Falta que el mercado sepa dónde encontrarlo.</h2>
+    <p class="lede-2" style="max-width:58ch;">BlackRock tiene el portafolio y el momento de mercado a favor. Lo que hoy no tiene —marca, sitio y presencia— es exactamente lo que se construye aquí. Dinos dónde está parado el proyecto y seguimos desde ahí.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate>
+      <input type="hidden" name="Propuesta" value="blackrock-maquinaria" />
+      <input type="hidden" name="Fuente" value="propuestas.sentido.mx/blackrock-maquinaria" />
+
+      <div>
+        <label for="f-nombre">Nombre <span class="req">*</span></label>
+        <input id="f-nombre" name="Nombre" type="text" required autocomplete="name" />
+      </div>
+      <div>
+        <label for="f-email">Correo <span class="req">*</span></label>
+        <input id="f-email" name="Email" type="email" required autocomplete="email" />
+      </div>
+      <div>
+        <label for="f-wa">WhatsApp</label>
+        <input id="f-wa" name="WhatsApp" type="tel" autocomplete="tel" />
+      </div>
+      <div>
+        <label for="f-paso">Siguiente paso <span class="req">*</span></label>
+        <select id="f-paso" name="Siguiente paso" required>
+          <option value="">Selecciona una opción</option>
+          <option>Avancemos, agendemos arranque</option>
+          <option>Quiero ajustar el alcance o el presupuesto de pauta</option>
+          <option>Prefiero empezar por fases (marca y sitio primero)</option>
+          <option>Tengo preguntas antes de decidir</option>
+          <option>Me interesa, pero necesito más tiempo</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-msg">Mensaje</label>
+        <textarea id="f-msg" name="Mensaje"></textarea>
+      </div>
+      <button type="submit">Enviar</button>
+      <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="alt">
+      También por WhatsApp al <a href="https://wa.me/523331672223?text=Hola%2C%20vi%20la%20propuesta%20para%20BlackRock%20Maquinaria." target="_blank" rel="noopener">+52 333 167 22 23</a> o por correo a <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+    </div>
+
+    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="closing-sentido-mark" />
+    <p style="font-size:.78rem;color:#7B8088;margin-top:.9rem;">Sentido Branding &amp; Advertising · Propuesta preparada para BlackRock Maquinaria · 2026 · <a href="https://instagram.com/sentido.mx" style="color:#9096A0;text-decoration:none;">@sentido.mx</a></p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  var links = document.querySelectorAll('.nav-links a');
+  var secs = document.querySelectorAll('section[id]');
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id); });
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(function(s){ spy.observe(s); });
+
+  var form = document.getElementById('lead-form');
+  var msg = document.getElementById('form-msg');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Enviando…'; msg.textContent = ''; msg.style.color = '#A6ABB4';
+    var data = {};
+    new FormData(form).forEach(function(v,k){ data[k] = v; });
+    fetch(form.dataset.webhook, {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+    }).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      form.reset();
+      btn.textContent = 'Enviado';
+      msg.style.color = '#F59E0B';
+      msg.textContent = 'Listo. Jos te contacta personalmente en menos de 24 horas hábiles.';
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = 'Enviar';
+      msg.style.color = '#F08A72';
+      msg.innerHTML = 'No se pudo enviar. Escríbenos a <a href="mailto:contacto@sentido.mx" style="color:#F59E0B">contacto@sentido.mx</a> o por WhatsApp al <a href="https://wa.me/523331672223" style="color:#F59E0B">+52 333 167 22 23</a>.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
