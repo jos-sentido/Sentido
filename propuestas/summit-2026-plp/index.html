@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Campaña Summit 2026 · Sentido × PLP</title>
+<meta name="description" content="Estrategia de pauta para la Campaña Summit (10–30 sep): un empuje promocional de tiempo limitado sobre las campañas evergreen de los desarrollos de Península Lifestyle Properties, medible y reversible, sin degradar lo que ya funciona." />
+<link rel="icon" type="image/png" href="/assets/isotipo-sentido.png" />
+<link rel="apple-touch-icon" href="/assets/isotipo-sentido.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<style>
+  /* — Suplemento específico de esta propuesta, todo sobre tokens del sistema — */
+
+  /* Meta del encabezado */
+  .meta {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 44px);
+    margin-top: clamp(40px, 5vw, 60px);
+    padding-top: 28px; border-top: 1px solid var(--linea);
+  }
+  .meta .rotulo { display: block; margin-bottom: 9px; }
+  .meta .val { font-size: 1rem; color: var(--hueso); font-weight: var(--fuerte); }
+  @media (max-width: 640px) { .meta { grid-template-columns: 1fr 1fr; } }
+
+  /* Franja de desarrollos */
+  .aplica { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: 20px; }
+  .aplica .dev { display: inline-flex; align-items: center; gap: 11px; font-size: 0.9375rem; color: var(--hueso-2); }
+  .aplica .dev::before { content: ''; width: 6px; height: 6px; border: 1px solid var(--hueso-3); transform: rotate(45deg); flex: 0 0 auto; }
+
+  /* Dos frentes — columnas grabadas, sin tarjetas */
+  .frente .rotulo { display: block; margin-bottom: 14px; }
+  .frente h3 { margin-bottom: 13px; }
+  .frente p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; }
+  .frente p + p { margin-top: 0.9em; }
+  .reco { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--linea); }
+  .reco .rotulo { color: var(--hueso); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .reco .rotulo::before { content: ''; width: 7px; height: 7px; background: var(--hueso); transform: rotate(45deg); flex: 0 0 auto; }
+
+  /* Tabla de presupuesto — plancha grabada, idioma .renglon */
+  .tabla { border-top: 1px solid var(--linea); margin-top: clamp(34px, 4vw, 48px); }
+  .tfila {
+    display: grid; grid-template-columns: 168px minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(18px, 3vw, 44px); align-items: baseline;
+    padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--linea);
+    position: relative; overflow: hidden;
+  }
+  .tfila .buril { --ang: 90deg; --paso: 4px; --tono: 0; transition: opacity 0.45s var(--ease); }
+  .tfila:hover .buril { --tono: 0.10; }
+  .tfila > * { position: relative; }
+  .tfila.cab { padding: 0 0 15px; }
+  .tfase { font-weight: var(--negra); color: var(--hueso); font-size: 1.0625rem; letter-spacing: -0.02em; }
+  .tfase .fdate { display: block; font-weight: var(--fuerte); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hueso-4); margin-top: 7px; }
+  .tfila p { font-size: 0.9375rem; line-height: 1.62; color: var(--hueso-2); max-width: none; margin: 0; }
+  @media (max-width: 760px) {
+    .tfila { grid-template-columns: 1fr; gap: 10px; }
+    .tfila.cab { display: none; }
+    .tcol::before { content: attr(data-l); display: block; font-weight: 700; font-size: 0.625rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hueso-4); margin-bottom: 6px; }
+  }
+
+  /* Código de nomenclatura */
+  .codigo { font-weight: var(--negra); font-size: clamp(1.75rem, 5vw, 3rem); letter-spacing: -0.02em; margin-top: clamp(30px, 4vw, 44px); }
+  .codigo .apagado { font-weight: var(--ligera); }
+
+  /* Palanca de emergencia */
+  .palanca { margin-top: clamp(30px, 4vw, 44px); padding-top: 30px; border-top: 1px solid var(--linea); }
+  .palanca .rotulo { display: inline-flex; align-items: center; gap: 10px; color: var(--hueso); margin-bottom: 14px; }
+  .palanca .rotulo::before { content: ''; width: 6px; height: 6px; background: var(--hueso); transform: rotate(45deg); }
+  .palanca p { color: var(--hueso-2); font-size: 1rem; line-height: 1.72; }
+
+  .intro-cuerpo { color: var(--hueso-2); font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; }
+  .intro-cuerpo + .intro-cuerpo { margin-top: 1.1em; }
+</style>
+</head>
+<body>
+
+<a href="#objetivo" class="salta">Saltar al contenido</a>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-int">
+    <a href="#top" class="marca" aria-label="Sentido">
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" />
+    </a>
+    <div class="nav-links">
+      <a href="#principio" class="nav-a">Principio</a>
+      <a href="#estructura" class="nav-a">Estructura</a>
+      <a href="#presupuesto" class="nav-a">Presupuesto</a>
+      <a href="#reglas" class="nav-a">Reglas</a>
+      <a href="#cierre" class="nav-a">Cierre</a>
+    </div>
+    <button class="nav-btn" id="navBtn" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="panel" id="panel">
+  <a href="#principio">Principio <span class="rombo"></span></a>
+  <a href="#estructura">Estructura <span class="rombo"></span></a>
+  <a href="#presupuesto">Presupuesto <span class="rombo"></span></a>
+  <a href="#reglas">Reglas <span class="rombo"></span></a>
+  <a href="#cierre">Cierre <span class="rombo"></span></a>
+</div>
+
+<!-- ═══════════════ PORTADA ═══════════════ -->
+<header class="portada portada--int" id="top">
+  <div class="buril"></div>
+  <div class="wrap">
+    <span class="rotulo">Estrategia de pauta · Uso interno / cliente</span>
+    <h1 style="margin-top:20px;">
+      <span class="ligera">Un empuje de</span><br>
+      tiempo <span class="alta">limitado</span>.
+    </h1>
+    <p class="sub">
+      Cómo montamos la promo <strong>Summit</strong> (10–30 sep) sobre las campañas evergreen de los desarrollos de Península Lifestyle Properties: generando leads con la oferta, midiéndola por separado y pudiendo prenderla o apagarla en segundos, sin degradar el rendimiento ni el aprendizaje de lo que ya está corriendo.
+    </p>
+
+    <div class="meta">
+      <div>
+        <span class="rotulo">Cliente</span>
+        <span class="val">Península Lifestyle Properties</span>
+      </div>
+      <div>
+        <span class="rotulo">Ventana</span>
+        <span class="val">10 → 30 septiembre</span>
+      </div>
+      <div>
+        <span class="rotulo">Alcance</span>
+        <span class="val">6 desarrollos · Meta Ads</span>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(30px,4vw,44px);">
+      <span class="rotulo">Aplica a</span>
+      <div class="aplica">
+        <span class="dev">Essentia</span>
+        <span class="dev">Brelia</span>
+        <span class="dev">Amancay</span>
+        <span class="dev">Bolongo</span>
+        <span class="dev">Bolongo Lotes</span>
+        <span class="dev">Península Mazatlán</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ 01 · OBJETIVO ═══════════════ -->
+<section class="seccion seccion--regla" id="objetivo">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Sumar la promo <span class="ligera">sin tocar</span> lo que ya convierte.</h2>
+      <p>Un empuje promocional de tiempo limitado que genere leads con la oferta, sin costo para lo evergreen.</p>
+    </div>
+    <p class="intro-cuerpo">
+      Meter la campaña <strong>Summit</strong> —del <strong>10 al 30 de septiembre</strong>— como un frente propio dentro de cada desarrollo, que produzca leads con la promo <strong>sin degradar el rendimiento ni el aprendizaje</strong> de las campañas que ya vienen corriendo. El objetivo no es reemplazar nada: es sumar volumen medible durante la ventana y retirarlo limpio al cerrar.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ 02 · PRINCIPIO ═══════════════ -->
+<section class="seccion seccion--regla" id="principio">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Aislar para <span class="ligera">no canibalizar</span>.</h2>
+      <p>La regla que gobierna toda la operación.</p>
+    </div>
+    <p class="intro-cuerpo">
+      El Summit <strong>se mide y se prende / apaga por separado</strong>, sin tocar la estructura que ya funciona. Cada peso y cada resultado del Summit tiene que ser <strong>identificable y reversible en segundos</strong>. Nada de lo que hagamos por la promo debe reiniciar el aprendizaje ni mover el costo de lo evergreen.
+    </p>
+  </div>
+</section>
+
+<!-- Declaración — la única plancha de hueso de la página -->
+<section class="declara">
+  <div class="buril"></div>
+  <div class="wrap" style="max-width:none;padding:0 var(--gut);">
+    <p>Si rinde, le derivamos presupuesto.<br>Si no, se pausa <span class="tenue">— y lo evergreen sigue intacto.</span></p>
+  </div>
+</section>
+
+<!-- ═══════════════ 03 · ESTRUCTURA ═══════════════ -->
+<section class="seccion seccion--regla" id="estructura">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Un contenedor Summit dentro de cada lógica.</h2>
+      <p>Dos frentes, cada uno con su forma de aislar la promo sin romper el flujo normal.</p>
+    </div>
+
+    <div class="cols cols-2">
+      <!-- A -->
+      <div class="frente">
+        <span class="rotulo">A · Prospección / Leads</span>
+        <h3>El Summit entra como ad set aparte</h3>
+        <p>Metemos el Summit como <strong>ad set(s) separado(s)</strong>, con creativo propio, dentro de la lógica de leads. Dos caminos según cómo queramos manejar el presupuesto:</p>
+        <ul class="lista lista--chica" style="margin-top:16px;">
+          <li><strong>Ad set Summit dentro de la CBO actual.</strong> Aprovecha el aprendizaje y la señal de píxel ya acumulada; arranca más rápido.</li>
+          <li><strong>Campaña Summit espejo, aparte.</strong> Aislamiento total, cero riesgo sobre lo evergreen — a cambio de una fase de aprendizaje nueva.</li>
+        </ul>
+        <div class="reco">
+          <span class="rotulo">Recomendación · Ad set dentro de la CBO</span>
+          <p>Con <strong>límite de gasto por ad set</strong> (mínimo garantizado) para que el algoritmo no se lo coma ni lo ahogue. Conservamos aprendizaje y controlamos exactamente cuánto va al Summit: el mejor equilibrio entre velocidad y control.</p>
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="frente">
+        <span class="rotulo">B · Remarketing</span>
+        <h3>El RMK corre solo con Summit</h3>
+        <p>Durante la ventana, el remarketing corre <strong>únicamente con los anuncios Summit</strong>. Pausamos los ads evergreen de RMK del 10 al 30.</p>
+        <p>El pool de remarketing ya junta a todos los que tocaron cualquier campaña —prospección, tráfico, lo que sea—. Al dejar solo el creativo Summit ahí, sin importar de dónde venga la persona, <strong>el segundo impacto siempre refuerza la promo</strong>.</p>
+        <div class="reco">
+          <span class="rotulo">Quien ya nos conoce, regresa por la promo</span>
+          <p>Es la forma más limpia de garantizar el refuerzo: un solo mensaje en la segunda vuelta, el de la oferta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 04 · PRESUPUESTO ═══════════════ -->
+<section class="seccion seccion--regla" id="presupuesto">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Derivar vs. dejar CBO <span class="ligera">— que decida el dato</span>.</h2>
+      <p>No decidimos hoy. Arrancamos con un mínimo protegido y dejamos que los primeros 3–4 días manden.</p>
+    </div>
+
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Fase</span>
+        <span class="rotulo">Prospección</span>
+        <span class="rotulo">Remarketing</span>
+      </div>
+      <div class="tfila">
+        <div class="buril"></div>
+        <span class="tfase">Arranque<span class="fdate">10–13 sep</span></span>
+        <p class="tcol" data-l="Prospección">Ad set Summit con <strong>mínimo garantizado</strong>; el resto sigue en <strong>CBO</strong> evergreen.</p>
+        <p class="tcol" data-l="Remarketing"><strong>100% del RMK</strong> a Summit.</p>
+      </div>
+      <div class="tfila">
+        <div class="buril"></div>
+        <span class="tfase">Ajuste<span class="fdate">14–30 sep</span></span>
+        <p class="tcol" data-l="Prospección">Si <strong>CPL Summit ≤ CPL evergreen</strong> → derivamos presupuesto al Summit. Si no → lo dejamos en su mínimo y la <strong>CBO</strong> sigue mandando.</p>
+        <p class="tcol" data-l="Remarketing">Se mantiene; solo optimizamos creativo.</p>
+      </div>
+    </div>
+    <p class="intro-cuerpo" style="margin-top:clamp(30px,4vw,40px);">
+      Así <strong>nunca apostamos presupuesto a ciegas</strong> contra lo que ya convierte: el mínimo protege lo evergreen y el dato decide si el Summit merece más.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ 05 · TRACKING ═══════════════ -->
+<section class="seccion seccion--regla" id="tracking">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Cómo sabremos qué es Summit.</h2>
+      <p>Para que la promo sea medible y para que PLP la vea del lado comercial.</p>
+    </div>
+    <p class="intro-cuerpo">
+      Nomenclatura dedicada: todo lo Summit se nombra con el mismo prefijo en campaña, ad set y anuncio — <strong>filtrable al instante</strong> en el reporte.
+    </p>
+    <div class="codigo"><span class="alta">SUMMIT_</span> <span class="apagado">campaña · ad set · anuncio</span></div>
+    <p class="intro-cuerpo" style="margin-top:clamp(26px,3vw,36px);">
+      Permite responder en cualquier momento: <strong>cuántos leads trajo la promo, a qué costo</strong> y sin mezclarlos con el flujo normal.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ 06 · REGLAS ═══════════════ -->
+<section class="seccion seccion--regla" id="reglas">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Optimizar el Summit <span class="ligera">sin afectar</span> lo demás.</h2>
+      <p>Reglas de operación durante la ventana.</p>
+    </div>
+
+    <ul class="lista" style="max-width:72ch;">
+      <li><strong>No tocamos los ad sets evergreen de prospección.</strong> Nada de editar presupuestos, públicos ni pujas que reinicie su aprendizaje.</li>
+      <li><strong>Toda optimización vive dentro del contenedor Summit</strong> — creativo, copy y presupuesto del ad set Summit, nada más.</li>
+      <li><strong>Revisión cada 48–72 h, no diaria.</strong> Para no matar el aprendizaje del propio Summit con cambios prematuros.</li>
+    </ul>
+
+    <div class="palanca">
+      <span class="rotulo">Palanca de emergencia</span>
+      <p>Si el Summit jala presupuesto de más vía CBO y el CPL evergreen se degrada, subimos el piso de gasto de los ad sets evergreen o pasamos el Summit a campaña aparte. <strong>Reversible en minutos.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 07 · CIERRE ═══════════════ -->
+<section class="seccion seccion--regla" id="cierre">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>El 30 apagamos <span class="ligera">— lo evergreen queda intacto</span>.</h2>
+      <p>Todo vuelve a su lugar. Nos quedamos solo con lo que aprendimos.</p>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="paso-n">01</span>
+        <div>
+          <h4>Pausa Summit</h4>
+          <p>Al cierre del 30 de septiembre, pausamos todos los anuncios Summit.</p>
+          <span class="rotulo">30 sep · fin del día</span>
+        </div>
+      </div>
+      <div class="paso">
+        <span class="paso-n">02</span>
+        <div>
+          <h4>RMK vuelve a evergreen</h4>
+          <p>Reactivamos los ads de remarketing que pausamos el día 10. La prospección evergreen sigue intacta, como si el Summit nunca la hubiera tocado.</p>
+          <span class="rotulo">Post-promo</span>
+        </div>
+      </div>
+      <div class="paso">
+        <span class="paso-n">03</span>
+        <div>
+          <h4>Nos quedamos con lo que jaló</h4>
+          <p>Qué creativo y qué ángulo Summit funcionó, para reutilizar en la siguiente ventana.</p>
+          <span class="rotulo">Aprendizaje</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cierre" style="margin-top:clamp(48px,6vw,80px);">
+      <div class="buril"></div>
+      <h2>Un empuje que <span class="ligera">rinde o se retira</span>.</h2>
+      <p>Volumen medible durante la ventana, cero costo para lo que ya convierte, y aprendizajes que se quedan. Esa es toda la apuesta del Summit.</p>
+      <p class="firma" style="margin-top:26px;">Estrategia de Sentido · Branding &amp; Advertising · para Península Lifestyle Properties</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PIE ═══════════════ -->
+<footer class="pie">
+  <div class="buril"></div>
+  <div class="wrap">
+    <div class="pie-marca">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido Branding &amp; Advertising" />
+      <p>Campaña Summit 2026 · Estrategia de pauta para los desarrollos de Península Lifestyle Properties.</p>
+    </div>
+    <div class="pie-bajo">
+      <p>Sentido · Branding &amp; Advertising</p>
+      <p>jos@sentido.mx</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav: borde al bajar, oculta al bajar / muestra al subir, menú móvil.
+  (function () {
+    var nav = document.getElementById('nav');
+    var btn = document.getElementById('navBtn');
+    var panel = document.getElementById('panel');
+    var last = 0;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY || 0;
+      nav.classList.toggle('bajo', y > 8);
+      if (y > last && y > 240 && !panel.classList.contains('abierto')) {
+        nav.classList.add('oculto');
+      } else {
+        nav.classList.remove('oculto');
+      }
+      last = y;
+    }, { passive: true });
+
+    function toggle() {
+      var open = panel.classList.toggle('abierto');
+      btn.classList.toggle('abierto', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', toggle);
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        panel.classList.remove('abierto');
+        btn.classList.remove('abierto');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

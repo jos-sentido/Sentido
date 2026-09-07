@@ -1,6 +1,19 @@
 {
   "proposals": [
     {
+      "slug": "summit-2026-plp",
+      "tipo": "cliente",
+      "cliente": "PLP — Campaña Summit 2026 (Estrategia de pauta)",
+      "fecha": "2026-09-07",
+      "estatus": "activo",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
+      "notas": "Documento cliente/interno para Peninsula Lifestyle Properties. Estrategia de la Campana Summit (10-30 sep): montar un empuje promocional de tiempo limitado como frente aislado (ad set Summit dentro de la CBO con minimo garantizado en prospeccion; RMK solo con Summit) sin canibalizar lo evergreen. Presupuesto: arrancar con minimo protegido y derivar segun CPL a 3-4 dias. Tracking con prefijo SUMMIT_. Cierre 30 sep: pausar Summit, reactivar RMK evergreen, prospeccion intacta. Aplica a 6 desarrollos: Essentia, Brelia, Amancay, Bolongo, Bolongo Lotes, Peninsula Mazatlan. Diseno sobre el sistema visual real de Sentido (sitio/assets/sentido.css: Archivo, buril, rombo, plancha hueso). Sin cotizacion (no comercial).",
+      "proximoPaso": "Compartir con PLP para validar la estrategia antes del 10 sep",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "blackrock-maquinaria",
       "tipo": "propuesta",
       "cliente": "BlackRock Maquinaria",
