@@ -136,6 +136,16 @@ claros.
 pérdida. Conviene sustituirlo por SVG desde el archivo maestro; el nombre del
 archivo puede quedar igual.
 
+## Hoja de espécimen del sistema
+
+`sitio/sistema/index.html` documenta el sistema visual **renderizándolo con su
+propio CSS**, así que no puede desfasarse de lo que el sitio hace de verdad.
+Está escrita a mano —no la genera `build.py`— y no se enlaza desde la
+navegación. Se ve en `propuestas.sentido.mx/sitio/sistema`.
+
+La versión portable, para pegar como contexto en Claude Design u otra
+herramienta, es `SISTEMA-VISUAL.md` en la raíz del repo.
+
 ## Pendientes antes de publicar
 
 - [ ] **Confirmar los nombres de cliente** de la página Casos (lista `PROJECTS` en `build.py`).
