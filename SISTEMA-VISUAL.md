@@ -183,6 +183,68 @@ Cinco parámetros, fijados por contexto:
 `--trazo` es lo que permite grabar **en los dos sentidos**: líneas hueso sobre
 tinta, o líneas de tinta sobre la plancha de papel.
 
+### Los cuatro registros
+
+El grabado del isotipo no tiene un solo tipo de trazo: tiene tres, y en el
+sistema cada uno cumple una **función distinta**. Esto no es decoración
+intercambiable.
+
+| Registro | Trazo del isotipo | Función | Dónde |
+|---|---|---|---|
+| **Recto** | Las zonas de trama plana | Reposo y estructura | Campo base, planchas, formulario |
+| **Arco** | Los trazos del párpado | Atmósfera y superficie | Portada, declaración, cierre, pie |
+| **Iris** | Los radios de la pupila | **Interacción y estado** | Hover de fila, rombo del ojo |
+| **Anillo** | Los círculos de la pupila | Momento singular | Reservado |
+
+```css
+/* Arco — líneas paralelas curvadas */
+.buril--arco {
+  background-image: repeating-radial-gradient(
+    ellipse var(--rx, 210%) var(--ry, 140%) at var(--foco, 50% 185%),
+    var(--trazo) 0 var(--peso, 0.7px),
+    transparent var(--peso, 0.7px) var(--paso, 6px));
+}
+
+/* Iris — radios que convergen */
+.buril--iris {
+  background-image: repeating-conic-gradient(
+    from var(--giro, 0deg) at var(--foco, -8% 50%),
+    var(--trazo) 0deg var(--radio, 0.3deg),
+    transparent var(--radio, 0.3deg) var(--salto, 1.9deg));
+}
+
+/* Anillo — círculos concéntricos */
+.buril--anillo {
+  background-image: repeating-radial-gradient(
+    circle at var(--foco, 50% 50%),
+    var(--trazo) 0 var(--peso, 0.7px),
+    transparent var(--peso, 0.7px) var(--paso, 8px));
+}
+```
+
+Existe también `.buril--onda`, una sinusoide real por máscara SVG. Se conserva
+como recurso, pero **los arcos son más fieles** al trazo del logo: los párpados
+del isotipo son arcos, no ondas.
+
+### El estado es de iris
+
+Al pasar el cursor sobre una fila **no se ilumina, no se eleva y no cambia de
+fondo**: se abre un abanico de radios, como el iris. Va en `::after`, así que no
+necesita marcado adicional.
+
+```css
+.renglon::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-conic-gradient(
+    from 0deg at var(--foco-estado, -55% 50%),
+    var(--hueso) 0deg 0.08deg,
+    transparent 0.08deg var(--salto-estado, 0.3deg));
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+.renglon:hover::after { opacity: 0.20; }
+```
+
 ### Reglas del buril
 
 1. **Es capa de material, jamás celda de grid.** Siempre `position: absolute`.
@@ -192,6 +254,11 @@ tinta, o líneas de tinta sobre la plancha de papel.
    sombra ni elevación.
 3. **Se enmascara para abrir.** Con `mask-image` radial o lineal, como se abre
    la trama en un grabado clásico.
+4. **El foco vive fuera del encuadre** en arco e iris. Dentro genera un
+   artefacto de convergencia. La excepción es cuando el centro es el sujeto,
+   como en el rombo del ojo.
+5. **El salto angular del iris se calibra al tamaño del elemento.** El valor que
+   en una fila ancha lee como grabado fino, en una caja chica produce muaré.
 
 ### Pleca de imprenta
 
@@ -355,9 +422,8 @@ Lista explícita. Cada punto es una decisión, no un descuido.
 ## 12. Pendiente para consolidar el sistema
 
 - Sustituir los PNG del logo por **SVG** desde el archivo maestro.
-- El sistema no ha explotado dos recursos propios del grabado: la **trama
-  cruzada** (cross-hatch, dos ángulos superpuestos para construir tono) y el
-  **rombo a escala de página** como marco o borde de plancha. Hoy el rombo vive
-  solo como viñeta y como motivo de portada.
+- Falta la **trama cruzada** (cross-hatch: dos ángulos superpuestos para
+  construir tono) y el **rombo a escala de página** como marco o borde de
+  plancha. Hoy el rombo vive solo como viñeta y como motivo de portada.
 - Definir aplicación del sistema fuera de web: piezas de redes, propuestas,
   presentaciones.
