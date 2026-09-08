@@ -199,6 +199,38 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
 }
 
+/* ═══════════════ LA SUPERFICIE SE INVIERTE ═══════════════
+   El sistema no es oscuro: es de dos materiales. `.papel` intercambia los
+   valores de los tokens, así que todo componente ya escrito funciona sobre
+   papel sin una sola regla extra — el buril graba en tinta, la caja pasa a
+   ser oscura, el botón se invierte solo.
+
+   Sobre papel va el logo en su variante oscura: -dark en vez de -light.   */
+
+.papel {
+  --tinta:     #F1EADC;   /* el fondo pasa a ser el papel */
+  --tinta-2:   #E8E0D0;
+  --tinta-3:   #DED5C2;
+  --tinta-4:   #D5CBB6;
+
+  --hueso:     #0B0A09;   /* 16.52:1 · títulos, caja, botón sólido */
+  --hueso-2:   #2E2A24;   /* 11.91:1 · cuerpo */
+  --hueso-3:   #514B42;   /*  7.20:1 · secundario */
+  --hueso-4:   #6B6459;   /*  4.88:1 · piso, igual que el oscuro */
+
+  --linea:     #D8CFBC;
+  --linea-2:   #C4B9A2;
+
+  background: var(--tinta);
+  color: var(--hueso-2);
+}
+
+/* La barra sobre papel necesita su propio velo. */
+.papel .nav { background: rgba(241, 234, 220, 0.86); }
+
+/* Como sección, el papel se separa del fondo con sus propias reglas. */
+section.papel { border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
+
 /* ═══════════════ LAYOUT ═══════════════ */
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
 .angosto { max-width: 780px; margin: 0 auto; padding: 0 var(--gut); }
@@ -374,7 +406,22 @@ em { font-style: normal; font-weight: var(--fuerte); color: var(--hueso); }
 
 .portada--int { padding-bottom: clamp(28px, 4vw, 44px); }
 .portada--int h1 { font-size: clamp(2.25rem, 5.2vw, 4.25rem); }
-.portada--int .portada-rej { grid-template-columns: minmax(0, 1fr); }
+.portada--int .portada-rej { grid-template-columns: minmax(0, 1fr) clamp(180px, 22vw, 280px); }
+
+/* ── Ninguna pieza del logo viaja sola ────────────────────────────────
+   Si una composición usa solo el nombre, el isotipo tiene que estar
+   presente —decorativo o secundario— y al revés. Si no acomoda, va el
+   logo completo. Estas dos clases son la contraparte callada.        */
+
+.ojo-caja--callado { opacity: 0.6; }
+.ojo-caja--callado .ojo-rombo.r3 { display: none; }
+
+.marca-doble { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.ojo-chico {
+  width: 30px; height: auto; flex: 0 0 auto; opacity: 0.55;
+  filter: invert(1);
+}
+.papel .ojo-chico { filter: none; }
 
 /* ═══════════════ BOTONES ═══════════════ */
 .boton {
@@ -472,17 +519,15 @@ em { font-style: normal; font-weight: var(--fuerte); color: var(--hueso); }
 .declara {
   position: relative; overflow: hidden;
   padding: clamp(76px, 10vw, 142px) 0;
-  background: var(--hueso);
-  --trazo: var(--tinta);
 }
 .declara .buril { --foco: 50% 200%; --rx: 240%; --ry: 155%; --paso: 5px; --tono: 0.17; -webkit-mask-image: radial-gradient(ellipse 78% 120% at 50% 50%, transparent 28%, #000 84%); mask-image: radial-gradient(ellipse 78% 120% at 50% 50%, transparent 28%, #000 84%); }
 .declara p {
   position: relative; font-family: var(--archivo); font-weight: var(--ligera);
   font-size: clamp(1.625rem, 4vw, 3.25rem); line-height: 1.12;
-  letter-spacing: -0.035em; color: var(--tinta); max-width: 20ch; margin: 0 auto;
+  letter-spacing: -0.035em; color: var(--hueso); max-width: 20ch; margin: 0 auto;
   text-align: center; text-wrap: balance;
 }
-.declara p .tenue { color: #6B6459; }
+.declara p .tenue { color: var(--hueso-4); }
 
 /* ═══════════════ COLUMNAS ═══════════════ */
 .cols { display: grid; gap: clamp(30px, 4vw, 56px); }

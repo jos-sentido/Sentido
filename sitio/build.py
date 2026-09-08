@@ -716,7 +716,7 @@ def build_home():
     </div>
   </section>
 
-  <section class="declara">
+  <section class="declara papel">
     <div class="buril buril--arco"></div>
     <div class="wrap">
       <p>Tu producto ya está listo. <span class="tenue">Tu mercado ya está esperando.</span> Falta el sistema que los conecta.</p>
@@ -749,7 +749,8 @@ def build_home():
     </div>
   </section>
 
-  <section class="seccion seccion--regla">
+  <section class="seccion papel">
+    <div class="buril buril--arco"></div>
     <div class="wrap">
       {cabeza('De esta página a un sistema en marcha.', 'Cuatro pasos. El primero es sin costo y sirve para ambas partes: tú entiendes si Sentido encaja, y nosotros entendemos si podemos prometer resultados con honestidad.')}
       <div class="pasos">{pasos}</div>
@@ -824,6 +825,7 @@ def build_metodo():
           desde el primer día hasta el reporte número doce.
         </p>
       </div>
+      {ojo("ojo-caja--callado")}
     </div>
   </section>
 
@@ -841,7 +843,7 @@ def build_metodo():
     </div>
   </section>
 
-  <section class="declara">
+  <section class="declara papel">
     <div class="buril buril--arco"></div>
     <div class="wrap">
       <p>Construir en desorden <span class="tenue">es la causa número uno</span> de presupuesto desperdiciado.</p>
@@ -922,6 +924,7 @@ def build_servicios_index():
           la propuesta, después del diagnóstico.
         </p>
       </div>
+      {ojo("ojo-caja--callado")}
     </div>
   </section>
 
@@ -1013,7 +1016,10 @@ def build_servicio(x):
     <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
-        <p style="margin-bottom:20px"><a class="rotulo" href="{BASE}/servicios">← Servicios</a></p>
+        <div class="marca-doble">
+          <img src="{OJO}" alt="" class="ojo-chico" />
+          <a class="rotulo" href="{BASE}/servicios">← Servicios</a>
+        </div>
         <h1>{x['name']}</h1>
         <p class="rotulo" style="margin-top:20px">{x['tag']} · {x['tag2']}</p>
         <p class="sub">{x['lede']}</p>
@@ -1021,6 +1027,7 @@ def build_servicio(x):
           <a class="boton" href="{BASE}/contacto">Cotizar este módulo <span class="fl">→</span></a>
         </div>
       </div>
+      {ojo("ojo-caja--callado")}
     </div>
   </section>
 
@@ -1125,6 +1132,7 @@ def build_casos():
           intención de búsqueda. En clubes, la retención.
         </p>
       </div>
+      {ojo("ojo-caja--callado")}
     </div>
   </section>
 
@@ -1201,6 +1209,7 @@ def build_blog_index():
           caro de lo que parece. Sin fórmulas mágicas y sin capturas fuera de contexto.
         </p>
       </div>
+      {ojo("ojo-caja--callado")}
     </div>
   </section>
 
@@ -1244,7 +1253,10 @@ def build_post(p):
   <section class="portada portada--int" style="padding-bottom:24px">
     <div class="buril"></div>
     <div class="angosto" style="max-width:760px">
-      <p style="margin-bottom:20px"><a class="rotulo" href="{BASE}/blog">← Blog</a></p>
+      <div class="marca-doble">
+        <img src="{OJO}" alt="" class="ojo-chico" />
+        <a class="rotulo" href="{BASE}/blog">← Blog</a>
+      </div>
       <h1 style="font-size:clamp(2rem,4.6vw,3.5rem)">{p['title']}</h1>
       <p class="rotulo" style="margin-top:22px">
         <time datetime="{p['date']}">{p['date_h']}</time> · {p['cat']} · {p['read']} de lectura
@@ -1309,6 +1321,7 @@ def build_contacto():
           de 24 horas hábiles para agendar el diagnóstico: 45 minutos, sin costo y sin compromiso.
         </p>
       </div>
+      {ojo("ojo-caja--callado")}
     </div>
   </section>
 

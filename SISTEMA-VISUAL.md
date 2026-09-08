@@ -60,14 +60,39 @@ ni blanco puro (`#FFF`).
 | `--linea` | `#262119` | Reglas y divisiones |
 | `--linea-2` | `#352F25` | Bordes de campo y de botón fantasma |
 
-### Sobre plancha de hueso
+### Superficie clara — el tema no es «oscuro», es de dos materiales
 
-Cuando el fondo se invierte a papel:
+El sistema tiene **dos superficies de igual rango**, no una oscura con excepciones.
+Una página puede ser toda de tinta, toda de papel, o alternar secciones.
 
-| Color | Hex | Contraste sobre hueso |
-|---|---|---|
-| Tinta | `#0B0A09` | 16.52:1 |
-| Tenue | `#6B6459` | 4.88:1 |
+La inversión se aplica con la clase `.papel`, que **intercambia los valores de los
+tokens**. Todo componente ya escrito funciona sobre papel sin una sola regla extra:
+el buril graba en tinta, la caja hueso pasa a ser oscura, el botón se invierte solo.
+
+```css
+.papel {
+  --tinta:   #F1EADC;   /* el fondo pasa a ser el papel */
+  --tinta-2: #E8E0D0;
+  --tinta-3: #DED5C2;
+  --tinta-4: #D5CBB6;
+
+  --hueso:   #0B0A09;   /* 16.52:1 · títulos, caja, botón sólido */
+  --hueso-2: #2E2A24;   /* 11.91:1 · cuerpo */
+  --hueso-3: #514B42;   /*  7.20:1 · secundario */
+  --hueso-4: #6B6459;   /*  4.88:1 · piso */
+
+  --linea:   #D8CFBC;
+  --linea-2: #C4B9A2;
+}
+```
+
+Las dos rampas son espejo: el piso oscuro está en 4.92:1 y el claro en 4.88:1.
+
+**Sobre papel va el logo en su variante oscura** — `logo-sentido-dark.png` y
+`logo-sentido-nombre-dark.png`. Es aplicación válida del sistema, no excepción.
+
+Se usa sobre `<body>` para una página entera de papel, o sobre una `<section>` para
+alternar dentro de una misma página.
 
 ### Error — el único color fuera de la paleta
 
@@ -80,8 +105,11 @@ Cuando el fondo se invierte a papel:
 
 1. **Regla de la tinta cálida.** Todo negro lleva calidez. `#000` está prohibido
    salvo dentro de máscaras CSS, donde no es color sino canal alfa.
-2. **Regla de una sola plancha.** Exactamente **una** banda de fondo hueso por
-   página. Es el momento de respiro; dos la vuelven decoración.
+2. **Regla de la alternancia deliberada.** Tinta y papel tienen el mismo rango, y
+   una página puede alternarlos. Pero cada cambio de superficie tiene que responder
+   a un cambio de contenido —del argumento al procedimiento, del sistema a la
+   acción— y no a ganas de variar. Si dos secciones seguidas cambian de superficie
+   sin razón, el ritmo se vuelve decoración.
 3. **Regla del piso de contraste.** Ningún texto por debajo de 4.92:1. Los cuatro
    escalones de hueso ya están calibrados para eso.
 
@@ -192,7 +220,7 @@ intercambiable.
 | Registro | Trazo del isotipo | Función | Dónde |
 |---|---|---|---|
 | **Recto** | Las zonas de trama plana | Reposo y estructura | Campo base, planchas, formulario |
-| **Arco** | Los trazos del párpado | Atmósfera y superficie | Portada, declaración, cierre, pie |
+| **Arco** | Los trazos del párpado | Atmósfera y superficie | Portada, declaración, arranque, cierre, pie |
 | **Iris** | Los radios de la pupila | **Interacción y estado** | Hover de fila, rombo del ojo |
 | **Anillo** | Los círculos de la pupila | Momento singular | Reservado |
 
@@ -310,7 +338,25 @@ nombre ni se arma ninguna variante que no exista en el archivo original.
 | **Solo el nombre** | Cuando el completo no acomoda y hay que identificar a la agencia | `logo-sentido-nombre-light.png` |
 | **Solo el ojo** | Uso decorativo | `isotipo-sentido.png` |
 
-Existen las variantes `-dark` para fondos claros.
+Existen las variantes `-dark`, que son las que van **sobre superficie clara**.
+
+### Ninguna pieza viaja sola
+
+Si una composición usa **solo el nombre**, el isotipo tiene que estar presente en
+ella —decorativo o como secundario— y al revés. Si eso no acomoda, se usa el logo
+completo.
+
+La regla es **por composición, no por página**: un logo completo en el pie no cubre
+un hero que muestra el nombre suelto.
+
+En el sitio se resuelve así:
+
+| Composición | Nombre | Contraparte |
+|---|---|---|
+| Portada | Barra | El ojo grande, a la derecha |
+| Portadas interiores | Barra | El ojo callado (`.ojo-caja--callado`, 60% de opacidad, un rombo menos) |
+| Migas de pan | Barra | Isotipo de 30px junto al enlace (`.marca-doble`) |
+| Pie | — | Logo completo |
 
 En el sitio: nombre en la barra (46px), completo en el pie (132px), ojo como
 favicon y como máscara de la trama en la portada.

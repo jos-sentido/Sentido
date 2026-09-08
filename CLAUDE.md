@@ -12,38 +12,54 @@ tiene la verdad de producto y las restricciones de publicación.
 
 ---
 
-## La regla central: de quién es la identidad
+## La regla central: qué es invariable y qué se adapta
 
-Cada pieza pertenece a una de dos familias. **Determina esto antes de diseñar nada.**
+Cada pieza cae en uno de tres niveles. **Determínalo antes de diseñar nada.**
 
-### Identidad Sentido
+### 1 · Superficies institucionales de Sentido
 
-Propuestas comerciales, activos de venta, brochures, páginas de servicio, el sitio.
-Llevan el logo de Sentido y hablan en nombre de la agencia.
+El sitio en `sitio/`, la hoja de espécimen, y cualquier pieza que represente a la
+agencia hablando de sí misma.
 
-→ **Usan el sistema de `SISTEMA-VISUAL.md`, sin excepciones.** Tinta cálida `#0B0A09`
-sobre hueso `#F1EADC`, una sola familia tipográfica (Archivo) con contraste de peso,
-la trama de buril como material y el rombo como módulo.
+→ **Sistema estricto.** `SISTEMA-VISUAL.md` manda: tinta y papel, Archivo con
+contraste de peso, buril como material, rombo como módulo. No se inventa paleta ni
+se cambia la tipografía.
 
-No inventes una paleta ni elijas otra tipografía «que le quede mejor al sector». El
-sistema existe justamente para que eso no pase.
+### 2 · Propuestas comerciales
 
-### Identidad del cliente
+Documentos que Sentido manda a un prospecto. Llevan su logo y hablan en su nombre,
+pero **se tropicalizan visualmente al prospecto**: una propuesta a una constructora
+industrial no tiene por qué verse igual que una a un club de pádel.
 
-Entregables producidos *para* un cliente y que viven en la marca del cliente: los
+→ **El diseño puede salirse del sistema.** Paleta, tipografía y textura se adaptan
+al mundo del prospecto. Eso es criterio de agencia, no descuido.
+
+Lo que **no** se adapta nunca, aunque el resto cambie:
+
+| Invariable | Por qué |
+|---|---|
+| Las tres aplicaciones del logo | Es la marca de Sentido, no la del prospecto |
+| Las restricciones de publicación | Son compromisos con el cliente, no decisiones de diseño |
+| La voz | Directa, sin promesas infladas, nombra el problema antes que la solución |
+| El piso de contraste 4.5:1 | Accesibilidad, no estética |
+
+Si la propuesta no pide una tropicalización concreta, **el sistema de Sentido es el
+punto de partida por defecto** — es el que ya está resuelto.
+
+### 3 · Entregables de cliente
+
+Piezas producidas *para* un cliente, que viven en la marca del cliente: los
 artículos de blog de Murotech son el caso claro. Llevan el logo del cliente.
 
-→ **Usan la identidad del cliente, no la de Sentido.** Aplicar el sistema de Sentido
-aquí sería un error de marca.
-
-Si no está claro a qué familia pertenece una pieza, **pregunta antes de diseñar**.
+→ **Identidad del cliente.** Aplicarles el sistema de Sentido sería un error de marca.
 
 ### Por qué existe esta regla
 
 A septiembre de 2026, las 44 propuestas del repo usan **24 fondos distintos y 11
-combinaciones tipográficas**. Las más frecuentes —Fraunces, Cormorant Garamond,
+combinaciones tipográficas**. Tropicalizar es legítimo; improvisar sin punto de
+partida no lo es. Las combinaciones más frecuentes —Fraunces, Cormorant Garamond,
 Inter, JetBrains Mono— son el molde genérico que el cliente rechazó explícitamente
-en el rediseño del sitio. Cada sesión improvisó porque no había nada escrito.
+al rediseñar el sitio, y aparecieron por defecto, no por decisión.
 
 ---
 
@@ -74,7 +90,14 @@ ninguna variante que no exista en el archivo original. Tres aplicaciones válida
 | Solo el nombre | `assets/logo-sentido-nombre-light.png` | Cuando el completo no acomoda y hay que identificar a la agencia |
 | Solo el ojo | `assets/isotipo-sentido.png` | Uso decorativo |
 
-Existen las variantes `-dark` para fondos claros.
+**Sobre superficie clara va la variante oscura**: `logo-sentido-dark.png` y
+`logo-sentido-nombre-dark.png`. Es una aplicación válida del sistema, no una
+excepción.
+
+**Ninguna pieza viaja sola.** Si una composición usa solo el nombre, el isotipo
+tiene que estar presente en ella —decorativo o secundario— y al revés. Si eso no
+acomoda, va el logo completo. La regla es por composición, no por página: un logo
+completo en el pie no cubre un hero que muestra el nombre suelto.
 
 ---
 
