@@ -72,6 +72,9 @@
   .intro-cuerpo + .intro-cuerpo { margin-top: 1.1em; }
 
   /* Encabezado en dos columnas: texto + carrusel de artes por desarrollo */
+  /* El contenido va SOBRE la trama del fondo (.portada > .buril es absolute y
+     su máscara cae al lado derecho, justo sobre el carrusel). */
+  .portada .wrap { position: relative; z-index: 1; }
   .hero-rej { display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 32vw, 400px); gap: clamp(32px, 5vw, 72px); align-items: start; }
   .art { margin: 0; }
   .artframe {
