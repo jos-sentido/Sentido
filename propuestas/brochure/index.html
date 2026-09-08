@@ -4,31 +4,31 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sentido · Brochure Interactivo — Branding & Advertising</title>
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/assets/sentido-sistema.css" />
 <meta name="description" content="Sentido Branding & Advertising — el sistema integral de marca, captación, conversión y retención para negocios que quieren crecer en serio." />
 <meta property="og:title" content="Sentido · Brochure Interactivo" />
 <meta property="og:description" content="No se trata de hacer más contenido. Se trata del sistema que lo convierte en negocio." />
 <meta property="og:type" content="website" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #050505;
-    --surface: #0D0D11;
-    --surface-elevated: #15151B;
-    --surface-ghost: #0A0A0E;
-    --border: #1F1F26;
-    --border-strong: #2A2A33;
-    --text: #EDEAE4;
-    --text-dim: #8B8680;
-    --text-faint: #55524E;
-    --accent: #C9B896;
-    --accent-dim: #5A4F3D;
-    --accent-glow: rgba(201, 184, 150, 0.08);
+    --bg: #0B0A09;
+    --surface: #100E0C;
+    --surface-elevated: #171410;
+    --surface-ghost: #0D0B0A;
+    --border: #262119;
+    --border-strong: #352F25;
+    --text: #F1EADC;
+    --text-dim: #B6AE9E;
+    --text-faint: #948C80;
+    --accent: #F1EADC;
+    --accent-dim: #857E72;
+    --accent-glow: rgba(241, 234, 220, 0.08);
 
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-display: 'Archivo', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Archivo', system-ui, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,7 +55,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(5, 5, 5, 0.72);
+    background: rgba(11, 10, 9, 0.72);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--border);
@@ -63,7 +63,7 @@
   }
 
   .site-nav.hidden { transform: translateY(-100%); }
-  .site-nav.scrolled { background: rgba(5, 5, 5, 0.88); }
+  .site-nav.scrolled { background: rgba(11, 10, 9, 0.88); }
 
   .nav-inner {
     max-width: 1100px;
@@ -85,7 +85,7 @@
   }
 
   .nav-mark {
-    height: 22px;
+    height: 36px;
     opacity: 0;
     display: none;
     transition: opacity 0.3s ease;
@@ -105,7 +105,7 @@
     font-family: var(--font-display);
     font-size: 1.125rem;
     font-weight: 400;
-    font-style: italic;
+   
     color: var(--text);
     letter-spacing: -0.015em;
     transition: color 0.2s ease;
@@ -165,7 +165,7 @@
     background: var(--accent-glow);
     transition: background 0.25s ease, border-color 0.25s ease;
   }
-  .nav-link.nav-cta:hover { background: rgba(91, 155, 189, 0.18); border-color: var(--accent); }
+  .nav-link.nav-cta:hover { background: rgba(241, 234, 220, 0.18); border-color: var(--accent); }
   .nav-link.nav-cta::after { display: none; }
 
   /* ================= LAYOUT ================= */
@@ -190,7 +190,7 @@
   /* ================= TYPOGRAPHY ================= */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.1;
     color: var(--text);
@@ -201,7 +201,7 @@
   h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
   h4 { font-size: 1.375rem; }
 
-  .display-italic { font-style: italic; font-weight: 300; color: var(--accent); }
+  .display-italic { font-weight: 300; color: var(--accent); }
 
   .eyebrow {
     font-family: var(--font-mono);
@@ -245,7 +245,7 @@
   p.dim { color: var(--text-dim); }
 
   strong { font-weight: 500; color: var(--text); }
-  em { font-style: italic; color: var(--accent); font-weight: 300; }
+  em { color: var(--accent); font-weight: 300; }
 
   /* ================= HERO ================= */
   .hero {
@@ -297,7 +297,7 @@
     font-family: var(--font-display);
     font-size: 1.375rem;
     font-weight: 400;
-    font-style: italic;
+   
     color: var(--text);
     letter-spacing: -0.01em;
   }
@@ -355,7 +355,7 @@
   .hero-sub {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: clamp(1.125rem, 1.8vw, 1.375rem);
     color: var(--text-dim);
     max-width: 600px;
@@ -388,7 +388,7 @@
   .pullquote {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: clamp(1.5rem, 2.5vw, 2rem);
     line-height: 1.4;
     color: var(--text);
@@ -431,7 +431,7 @@
 
   .finding-title {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 700;
     font-size: 1.25rem;
     color: var(--text);
   }
@@ -467,7 +467,7 @@
   .layer-num {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 3rem;
     color: var(--accent-dim);
     line-height: 1;
@@ -475,7 +475,7 @@
 
   .layer-name {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 800;
     font-size: 1.5rem;
     color: var(--text);
   }
@@ -526,7 +526,7 @@
   .service-letter {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 3rem;
     line-height: 1;
     color: var(--accent-dim);
@@ -554,7 +554,7 @@
 
   .service-period {
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-faint);
@@ -585,7 +585,7 @@
 
   .pauta-inline-title {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 800;
     font-size: 1.375rem;
     color: var(--text);
     line-height: 1.3;
@@ -612,7 +612,7 @@
 
   .pauta-inline-range span {
     display: block;
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     color: var(--text-faint);
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -626,7 +626,7 @@
   .service-title {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 800;
     margin-bottom: 20px;
     color: var(--text);
   }
@@ -634,7 +634,7 @@
   .service-lede {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 1rem;
     color: var(--text-dim);
     line-height: 1.5;
@@ -664,7 +664,7 @@
   .service-tag {
     display: inline-block;
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -736,7 +736,7 @@
   .web-tab-label {
     font-family: var(--font-display);
     font-size: 1.0625rem;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.3;
     letter-spacing: -0.01em;
   }
@@ -773,7 +773,7 @@
   .web-tab-panel-title {
     font-family: var(--font-display);
     font-size: clamp(1.625rem, 2.5vw, 2.125rem);
-    font-weight: 400;
+    font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--text);
     margin-bottom: 20px;
@@ -784,7 +784,7 @@
   .web-tab-panel-lede {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 1.0625rem;
     line-height: 1.6;
     color: var(--text-dim);
@@ -825,7 +825,7 @@
 
   .hint-arrow {
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-size: 1.25rem;
     color: var(--accent);
     animation: nudgeRight 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -879,7 +879,7 @@
   .arrow-symbol {
     font-family: var(--font-display);
     font-size: 1rem;
-    font-style: italic;
+   
     transition: transform 0.25s ease;
     display: inline-block;
   }
@@ -902,7 +902,7 @@
     letter-spacing: 0.05em;
   }
 
-  .indicator-sep { color: var(--text-faint); font-style: italic; }
+  .indicator-sep { color: var(--text-faint); }
 
   .indicator-total {
     color: var(--text-faint);
@@ -972,9 +972,9 @@
 
   tr.included td.num {
     color: var(--accent);
-    font-style: italic;
+   
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 800;
   }
 
   .savings-badge {
@@ -1001,7 +1001,7 @@
     margin-left: 10px;
     padding: 2px 8px;
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -1035,7 +1035,7 @@
 
   .compare-price {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -1066,13 +1066,14 @@
 
   .single-price-info { flex: 1; min-width: 280px; }
 
-  .single-price-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px; }
+  .single-price-title { font-family: var(--font-display);
+    font-weight: 800; font-size: 1.5rem; margin-bottom: 12px; }
 
   .single-price-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
 
   .single-price-num {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2.5rem, 4.5vw, 3.5rem);
     line-height: 1;
     color: var(--accent);
@@ -1139,6 +1140,7 @@
     border: 1px solid var(--accent-dim);
     padding: 18px 22px;
     font-family: var(--font-display);
+    font-weight: 700;
     font-size: 1.0625rem;
     text-align: center;
     color: var(--text);
@@ -1147,7 +1149,7 @@
   }
 
   .vivo-node:hover {
-    background: rgba(201, 184, 150, 0.10);
+    background: rgba(241, 234, 220, 0.10);
     border-color: var(--accent);
     transform: translateY(-2px);
   }
@@ -1184,7 +1186,7 @@
 
   .vivo-arrows span {
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-size: 1.25rem;
     color: var(--accent);
     animation: pulse-arrow 2.4s ease-in-out infinite;
@@ -1236,8 +1238,8 @@
 
   .vivo-core-title {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
+    font-weight: 800;
+   
     font-size: clamp(2rem, 4vw, 2.875rem);
     color: var(--text);
     margin-bottom: 20px;
@@ -1247,7 +1249,7 @@
 
   .vivo-core-title em {
     color: var(--accent);
-    font-style: italic;
+   
   }
 
   .vivo-core-desc {
@@ -1322,7 +1324,7 @@
 
   .ia-pillar-title {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 700;
     font-size: 1.25rem;
     color: var(--text);
     margin-bottom: 14px;
@@ -1368,14 +1370,14 @@
 
   .invest-label {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 700;
     font-size: 1.0625rem;
     color: var(--text);
     line-height: 1.3;
   }
 
   .invest-label em {
-    font-style: italic;
+   
     color: var(--text-dim);
     font-weight: 300;
     font-size: 0.875rem;
@@ -1399,8 +1401,8 @@
   .invest-ref strong {
     display: inline-block;
     font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
+    font-weight: 800;
+   
     font-size: 1.875rem;
     color: var(--accent);
     letter-spacing: -0.02em;
@@ -1410,7 +1412,7 @@
 
   .invest-ref span {
     display: block;
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     color: var(--text-faint);
     letter-spacing: 0.16em;
     margin-top: 4px;
@@ -1426,7 +1428,7 @@
   .invest-closing p {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 1.125rem;
     line-height: 1.6;
     color: var(--text);
@@ -1469,7 +1471,7 @@
 
   .pauta-range {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: 1.875rem;
     color: var(--text);
     margin-bottom: 12px;
@@ -1485,7 +1487,7 @@
     font-size: 0.875rem;
     color: var(--text-dim);
     line-height: 1.6;
-    font-style: italic;
+   
     font-family: var(--font-display);
     font-weight: 300;
   }
@@ -1514,7 +1516,7 @@
   .step-num {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 3rem;
     color: var(--accent-dim);
     line-height: 1;
@@ -1522,6 +1524,7 @@
 
   .step-name {
     font-family: var(--font-display);
+    font-weight: 700;
     font-size: 1.25rem;
     color: var(--text);
     line-height: 1.3;
@@ -1533,7 +1536,7 @@
     margin-top: auto;
     padding-top: 16px;
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -1586,7 +1589,7 @@
     font-family: var(--font-sans);
     font-size: 0.9375rem;
     font-weight: 400;
-    color: #1A1A1A;
+    color: #0B0A09;
     background-color: var(--accent);
     border: 1px solid var(--accent-dim);
     padding: 14px 16px;
@@ -1603,16 +1606,16 @@
   .form-input:hover,
   .form-select:hover,
   .form-textarea:hover {
-    background-color: #D4C5A3;
+    background-color: #DAD3C5;
   }
 
   .form-input:focus,
   .form-select:focus,
   .form-textarea:focus {
     outline: none;
-    border-color: #1A1A1A;
-    background-color: #DECFAE;
-    box-shadow: 0 0 0 3px rgba(201, 184, 150, 0.18);
+    border-color: #0B0A09;
+    background-color: #F1EADC;
+    box-shadow: 0 0 0 3px rgba(241, 234, 220, 0.18);
   }
 
   .form-textarea { resize: vertical; min-height: 100px; font-family: var(--font-sans); }
@@ -1620,7 +1623,7 @@
   .form-select {
     appearance: none;
     -webkit-appearance: none;
-    background-image: linear-gradient(45deg, transparent 50%, #1A1A1A 50%), linear-gradient(135deg, #1A1A1A 50%, transparent 50%);
+    background-image: linear-gradient(45deg, transparent 50%, #0B0A09 50%), linear-gradient(135deg, #0B0A09 50%, transparent 50%);
     background-position: calc(100% - 18px) center, calc(100% - 13px) center;
     background-size: 5px 5px, 5px 5px;
     background-repeat: no-repeat;
@@ -1646,7 +1649,7 @@
     gap: 10px;
     padding: 12px 14px;
     border: 1px solid var(--accent-dim);
-    background: rgba(201, 184, 150, 0.08);
+    background: rgba(241, 234, 220, 0.08);
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     font-size: 0.875rem;
@@ -1656,7 +1659,7 @@
 
   .checkbox-label:hover {
     border-color: var(--accent);
-    background: rgba(201, 184, 150, 0.18);
+    background: rgba(241, 234, 220, 0.18);
   }
 
   .checkbox-label input { accent-color: var(--accent); cursor: pointer; }
@@ -1664,7 +1667,7 @@
   .checkbox-label:has(input:checked) {
     border-color: var(--accent);
     background: var(--accent);
-    color: #1A1A1A;
+    color: #0B0A09;
     font-weight: 500;
   }
 
@@ -1695,7 +1698,7 @@
   }
 
   .form-submit:hover:not(:disabled) {
-    background: #D9C9A8;
+    background: #DAD3C5;
     transform: translateY(-2px);
   }
 
@@ -1718,7 +1721,7 @@
     border-left: 2px solid var(--accent);
     background: var(--accent-glow);
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-weight: 300;
     color: var(--text);
     font-size: 1rem;
@@ -1727,7 +1730,7 @@
   }
 
   .form-status.visible { display: block; }
-  .form-status.error { border-left-color: #c97b5a; background: rgba(201, 123, 90, 0.08); }
+  .form-status.error { border-left-color: #E0A79C; background: rgba(224, 167, 156, 0.08); }
 
   /* ================= CIERRE ================= */
   .closing {
@@ -1742,7 +1745,7 @@
 
   .closing-tesis {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -1750,7 +1753,7 @@
     margin: 0 auto 24px;
   }
 
-  .closing-tesis em { font-style: italic; color: var(--accent); }
+  .closing-tesis em { color: var(--accent); }
 
   .closing-mark { width: 40px; height: 1px; background: var(--accent); margin: 48px auto; }
 
@@ -1826,7 +1829,9 @@
     height: 100%;
     object-fit: contain;
     filter: invert(1);
-    opacity: 0.045;
+    /* Por debajo de 0.05 el grabado no llega a la pantalla: se paga el peso
+       de la imagen y no se ve el ojo. */
+    opacity: 0.07;
   }
 
   @keyframes driftSlow {
@@ -1834,14 +1839,22 @@
     50% { transform: translateX(-1%) translateY(-1%) rotate(-1.5deg); }
   }
 
-  /* Cursor-following glow */
+  /* El foco que sigue al cursor.
+     No es un resplandor —el sistema no tiene ninguno—: es el abanico de
+     radios del iris, el mismo trazo del isotipo, abriéndose desde el cursor. */
   .hero-cursor-glow {
     position: absolute;
     pointer-events: none;
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201, 184, 150, 0.07) 0%, transparent 65%);
+    background: repeating-conic-gradient(from 0deg at 50% 50%,
+      var(--accent) 0deg 0.35deg,
+      transparent 0.35deg 2.4deg);
+    /* Anillo: en el centro los radios se juntan y se ensucian, así que ahí
+       la máscara los oculta. Se ve el iris, no el amontonamiento. */
+    -webkit-mask-image: radial-gradient(circle, transparent 0%, #000 34%, transparent 70%);
+            mask-image: radial-gradient(circle, transparent 0%, #000 34%, transparent 70%);
     transform: translate(-50%, -50%);
     z-index: 0;
     opacity: 0;
@@ -1849,14 +1862,14 @@
     will-change: transform, opacity;
   }
 
-  .hero:hover .hero-cursor-glow { opacity: 1; }
+  .hero:hover .hero-cursor-glow { opacity: 0.16; }
 
   /* Hero logo — bigger + presence (image hidden until loaded) */
   .sentido-mark {
     height: 140px;
     opacity: 0;
     display: none;
-    filter: drop-shadow(0 4px 24px rgba(201, 184, 150, 0.08));
+    filter: drop-shadow(0 4px 24px rgba(241, 234, 220, 0.08));
     transition: opacity 0.4s ease;
   }
 
@@ -1879,7 +1892,7 @@
   .sentido-wordmark .mark-text {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: clamp(4rem, 12vw, 9rem);
     color: var(--text);
     letter-spacing: -0.045em;
@@ -1967,7 +1980,7 @@
     margin-right: 56px;
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: clamp(1.25rem, 2.2vw, 1.75rem);
     color: var(--text-dim);
     white-space: nowrap;
@@ -2088,10 +2101,10 @@
   /* ================= RESPONSIVE ================= */
   @media (max-width: 900px) {
     .nav-inner { padding: 0 20px; gap: 16px; height: 56px; }
-    .nav-mark { height: 18px; }
+    .nav-mark { height: 30px; }
     .nav-wordmark { font-size: 0.9375rem; }
     .nav-links { gap: 18px; }
-    .nav-link { font-size: 0.625rem; letter-spacing: 0.14em; }
+    .nav-link { font-size: 0.6875rem; letter-spacing: 0.14em; }
     .nav-link.nav-cta { padding: 6px 10px; }
     html { scroll-padding-top: 56px; }
     section { scroll-margin-top: 56px; }
@@ -2128,7 +2141,7 @@
     .web-tab-panel-title { padding-bottom: 18px; }
     .web-tabs-hint { padding: 14px 20px; font-size: 0.6875rem; gap: 12px; margin-top: 32px; }
     .web-tab-nav-footer { margin-top: 32px; padding-top: 24px; gap: 8px; }
-    .web-tab-arrow { padding: 10px 14px; font-size: 0.625rem; letter-spacing: 0.14em; gap: 8px; }
+    .web-tab-arrow { padding: 10px 14px; font-size: 0.6875rem; letter-spacing: 0.14em; gap: 8px; }
     .arrow-label { display: none; }
     .web-tab-arrow .arrow-symbol { font-size: 1.25rem; }
 
@@ -2151,7 +2164,23 @@
   @media (max-width: 540px) {
     .checkbox-grid { grid-template-columns: 1fr; }
   }
-</style>
+.container > p
+
+    /* Medida del sistema: el renglón se corta a 68 caracteres.
+       Más largo, el ojo pierde el salto de línea. */
+    ,
+    .pauta-inline-desc
+
+    /* Medida del sistema: el renglón se corta a 68 caracteres.
+       Más largo, el ojo pierde el salto de línea. */
+    ,
+    .service-lede
+
+    /* Medida del sistema: el renglón se corta a 68 caracteres.
+       Más largo, el ojo pierde el salto de línea. */
+    ,
+    .service-items > li { max-width: 68ch; }
+  </style>
 </head>
 <body>
 
@@ -2161,7 +2190,7 @@
 <nav class="site-nav">
   <div class="nav-inner">
     <a href="#top" class="nav-brand">
-      <img src="/assets/logo-sentido-light.png" alt="" class="nav-mark" onload="this.classList.add('loaded')" />
+      <img src="/assets/logo-sentido-nombre-light.png" alt="" class="nav-mark" onload="this.classList.add('loaded')" />
       <span class="nav-wordmark" aria-label="Sentido">Sentido</span>
     </a>
     <div class="nav-links">
@@ -2438,7 +2467,7 @@
     <div class="section-title reveal">
       <div>
         <span class="section-number">04 — EL SISTEMA VIVO</span>
-        <h2>Cada pieza alimenta a las demás.<br /><span style="color: var(--text-dim); font-style: italic;">La IA conecta el ciclo completo.</span></h2>
+        <h2>Cada pieza alimenta a las demás.<br /><span style="color: var(--text-dim);">La IA conecta el ciclo completo.</span></h2>
       </div>
     </div>
 

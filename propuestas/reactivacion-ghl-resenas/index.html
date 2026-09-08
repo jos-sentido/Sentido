@@ -4,28 +4,28 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Motor de Reactivación + Reseñas · Sentido</title>
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/assets/sentido-sistema.css" />
 <meta name="description" content="Servicio mensual de Sentido: reactivamos tu base de datos con email y WhatsApp y operamos tu flujo de reseñas en Google — mes a mes, no llave en mano." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #050505;
-    --surface: #0D0D11;
-    --surface-elevated: #15151B;
-    --surface-ghost: #0A0A0E;
-    --border: #1F1F26;
-    --border-strong: #2A2A33;
-    --text: #EDEAE4;
-    --text-dim: #8B8680;
-    --text-faint: #55524E;
-    --accent: #D2A75E;
-    --accent-dim: #6B542E;
-    --accent-glow: rgba(210, 167, 94, 0.08);
+    --bg: #0B0A09;
+    --surface: #100E0C;
+    --surface-elevated: #171410;
+    --surface-ghost: #0D0B0A;
+    --border: #262119;
+    --border-strong: #352F25;
+    --text: #F1EADC;
+    --text-dim: #B6AE9E;
+    --text-faint: #948C80;
+    --accent: #F1EADC;
+    --accent-dim: #857E72;
+    --accent-glow: rgba(241, 234, 220, 0.08);
 
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-display: 'Archivo', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Archivo', system-ui, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,7 +51,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(5, 5, 5, 0.72);
+    background: rgba(11, 10, 9, 0.72);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--border);
@@ -59,7 +59,7 @@
   }
 
   .site-nav.hidden { transform: translateY(-100%); }
-  .site-nav.scrolled { background: rgba(5, 5, 5, 0.88); }
+  .site-nav.scrolled { background: rgba(11, 10, 9, 0.88); }
 
   .nav-inner {
     max-width: 1100px;
@@ -73,14 +73,14 @@
   }
 
   .nav-brand { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-  .nav-mark { height: 22px; opacity: 0.85; transition: opacity 0.2s ease; }
+  .nav-mark { height: 36px; opacity: 0.85; transition: opacity 0.2s ease; }
   .nav-brand:hover .nav-mark { opacity: 1; }
   .nav-wordmark {
     display: none;
     font-family: var(--font-display);
     font-size: 1.0625rem;
     font-weight: 400;
-    font-style: italic;
+   
     color: var(--text);
     letter-spacing: -0.01em;
   }
@@ -128,7 +128,7 @@
     transition: background 0.2s ease, border-color 0.2s ease;
   }
   .nav-link.nav-cta::after { display: none; }
-  .nav-link.nav-cta:hover { background: rgba(210, 167, 94, 0.18); border-color: var(--accent); }
+  .nav-link.nav-cta:hover { background: rgba(241, 234, 220, 0.18); border-color: var(--accent); }
 
   /* ================= LAYOUT ================= */
   .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
@@ -143,7 +143,7 @@
   /* ================= TYPOGRAPHY ================= */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.1;
     color: var(--text);
@@ -153,7 +153,7 @@
   h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
   h4 { font-size: 1.375rem; }
 
-  .display-italic { font-style: italic; font-weight: 300; color: var(--accent); }
+  .display-italic { font-weight: 300; color: var(--accent); }
 
   .eyebrow {
     font-family: var(--font-mono);
@@ -197,7 +197,7 @@
   p.dim { color: var(--text-dim); }
 
   strong { font-weight: 500; color: var(--text); }
-  em { font-style: italic; color: var(--accent); font-weight: 300; }
+  em { color: var(--accent); font-weight: 300; }
 
   /* ================= HERO ================= */
   .hero {
@@ -232,14 +232,14 @@
   .sentido-logo-wrap { display: flex; align-items: center; margin-bottom: 40px; }
 
   /* Logo Sentido en hero — 60px desktop / 52px mobile */
-  .sentido-mark { height: 60px; opacity: 0.95; display: block; }
+  .sentido-mark { height: 96px; opacity: 0.95; display: block; }
   .sentido-mark.hide { display: none; }
   .sentido-wordmark {
     display: none;
     font-family: var(--font-display);
     font-size: 1.75rem;
     font-weight: 400;
-    font-style: italic;
+   
     color: var(--text);
     letter-spacing: -0.01em;
   }
@@ -282,7 +282,7 @@
   .hero-sub {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: clamp(1.125rem, 1.8vw, 1.4375rem);
     color: var(--text-dim);
     max-width: 660px;
@@ -314,7 +314,7 @@
   .pullquote {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: clamp(1.5rem, 2.5vw, 2rem);
     line-height: 1.4;
     color: var(--text);
@@ -351,7 +351,7 @@
   }
   .market-number {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2rem, 3.5vw, 2.75rem);
     line-height: 1;
     color: var(--text);
@@ -389,7 +389,7 @@
   }
   .finding:last-child { border-bottom: 1px solid var(--border); }
   .finding-num { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); letter-spacing: 0.1em; }
-  .finding-title { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--text); }
+  .finding-title { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--text); }
   .finding-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
 
   /* ================= DIFERENCIAL BANNER ================= */
@@ -427,7 +427,7 @@
     line-height: 1.3;
     color: var(--text);
   }
-  .diff-quote em { font-style: italic; color: var(--accent); }
+  .diff-quote em { color: var(--accent); }
 
   /* ================= AUDIENCES / VERTICALS ================= */
   .audiences { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
@@ -446,7 +446,8 @@
     color: var(--accent);
     margin-bottom: 16px;
   }
-  .audience-title { font-family: var(--font-display); font-size: 1.375rem; margin-bottom: 16px; color: var(--text); }
+  .audience-title { font-family: var(--font-display);
+    font-weight: 800; font-size: 1.375rem; margin-bottom: 16px; color: var(--text); }
   .audience-desc { color: var(--text-dim); font-size: 0.9375rem; line-height: 1.6; }
 
   .checklist { list-style: none; padding: 0; margin: 40px 0 0; max-width: 760px; }
@@ -464,7 +465,7 @@
     left: 0; top: 14px;
     color: var(--accent);
     font-family: var(--font-display);
-    font-style: italic;
+   
   }
 
   /* ================= FLOW (recorrido visual) ================= */
@@ -497,7 +498,7 @@
   .flow-step-name {
     font-family: var(--font-display);
     font-size: 1.0625rem;
-    font-weight: 400;
+    font-weight: 700;
     color: var(--text);
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -515,7 +516,7 @@
     padding: 0 6px;
     color: var(--accent);
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-size: 1.375rem;
   }
 
@@ -545,7 +546,7 @@
   }
   .report-mock-tag {
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent);
@@ -564,7 +565,7 @@
   .kpi:last-child { border-right: none; }
   .kpi-value {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2.25rem, 4vw, 3.25rem);
     line-height: 1;
     color: var(--accent);
@@ -581,6 +582,7 @@
     display: block;
   }
   .report-mock-legend {
+    max-width: 68ch;
     padding: 14px 32px;
     border-top: 1px solid var(--border);
     font-family: var(--font-mono);
@@ -593,7 +595,7 @@
     padding: 24px 32px;
     border-top: 1px solid var(--border);
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-weight: 300;
     font-size: 1.0625rem;
     color: var(--text-dim);
@@ -616,7 +618,7 @@
   .service-letter {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 3rem;
     line-height: 1;
     color: var(--accent-dim);
@@ -625,18 +627,18 @@
   .service-price { font-family: var(--font-mono); font-size: 1.0625rem; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
   .service-period {
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-faint);
     display: block;
     margin-top: 4px;
   }
-  .service-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; margin-bottom: 20px; color: var(--text); }
+  .service-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: var(--text); }
   .service-lede {
     font-family: var(--font-display);
     font-weight: 300;
-    font-style: italic;
+   
     font-size: 1rem;
     color: var(--text-dim);
     line-height: 1.5;
@@ -662,7 +664,7 @@
   .service-tag {
     display: inline-block;
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -707,7 +709,7 @@
     background: var(--accent-glow);
     border-left: 2px solid var(--accent);
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-weight: 300;
     font-size: 1.0625rem;
     color: var(--text);
@@ -729,7 +731,7 @@
   .tier.featured .tier-name { color: var(--accent); }
   .tier-price {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2rem, 4vw, 2.75rem);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -749,7 +751,7 @@
   .tier-meta strong { color: var(--text); }
   .tier-badge {
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -766,7 +768,8 @@
     margin-top: 32px;
   }
   .rule-box { border: 1px solid var(--border); background: var(--surface-ghost); padding: 28px 24px; }
-  .rule-title { font-family: var(--font-display); font-size: 1.125rem; color: var(--text); margin-bottom: 8px; }
+  .rule-title { font-family: var(--font-display);
+    font-weight: 700; font-size: 1.125rem; color: var(--text); margin-bottom: 8px; }
   .rule-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.5; }
 
   /* ================= NOTE COLUMNS (terceros + no incluye) ================= */
@@ -821,7 +824,7 @@
     font-family: var(--font-sans);
     font-size: 0.9375rem;
     font-weight: 400;
-    color: #1A1A1A;
+    color: #0B0A09;
     background-color: var(--accent);
     border: 1px solid var(--accent-dim);
     padding: 14px 16px;
@@ -829,19 +832,19 @@
     width: 100%;
   }
   .form-input::placeholder, .form-textarea::placeholder { color: rgba(26, 26, 26, 0.45); font-weight: 300; }
-  .form-input:hover, .form-select:hover, .form-textarea:hover { background-color: #DDBE82; }
+  .form-input:hover, .form-select:hover, .form-textarea:hover { background-color: #DAD3C5; }
   .form-input:focus, .form-select:focus, .form-textarea:focus {
     outline: none;
-    border-color: #1A1A1A;
-    background-color: #E4C98D;
-    box-shadow: 0 0 0 3px rgba(210, 167, 94, 0.18);
+    border-color: #0B0A09;
+    background-color: #F1EADC;
+    box-shadow: 0 0 0 3px rgba(241, 234, 220, 0.18);
   }
   .form-textarea { resize: vertical; min-height: 100px; font-family: var(--font-sans); }
 
   .form-select {
     appearance: none;
     -webkit-appearance: none;
-    background-image: linear-gradient(45deg, transparent 50%, #1A1A1A 50%), linear-gradient(135deg, #1A1A1A 50%, transparent 50%);
+    background-image: linear-gradient(45deg, transparent 50%, #0B0A09 50%), linear-gradient(135deg, #0B0A09 50%, transparent 50%);
     background-position: calc(100% - 18px) center, calc(100% - 13px) center;
     background-size: 5px 5px, 5px 5px;
     background-repeat: no-repeat;
@@ -857,16 +860,16 @@
     gap: 10px;
     padding: 12px 14px;
     border: 1px solid var(--accent-dim);
-    background: rgba(210, 167, 94, 0.08);
+    background: rgba(241, 234, 220, 0.08);
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     font-size: 0.875rem;
     color: var(--text);
     font-weight: 400;
   }
-  .checkbox-label:hover { border-color: var(--accent); background: rgba(210, 167, 94, 0.18); }
+  .checkbox-label:hover { border-color: var(--accent); background: rgba(241, 234, 220, 0.18); }
   .checkbox-label input { accent-color: var(--accent); cursor: pointer; }
-  .checkbox-label:has(input:checked) { border-color: var(--accent); background: var(--accent); color: #1A1A1A; font-weight: 500; }
+  .checkbox-label:has(input:checked) { border-color: var(--accent); background: var(--accent); color: #0B0A09; font-weight: 500; }
 
   .form-submit-row { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .form-submit {
@@ -885,11 +888,11 @@
     gap: 12px;
     font-weight: 500;
   }
-  .form-submit:hover:not(:disabled) { background: #E0C286; transform: translateY(-2px); }
+  .form-submit:hover:not(:disabled) { background: #DAD3C5; transform: translateY(-2px); }
   .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
   .form-submit .arrow-symbol { transition: transform 0.25s ease; }
   .form-submit:hover:not(:disabled) .arrow-symbol { transform: translateX(4px); }
-  .arrow-symbol { font-family: var(--font-display); font-style: italic; display: inline-block; }
+  .arrow-symbol { font-family: var(--font-display); display: inline-block; }
 
   .form-note {
     font-family: var(--font-mono);
@@ -904,7 +907,7 @@
     border-left: 2px solid var(--accent);
     background: var(--accent-glow);
     font-family: var(--font-display);
-    font-style: italic;
+   
     font-weight: 300;
     color: var(--text);
     font-size: 1rem;
@@ -912,7 +915,7 @@
     display: none;
   }
   .form-status.visible { display: block; }
-  .form-status.error { border-left-color: #c97b5a; background: rgba(201, 123, 90, 0.08); }
+  .form-status.error { border-left-color: #E0A79C; background: rgba(224, 167, 156, 0.08); }
 
   /* ================= CIERRE ================= */
   .closing {
@@ -923,14 +926,14 @@
   }
   .closing-tesis {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 800;
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.15;
     letter-spacing: -0.02em;
     max-width: 900px;
     margin: 0 auto 24px;
   }
-  .closing-tesis em { font-style: italic; color: var(--accent); }
+  .closing-tesis em { color: var(--accent); }
   .closing-mark { width: 40px; height: 1px; background: var(--accent); margin: 48px auto; }
   .closing-sig {
     font-family: var(--font-mono);
@@ -958,7 +961,7 @@
     flex-wrap: wrap;
   }
   .footer-mark { height: 36px; opacity: 0.8; }
-  .footer-wordmark { display: none; font-family: var(--font-display); font-style: italic; font-size: 1.25rem; color: var(--text); }
+  .footer-wordmark { display: none; font-family: var(--font-display); font-size: 1.25rem; color: var(--text); }
   .footer-meta {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -978,9 +981,9 @@
   /* ================= RESPONSIVE ================= */
   @media (max-width: 900px) {
     .nav-inner { padding: 0 20px; gap: 16px; height: 56px; }
-    .nav-mark { height: 18px; }
+    .nav-mark { height: 30px; }
     .nav-links { gap: 16px; }
-    .nav-link { font-size: 0.625rem; letter-spacing: 0.14em; }
+    .nav-link { font-size: 0.6875rem; letter-spacing: 0.14em; }
     html { scroll-padding-top: 56px; }
     section { scroll-margin-top: 56px; padding: 80px 0; }
     .two-col { grid-template-columns: 1fr; gap: 48px; }
@@ -998,7 +1001,7 @@
     .note-cols { grid-template-columns: 1fr; }
     .finding { grid-template-columns: 1fr; gap: 12px; }
     .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
-    .sentido-mark { height: 52px; }
+    .sentido-mark { height: 84px; }
     .sentido-logo-wrap { margin-bottom: 28px; }
     th, td { padding: 16px 20px; font-size: 0.875rem; }
     .diff-banner, .service, .form-wrap, .tier, .note-box { padding: 28px 24px; }
@@ -1009,7 +1012,13 @@
   @media (max-width: 520px) {
     .checkbox-grid { grid-template-columns: 1fr; }
   }
-</style>
+.source-note
+
+    /* Medida del sistema: el renglón se corta a 68 caracteres.
+       Más largo, el ojo pierde el salto de línea. */
+    ,
+    .container > p { max-width: 68ch; }
+  </style>
 </head>
 <body>
 
@@ -1017,7 +1026,7 @@
 <nav class="site-nav">
   <div class="nav-inner">
     <a href="#top" class="nav-brand">
-      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="nav-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" class="nav-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
       <span class="nav-wordmark">Sentido</span>
     </a>
     <div class="nav-links">
@@ -1138,7 +1147,7 @@
     </div>
 
     <h3 class="reveal" style="margin-top: 96px;">Para quién es</h3>
-    <p class="reveal" style="color: var(--text-dim); margin: 16px 0 8px; max-width: 760px;">
+    <p class="reveal" style="color: var(--text-dim); margin: 16px 0 8px; max-width: 36rem;">
       Cualquier negocio con una base de datos subutilizada, ubicación física con reservas o afluencia, presencia relevante en Google Maps y sin un equipo interno de CRM o automatización.
     </p>
 
@@ -1247,7 +1256,7 @@
     </div>
 
     <h3 class="reveal" style="margin-top: 96px;">Cómo lo implementamos</h3>
-    <p class="reveal" style="color: var(--text-dim); margin: 16px 0 8px; max-width: 760px;">
+    <p class="reveal" style="color: var(--text-dim); margin: 16px 0 8px; max-width: 36rem;">
       Ese recorrido se sostiene sobre dos frentes: un setup que se hace una sola vez al arranque — sin costo extra, embebido en el mes 1 — y una operación mensual continua que corre desde el primer mes. No hay "mes de armado" facturable donde no ves nada.
     </p>
 
@@ -1550,7 +1559,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <a href="#top" class="nav-brand">
-      <img src="/assets/logo-sentido-light.png" alt="Sentido" class="footer-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" class="footer-mark" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
       <span class="footer-wordmark">Sentido</span>
     </a>
     <span class="footer-meta">Motor de Reactivación + Reseñas · jos@sentido.mx</span>

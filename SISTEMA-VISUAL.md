@@ -147,6 +147,19 @@ El contraste **nunca** es entre familias: siempre es de peso.
 La escala es deliberadamente **extrema arriba y abajo, vacía en medio**: no hay
 nada entre 1.2 y 1.6rem salvo la entrada ligera.
 
+**Piso duro: 0.6875rem (11px).** Ningún texto baja de ahí, ni las etiquetas ni
+las notas al pie. Por debajo, la versalita espaciada deja de leerse y el peso
+700 se vuelve una mancha. Si algo no cabe a 11px, sobra o va en otro lugar.
+
+**Sin cursiva.** Archivo no la trae. Cuando el navegador la pide, la sintetiza:
+inclina el trazo y deforma la letra. El énfasis del sistema es **peso y color**,
+nunca inclinación.
+
+```css
+em, i, cite, dfn, address { font-style: normal; }
+em, i { font-weight: var(--fuerte); color: var(--hueso); }
+```
+
 ### Recursos tipográficos de marca
 
 **1. Titular de dos pesos.** La ligera y la negra conviven dentro del mismo
@@ -340,6 +353,16 @@ nombre ni se arma ninguna variante que no exista en el archivo original.
 
 Existen las variantes `-dark`, que son las que van **sobre superficie clara**.
 
+**Tamaño mínimo.** El logo completo lleva la firma manuscrita y el descriptor
+debajo del ojo: por debajo de **72px de alto** la firma se vuelve un borrón y el
+descriptor desaparece. Ahí no se encoge el completo — se cambia de aplicación.
+
+| Alto disponible | Qué va |
+|---|---|
+| 72px o más | Logo completo |
+| 28–48px (barras, pies) | Solo el nombre |
+| Menos de 28px | Solo el ojo, y el nombre en otro punto de la composición |
+
 ### Ninguna pieza viaja sola
 
 Si una composición usa **solo el nombre**, el isotipo tiene que estar presente en
@@ -374,6 +397,25 @@ buril y no como logo encimado sobre el diseño.
   mask: url("isotipo-sentido.png") center / contain no-repeat;
 }
 ```
+
+### La baldosa de pestaña
+
+El isotipo suelto es negro sobre transparente: en una pestaña clara desaparece
+y en una oscura se pierde. El favicon del sistema **lleva su propio suelo**: un
+cuadro de tinta con el ojo en hueso, con 14% de margen. Así se reconoce en
+cualquier navegador y en cualquier tema.
+
+- `assets/favicon.png` — 512px, para el navegador
+- `assets/favicon-180.png` — para la pantalla de inicio en iOS
+- `favicon.ico` — 16/32/48, para la petición por defecto que hace el navegador
+
+```html
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+```
+
+Toda pieza los declara. Una página sin ellos pide `/favicon.ico`, no lo
+encuentra, y arranca con un 404 en la consola.
 
 ---
 

@@ -4,35 +4,32 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sentido · Sistema integral para desarrolladores inmobiliarios</title>
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/assets/sentido-sistema.css" />
 <meta name="description" content="Sentido — sistema integral de marketing, branding, captación e IA para desarrolladores inmobiliarios en México. Del plano al último departamento vendido." />
-<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
-<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
-<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     /* Paleta oficial Sentido — dark monocroma. Sin acento cromático. */
-    --bg: #0A0A0A;
-    --surface: #131313;
-    --surface-elevated: #1A1A1A;
-    --surface-hover: #242424;
-    --border: #2A2A2A;
-    --border-accent: #3A3A3A;
-    --border-bright: #4A4A4A;
-    --accent: #FFFFFF;
-    --accent-dim: #A8A8A8;
-    --accent-bright: #FFFFFF;
-    --accent-soft: rgba(255, 255, 255, 0.04);
-    --text: #EDEAE4;
-    --text-dim: #A8A8A8;
-    --text-muted: #6B6661;
-    --success: #9BB59B;
-    --danger: #C29494;
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    --bg: #0B0A09;
+    --surface: #100E0C;
+    --surface-elevated: #171410;
+    --surface-hover: #1E1A15;
+    --border: #262119;
+    --border-accent: #352F25;
+    --border-bright: #4A4235;
+    --accent: #F1EADC;
+    --accent-dim: #857E72;
+    --accent-bright: #F1EADC;
+    --accent-soft: rgba(241, 234, 220, 0.04);
+    --text: #F1EADC;
+    --text-dim: #B6AE9E;
+    --text-muted: #948C80;
+    --success: #8FD4A8;
+    --danger: #E0A79C;
+    --font-display: 'Archivo', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Archivo', system-ui, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,7 +53,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(10, 10, 10, 0.72);
+    background: rgba(11, 10, 9, 0.72);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
     border-bottom: 1px solid var(--border);
@@ -79,11 +76,11 @@
     flex-shrink: 0;
   }
   .site-nav-brand img {
-    height: 22px;
+    height: 36px;
     width: auto;
     display: block;
   }
-  @media (min-width: 1024px) { .site-nav-brand img { height: 26px; } }
+  @media (min-width: 1024px) { .site-nav-brand img { height: 30px; } }
   .site-nav-links {
     display: none;
     align-items: center;
@@ -123,7 +120,7 @@
   .site-nav-mobile::-webkit-scrollbar { display: none; }
   .site-nav-mobile a {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--text-dim);
@@ -178,7 +175,7 @@
   /* Typography */
   .display-heading {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 800;
     letter-spacing: -0.015em;
     color: var(--text);
     line-height: 1.05;
@@ -194,7 +191,7 @@
     .display-heading.xl { font-size: 3.5rem; }
     .display-heading.xxl { font-size: 5rem; }
   }
-  .display-heading .accent-italic { font-style: italic; color: var(--accent); font-weight: 500; }
+  .display-heading .accent-italic { color: var(--accent); font-weight: 500; }
   .display-heading .accent { color: var(--accent); }
 
   .paragraph {
@@ -209,8 +206,8 @@
     color: var(--accent);
     font-family: var(--font-display);
     font-size: 19px;
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 700;
+   
   }
   .paragraph strong { color: var(--text); font-weight: 500; }
 
@@ -237,9 +234,9 @@
     justify-content: space-between;
     padding: 2.5rem 1.5rem;
     background:
-      radial-gradient(ellipse 90% 60% at 15% 20%, rgba(255, 255, 255, 0.055) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
-      linear-gradient(135deg, #0A0A0A 0%, #131313 50%, #0A0A0A 100%);
+      radial-gradient(ellipse 90% 60% at 15% 20%, rgba(241, 234, 220, 0.055) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(241, 234, 220, 0.035) 0%, transparent 60%),
+      linear-gradient(135deg, #0B0A09 0%, #171410 50%, #0B0A09 100%);
     overflow: hidden;
   }
   @media (min-width: 768px) { .hero { padding: 3rem; } }
@@ -252,7 +249,7 @@
     width: 120%;
     height: 80%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.04) 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, rgba(241, 234, 220, 0.04) 0%, transparent 65%);
     filter: blur(40px);
     pointer-events: none;
     z-index: 0;
@@ -262,8 +259,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle 600px at 100% 0%, rgba(255, 255, 255, 0.025) 0%, transparent 70%),
-      radial-gradient(circle 500px at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+      radial-gradient(circle 600px at 100% 0%, rgba(241, 234, 220, 0.025) 0%, transparent 70%),
+      radial-gradient(circle 500px at 0% 100%, rgba(241, 234, 220, 0.02) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
@@ -287,7 +284,7 @@
     width: auto;
     display: block;
     opacity: 0.95;
-    filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.08));
+    filter: drop-shadow(0 0 60px rgba(241, 234, 220, 0.08));
   }
   @media (min-width: 768px) { .hero-mark img { height: 120px; } }
   @media (max-width: 640px) { .hero-mark img { height: 72px; } .hero-mark { margin-bottom: 1.75rem; } }
@@ -338,13 +335,13 @@
     font-family: var(--font-display);
     font-size: 2.5rem;
     line-height: 1;
-    font-weight: 400;
+    font-weight: 800;
     letter-spacing: -0.02em;
     margin-bottom: 2rem;
   }
   @media (min-width: 768px) { .hero-title { font-size: 4rem; } }
   @media (min-width: 1024px) { .hero-title { font-size: 5.5rem; } }
-  .hero-title .italic { font-style: italic; color: var(--accent); font-weight: 500; }
+  .hero-title .italic { color: var(--accent); font-weight: 500; }
   .hero-sub {
     font-size: 17px;
     line-height: 1.7;
@@ -377,21 +374,21 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     color: var(--accent);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 800;
+   
     line-height: 1;
     margin-bottom: 0.4rem;
   }
   .hero-stat-label {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-muted);
   }
   .hero-scroll {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -418,8 +415,8 @@
     font-family: var(--font-display);
     font-size: 2.25rem;
     color: var(--accent);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 800;
+   
     line-height: 1;
     margin-bottom: 0.75rem;
   }
@@ -431,7 +428,7 @@
   }
   .stat-card .source {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.1em;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -445,7 +442,7 @@
   }
   .insight-block .label {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
@@ -455,7 +452,7 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     line-height: 1.4;
-    font-weight: 400;
+    font-weight: 800;
     color: var(--text);
   }
   @media (min-width: 768px) { .insight-block .text { font-size: 1.75rem; } }
@@ -474,16 +471,16 @@
     border: 1px solid var(--border);
   }
   .split-card.problem {
-    background: rgba(199, 93, 93, 0.04);
-    border-color: rgba(199, 93, 93, 0.25);
+    background: rgba(224, 167, 156, 0.04);
+    border-color: rgba(224, 167, 156, 0.25);
   }
   .split-card.solution {
     background: var(--surface-elevated);
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(241, 234, 220, 0.18);
   }
   .split-card .head {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -494,10 +491,10 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     line-height: 1.3;
-    font-weight: 500;
+    font-weight: 800;
     color: var(--text);
     margin-bottom: 1rem;
-    font-style: italic;
+   
   }
   .split-card p {
     font-size: 15px;
@@ -532,11 +529,11 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     color: var(--text);
-    font-weight: 500;
+    font-weight: 800;
     margin-bottom: 0.75rem;
     line-height: 1.3;
   }
-  .approach-card h3 em { font-style: italic; color: var(--accent); }
+  .approach-card h3 em { color: var(--accent); }
   .approach-card p {
     font-size: 14px;
     line-height: 1.7;
@@ -575,22 +572,22 @@
   .cap-title {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 800;
     color: var(--text);
     line-height: 1.2;
   }
-  .cap-title em { font-style: italic; color: var(--accent); }
+  .cap-title em { color: var(--accent); }
   .cap-ai-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text);
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(241, 234, 220, 0.35);
     padding: 0.3rem 0.6rem;
     white-space: nowrap;
     flex-shrink: 0;
@@ -599,9 +596,9 @@
     content: '';
     width: 5px;
     height: 5px;
-    background: #FFFFFF;
+    background: #F1EADC;
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 6px rgba(241, 234, 220, 0.5);
   }
   .cap-desc {
     font-size: 14px;
@@ -639,7 +636,7 @@
   }
   .cap-pricing .label {
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 0.6875rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -649,7 +646,7 @@
     font-family: var(--font-display);
     font-size: 1.75rem;
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 800;
     line-height: 1;
     margin-bottom: 0.25rem;
   }
@@ -662,7 +659,7 @@
     text-transform: uppercase;
   }
   .cap-pricing .iva {
-    font-size: 10px;
+    font-size: 0.6875rem;
     color: var(--text-muted);
     margin-top: 0.5rem;
     font-family: var(--font-mono);
@@ -673,7 +670,7 @@
   /* Pauta sub-block (adyacente) */
   .pauta-block {
     border-top: 1px dashed var(--border-accent);
-    background: rgba(11, 13, 16, 0.5);
+    background: rgba(11, 10, 9, 0.5);
     padding: 1.25rem 1.75rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -685,7 +682,7 @@
   }
   .pauta-block .pauta-label {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
@@ -701,8 +698,8 @@
     font-family: var(--font-display);
     font-size: 1.15rem;
     color: var(--accent);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 700;
+   
     white-space: nowrap;
   }
 
@@ -728,17 +725,17 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     color: var(--text);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 800;
+   
   }
   .integral-header .badge {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text);
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(241, 234, 220, 0.35);
     padding: 0.4rem 0.7rem;
   }
 
@@ -775,8 +772,8 @@
     font-family: var(--font-display);
     font-size: 1.15rem;
     color: var(--text);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 700;
+   
     margin-bottom: 0.3rem;
     line-height: 1.25;
   }
@@ -815,7 +812,7 @@
   }
   .summary-block .lbl {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -825,8 +822,8 @@
     font-family: var(--font-display);
     font-size: 2.25rem;
     color: var(--accent);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 800;
+   
     line-height: 1;
     margin-bottom: 0.4rem;
   }
@@ -883,7 +880,7 @@
     background: var(--accent);
     color: var(--bg);
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 0.6875rem;
     letter-spacing: 0.25em;
     font-weight: 600;
     padding: 0.3rem 0.65rem;
@@ -892,13 +889,13 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     color: var(--text);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 800;
+   
     margin-bottom: 0.4rem;
   }
   .plan-tag {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -908,14 +905,14 @@
     font-family: var(--font-display);
     font-size: 2rem;
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 800;
     line-height: 1;
     margin-bottom: 0.4rem;
   }
   .plan-price .from {
     font-size: 0.55em;
     color: var(--text-muted);
-    font-style: italic;
+   
     margin-right: 0.4rem;
     font-weight: 400;
   }
@@ -963,7 +960,7 @@
   .pauta-disclaimer {
     background: var(--surface-elevated);
     border: 1px solid var(--border);
-    border-left: 3px solid #FFFFFF;
+    border-left: 3px solid #F1EADC;
     padding: 1.25rem 1.5rem;
     margin-top: 2rem;
     font-size: 13px;
@@ -992,13 +989,13 @@
     font-size: 3rem;
     color: var(--accent);
     font-weight: 500;
-    font-style: italic;
+   
     line-height: 1;
     margin-bottom: 0.4rem;
   }
   .horizon-card .day-label {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -1008,7 +1005,7 @@
     font-family: var(--font-display);
     font-size: 1.25rem;
     color: var(--text);
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.3;
   }
@@ -1043,7 +1040,7 @@
     font-family: var(--font-display);
     font-size: 2.5rem;
     line-height: 1.15;
-    font-weight: 400;
+    font-weight: 800;
     color: var(--text);
     margin-bottom: 2rem;
     max-width: 48rem;
@@ -1051,7 +1048,7 @@
     margin-right: auto;
   }
   @media (min-width: 768px) { .closing h2 { font-size: 3.5rem; } }
-  .closing h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .closing h2 em { color: var(--accent); font-weight: 500; }
   .closing p {
     font-size: 17px;
     color: var(--text-dim);
@@ -1075,7 +1072,7 @@
   }
   .contact-item .lbl {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -1085,8 +1082,8 @@
     font-size: 1.35rem;
     color: var(--accent);
     text-decoration: none;
-    font-style: italic;
-    font-weight: 500;
+   
+    font-weight: 700;
     border-bottom: 1px solid transparent;
     transition: border-color 0.3s;
   }
@@ -1097,10 +1094,10 @@
     padding: 2.5rem 1.5rem;
     text-align: center;
   }
-  .footer-logo img { height: 24px; opacity: 0.6; margin-bottom: 1rem; }
+  .footer-logo img { height: 34px; opacity: 0.85; margin-bottom: 1rem; }
   .footer-meta {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -1116,7 +1113,7 @@
   }
   .tag {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--text-dim);
@@ -1140,7 +1137,7 @@
   }
   .compare-card .head {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -1193,7 +1190,7 @@
   .typology-card:hover { background: var(--surface-elevated); }
   .typology-card .typ-label {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.6875rem;
     letter-spacing: 0.2em;
     color: var(--accent);
     margin-bottom: 0.75rem;
@@ -1202,8 +1199,8 @@
     font-family: var(--font-display);
     font-size: 1.25rem;
     color: var(--text);
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 700;
+   
     margin-bottom: 0.6rem;
     line-height: 1.25;
   }
@@ -1213,7 +1210,18 @@
     line-height: 1.6;
   }
 
-</style>
+.paragraph
+
+    /* Medida del sistema: el renglón se corta a 68 caracteres.
+       Más largo, el ojo pierde el salto de línea. */
+    ,
+    .cap-desc
+
+    /* Medida del sistema: el renglón se corta a 68 caracteres.
+       Más largo, el ojo pierde el salto de línea. */
+    ,
+    .cap-includes > li { max-width: 68ch; }
+  </style>
 </head>
 <body>
 
@@ -1221,7 +1229,7 @@
 <nav class="site-nav" id="site-nav">
   <div class="site-nav-inner">
     <a href="#top" class="site-nav-brand" aria-label="Sentido — inicio">
-      <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" />
     </a>
     <ul class="site-nav-links">
       <li><a href="#momento" data-nav>Momento</a></li>
@@ -1304,18 +1312,18 @@
       Costos de construcción presionados, financiamiento más caro, comprador más informado, ciclo de decisión más largo. El reto no termina al lanzar: empieza en <strong>preventa</strong>, sigue durante la <strong>comercialización con obra en marcha</strong> y se vuelve crítico en la <strong>absorción del inventario terminado</strong>. Cada etapa exige una calibración distinta del mismo motor &mdash; render, narrativa y pauta no se operan igual cuando vendes en planos que cuando cierras la última torre.
     </p>
 
-    <div class="cycle-grid reveal reveal-d1" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); border-radius: 4px;">
+    <div class="cycle-grid reveal reveal-d1" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; padding: 1.5rem; border: 1px solid rgba(241, 234, 220,0.08); background: rgba(241, 234, 220,0.02); border-radius: 4px;">
       <div>
-        <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 1 &middot; Preventa</div>
-        <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(255,255,255,0.65));">Vender en planos. Marca, render y storytelling de promesa que sostienen el ticket antes de obra negra.</div>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 1 &middot; Preventa</div>
+        <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(241, 234, 220,0.65));">Vender en planos. Marca, render y storytelling de promesa que sostienen el ticket antes de obra negra.</div>
       </div>
       <div>
-        <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 2 &middot; Operación</div>
-        <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(255,255,255,0.65));">Vender con obra en marcha. Avance visible, tours virtuales, showroom y contenido fresco que valida la promesa.</div>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 2 &middot; Operación</div>
+        <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(241, 234, 220,0.65));">Vender con obra en marcha. Avance visible, tours virtuales, showroom y contenido fresco que valida la promesa.</div>
       </div>
       <div>
-        <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 3 &middot; Absorción</div>
-        <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(255,255,255,0.65));">Cerrar inventario terminado. Reposicionamiento, urgencia, incentivos y reactivación de leads dormidos.</div>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 3 &middot; Absorción</div>
+        <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(241, 234, 220,0.65));">Cerrar inventario terminado. Reposicionamiento, urgencia, incentivos y reactivación de leads dormidos.</div>
       </div>
     </div>
 
@@ -1422,8 +1430,8 @@
       No es lo mismo preventa de vertical residencial en zona consolidada que lotificación en periferia. Cambia el ticket, el comprador, el ciclo y la estrategia de pauta. El sistema integral es el mismo &mdash; lo que cambia es el énfasis y la calibración por canal.
     </p>
 
-    <div class="stage-banner reveal reveal-d1" style="margin: 1.5rem 0 2rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--accent); background: rgba(255,255,255,0.03); border-radius: 0 4px 4px 0;">
-      <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Eje transversal &middot; Etapa del desarrollo</div>
+    <div class="stage-banner reveal reveal-d1" style="margin: 1.5rem 0 2rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--accent); background: rgba(241, 234, 220,0.03); border-radius: 0 4px 4px 0;">
+      <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Eje transversal &middot; Etapa del desarrollo</div>
       <div style="font-size: 15px; line-height: 1.55;">
         Aplicamos el mismo sistema en las <strong>tres etapas del ciclo</strong>: <em>preventa</em> (vender en planos), <em>operación</em> (vender con obra en marcha y avance visible) y <em>absorción</em> (cerrar inventario terminado y reactivar leads dormidos). Entramos en cualquiera &mdash; lo que cambia es la mezcla de pauta, narrativa y producción de contenido.
       </div>
@@ -2017,7 +2025,7 @@
 
 <footer class="footer">
   <div class="footer-logo">
-    <img src="/assets/logo-sentido-light.png" alt="Sentido" />
+    <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" />
   </div>
   <div class="footer-meta">
     Sentido Branding &amp; Advertising <span class="dot">&middot;</span> México 2026 <span class="dot">&middot;</span> Sistema integral para desarrolladores

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin · Sentido</title>
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
 <link rel="stylesheet" href="/assets/sentido-sistema.css" />
   <meta name="robots" content="noindex, nofollow">
   <style>
@@ -40,26 +42,26 @@
     .view.active { display: flex; }
 
     /* ── LOGIN ── */
-    #view-login { align-items: center; justify-content: center; background: radial-gradient(ellipse 60% 50% at 50% 0%, #1A1A24 0%, var(--bg) 70%); }
+    #view-login { align-items: center; justify-content: center; background: radial-gradient(ellipse 60% 50% at 50% 0%, #171410 0%, var(--bg) 70%); }
     .login-box { width: 100%; max-width: 380px; padding: 48px 40px; background: var(--surface); border: 1px solid var(--border); }
-    .login-logo { display: block; height: 32px; margin: 0 auto 40px; }
+    .login-logo { display: block; height: 72px; margin: 0 auto 40px; }
     .login-label { display: block; margin-bottom: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
     .login-input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border2); color: var(--text); font-family: var(--font-mono); font-size: 14px; outline: none; transition: border-color .15s; }
     .login-input:focus { border-color: var(--acento-dim); }
-    .login-btn { display: block; width: 100%; margin-top: 20px; padding: 14px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #1A1A1A; font-weight: 700; transition: opacity .15s; }
+    .login-btn { display: block; width: 100%; margin-top: 20px; padding: 14px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #0B0A09; font-weight: 700; transition: opacity .15s; }
     .login-btn:hover { opacity: .85; }
     .login-btn:disabled { opacity: .5; cursor: not-allowed; }
-    .login-error { margin-top: 14px; padding: 10px 14px; background: #3A1515; border-left: 3px solid #7A2B2B; font-size: 13px; color: #E88080; display: none; }
+    .login-error { margin-top: 14px; padding: 10px 14px; background: #4A2A26; border-left: 3px solid #E0A79C; font-size: 13px; color: #E0A79C; display: none; }
     .login-error.show { display: block; }
 
     /* ── DASHBOARD ── */
     #view-dash { flex-direction: column; }
     .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 20px; padding: 0 28px; height: 56px; background: var(--surface); border-bottom: 1px solid var(--border); }
-    .topbar-logo { height: 22px; }
+    .topbar-logo { height: 30px; }
     .topbar-sep { width: 1px; height: 20px; background: var(--border2); flex-shrink: 0; }
     .topbar-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
     .topbar-spacer { flex: 1; }
-    .topbar-add { padding: 7px 16px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #1A1A1A; font-weight: 700; transition: opacity .15s; }
+    .topbar-add { padding: 7px 16px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #0B0A09; font-weight: 700; transition: opacity .15s; }
     .topbar-add:hover { opacity: .85; }
     .topbar-logout { padding: 7px 14px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); transition: border-color .15s, color .15s; }
     .topbar-logout:hover { border-color: var(--acento-dim); color: var(--text); }
@@ -114,7 +116,7 @@
     .card-next-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); display: block; margin-bottom: 3px; }
     .card-foot { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-top: 1px solid var(--border); background: var(--surface2); }
     .card-seg { font-family: var(--font-mono); font-size: 10px; color: var(--muted); flex: 1; }
-    .card-seg.urgent { color: #E88080; }
+    .card-seg.urgent { color: #E0A79C; }
     .btn-ghost { padding: 6px 10px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: border-color .12s, color .12s; }
     .btn-ghost:hover { border-color: var(--acento-dim); color: var(--text); }
 
@@ -157,11 +159,11 @@
     .svc-group-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; display: block; }
     .svc-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; margin-bottom: 4px; border: 1px solid var(--border); background: var(--bg); cursor: pointer; transition: border-color .12s, background .12s; user-select: none; }
     .svc-item:hover { border-color: var(--border2); background: var(--surface2); }
-    .svc-item.checked { border-color: var(--acento-dim); background: rgba(201,184,150,.05); }
+    .svc-item.checked { border-color: var(--acento-dim); background: rgba(241, 234, 220,.05); }
     .svc-item-left { display: flex; align-items: center; gap: 10px; }
     .svc-check { width: 14px; height: 14px; border: 1px solid var(--border2); background: var(--bg); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .12s, border-color .12s; }
     .svc-item.checked .svc-check { background: var(--acento); border-color: var(--acento); }
-    .svc-check-mark { display: none; font-size: 9px; color: #1A1A1A; font-weight: 700; }
+    .svc-check-mark { display: none; font-size: 9px; color: #0B0A09; font-weight: 700; }
     .svc-item.checked .svc-check-mark { display: block; }
     .svc-name { font-size: 13px; color: var(--text); }
     .svc-price { font-family: var(--font-mono); font-size: 11px; color: var(--muted); flex-shrink: 0; }
@@ -183,7 +185,7 @@
     .bitacora-form { background: var(--bg); border: 1px solid var(--border2); padding: 14px; margin-bottom: 16px; }
     .bitacora-form-title { font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .bitacora-add-btn { margin-top: 10px; padding: 9px 16px; background: none; border: 1px solid var(--acento-dim); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--acento); transition: background .15s; }
-    .bitacora-add-btn:hover { background: rgba(201,184,150,.08); }
+    .bitacora-add-btn:hover { background: rgba(241, 234, 220,.08); }
     .bitacora-timeline { display: flex; flex-direction: column; }
     .bitacora-entry { display: flex; gap: 14px; position: relative; padding-bottom: 20px; }
     .bitacora-entry:last-child { padding-bottom: 0; }
@@ -201,7 +203,7 @@
     .bitacora-empty { font-size: 12px; color: var(--faint); }
 
     /* ── DRAWER FOOTER ── */
-    .btn-save { flex: 1; padding: 12px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #1A1A1A; font-weight: 700; transition: opacity .15s; }
+    .btn-save { flex: 1; padding: 12px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #0B0A09; font-weight: 700; transition: opacity .15s; }
     .btn-save:hover { opacity: .85; }
     .btn-save:disabled { opacity: .5; cursor: not-allowed; }
     .btn-cancel { padding: 12px 20px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); transition: border-color .15s, color .15s; }
@@ -280,7 +282,7 @@
 
 <div id="view-dash" class="view">
   <header class="topbar">
-    <img src="/assets/logo-sentido-light.png" alt="Sentido" class="topbar-logo">
+    <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" class="topbar-logo">
     <div class="topbar-sep"></div>
     <span class="topbar-title" id="topbar-title">Propuestas a prospectos</span>
     <div class="topbar-spacer"></div>

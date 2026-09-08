@@ -18,8 +18,10 @@ Cada pieza cae en uno de tres niveles. **Determínalo antes de diseñar nada.**
 
 ### 1 · Superficies institucionales de Sentido
 
-El sitio en `sitio/`, la hoja de espécimen, y cualquier pieza que represente a la
-agencia hablando de sí misma.
+El sitio en `sitio/`, la hoja de espécimen, el panel en `admin/`, los cinco
+activos comerciales (`propuestas/brochure`, `sitios-web-ia`,
+`reactivacion-ghl-resenas`, `desarrolladores`, `inmobiliarias`) y cualquier pieza
+que represente a la agencia hablando de sí misma.
 
 → **Sistema estricto.** `SISTEMA-VISUAL.md` manda: tinta y papel, Archivo con
 contraste de peso, buril como material, rombo como módulo. No se inventa paleta ni
@@ -99,6 +101,18 @@ tiene que estar presente en ella —decorativo o secundario— y al revés. Si e
 acomoda, va el logo completo. La regla es por composición, no por página: un logo
 completo en el pie no cubre un hero que muestra el nombre suelto.
 
+**Tamaño mínimo del completo: 72px de alto.** Debajo de eso la firma manuscrita
+se vuelve un borrón. En barras y pies (28–48px) va el nombre solo; nunca el
+completo encogido.
+
+**El favicon es del sistema**, no el isotipo suelto (que es negro sobre
+transparente y desaparece en la pestaña). Toda pieza declara:
+
+```html
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+```
+
 ---
 
 ## Cómo trabajar cada parte
@@ -149,6 +163,10 @@ renderizándolo con su propio CSS. Está escrita a mano, no la genera `build.py`
 - Verifica el render de verdad, no solo el código: captura escritorio y móvil.
 - Sin overflow horizontal ni errores de consola.
 - Contraste mínimo 4.5:1 en todo texto. Los tokens de hueso ya están calibrados.
+- Ningún texto por debajo de 0.6875rem (11px), ni las notas al pie.
+- Ninguna cursiva: Archivo no la trae y el navegador la sintetiza. El énfasis es
+  peso y color.
+- Ningún párrafo por arriba de 68 caracteres de medida.
 - Ningún texto en gris: lo secundario se tinta desde el hueso.
 - Si el trabajo es de identidad Sentido, contrástalo con la lista de rechazos de
   `SISTEMA-VISUAL.md`: sin tarjetas, sin íconos, sin monoespaciada de disfraz, sin

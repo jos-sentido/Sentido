@@ -211,6 +211,11 @@
 .apagado { color: var(--hueso-3); }
 .claro   { color: var(--hueso); }
 
+/* Archivo no trae cursiva. Cuando el navegador la pide la sintetiza: inclina
+   el trazo y deforma la letra. El énfasis del sistema es peso y color. */
+em, i, cite, dfn, address { font-style: normal; }
+em, i { font-weight: var(--fuerte); color: var(--hueso); }
+
 /* ═════════════ BOTONES Y ENLACES ═════════════
    Ninguna sombra lleva blur: la única del sistema es el desplazamiento
    de impresión del botón. */
