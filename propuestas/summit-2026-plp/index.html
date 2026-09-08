@@ -71,6 +71,25 @@
   .intro-cuerpo { color: var(--hueso-2); font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; }
   .intro-cuerpo + .intro-cuerpo { margin-top: 1.1em; }
 
+  /* Encabezado en dos columnas: texto + arte de campaña */
+  .hero-rej { display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 32vw, 420px); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .art { margin: 0; }
+  .artframe {
+    border: 1px solid rgba(241, 234, 220, 0.22);
+    background: #000;
+    padding: clamp(16px, 1.6vw, 24px);
+    display: flex; flex-direction: column; align-items: center;
+    gap: clamp(14px, 1.8vw, 22px);
+    box-shadow: 0 1px 0 0 rgba(241, 234, 220, 0.08);
+  }
+  .artframe .art-word { width: min(74%, 290px); height: auto; }
+  .artframe .art-key { width: 100%; height: auto; display: block; }
+  .art figcaption { margin-top: 13px; color: var(--hueso-4); }
+  @media (max-width: 900px) {
+    .hero-rej { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 48px); }
+    .art { max-width: 420px; }
+  }
+
   /* Menú de secciones — 7 enlaces, gap ajustado para que quepan */
   .nav-links { gap: clamp(15px, 1.6vw, 30px); }
 
@@ -122,6 +141,8 @@
 <header class="portada portada--int" id="top">
   <div class="buril"></div>
   <div class="wrap">
+   <div class="hero-rej">
+    <div class="hero-col">
     <span class="rotulo">Estrategia de pauta · Uso interno / cliente</span>
     <h1 style="margin-top:20px;">
       <span class="ligera">Un empuje de</span><br>
@@ -157,6 +178,16 @@
         <span class="dev">Península Mazatlán</span>
       </div>
     </div>
+    </div><!-- /hero-col -->
+
+    <figure class="art">
+      <div class="artframe">
+        <img class="art-word" src="/assets/summit-2026-wordmark.png" alt="Summit 2026" />
+        <img class="art-key" src="/assets/summit-2026-key.png" alt="Arte de campaña Summit 2026 — desarrollos de Península Lifestyle Properties" loading="lazy" />
+      </div>
+      <figcaption class="rotulo">Arte de campaña · Summit 2026</figcaption>
+    </figure>
+   </div><!-- /hero-rej -->
   </div>
 </header>
 
