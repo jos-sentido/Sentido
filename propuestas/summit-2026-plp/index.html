@@ -71,23 +71,48 @@
   .intro-cuerpo { color: var(--hueso-2); font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; }
   .intro-cuerpo + .intro-cuerpo { margin-top: 1.1em; }
 
-  /* Encabezado en dos columnas: texto + arte de campaña */
-  .hero-rej { display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 32vw, 420px); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  /* Encabezado en dos columnas: texto + carrusel de artes por desarrollo */
+  .hero-rej { display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 32vw, 400px); gap: clamp(32px, 5vw, 72px); align-items: start; }
   .art { margin: 0; }
   .artframe {
     border: 1px solid rgba(241, 234, 220, 0.22);
     background: #000;
-    padding: clamp(16px, 1.6vw, 24px);
-    display: flex; flex-direction: column; align-items: center;
-    gap: clamp(14px, 1.8vw, 22px);
+    padding: clamp(12px, 1.4vw, 18px);
     box-shadow: 0 1px 0 0 rgba(241, 234, 220, 0.08);
   }
-  .artframe .art-word { width: min(74%, 290px); height: auto; }
-  .artframe .art-key { width: 100%; height: auto; display: block; }
   .art figcaption { margin-top: 13px; color: var(--hueso-4); }
+
+  /* Carrusel */
+  .galeria { width: 100%; }
+  .visor { position: relative; }
+  .marcos { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #000; }
+  .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 0.4s var(--ease); }
+  .slide.activa { opacity: 1; visibility: visible; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; background: var(--tinta-2); }
+  .ph .buril { position: absolute; --ang: 104deg; --paso: 5px; --tono: 0.12; }
+  .ph > *:not(.buril) { position: relative; }
+  .ph-dev { font-family: var(--archivo); font-weight: var(--negra); font-size: clamp(1.25rem, 2.4vw, 1.625rem); color: var(--hueso); letter-spacing: -0.02em; text-align: center; }
+  .ph-tag { font-weight: 700; font-size: 0.625rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hueso-4); }
+  .ph .rombo { position: absolute; top: 18px; right: 18px; }
+  .gnav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    width: 38px; height: 38px; border: 1px solid var(--linea-2);
+    background: rgba(11, 10, 9, 0.55); color: var(--hueso); font-size: 1.375rem; line-height: 1;
+    cursor: pointer; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .gnav:hover { border-color: var(--hueso); background: rgba(11, 10, 9, 0.8); }
+  .gprev { left: 8px; } .gnext { right: 8px; }
+  .tira { display: flex; gap: 7px; margin-top: 10px; overflow-x: auto; scrollbar-width: none; }
+  .tira::-webkit-scrollbar { display: none; }
+  .mini { flex: 0 0 auto; width: 44px; aspect-ratio: 3 / 4; padding: 0; border: 1px solid var(--linea-2); background: var(--tinta-2); cursor: pointer; overflow: hidden; opacity: 0.5; transition: opacity 0.2s var(--ease), border-color 0.2s var(--ease); }
+  .mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mini.activa, .mini:hover { opacity: 1; border-color: var(--hueso); }
+  .mini-ph { display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--archivo); font-weight: 700; font-size: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--hueso-3); line-height: 1.15; padding: 2px; }
   @media (max-width: 900px) {
     .hero-rej { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 48px); }
-    .art { max-width: 420px; }
+    .art { max-width: 380px; }
   }
 
   /* Menú de secciones — 7 enlaces, gap ajustado para que quepan */
@@ -163,7 +188,7 @@
       </div>
       <div>
         <span class="rotulo">Alcance</span>
-        <span class="val">6 desarrollos · Meta Ads</span>
+        <span class="val">7 desarrollos · Meta Ads</span>
       </div>
     </div>
 
@@ -175,6 +200,7 @@
         <span class="dev">Amancay</span>
         <span class="dev">Bolongo</span>
         <span class="dev">Bolongo Lotes</span>
+        <span class="dev">Heredit</span>
         <span class="dev">Península Mazatlán</span>
       </div>
     </div>
@@ -182,10 +208,32 @@
 
     <figure class="art">
       <div class="artframe">
-        <img class="art-word" src="/assets/summit-2026-wordmark.png" alt="Summit 2026" />
-        <img class="art-key" src="/assets/summit-2026-key.png" alt="Arte de campaña Summit 2026 — desarrollos de Península Lifestyle Properties" loading="lazy" />
+        <div class="galeria" id="galeria" aria-roledescription="carrusel" aria-label="Artes de campaña Summit 2026 por desarrollo">
+          <div class="visor">
+            <button class="gnav gprev" type="button" aria-label="Arte anterior">‹</button>
+            <div class="marcos">
+              <div class="slide activa"><img data-src="/assets/summit-essentia.jpg" alt="Arte Summit 2026 — Essentia" /></div>
+              <div class="slide"><img data-src="/assets/summit-brelia.jpg" alt="Arte Summit 2026 — Brelia Residences" /></div>
+              <div class="slide"><img data-src="/assets/summit-amancay.jpg" alt="Arte Summit 2026 — Amancay Nuevo Vallarta" /></div>
+              <div class="slide"><img data-src="/assets/summit-mazatlan.jpg" alt="Arte Summit 2026 — Península Mazatlán" /></div>
+              <div class="slide"><div class="ph"><div class="buril"></div><span class="rombo"></span><span class="ph-dev">Heredit</span><span class="ph-tag">Arte en producción</span></div></div>
+              <div class="slide"><div class="ph"><div class="buril"></div><span class="rombo"></span><span class="ph-dev">Bolongo</span><span class="ph-tag">Arte en producción</span></div></div>
+              <div class="slide"><div class="ph"><div class="buril"></div><span class="rombo"></span><span class="ph-dev">Bolongo Lotes</span><span class="ph-tag">Arte en producción</span></div></div>
+            </div>
+            <button class="gnav gnext" type="button" aria-label="Arte siguiente">›</button>
+          </div>
+          <div class="tira">
+            <button class="mini activa" type="button" data-i="0" aria-label="Essentia"><img src="/assets/summit-essentia-thumb.jpg" alt="" /></button>
+            <button class="mini" type="button" data-i="1" aria-label="Brelia"><img src="/assets/summit-brelia-thumb.jpg" alt="" /></button>
+            <button class="mini" type="button" data-i="2" aria-label="Amancay"><img src="/assets/summit-amancay-thumb.jpg" alt="" /></button>
+            <button class="mini" type="button" data-i="3" aria-label="Península Mazatlán"><img src="/assets/summit-mazatlan-thumb.jpg" alt="" /></button>
+            <button class="mini mini-ph" type="button" data-i="4" aria-label="Heredit">Heredit</button>
+            <button class="mini mini-ph" type="button" data-i="5" aria-label="Bolongo">Bolongo</button>
+            <button class="mini mini-ph" type="button" data-i="6" aria-label="Bolongo Lotes">B.&nbsp;Lotes</button>
+          </div>
+        </div>
       </div>
-      <figcaption class="rotulo">Arte de campaña · Summit 2026</figcaption>
+      <figcaption class="rotulo"><span id="gcap">Essentia</span> · Arte de campaña Summit 2026</figcaption>
     </figure>
    </div><!-- /hero-rej -->
   </div>
@@ -453,6 +501,37 @@
         btn.setAttribute('aria-expanded', 'false');
       });
     });
+  })();
+
+  // Carrusel de artes por desarrollo.
+  (function () {
+    var g = document.getElementById('galeria');
+    if (!g) return;
+    var slides = [].slice.call(g.querySelectorAll('.slide'));
+    var minis = [].slice.call(g.querySelectorAll('.mini'));
+    var cap = document.getElementById('gcap');
+    var nombres = ['Essentia', 'Brelia', 'Amancay', 'Península Mazatlán', 'Heredit', 'Bolongo', 'Bolongo Lotes'];
+    var cur = 0;
+    function cargar(i) {
+      var im = slides[i] && slides[i].querySelector('img[data-src]');
+      if (im) { im.src = im.getAttribute('data-src'); im.removeAttribute('data-src'); }
+    }
+    function ir(i) {
+      i = (i + slides.length) % slides.length;
+      slides[cur].classList.remove('activa');
+      minis[cur].classList.remove('activa');
+      minis[cur].removeAttribute('aria-current');
+      cur = i;
+      slides[cur].classList.add('activa');
+      minis[cur].classList.add('activa');
+      minis[cur].setAttribute('aria-current', 'true');
+      if (cap) cap.textContent = nombres[cur];
+      cargar(cur); cargar((cur + 1) % slides.length);
+    }
+    g.querySelector('.gprev').addEventListener('click', function () { ir(cur - 1); });
+    g.querySelector('.gnext').addEventListener('click', function () { ir(cur + 1); });
+    minis.forEach(function (m, i) { m.addEventListener('click', function () { ir(i); }); });
+    cargar(0); cargar(1);
   })();
 </script>
 </body>
