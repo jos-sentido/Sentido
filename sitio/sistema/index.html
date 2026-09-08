@@ -63,7 +63,7 @@
   <!-- COLOR -->
   <section class="esp">
     <div class="wrap">
-      <span class="rotulo">01 · Color</span>
+      <span class="rotulo">Color</span>
       <h2>Dos materiales: tinta y papel.</h2>
       <p class="cuerpo apagado">Nunca negro puro ni blanco puro. Cada valor de texto trae su contraste medido contra la tinta.</p>
 
@@ -90,7 +90,7 @@
   <!-- TIPOGRAFÍA -->
   <section class="esp">
     <div class="wrap">
-      <span class="rotulo">02 · Tipografía</span>
+      <span class="rotulo">Tipografía</span>
       <h2>Una familia. El contraste es de peso.</h2>
       <p class="cuerpo apagado">Archivo variable, 100–900. El titular de dos pesos y la caja hueso vienen del feed real de la marca.</p>
 
@@ -124,15 +124,42 @@
   <!-- BURIL -->
   <section class="esp">
     <div class="wrap">
-      <span class="rotulo">03 · El material</span>
-      <h2>Trama de buril.</h2>
-      <p class="cuerpo apagado">Cinco propiedades fijadas por contexto. La densidad es el énfasis: para destacar se sube <code>--tono</code>, nunca se añade sombra.</p>
+      <span class="rotulo">El material</span>
+      <h2>Cuatro registros de buril.</h2>
+      <p class="cuerpo apagado">El grabado del isotipo tiene tres tipos de trazo, y cada uno cumple una función distinta: <strong>recto</strong> para reposo y estructura, <strong>arco</strong> para atmósfera, <strong>iris</strong> para interacción y estado. Todos comparten <code>--peso</code>, <code>--paso</code>, <code>--tono</code> y <code>--trazo</code>.</p>
 
       <div class="rej rej-4">
-        <div class="celda"><div class="campo"><div class="buril" style="--ang:90deg;--paso:5px;--tono:.16"></div></div><div class="dato"><b>Base</b>90° · paso 5px · tono .16</div></div>
-        <div class="celda"><div class="campo"><div class="buril" style="--ang:90deg;--paso:3px;--peso:.9px;--tono:.26"></div></div><div class="dato"><b>Denso</b>90° · paso 3px · tono .26</div></div>
-        <div class="celda"><div class="campo"><div class="buril" style="--ang:118deg;--paso:5px;--tono:.16"></div></div><div class="dato"><b>Inclinado</b>118° · paso 5px</div></div>
-        <div class="celda"><div class="campo"><div class="buril" style="--ang:104deg;--paso:5px;--tono:.2;-webkit-mask-image:linear-gradient(115deg,#000,transparent 70%);mask-image:linear-gradient(115deg,#000,transparent 70%)"></div></div><div class="dato"><b>Abierto</b>enmascarado, como en el grabado</div></div>
+        <div class="celda"><div class="campo"><div class="buril" style="--ang:90deg;--paso:5px;--tono:.18"></div></div><div class="dato"><b>Recto</b>El campo base. Reposo y estructura.</div></div>
+        <div class="celda"><div class="campo"><div class="buril buril--arco" style="--foco:50% 190%;--rx:210%;--ry:140%;--paso:5px;--tono:.20"></div></div><div class="dato"><b>Arco</b>Los trazos del párpado. Superficies atmosféricas.</div></div>
+        <div class="celda"><div class="campo"><div class="buril buril--iris" style="--foco:-14% 50%;--salto:1.15deg;--radio:.22deg;--tono:.20"></div></div><div class="dato"><b>Iris</b>Los radios de la pupila. Interacción y estado.</div></div>
+        <div class="celda"><div class="campo"><div class="buril buril--anillo" style="--foco:50% 118%;--paso:8px;--tono:.20"></div></div><div class="dato"><b>Anillo</b>Los círculos que rodean la pupila.</div></div>
+      </div>
+
+      <p class="cuerpo apagado" style="margin:30px 0 18px">
+        Dos cosas que el recurso exige. El foco vive <strong>fuera del encuadre</strong> salvo
+        cuando el centro es el sujeto, como en el ojo: dentro genera un artefacto de
+        convergencia. Y el salto angular <strong>se calibra al tamaño del elemento</strong>:
+        el mismo valor que en una fila ancha lee como grabado, en una caja chica produce muaré.
+        La onda sinusoidal existe como recurso, pero los arcos son más fieles al trazo del logo.
+      </p>
+
+      <div class="rej rej-3">
+        <div class="celda"><div class="campo"><div class="buril buril--iris" style="--foco:50% 50%;--salto:2.2deg;--radio:.34deg;--tono:.24"></div></div><div class="dato"><b>Iris centrado</b>Solo cuando el centro es el sujeto.</div></div>
+        <div class="celda"><div class="campo"><div class="buril buril--onda" style="--largo:60px;--alto:14px;--tono:.20"></div></div><div class="dato"><b>Onda</b>Sinusoide por máscara. Disponible, poco usada.</div></div>
+        <div class="celda" style="position:relative;overflow:hidden">
+          <div class="buril buril--arco" style="--foco:50% 200%;--rx:240%;--ry:150%;--paso:5px;--tono:.19"></div>
+          <div class="dato" style="position:relative"><b>Trazo de tinta</b>Con <code>--trazo</code>, el mismo campo se graba en cualquiera de los dos sentidos.</div>
+        </div>
+      </div>
+
+      <p class="cuerpo apagado" style="margin:34px 0 16px"><strong>El estado es de iris.</strong> Al pasar el cursor sobre una fila no se ilumina ni se eleva: se abre un abanico de radios. Pasa el cursor sobre estas dos:</p>
+      <div class="plancha">
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Estado</span><h3>Pasa el cursor</h3></div>
+          <div><p>El abanico entra en 0.45s y no se acompaña de sombra, escala ni cambio de fondo.</p></div>
+          <div class="ver">Ver</div>
+        </div>
       </div>
     </div>
   </section>
@@ -140,7 +167,7 @@
   <!-- ROMBO Y LOGO -->
   <section class="esp">
     <div class="wrap">
-      <span class="rotulo">04 · El módulo y la marca</span>
+      <span class="rotulo">El módulo y la marca</span>
       <h2>El rombo hace lo que harían los íconos.</h2>
 
       <div class="rej rej-3">
@@ -171,7 +198,7 @@
   <!-- COMPONENTES -->
   <section class="esp">
     <div class="wrap">
-      <span class="rotulo">05 · Componentes</span>
+      <span class="rotulo">Componentes</span>
       <h2>Filas grabadas, no tarjetas.</h2>
 
       <div class="plancha" style="margin-bottom:38px">
@@ -206,7 +233,7 @@
   <!-- RECHAZOS -->
   <section class="esp">
     <div class="wrap">
-      <span class="rotulo">06 · Lo que el sistema rechaza</span>
+      <span class="rotulo">Lo que el sistema rechaza</span>
       <h2>Cada ausencia es una decisión.</h2>
       <div class="cols cols-2" style="margin-top:36px">
         <div>

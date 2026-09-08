@@ -106,7 +106,7 @@ def cierre(titulo, texto, sec=None):
     return f"""<section class="seccion">
   <div class="wrap">
     <div class="cierre">
-      <div class="buril"></div>
+      <div class="buril buril--arco"></div>
       <h2>{titulo}</h2>
       <p>{texto}</p>
       <div class="acciones">
@@ -122,7 +122,7 @@ def cierre(titulo, texto, sec=None):
 def pie():
     servs = "".join(f'<li><a href="{BASE}/servicios/{x["slug"]}">{x["short"]}</a></li>' for x in SERVICES)
     return f"""<footer class="pie">
-  <div class="buril"></div>
+  <div class="buril buril--arco"></div>
   <div class="wrap">
     <div class="pie-alto">
       <div class="pie-marca">
@@ -575,7 +575,7 @@ def ojo(clase=""):
         <div class="ojo-rombo r3"></div>
         <div class="ojo-rombo r2"></div>
         <div class="ojo-rombo r1"></div>
-        <div class="ojo-trama"><div class="buril"></div></div>
+        <div class="ojo-trama"><div class="buril buril--iris"></div></div>
         <div class="ojo-img" role="img" aria-label="Sentido"></div>
       </div>"""
 
@@ -586,7 +586,7 @@ def franja_capas():
         <div class="buril"></div>
         <span class="rombo"></span>
         <div class="capa-n">Capa {n}</div>
-        <h3>{t}</h3>
+        <h2 class="capa-t">{t}</h2>
         <p>{tag}</p>
       </article>""" for i, (n, t, tag, _) in enumerate(LAYERS)) + '</div>'
 
@@ -652,7 +652,7 @@ def build_home():
     pasos = "".join(f"""
       <div class="paso">
         <div class="paso-n">{n}</div>
-        <div><h4>{t}</h4><p>{b}</p><span class="rotulo">{meta}</span></div>
+        <div><h3 class="paso-t">{t}</h3><p>{b}</p><span class="rotulo">{meta}</span></div>
       </div>""" for n, t, meta, b in ONBOARDING)
 
     html = head(
@@ -663,7 +663,7 @@ def build_home():
 <main id="main">
 
   <section class="portada">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <h1><span class="ligera">No se trata de hacer<br />más publicidad.</span><br />Se trata del <span class="alta">sistema</span><br />que lo vuelve negocio.</h1>
@@ -717,7 +717,7 @@ def build_home():
   </section>
 
   <section class="declara">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="wrap">
       <p>Tu producto ya está listo. <span class="tenue">Tu mercado ya está esperando.</span> Falta el sistema que los conecta.</p>
     </div>
@@ -782,13 +782,13 @@ def build_metodo():
     practicas = "".join(f"""
       <div class="paso">
         <div class="paso-n">{n}</div>
-        <div><h4>{t}</h4><p>{b}</p><span class="rotulo">{meta}</span></div>
+        <div><h3 class="paso-t">{t}</h3><p>{b}</p><span class="rotulo">{meta}</span></div>
       </div>""" for n, t, meta, b in PROCESS)
 
     arranque = "".join(f"""
       <div class="paso">
         <div class="paso-n">{n}</div>
-        <div><h4>{t}</h4><p>{b}</p><span class="rotulo">{meta}</span></div>
+        <div><h3 class="paso-t">{t}</h3><p>{b}</p><span class="rotulo">{meta}</span></div>
       </div>""" for n, t, meta, b in ONBOARDING)
 
     principios = "".join(f"""
@@ -814,7 +814,7 @@ def build_metodo():
 <main id="main">
 
   <section class="portada portada--int">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <h1><span class="ligera">El sistema,</span><br />en cuatro <span class="alta">capas</span>.</h1>
@@ -842,7 +842,7 @@ def build_metodo():
   </section>
 
   <section class="declara">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="wrap">
       <p>Construir en desorden <span class="tenue">es la causa número uno</span> de presupuesto desperdiciado.</p>
     </div>
@@ -912,7 +912,7 @@ def build_servicios_index():
 <main id="main">
 
   <section class="portada portada--int">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <h1><span class="ligera">Lo que componemos</span><br />en cada <span class="alta">capa</span>.</h1>
@@ -926,7 +926,10 @@ def build_servicios_index():
   </section>
 
   <section class="seccion seccion--regla">
-    <div class="wrap"><div class="plancha">{filas}</div></div>
+    <div class="wrap">
+      <h2 class="oculto">Los siete módulos</h2>
+      <div class="plancha">{filas}</div>
+    </div>
   </section>
 
   <section class="seccion">
@@ -1007,12 +1010,12 @@ def build_servicio(x):
 <main id="main">
 
   <section class="portada portada--int">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <p style="margin-bottom:20px"><a class="rotulo" href="{BASE}/servicios">← Servicios</a></p>
-        <span class="rotulo">{x['tag']} · {x['tag2']}</span>
-        <h1 style="margin-top:18px">{x['name']}</h1>
+        <h1>{x['name']}</h1>
+        <p class="rotulo" style="margin-top:20px">{x['tag']} · {x['tag2']}</p>
         <p class="sub">{x['lede']}</p>
         <div class="acciones">
           <a class="boton" href="{BASE}/contacto">Cotizar este módulo <span class="fl">→</span></a>
@@ -1112,7 +1115,7 @@ def build_casos():
 <main id="main">
 
   <section class="portada portada--int">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <h1><span class="ligera">Dónde ya operamos</span><br />el sistema <span class="alta">completo</span>.</h1>
@@ -1189,7 +1192,7 @@ def build_blog_index():
 <main id="main">
 
   <section class="portada portada--int">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <h1><span class="ligera">Notas desde</span><br />la <span class="alta">operación</span>.</h1>
@@ -1202,7 +1205,10 @@ def build_blog_index():
   </section>
 
   <section class="seccion seccion--regla">
-    <div class="wrap"><div class="notas">{filas}</div></div>
+    <div class="wrap">
+      <h2 class="oculto">Todas las notas</h2>
+      <div class="notas">{filas}</div>
+    </div>
   </section>
 
 </main>
@@ -1239,9 +1245,10 @@ def build_post(p):
     <div class="buril"></div>
     <div class="angosto" style="max-width:760px">
       <p style="margin-bottom:20px"><a class="rotulo" href="{BASE}/blog">← Blog</a></p>
-      <span class="rotulo">{p['cat']} · {p['read']} de lectura</span>
-      <h1 style="font-size:clamp(2rem,4.6vw,3.5rem);margin-top:20px">{p['title']}</h1>
-      <p class="rotulo" style="margin-top:24px"><time datetime="{p['date']}">{p['date_h']}</time></p>
+      <h1 style="font-size:clamp(2rem,4.6vw,3.5rem)">{p['title']}</h1>
+      <p class="rotulo" style="margin-top:22px">
+        <time datetime="{p['date']}">{p['date_h']}</time> · {p['cat']} · {p['read']} de lectura
+      </p>
     </div>
   </section>
 
@@ -1282,7 +1289,7 @@ def build_contacto():
     pasos = "".join(f"""
       <div class="paso">
         <div class="paso-n">{n}</div>
-        <div><h4 style="font-size:1.0625rem">{t}</h4><p style="font-size:.875rem">{b}</p><span class="rotulo">{meta}</span></div>
+        <div><h3 class="paso-t" style="font-size:1.0625rem">{t}</h3><p style="font-size:.875rem">{b}</p><span class="rotulo">{meta}</span></div>
       </div>""" for n, t, meta, b in ONBOARDING)
 
     html = head(
@@ -1293,7 +1300,7 @@ def build_contacto():
 <main id="main">
 
   <section class="portada portada--int">
-    <div class="buril"></div>
+    <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
         <h1><span class="ligera">Cuéntanos qué</span><br />estás <span class="alta">resolviendo</span>.</h1>
@@ -1310,7 +1317,7 @@ def build_contacto():
       <div class="cols cols-fija">
 
         <div class="pegado">
-          <span class="rotulo">Qué pasa después</span>
+          <h2 class="rotulo">Qué pasa después</h2>
           <div class="pasos" style="margin-top:20px">{pasos}</div>
           <div style="margin-top:28px">
             <span class="rotulo">Directo</span>
