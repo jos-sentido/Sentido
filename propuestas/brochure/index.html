@@ -161,7 +161,6 @@
     color: var(--accent);
     border: 1px solid var(--accent-dim);
     padding: 8px 14px;
-    border-radius: 999px;
     background: var(--accent-glow);
     transition: background 0.25s ease, border-color 0.25s ease;
   }
@@ -169,6 +168,9 @@
   .nav-link.nav-cta::after { display: none; }
 
   /* ================= LAYOUT ================= */
+  section { position: relative; overflow: hidden; }
+  section > .buril { --trazo: var(--accent); }
+  .container { position: relative; }
   .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -212,6 +214,14 @@
     font-weight: 500;
   }
 
+  .pleca {
+    width: 56px;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 6px);
+    opacity: 0.45;
+    margin-bottom: 26px;
+  }
+
   .section-number {
     font-family: var(--font-mono);
     font-size: 0.75rem;
@@ -223,8 +233,8 @@
 
   .section-title {
     margin-bottom: 48px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
+    
+    
     display: flex;
     align-items: baseline;
     gap: 24px;
@@ -310,7 +320,6 @@
     color: var(--text-dim);
     padding: 8px 14px;
     border: 1px solid var(--border);
-    border-radius: 999px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -318,9 +327,7 @@
 
   .status-dot {
     width: 6px; height: 6px;
-    border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
     animation: pulse 2s ease-in-out infinite;
   }
 
@@ -443,24 +450,9 @@
   }
 
   /* ================= MÉTODO (LAYER STACK) ================= */
-  .layer-stack {
-    margin-top: 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
+  .layer-stack { margin-top: 64px; border-top: 1px solid var(--border); }
 
-  .layer {
-    background: var(--surface);
-    padding: 40px 48px;
-    display: grid;
-    grid-template-columns: 80px 240px 1fr;
-    gap: 40px;
-    align-items: center;
-    transition: background 0.3s ease;
-  }
+  .layer { padding: clamp(26px, 3vw, 38px) 0; display: grid; grid-template-columns: 80px 240px 1fr; gap: clamp(20px, 3.4vw, 40px); align-items: baseline; border-bottom: 1px solid var(--border); position: relative; transition: background 0.3s ease; }
 
   .layer:hover { background: var(--surface-elevated); }
 
@@ -497,31 +489,58 @@
   }
 
   /* ================= SERVICIOS ================= */
+  /* ── EL LISTADO ──
+     Plancha de renglones, no rejilla de tarjetas: es el mismo componente que
+     la página de servicios del sitio. La regla al ancho separa, el buril da
+     el material y el estado es el abanico del iris. */
   .services {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
     margin-top: 48px;
+    border-top: 1px solid var(--border);
   }
 
   .service {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 72px;
+    grid-template-rows: auto auto 1fr;
+    column-gap: clamp(20px, 3.4vw, 48px);
+    padding: clamp(26px, 3vw, 38px) 0;
+    border-bottom: 1px solid var(--border);
     position: relative;
-    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
   }
+  .service > * { position: relative; }
 
-  .service:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
-
-  .service-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 24px;
+  /* El buril, sin markup extra */
+  .service::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(90deg,
+      var(--accent) 0 0.6px, transparent 0.6px 7px);
+    opacity: 0.05;
   }
+  /* El estado es de iris: se abre desde fuera del encuadre */
+  .service::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-conic-gradient(from 0deg at -55% 50%,
+      var(--accent) 0deg 0.08deg, transparent 0.08deg 0.4deg);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .service:hover::after { opacity: 0.16; }
+
+  /* La cabeza reparte sus hijos en el renglón en vez de encajonarlos */
+  .service-head { display: contents; }
+  .service-price-head { grid-column: 1; grid-row: 1; margin-bottom: 14px; }
+  .service-title      { grid-column: 1; grid-row: 2; }
+  .service-lede       { grid-column: 2; grid-row: 1 / 3; }
+  .service-items      { grid-column: 2; grid-row: 3; }
+  .service-tag        { grid-column: 1; grid-row: 3; align-self: start; }
+  .service-letter     { grid-column: 3; grid-row: 1 / 4; text-align: right; }
 
   .service-letter {
     font-family: var(--font-display);
@@ -532,7 +551,7 @@
     color: var(--accent-dim);
   }
 
-  .service-price-head { text-align: right; }
+  .service-price-head { text-align: left; }
 
   .service-category {
     font-family: var(--font-mono);
@@ -563,16 +582,7 @@
   }
 
   /* Pauta inline note within Capacidades */
-  .pauta-inline {
-    grid-column: 1 / -1;
-    background: var(--surface-ghost);
-    border: 1px dashed var(--border-strong);
-    padding: 32px 36px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-    align-items: start;
-  }
+  .pauta-inline { grid-column: 1 / -1; border-top: 1px solid var(--border-strong); padding: 30px 0 4px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr); gap: clamp(20px, 3.4vw, 44px); align-items: baseline; }
 
   .pauta-inline-label {
     font-family: var(--font-mono);
@@ -638,9 +648,8 @@
     font-size: 1rem;
     color: var(--text-dim);
     line-height: 1.5;
-    padding-bottom: 24px;
+    
     margin-bottom: 24px;
-    border-bottom: 1px solid var(--border);
   }
 
   .service-items { list-style: none; padding: 0; }
@@ -656,26 +665,25 @@
   .service-items li::before {
     content: '';
     position: absolute;
-    left: 0; top: 17px;
-    width: 8px; height: 1px;
-    background: var(--accent);
+    left: 0; top: 14px;
+    width: 6px; height: 6px; border: 1px solid var(--text-faint); transform: rotate(45deg);
+    
   }
 
   .service-tag {
     display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em; font-weight: 700;
     text-transform: uppercase;
-    color: var(--accent);
-    padding: 4px 10px;
-    border: 1px solid var(--accent-dim);
+    color: var(--text-faint);
+    
     margin-top: 24px;
     align-self: flex-start;
   }
 
   /* Service que ocupa fila completa (G · Sitio Web teaser, F · Branding) */
-  .service.full { grid-column: 1 / -1; }
+
 
   /* ================= WEB TABS ================= */
   .web-tabs {
@@ -1281,20 +1289,9 @@
   .vivo-foundation-sep { color: var(--text-faint); }
 
   /* IA Pillars */
-  .ia-pillars {
-    margin-top: 72px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
+  .ia-pillars { margin-top: 72px; border-top: 1px solid var(--border); }
 
-  .ia-pillar {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 36px 32px;
-    position: relative;
-    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
+  .ia-pillar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); column-gap: clamp(20px, 3.4vw, 48px); padding: clamp(24px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--border); position: relative; }
 
   .ia-pillar:hover {
     border-color: var(--accent-dim);
@@ -1320,7 +1317,7 @@
     letter-spacing: 0.22em;
     color: var(--accent);
     margin-bottom: 14px;
-  }
+   grid-column: 1; grid-row: 1; }
 
   .ia-pillar-title {
     font-family: var(--font-display);
@@ -1329,13 +1326,13 @@
     color: var(--text);
     margin-bottom: 14px;
     line-height: 1.3;
-  }
+   grid-column: 1; grid-row: 2; }
 
   .ia-pillar-desc {
     color: var(--text-dim);
     font-size: 0.9375rem;
     line-height: 1.65;
-  }
+   grid-column: 2; grid-row: 1 / 3; }
 
   @media (max-width: 900px) {
     .vivo-nodes { grid-template-columns: 1fr; gap: 12px; }
@@ -1493,23 +1490,10 @@
   }
 
   /* ================= ARRANCAMOS (4 steps) ================= */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 48px;
-  }
+  .step:last-child { border-right: none; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 56px; }
 
-  .step {
-    background: var(--surface);
-    padding: 40px 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    transition: background 0.3s ease;
-  }
+  .step { padding: 34px clamp(18px, 2vw, 28px) 40px; display: flex; flex-direction: column; gap: 16px; border-right: 1px solid var(--border); position: relative; transition: background 0.3s ease; }
 
   .step:hover { background: var(--surface-elevated); }
 
@@ -1806,7 +1790,6 @@
     background: var(--accent);
     z-index: 200;
     transition: width 0.08s linear;
-    box-shadow: 0 0 12px var(--accent);
     pointer-events: none;
   }
 
@@ -1847,7 +1830,6 @@
     pointer-events: none;
     width: 600px;
     height: 600px;
-    border-radius: 50%;
     background: repeating-conic-gradient(from 0deg at 50% 50%,
       var(--accent) 0deg 0.35deg,
       transparent 0.35deg 2.4deg);
@@ -2113,8 +2095,10 @@
     .layer { grid-template-columns: 60px 1fr; gap: 24px; padding: 28px 24px; }
     .layer-name { font-size: 1.25rem; grid-column: 2 / 3; }
     .layer-desc { grid-column: 2 / 3; }
-    .services { grid-template-columns: 1fr; }
-    .service.full { grid-column: auto; }
+    .services .service { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+    .service > * { grid-column: 1 !important; grid-row: auto !important; }
+    .service-letter { text-align: left !important; }
+    
 
     .web-tabs { grid-template-columns: 1fr; min-height: 0; }
     .web-tabs-nav {
@@ -2288,10 +2272,11 @@
 
 <!-- ================= 01 · CONTEXTO ================= -->
 <section id="contexto">
+  <div class="buril buril--arco" aria-hidden="true" style="--tono:.11;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">01 — CONTEXTO</span>
+        <div class="pleca"></div>
         <h2>Servicios sueltos no construyen<br />un negocio. <span class="display-italic">Un sistema sí.</span></h2>
       </div>
     </div>
@@ -2335,10 +2320,11 @@
 
 <!-- ================= 02 · MÉTODO ================= -->
 <section id="metodo">
+  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">02 — MÉTODO</span>
+        <div class="pleca"></div>
         <h2>El sistema, en cuatro capas.</h2>
       </div>
     </div>
@@ -2394,10 +2380,11 @@
 
 <!-- ================= 03 · CÓMO TRABAJAMOS (PROCESO) ================= -->
 <section id="proceso">
+  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">03 — CÓMO TRABAJAMOS</span>
+        <div class="pleca"></div>
         <h2>El método detrás del sistema.</h2>
       </div>
     </div>
@@ -2463,10 +2450,11 @@
 
 <!-- ================= 04 · EL SISTEMA VIVO ================= -->
 <section id="sistema-vivo">
+  <div class="buril buril--arco" aria-hidden="true" style="--tono:.11;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">04 — EL SISTEMA VIVO</span>
+        <div class="pleca"></div>
         <h2>Cada pieza alimenta a las demás.<br /><span style="color: var(--text-dim);">La IA conecta el ciclo completo.</span></h2>
       </div>
     </div>
@@ -2564,10 +2552,11 @@
 
 <!-- ================= 05 · SISTEMAS ================= -->
 <section id="sistemas">
+  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">05 — SISTEMAS</span>
+        <div class="pleca"></div>
         <h2>Lo que componemos<br />en cada capa.</h2>
       </div>
     </div>
@@ -2771,10 +2760,11 @@
 
 <!-- ================= 05 · CÓMO ARRANCAMOS ================= -->
 <section id="arrancamos">
+  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">06 — CÓMO ARRANCAMOS</span>
+        <div class="pleca"></div>
         <h2>De este brochure<br />a un sistema en marcha.</h2>
       </div>
     </div>
@@ -2814,10 +2804,11 @@
 
 <!-- ================= 06 · HABLEMOS ================= -->
 <section id="hablemos">
+  <div class="buril buril--arco" aria-hidden="true" style="--tono:.11;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">07 — HABLEMOS</span>
+        <div class="pleca"></div>
         <h2>Cuéntanos qué estás resolviendo.</h2>
       </div>
     </div>
