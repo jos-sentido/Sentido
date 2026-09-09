@@ -123,7 +123,6 @@
     color: var(--accent);
     border: 1px solid var(--accent-dim);
     padding: 8px 16px;
-    border-radius: 999px;
     background: var(--accent-glow);
     transition: background 0.2s ease, border-color 0.2s ease;
   }
@@ -252,14 +251,12 @@
     color: var(--text-dim);
     padding: 8px 14px;
     border: 1px solid var(--border);
-    border-radius: 999px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
   }
   .status-dot {
     width: 6px; height: 6px;
-    border-radius: 50%;
     background: var(--accent);
     box-shadow: 0 0 10px var(--accent);
     animation: pulse 2s ease-in-out infinite;
@@ -394,12 +391,9 @@
 
   /* ================= DIFERENCIAL BANNER ================= */
   .diff-banner {
-    background: var(--surface);
-    border: 1px solid var(--border);
     padding: 56px 48px;
     margin-top: 48px;
-    position: relative;
-  }
+    position: relative; border-top: 1px solid var(--border);}
   .diff-banner::before {
     content: '';
     position: absolute;
@@ -430,13 +424,9 @@
   .diff-quote em { color: var(--accent); }
 
   /* ================= AUDIENCES / VERTICALS ================= */
-  .audiences { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-  .audience {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 32px 28px;
-    transition: border-color 0.3s ease;
-  }
+  .audiences { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2.5rem 0; }
+  .audience:last-child { border-right: none; }
+  .audience { padding: 1.6rem clamp(16px, 1.6vw, 24px) 1.9rem; border-right: 1px solid var(--border); position: relative; }
   .audience:hover { border-color: var(--accent-dim); }
   .audience-priority {
     font-family: var(--font-mono);
@@ -469,23 +459,11 @@
   }
 
   /* ================= FLOW (recorrido visual) ================= */
-  .flow {
-    display: flex;
-    align-items: stretch;
-    margin-top: 56px;
-    flex-wrap: nowrap;
-  }
-  .flow-step {
-    flex: 1 1 0;
-    min-width: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 28px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
+  .flow { border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  .flow-step-num  { grid-column: 1; grid-row: 1 / 3; }
+  .flow-step-name { grid-column: 2; grid-row: 1; }
+  .flow-step-desc { grid-column: 2; grid-row: 2; margin-top: 8px; }
+  .flow-step { display: grid; grid-template-columns: 64px minmax(0, 1fr); column-gap: clamp(18px, 2.4vw, 36px); align-items: baseline; padding: clamp(20px, 2.2vw, 28px) 0; border-bottom: 1px solid var(--border); position: relative; }
   .flow-step:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
   .flow-step-num {
     font-family: var(--font-mono);
@@ -603,16 +581,8 @@
   }
 
   /* ================= SERVICES ================= */
-  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
-  .service {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
+  .services { border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  .service { padding: clamp(22px, 2.4vw, 32px) 0; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
   .service:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
   .service-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
   .service-letter {
@@ -761,20 +731,17 @@
     margin-top: 20px;
   }
 
-  .rules {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 32px;
-  }
-  .rule-box { border: 1px solid var(--border); background: var(--surface-ghost); padding: 28px 24px; }
+  .rules { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2.5rem 0; }
+  .rule-box:last-child { border-right: none; }
+  .rule-box { padding: 1.6rem clamp(16px, 1.6vw, 24px) 1.9rem; border-right: 1px solid var(--border); position: relative; }
   .rule-title { font-family: var(--font-display);
     font-weight: 700; font-size: 1.125rem; color: var(--text); margin-bottom: 8px; }
   .rule-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.5; }
 
   /* ================= NOTE COLUMNS (terceros + no incluye) ================= */
-  .note-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
-  .note-box { border: 1px dashed var(--border-strong); background: var(--surface); padding: 36px 32px; }
+  .note-cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2.5rem 0; }
+  .note-box:last-child { border-right: none; }
+  .note-box { padding: 1.6rem clamp(16px, 1.6vw, 24px) 1.9rem; border-right: 1px solid var(--border); position: relative; }
   .note-box.blindaje { border-style: solid; border-left: 2px solid var(--accent); }
   .note-heading {
     font-family: var(--font-mono);
@@ -1018,6 +985,19 @@
        Más largo, el ojo pierde el salto de línea. */
     ,
     .container > p { max-width: 68ch; }
+  
+    @media (max-width: 760px) {
+      .audiences, .rules, .note-cols {
+        grid-auto-flow: row; grid-auto-columns: auto;
+      }
+      .audience, .rule-box, .note-box { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  
+    /* El sistema abre sección con pleca de imprenta, no con eyebrow numerado */
+    .pleca { width: 56px; height: 4px; margin-bottom: 26px;
+      background: repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 6px);
+      opacity: 0.45; }
+    section { position: relative; overflow: hidden; }
   </style>
 </head>
 <body>
@@ -1082,10 +1062,11 @@
 
 <!-- ================= 01 · LA OPORTUNIDAD ================= -->
 <section id="oportunidad">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">01 — LA OPORTUNIDAD</span>
+        <div class="pleca"></div>
         <h2>El activo más caro<br />de ignorar ya lo tienes.</h2>
       </div>
     </div>
@@ -1129,10 +1110,11 @@
 
 <!-- ================= 02 · QUÉ ES ================= -->
 <section id="servicio">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">02 — QUÉ ES</span>
+        <div class="pleca"></div>
         <h2>Operación, no entrega<br />llave en mano.</h2>
       </div>
     </div>
@@ -1180,10 +1162,11 @@
 
 <!-- ================= 03 · COMPONENTES ================= -->
 <section id="componentes">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">03 — CÓMO FUNCIONA</span>
+        <div class="pleca"></div>
         <h2>De tu base dormida<br />a clientes que vuelven.</h2>
       </div>
     </div>
@@ -1196,42 +1179,36 @@
     <div class="flow reveal">
       <div class="flow-step">
         <span class="flow-step-num">01</span>
-        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
         <span class="flow-step-name">Carga de tu base</span>
         <span class="flow-step-desc">Importamos tus contactos desde Excel, tu punto de venta, WhatsApp o tu sistema de reservas.</span>
       </div>
       <div class="flow-sep">→</div>
       <div class="flow-step">
         <span class="flow-step-num">02</span>
-        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9z"/><path d="M18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17z"/></svg></span>
         <span class="flow-step-name">Limpieza automática</span>
         <span class="flow-step-desc">Eliminamos duplicados, corregimos datos y validamos correos y teléfonos.</span>
       </div>
       <div class="flow-sep">→</div>
       <div class="flow-step">
         <span class="flow-step-num">03</span>
-        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
         <span class="flow-step-name">Segmentación</span>
         <span class="flow-step-desc">Agrupamos por comportamiento, antigüedad y tipo de cliente — sin trabajo manual.</span>
       </div>
       <div class="flow-sep">→</div>
       <div class="flow-step">
         <span class="flow-step-num">04</span>
-        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l6 2.5 2.5 6z"/><path d="M9 13l4-4"/></svg></span>
         <span class="flow-step-name">Envíos multicanal</span>
         <span class="flow-step-desc">Campañas de email y WhatsApp que reactivan a cada segmento en el momento justo.</span>
       </div>
       <div class="flow-sep">→</div>
       <div class="flow-step">
         <span class="flow-step-num">05</span>
-        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M2 20h20"/></svg></span>
         <span class="flow-step-name">Métricas en vivo</span>
         <span class="flow-step-desc">Medimos open rate, respuestas, reactivaciones y reseñas nuevas en tiempo real.</span>
       </div>
       <div class="flow-sep">→</div>
       <div class="flow-step">
         <span class="flow-step-num">06</span>
-        <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 12h6"/><path d="M9 16h6"/></svg></span>
         <span class="flow-step-name">Reportes automáticos</span>
         <span class="flow-step-desc">Cada mes recibes un reporte claro con resultados y los próximos pasos.</span>
       </div>
@@ -1312,10 +1289,11 @@
 
 <!-- ================= 04 · PROCESO ================= -->
 <section id="proceso">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">04 — EL PROCESO</span>
+        <div class="pleca"></div>
         <h2>Campañas en vivo<br />desde el primer mes.</h2>
       </div>
     </div>
@@ -1369,10 +1347,11 @@
 
 <!-- ================= 05 · INVERSIÓN ================= -->
 <section id="inversion">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">05 — INVERSIÓN</span>
+        <div class="pleca"></div>
         <h2>Fee mensual fijo.</h2>
       </div>
     </div>
@@ -1448,10 +1427,11 @@
 
 <!-- ================= 06 · HABLEMOS ================= -->
 <section id="hablemos">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
-        <span class="section-number">06 — HABLEMOS</span>
+        <div class="pleca"></div>
         <h2>Pon a trabajar tu base.</h2>
       </div>
     </div>
