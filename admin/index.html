@@ -12,11 +12,11 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0B0A09;
-      --surface:   #100E0D;
-      --surface2:  #161413;
-      --border:    #22201F;
-      --border2:   #302E2D;
+      --bg:        #0A0A0A;
+      --surface:   #111111;
+      --surface2:  #161616;
+      --border:    #202020;
+      --border2:   #2E2E2E;
       --text:      #F1EADC;
       --muted:     #948C80;   /* 5.96:1 */
       --faint:     #898275;   /* 4.92:1 */
@@ -25,15 +25,15 @@
       --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
       --font-mono: 'Archivo', system-ui, sans-serif;   /* etiquetas, no código */
       --font-serif: 'Archivo', system-ui, sans-serif;  /* el sistema tiene una familia */
-      --s-enviada:      #22201F; --s-enviada-t:    #948C80;
-      --s-presentada:   #302E2D; --s-presentada-t: #F1EADC;
-      --s-negociacion:  #42403F; --s-negociacion-t:#F1EADC;
+      --s-enviada:      #202020; --s-enviada-t:    #948C80;
+      --s-presentada:   #2E2E2E; --s-presentada-t: #F1EADC;
+      --s-negociacion:  #404040; --s-negociacion-t:#F1EADC;
       --s-ganada:       #24402F; --s-ganada-t:     #8FD4A8;
       --s-perdida:      #4A2A26; --s-perdida-t:    #E0A79C;
-      --s-archivada:    #1C1A19; --s-archivada-t:  #898275;
-      --s-borrador:     #1C1A19; --s-borrador-t:   #948C80;
+      --s-archivada:    #1A1A1A; --s-archivada-t:  #898275;
+      --s-borrador:     #1A1A1A; --s-borrador-t:   #948C80;
       --s-activo:       #24402F; --s-activo-t:     #8FD4A8;
-      --s-archivado:    #161413; --s-archivado-t:  #898275;
+      --s-archivado:    #161616; --s-archivado-t:  #898275;
     }
 
     html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 14px; }
@@ -42,13 +42,13 @@
     .view.active { display: flex; }
 
     /* ── LOGIN ── */
-    #view-login { align-items: center; justify-content: center; background: radial-gradient(ellipse 60% 50% at 50% 0%, #161413 0%, var(--bg) 70%); }
+    #view-login { align-items: center; justify-content: center; background: radial-gradient(ellipse 60% 50% at 50% 0%, #161616 0%, var(--bg) 70%); }
     .login-box { width: 100%; max-width: 380px; padding: 48px 40px; background: var(--surface); border: 1px solid var(--border); }
     .login-logo { display: block; height: 72px; margin: 0 auto 40px; }
     .login-label { display: block; margin-bottom: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
     .login-input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border2); color: var(--text); font-family: var(--font-mono); font-size: 14px; outline: none; transition: border-color .15s; }
     .login-input:focus { border-color: var(--acento-dim); }
-    .login-btn { display: block; width: 100%; margin-top: 20px; padding: 14px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #0B0A09; font-weight: 700; transition: opacity .15s; }
+    .login-btn { display: block; width: 100%; margin-top: 20px; padding: 14px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #0A0A0A; font-weight: 700; transition: opacity .15s; }
     .login-btn:hover { opacity: .85; }
     .login-btn:disabled { opacity: .5; cursor: not-allowed; }
     .login-error { margin-top: 14px; padding: 10px 14px; background: #4A2A26; border-left: 3px solid #E0A79C; font-size: 13px; color: #E0A79C; display: none; }
@@ -61,7 +61,7 @@
     .topbar-sep { width: 1px; height: 20px; background: var(--border2); flex-shrink: 0; }
     .topbar-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
     .topbar-spacer { flex: 1; }
-    .topbar-add { padding: 7px 16px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #0B0A09; font-weight: 700; transition: opacity .15s; }
+    .topbar-add { padding: 7px 16px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #0A0A0A; font-weight: 700; transition: opacity .15s; }
     .topbar-add:hover { opacity: .85; }
     .topbar-logout { padding: 7px 14px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); transition: border-color .15s, color .15s; }
     .topbar-logout:hover { border-color: var(--acento-dim); color: var(--text); }
@@ -163,7 +163,7 @@
     .svc-item-left { display: flex; align-items: center; gap: 10px; }
     .svc-check { width: 14px; height: 14px; border: 1px solid var(--border2); background: var(--bg); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .12s, border-color .12s; }
     .svc-item.checked .svc-check { background: var(--acento); border-color: var(--acento); }
-    .svc-check-mark { display: none; font-size: 9px; color: #0B0A09; font-weight: 700; }
+    .svc-check-mark { display: none; font-size: 9px; color: #0A0A0A; font-weight: 700; }
     .svc-item.checked .svc-check-mark { display: block; }
     .svc-name { font-size: 13px; color: var(--text); }
     .svc-price { font-family: var(--font-mono); font-size: 11px; color: var(--muted); flex-shrink: 0; }
@@ -203,7 +203,7 @@
     .bitacora-empty { font-size: 12px; color: var(--faint); }
 
     /* ── DRAWER FOOTER ── */
-    .btn-save { flex: 1; padding: 12px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #0B0A09; font-weight: 700; transition: opacity .15s; }
+    .btn-save { flex: 1; padding: 12px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #0A0A0A; font-weight: 700; transition: opacity .15s; }
     .btn-save:hover { opacity: .85; }
     .btn-save:disabled { opacity: .5; cursor: not-allowed; }
     .btn-cancel { padding: 12px 20px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); transition: border-color .15s, color .15s; }

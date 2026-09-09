@@ -7,16 +7,16 @@
       "tinta": {
         "role": "neutral",
         "displayName": "Warm Printing Ink",
-        "canonical": "#0B0A09",
+        "canonical": "#0A0A0A",
         "note": "Page ground. Deliberately warm; pure #000 is out of the system.",
-        "tonalRamp": ["#0B0A09", "#100E0D", "#161413", "#1C1A19", "#353332", "#565453", "#8A8377", "#C9C2B5"]
+        "tonalRamp": ["#0A0A0A", "#111111", "#161616", "#1A1A1A", "#353332", "#565453", "#8A8377", "#C9C2B5"]
       },
       "tinta-2": {
         "role": "neutral",
         "displayName": "Ink Plate",
-        "canonical": "#100E0D",
+        "canonical": "#111111",
         "note": "One-step-lifted plate: footer, closing block, form panel, mobile panel, .seccion--placa.",
-        "tonalRamp": ["#0B0A09", "#100E0D", "#161413", "#1C1A19", "#353332", "#565453", "#8A8377", "#C9C2B5"]
+        "tonalRamp": ["#0A0A0A", "#111111", "#161616", "#1A1A1A", "#353332", "#565453", "#8A8377", "#C9C2B5"]
       },
       "hueso": {
         "role": "primary",
@@ -49,16 +49,16 @@
       "linea": {
         "role": "neutral",
         "displayName": "Rule",
-        "canonical": "#22201F",
+        "canonical": "#202020",
         "note": "Every hairline divider, section top-border and row border.",
-        "tonalRamp": ["#0B0A09", "#161413", "#22201F", "#302E2D", "#434140", "#5C564C", "#948C80", "#D6CEBE"]
+        "tonalRamp": ["#0A0A0A", "#161616", "#202020", "#2E2E2E", "#434140", "#5C564C", "#948C80", "#D6CEBE"]
       },
       "linea-2": {
         "role": "neutral",
         "displayName": "Rule Raised",
-        "canonical": "#302E2D",
+        "canonical": "#2E2E2E",
         "note": "Input and menu-button borders — one step brighter, only where a control must read as touchable.",
-        "tonalRamp": ["#0B0A09", "#161413", "#22201F", "#302E2D", "#434140", "#5C564C", "#948C80", "#D6CEBE"]
+        "tonalRamp": ["#0A0A0A", "#161616", "#202020", "#2E2E2E", "#434140", "#5C564C", "#948C80", "#D6CEBE"]
       },
       "tenue": {
         "role": "neutral",
@@ -126,7 +126,7 @@
       "refersTo": "boton",
       "description": "The single primary action: bone plate on ink, hard corners, zero-blur print offset, trailing arrow that steps right on hover.",
       "html": "<a class=\"ds-boton\" href=\"#\">Agendar diagnóstico <span class=\"ds-fl\">→</span></a>",
-      "css": ".ds-boton { display: inline-flex; align-items: center; gap: 12px; background: #F1EADC; color: #0B0A09; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 17px 28px; border: 1px solid #F1EADC; border-radius: 0; cursor: pointer; text-decoration: none; box-shadow: 0 2px 0 0 #898275; transition: background 0.25s cubic-bezier(0.22,0.75,0.20,1), box-shadow 0.25s cubic-bezier(0.22,0.75,0.20,1); } .ds-boton .ds-fl { transition: transform 0.3s cubic-bezier(0.22,0.75,0.20,1); } .ds-boton:hover { background: #fff; box-shadow: 0 4px 0 0 #898275; } .ds-boton:hover .ds-fl { transform: translateX(4px); } .ds-boton:active { box-shadow: 0 1px 0 0 #898275; } .ds-boton:focus-visible { outline: 2px solid #F1EADC; outline-offset: 3px; }"
+      "css": ".ds-boton { display: inline-flex; align-items: center; gap: 12px; background: #F1EADC; color: #0A0A0A; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 17px 28px; border: 1px solid #F1EADC; border-radius: 0; cursor: pointer; text-decoration: none; box-shadow: 0 2px 0 0 #898275; transition: background 0.25s cubic-bezier(0.22,0.75,0.20,1), box-shadow 0.25s cubic-bezier(0.22,0.75,0.20,1); } .ds-boton .ds-fl { transition: transform 0.3s cubic-bezier(0.22,0.75,0.20,1); } .ds-boton:hover { background: #fff; box-shadow: 0 4px 0 0 #898275; } .ds-boton:hover .ds-fl { transform: translateX(4px); } .ds-boton:active { box-shadow: 0 1px 0 0 #898275; } .ds-boton:focus-visible { outline: 2px solid #F1EADC; outline-offset: 3px; }"
     },
     {
       "name": "Ghost Button",
@@ -134,7 +134,7 @@
       "refersTo": "boton-linea",
       "description": "Secondary action and the nav CTA: no fill, raised-rule border that brightens to bone on hover, no shadow.",
       "html": "<a class=\"ds-boton-linea\" href=\"#\">Hablemos</a>",
-      "css": ".ds-boton-linea { display: inline-flex; align-items: center; gap: 12px; background: none; color: #F1EADC; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 17px 28px; border: 1px solid #302E2D; border-radius: 0; text-decoration: none; transition: border-color 0.25s cubic-bezier(0.22,0.75,0.20,1); } .ds-boton-linea:hover { border-color: #F1EADC; } .ds-boton-linea:focus-visible { outline: 2px solid #F1EADC; outline-offset: 3px; }"
+      "css": ".ds-boton-linea { display: inline-flex; align-items: center; gap: 12px; background: none; color: #F1EADC; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 17px 28px; border: 1px solid #2E2E2E; border-radius: 0; text-decoration: none; transition: border-color 0.25s cubic-bezier(0.22,0.75,0.20,1); } .ds-boton-linea:hover { border-color: #F1EADC; } .ds-boton-linea:focus-visible { outline: 2px solid #F1EADC; outline-offset: 3px; }"
     },
     {
       "name": "Underlined Link",
@@ -150,7 +150,7 @@
       "refersTo": "campo-ent",
       "description": "Ink-ground field one step darker than the plate it sits on, raised-rule border going full bone on focus. Label is uppercase micro-type with a bone required mark.",
       "html": "<div class=\"ds-campo\"><label class=\"ds-etiq\" for=\"ds-f1\">Nombre completo <span class=\"ds-req\">*</span></label><input class=\"ds-ent\" id=\"ds-f1\" type=\"text\" placeholder=\"Tu nombre\" /></div>",
-      "css": ".ds-campo { display: flex; flex-direction: column; gap: 9px; } .ds-etiq { font-family: 'Archivo', system-ui, sans-serif; font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: #948C80; } .ds-req { color: #F1EADC; } .ds-ent { background: #0B0A09; border: 1px solid #302E2D; border-radius: 0; color: #F1EADC; padding: 14px 16px; font-size: 0.9375rem; font-family: 'Archivo', system-ui, sans-serif; width: 100%; transition: border-color 0.22s cubic-bezier(0.22,0.75,0.20,1); } .ds-ent::placeholder { color: #898275; } .ds-ent:focus { outline: none; border-color: #F1EADC; } .ds-ent[aria-invalid=\"true\"] { border-color: #B4655A; }"
+      "css": ".ds-campo { display: flex; flex-direction: column; gap: 9px; } .ds-etiq { font-family: 'Archivo', system-ui, sans-serif; font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: #948C80; } .ds-req { color: #F1EADC; } .ds-ent { background: #0A0A0A; border: 1px solid #2E2E2E; border-radius: 0; color: #F1EADC; padding: 14px 16px; font-size: 0.9375rem; font-family: 'Archivo', system-ui, sans-serif; width: 100%; transition: border-color 0.22s cubic-bezier(0.22,0.75,0.20,1); } .ds-ent::placeholder { color: #898275; } .ds-ent:focus { outline: none; border-color: #F1EADC; } .ds-ent[aria-invalid=\"true\"] { border-color: #B4655A; }"
     },
     {
       "name": "Select",
@@ -158,7 +158,7 @@
       "refersTo": "campo-ent",
       "description": "Same field shell with native appearance stripped; the dropdown indicator is an inline rhombus, never a chevron.",
       "html": "<select class=\"ds-sel\"><option>Selecciona una opción</option><option>Ya invierto, pero sin estrategia clara</option></select>",
-      "css": ".ds-sel { background-color: #0B0A09; border: 1px solid #302E2D; border-radius: 0; color: #F1EADC; padding: 14px 40px 14px 16px; font-size: 0.9375rem; font-family: 'Archivo', system-ui, sans-serif; width: 100%; appearance: none; cursor: pointer; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0L9 4.5 4.5 9 0 4.5z' fill='%237A7367'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 16px center; transition: border-color 0.22s cubic-bezier(0.22,0.75,0.20,1); } .ds-sel:focus { outline: none; border-color: #F1EADC; } .ds-sel option { background: #161413; color: #F1EADC; }"
+      "css": ".ds-sel { background-color: #0A0A0A; border: 1px solid #2E2E2E; border-radius: 0; color: #F1EADC; padding: 14px 40px 14px 16px; font-size: 0.9375rem; font-family: 'Archivo', system-ui, sans-serif; width: 100%; appearance: none; cursor: pointer; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0L9 4.5 4.5 9 0 4.5z' fill='%237A7367'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 16px center; transition: border-color 0.22s cubic-bezier(0.22,0.75,0.20,1); } .ds-sel:focus { outline: none; border-color: #F1EADC; } .ds-sel option { background: #161616; color: #F1EADC; }"
     },
     {
       "name": "Checkbox Row",
@@ -166,7 +166,7 @@
       "refersTo": "campo-check",
       "description": "Bordered rectangle in an auto-fit grid; border brightens on hover and holds at bone-muted while checked via :has().",
       "html": "<label class=\"ds-check\"><input type=\"checkbox\" /> Pauta (Meta / Google)</label>",
-      "css": ".ds-check { display: inline-flex; align-items: center; gap: 11px; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.875rem; color: #B6AE9E; padding: 12px 14px; border: 1px solid #22201F; border-radius: 0; cursor: pointer; transition: border-color 0.2s cubic-bezier(0.22,0.75,0.20,1), color 0.2s cubic-bezier(0.22,0.75,0.20,1); } .ds-check:hover { border-color: #302E2D; color: #F1EADC; } .ds-check:has(input:checked) { border-color: #948C80; color: #F1EADC; } .ds-check input { accent-color: #F1EADC; width: 14px; height: 14px; cursor: pointer; flex: 0 0 auto; }"
+      "css": ".ds-check { display: inline-flex; align-items: center; gap: 11px; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.875rem; color: #B6AE9E; padding: 12px 14px; border: 1px solid #202020; border-radius: 0; cursor: pointer; transition: border-color 0.2s cubic-bezier(0.22,0.75,0.20,1), color 0.2s cubic-bezier(0.22,0.75,0.20,1); } .ds-check:hover { border-color: #2E2E2E; color: #F1EADC; } .ds-check:has(input:checked) { border-color: #948C80; color: #F1EADC; } .ds-check input { accent-color: #F1EADC; width: 14px; height: 14px; cursor: pointer; flex: 0 0 auto; }"
     },
     {
       "name": "Navigation Bar",
@@ -174,7 +174,7 @@
       "refersTo": "nav-a",
       "description": "Fixed 72px translucent ink bar. Links are bone-muted uppercase micro-type; the current page goes bone and carries a 5px filled rhombus centered beneath it.",
       "html": "<header class=\"ds-nav\"><div class=\"ds-nav-int\"><a class=\"ds-marca\" href=\"#\"><b>Sentido</b></a><nav class=\"ds-nav-links\"><a class=\"ds-nav-a\" href=\"#\">Método</a><a class=\"ds-nav-a\" href=\"#\" aria-current=\"page\">Servicios</a><a class=\"ds-nav-a\" href=\"#\">Casos</a><a class=\"ds-nav-a\" href=\"#\">Blog</a></nav></div></header>",
-      "css": ".ds-nav { height: 72px; background: rgba(11,10,9,0.86); backdrop-filter: blur(14px); border-bottom: 1px solid #22201F; } .ds-nav-int { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 24px; } .ds-marca b { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 1.125rem; letter-spacing: -0.01em; color: #F1EADC; } .ds-marca { text-decoration: none; } .ds-nav-links { display: flex; align-items: center; gap: 32px; } .ds-nav-a { font-family: 'Archivo', system-ui, sans-serif; font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: #948C80; text-decoration: none; position: relative; padding: 4px 0; white-space: nowrap; transition: color 0.22s cubic-bezier(0.22,0.75,0.20,1); } .ds-nav-a:hover, .ds-nav-a[aria-current=\"page\"] { color: #F1EADC; } .ds-nav-a[aria-current=\"page\"]::after { content: ''; position: absolute; left: 50%; bottom: -6px; width: 5px; height: 5px; margin-left: -2.5px; background: #F1EADC; transform: rotate(45deg); } .ds-nav-a:focus-visible { outline: 2px solid #F1EADC; outline-offset: 3px; }"
+      "css": ".ds-nav { height: 72px; background: rgba(10, 10, 10,0.86); backdrop-filter: blur(14px); border-bottom: 1px solid #202020; } .ds-nav-int { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 24px; } .ds-marca b { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 1.125rem; letter-spacing: -0.01em; color: #F1EADC; } .ds-marca { text-decoration: none; } .ds-nav-links { display: flex; align-items: center; gap: 32px; } .ds-nav-a { font-family: 'Archivo', system-ui, sans-serif; font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: #948C80; text-decoration: none; position: relative; padding: 4px 0; white-space: nowrap; transition: color 0.22s cubic-bezier(0.22,0.75,0.20,1); } .ds-nav-a:hover, .ds-nav-a[aria-current=\"page\"] { color: #F1EADC; } .ds-nav-a[aria-current=\"page\"]::after { content: ''; position: absolute; left: 50%; bottom: -6px; width: 5px; height: 5px; margin-left: -2.5px; background: #F1EADC; transform: rotate(45deg); } .ds-nav-a:focus-visible { outline: 2px solid #F1EADC; outline-offset: 3px; }"
     },
     {
       "name": "Row Plate",
@@ -182,7 +182,7 @@
       "refersTo": "renglon",
       "description": "The system's replacement for the service card: a baseline-aligned grid row on a shared rule, whose hidden burin field rises from --tono 0 to 0.10 on hover. No fill change, no lift.",
       "html": "<div class=\"ds-plancha\"><a class=\"ds-renglon\" href=\"#\"><div class=\"ds-buril\"></div><div><span class=\"ds-marco\">Capa 2</span><h3 class=\"ds-renglon-h\">Captura</h3></div><div><p class=\"ds-renglon-p\">El lead llega y no se pierde: el sitio y el CRM lo reciben en el mismo minuto.</p></div><div class=\"ds-ver\">Ver</div></a></div>",
-      "css": ".ds-plancha { border-top: 1px solid #22201F; background: #0B0A09; } .ds-renglon { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr) 118px; gap: 32px; align-items: baseline; padding: 32px 0; border-bottom: 1px solid #22201F; position: relative; overflow: hidden; text-decoration: none; font-family: 'Archivo', system-ui, sans-serif; } .ds-renglon > * { position: relative; } .ds-buril { position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(90deg, #F1EADC 0 0.6px, transparent 0.6px 4px); opacity: 0; transition: opacity 0.45s cubic-bezier(0.22,0.75,0.20,1); } .ds-renglon:hover .ds-buril { opacity: 0.10; } .ds-marco { display: block; margin-bottom: 16px; font-weight: 600; font-size: 0.6875rem; color: #948C80; letter-spacing: 0.22em; text-transform: uppercase; } .ds-renglon-h { font-weight: 800; font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.032em; color: #F1EADC; margin: 0 0 7px; } .ds-renglon-p { font-size: 0.9375rem; line-height: 1.68; color: #948C80; max-width: 64ch; margin: 0; } .ds-ver { font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: #898275; text-align: right; transition: color 0.3s cubic-bezier(0.22,0.75,0.20,1); } .ds-renglon:hover .ds-ver { color: #F1EADC; }"
+      "css": ".ds-plancha { border-top: 1px solid #202020; background: #0A0A0A; } .ds-renglon { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr) 118px; gap: 32px; align-items: baseline; padding: 32px 0; border-bottom: 1px solid #202020; position: relative; overflow: hidden; text-decoration: none; font-family: 'Archivo', system-ui, sans-serif; } .ds-renglon > * { position: relative; } .ds-buril { position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(90deg, #F1EADC 0 0.6px, transparent 0.6px 4px); opacity: 0; transition: opacity 0.45s cubic-bezier(0.22,0.75,0.20,1); } .ds-renglon:hover .ds-buril { opacity: 0.10; } .ds-marco { display: block; margin-bottom: 16px; font-weight: 600; font-size: 0.6875rem; color: #948C80; letter-spacing: 0.22em; text-transform: uppercase; } .ds-renglon-h { font-weight: 800; font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.032em; color: #F1EADC; margin: 0 0 7px; } .ds-renglon-p { font-size: 0.9375rem; line-height: 1.68; color: #948C80; max-width: 64ch; margin: 0; } .ds-ver { font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: #898275; text-align: right; transition: color 0.3s cubic-bezier(0.22,0.75,0.20,1); } .ds-renglon:hover .ds-ver { color: #F1EADC; }"
     },
     {
       "name": "Layer Cell",
@@ -190,7 +190,7 @@
       "refersTo": "renglon",
       "description": "One cell of the four-layer strip under the hero: bordered, rhombus pinned top-right, hatch field revealed on hover.",
       "html": "<article class=\"ds-capa\"><div class=\"ds-capa-buril\"></div><span class=\"ds-rombo\"></span><div class=\"ds-capa-n\">Capa 1</div><h3 class=\"ds-capa-h\">Alcance</h3><p class=\"ds-capa-p\">Que la gente correcta te encuentre, con un mensaje que sostiene lo que la marca promete.</p></article>",
-      "css": ".ds-capa { position: relative; padding: 32px 24px 38px; border-right: 1px solid #22201F; border-top: 1px solid #22201F; overflow: hidden; background: #0B0A09; font-family: 'Archivo', system-ui, sans-serif; transition: background 0.4s cubic-bezier(0.22,0.75,0.20,1); } .ds-capa-buril { position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(90deg, #F1EADC 0 0.6px, transparent 0.6px 5px); opacity: 0; transition: opacity 0.5s cubic-bezier(0.22,0.75,0.20,1); } .ds-capa:hover .ds-capa-buril { opacity: 0.13; } .ds-rombo { position: absolute; top: 34px; right: 24px; width: 7px; height: 7px; border: 1px solid #948C80; transform: rotate(45deg); } .ds-capa-n { position: relative; font-weight: 600; font-size: 0.6875rem; color: #948C80; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 14px; } .ds-capa-h { position: relative; font-weight: 800; font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.032em; color: #F1EADC; margin: 0 0 10px; } .ds-capa-p { position: relative; font-size: 0.875rem; line-height: 1.6; color: #948C80; margin: 0; }"
+      "css": ".ds-capa { position: relative; padding: 32px 24px 38px; border-right: 1px solid #202020; border-top: 1px solid #202020; overflow: hidden; background: #0A0A0A; font-family: 'Archivo', system-ui, sans-serif; transition: background 0.4s cubic-bezier(0.22,0.75,0.20,1); } .ds-capa-buril { position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(90deg, #F1EADC 0 0.6px, transparent 0.6px 5px); opacity: 0; transition: opacity 0.5s cubic-bezier(0.22,0.75,0.20,1); } .ds-capa:hover .ds-capa-buril { opacity: 0.13; } .ds-rombo { position: absolute; top: 34px; right: 24px; width: 7px; height: 7px; border: 1px solid #948C80; transform: rotate(45deg); } .ds-capa-n { position: relative; font-weight: 600; font-size: 0.6875rem; color: #948C80; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 14px; } .ds-capa-h { position: relative; font-weight: 800; font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.032em; color: #F1EADC; margin: 0 0 10px; } .ds-capa-p { position: relative; font-size: 0.875rem; line-height: 1.6; color: #948C80; margin: 0; }"
     },
     {
       "name": "Declaration Band",
@@ -198,7 +198,7 @@
       "refersTo": "declara",
       "description": "The one bone-ground plate per page. The burin field inverts with it — ink strokes on paper — masked so the hatching closes in at the edges.",
       "html": "<section class=\"ds-declara\"><div class=\"ds-declara-buril\"></div><p class=\"ds-declara-p\">Tu producto ya está listo. <span class=\"ds-tenue\">Tu mercado ya está esperando.</span> Falta el sistema que los conecta.</p></section>",
-      "css": ".ds-declara { position: relative; overflow: hidden; padding: 96px 24px; background: #F1EADC; } .ds-declara-buril { position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(90deg, #0B0A09 0 0.6px, transparent 0.6px 4px); opacity: 0.16; -webkit-mask-image: radial-gradient(ellipse 78% 120% at 50% 50%, transparent 28%, #000 84%); mask-image: radial-gradient(ellipse 78% 120% at 50% 50%, transparent 28%, #000 84%); } .ds-declara-p { position: relative; font-family: 'Archivo', system-ui, sans-serif; font-weight: 300; font-size: clamp(1.625rem, 4vw, 3.25rem); line-height: 1.12; letter-spacing: -0.035em; color: #0B0A09; max-width: 20ch; margin: 0 auto; text-align: center; text-wrap: balance; } .ds-tenue { color: #5C564C; }"
+      "css": ".ds-declara { position: relative; overflow: hidden; padding: 96px 24px; background: #F1EADC; } .ds-declara-buril { position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(90deg, #0A0A0A 0 0.6px, transparent 0.6px 4px); opacity: 0.16; -webkit-mask-image: radial-gradient(ellipse 78% 120% at 50% 50%, transparent 28%, #000 84%); mask-image: radial-gradient(ellipse 78% 120% at 50% 50%, transparent 28%, #000 84%); } .ds-declara-p { position: relative; font-family: 'Archivo', system-ui, sans-serif; font-weight: 300; font-size: clamp(1.625rem, 4vw, 3.25rem); line-height: 1.12; letter-spacing: -0.035em; color: #0A0A0A; max-width: 20ch; margin: 0 auto; text-align: center; text-wrap: balance; } .ds-tenue { color: #5C564C; }"
     },
     {
       "name": "Section Heading",
@@ -214,12 +214,12 @@
       "refersTo": "renglon",
       "description": "The signature H1 composition: light setup clause, black claim, exactly one word in the bone marker box.",
       "html": "<h1 class=\"ds-h1\"><span class=\"ds-ligera\">No se trata de hacer<br />más publicidad.</span><br />Se trata del <span class=\"ds-alta\">sistema</span><br />que lo vuelve negocio.</h1>",
-      "css": ".ds-h1 { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: clamp(2.75rem, 6.6vw, 5.75rem); line-height: 0.98; letter-spacing: -0.032em; color: #F1EADC; text-wrap: balance; font-variation-settings: 'wdth' 100; margin: 0; } .ds-ligera { font-weight: 300; letter-spacing: -0.022em; } .ds-alta { background: #F1EADC; color: #0B0A09; padding: 0.02em 0.18em 0.08em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }"
+      "css": ".ds-h1 { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: clamp(2.75rem, 6.6vw, 5.75rem); line-height: 0.98; letter-spacing: -0.032em; color: #F1EADC; text-wrap: balance; font-variation-settings: 'wdth' 100; margin: 0; } .ds-ligera { font-weight: 300; letter-spacing: -0.022em; } .ds-alta { background: #F1EADC; color: #0A0A0A; padding: 0.02em 0.18em 0.08em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }"
     }
   ],
   "narrative": {
     "northStar": "The Burin Plate",
-    "overview": "The system is an engraved plate, not a page of components. Its material is the line field: repeating parallel strokes at a declared angle, pitch, and weight, laid behind whole sections the way a burin lays hatching behind a figure. Density is the only emphasis device the material has — a section is louder because its hatching is tighter, not because a box was drawn around it. The mark the whole world derives from is the brand's own isotipo, an eye inside a rhombus, and the rhombus recurs as the structural module at every scale: the 5px nav marker, the 6px list bullet, the 7px layer marker, and the three nested frames around the hero eye.\n\nDensity is high and the surface is nearly all ink. Warm printing black (#0B0A09, never pure black) is the ground for fifteen of sixteen page-regions; bone (#F1EADC) appears as paper only where the system deliberately flips — one declaration band per page, the bone highlight box inside a headline, and the primary button. Structure is drawn with hairlines and grid borders, never with fills, shadows, or corner radii. There are no cards: a service, a layer, a module, and an article all render as a full-bleed table row under a shared rule.\n\nConfirmed rejections, all held by the shipped code: no serif and no monospace (one variable family, Archivo, carries every role), no photographic or illustrative imagery, no icon set, no card containers, and no per-section eyebrow. Typographic contrast is achieved by weight (300 against 800) inside a single headline, taken from the brand's real Instagram feed, not by mixing families.",
+    "overview": "The system is an engraved plate, not a page of components. Its material is the line field: repeating parallel strokes at a declared angle, pitch, and weight, laid behind whole sections the way a burin lays hatching behind a figure. Density is the only emphasis device the material has — a section is louder because its hatching is tighter, not because a box was drawn around it. The mark the whole world derives from is the brand's own isotipo, an eye inside a rhombus, and the rhombus recurs as the structural module at every scale: the 5px nav marker, the 6px list bullet, the 7px layer marker, and the three nested frames around the hero eye.\n\nDensity is high and the surface is nearly all ink. Warm printing black (#0A0A0A, never pure black) is the ground for fifteen of sixteen page-regions; bone (#F1EADC) appears as paper only where the system deliberately flips — one declaration band per page, the bone highlight box inside a headline, and the primary button. Structure is drawn with hairlines and grid borders, never with fills, shadows, or corner radii. There are no cards: a service, a layer, a module, and an article all render as a full-bleed table row under a shared rule.\n\nConfirmed rejections, all held by the shipped code: no serif and no monospace (one variable family, Archivo, carries every role), no photographic or illustrative imagery, no icon set, no card containers, and no per-section eyebrow. Typographic contrast is achieved by weight (300 against 800) inside a single headline, taken from the brand's real Instagram feed, not by mixing families.",
     "keyCharacteristics": [
       "One typeface (Archivo variable, 100–900), self-hosted, contrast by weight alone",
       "Warm ink ground everywhere; bone is the exception and reads as paper",
@@ -230,7 +230,7 @@
       "One authored motion moment on load; nothing animates on scroll"
     ],
     "rules": [
-      { "name": "The Warm Ink Rule", "body": "The ground is #0B0A09 and it is never #000. Every neutral in the system carries the same warm cast; a cool gray anywhere reads as foreign material.", "section": "colors" },
+      { "name": "The Warm Ink Rule", "body": "The ground is #0A0A0A and it is never #000. Every neutral in the system carries the same warm cast; a cool gray anywhere reads as foreign material.", "section": "colors" },
       { "name": "The One Plate Rule", "body": "Exactly one region per page inverts to bone ground — the declaration band. Everything else is ink ground. A second bone panel destroys the contrast that makes the first one land.", "section": "colors" },
       { "name": "The Bone Floor Rule", "body": "No text color below #898275 (4.92:1) is used on ink. #948C80 and #898275 were set at these exact values to clear WCAG AA; darkening them for atmosphere is not available.", "section": "colors" },
       { "name": "The Two-Weight Headline Rule", "body": "Weight contrast happens inside one headline, never between two typefaces. Light (300) sets the setup clause, black (800) sets the claim, and exactly one word wears the bone box.", "section": "typography" },

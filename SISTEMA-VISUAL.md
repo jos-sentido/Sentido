@@ -20,7 +20,7 @@ De ahí salen las tres decisiones que sostienen todo:
 |---|---|
 | Trama de líneas paralelas (buril) | **El material.** Campos de línea con densidad variable, no hairlines decorativos |
 | El rombo que enmarca el ojo | **El módulo.** Viñetas, marcadores de estado, marcos anidados |
-| Alto contraste tinta/papel | **La paleta.** Tinta cálida sobre hueso, en los dos sentidos |
+| Alto contraste tinta/papel | **La paleta.** Tinta neutra contra hueso cálido, en los dos sentidos |
 
 La voz tipográfica **no** salió del isotipo: se tomó del feed real de la marca en
 redes, que usa una grotesca con contraste de peso y una caja hueso como marcador.
@@ -32,17 +32,17 @@ se sube la densidad de la trama, nunca se añade sombra, elevación ni glow.
 
 ## 2. Color
 
-Dos materiales: tinta cálida de imprenta y papel hueso. Nunca negro puro (`#000`)
-ni blanco puro (`#FFF`).
+Dos materiales: tinta neutra y papel hueso. **Todo el calor de la marca vive en
+el hueso**; la tinta no lo lleva. Nunca negro puro (`#000`) ni blanco puro (`#FFF`).
 
 ### Tinta — el fondo
 
 | Token | Hex | Uso |
 |---|---|---|
-| `--tinta` | `#0B0A09` | Fondo universal |
-| `--tinta-2` | `#100E0D` | Plancha elevada: bloques, formulario, pie |
-| `--tinta-3` | `#161413` | Fondo de campos de formulario abiertos |
-| `--tinta-4` | `#1C1A19` | Reservado, el escalón más alto |
+| `--tinta` | `#0A0A0A` | Fondo universal |
+| `--tinta-2` | `#111111` | Plancha elevada: bloques, formulario, pie |
+| `--tinta-3` | `#161616` | Fondo de campos de formulario abiertos |
+| `--tinta-4` | `#1A1A1A` | Reservado, el escalón más alto |
 
 ### Hueso — el papel y la tinta clara
 
@@ -51,14 +51,14 @@ ni blanco puro (`#FFF`).
 | `--hueso` | `#F1EADC` | 16.52:1 | Títulos, plancha de papel, botón sólido |
 | `--hueso-2` | `#B6AE9E` | 8.98:1 | Cuerpo de texto |
 | `--hueso-3` | `#948C80` | 5.96:1 | Texto secundario, etiquetas |
-| `--hueso-4` | `#898275` | 5.19:1 | Metadatos, texto mínimo |
+| `--hueso-4` | `#898275` | 5.20:1 | Metadatos, texto mínimo |
 
 ### Líneas
 
 | Token | Hex | Uso |
 |---|---|---|
-| `--linea` | `#22201F` | Reglas y divisiones |
-| `--linea-2` | `#302E2D` | Bordes de campo y de botón fantasma |
+| `--linea` | `#202020` | Reglas y divisiones |
+| `--linea-2` | `#2E2E2E` | Bordes de campo y de botón fantasma |
 
 ### Superficie clara — el tema no es «oscuro», es de dos materiales
 
@@ -76,7 +76,7 @@ el buril graba en tinta, la caja hueso pasa a ser oscura, el botón se invierte 
   --tinta-3: #DED5C2;
   --tinta-4: #D5CBB6;
 
-  --hueso:   #0B0A09;   /* 16.52:1 · títulos, caja, botón sólido */
+  --hueso:   #0A0A0A;   /* 16.52:1 · títulos, caja, botón sólido */
   --hueso-2: #2E2A24;   /* 11.91:1 · cuerpo */
   --hueso-3: #514B42;   /*  7.20:1 · secundario */
   --hueso-4: #5C564C;   /*  6.07:1 · piso */
@@ -88,7 +88,7 @@ el buril graba en tinta, la caja hueso pasa a ser oscura, el botón se invierte 
 
 Las dos rampas son espejo. Los cuatro escalones de texto están calibrados contra
 **el escalón de fondo más alto**, no solo contra el fondo base: el piso real es
-4.55:1 sobre tinta y 4.51:1 sobre papel, en el peor caso de cada rampa.
+4.57:1 sobre tinta y 4.51:1 sobre papel, en el peor caso de cada rampa.
 
 **Sobre papel va el logo en su variante oscura** — `logo-sentido-dark.png` y
 `logo-sentido-nombre-dark.png`. Es aplicación válida del sistema, no excepción.
@@ -105,13 +105,21 @@ alternar dentro de una misma página.
 
 ### Reglas de color
 
-1. **Regla de la tinta cálida constante.** Todo negro lleva calidez, y la calidez
-   es **la misma en toda la rampa**: 3 puntos de R sobre B, medidos en absoluto.
-   Si se mantiene el *porcentaje* de saturación en vez del desvío absoluto, la
-   calidez crece con la luz y los escalones altos viran a café. Ese fue el error
-   de la primera rampa: 30° de matiz a 10% de saturación abajo, que arriba se
-   volvían 37° a 21%. `#000` está prohibido salvo dentro de máscaras CSS, donde
-   no es color sino canal alfa.
+1. **Regla de la tinta neutra.** El fondo no lleva matiz: los cuatro escalones
+   de tinta son gris puro (R = G = B). Todo el calor de la marca vive en el
+   hueso, y ahí se sostiene solo. Esta regla se escribió después de dos
+   correcciones: primero la rampa llevaba una calidez proporcional a la
+   saturación, que crecía con la luz y viraba a café en los escalones altos;
+   después una calidez constante de 3 puntos, que **también** se leía café en
+   una superficie grande. A esa escala cualquier sesgo cálido se percibe. `#000`
+   está prohibido salvo dentro de máscaras CSS, donde no es color sino canal alfa.
+
+1bis. **Regla del salto parejo.** Los escalones de tinta avanzan en incrementos
+   iguales de luz perceptual (L*), ~2.2 por paso, no en incrementos iguales de
+   valor hexadecimal. Con pasos hexadecimales iguales la rampa acelera: el
+   primer escalón queda invisible y el último salta al doble. Eso es lo que hacía
+   que `--tinta-3` no se sintiera en su lugar dentro de la escala.
+
 2. **Regla de la alternancia deliberada.** Tinta y papel tienen el mismo rango, y
    una página puede alternarlos. Pero cada cambio de superficie tiene que responder
    a un cambio de contenido —del argumento al procedimiento, del sistema a la
@@ -184,7 +192,7 @@ tinta. Es el marcador de la marca.
 ```css
 .alta {
   background: #F1EADC;
-  color: #0B0A09;
+  color: #0A0A0A;
   padding: 0.02em 0.18em 0.08em;
   box-decoration-break: clone;
 }

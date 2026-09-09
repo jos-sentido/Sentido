@@ -165,9 +165,12 @@ renderizándolo con su propio CSS. Está escrita a mano, no la genera `build.py`
 - Contraste mínimo 4.5:1 en todo texto, medido **contra la superficie sobre la que
   se para de verdad** (`--tinta-4`, no `--tinta`). Los tokens de hueso ya están
   calibrados para ese peor caso.
-- La calidez de la tinta es **constante en absoluto**: 3 puntos de R sobre B en
-  todos los escalones. Nunca se fija por porcentaje de saturación — así fue como
-  la rampa viró a café.
+- **La tinta no lleva matiz.** Los cuatro escalones de fondo son gris puro
+  (R = G = B). Todo el calor de la marca vive en el hueso. Cualquier sesgo cálido
+  en el fondo se lee café en superficie grande — se corrigió dos veces.
+- **Los escalones de tinta avanzan en L\* pareja** (~2.2 por paso), no en pasos
+  hexadecimales iguales: con esos la rampa acelera y el escalón de en medio
+  deja de sentirse en su lugar.
 - Ningún texto por debajo de 0.6875rem (11px), ni las notas al pie.
 - Ninguna cursiva: Archivo no la trae y el navegador la sintetiza. El énfasis es
   peso y color.

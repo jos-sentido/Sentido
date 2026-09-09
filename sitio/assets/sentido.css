@@ -8,20 +8,20 @@
 
 /* ─────────────────────── TOKENS ─────────────────────── */
 :root {
-  /* Tinta — negro cálido de imprenta, nunca #000 */
-  --tinta:     #0B0A09;
-  --tinta-2:   #100E0D;
-  --tinta-3:   #161413;
-  --tinta-4:   #1C1A19;
+  /* Tinta — gris neutro, salto perceptual constante. Nunca #000 */
+  --tinta:     #0A0A0A;
+  --tinta-2:   #111111;
+  --tinta-3:   #161616;
+  --tinta-4:   #1A1A1A;
 
   /* Hueso — el papel */
   --hueso:     #F1EADC;
   --hueso-2:   #B6AE9E;
   --hueso-3:   #948C80;   /* 5.96:1 sobre tinta */
-  --hueso-4:   #898275;   /* 4.55:1 sobre el escalón más alto */
+  --hueso-4:   #898275;   /* 4.57:1 sobre el escalón más alto */
 
-  --linea:     #22201F;
-  --linea-2:   #302E2D;
+  --linea:     #202020;
+  --linea-2:   #2E2E2E;
 
   --archivo:   'Archivo', system-ui, -apple-system, sans-serif;
 
@@ -213,7 +213,7 @@ a { color: inherit; text-decoration: none; }
   --tinta-3:   #DED5C2;
   --tinta-4:   #D5CBB6;
 
-  --hueso:     #0B0A09;   /* 16.52:1 · títulos, caja, botón sólido */
+  --hueso:     #0A0A0A;   /* 16.52:1 · títulos, caja, botón sólido */
   --hueso-2:   #2E2A24;   /* 11.91:1 · cuerpo */
   --hueso-3:   #514B42;   /*  7.20:1 · secundario */
   --hueso-4:   #5C564C;   /*  4.51:1 · piso, igual que el oscuro */
@@ -312,7 +312,7 @@ em { font-style: normal; font-weight: var(--fuerte); color: var(--hueso); }
 /* ═══════════════ NAVEGACIÓN ═══════════════ */
 .nav {
   position: fixed; inset: 0 0 auto 0; height: var(--nav-h); z-index: 150;
-  background: rgba(11, 10, 9, 0.86);
+  background: rgba(10, 10, 10, 0.86);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;

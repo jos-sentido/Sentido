@@ -1,17 +1,17 @@
 ---
 name: Sentido · Branding & Advertising
-description: Buril engraving derived from the brand's own isotipo — line fields as material, the rhombus as module, warm ink under bone.
+description: Buril engraving derived from the brand's own isotipo — line fields as material, the rhombus as module, neutral ink under warm bone.
 colors:
-  tinta: "#0B0A09"
-  tinta-2: "#100E0D"
-  tinta-3: "#161413"
-  tinta-4: "#1C1A19"
+  tinta: "#0A0A0A"
+  tinta-2: "#111111"
+  tinta-3: "#161616"
+  tinta-4: "#1A1A1A"
   hueso: "#F1EADC"
   hueso-2: "#B6AE9E"
   hueso-3: "#948C80"
   hueso-4: "#898275"
-  linea: "#22201F"
-  linea-2: "#302E2D"
+  linea: "#202020"
+  linea-2: "#2E2E2E"
   tenue: "#5C564C"
   error: "#B4655A"
   error-texto: "#E0A79C"
@@ -162,7 +162,7 @@ components:
 
 The system is an engraved plate, not a page of components. Its material is the line field: repeating parallel strokes at a declared angle, pitch, and weight, laid behind whole sections the way a burin lays hatching behind a figure. Density is the only emphasis device the material has — a section is louder because its hatching is tighter, not because a box was drawn around it. The mark the whole world derives from is the brand's own isotipo, an eye inside a rhombus, and the rhombus recurs as the structural module at every scale: the 5px nav marker, the 6px list bullet, the 7px layer marker, and the three nested frames around the hero eye.
 
-Density is high and the surface is nearly all ink. Warm printing black (`#0B0A09`, never pure black) is the ground for fifteen of sixteen page-regions; bone (`#F1EADC`) appears as paper only where the system deliberately flips — one declaration band per page, the bone highlight box inside a headline, and the primary button. Structure is drawn with hairlines and grid borders, never with fills, shadows, or corner radii. There are no cards: a service, a layer, a module, and an article all render as a full-bleed table row under a shared rule.
+Density is high and the surface is nearly all ink. Warm printing black (`#0A0A0A`, never pure black) is the ground for fifteen of sixteen page-regions; bone (`#F1EADC`) appears as paper only where the system deliberately flips — one declaration band per page, the bone highlight box inside a headline, and the primary button. Structure is drawn with hairlines and grid borders, never with fills, shadows, or corner radii. There are no cards: a service, a layer, a module, and an article all render as a full-bleed table row under a shared rule.
 
 Confirmed rejections, all held by the shipped code: no serif and no monospace (one variable family, Archivo, carries every role), no photographic or illustrative imagery, no icon set, no card containers, and no per-section eyebrow. Typographic contrast is achieved by weight (300 against 800) inside a single headline, taken from the brand's real Instagram feed, not by mixing families.
 
@@ -188,7 +188,7 @@ A two-material palette: warm printing ink and bone paper, with four neutral step
 - **Ink Deep / Ink Warm** (`{colors.tinta-3}`, `{colors.tinta-4}`): Reserved depths; `tinta-3` backs native `<select>` options.
 - **Bone Text** (`{colors.hueso-2}`): Default body text on ink (9.0:1). The reading color.
 - **Bone Muted** (`{colors.hueso-3}`): Secondary prose, labels, row descriptions, rhombus borders (5.96:1).
-- **Bone Quiet** (`{colors.hueso-4}`): The quietest legible tier — timestamps, placeholders, footer legal, the primary button's offset shadow (5.19:1 on ink, 4.55:1 on the highest surface step).
+- **Bone Quiet** (`{colors.hueso-4}`): The quietest legible tier — timestamps, placeholders, footer legal, the primary button's offset shadow (5.20:1 on ink, 4.57:1 on the highest surface step).
 - **Rule** (`{colors.linea}`): Every hairline divider, section top-border, and row border.
 - **Rule Raised** (`{colors.linea-2}`): Input borders and the mobile menu button border — one step brighter, used only where a control needs to read as touchable.
 - **Ink on Paper Muted** (`{colors.tenue}`): The dimmed clause inside the bone declaration band (4.84:1 on bone, used at display size only).
@@ -202,7 +202,7 @@ A two-material palette: warm printing ink and bone paper, with four neutral step
 
 **The One Plate Rule.** Exactly one region per page inverts to bone ground — the declaration band. Everything else is ink ground. A second bone panel destroys the contrast that makes the first one land.
 
-**The Bone Floor Rule.** No text color below `{colors.hueso-4}` is used, and the floor is measured against the highest surface step (4.55:1), not just the base ink. `{colors.hueso-3}` and `{colors.hueso-4}` were set at these exact values to clear WCAG AA; darkening them for atmosphere is not available.
+**The Bone Floor Rule.** No text color below `{colors.hueso-4}` is used, and the floor is measured against the highest surface step (4.57:1), not just the base ink. `{colors.hueso-3}` and `{colors.hueso-4}` were set at these exact values to clear WCAG AA; darkening them for atmosphere is not available.
 
 ## Typography
 
@@ -281,7 +281,7 @@ The **pleca** — a 4px dashed print rule (2px on, 4px off, 45% opacity) — ope
 - **Checkbox rows (`.check`):** Bordered rectangles in an auto-fit grid (min 208px), border brightening on hover and staying at `{colors.hueso-3}` while checked via `:has(input:checked)`. Bone accent color on the native control.
 
 ### Navigation
-Fixed 72px bar over a translucent ink backdrop (`rgba(11,10,9,0.86)` + 14px blur). Transparent bottom border at rest, gaining a rule once scrolled past 10px; the whole bar translates fully out of view when scrolling down past 260px and returns on scroll up. Links are bone-muted uppercase 0.6875rem at 0.2em; hover and `aria-current="page"` both go bone, and the current page additionally carries a 5px filled rhombus centered 6px below. Below 900px the link row and the CTA are replaced by a 44px bordered button whose two 1px rules cross into an X, opening a full-width ink-plate panel of 1.5rem black-weight links, each with a trailing rhombus, dismissible on link click or Escape.
+Fixed 72px bar over a translucent ink backdrop (`rgba(10, 10, 10,0.86)` + 14px blur). Transparent bottom border at rest, gaining a rule once scrolled past 10px; the whole bar translates fully out of view when scrolling down past 260px and returns on scroll up. Links are bone-muted uppercase 0.6875rem at 0.2em; hover and `aria-current="page"` both go bone, and the current page additionally carries a 5px filled rhombus centered 6px below. Below 900px the link row and the CTA are replaced by a 44px bordered button whose two 1px rules cross into an X, opening a full-width ink-plate panel of 1.5rem black-weight links, each with a trailing rhombus, dismissible on link click or Escape.
 
 ### Row Plate (`.plancha` / `.renglon`)
 The system's replacement for the service card. A shared top rule; each row is a baseline-aligned grid with a bordered bottom edge, an uppercase frame label, a title, a description, and a right-aligned action word. Hovering the row raises a hidden hatch field from `--tono: 0` to `0.10` and brings the action word from `{colors.hueso-4}` to bone. There is no background change, no lift, no border highlight. `.nota` (article list) is the same component at different column proportions.
