@@ -95,61 +95,42 @@
     .search-input::placeholder { color: var(--muted); }
     .sort-select { padding: 9px 12px; background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; outline: none; }
 
-    /* ── EL LISTADO ──
-       Plancha de renglones, no rejilla de tarjetas: la regla al ancho separa,
-       el buril da el material y el iris marca el estado al pasar el cursor.
-       .plancha y .renglon vienen del núcleo; aquí solo va lo del panel.      */
-    .grid { padding: 0 28px 40px; flex: 1; border-top: 1px solid var(--linea); }
-    .empty { text-align: center; padding: 80px 0; color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+    .grid { padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; align-content: start; flex: 1; }
+    .empty { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
 
-    .grid .renglon {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) 196px;
-      gap: clamp(18px, 2.6vw, 40px);
-      padding: 26px 0;
-      align-items: start;
-      cursor: default;
-      /* La fila del panel es más baja que la del sitio: el abanico se abre
-         más cerrado y con menos tono, o tapa el dato. */
-      --salto-estado: 0.5deg;
-    }
-    .grid .renglon:hover::after { opacity: 0.13; }
-    .fila-cliente { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); line-height: 1.15; }
-
-    /* El estado va como rótulo con rombo, no como píldora de color */
-    .renglon .marco.estado { display: flex; align-items: center; gap: 8px; background: none; padding: 0; }
-    .marco.estado::before { content: ''; width: 7px; height: 7px; transform: rotate(45deg); flex: 0 0 auto; }
-
-    .fila-medio > * + * { margin-top: 11px; }
-    .fila-svcs { margin: 0; }
-    .fila-svcs li { font-size: 12px; line-height: 1.5; }
-    .fila-desc  { font-size: 13px; color: var(--muted); line-height: 1.55; }
-    .fila-vacio { font-size: 12px; color: var(--faint); }
-    .fila-valor { font-size: 13px; color: var(--acento); }
-    .fila-potencial { font-size: 12px; color: var(--acento-dim); }
-    .fila-next  { font-size: 12px; color: var(--muted); line-height: 1.45; }
-    .fila-next .marco { margin-bottom: 4px; }
-
-    .fila-acciones { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; text-align: right; }
-    .fila-fecha { font-size: 11px; color: var(--muted); letter-spacing: .06em; }
-    .fila-seg   { font-size: 11px; color: var(--muted); letter-spacing: .06em; }
-    .fila-seg.urgent { color: #E0A79C; }
-    .fila-botones { display: flex; gap: 8px; margin-top: 3px; }
-
+    /* ── CARDS ── */
+    .card { background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; transition: border-color .15s; }
+    .card:hover { border-color: var(--border2); }
+    .card-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 18px 18px 12px; }
+    .card-status { font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; padding: 4px 8px; }
+    .card-date { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+    .card-body { padding: 0 18px 16px; flex: 1; }
+    .card-client {
+      font-weight: 800;
+      letter-spacing: -0.03em; font-family: var(--font-serif); font-size: 20px; color: var(--text); line-height: 1.15; margin-bottom: 12px; }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+    .card-services { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; min-height: 20px; }
+    .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border2); padding: 3px 7px; }
+    .card-valor { font-family: var(--font-mono); font-size: 11px; color: var(--acento); margin-bottom: 10px; }
+    .card-next { font-size: 12px; color: var(--muted); line-height: 1.45; padding-top: 10px; border-top: 1px solid var(--border); min-height: 38px; }
+    .card-next-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); display: block; margin-bottom: 3px; }
+    .card-foot { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-top: 1px solid var(--border); background: var(--surface2); }
+    .card-seg { font-family: var(--font-mono); font-size: 11px; color: var(--muted); flex: 1; }
+    .card-seg.urgent { color: #E0A79C; }
     .btn-ghost { padding: 6px 10px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: border-color .12s, color .12s; }
     .btn-ghost:hover { border-color: var(--acento-dim); color: var(--text); }
 
-    /* Estado. Cada uno declara su señal; el rombo la toma y el texto también.
-       Fuera del renglón —en el cajón— sigue leyéndose como plancha teñida. */
-    .s-enviada     { --senal: var(--s-enviada-t);     background: var(--s-enviada);     color: var(--senal); }
-    .s-presentada  { --senal: var(--s-presentada-t);  background: var(--s-presentada);  color: var(--senal); }
-    .s-negociacion { --senal: var(--s-negociacion-t); background: var(--s-negociacion); color: var(--senal); }
-    .s-ganada      { --senal: var(--s-ganada-t);      background: var(--s-ganada);      color: var(--senal); }
-    .s-perdida     { --senal: var(--s-perdida-t);     background: var(--s-perdida);     color: var(--senal); }
-    .s-archivada   { --senal: var(--s-archivada-t);   background: var(--s-archivada);   color: var(--senal); }
-    .s-borrador    { --senal: var(--s-borrador-t);    background: var(--s-borrador);    color: var(--senal); }
-    .s-activo      { --senal: var(--s-activo-t);      background: var(--s-activo);      color: var(--senal); }
-    .s-archivado   { --senal: var(--s-archivado-t);   background: var(--s-archivado);   color: var(--senal); }
-    .marco.estado::before { background: var(--senal, var(--hueso-3)); }
+    /* status — propuestas */
+    .s-enviada     { background: var(--s-enviada);     color: var(--s-enviada-t); }
+    .s-presentada  { background: var(--s-presentada);  color: var(--s-presentada-t); }
+    .s-negociacion { background: var(--s-negociacion); color: var(--s-negociacion-t); }
+    .s-ganada      { background: var(--s-ganada);      color: var(--s-ganada-t); }
+    .s-perdida     { background: var(--s-perdida);     color: var(--s-perdida-t); }
+    .s-archivada   { background: var(--s-archivada);   color: var(--s-archivada-t); }
+    /* status — comercial */
+    .s-borrador    { background: var(--s-borrador);    color: var(--s-borrador-t); }
+    .s-activo      { background: var(--s-activo);      color: var(--s-activo-t); }
+    .s-archivado   { background: var(--s-archivado);   color: var(--s-archivado-t); }
 
     /* ── DRAWER ── */
     .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 100; }
@@ -256,9 +237,7 @@
 
       /* Toolbar + grid */
       .toolbar { padding: 10px 14px; }
-      .grid { padding: 0 14px 28px; }
-      .grid .renglon { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 22px 0; }
-      .fila-acciones { align-items: flex-start; text-align: left; flex-direction: row; flex-wrap: wrap; gap: 12px; }
+      .grid { padding: 12px 14px; grid-template-columns: 1fr; }
 
       /* Stats */
       .stat { min-width: 68px; padding: 12px 6px; }
@@ -641,10 +620,10 @@ function renderGrid() {
   const list = filtered();
   if (!list.length) { grid.innerHTML = '<p class="empty">Sin registros</p>'; return; }
   grid.innerHTML = list.map(p => currentTipo === 'comercial' ? cardComercialHTML(p) : cardHTML(p)).join('');
-  grid.querySelectorAll('.renglon').forEach(fila => {
-    fila.querySelector('.btn-edit').addEventListener('click', () => openDrawer(fila.dataset.slug));
-    const lb = fila.querySelector('.btn-link');
-    if (lb) lb.addEventListener('click', () => window.open(`https://${cfg().urlBase}${fila.dataset.slug}`, '_blank'));
+  grid.querySelectorAll('.card').forEach(card => {
+    card.querySelector('.btn-edit').addEventListener('click', () => openDrawer(card.dataset.slug));
+    const lb = card.querySelector('.btn-link');
+    if (lb) lb.addEventListener('click', () => window.open(`https://${cfg().urlBase}${card.dataset.slug}`, '_blank'));
   });
 }
 
@@ -652,9 +631,7 @@ function cardHTML(p) {
   const mensual = calcMensual(p), unico = calcUnico(p);
   const potMensual = calcPotencialMensual(p), potUnico = calcPotencialUnico(p);
   const selSvcs = (p.serviciosDisponibles||[]).filter(s => (p.serviciosSeleccionados||[]).includes(s.id));
-  const tagsHtml = selSvcs.length
-    ? `<ul class="lista lista--chica fila-svcs">${selSvcs.map(s => `<li>${esc(s.nombre)}</li>`).join('')}</ul>`
-    : '<p class="fila-vacio">Sin servicios seleccionados</p>';
+  const tagsHtml = selSvcs.map(s => `<span class="tag">${esc(s.nombre)}</span>`).join('') || '<span style="font-size:11px;color:var(--faint)">Sin servicios seleccionados</span>';
   let valorHtml = '';
   if (mensual || unico) {
     valorHtml = `<p class="card-valor">`;
@@ -672,36 +649,21 @@ function cardHTML(p) {
     potencialHtml += `</p>`;
   }
   const last = (p.bitacora||[])[0];
-  const nextHtml = last?.proximoPaso
-    ? `<p class="fila-next"><span class="marco">Próximo paso</span>${esc(last.proximoPaso)}</p>` : '';
-  const seg = last?.fecha
-    ? `<span class="fila-seg${isUrgent(last.fecha)?' urgent':''}">Seg. ${fmtDate(last.fecha)}</span>` : '';
-  return fila(p, `${tagsHtml}${valorHtml}${potencialHtml}${nextHtml}`, seg);
+  const nextHtml = last?.proximoPaso ? `<div class="card-next"><span class="card-next-label">Próximo paso</span>${esc(last.proximoPaso)}</div>` : '';
+  const seg = last?.fecha ? `<span class="card-seg${isUrgent(last.fecha)?' urgent':''}">Seg. ${fmtDate(last.fecha)}</span>` : '<span class="card-seg"></span>';
+  return `<div class="card" data-slug="${esc(p.slug)}">
+    <div class="card-head"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
+    <div class="card-body"><p class="card-client">${esc(p.cliente)}</p><div class="card-services">${tagsHtml}</div>${valorHtml}${potencialHtml}${nextHtml}</div>
+    <div class="card-foot">${seg}<button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
+  </div>`;
 }
 
 function cardComercialHTML(p) {
-  const descHtml = p.descripcion ? `<p class="fila-desc">${esc(p.descripcion)}</p>` : '';
-  return fila(p, descHtml, '');
-}
-
-// El listado del sistema es plancha de renglones, no rejilla de tarjetas:
-// regla al ancho, tres columnas, y el estado en el abanico del iris.
-function fila(p, medio, seg) {
-  return `<div class="renglon" data-slug="${esc(p.slug)}">
-    <div class="buril" style="--tono:.05;--paso:7px"></div>
-    <div>
-      <span class="marco estado ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span>
-      <h3 class="fila-cliente">${esc(p.cliente)}</h3>
-    </div>
-    <div class="fila-medio">${medio || '<p class="fila-vacio">Sin detalle</p>'}</div>
-    <div class="fila-acciones">
-      <span class="fila-fecha">${fmtDate(p.fecha)}</span>
-      ${seg}
-      <span class="fila-botones">
-        <button class="btn-ghost btn-link">Ver →</button>
-        <button class="btn-ghost btn-edit">Editar</button>
-      </span>
-    </div>
+  const descHtml = p.descripcion ? `<p class="card-desc">${esc(p.descripcion)}</p>` : '';
+  return `<div class="card" data-slug="${esc(p.slug)}">
+    <div class="card-head"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
+    <div class="card-body"><p class="card-client">${esc(p.cliente)}</p>${descHtml}</div>
+    <div class="card-foot"><span class="card-seg"></span><button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
   </div>`;
 }
 

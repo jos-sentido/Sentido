@@ -197,11 +197,16 @@ El sitio en `sitio/` es la referencia: no encierra, separa.
 Cada sección lleva su capa de buril (`<div class="buril">`), recta en reposo y
 en arco donde el argumento respira.
 
-**Dos excepciones legítimas**, y solo dos:
+**Tres excepciones legítimas**, y solo tres:
 
 1. **Los campos de formulario.** Un campo necesita su límite visible.
 2. **Los diagramas.** Cuando la caja es un nodo de un circuito —el «sistema
    vivo» del brochure— aplanarla a renglones borra lo que explica.
+3. **El listado del panel en `admin/`.** Va en rejilla de tarjetas por decisión
+   del cliente, no por descuido. Se convirtió a plancha de renglones y se
+   revirtió: el panel es su herramienta de trabajo diaria y ahí la tarjeta
+   funciona mejor que la fila. **No lo vuelvas a convertir.** El resto del
+   sistema —color, tipografía, piso de 11px, marca— sí aplica.
 
 **Al convertir un contenedor a rejilla, coloca a los hijos.** Sin `grid-column`
 explícito caen en la primera columna y el texto se lee una palabra por renglón.
