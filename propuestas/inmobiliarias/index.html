@@ -357,21 +357,11 @@
   }
 
   /* Stat block */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 3rem 0;
-  }
+  .stat-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--accent);
-    padding: 1.75rem 1.5rem;
-    transition: all 0.3s ease;
-  }
+  .stat-card:last-child { border-right: none; }
+  .stat-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .stat-card:hover { border-left-color: var(--accent-bright); background: var(--surface-elevated); }
   .stat-card .num {
     font-family: var(--font-display);
@@ -421,14 +411,10 @@
   .insight-block .text em { color: var(--accent); font-weight: 500; }
 
   /* Split blocks (problem/solution) */
-  .split-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 3rem 0;
-  }
+  .split-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 768px) { .split-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-  .split-card { padding: 2rem; border: 1px solid var(--border); }
+  .split-card:last-child { border-right: none; }
+  .split-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .split-card.problem { background: rgba(224, 167, 156, 0.04); border-color: rgba(224, 167, 156, 0.25); }
   .split-card.solution { background: var(--surface-elevated); border-color: rgba(241, 234, 220, 0.18); }
   .split-card .head {
@@ -482,15 +468,11 @@
   .approach-card p { font-size: 14px; line-height: 1.7; color: var(--text-dim); }
 
   /* Capability cards (servicios) */
-  .cap-list { display: flex; flex-direction: column; gap: 1rem; margin: 2.5rem 0; }
-  .cap-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    transition: border-color 0.3s, background 0.3s;
-  }
+  .cap-list { margin: 2.5rem 0; border-top: 1px solid var(--border); }
+  .cap-card { padding: clamp(22px, 2.4vw, 30px) 0; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; }
   .cap-card:hover { border-color: var(--border-bright); }
   .cap-main {
-    padding: 1.75rem;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -533,7 +515,6 @@
     width: 5px;
     height: 5px;
     background: #F1EADC;
-    border-radius: 50%;
     box-shadow: 0 0 6px rgba(241, 234, 220, 0.5);
   }
   .cap-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; margin-bottom: 1rem; }
@@ -549,18 +530,12 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 0.85rem;
-    width: 8px;
-    height: 1px;
-    background: var(--accent);
+    top: 0.72rem;
+    width: 6px;
+    height: 6px; border: 1px solid var(--text-muted); transform: rotate(45deg);
   }
   .cap-includes li strong { color: var(--text); font-weight: 400; }
-  .cap-pricing {
-    background: var(--bg);
-    border: 1px solid var(--border-accent);
-    padding: 1.25rem;
-    text-align: center;
-  }
+  .cap-pricing { border-left: 1px solid var(--border-accent); padding: 0.25rem 0 0.25rem 1.75rem; text-align: left; }
   .cap-pricing .label {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -782,20 +757,10 @@
   }
 
   /* PAUTA PLANES */
-  .plans-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin: 3rem 0;
-  }
+  .plans-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 768px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
-  .plan-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem 1.75rem;
-    position: relative;
-    transition: all 0.3s ease;
-  }
+  .plan-card:last-child { border-right: none; }
+  .plan-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .plan-card:hover { border-color: var(--border-bright); }
   .plan-card.featured {
     border-color: var(--accent);
@@ -867,10 +832,9 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 0.85rem;
-    width: 8px;
-    height: 1px;
-    background: var(--accent);
+    top: 0.72rem;
+    width: 6px;
+    height: 6px; border: 1px solid var(--text-muted); transform: rotate(45deg);
   }
   .plan-list li strong { color: var(--text); font-weight: 400; }
 
@@ -945,21 +909,9 @@
   .integral-deck strong { color: var(--text); font-weight: 500; }
   .integral-deck em { color: var(--text); }
 
-  .integral-stack {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    margin: 2rem 0 1.5rem;
-    counter-reset: integral;
-  }
+  .integral-stack { margin: 2rem 0 1.5rem; border-top: 1px solid var(--border); counter-reset: integral; }
   @media (min-width: 768px) { .integral-stack { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
-  .integral-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.1rem 1.25rem 1.1rem 3rem;
-    position: relative;
-    transition: border-color 0.3s ease;
-  }
+  .integral-item { padding: clamp(22px, 2.4vw, 30px) 0; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; }
   .integral-item:hover { border-color: var(--border-bright); }
   .integral-item::before {
     counter-increment: integral;
@@ -1409,14 +1361,10 @@
   }
 
   /* Comparison block */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 2rem 0 3rem;
-  }
+  .compare-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 768px) { .compare-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-  .compare-card { padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
+  .compare-card:last-child { border-right: none; }
+  .compare-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .compare-card .head {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -1607,6 +1555,24 @@
        Más largo, el ojo pierde el salto de línea. */
     ,
     .pauta-selector-deck { max-width: 68ch; }
+  
+    section { position: relative; overflow: hidden; }
+  
+    /* El sistema abre sección con pleca de imprenta, no con eyebrow numerado */
+    .pleca { width: 56px; height: 4px; margin-bottom: 26px;
+      background: repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 6px);
+      opacity: 0.45; }
+  
+    @media (max-width: 760px) {
+      .stat-grid, .split-grid, .compare-grid, .plans-grid {
+        grid-auto-flow: row; grid-auto-columns: auto;
+      }
+      .stat-card, .split-card, .compare-card, .plan-card {
+        border-right: none; border-bottom: 1px solid var(--border);
+      }
+      .stat-card:last-child, .split-card:last-child,
+      .compare-card:last-child, .plan-card:last-child { border-bottom: none; }
+    }
   </style>
 </head>
 <body>
@@ -1677,11 +1643,9 @@
 
 <!-- ============== EL MOMENTO ============== -->
 <section class="section section-divider" id="momento">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>01 · El momento del sector</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Las inmobiliarias en México viven la <span class="accent-italic">era donde todos se ven igual</span>.
@@ -1725,11 +1689,9 @@
 
 <!-- ============== EL VERDADERO PROBLEMA ============== -->
 <section class="section section-surface section-divider" id="problema">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>02 · El verdadero problema</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       La inmobiliaria que depende del portal compite en <span class="accent-italic">precio, no en valor</span>.
@@ -1794,11 +1756,9 @@
 
 <!-- ============== CAPTACIÓN DUAL ============== -->
 <section class="section section-divider" id="dual">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>03 · Captación dual</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Una inmobiliaria sana <span class="accent-italic">capta dos lados al mismo tiempo</span>.
@@ -1851,11 +1811,9 @@
 
 <!-- ============== CÓMO TRABAJAMOS EL SECTOR ============== -->
 <section class="section section-surface section-divider" id="trabajamos">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>04 · Cómo trabajamos el sector</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Operamos con <span class="accent-italic">tres tipos de inmobiliaria</span>.
@@ -1900,11 +1858,9 @@
 
 <!-- ============== SERVICIOS MODULARES ============== -->
 <section class="section section-divider" id="capacidades">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>05 · Servicios modulares</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Servicios modulares. Anclados a <span class="accent-italic">una sola inteligencia</span>.
@@ -2178,11 +2134,9 @@
 
 <!-- ============== PAQUETE INTEGRAL RECOMENDADO ============== -->
 <section class="section section-divider" id="integral">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>06 · Paquete integral recomendado</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Lo que recomendamos cuando el objetivo es <span class="accent-italic">construir el sistema completo.</span>
@@ -2314,11 +2268,9 @@
 
 <!-- ============== CALCULADORA ============== -->
 <section class="section section-surface section-divider" id="calculadora">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>07 · Configuración modular</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Arma tu propia versión del sistema. <span class="accent-italic">Mira el total en vivo.</span>
@@ -2480,11 +2432,9 @@
 
 <!-- ============== HORIZONTE ============== -->
 <section class="section section-surface section-divider" id="horizonte">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>08 · Horizonte de resultados</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Qué pasa en los primeros <span class="accent-italic">seis meses.</span>
@@ -2549,6 +2499,7 @@
 
 <!-- ============== CIERRE ============== -->
 <section class="closing" id="contacto">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="reveal">
     <h2>
       El sector premia a la inmobiliaria que <em>responde primero</em>,<br />

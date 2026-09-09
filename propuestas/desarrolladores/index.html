@@ -395,21 +395,11 @@
   }
 
   /* Stat block */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 3rem 0;
-  }
+  .stat-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--accent);
-    padding: 1.75rem 1.5rem;
-    transition: all 0.3s ease;
-  }
+  .stat-card:last-child { border-right: none; }
+  .stat-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .stat-card:hover { border-left-color: var(--accent-bright); background: var(--surface-elevated); }
   .stat-card .num {
     font-family: var(--font-display);
@@ -459,17 +449,10 @@
   .insight-block .text em { color: var(--accent); font-weight: 500; }
 
   /* Split blocks (problem/solution) */
-  .split-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 3rem 0;
-  }
+  .split-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 768px) { .split-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-  .split-card {
-    padding: 2rem;
-    border: 1px solid var(--border);
-  }
+  .split-card:last-child { border-right: none; }
+  .split-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .split-card.problem {
     background: rgba(224, 167, 156, 0.04);
     border-color: rgba(224, 167, 156, 0.25);
@@ -541,20 +524,11 @@
   }
 
   /* Capability cards (servicios) */
-  .cap-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 2.5rem 0;
-  }
-  .cap-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    transition: border-color 0.3s, background 0.3s;
-  }
+  .cap-list { margin: 2.5rem 0; border-top: 1px solid var(--border); }
+  .cap-card { padding: clamp(22px, 2.4vw, 30px) 0; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; }
   .cap-card:hover { border-color: var(--border-bright); }
   .cap-main {
-    padding: 1.75rem;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -597,7 +571,6 @@
     width: 5px;
     height: 5px;
     background: #F1EADC;
-    border-radius: 50%;
     box-shadow: 0 0 6px rgba(241, 234, 220, 0.5);
   }
   .cap-desc {
@@ -622,18 +595,12 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 0.85rem;
-    width: 8px;
-    height: 1px;
-    background: var(--accent);
+    top: 0.72rem;
+    width: 6px;
+    height: 6px; border: 1px solid var(--text-muted); transform: rotate(45deg);
   }
   .cap-includes li strong { color: var(--text); font-weight: 400; }
-  .cap-pricing {
-    background: var(--bg);
-    border: 1px solid var(--border-accent);
-    padding: 1.25rem;
-    text-align: center;
-  }
+  .cap-pricing { border-left: 1px solid var(--border-accent); padding: 0.25rem 0 0.25rem 1.75rem; text-align: left; }
   .cap-pricing .label {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -853,20 +820,10 @@
   .integral-note strong { color: var(--text-dim); font-weight: 500; }
 
   /* Pauta planes */
-  .plans-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin: 3rem 0;
-  }
+  .plans-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 768px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
-  .plan-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem 1.75rem;
-    position: relative;
-    transition: all 0.3s ease;
-  }
+  .plan-card:last-child { border-right: none; }
+  .plan-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .plan-card:hover { border-color: var(--border-bright); }
   .plan-card.featured {
     border-color: var(--accent);
@@ -950,10 +907,9 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 0.85rem;
-    width: 8px;
-    height: 1px;
-    background: var(--accent);
+    top: 0.72rem;
+    width: 6px;
+    height: 6px; border: 1px solid var(--text-muted); transform: rotate(45deg);
   }
   .plan-list li strong { color: var(--text); font-weight: 400; }
 
@@ -1123,18 +1079,10 @@
   }
 
   /* Comparison block */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 2rem 0 3rem;
-  }
+  .compare-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
   @media (min-width: 768px) { .compare-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-  .compare-card {
-    padding: 1.5rem;
-    border: 1px solid var(--border);
-    background: var(--surface);
-  }
+  .compare-card:last-child { border-right: none; }
+  .compare-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); position: relative; }
   .compare-card .head {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -1221,6 +1169,24 @@
        Más largo, el ojo pierde el salto de línea. */
     ,
     .cap-includes > li { max-width: 68ch; }
+  
+    section { position: relative; overflow: hidden; }
+  
+    /* El sistema abre sección con pleca de imprenta, no con eyebrow numerado */
+    .pleca { width: 56px; height: 4px; margin-bottom: 26px;
+      background: repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 6px);
+      opacity: 0.45; }
+  
+    @media (max-width: 760px) {
+      .stat-grid, .split-grid, .compare-grid, .plans-grid {
+        grid-auto-flow: row; grid-auto-columns: auto;
+      }
+      .stat-card, .split-card, .compare-card, .plan-card {
+        border-right: none; border-bottom: 1px solid var(--border);
+      }
+      .stat-card:last-child, .split-card:last-child,
+      .compare-card:last-child, .plan-card:last-child { border-bottom: none; }
+    }
   </style>
 </head>
 <body>
@@ -1298,11 +1264,9 @@
 
 <!-- ============== EL MOMENTO ============== -->
 <section class="section section-divider" id="momento">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>01 &middot; El momento del desarrollador</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       El desarrollador mexicano vive una <span class="accent-italic">paradoja operativa</span>: nunca hubo más demanda potencial, ni menos margen para fallar en <em>ningún</em> momento del ciclo.
@@ -1312,7 +1276,7 @@
       Costos de construcción presionados, financiamiento más caro, comprador más informado, ciclo de decisión más largo. El reto no termina al lanzar: empieza en <strong>preventa</strong>, sigue durante la <strong>comercialización con obra en marcha</strong> y se vuelve crítico en la <strong>absorción del inventario terminado</strong>. Cada etapa exige una calibración distinta del mismo motor &mdash; render, narrativa y pauta no se operan igual cuando vendes en planos que cuando cierras la última torre.
     </p>
 
-    <div class="cycle-grid reveal reveal-d1" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; padding: 1.5rem; border: 1px solid rgba(241, 234, 220,0.08); background: rgba(241, 234, 220,0.02); border-radius: 4px;">
+    <div class="cycle-grid reveal reveal-d1" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; padding: 1.5rem; border: 1px solid rgba(241, 234, 220,0.08); background: rgba(241, 234, 220,0.02);">
       <div>
         <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Etapa 1 &middot; Preventa</div>
         <div style="font-size: 14px; line-height: 1.5; color: var(--text-dim, rgba(241, 234, 220,0.65));">Vender en planos. Marca, render y storytelling de promesa que sostienen el ticket antes de obra negra.</div>
@@ -1356,11 +1320,9 @@
 
 <!-- ============== EL VERDADERO PROBLEMA ============== -->
 <section class="section section-surface section-divider" id="problema">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>02 &middot; El verdadero problema</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       El problema no es el desarrollo. El problema es que el sistema que lo vende <span class="accent-italic">opera en piezas sueltas</span>.
@@ -1416,11 +1378,9 @@
 
 <!-- ============== TIPOLOGÍAS DE DESARROLLO ============== -->
 <section class="section section-divider" id="tipologias">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>03 &middot; Tipologías de desarrollo</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Cada tipología juega un juego distinto. El sistema <span class="accent-italic">se calibra al producto</span>.
@@ -1430,7 +1390,7 @@
       No es lo mismo preventa de vertical residencial en zona consolidada que lotificación en periferia. Cambia el ticket, el comprador, el ciclo y la estrategia de pauta. El sistema integral es el mismo &mdash; lo que cambia es el énfasis y la calibración por canal.
     </p>
 
-    <div class="stage-banner reveal reveal-d1" style="margin: 1.5rem 0 2rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--accent); background: rgba(241, 234, 220,0.03); border-radius: 0 4px 4px 0;">
+    <div class="stage-banner reveal reveal-d1" style="margin: 1.5rem 0 2rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--accent); background: rgba(241, 234, 220,0.03);">
       <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Eje transversal &middot; Etapa del desarrollo</div>
       <div style="font-size: 15px; line-height: 1.55;">
         Aplicamos el mismo sistema en las <strong>tres etapas del ciclo</strong>: <em>preventa</em> (vender en planos), <em>operación</em> (vender con obra en marcha y avance visible) y <em>absorción</em> (cerrar inventario terminado y reactivar leads dormidos). Entramos en cualquiera &mdash; lo que cambia es la mezcla de pauta, narrativa y producción de contenido.
@@ -1479,11 +1439,9 @@
 
 <!-- ============== EL SISTEMA (SERVICIOS COMO PIEZAS) ============== -->
 <section class="section section-surface section-divider" id="sistema">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>04 &middot; El sistema, bloque por bloque</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Siete bloques. <span class="accent-italic">Un mismo cimiento.</span>
@@ -1721,11 +1679,9 @@
 
 <!-- ============== CONTRATACIÓN INTEGRAL ============== -->
 <section class="section section-divider" id="integral">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>05 &middot; Contratación integral</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Para obtener los resultados de preventa, el sistema se contrata <span class="accent-italic">completo</span>.
@@ -1850,11 +1806,9 @@
 
 <!-- ============== PAUTA / PLANES ============== -->
 <section class="section section-surface section-divider" id="pauta">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>06 &middot; Inversión publicitaria</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       La pauta se calibra al <span class="accent-italic">inventario por mover</span>, no al calendario.
@@ -1919,11 +1873,9 @@
 
 <!-- ============== HORIZONTE ============== -->
 <section class="section section-divider" id="horizonte">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
-    <div class="section-label reveal">
-      <div class="divider"></div>
-      <span>07 &middot; Horizonte de resultados</span>
-    </div>
+    <div class="pleca"></div>
 
     <h2 class="display-heading xl reveal max-w-4xl">
       Qué pasa en el <span class="accent-italic">primer año</span> de operación.
@@ -1997,6 +1949,7 @@
 
 <!-- ============== CIERRE ============== -->
 <section class="closing" id="contacto">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="reveal">
     <h2>
       El desarrollador que opera <em>las tres etapas</em> con un solo sistema<br />
