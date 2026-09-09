@@ -179,3 +179,31 @@ renderizándolo con su propio CSS. Está escrita a mano, no la genera `build.py`
 - Si el trabajo es de identidad Sentido, contrástalo con la lista de rechazos de
   `SISTEMA-VISUAL.md`: sin tarjetas, sin íconos, sin monoespaciada de disfraz, sin
   serif, sin gradientes ni glow, sin negro puro.
+
+---
+
+## Cómo compone el sistema
+
+El sitio en `sitio/` es la referencia: no encierra, separa.
+
+| En vez de | Va |
+|---|---|
+| Rejilla de tarjetas | **Plancha de renglones** — `.plancha` + `.renglon` del núcleo: regla al ancho, sin caja, tres columnas, y el estado en el abanico del iris al pasar el cursor |
+| Grupo de tarjetas en fila | **Columnas con regla vertical** — `border-right` por columna, sin marco exterior ni gap. Usa `grid-auto-flow: column` para que el número de columnas se ajuste al de piezas |
+| Eyebrow numerado sobre el titular | **Pleca de imprenta** (`.pleca`, 56×4px) — el sistema no numera sus capítulos |
+| Ícono | **Rombo** (`.rombo`), o nada: el rótulo ya nombra la pieza |
+| Esquina redondeada, sombra con blur, glow | Nada de eso existe |
+
+Cada sección lleva su capa de buril (`<div class="buril">`), recta en reposo y
+en arco donde el argumento respira.
+
+**Dos excepciones legítimas**, y solo dos:
+
+1. **Los campos de formulario.** Un campo necesita su límite visible.
+2. **Los diagramas.** Cuando la caja es un nodo de un circuito —el «sistema
+   vivo» del brochure— aplanarla a renglones borra lo que explica.
+
+**Al convertir un contenedor a rejilla, coloca a los hijos.** Sin `grid-column`
+explícito caen en la primera columna y el texto se lee una palabra por renglón.
+Y revisa que ningún `var()` apunte a un token que la pieza no define: invalida
+el atajo entero y la declaración desaparece sin avisar.
