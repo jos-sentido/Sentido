@@ -194,8 +194,18 @@ El sitio en `sitio/` es la referencia: no encierra, separa.
 | Ícono | **Rombo** (`.rombo`), o nada: el rótulo ya nombra la pieza |
 | Esquina redondeada, sombra con blur, glow | Nada de eso existe |
 
-Cada sección lleva su capa de buril (`<div class="buril">`), recta en reposo y
-en arco donde el argumento respira.
+**El buril es acento, no fondo.** Tres capas visibles por página y no más:
+apertura en arco (0.15), una a media página en recta (0.16), cierre en arco
+(0.16). Las demás secciones van limpias, y las capas dentro de un componente
+—fila, capa— van a opacidad 0 en reposo: lo que responde al cursor es el iris.
+Ponerla en todas las secciones satura y la trama deja de marcar nada.
+
+**Una o dos secciones por página van en `.papel`**, donde el argumento cambia
+de registro —del problema al procedimiento, del sistema a la acción—. La clase
+intercambia los tokens y todo el componente se invierte solo. Si la pieza tiene
+sus propios nombres de token, el bloque `.papel` tiene que declararlos **con
+esos nombres**: `var(--text-dim)` en una pieza que llama `--ink-soft` a lo suyo
+deja el texto del color heredado, y sale hueso sobre hueso.
 
 **Tres excepciones legítimas**, y solo tres:
 

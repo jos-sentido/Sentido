@@ -434,6 +434,31 @@
     @media (max-width: 760px) {
       .feature { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
     }
+  
+    /* ── SUPERFICIE CLARA ──
+       El sistema tiene dos materiales de igual rango. La clase intercambia los
+       valores de los tokens, así que todo componente ya escrito funciona sobre
+       papel sin una sola regla extra: el buril graba en tinta y el logo va en
+       su variante oscura. Se usa donde el argumento cambia de registro, no
+       para variar. */
+    .papel {
+      --bg: #F1EADC;
+      --bg-deep: #F1EADC;
+      --surface: #E8E0D0;
+      --surface-elevated: #DED5C2;
+      --border: #D8CFBC;
+      --border-strong: #C4B9A2;
+      --ink: #0A0A0A;
+      --ink-soft: #2E2A24;
+      --ink-muted: #514B42;
+      --ink-whisper: #5C564C;
+      --accent: #0A0A0A;
+      --accent-deep: #514B42;
+      --accent-soft: #2E2A24;
+      background: var(--bg);
+      color: var(--ink-soft);
+    }
+    .papel .pleca { opacity: 0.55; }
   </style>
 </head>
 <body>
@@ -490,7 +515,7 @@
 
 <!-- CONTEXTO -->
 <section class="section" id="contexto">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.15;--foco:50% 185%;--rx:210%;--ry:140%"></div>
   <div class="section-inner">
     <div class="pleca"></div>
     <p class="lede reveal reveal-d1">
@@ -532,7 +557,6 @@
 
 <!-- FUNCIONALIDADES -->
 <section class="section section-surface" id="funcionalidades">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
     <h2 class="h-lg reveal reveal-d1" style="max-width: 50rem; margin-bottom: 1.5rem;">
@@ -609,8 +633,7 @@
 </section>
 
 <!-- ÁNGULO -->
-<section class="section" id="angulo">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+<section class="section papel" id="angulo">
   <div class="section-inner">
     <div class="pleca"></div>
     <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
@@ -642,7 +665,7 @@
 
 <!-- CRONOGRAMA -->
 <section class="section section-deep" id="cronograma">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.16;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
     <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
@@ -691,7 +714,6 @@
 
 <!-- INVERSIÓN -->
 <section class="section" id="inversion">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
     <h2 class="h-lg reveal reveal-d1" style="max-width: 50rem; margin-bottom: 1.5rem;">
@@ -804,7 +826,6 @@
 
 <!-- CTA + FORMULARIO -->
 <section class="section cta-form-section" id="responder">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="cta-form-wrap">
     <div class="pleca"></div>
     <h2 class="reveal reveal-d1">Armemos <em>el tuyo</em>.</h2>
@@ -853,7 +874,7 @@
 
 <!-- CIERRE -->
 <section class="closing" id="cierre">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.15;--foco:50% 185%;--rx:210%;--ry:140%"></div>
   <div class="closing-inner">
     <div class="section-label reveal"><span class="dot"></span><span>Sentido · Sitios Web con IA</span><span class="divider"></span></div>
     <h2 class="reveal reveal-d1">

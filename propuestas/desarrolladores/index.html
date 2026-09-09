@@ -1187,6 +1187,31 @@
       .stat-card:last-child, .split-card:last-child,
       .compare-card:last-child, .plan-card:last-child { border-bottom: none; }
     }
+  
+    /* ── SUPERFICIE CLARA ──
+       El sistema tiene dos materiales de igual rango. La clase intercambia los
+       valores de los tokens, así que todo componente ya escrito funciona sobre
+       papel sin una sola regla extra: el buril graba en tinta y el logo va en
+       su variante oscura. Se usa donde el argumento cambia de registro, no
+       para variar. */
+    .papel {
+      --bg: #F1EADC;
+      --surface: #E8E0D0;
+      --surface-elevated: #DED5C2;
+      --surface-hover: #D5CBB6;
+      --border: #D8CFBC;
+      --border-accent: #C4B9A2;
+      --border-bright: #B3A88F;
+      --text: #0A0A0A;
+      --text-dim: #2E2A24;
+      --text-muted: #514B42;
+      --accent: #0A0A0A;
+      --accent-bright: #0A0A0A;
+      --accent-dim: #5C564C;
+      background: var(--bg);
+      color: var(--text-dim);
+    }
+    .papel .pleca { opacity: 0.55; }
   </style>
 </head>
 <body>
@@ -1264,7 +1289,7 @@
 
 <!-- ============== EL MOMENTO ============== -->
 <section class="section section-divider" id="momento">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.15;--foco:50% 185%;--rx:210%;--ry:140%"></div>
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1320,7 +1345,6 @@
 
 <!-- ============== EL VERDADERO PROBLEMA ============== -->
 <section class="section section-surface section-divider" id="problema">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1377,8 +1401,7 @@
 </section>
 
 <!-- ============== TIPOLOGÍAS DE DESARROLLO ============== -->
-<section class="section section-divider" id="tipologias">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+<section class="section section-divider papel" id="tipologias">
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1439,7 +1462,7 @@
 
 <!-- ============== EL SISTEMA (SERVICIOS COMO PIEZAS) ============== -->
 <section class="section section-surface section-divider" id="sistema">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.16;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1679,7 +1702,6 @@
 
 <!-- ============== CONTRATACIÓN INTEGRAL ============== -->
 <section class="section section-divider" id="integral">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1806,7 +1828,6 @@
 
 <!-- ============== PAUTA / PLANES ============== -->
 <section class="section section-surface section-divider" id="pauta">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1873,7 +1894,6 @@
 
 <!-- ============== HORIZONTE ============== -->
 <section class="section section-divider" id="horizonte">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
   <div class="section-inner">
     <div class="pleca"></div>
 
@@ -1949,7 +1969,7 @@
 
 <!-- ============== CIERRE ============== -->
 <section class="closing" id="contacto">
-  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.05;--paso:7px"></div>
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.15;--foco:50% 185%;--rx:210%;--ry:140%"></div>
   <div class="reveal">
     <h2>
       El desarrollador que opera <em>las tres etapas</em> con un solo sistema<br />

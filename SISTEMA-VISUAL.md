@@ -227,6 +227,25 @@ ocupan superficies, con densidad variable.
 }
 ```
 
+### Cuántas capas por página
+
+**La trama es acento, no fondo.** Medido en el sitio, de nueve secciones de la
+portada solo tres llevan capa visible:
+
+| Dónde | Registro | Tono |
+|---|---|---|
+| La apertura | arco | 0.15 |
+| Una sección a media página | recta | 0.16 |
+| El cierre | arco | 0.16 |
+| El pie | arco | 0.09 |
+
+**Todas las demás van limpias.** Y las capas que viven dentro de un componente
+—fila, capa— están a **opacidad 0 en reposo**: lo que responde al cursor es el
+iris, no la trama.
+
+Poner una capa en cada sección satura la página y, peor, hace que la trama deje
+de significar algo: si está en todas partes no marca nada.
+
 Cinco parámetros, fijados por contexto:
 
 | Propiedad | Qué controla | Rango usado |

@@ -510,16 +510,6 @@
   }
   .service > * { position: relative; }
 
-  /* El buril, sin markup extra */
-  .service::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: repeating-linear-gradient(90deg,
-      var(--accent) 0 0.6px, transparent 0.6px 7px);
-    opacity: 0.05;
-  }
   /* El estado es de iris: se abre desde fuera del encuadre */
   .service::after {
     content: '';
@@ -2164,6 +2154,29 @@
        Más largo, el ojo pierde el salto de línea. */
     ,
     .service-items > li { max-width: 68ch; }
+  
+    /* ── SUPERFICIE CLARA ──
+       El sistema tiene dos materiales de igual rango. La clase intercambia los
+       valores de los tokens, así que todo componente ya escrito funciona sobre
+       papel sin una sola regla extra: el buril graba en tinta y el logo va en
+       su variante oscura. Se usa donde el argumento cambia de registro, no
+       para variar. */
+    .papel {
+      --bg: #F1EADC;
+      --surface: #E8E0D0;
+      --surface-elevated: #DED5C2;
+      --surface-ghost: #EDE5D6;
+      --border: #D8CFBC;
+      --border-strong: #C4B9A2;
+      --text: #0A0A0A;
+      --text-dim: #2E2A24;
+      --text-faint: #5C564C;
+      --accent: #0A0A0A;
+      --accent-dim: #5C564C;
+      background: var(--bg);
+      color: var(--text-dim);
+    }
+    .papel .pleca { opacity: 0.55; }
   </style>
 </head>
 <body>
@@ -2272,7 +2285,7 @@
 
 <!-- ================= 01 · CONTEXTO ================= -->
 <section id="contexto">
-  <div class="buril buril--arco" aria-hidden="true" style="--tono:.11;--paso:7px"></div>
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.15;--foco:50% 185%;--rx:210%;--ry:140%"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
@@ -2320,7 +2333,6 @@
 
 <!-- ================= 02 · MÉTODO ================= -->
 <section id="metodo">
-  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
@@ -2380,7 +2392,6 @@
 
 <!-- ================= 03 · CÓMO TRABAJAMOS (PROCESO) ================= -->
 <section id="proceso">
-  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
@@ -2450,7 +2461,7 @@
 
 <!-- ================= 04 · EL SISTEMA VIVO ================= -->
 <section id="sistema-vivo">
-  <div class="buril buril--arco" aria-hidden="true" style="--tono:.11;--paso:7px"></div>
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.16;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
@@ -2552,7 +2563,6 @@
 
 <!-- ================= 05 · SISTEMAS ================= -->
 <section id="sistemas">
-  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
@@ -2759,8 +2769,7 @@
 </section>
 
 <!-- ================= 05 · CÓMO ARRANCAMOS ================= -->
-<section id="arrancamos">
-  <div class="buril" aria-hidden="true" style="--tono:.05;--paso:7px"></div>
+<section id="arrancamos" class="papel">
   <div class="container">
     <div class="section-title reveal">
       <div>
@@ -2804,7 +2813,7 @@
 
 <!-- ================= 06 · HABLEMOS ================= -->
 <section id="hablemos">
-  <div class="buril buril--arco" aria-hidden="true" style="--tono:.11;--paso:7px"></div>
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.15;--foco:50% 185%;--rx:210%;--ry:140%"></div>
   <div class="container">
     <div class="section-title reveal">
       <div>
