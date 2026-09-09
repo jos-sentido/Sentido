@@ -38,18 +38,18 @@
 :root {
   /* Tinta — negro cálido de imprenta, nunca #000 */
   --tinta:     #0B0A09;
-  --tinta-2:   #100E0C;
-  --tinta-3:   #171410;
-  --tinta-4:   #1E1A15;
+  --tinta-2:   #100E0D;
+  --tinta-3:   #161413;
+  --tinta-4:   #1C1A19;
 
   /* Hueso — el papel */
   --hueso:     #F1EADC;   /* 16.52:1 sobre tinta */
   --hueso-2:   #B6AE9E;   /*  8.98:1 */
   --hueso-3:   #948C80;   /*  5.96:1 */
-  --hueso-4:   #857E72;   /*  4.92:1 — el piso */
+  --hueso-4:   #898275;   /*  4.55:1 sobre el escalón más alto — el piso */
 
-  --linea:     #262119;
-  --linea-2:   #352F25;
+  --linea:     #22201F;
+  --linea-2:   #302E2D;
 
   /* Error, el único color fuera de la paleta */
   --error:      #B4655A;
@@ -80,7 +80,7 @@
   --hueso:   #0B0A09;   /* 16.52:1 sobre papel */
   --hueso-2: #2E2A24;   /* 11.91:1 */
   --hueso-3: #514B42;   /*  7.20:1 */
-  --hueso-4: #6B6459;   /*  4.88:1 — el piso */
+  --hueso-4: #5C564C;   /*  4.51:1 sobre el escalón más alto — el piso */
 
   --linea:   #D8CFBC;
   --linea-2: #C4B9A2;

@@ -40,9 +40,9 @@ ni blanco puro (`#FFF`).
 | Token | Hex | Uso |
 |---|---|---|
 | `--tinta` | `#0B0A09` | Fondo universal |
-| `--tinta-2` | `#100E0C` | Plancha elevada: bloques, formulario, pie |
-| `--tinta-3` | `#171410` | Fondo de campos de formulario abiertos |
-| `--tinta-4` | `#1E1A15` | Reservado, el escalón más alto |
+| `--tinta-2` | `#100E0D` | Plancha elevada: bloques, formulario, pie |
+| `--tinta-3` | `#161413` | Fondo de campos de formulario abiertos |
+| `--tinta-4` | `#1C1A19` | Reservado, el escalón más alto |
 
 ### Hueso — el papel y la tinta clara
 
@@ -51,14 +51,14 @@ ni blanco puro (`#FFF`).
 | `--hueso` | `#F1EADC` | 16.52:1 | Títulos, plancha de papel, botón sólido |
 | `--hueso-2` | `#B6AE9E` | 8.98:1 | Cuerpo de texto |
 | `--hueso-3` | `#948C80` | 5.96:1 | Texto secundario, etiquetas |
-| `--hueso-4` | `#857E72` | 4.92:1 | Metadatos, texto mínimo |
+| `--hueso-4` | `#898275` | 5.19:1 | Metadatos, texto mínimo |
 
 ### Líneas
 
 | Token | Hex | Uso |
 |---|---|---|
-| `--linea` | `#262119` | Reglas y divisiones |
-| `--linea-2` | `#352F25` | Bordes de campo y de botón fantasma |
+| `--linea` | `#22201F` | Reglas y divisiones |
+| `--linea-2` | `#302E2D` | Bordes de campo y de botón fantasma |
 
 ### Superficie clara — el tema no es «oscuro», es de dos materiales
 
@@ -79,14 +79,16 @@ el buril graba en tinta, la caja hueso pasa a ser oscura, el botón se invierte 
   --hueso:   #0B0A09;   /* 16.52:1 · títulos, caja, botón sólido */
   --hueso-2: #2E2A24;   /* 11.91:1 · cuerpo */
   --hueso-3: #514B42;   /*  7.20:1 · secundario */
-  --hueso-4: #6B6459;   /*  4.88:1 · piso */
+  --hueso-4: #5C564C;   /*  6.07:1 · piso */
 
   --linea:   #D8CFBC;
   --linea-2: #C4B9A2;
 }
 ```
 
-Las dos rampas son espejo: el piso oscuro está en 4.92:1 y el claro en 4.88:1.
+Las dos rampas son espejo. Los cuatro escalones de texto están calibrados contra
+**el escalón de fondo más alto**, no solo contra el fondo base: el piso real es
+4.55:1 sobre tinta y 4.51:1 sobre papel, en el peor caso de cada rampa.
 
 **Sobre papel va el logo en su variante oscura** — `logo-sentido-dark.png` y
 `logo-sentido-nombre-dark.png`. Es aplicación válida del sistema, no excepción.
@@ -103,14 +105,20 @@ alternar dentro de una misma página.
 
 ### Reglas de color
 
-1. **Regla de la tinta cálida.** Todo negro lleva calidez. `#000` está prohibido
-   salvo dentro de máscaras CSS, donde no es color sino canal alfa.
+1. **Regla de la tinta cálida constante.** Todo negro lleva calidez, y la calidez
+   es **la misma en toda la rampa**: 3 puntos de R sobre B, medidos en absoluto.
+   Si se mantiene el *porcentaje* de saturación en vez del desvío absoluto, la
+   calidez crece con la luz y los escalones altos viran a café. Ese fue el error
+   de la primera rampa: 30° de matiz a 10% de saturación abajo, que arriba se
+   volvían 37° a 21%. `#000` está prohibido salvo dentro de máscaras CSS, donde
+   no es color sino canal alfa.
 2. **Regla de la alternancia deliberada.** Tinta y papel tienen el mismo rango, y
    una página puede alternarlos. Pero cada cambio de superficie tiene que responder
    a un cambio de contenido —del argumento al procedimiento, del sistema a la
    acción— y no a ganas de variar. Si dos secciones seguidas cambian de superficie
    sin razón, el ritmo se vuelve decoración.
-3. **Regla del piso de contraste.** Ningún texto por debajo de 4.92:1. Los cuatro
+3. **Regla del piso de contraste.** Ningún texto por debajo de 4.5:1 **contra la
+   superficie sobre la que se para de verdad**, no contra el fondo base. Los cuatro
    escalones de hueso ya están calibrados para eso.
 
 ---
@@ -453,9 +461,9 @@ y cualquier animación en bucle.
 de impresión del botón:
 
 ```css
-box-shadow: 0 2px 0 0 #857E72;   /* reposo */
-box-shadow: 0 4px 0 0 #857E72;   /* hover */
-box-shadow: 0 1px 0 0 #857E72;   /* activo */
+box-shadow: 0 2px 0 0 #898275;   /* reposo */
+box-shadow: 0 4px 0 0 #898275;   /* hover */
+box-shadow: 0 1px 0 0 #898275;   /* activo */
 ```
 
 La jerarquía se resuelve con densidad de trama, reglas y peso tipográfico.

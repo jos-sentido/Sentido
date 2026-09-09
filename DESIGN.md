@@ -3,16 +3,16 @@ name: Sentido · Branding & Advertising
 description: Buril engraving derived from the brand's own isotipo — line fields as material, the rhombus as module, warm ink under bone.
 colors:
   tinta: "#0B0A09"
-  tinta-2: "#100E0C"
-  tinta-3: "#171410"
-  tinta-4: "#1E1A15"
+  tinta-2: "#100E0D"
+  tinta-3: "#161413"
+  tinta-4: "#1C1A19"
   hueso: "#F1EADC"
   hueso-2: "#B6AE9E"
   hueso-3: "#948C80"
-  hueso-4: "#857E72"
-  linea: "#262119"
-  linea-2: "#352F25"
-  tenue: "#6B6459"
+  hueso-4: "#898275"
+  linea: "#22201F"
+  linea-2: "#302E2D"
+  tenue: "#5C564C"
   error: "#B4655A"
   error-texto: "#E0A79C"
 typography:
@@ -188,7 +188,7 @@ A two-material palette: warm printing ink and bone paper, with four neutral step
 - **Ink Deep / Ink Warm** (`{colors.tinta-3}`, `{colors.tinta-4}`): Reserved depths; `tinta-3` backs native `<select>` options.
 - **Bone Text** (`{colors.hueso-2}`): Default body text on ink (9.0:1). The reading color.
 - **Bone Muted** (`{colors.hueso-3}`): Secondary prose, labels, row descriptions, rhombus borders (5.96:1).
-- **Bone Quiet** (`{colors.hueso-4}`): The quietest legible tier — timestamps, placeholders, footer legal, the primary button's offset shadow (4.92:1).
+- **Bone Quiet** (`{colors.hueso-4}`): The quietest legible tier — timestamps, placeholders, footer legal, the primary button's offset shadow (5.19:1 on ink, 4.55:1 on the highest surface step).
 - **Rule** (`{colors.linea}`): Every hairline divider, section top-border, and row border.
 - **Rule Raised** (`{colors.linea-2}`): Input borders and the mobile menu button border — one step brighter, used only where a control needs to read as touchable.
 - **Ink on Paper Muted** (`{colors.tenue}`): The dimmed clause inside the bone declaration band (4.84:1 on bone, used at display size only).
@@ -202,7 +202,7 @@ A two-material palette: warm printing ink and bone paper, with four neutral step
 
 **The One Plate Rule.** Exactly one region per page inverts to bone ground — the declaration band. Everything else is ink ground. A second bone panel destroys the contrast that makes the first one land.
 
-**The Bone Floor Rule.** No text color below `{colors.hueso-4}` (4.92:1) is used on ink. `{colors.hueso-3}` and `{colors.hueso-4}` were set at these exact values to clear WCAG AA; darkening them for atmosphere is not available.
+**The Bone Floor Rule.** No text color below `{colors.hueso-4}` is used, and the floor is measured against the highest surface step (4.55:1), not just the base ink. `{colors.hueso-3}` and `{colors.hueso-4}` were set at these exact values to clear WCAG AA; darkening them for atmosphere is not available.
 
 ## Typography
 
