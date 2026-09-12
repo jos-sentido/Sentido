@@ -107,6 +107,32 @@
   .ig-cap b { color: var(--hueso); font-weight: 600; }
   .ig-cap .txt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
+  /* Plan de posteo orgánico — calendario */
+  .olas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 40px); margin-top: clamp(32px, 4vw, 46px); padding-bottom: clamp(30px, 3.6vw, 42px); border-bottom: 1px solid var(--linea); }
+  .olas .ola .rotulo { display: block; margin-bottom: 9px; color: var(--hueso); }
+  .olas .ola p { margin: 0; font-family: var(--archivo); font-weight: var(--negra); font-size: clamp(1.1rem, 2vw, 1.375rem); letter-spacing: -0.02em; color: var(--hueso); }
+  @media (max-width: 640px) { .olas { grid-template-columns: 1fr; gap: 18px; } }
+
+  .cal-wrap { margin-top: clamp(32px, 4vw, 46px); overflow-x: auto; scrollbar-width: thin; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(84px, 1fr)); gap: 1px; background: var(--linea); border: 1px solid var(--linea); min-width: 640px; }
+  .cal-dow { background: var(--tinta-2); padding: 11px 10px; text-align: center; font-family: var(--archivo); font-weight: 700; font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hueso-3); }
+  .cal-cell { background: var(--tinta); min-height: clamp(78px, 8vw, 104px); padding: 9px 10px; display: flex; flex-direction: column; }
+  .cal-cell.vacia { background: var(--tinta); }
+  .cal-cell.fuera { opacity: 0.32; }
+  .cal-cell.activa { background: var(--tinta-2); }
+  .cal-cell.con-post { background: var(--tinta-3); }
+  .cal-num { font-family: var(--archivo); font-weight: var(--negra); font-size: 0.9375rem; color: var(--hueso-3); letter-spacing: -0.02em; }
+  .cal-cell.activa .cal-num { color: var(--hueso); }
+  .cal-post { margin-top: auto; }
+  .cal-dev { display: flex; gap: 6px; align-items: flex-start; font-size: 0.6875rem; line-height: 1.25; color: var(--hueso); }
+  .cal-dev::before { content: ''; width: 5px; height: 5px; margin-top: 5px; background: var(--hueso); transform: rotate(45deg); flex: 0 0 auto; }
+
+  .pd { margin-top: clamp(32px, 4vw, 46px); }
+  .pd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--linea); border: 1px solid var(--linea); }
+  .pd-item { background: var(--tinta); padding: 16px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+  .pd-dev { font-family: var(--archivo); font-weight: var(--fuerte); color: var(--hueso); font-size: 0.9375rem; }
+  .pd-dates { font-family: var(--archivo); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hueso-3); white-space: nowrap; }
+
   /* Encabezado en dos columnas: texto + carrusel de artes por desarrollo */
   /* El contenido va SOBRE la trama del fondo (.portada > .buril es absolute y
      su máscara cae al lado derecho, justo sobre el carrusel). */
@@ -185,6 +211,7 @@
       <a href="#tracking" class="nav-a">Tracking</a>
       <a href="#reglas" class="nav-a">Reglas</a>
       <a href="#copy" class="nav-a">Copy</a>
+      <a href="#posteo" class="nav-a">Posteo</a>
       <a href="#cierre" class="nav-a">Cierre</a>
     </div>
     <button class="nav-btn" id="navBtn" aria-label="Menú" aria-expanded="false">
@@ -200,6 +227,7 @@
   <a href="#tracking">Tracking <span class="rombo"></span></a>
   <a href="#reglas">Reglas <span class="rombo"></span></a>
   <a href="#copy">Copy <span class="rombo"></span></a>
+  <a href="#posteo">Posteo <span class="rombo"></span></a>
   <a href="#cierre">Cierre <span class="rombo"></span></a>
 </div>
 
@@ -436,7 +464,7 @@
     <div class="cabeza">
       <div class="pleca"></div>
       <h2>Copy por desarrollo.</h2>
-      <p>Propuesta de anuncio de leads para cada desarrollo — mismo marco Summit (5% de descuento en todas las formas de pago, vigencia del 14 al 30 de septiembre), con el ángulo propio de cada uno. Para validar con PLP antes de pautar.</p>
+      <p>Propuesta de anuncio de leads para cada desarrollo — mismo marco Summit (5% de descuento en todas las formas de pago, sin restricciones, vigencia del 14 al 30 de septiembre), con el ángulo propio de cada uno. Para validar con PLP antes de pautar.</p>
     </div>
 
     <div class="copys">
@@ -453,10 +481,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-essentia.jpg" alt="Publicación Summit 2026 — Essentia" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Essentia</b> Vivir en el corazón de Country Club, con la vida financiera y social de Guadalajara a un paso. Departamentos de 2 y 3 recámaras en una de las zonas de mayor plusvalía de la ciudad. Durante Summit 2026 tu inversión rinde más: 5% de descuento en todas las formas de pago, solo del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Essentia</b> Vivir en el corazón de Country Club, con la vida financiera y social de Guadalajara a un paso. Departamentos de 2 y 3 recámaras en una de las zonas de mayor plusvalía de la ciudad. Durante Summit 2026 tu inversión rinde más: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Vivir en el corazón de Country Club, con la vida financiera y social de Guadalajara a un paso. Departamentos de 2 y 3 recámaras en una de las zonas de mayor plusvalía de la ciudad. Durante Summit 2026 tu inversión rinde más: 5% de descuento en todas las formas de pago, solo del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Vivir en el corazón de Country Club, con la vida financiera y social de Guadalajara a un paso. Departamentos de 2 y 3 recámaras en una de las zonas de mayor plusvalía de la ciudad. Durante Summit 2026 tu inversión rinde más: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Essentia — vive Country Club, Guadalajara</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · solo en Summit 2026</p></div>
@@ -479,10 +507,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-heredit.jpg" alt="Publicación Summit 2026 — Héredit" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Héredit</b> Un legado en la dirección más exclusiva de Guadalajara. Departamentos de 148 a 500 m² en Colinas de San Javier, con sky lounge, amenidades de gran altura y la distinción de una zona inmejorable. En Summit 2026 aseguras la tuya con 5% de descuento en todas las formas de pago —del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Héredit</b> Un legado en la dirección más exclusiva de Guadalajara. Departamentos de 148 a 500 m² en Colinas de San Javier, con sky lounge, amenidades de gran altura y la distinción de una zona inmejorable. En Summit 2026 aseguras la tuya con 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Un legado en la dirección más exclusiva de Guadalajara. Departamentos de 148 a 500 m² en Colinas de San Javier, con sky lounge, amenidades de gran altura y la distinción de una zona inmejorable. En Summit 2026 aseguras la tuya con 5% de descuento en todas las formas de pago —del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Un legado en la dirección más exclusiva de Guadalajara. Departamentos de 148 a 500 m² en Colinas de San Javier, con sky lounge, amenidades de gran altura y la distinción de una zona inmejorable. En Summit 2026 aseguras la tuya con 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Héredit — legado en Colinas de San Javier</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · hasta el 30 de sep</p></div>
@@ -505,10 +533,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-brelia.jpg" alt="Publicación Summit 2026 — Brelia" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Brelia</b> En una de las zonas más dinámicas de Guadalajara, Brelia Residences: dos torres, departamentos de 2 y 3 recámaras y amenidades para vivirlo todo —pádel, cine, spa y más. Summit 2026 es el momento: 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Brelia</b> En una de las zonas más dinámicas de Guadalajara, Brelia Residences: dos torres, departamentos de 2 y 3 recámaras y amenidades para vivirlo todo —pádel, cine, spa y más. Summit 2026 es el momento: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>En una de las zonas más dinámicas de Guadalajara, Brelia Residences: dos torres, departamentos de 2 y 3 recámaras y amenidades para vivirlo todo —pádel, cine, spa y más. Summit 2026 es el momento: 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>En una de las zonas más dinámicas de Guadalajara, Brelia Residences: dos torres, departamentos de 2 y 3 recámaras y amenidades para vivirlo todo —pádel, cine, spa y más. Summit 2026 es el momento: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Brelia — amenidades para vivirlo todo</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · solo en Summit 2026</p></div>
@@ -531,10 +559,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-amancay.jpg" alt="Publicación Summit 2026 — Amancay" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Amancay</b> Tu vida, frente al mar. Amancay, en Nuevo Vallarta, es la inversión que se disfruta y que además crece: departamentos frente a la playa en una de las zonas más deseadas de la Riviera Nayarit. En Summit 2026, 5% de descuento en todas las formas de pago —del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Amancay</b> Tu vida, frente al mar. Amancay, en Nuevo Vallarta, es la inversión que se disfruta y que además crece: departamentos frente a la playa en una de las zonas más deseadas de la Riviera Nayarit. En Summit 2026, 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Tu vida, frente al mar. Amancay, en Nuevo Vallarta, es la inversión que se disfruta y que además crece: departamentos frente a la playa en una de las zonas más deseadas de la Riviera Nayarit. En Summit 2026, 5% de descuento en todas las formas de pago —del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Tu vida, frente al mar. Amancay, en Nuevo Vallarta, es la inversión que se disfruta y que además crece: departamentos frente a la playa en una de las zonas más deseadas de la Riviera Nayarit. En Summit 2026, 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Amancay — tu vida frente al mar</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · Nuevo Vallarta</p></div>
@@ -557,10 +585,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-bolongo.jpg" alt="Publicación Summit 2026 — Bolongo" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Bolongo</b> Vivir el Pacífico en Punta de Mita. Bolongo es oceanfront de verdad: departamentos frente al mar y Beach Club con spa, gimnasio y restaurante, dentro de un desarrollo de 55 acres a minutos de Punta Mita. Summit 2026: 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Bolongo</b> Vivir el Pacífico en Punta de Mita. Bolongo es oceanfront de verdad: departamentos frente al mar y Beach Club con spa, gimnasio y restaurante, dentro de un desarrollo de 55 acres a minutos de Punta Mita. Summit 2026: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Vivir el Pacífico en Punta de Mita. Bolongo es oceanfront de verdad: departamentos frente al mar y Beach Club con spa, gimnasio y restaurante, dentro de un desarrollo de 55 acres a minutos de Punta Mita. Summit 2026: 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Vivir el Pacífico en Punta de Mita. Bolongo es oceanfront de verdad: departamentos frente al mar y Beach Club con spa, gimnasio y restaurante, dentro de un desarrollo de 55 acres a minutos de Punta Mita. Summit 2026: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Bolongo — oceanfront en Punta de Mita</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · solo en Summit 2026</p></div>
@@ -583,10 +611,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-bolongo-lotes.jpg" alt="Publicación Summit 2026 — Bolongo Lotes" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Bolongo Lotes</b> Tu terreno frente al Pacífico. Los lotes de Bolongo, en Punta de Mita, son la oportunidad de construir tu propio legado con vista al mar, dentro de un desarrollo con Beach Club y plusvalía asegurada. En Summit 2026, 5% de descuento en todas las formas de pago —del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Bolongo Lotes</b> Tu terreno frente al Pacífico. Los lotes de Bolongo, en Punta de Mita, son la oportunidad de construir tu propio legado con vista al mar, dentro de un desarrollo con Beach Club y plusvalía asegurada. En Summit 2026, 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Tu terreno frente al Pacífico. Los lotes de Bolongo, en Punta de Mita, son la oportunidad de construir tu propio legado con vista al mar, dentro de un desarrollo con Beach Club y plusvalía asegurada. En Summit 2026, 5% de descuento en todas las formas de pago —del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Tu terreno frente al Pacífico. Los lotes de Bolongo, en Punta de Mita, son la oportunidad de construir tu propio legado con vista al mar, dentro de un desarrollo con Beach Club y plusvalía asegurada. En Summit 2026, 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Bolongo Lotes — tu terreno frente al mar</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · Punta de Mita</p></div>
@@ -609,10 +637,10 @@
             </div>
             <div class="ig-img"><img src="/assets/summit-mazatlan.jpg" alt="Publicación Summit 2026 — Península Mazatlán" loading="lazy" /></div>
             <div class="ig-acts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15 3.5 9.2A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.5 2.2C20.5 15 12 20.5 12 20.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 11 14"/><path d="M22 3 15 21l-4-7-7-4 18-7z"/></svg><span class="save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg></span></div>
-            <div class="ig-cap"><span class="txt"><b>Península Mazatlán</b> Frente al mar, en el nuevo Mazatlán. Península Mazatlán es vida frente al Pacífico con la solidez de una marca con más de 20 años: departamentos con vista al mar en la ciudad que más crece de Sinaloa. Summit 2026: 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+            <div class="ig-cap"><span class="txt"><b>Península Mazatlán</b> Frente al mar, en el nuevo Mazatlán. Península Mazatlán es vida frente al Pacífico con la solidez de una marca con más de 20 años: departamentos con vista al mar en la ciudad que más crece de Sinaloa. Summit 2026: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</span></div>
           </div>
           <div class="copy-campos">
-            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Frente al mar, en el nuevo Mazatlán. Península Mazatlán es vida frente al Pacífico con la solidez de una marca con más de 20 años: departamentos con vista al mar en la ciudad que más crece de Sinaloa. Summit 2026: 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</p></div>
+            <div class="campo-copy principal"><span class="rotulo">Texto principal</span><p>Frente al mar, en el nuevo Mazatlán. Península Mazatlán es vida frente al Pacífico con la solidez de una marca con más de 20 años: departamentos con vista al mar en la ciudad que más crece de Sinaloa. Summit 2026: 5% de descuento en todas las formas de pago, sin restricciones, del 14 al 30 de septiembre.</p></div>
             <div class="copy-linea">
               <div class="campo-copy tit"><span class="rotulo">Titular</span><p>Península Mazatlán — vive frente al mar</p></div>
               <div class="campo-copy"><span class="rotulo">Descripción</span><p>5% de descuento · solo en Summit 2026</p></div>
@@ -621,6 +649,36 @@
           </div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PLAN DE POSTEO ORGÁNICO ═══════════════ -->
+<section class="seccion seccion--regla" id="posteo">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Plan de posteo orgánico.</h2>
+      <p>Las fechas en que publicamos —sin pauta— la misma publicación de cada desarrollo durante la ventana Summit. Dos impactos por desarrollo: uno de arranque y uno de última llamada.</p>
+    </div>
+
+    <div class="olas">
+      <div class="ola"><span class="rotulo">Ola 1 · Arranque</span><p>14 → 20 sep</p></div>
+      <div class="ola"><span class="rotulo">Ola 2 · Última llamada</span><p>24 → 30 sep</p></div>
+      <div class="ola"><span class="rotulo">Cadencia</span><p>1 desarrollo por día · misma pieza</p></div>
+    </div>
+
+    <div class="cal-wrap">
+      <div class="cal-grid">
+        <div class="cal-dow">Lun</div><div class="cal-dow">Mar</div><div class="cal-dow">Mié</div><div class="cal-dow">Jue</div><div class="cal-dow">Vie</div><div class="cal-dow">Sáb</div><div class="cal-dow">Dom</div><div class="cal-cell vacia"></div><div class="cal-cell fuera"><span class="cal-num">1</span></div><div class="cal-cell fuera"><span class="cal-num">2</span></div><div class="cal-cell fuera"><span class="cal-num">3</span></div><div class="cal-cell fuera"><span class="cal-num">4</span></div><div class="cal-cell fuera"><span class="cal-num">5</span></div><div class="cal-cell fuera"><span class="cal-num">6</span></div><div class="cal-cell fuera"><span class="cal-num">7</span></div><div class="cal-cell fuera"><span class="cal-num">8</span></div><div class="cal-cell fuera"><span class="cal-num">9</span></div><div class="cal-cell fuera"><span class="cal-num">10</span></div><div class="cal-cell fuera"><span class="cal-num">11</span></div><div class="cal-cell fuera"><span class="cal-num">12</span></div><div class="cal-cell fuera"><span class="cal-num">13</span></div><div class="cal-cell activa con-post"><span class="cal-num">14</span><div class="cal-post"><span class="cal-dev">Essentia</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">15</span><div class="cal-post"><span class="cal-dev">Héredit</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">16</span><div class="cal-post"><span class="cal-dev">Brelia</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">17</span><div class="cal-post"><span class="cal-dev">Amancay</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">18</span><div class="cal-post"><span class="cal-dev">Bolongo</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">19</span><div class="cal-post"><span class="cal-dev">Bolongo Lotes</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">20</span><div class="cal-post"><span class="cal-dev">Península Mazatlán</span></div></div><div class="cal-cell activa"><span class="cal-num">21</span></div><div class="cal-cell activa"><span class="cal-num">22</span></div><div class="cal-cell activa"><span class="cal-num">23</span></div><div class="cal-cell activa con-post"><span class="cal-num">24</span><div class="cal-post"><span class="cal-dev">Essentia</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">25</span><div class="cal-post"><span class="cal-dev">Héredit</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">26</span><div class="cal-post"><span class="cal-dev">Brelia</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">27</span><div class="cal-post"><span class="cal-dev">Amancay</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">28</span><div class="cal-post"><span class="cal-dev">Bolongo</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">29</span><div class="cal-post"><span class="cal-dev">Bolongo Lotes</span></div></div><div class="cal-cell activa con-post"><span class="cal-num">30</span><div class="cal-post"><span class="cal-dev">Península Mazatlán</span></div></div><div class="cal-cell vacia"></div><div class="cal-cell vacia"></div><div class="cal-cell vacia"></div><div class="cal-cell vacia"></div>
+      </div>
+    </div>
+
+    <div class="pd">
+      <span class="rotulo" style="display:block;margin-bottom:16px;">Fechas por desarrollo</span>
+      <div class="pd-grid">
+        <div class="pd-item"><span class="pd-dev">Essentia</span><span class="pd-dates">14 y 24 sep</span></div><div class="pd-item"><span class="pd-dev">Héredit</span><span class="pd-dates">15 y 25 sep</span></div><div class="pd-item"><span class="pd-dev">Brelia</span><span class="pd-dates">16 y 26 sep</span></div><div class="pd-item"><span class="pd-dev">Amancay</span><span class="pd-dates">17 y 27 sep</span></div><div class="pd-item"><span class="pd-dev">Bolongo</span><span class="pd-dates">18 y 28 sep</span></div><div class="pd-item"><span class="pd-dev">Bolongo Lotes</span><span class="pd-dates">19 y 29 sep</span></div><div class="pd-item"><span class="pd-dev">Península Mazatlán</span><span class="pd-dates">20 y 30 sep</span></div>
+      </div>
     </div>
   </div>
 </section>
