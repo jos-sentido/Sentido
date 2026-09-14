@@ -1,6 +1,32 @@
 {
   "proposals": [
     {
+      "slug": "infonews-el-informador",
+      "tipo": "propuesta",
+      "cliente": "El Informador — InfoNews (Activación + Sociedad)",
+      "fecha": "2026-09-14",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "activacion",
+          "nombre": "Fee de desarrollo / Activación InfoNews (Capa 1)",
+          "precio": 120000,
+          "tipo": "unico"
+        },
+        {
+          "id": "iguala",
+          "nombre": "Iguala mensual InfoNews (Capa 2) + infra a costo",
+          "precio": 20000,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Propuesta socio-a-socio para Juan (dueno de El Informador, Guadalajara). Producto de software InfoNews (newsletter personalizado + Hub de first-party data) YA en produccion, demo en vivo: infonews-smoky.vercel.app. No es servicio de agencia: es activacion de producto + sociedad comercial. Estructura de 3 capas: Capa 1 activacion $120k unico (50/50 por hitos); Capa 2 iguala $20k/mes + infra passthrough a costo; Capa 3 comision de socio 10-20% del ingreso neto (a cerrar, con piso de arranque y revision a 12 meses). Foto ano 1: $360,000 + IVA + infra (comision = upside aparte). Cierre por WhatsApp de Jos (no formulario). Visual dark theme El Informador (naranja #F36F21, azul #3B9FE8).",
+      "proximoPaso": "Esperando que Juan revise y agende platica para cerrar % de Capa 3 y arranque",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "summit-2026-plp",
       "tipo": "cliente",
       "cliente": "PLP — Campaña Summit 2026 (Estrategia de pauta)",
