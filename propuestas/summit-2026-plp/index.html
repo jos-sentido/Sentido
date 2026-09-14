@@ -139,8 +139,8 @@
   .ff { width: 184px; flex: 0 0 auto; border: 1px solid var(--linea-2); background: var(--tinta); padding: 10px; position: relative; }
   .ff-badge { position: absolute; top: 17px; left: 17px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; font-family: var(--archivo); font-weight: 700; font-size: 0.5625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tinta); background: var(--hueso); padding: 4px 8px; }
   .ff-badge svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .ff-post { aspect-ratio: 1; overflow: hidden; border: 1px solid var(--hueso); }
-  .ff-post img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ff-post { aspect-ratio: 1; overflow: hidden; border: 1px solid var(--hueso); background: var(--tinta-3); display: flex; align-items: center; justify-content: center; }
+  .ff-dummy { width: 44%; height: 44%; fill: none; stroke: var(--hueso-3); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
   .ff-line { height: 9px; background: var(--tinta-3); margin-top: 8px; }
   .ff-line.short { width: 58%; }
   .ff-txt .rotulo { display: block; margin-bottom: 11px; color: var(--hueso); }
@@ -661,7 +661,7 @@
     <div class="fijado">
       <div class="ff" aria-hidden="true">
         <span class="ff-badge"><svg viewBox="0 0 24 24"><path d="M12 16v6"/><path d="M8.5 3h7l-1 6.5 2.5 2.5v1.5H7v-1.5L9.5 9.5 8.5 3z"/></svg>Fijado</span>
-        <div class="ff-post"><img src="/assets/summit-essentia-thumb.jpg" alt="" /></div>
+        <div class="ff-post"><svg class="ff-dummy" viewBox="0 0 100 100"><circle cx="34" cy="33" r="8"/><path d="M10 78 L40 46 L58 66"/><path d="M46 78 L70 50 L90 78"/></svg></div>
         <div class="ff-line"></div>
         <div class="ff-line"></div>
         <div class="ff-line short"></div>
