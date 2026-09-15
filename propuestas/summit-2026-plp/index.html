@@ -205,6 +205,30 @@
   }
   .ver-artes.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
   @media (prefers-reduced-motion: reduce) { .ver-artes { transition: opacity 0.2s linear; transform: none; } }
+
+  /* — Formularios de captación propuestos — */
+  .forms { border-top: 1px solid var(--linea); margin-top: clamp(34px, 4vw, 48px); }
+  .formc { padding: clamp(28px, 3.4vw, 46px) 0; border-bottom: 1px solid var(--linea); position: relative; overflow: hidden; }
+  .formc .buril { --ang: 90deg; --paso: 4px; --tono: 0; transition: opacity 0.45s var(--ease); }
+  .formc:hover .buril { --tono: 0.07; }
+  .formc > * { position: relative; }
+  .form-head { display: flex; align-items: baseline; gap: 8px 18px; flex-wrap: wrap; margin-bottom: 22px; }
+  .form-head h3 { font-family: var(--archivo); font-weight: var(--negra); }
+  .form-badge { margin-left: auto; align-self: center; font-family: var(--archivo); font-weight: 600; font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hueso-3); border: 1px solid var(--linea-2); padding: 5px 11px; }
+  .form-saludo { max-width: 78ch; margin-bottom: 24px; }
+  .form-saludo .st { font-family: var(--archivo); font-weight: var(--negra); font-size: clamp(1.05rem, 2vw, 1.3rem); letter-spacing: -0.02em; color: var(--hueso); margin: 0 0 10px; line-height: 1.25; }
+  .form-saludo .sd { font-size: 0.9875rem; line-height: 1.72; color: var(--hueso-2); margin: 0; }
+  .promo-summit { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding: 13px 17px; border: 1px solid var(--linea-2); background: var(--tinta-2); font-size: 0.9375rem; color: var(--hueso); font-weight: var(--fuerte); line-height: 1.5; }
+  .promo-summit .cc { font-size: 1.2rem; flex: 0 0 auto; }
+  .form-qs { border-top: 1px solid var(--linea); }
+  .form-q { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 2px 16px; padding: 18px 0; border-bottom: 1px solid var(--linea); }
+  .form-q .n { font-family: var(--archivo); font-weight: var(--negra); color: var(--hueso-3); font-size: 0.9375rem; }
+  .form-q .q { color: var(--hueso); font-weight: 600; font-size: 1rem; line-height: 1.5; }
+  .form-q .opts { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 11px; }
+  .form-q .opt { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--hueso-2); border: 1px solid var(--linea); padding: 6px 12px; }
+  .form-q .opt::before { content: ''; width: 5px; height: 5px; border: 1px solid var(--hueso-3); transform: rotate(45deg); flex: 0 0 auto; }
+  .form-q.contacto .opt { border-style: dashed; }
+  @media (max-width: 640px) { .form-q { grid-template-columns: 1fr; } .form-q .n { display: none; } .form-q .opts { grid-column: 1; } }
 </style>
 </head>
 <body>
@@ -225,6 +249,7 @@
       <a href="#tracking" class="nav-a">Tracking</a>
       <a href="#reglas" class="nav-a">Reglas</a>
       <a href="#copy" class="nav-a">Copy</a>
+      <a href="#formularios" class="nav-a">Formularios</a>
       <a href="#posteo" class="nav-a">Posteo</a>
       <a href="#cierre" class="nav-a">Cierre</a>
     </div>
@@ -631,6 +656,131 @@
               <div class="campo-copy"><span class="rotulo">CTA</span><p>Agendar visita</p></div>
             </div>
           </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FORMULARIOS PROPUESTOS ═══════════════ -->
+<section class="seccion seccion--regla" id="formularios">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Formularios de captación.</h2>
+      <p>Formulario instantáneo por desarrollo —tipo <strong>Mayor intención</strong>— con la promo Summit destacada y preguntas de calificación que priorizan al cliente con intención real. Para validar con PLP antes de pautar.</p>
+    </div>
+
+    <div class="forms">
+      <!-- Essentia -->
+      <article class="formc">
+        <div class="buril"></div>
+        <div class="form-head"><h3>Essentia</h3><span class="copy-ubi">Country Club · Guadalajara</span><span class="form-badge">Mayor intención</span></div>
+        <div class="form-saludo">
+          <p class="st">Preventa limitada: departamentos desde $6.4 MDP en Country Club</p>
+          <p class="sd">Asegura tu departamento en Essentia Country: ubicación premium en Country Club y plusvalía inmediata. Deja tus datos y recibe acceso preferente a las unidades disponibles.</p>
+          <div class="promo-summit"><span class="cc">💳</span><span>Beneficio Summit 2026 — 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+        </div>
+        <div class="form-qs">
+          <div class="form-q"><span class="n">01</span><span class="q">¿Qué tipo de unidad se ajusta más a lo que buscas?</span><div class="opts"><span class="opt">Departamento de 1 recámara, desde $6.4 MDP</span><span class="opt">De 2 recámaras, desde $7.3 MDP</span><span class="opt">De 3 recámaras, desde $10.2 MDP</span></div></div>
+          <div class="form-q"><span class="n">02</span><span class="q">¿En qué plazo contemplas realizar tu compra?</span><div class="opts"><span class="opt">En los próximos 3 meses</span><span class="opt">De 3 a 6 meses</span><span class="opt">De 6 a 12 meses</span><span class="opt">Aún sin fecha definida</span></div></div>
+          <div class="form-q"><span class="n">03</span><span class="q">La preventa considera un enganche inicial. ¿Contemplas realizar una inversión de este tipo?</span><div class="opts"><span class="opt">Sí, lo contemplo</span><span class="opt">Prefiero conocer opciones de financiamiento</span></div></div>
+          <div class="form-q"><span class="n">04</span><span class="q">¿En qué rango de presupuesto te encuentras?</span><div class="opts"><span class="opt">De $6.1 a $7 MDP</span><span class="opt">De $7 a $8 MDP</span><span class="opt">Más de $8 MDP</span></div></div>
+          <div class="form-q"><span class="n">05</span><span class="q">¿Autorizas que Península Lifestyle Properties o un aliado comercial autorizado te contacte por WhatsApp?</span><div class="opts"><span class="opt">Sí, me interesa recibir información</span><span class="opt">Prefiero que me contacten más adelante</span></div></div>
+          <div class="form-q contacto"><span class="n">06</span><span class="q">Información de contacto <em>(datos reales)</em></span><div class="opts"><span class="opt">Nombre</span><span class="opt">Correo</span><span class="opt">Teléfono</span><span class="opt">Ciudad</span></div></div>
+        </div>
+      </article>
+
+      <!-- Brelia -->
+      <article class="formc">
+        <div class="buril"></div>
+        <div class="form-head"><h3>Brelia</h3><span class="copy-ubi">Jardines del Bosque · Guadalajara</span><span class="form-badge">Mayor intención</span></div>
+        <div class="form-saludo">
+          <p class="st">Preventa desde $5.3 MDP — Jardines del Bosque</p>
+          <p class="sd">Unidades premium de 2 y 3 recámaras con amenidades para vivirlo todo —pádel, cine, spa— y plusvalía inmediata. Un asesor te contacta para guiarte.</p>
+          <div class="promo-summit"><span class="cc">💳</span><span>Beneficio Summit 2026 — 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+        </div>
+        <div class="form-qs">
+          <div class="form-q"><span class="n">01</span><span class="q">¿Qué tipo de unidad se ajusta más a lo que buscas?</span><div class="opts"><span class="opt">Departamento de 1 recámara, desde $5.3 MDP</span><span class="opt">De 2 recámaras, desde $6.9 MDP</span><span class="opt">De 3 recámaras, desde $7.9 MDP</span></div></div>
+          <div class="form-q"><span class="n">02</span><span class="q">¿Cuál es el motivo de tu inversión?</span><div class="opts"><span class="opt">Residencia principal para tu familia</span><span class="opt">Inversión a futuro</span><span class="opt">Generar rentas</span></div></div>
+          <div class="form-q"><span class="n">03</span><span class="q">¿Qué forma de pago se adapta más a ti?</span><div class="opts"><span class="opt">Contado con recursos propios</span><span class="opt">Financiamiento Península</span><span class="opt">Esquema combinado</span></div></div>
+          <div class="form-q"><span class="n">04</span><span class="q">¿Autorizas que Península Lifestyle Properties o un aliado comercial autorizado te contacte por WhatsApp?</span><div class="opts"><span class="opt">Sí, me interesa recibir información</span><span class="opt">Prefiero que me contacten más adelante</span></div></div>
+          <div class="form-q contacto"><span class="n">05</span><span class="q">Información de contacto <em>(datos reales)</em></span><div class="opts"><span class="opt">Nombre</span><span class="opt">Correo</span><span class="opt">Teléfono</span><span class="opt">Ciudad</span></div></div>
+        </div>
+      </article>
+
+      <!-- Amancay -->
+      <article class="formc">
+        <div class="buril"></div>
+        <div class="form-head"><h3>Amancay</h3><span class="copy-ubi">Nuevo Vallarta · Riviera Nayarit</span><span class="form-badge">Mayor intención</span></div>
+        <div class="form-saludo">
+          <p class="st">¿Te interesa un departamento frente al mar desde $15.9 MDP?</p>
+          <p class="sd">Desarrollo privado frente al mar en Nuevo Vallarta. Departamentos de lujo con enganche desde 30%, amenidades exclusivas y una ubicación privilegiada.</p>
+          <div class="promo-summit"><span class="cc">💳</span><span>Beneficio Summit 2026 — 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+        </div>
+        <div class="form-qs">
+          <div class="form-q"><span class="n">01</span><span class="q">¿Cuál es el motivo de tu inversión?</span><div class="opts"><span class="opt">Residencia principal</span><span class="opt">Casa vacacional o segunda residencia</span><span class="opt">Generar rentas o plusvalía</span></div></div>
+          <div class="form-q"><span class="n">02</span><span class="q">¿En qué rango de presupuesto te encuentras?</span><div class="opts"><span class="opt">Menos de $15 MDP</span><span class="opt">De $15 a $25 MDP</span><span class="opt">De $25 a $40 MDP</span><span class="opt">Más de $40 MDP</span></div></div>
+          <div class="form-q"><span class="n">03</span><span class="q">¿Qué forma de pago se adapta más a ti?</span><div class="opts"><span class="opt">Contado con recursos propios</span><span class="opt">Crédito hipotecario</span><span class="opt">Plan de pagos del desarrollo</span></div></div>
+          <div class="form-q"><span class="n">04</span><span class="q">¿En qué plazo contemplas realizar tu compra?</span><div class="opts"><span class="opt">En los próximos 3 meses</span><span class="opt">De 3 a 6 meses</span><span class="opt">De 6 a 12 meses</span><span class="opt">Aún sin fecha definida</span></div></div>
+          <div class="form-q"><span class="n">05</span><span class="q">¿Autorizas que Península Lifestyle Properties o un aliado comercial autorizado te contacte por WhatsApp?</span><div class="opts"><span class="opt">Sí, me interesa recibir información</span><span class="opt">Prefiero que me contacten más adelante</span></div></div>
+          <div class="form-q contacto"><span class="n">06</span><span class="q">Información de contacto <em>(datos reales)</em></span><div class="opts"><span class="opt">Nombre</span><span class="opt">Teléfono</span><span class="opt">Correo</span><span class="opt">Ciudad</span></div></div>
+        </div>
+      </article>
+
+      <!-- Bolongo -->
+      <article class="formc">
+        <div class="buril"></div>
+        <div class="form-head"><h3>Bolongo</h3><span class="copy-ubi">Punta de Mita · Riviera Nayarit</span><span class="form-badge">Mayor intención</span></div>
+        <div class="form-saludo">
+          <p class="st">Oceanfront en Punta de Mita — departamentos desde $20.8 MDP</p>
+          <p class="sd">Frente al mar en Punta de Mita, con Beach Club (spa, gimnasio y restaurante) en un desarrollo de 55 acres. Fase 2 95% vendido · Fase 3 70% vendido.</p>
+          <div class="promo-summit"><span class="cc">💳</span><span>Beneficio Summit 2026 — 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+        </div>
+        <div class="form-qs">
+          <div class="form-q"><span class="n">01</span><span class="q">¿Cuál es tu principal interés en Punta de Mita?</span><div class="opts"><span class="opt">Residencia frente al mar</span><span class="opt">Propiedad vacacional o segunda residencia</span><span class="opt">Invertir en renta o plusvalía</span></div></div>
+          <div class="form-q"><span class="n">02</span><span class="q">¿Qué tipo de unidad se ajusta más a lo que buscas?</span><div class="opts"><span class="opt">Departamento de 2 recámaras, desde $22.7 MDP</span><span class="opt">De 3 recámaras, desde $20.8 MDP</span><span class="opt">De 4 recámaras, desde $21.1 MDP</span></div></div>
+          <div class="form-q"><span class="n">03</span><span class="q">¿Qué forma de pago se adapta más a ti?</span><div class="opts"><span class="opt">Contado con recursos propios</span><span class="opt">Financiamiento Península</span></div></div>
+          <div class="form-q"><span class="n">04</span><span class="q">¿En qué plazo contemplas realizar tu compra?</span><div class="opts"><span class="opt">En los próximos 3 meses</span><span class="opt">De 3 a 6 meses</span><span class="opt">De 6 a 12 meses</span><span class="opt">Aún sin fecha definida</span></div></div>
+          <div class="form-q"><span class="n">05</span><span class="q">¿Autorizas que Península Lifestyle Properties o un aliado comercial autorizado te contacte por WhatsApp?</span><div class="opts"><span class="opt">Sí, me interesa recibir información</span><span class="opt">Prefiero que me contacten más adelante</span></div></div>
+          <div class="form-q contacto"><span class="n">06</span><span class="q">Información de contacto <em>(datos reales)</em></span><div class="opts"><span class="opt">Nombre</span><span class="opt">Teléfono</span><span class="opt">Correo</span><span class="opt">Ciudad</span></div></div>
+        </div>
+      </article>
+
+      <!-- Bolongo Lotes -->
+      <article class="formc">
+        <div class="buril"></div>
+        <div class="form-head"><h3>Bolongo Lotes</h3><span class="copy-ubi">Punta de Mita · Riviera Nayarit</span><span class="form-badge">Mayor intención</span></div>
+        <div class="form-saludo">
+          <p class="st">Tu terreno frente al Pacífico, en Punta de Mita</p>
+          <p class="sd">Construye tu legado con vista al mar, dentro de un desarrollo con Beach Club y plusvalía asegurada.</p>
+          <div class="promo-summit"><span class="cc">💳</span><span>Beneficio Summit 2026 — 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+        </div>
+        <div class="form-qs">
+          <div class="form-q"><span class="n">01</span><span class="q">¿En qué rango de presupuesto te encuentras?</span><div class="opts"><span class="opt">Menos de $7.6 MDP</span><span class="opt">De $7.6 a $12 MDP</span><span class="opt">Más de $12 MDP</span></div></div>
+          <div class="form-q"><span class="n">02</span><span class="q">¿Cuál es el motivo de tu inversión?</span><div class="opts"><span class="opt">Construir tu residencia</span><span class="opt">Construir una segunda residencia</span><span class="opt">Inversión en plusvalía</span></div></div>
+          <div class="form-q"><span class="n">03</span><span class="q">¿Qué forma de pago se adapta más a ti?</span><div class="opts"><span class="opt">Contado con recursos propios</span><span class="opt">Financiamiento Península</span></div></div>
+          <div class="form-q"><span class="n">04</span><span class="q">¿Autorizas que Península Lifestyle Properties o un aliado comercial autorizado te contacte por WhatsApp?</span><div class="opts"><span class="opt">Sí, me interesa recibir información</span><span class="opt">Prefiero que me contacten más adelante</span></div></div>
+          <div class="form-q contacto"><span class="n">05</span><span class="q">Información de contacto <em>(datos reales)</em></span><div class="opts"><span class="opt">Nombre</span><span class="opt">Teléfono</span><span class="opt">Correo</span><span class="opt">Ciudad</span></div></div>
+        </div>
+      </article>
+
+      <!-- Península Mazatlán -->
+      <article class="formc">
+        <div class="buril"></div>
+        <div class="form-head"><h3>Península Mazatlán</h3><span class="copy-ubi">Mazatlán · Sinaloa</span><span class="form-badge">Mayor intención</span></div>
+        <div class="form-saludo">
+          <p class="st">¿Vivir o invertir frente al mar en Mazatlán? Desde $7.8 MDP</p>
+          <p class="sd">Torre 200 de Península Mazatlán, a precios de preventa. Contesta unas preguntas rápidas para saber si Península es ideal para ti.</p>
+          <div class="promo-summit"><span class="cc">💳</span><span>Beneficio Summit 2026 — 5% de descuento en todas las formas de pago, del 14 al 30 de septiembre.</span></div>
+        </div>
+        <div class="form-qs">
+          <div class="form-q"><span class="n">01</span><span class="q">¿Cuál es tu principal interés en un desarrollo frente al mar en Mazatlán?</span><div class="opts"><span class="opt">Residencia principal</span><span class="opt">Invertir para renta o plusvalía</span></div></div>
+          <div class="form-q"><span class="n">02</span><span class="q">Los precios inician desde $7.8 MDP. ¿Te encuentras dentro de este rango de inversión?</span><div class="opts"><span class="opt">Sí, cuento con el presupuesto</span><span class="opt">Estoy analizando opciones de financiamiento</span></div></div>
+          <div class="form-q"><span class="n">03</span><span class="q">La preventa considera un enganche inicial. ¿Contemplas realizar una inversión de este tipo?</span><div class="opts"><span class="opt">Sí, lo contemplo</span><span class="opt">Prefiero conocer opciones de financiamiento</span></div></div>
+          <div class="form-q"><span class="n">04</span><span class="q">¿En qué plazo contemplas tomar tu decisión?</span><div class="opts"><span class="opt">En los próximos 3 meses</span><span class="opt">De 3 a 6 meses</span><span class="opt">De 6 a 12 meses</span><span class="opt">Aún sin fecha definida</span></div></div>
+          <div class="form-q"><span class="n">05</span><span class="q">¿Autorizas que Península Lifestyle Properties o un aliado comercial autorizado te contacte por WhatsApp?</span><div class="opts"><span class="opt">Sí, me interesa recibir información</span><span class="opt">Prefiero que me contacten más adelante</span></div></div>
+          <div class="form-q contacto"><span class="n">06</span><span class="q">Información de contacto <em>(datos reales)</em></span><div class="opts"><span class="opt">Nombre</span><span class="opt">Correo</span><span class="opt">Teléfono</span><span class="opt">Ciudad</span></div></div>
         </div>
       </article>
     </div>
