@@ -1016,7 +1016,7 @@ def build_servicio(x):
     <div class="buril buril--arco"></div>
     <div class="portada-rej">
       <div>
-        <div class="marca-doble">
+        <div class="ojo-y-enlace">
           <img src="{OJO}" alt="" class="ojo-chico" />
           <a class="rotulo" href="{BASE}/servicios">← Servicios</a>
         </div>
@@ -1253,7 +1253,7 @@ def build_post(p):
   <section class="portada portada--int" style="padding-bottom:24px">
     <div class="buril"></div>
     <div class="angosto" style="max-width:760px">
-      <div class="marca-doble">
+      <div class="ojo-y-enlace">
         <img src="{OJO}" alt="" class="ojo-chico" />
         <a class="rotulo" href="{BASE}/blog">← Blog</a>
       </div>

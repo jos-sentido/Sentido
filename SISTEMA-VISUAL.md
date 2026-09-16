@@ -378,7 +378,8 @@ de íconos.
 ## 6. Logo
 
 Reglas de marca. **El logo no se recompone.** No se coloca el ojo al lado del
-nombre ni se arma ninguna variante que no exista en el archivo original.
+nombre ni se arma ninguna variante que no exista en el archivo original —
+**a ningún tamaño y en ningún orden**, tampoco «pequeñito y decorativo».
 
 | Aplicación | Cuándo | Archivo |
 |---|---|---|
@@ -401,23 +402,40 @@ descriptor desaparece. Ahí no se encoge el completo — se cambia de aplicació
 ### Ninguna pieza viaja sola
 
 Si una composición usa **solo el nombre**, el isotipo tiene que estar presente en
-ella —decorativo o como secundario— y al revés. Si eso no acomoda, se usa el logo
-completo.
+ella —y al revés—, pero **en otra zona, a otra escala y en otro papel**.
+
+**Presente no quiere decir al lado.** Pegar el ojo junto al nombre arma un lockup
+horizontal, y ese lockup no existe en la marca: es exactamente lo que prohíbe la
+regla anterior. No lo salva hacerlo chico ni llamarlo decorativo.
+
+| Cumple | No cumple |
+|---|---|
+| Nombre en la barra, ojo grande al otro extremo de la portada | Ojo chico a un lado del nombre, en cualquier orden |
+| Nombre en la barra, ojo como trama de fondo o marca de agua | Ojo y nombre uno tras otro en el pie |
+| Ojo suelto de adorno, nombre en el pie de la misma página | Ojo y nombre juntos «pero pequeñitos» |
+
+**La prueba:** si el ojo y el nombre se leen como una sola unidad —si los taparías
+con una mano— es un lockup y está mal. Tienen que leerse como dos presencias
+distintas de la marca dentro de la misma composición.
+
+Si eso no acomoda, se usa el **logo completo en su composición original**. Esa es
+siempre la salida correcta cuando hay duda.
 
 La regla es **por composición, no por página**: un logo completo en el pie no cubre
 un hero que muestra el nombre suelto.
 
 En el sitio se resuelve así:
 
-| Composición | Nombre | Contraparte |
+| Composición | Dónde va el nombre | Dónde va la contraparte |
 |---|---|---|
-| Portada | Barra | El ojo grande, a la derecha |
-| Portadas interiores | Barra | El ojo callado (`.ojo-caja--callado`, 60% de opacidad, un rombo menos) |
-| Migas de pan | Barra | Isotipo de 30px junto al enlace (`.marca-doble`) |
-| Pie | — | Logo completo |
+| Portada | Barra, arriba a la izquierda (46px) | El ojo **grande, al extremo opuesto** de la portada |
+| Portadas interiores | Barra | El ojo callado (`.ojo-caja--callado`, 60% de opacidad, un rombo menos), separado del titular |
+| Migas de pan | Barra | Isotipo de 30px junto a **un enlace de navegación** —«← Servicios»—, nunca junto al nombre (`.ojo-y-enlace`) |
+| Pie | — | Logo completo, 132px |
 
-En el sitio: nombre en la barra (46px), completo en el pie (132px), ojo como
-favicon y como máscara de la trama en la portada.
+Ojo con `.ojo-y-enlace`: el nombre de la clase engaña. **No empareja las dos piezas
+de la marca**: empareja el isotipo con una etiqueta de navegación. El nombre de la
+agencia nunca entra en ese componente.
 
 ### El ojo grabado
 

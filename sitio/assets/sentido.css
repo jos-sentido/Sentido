@@ -416,7 +416,7 @@ em { font-style: normal; font-weight: var(--fuerte); color: var(--hueso); }
 .ojo-caja--callado { opacity: 0.6; }
 .ojo-caja--callado .ojo-rombo.r3 { display: none; }
 
-.marca-doble { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.ojo-y-enlace { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 .ojo-chico {
   width: 30px; height: auto; flex: 0 0 auto; opacity: 0.55;
   filter: invert(1);

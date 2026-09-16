@@ -84,7 +84,8 @@ Confirmadas con el cliente. **No son negociables y no se infieren.**
 ## Uso del logo
 
 **El logo no se recompone.** No se coloca el ojo al lado del nombre ni se arma
-ninguna variante que no exista en el archivo original. Tres aplicaciones válidas:
+ninguna variante que no exista en el archivo original — **a ningún tamaño y en
+ningún orden**, tampoco «pequeñito y decorativo». Tres aplicaciones válidas:
 
 | Aplicación | Archivo | Cuándo |
 |---|---|---|
@@ -96,10 +97,28 @@ ninguna variante que no exista en el archivo original. Tres aplicaciones válida
 `logo-sentido-nombre-dark.png`. Es una aplicación válida del sistema, no una
 excepción.
 
-**Ninguna pieza viaja sola.** Si una composición usa solo el nombre, el isotipo
-tiene que estar presente en ella —decorativo o secundario— y al revés. Si eso no
-acomoda, va el logo completo. La regla es por composición, no por página: un logo
-completo en el pie no cubre un hero que muestra el nombre suelto.
+**Ninguna pieza viaja sola, pero la contraparte va separada.** Si una composición
+usa solo el nombre, el isotipo tiene que estar presente en ella —y al revés—, pero
+**en otra zona, a otra escala y en otro papel**. Nunca pegado, porque pegados
+forman un lockup, y el lockup es justo lo que no existe.
+
+Las dos reglas anteriores se leen juntas o no se entienden:
+
+| Cumple | No cumple |
+|---|---|
+| Nombre en la barra, ojo grande al otro extremo de la portada | Ojo chico a un lado del nombre, en cualquier orden |
+| Nombre en la barra, ojo como trama de fondo o marca de agua | Ojo y nombre uno tras otro en el pie |
+| Ojo suelto de adorno, nombre en el pie de la misma página | «Es que lo puse chiquito y decorativo» — sigue siendo un lockup |
+
+**La prueba:** si el ojo y el nombre se leen como una sola unidad —si los taparías
+con una mano— es un lockup y está mal. Tienen que poder leerse como dos presencias
+distintas de la marca en la misma composición.
+
+Si eso no acomoda, va el logo completo en su composición original. Esa es siempre
+la salida correcta cuando hay duda.
+
+La regla es por composición, no por página: un logo completo en el pie no cubre
+un hero que muestra el nombre suelto.
 
 **Tamaño mínimo del completo: 72px de alto.** Debajo de eso la firma manuscrita
 se vuelve un borrón. En barras y pies (28–48px) va el nombre solo; nunca el
