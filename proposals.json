@@ -10,30 +10,30 @@
         {
           "id": "pauta",
           "nombre": "Gestion de pauta (fee, inversion aparte)",
-          "precio": 0,
+          "precio": 3000,
           "tipo": "mensual"
         },
         {
           "id": "sorteo",
           "nombre": "Operacion del sorteo (Deposita y gana)",
-          "precio": 0,
+          "precio": 3500,
           "tipo": "unico"
         },
         {
           "id": "inbox",
           "nombre": "Automatizacion de inbox (Messenger/Direct a GHL)",
-          "precio": 0,
+          "precio": 3500,
           "tipo": "mensual"
         },
         {
           "id": "embajadores",
           "nombre": "Kit de embajadores (comunidad local)",
-          "precio": 0,
+          "precio": 4000,
           "tipo": "unico"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "CLIENTE existente (continuidad, no prospeccion fria). Propuesta de crecimiento en Facebook sobre la parrilla vigente: sorteo con boleto ganado por deposito de pilas (reencuadre del sorteo abierto que pidieron), pauta con funcion (objetivo mensajes, no likes), contenido con inclinacion por red e inclusion en alcance actual sin costo, y 4 paquetes modulares adicionales. Montos en la tabla de inversion quedaron como placeholders $[__] — Jos los llena. Plan de 90 dias por fases (Motor / Escala / Comunidad). Cierre con formulario /api/lead + WhatsApp de Jos.",
+      "notas": "CLIENTE existente (continuidad, no prospeccion fria). Propuesta de crecimiento en Facebook sobre la parrilla vigente: sorteo con boleto ganado por deposito de pilas (reencuadre del sorteo abierto que pidieron), pauta con funcion (objetivo mensajes, no likes), contenido con inclinacion por red e inclusion en alcance actual sin costo, y 4 paquetes modulares adicionales. Montos en la tabla de inversion quedaron como placeholders $[__] — Jos los llena. Plan de 90 dias por fases (Motor / Escala / Comunidad). Cierre con formulario /api/lead + WhatsApp de Jos. | Inversion en medios sugerida $5,000/mes va directo a Meta (pass-through) — la absorbe el cliente, NO es fee de Sentido, no se cuenta como servicio facturable.",
       "proximoPaso": "Esperando respuesta (formulario o WhatsApp). Requiere de IMU: inventario de premios, VoBo legal, presupuesto de medios y responsable de embajadores.",
       "fechaSeguimiento": null,
       "bitacora": []
