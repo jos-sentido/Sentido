@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · IMU Recicla — Crecimiento en Facebook</title>
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/assets/sentido-sistema.css" />
+<meta name="description" content="Propuesta de crecimiento en Facebook para IMU Recicla: sorteo con boleto ganado por depósito de pilas, pauta con función, contenido con inclinación por red y comunidad local. El seguidor es consecuencia, no meta." />
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --bg-deep: #060606;
+    --surface: #111111;
+    --surface-elevated: #161616;
+    --border: #202020;
+    --border-strong: #2E2E2E;
+    --accent: #F1EADC;
+    --accent-deep: #948C80;
+    --accent-soft: #DAD3C5;
+    --accent-tint: rgba(241, 234, 220, 0.10);
+    --ink: #F1EADC;
+    --ink-soft: #B6AE9E;
+    --ink-muted: #948C80;
+    --ink-whisper: #898275;
+    /* Acento ambiental — verde sobrio, subordinado al hueso. Marca el impacto
+       real (depósitos, participaciones validadas), nunca compite con el sistema. */
+    --verde: #9FB79A;
+    --verde-soft: #B9CDB2;
+    --verde-tint: rgba(159, 183, 154, 0.12);
+    --font-display: 'Archivo', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Archivo', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #0A0A0A; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+  .reveal-d5 { transition-delay: 0.40s; }
+
+  /* NAV */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 10, 10, 0.82);
+    backdrop-filter: saturate(140%) blur(16px);
+    -webkit-backdrop-filter: saturate(140%) blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease; }
+  .nav.scrolled { border-bottom-color: var(--border); }
+  .nav-inner { max-width: 80rem; margin: 0 auto; padding: 0.875rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  @media (min-width: 640px) { .nav-inner { padding: 1rem 1.5rem; } }
+  .nav-logo { display: flex; align-items: center; gap: 0.625rem; min-width: 0; }
+  .nav-logo img { height: 26px; display: block; opacity: 0.95; flex-shrink: 0; }
+  @media (min-width: 640px) { .nav-logo img { height: 28px; } }
+  .nav-logo .divider { width: 1px; height: 18px; background: var(--border-strong); flex-shrink: 0; }
+  .nav-logo .label { font-family: var(--font-display); font-size: 13px;
+    color: var(--ink-soft); letter-spacing: 0.01em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (min-width: 640px) { .nav-logo .label { font-size: 15px; } }
+  @media (max-width: 460px) { .nav-logo .divider, .nav-logo .label { display: none; } }
+  .nav-links { display: none; gap: 1.85rem; }
+  @media (min-width: 1040px) { .nav-links { display: flex; } }
+  .nav-links a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); text-decoration: none; transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; font-weight: 500;
+    white-space: nowrap; flex-shrink: 0; }
+  @media (min-width: 640px) { .nav-cta { font-size: 12px; letter-spacing: 0.14em; } }
+
+  /* SECTION */
+  .section { width: 100%; padding: 4.5rem 1.25rem; position: relative; }
+  @media (min-width: 640px) { .section { padding: 5.5rem 1.5rem; } }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+  .section-surface { background-color: var(--surface); }
+  .section-deep { background-color: var(--bg-deep); }
+
+  /* Typography */
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; color: var(--ink); line-height: 1.08; text-wrap: balance; }
+  .h-lg { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+  .h-md { font-size: clamp(1.5rem, 3vw, 2.125rem); }
+  .h-sm { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.2; }
+  .accent-soft { color: var(--accent-soft); }
+  .verde { color: var(--verde-soft); }
+
+  .p { font-size: 17px; line-height: 1.75; font-weight: 400; color: var(--ink-soft); max-width: 68ch; }
+  .p.lg { font-size: 19px; line-height: 1.7; }
+  .p.muted { color: var(--ink-muted); }
+  .p.sm { font-size: 14px; line-height: 1.65; }
+  .p + .p { margin-top: 1.25rem; }
+  .p strong { color: var(--ink); font-weight: 600; }
+
+  .lede { font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    line-height: 1.25; color: var(--ink); font-weight: 400; max-width: 24ch; }
+  .lede em, .lede .em { color: var(--accent-soft); font-style: normal; font-weight: 600; }
+  .lede .emv { color: var(--verde-soft); font-style: normal; font-weight: 600; }
+
+  .pleca { width: 56px; height: 4px; margin-bottom: 26px;
+    background: repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 6px);
+    opacity: 0.45; }
+  .papel .pleca { opacity: 0.55; }
+  section { position: relative; overflow: hidden; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center;
+    padding: 7rem 1.25rem 4rem; position: relative; overflow: hidden; }
+  @media (min-width: 640px) { .hero { padding: 8rem 1.5rem 5rem; } }
+  @media (min-width: 768px) { .hero { padding: 9rem 3rem 6rem; } }
+  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 6rem; } }
+  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-logo-sentido { height: 52px; width: auto; display: block; margin-bottom: 3rem; opacity: 0.85; }
+  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 4.5rem; } }
+  .hero-meta { display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 2rem; flex-wrap: wrap; }
+  @media (min-width: 640px) { .hero-meta { gap: 0.875rem; font-size: 11px; letter-spacing: 0.24em; margin-bottom: 2.5rem; } }
+  .hero-meta .divider { height: 1px; width: 2rem; background: var(--accent); opacity: 0.5; }
+  @media (min-width: 640px) { .hero-meta .divider { width: 2.5rem; } }
+  .hero-brand { font-family: var(--font-display); font-size: clamp(2.6rem, 7.2vw, 5.5rem);
+    font-weight: 800; line-height: 0.98; letter-spacing: -0.032em; color: var(--ink); margin-bottom: 1.5rem; }
+  .hero-brand .ligera { font-weight: 300; letter-spacing: -0.022em; }
+  .hero-subtitle { font-family: var(--font-display); font-size: clamp(1.2rem, 2.3vw, 1.7rem);
+    color: var(--ink-soft); max-width: 46rem; margin-bottom: 3rem; line-height: 1.35; font-weight: 300; }
+  .hero-subtitle em { color: var(--accent-soft); font-style: normal; font-weight: 600; }
+  .hero-details { display: grid; grid-template-columns: 1fr; gap: 2rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--border); max-width: 52rem; }
+  @media (min-width: 640px) { .hero-details { grid-template-columns: repeat(3, 1fr); } }
+  .hero-detail .label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-whisper); margin-bottom: 0.5rem; }
+  .hero-detail .value { font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; color: var(--ink); }
+
+  /* Pedidos — filas grabadas numeradas */
+  .asks { border-top: 1px solid var(--border); margin-top: 3rem; }
+  .ask { display: grid; grid-template-columns: 64px 1fr; gap: clamp(16px,3vw,40px);
+    align-items: baseline; padding: clamp(24px,2.6vw,34px) 0; border-bottom: 1px solid var(--border); position: relative; }
+  .ask .num { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--ink-whisper); line-height: 1; }
+  .ask .askbody h4 { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.5rem; }
+  .ask .askbody p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.6; max-width: 60ch; }
+
+  /* Tabla del sistema */
+  .tbl-wrap { margin-top: 2.75rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.sys { width: 100%; border-collapse: collapse; min-width: 520px; }
+  table.sys caption { text-align: left; font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 1rem; }
+  table.sys th, table.sys td { text-align: left; padding: 0.95rem 1.1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.sys thead th { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600; border-bottom-color: var(--border-strong); }
+  table.sys tbody th { font-weight: 600; color: var(--ink); font-size: 15px; }
+  table.sys td { font-size: 15px; color: var(--ink-soft); }
+  table.sys td.hi, table.sys th.hi { color: var(--ink); }
+  table.sys .fbcol { color: var(--accent-soft); font-weight: 600; }
+  table.sys tr:last-child th, table.sys tr:last-child td { border-bottom: none; }
+  .big-num { font-family: var(--font-display); font-weight: 800; font-size: 1.05em; color: var(--ink); }
+
+  /* Reencuadre — stat grande */
+  .reframe { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center;
+    margin-top: 3rem; padding: clamp(1.75rem,3vw,2.75rem); border: 1px solid var(--border-strong);
+    background: linear-gradient(180deg, var(--surface-elevated) 0%, rgba(241,234,220,0.05) 100%); }
+  @media (min-width: 820px) { .reframe { grid-template-columns: 220px 1fr; gap: 3rem; } }
+  .reframe .stat { font-family: var(--font-display); font-weight: 800; line-height: 0.9; }
+  .reframe .stat .x { font-size: clamp(3.5rem, 9vw, 5.5rem); color: var(--accent); display: block; letter-spacing: -0.04em; }
+  .reframe .stat .cap { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-muted); margin-top: 0.75rem; line-height: 1.5; display: block; }
+  .reframe .rtext h3 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.4rem,2.6vw,1.85rem);
+    color: var(--ink); margin-bottom: 1rem; line-height: 1.15; }
+  .reframe .rtext p { font-size: 16px; color: var(--ink-soft); line-height: 1.7; max-width: 54ch; }
+
+  /* Nota / matiz */
+  .nota { margin-top: 1.75rem; padding-left: 1.25rem; border-left: 2px solid var(--border-strong);
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-muted); line-height: 1.7; max-width: 60ch; }
+  .nota strong { color: var(--ink-soft); font-weight: 600; }
+
+  /* Riesgo — bullets */
+  .risk-list { list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; gap: 1.25rem; }
+  .risk-list li { position: relative; padding-left: 1.75rem; font-size: 16px; color: var(--ink-soft); line-height: 1.65; max-width: 64ch; }
+  .risk-list li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 7px; height: 7px;
+    border: 1px solid var(--accent-deep); transform: rotate(45deg); }
+  .risk-list li strong { color: var(--ink); font-weight: 600; }
+  .keyline { margin-top: 2.75rem; padding: 1.6rem 1.75rem; border: 1px solid var(--verde);
+    background: var(--verde-tint); font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(1.15rem,2.2vw,1.5rem); line-height: 1.35; color: var(--ink); }
+  .keyline em { color: var(--verde-soft); font-style: normal; font-weight: 800; }
+
+  /* Declaración / objetivo */
+  .declara { margin-top: 2.5rem; padding: clamp(1.75rem,3vw,3rem) 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .declara .q { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.5rem,3.4vw,2.4rem);
+    line-height: 1.28; color: var(--ink); max-width: 26ch; letter-spacing: -0.02em; }
+  .declara .q strong { font-weight: 800; }
+
+  /* Pilares / métricas */
+  .pillars { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
+  @media (min-width: 768px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+  .pillar { padding-top: 1.75rem; border-top: 2px solid var(--accent); }
+  .pillar.verde-top { border-top-color: var(--verde); }
+  .pillar .num { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 1rem; }
+  .pillar.verde-top .num { color: var(--verde-soft); }
+  .pillar h4 { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.875rem; }
+  .pillar p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* Los cuatro pilares — bloques grabados */
+  .pilar-block { border-top: 1px solid var(--border-strong); padding: clamp(2rem,4vw,3.25rem) 0; }
+  .pilar-block:last-of-type { border-bottom: 1px solid var(--border-strong); }
+  .pilar-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .pilar-head .idx { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.75rem,4vw,2.75rem);
+    color: var(--ink-whisper); line-height: 1; letter-spacing: -0.03em; }
+  .pilar-head h3 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem,3vw,2.05rem); color: var(--ink); line-height: 1.1; }
+  .pilar-lede { font-size: 16.5px; color: var(--ink-soft); line-height: 1.7; max-width: 62ch; margin-bottom: 1.75rem; }
+  .pilar-lede strong { color: var(--ink); font-weight: 600; }
+
+  /* Pasos de mecánica */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); margin: 0 0 1.75rem; }
+  @media (min-width: 700px) { .steps { grid-template-columns: repeat(4, 1fr); border-top: none; } }
+  .step { padding: 1.1rem 0; border-bottom: 1px solid var(--border); position: relative; }
+  @media (min-width: 700px) { .step { padding: 1.1rem 1.25rem 1.1rem 0; border-bottom: none; border-top: 2px solid var(--verde); } }
+  .step .sn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--verde-soft); margin-bottom: 0.5rem; display: block; }
+  .step p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* Dos columnas de detalle */
+  .cols-2 { display: grid; grid-template-columns: 1fr; gap: 1.75rem; margin-top: 1.5rem; }
+  @media (min-width: 760px) { .cols-2 { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+  .subhead { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.9rem; }
+  .subhead.v { color: var(--verde-soft); }
+  .mini-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .mini-list li { position: relative; padding-left: 1.4rem; font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  .mini-list li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 6px; height: 6px;
+    border: 1px solid var(--accent-deep); transform: rotate(45deg); }
+  .mini-list li strong { color: var(--ink); font-weight: 600; }
+
+  /* Pregunta abierta */
+  .open-q { margin-top: 1.75rem; padding: 1.25rem 1.5rem; border: 1px dashed var(--border-strong);
+    font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  .open-q strong { color: var(--accent-soft); font-weight: 600; }
+
+  /* Incluido — filas */
+  .incl { border-top: 1px solid var(--border); margin-top: 2.5rem; }
+  .incl-row { display: grid; grid-template-columns: 1fr; gap: 0.35rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 700px) { .incl-row { grid-template-columns: 240px 1fr; gap: 2rem; align-items: baseline; } }
+  .incl-row h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; color: var(--ink); }
+  .incl-row p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; max-width: 60ch; }
+
+  /* Paquetes — módulos */
+  .modules-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2.5rem 0 0; }
+  @media (min-width: 700px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
+  .module { padding: 1.6rem clamp(0px,1.6vw,24px) 1.9rem; border-bottom: 1px solid var(--border); position: relative; }
+  @media (min-width: 700px) { .module { padding: 1.9rem 1.75rem; border-right: 1px solid var(--border); } }
+  @media (min-width: 700px) { .module:nth-child(2n) { border-right: none; } }
+  .module .mtag { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.6rem; }
+  .module h5 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.4rem; }
+  .module .model { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent-soft); margin-bottom: 0.7rem; letter-spacing: 0.02em; }
+  .module p { font-size: 14px; color: var(--ink-muted); line-height: 1.6; }
+
+  /* Detalle de paquetes */
+  .detail { border-top: 1px solid var(--border); padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
+  .detail + .detail { border-top: none; }
+  .detail h4 { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.75rem; }
+  .detail p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; max-width: 66ch; }
+  .detail p + p { margin-top: 0.85rem; }
+  .detail p strong { color: var(--ink); font-weight: 600; }
+  .plan-b { margin-top: 0.85rem; padding: 0.9rem 1.2rem; background: var(--verde-tint); border-left: 2px solid var(--verde); font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+  .plan-b strong { color: var(--verde-soft); font-weight: 700; }
+
+  /* Timeline 90 días */
+  .tl-bar { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2.75rem 0 0; }
+  @media (min-width: 768px) { .tl-bar { grid-template-columns: repeat(3, 1fr); } }
+  .tl-step { padding: 1.75rem 0; border-bottom: 1px solid var(--border); position: relative; }
+  @media (min-width: 768px) { .tl-step { padding: 1.9rem 1.75rem; border-right: 1px solid var(--border); border-bottom: none; } .tl-step:last-child { border-right: none; } }
+  .tl-step .when { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent);
+    margin-bottom: 0.85rem; display: inline-block; padding: 0.25rem 0.6rem; background: var(--accent-tint); }
+  .tl-step h4 { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.7rem; }
+  .tl-step p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 0.9rem; }
+  .tl-step .crit { font-family: var(--font-mono); font-size: 11.5px; color: var(--verde-soft); line-height: 1.55; letter-spacing: 0.01em; }
+  .tl-step .crit b { color: var(--verde-soft); font-weight: 700; display: block; margin-bottom: 0.2rem; letter-spacing: 0.1em; text-transform: uppercase; font-size: 10px; }
+
+  /* Inversión */
+  .invest-card { padding: 1.75rem 0 0; margin-top: 2.75rem; }
+  .fuera { margin-top: 2.5rem; padding: 1.6rem 1.75rem; border: 1px solid var(--border-strong); background: var(--surface); }
+  .fuera h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 1rem; }
+  .fuera ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .fuera li { position: relative; padding-left: 1.4rem; font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+  .fuera li::before { content: '—'; position: absolute; left: 0; top: 0; color: var(--ink-whisper); }
+  .invest-foot { margin-top: 1.75rem; font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); letter-spacing: 0.02em; }
+  .ph { font-family: var(--font-mono); color: var(--accent-soft); font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
+
+  /* Necesitamos de IMU */
+  .need { border-top: 1px solid var(--border); margin-top: 2.75rem; }
+  .need-row { display: grid; grid-template-columns: 48px 1fr; gap: 1.25rem; align-items: baseline;
+    padding: 1.6rem 0; border-bottom: 1px solid var(--border); }
+  .need-row .num { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--accent-soft); line-height: 1; }
+  .need-row h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.3rem; }
+  .need-row p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; max-width: 62ch; }
+  .need-close { margin-top: 2.25rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.15rem,2.2vw,1.5rem); color: var(--ink); line-height: 1.35; max-width: 30ch; }
+  .need-close em { color: var(--verde-soft); font-style: normal; font-weight: 800; }
+
+  /* CTA FORM */
+  .cta-form-section { background: var(--bg-deep); }
+  .cta-form-wrap { max-width: 44rem; margin: 0 auto; }
+  .cta-form-section h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.12; margin-bottom: 1.25rem; }
+  .cta-form-section h2 em { color: var(--accent-soft); font-style: normal; }
+  .cta-form-section .lede-form { font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--ink-soft); max-width: 40rem; line-height: 1.4; font-weight: 300; }
+
+  #lead-form { display: grid; gap: 1.25rem; margin-top: 2.8rem; }
+  #lead-form label { display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-mono);
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+  #lead-form label .req { color: var(--accent); }
+  #lead-form input, #lead-form select, #lead-form textarea {
+    font-family: var(--font-sans); font-size: 1rem; color: #0A0A0A;
+    background: var(--accent-soft); border: 1px solid var(--accent-deep); padding: 0.95rem 1.1rem; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; text-transform: none; letter-spacing: 0; }
+  #lead-form input::placeholder, #lead-form textarea::placeholder { color: #5C564C; }
+  #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
+    outline: none; background: #F1EADC; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(241, 234, 220,0.25); }
+  #lead-form select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23241C0C' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
+  #lead-form textarea { resize: vertical; min-height: 96px; }
+  @media (min-width: 640px) { .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+  .form-submit { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #0A0A0A; background: var(--accent); border: none; padding: 1.05rem 1.5rem; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; margin-top: 0.5rem; }
+  .form-submit:hover:not(:disabled) { background: var(--accent-soft); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.6; cursor: default; }
+  .form-status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-soft); opacity: 0; transition: opacity 0.3s; line-height: 1.6; }
+  .form-status.visible { opacity: 1; }
+  .form-status.error { color: #E0A79C; }
+  .wa-alt { margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .wa-alt p { font-size: 14.5px; color: var(--ink-muted); }
+  .wa-cta { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--verde-soft);
+    text-decoration: none; border: 1px solid var(--verde); padding: 0.75rem 1.1rem; transition: background 0.2s, color 0.2s; }
+  .wa-cta:hover { background: var(--verde-tint); color: var(--verde-soft); }
+
+  /* CLOSING */
+  .closing { background: var(--bg); padding: 5rem 1.25rem; text-align: center; position: relative; overflow: hidden; }
+  @media (min-width: 640px) { .closing { padding: 7rem 1.5rem; } }
+  @media (min-width: 768px) { .closing { padding: 8.5rem 3rem; } }
+  .closing-inner { position: relative; z-index: 1; }
+  .closing .clabel { display: inline-flex; align-items: center; gap: 0.875rem; margin-bottom: 2rem; color: var(--accent); justify-content: center; }
+  .closing .clabel .dot { width: 6px; height: 6px; background: var(--accent); }
+  .closing .clabel span.t { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; font-weight: 600; text-transform: uppercase; }
+  .closing .clabel .divider { height: 1px; width: 2.5rem; background: var(--accent); opacity: 0.5; }
+  .closing h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; color: var(--ink); font-weight: 800; max-width: 44rem; margin: 0 auto 2rem; }
+  .closing h2 em { color: var(--verde-soft); font-style: normal; }
+  .closing p { color: var(--ink-muted); font-size: 16.5px; max-width: 40rem; margin: 0 auto; line-height: 1.7; }
+  .closing-sentido-mark { height: 36px; width: auto; opacity: 0.6; margin-top: 3rem; }
+
+  /* FOOTER */
+  .foot { background: var(--bg-deep); color: var(--ink-whisper); padding: 2rem 1.25rem; text-align: center;
+    border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.6875rem;
+    letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.8; }
+  @media (min-width: 640px) { .foot { font-size: 11px; letter-spacing: 0.14em; padding: 2rem 1.5rem; } }
+  .foot a { color: var(--ink-soft); text-decoration: none; margin: 0 0.4rem; display: inline-block; }
+  .foot a:hover { color: var(--accent); }
+
+  /* ── SUPERFICIE CLARA — dos materiales de igual rango ── */
+  .papel { --bg: #F1EADC; --bg-deep: #F1EADC; --surface: #E8E0D0; --surface-elevated: #DED5C2;
+    --border: #D8CFBC; --border-strong: #C4B9A2; --ink: #0A0A0A; --ink-soft: #2E2A24;
+    --ink-muted: #514B42; --ink-whisper: #5C564C; --accent: #0A0A0A; --accent-deep: #514B42; --accent-soft: #2E2A24;
+    --verde: #4C6B47; --verde-soft: #3A5636; --verde-tint: rgba(76, 107, 71, 0.10);
+    background: var(--bg); color: var(--ink-soft); }
+  .papel .pleca { opacity: 0.55; }
+
+  @media (max-width: 700px) {
+    table.sys { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" />
+      <span class="divider"></span>
+      <span class="label">IMU Recicla · Facebook</span>
+    </div>
+    <div class="nav-links">
+      <a href="#pedido">Lo que pidieron</a>
+      <a href="#partida">Punto de partida</a>
+      <a href="#pilares">Los pilares</a>
+      <a href="#plan">Plan 90 días</a>
+      <a href="#inversion">Inversión</a>
+    </div>
+    <a href="#contacto" class="nav-cta">Contactemos →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.13;--foco:50% 185%;--rx:210%;--ry:140%"></div>
+  <div class="hero-inner">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido Branding & Advertising" class="hero-logo-sentido reveal" />
+    <div class="hero-meta reveal">
+      <span>IMU Recicla</span>
+      <span class="divider"></span>
+      <span>Propuesta de crecimiento · Facebook</span>
+      <span class="divider"></span>
+      <span>Septiembre 2026</span>
+    </div>
+    <h1 class="hero-brand reveal reveal-d1"><span class="ligera">Crecer en Facebook</span><br>sin diluir el programa.</h1>
+    <p class="hero-subtitle reveal reveal-d2">
+      El contenido no es el problema. Es el <em>tamaño de la audiencia</em>. Aquí está el plan para resolverlo — con un sorteo que sí deja depósitos, pauta con función y comunidad local.
+    </p>
+    <div class="hero-details reveal reveal-d3">
+      <div class="hero-detail">
+        <div class="label">Seguidores FB hoy</div>
+        <div class="value">66 · +58 en 12 meses</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">El objetivo real</div>
+        <div class="value">Participación familiar y local</div>
+      </div>
+      <div class="hero-detail">
+        <div class="label">Horizonte</div>
+        <div class="value">Plan de 90 días · por fases</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 1 · LO QUE NOS PIDIERON -->
+<section class="section" id="pedido">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 40rem; margin-bottom: 1.25rem;">Lo que nos pidieron</h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 44rem;">
+      Cuatro peticiones concretas para Facebook. Las cuatro están recogidas en esta propuesta: <strong>dos se ejecutan tal como se plantearon; dos necesitan un ajuste</strong> para no trabajar en contra del programa.
+    </p>
+
+    <div class="asks">
+      <div class="ask reveal reveal-d1">
+        <div class="num">01</div>
+        <div class="askbody">
+          <h4>Sorteos</h4>
+          <p>Boletos de conciertos y béisbol, aprovechando patrocinios, palco y accesos disponibles.</p>
+        </div>
+      </div>
+      <div class="ask reveal reveal-d2">
+        <div class="num">02</div>
+        <div class="askbody">
+          <h4>Contenido dividido</h4>
+          <p>Piezas distintas para Instagram y Facebook; señalan que Facebook es contenido para mamás.</p>
+        </div>
+      </div>
+      <div class="ask reveal reveal-d3">
+        <div class="num">03</div>
+        <div class="askbody">
+          <h4>Pauta</h4>
+          <p>Amplificar con inversión los artes con buen desempeño orgánico.</p>
+        </div>
+      </div>
+      <div class="ask reveal reveal-d4">
+        <div class="num">04</div>
+        <div class="askbody">
+          <h4>Embajadores</h4>
+          <p>Personas que compartan contenido de IMU y canalicen audiencia a Facebook.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · PUNTO DE PARTIDA -->
+<section class="section section-surface" id="partida">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.25rem;">Punto de partida</h2>
+    <p class="p reveal reveal-d2" style="max-width: 44rem;">
+      Datos de Metricool, periodo 16 sep 2025 – 15 sep 2026.
+    </p>
+
+    <div class="tbl-wrap reveal reveal-d2">
+      <table class="sys">
+        <caption>Metricool · 16 sep 2025 – 15 sep 2026</caption>
+        <thead>
+          <tr><th scope="col">Indicador</th><th scope="col" class="hi">Facebook</th><th scope="col">Instagram</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Seguidores hoy</th><td class="fbcol"><span class="big-num">66</span></td><td>1,123</td></tr>
+          <tr><th scope="row">Ganados en 12 meses</th><td class="fbcol">+58</td><td>+418</td></tr>
+          <tr><th scope="row">Interacción sobre alcance</th><td class="fbcol">8.7 %</td><td>9.8 %</td></tr>
+          <tr><th scope="row">Inversión en pauta</th><td class="fbcol">$0</td><td>$0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="reframe reveal reveal-d2">
+      <div class="stat">
+        <span class="x">17×</span>
+        <span class="cap">menos gente para ver<br>el mismo contenido</span>
+      </div>
+      <div class="rtext">
+        <h3>El contenido no es el problema.</h3>
+        <p>Cuando alguien ve una pieza en Facebook, interactúa casi igual que en Instagram. El problema es que hay diecisiete veces menos gente para verlo. Facebook no tiene un problema de calidad: tiene un problema de <strong style="color:var(--ink);font-weight:600;">tamaño de audiencia y de distribución</strong>. Eso se resuelve con inversión y con una razón para seguir la página, no con más publicaciones.</p>
+      </div>
+    </div>
+
+    <p class="nota reveal">
+      <strong>Matiz técnico, por honestidad:</strong> el porcentaje de interacción se calcula sobre el alcance promedio por publicación, y en Facebook opera sobre una base muy pequeña. Aun con ese matiz, la lectura se sostiene.
+    </p>
+  </div>
+</section>
+
+<!-- 3 · DOS REDES, DOS LÓGICAS -->
+<section class="section" id="redes">
+  <div class="buril" aria-hidden="true" style="--trazo:var(--accent);--tono:.14;--paso:7px"></div>
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.25rem;">Dos redes, dos lógicas</h2>
+    <p class="p reveal reveal-d2" style="max-width: 48rem;">
+      El alcance contratado hoy contempla <strong>una sola parrilla que sirve a las dos redes</strong>. Es lo correcto para sostener presencia consistente. Crecer en Facebook específicamente implica decisiones nuevas: algunas se absorben en la operación actual, otras requieren alcance adicional.
+    </p>
+
+    <div class="tbl-wrap reveal reveal-d2">
+      <table class="sys">
+        <thead>
+          <tr><th scope="col"></th><th scope="col">Instagram</th><th scope="col" class="hi">Facebook</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Público</th><td>Joven, urbano, consumo rápido</td><td class="fbcol">Adulto, familiar, hogar y comunidad</td></tr>
+          <tr><th scope="row">Qué premia</th><td>Guardar y compartir en historias</td><td class="fbcol">Compartir al muro y comentar</td></tr>
+          <tr><th scope="row">Dónde vive el alcance</th><td>Explorar y reels</td><td class="fbcol">Grupos locales, no páginas de marca</td></tr>
+          <tr><th scope="row">Copy que funciona</th><td>Breve, visual, contundente</td><td class="fbcol">Largo, conversacional, útil</td></tr>
+          <tr><th scope="row">Tema con mayor tracción</th><td>Dato duro y provocación</td><td class="fbcol">Seguridad en casa y utilidad local</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · EL RIESGO DEL SORTEO ABIERTO -->
+<section class="section section-deep" id="riesgo">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.25rem;">El riesgo del sorteo abierto</h2>
+    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
+      Un boleto regalado a cambio de un comentario atrae cazadores de premios: siguen, participan y se van.
+    </p>
+
+    <ul class="risk-list reveal reveal-d2">
+      <li><strong>Métrica inflada.</strong> Sube el número de seguidores y baja el porcentaje de interacción. La página queda peor que antes.</li>
+      <li><strong>Marca desplazada.</strong> IMU Recicla deja de ser plataforma de participación ciudadana y pasa a ser la página que rifa boletos.</li>
+      <li><strong>Cero impacto ambiental.</strong> Miles de comentarios no equivalen a una sola pila depositada en un IMU Recolector.</li>
+    </ul>
+
+    <p class="keyline reveal reveal-d3">
+      El sorteo sí funciona. Cambia una sola cosa: el boleto se gana <em>depositando pilas</em>, no comentando.
+    </p>
+  </div>
+</section>
+
+<!-- 5 · EL OBJETIVO, REENCUADRADO -->
+<section class="section" id="objetivo">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 40rem; margin-bottom: 0.5rem;">El objetivo, reencuadrado</h2>
+
+    <div class="declara reveal reveal-d2">
+      <p class="q">Convertir Facebook en el canal de participación familiar y local del programa. <strong>El seguidor es consecuencia, no meta.</strong></p>
+    </div>
+
+    <p class="p reveal reveal-d2" style="max-width: 44rem; margin-top: 2.25rem;">Tres métricas en lugar de una:</p>
+
+    <div class="pillars">
+      <div class="pillar reveal reveal-d1">
+        <div class="num">— 01</div>
+        <h4>Seguidores y costo por seguidor</h4>
+        <p>Cuántos llegan y cuánto cuesta cada uno. Es la métrica que el cliente pidió.</p>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="num">— 02</div>
+        <h4>Retención a 30 días</h4>
+        <p>Qué porcentaje sigue interactuando un mes después. Distingue un sorteo bueno de uno malo.</p>
+      </div>
+      <div class="pillar verde-top reveal reveal-d3">
+        <div class="num">— 03</div>
+        <h4>Participaciones validadas</h4>
+        <p>Depósitos comprobados en IMU Recolectores. Es el número que le importa a Grupo IMU.</p>
+      </div>
+    </div>
+
+    <p class="nota reveal">
+      Sin línea base medida no se compromete una cifra de seguidores. El primer mes fija el punto de partida.
+    </p>
+  </div>
+</section>
+
+<!-- 6 · LOS CUATRO PILARES -->
+<section class="section section-surface" id="pilares">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 40rem; margin-bottom: 1.25rem;">Los cuatro pilares</h2>
+    <p class="p reveal reveal-d2" style="max-width: 44rem; margin-bottom: 1rem;">
+      El programa completo, pilar por pilar: el sorteo que reencuadra, la pauta con función, el contenido con inclinación por red y la comunidad local que abre el alcance orgánico.
+    </p>
+
+    <!-- Pilar 01 -->
+    <div class="pilar-block reveal reveal-d1">
+      <div class="pilar-head">
+        <span class="idx">01</span>
+        <h3>Sorteo con boleto ganado — «Deposita y gana»</h3>
+      </div>
+      <p class="pilar-lede"><strong>La mecánica:</strong> el boleto se gana con un depósito comprobado, no con un comentario. Así el sorteo mueve pilas, no cazadores de premios.</p>
+
+      <div class="steps">
+        <div class="step"><span class="sn">Paso 1</span><p>Deposita pilas en un IMU Recolector.</p></div>
+        <div class="step"><span class="sn">Paso 2</span><p>Manda foto por mensaje directo.</p></div>
+        <div class="step"><span class="sn">Paso 3</span><p>Recibe tus participaciones.</p></div>
+        <div class="step"><span class="sn">Paso 4</span><p>Sorteo y anuncio del ganador.</p></div>
+      </div>
+
+      <div class="cols-2">
+        <div>
+          <div class="subhead">Premios escalonados</div>
+          <ul class="mini-list">
+            <li><strong>Mensual.</strong> Boletos de béisbol y accesos a eventos. Familiar, local y alineado al público de Facebook.</li>
+            <li><strong>Trimestral.</strong> Premio ancla de mayor valor para generar el pico de alcance.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="subhead v">Lo que gana el programa</div>
+          <ul class="mini-list">
+            <li>Contenido real de gente usando sus IMU Recolectores, sin costo de producción.</li>
+            <li>Prueba social por ciudad y tráfico al localizador (imurecicla.com/recolectores).</li>
+            <li>Un número de depósitos reportable a dirección.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="nota reveal">Los premios ya existen vía patrocinios: <strong>el costo es operativo, no de premio.</strong></p>
+    </div>
+
+    <!-- Pilar 02 -->
+    <div class="pilar-block reveal reveal-d1">
+      <div class="pilar-head">
+        <span class="idx">02</span>
+        <h3>Pauta con función</h3>
+      </div>
+      <p class="pilar-lede">Nada de campañas de «me gusta» a la página: entregan seguidores baratos e inertes. La palanca es el objetivo de <strong>mensajes</strong>.</p>
+
+      <div class="tbl-wrap">
+        <table class="sys">
+          <thead>
+            <tr><th scope="col">Etapa</th><th scope="col">Qué hace</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row" class="hi">1 · Captación</th><td>Anuncios de mensajes que abren Messenger o Instagram Direct. De lo más económico de Meta y corre igual en ambas redes.</td></tr>
+            <tr><th scope="row" class="hi">2 · Amplificación</th><td>Inversión solo sobre las piezas que ya demostraron desempeño orgánico. Nunca sobre contenido sin validar.</td></tr>
+            <tr><th scope="row" class="hi">3 · Conversión a seguidor</th><td>Retargeting a quien ya conversó o interactuó, invitándolo a seguir la página. Ahí sí hay palanca real en Facebook.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pilar-lede" style="margin-top:1.75rem;"><strong>Segmentación exclusiva a ciudades con red activa de IMU Recolectores.</strong> Pautar donde no hay dónde depositar es gasto perdido y genera frustración. Piloto sugerido: 60 días.</p>
+    </div>
+
+    <!-- Pilar 03 -->
+    <div class="pilar-block reveal reveal-d1">
+      <div class="pilar-head">
+        <span class="idx">03</span>
+        <h3>Contenido con inclinación</h3>
+      </div>
+      <p class="pilar-lede">Las mismas nueve piezas mensuales. Todas se publican en ambas redes y en historias. Lo que cambia es <strong>hacia dónde se inclina cada una</strong>.</p>
+
+      <div class="tbl-wrap">
+        <table class="sys">
+          <thead>
+            <tr><th scope="col">Inclinación</th><th scope="col">Piezas</th><th scope="col">Ángulos</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row" class="hi">Hacia Facebook</th><td>3</td><td>Pilas de botón y riesgo infantil · resguardo seguro en casa · dónde está tu IMU Recolector</td></tr>
+            <tr><th scope="row" class="hi">Hacia Instagram</th><td>3</td><td>Dato duro · provocador e incómodo · descubrimientos sobre las pilas</td></tr>
+            <tr><th scope="row" class="hi">Transversales</th><td>3</td><td>Alcalina o litio · detrás del proceso · fechas ambientales</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota reveal">Los ángulos nuevos caben en los territorios que ya usa el Creative Engine: hogar y seguridad entran en micro-educación y cultura urbana. <strong>No se rompe ninguna regla del brief ni se agrega producción.</strong></p>
+    </div>
+
+    <!-- Pilar 04 -->
+    <div class="pilar-block reveal reveal-d1">
+      <div class="pilar-head">
+        <span class="idx">04</span>
+        <h3>Comunidad local</h3>
+      </div>
+      <p class="pilar-lede">El alcance orgánico de Facebook vive en grupos locales, no en páginas de marca. A esos grupos no entra IMU: entran <strong>personas</strong>.</p>
+
+      <div class="cols-2">
+        <div>
+          <div class="subhead">Quiénes son</div>
+          <ul class="mini-list">
+            <li>Administraciones de condominios, escuelas y colectivos ambientales.</li>
+            <li>Los negocios anfitriones donde ya está instalado un IMU Recolector. No influencers.</li>
+          </ul>
+          <div class="subhead" style="margin-top:1.5rem;">Qué reciben</div>
+          <ul class="mini-list">
+            <li>Manual de embajador.</li>
+            <li>Set de artes descargables adaptables por plaza y material para anfitriones.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="subhead v">Qué desbloquea</div>
+          <ul class="mini-list">
+            <li>Presencia en grupos vecinales y de madres de familia.</li>
+            <li>El territorio donde Facebook todavía reparte alcance gratis.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="open-q reveal"><strong>Pregunta abierta:</strong> quién opera el programa día a día del lado de IMU. Sin responsable, el programa se produce y no arranca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · INCLUIDO EN EL ALCANCE ACTUAL (papel) -->
+<section class="section papel" id="incluido">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.25rem;">Incluido en el alcance actual</h2>
+    <p class="p reveal reveal-d2" style="max-width: 46rem;">
+      Cuatro decisiones que se aplican sobre las mismas nueve piezas mensuales, <strong>sin producción ni costo adicional</strong>. Arranca el mes siguiente a la aprobación.
+    </p>
+
+    <div class="incl">
+      <div class="incl-row reveal reveal-d1">
+        <h4>Inclinación por pieza</h4>
+        <p>Tres hacia Facebook, tres hacia Instagram, tres transversales. Todas siguen publicándose en ambas.</p>
+      </div>
+      <div class="incl-row reveal reveal-d2">
+        <h4>Copy diferenciado</h4>
+        <p>Mismo arte, texto distinto por red. En Facebook más largo y conversacional.</p>
+      </div>
+      <div class="incl-row reveal reveal-d3">
+        <h4>Reempaque de formato</h4>
+        <p>Un carrusel se reensambla como imagen única o video de láminas para Facebook.</p>
+      </div>
+      <div class="incl-row reveal reveal-d4">
+        <h4>Lectura por red</h4>
+        <p>El reporte mensual separa desempeño por red para ajustar la inclinación del mes siguiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · ALCANCE ADICIONAL PROPUESTO -->
+<section class="section" id="alcance">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.25rem;">Alcance adicional propuesto</h2>
+    <p class="p reveal reveal-d2" style="max-width: 46rem;">
+      Cuatro paquetes modulares, todos dentro de redes sociales. Se contratan por separado y en el orden que marca el plan.
+    </p>
+
+    <div class="modules-grid reveal reveal-d2">
+      <div class="module">
+        <div class="mtag">Pauta</div>
+        <h5>Gestión de pauta</h5>
+        <div class="model">Fee + inversión aparte</div>
+        <p>Estrategia, públicos, optimización y reporte mensual.</p>
+      </div>
+      <div class="module">
+        <div class="mtag">Sorteo</div>
+        <h5>Operación del sorteo</h5>
+        <div class="model">Por evento + operación</div>
+        <p>Mecánica, piezas, bases para redes y moderación durante vigencia.</p>
+      </div>
+      <div class="module">
+        <div class="mtag">CRM</div>
+        <h5>Automatización de inbox</h5>
+        <div class="model">Setup + operación</div>
+        <p>Flujos de Messenger y Direct conectados a CRM, captura y conteo.</p>
+      </div>
+      <div class="module">
+        <div class="mtag">Comunidad</div>
+        <h5>Kit de embajadores</h5>
+        <div class="model">Único</div>
+        <p>Manual, artes adaptables por plaza y material para anfitriones.</p>
+      </div>
+    </div>
+
+    <h3 class="h-sm reveal" style="margin-top: 3.5rem; margin-bottom: 1.5rem;">Detalle de cada paquete</h3>
+
+    <div class="detail reveal reveal-d1">
+      <h4>Gestión de pauta</h4>
+      <p>Dos líneas separadas: la <strong>inversión en medios</strong> va directo a Meta y la absorbe el cliente; el <strong>fee de gestión</strong> es el honorario de Sentido por estrategia, configuración, públicos, optimización y reporte. En el piloto conviene fee fijo y migrar a porcentaje cuando escale.</p>
+    </div>
+
+    <div class="detail reveal reveal-d1">
+      <h4>Operación del sorteo</h4>
+      <p>Del lado de IMU quedan landing, formulario, base de datos, validación de comprobantes, bases legales y permiso. Del lado de Sentido: diseño de la mecánica, requisitos funcionales para su equipo de desarrollo, redacción de bases en lenguaje de redes, set de piezas (anuncio, recordatorios, cuenta regresiva, cierre, ganador), guion del anuncio de ganador y <strong>moderación del inbox durante la vigencia</strong>.</p>
+      <div class="plan-b"><strong>Plan B:</strong> si la landing de IMU no está lista, existe una mecánica 100 % en redes —participación por mensaje directo con foto, validada manualmente— que permite arrancar sin depender de su tiempo de desarrollo.</div>
+    </div>
+
+    <div class="detail reveal reveal-d1">
+      <h4>Automatización de inbox</h4>
+      <p>Conexión de Messenger e Instagram Direct a GHL, flujo de captura (ciudad, contacto, comprobante de depósito), registro y conteo de participaciones con exportable para el sorteo, secuencia de seguimiento y monitoreo del inbox. Todo en redes, sin desarrollo web.</p>
+    </div>
+
+    <div class="detail reveal reveal-d1">
+      <h4>Kit de embajadores</h4>
+      <p>Desarrollo único. La operación del programa —reclutar, dar seguimiento, atender embajadores— es decisión aparte: la asume el cliente o se cotiza como coordinación mensual.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · PLAN DE 90 DÍAS -->
+<section class="section section-deep" id="plan">
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--accent);--tono:.13;--foco:50% 185%;--rx:210%;--ry:140%"></div>
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 40rem; margin-bottom: 1.25rem;">Plan de 90 días</h2>
+    <p class="p reveal reveal-d2" style="max-width: 48rem;">
+      El orden lo dictan los datos: el cuello de botella es audiencia, no contenido. Se puede detener al final de cualquier fase <strong>sin dejar nada a medias</strong>.
+    </p>
+
+    <div class="tl-bar reveal reveal-d2">
+      <div class="tl-step">
+        <span class="when">Mes 1–2</span>
+        <h4>Motor</h4>
+        <p>Sorteo, flujos de inbox y piloto de pauta. La inclinación editorial arranca en paralelo, sin costo.</p>
+        <div class="crit"><b>Criterio de avance</b>El primer sorteo cierra con participaciones validadas.</div>
+      </div>
+      <div class="tl-step">
+        <span class="when">Mes 2–4</span>
+        <h4>Escala</h4>
+        <p>Segundo sorteo y ampliación de pauta con lo aprendido. Se ajusta la inclinación según desempeño por red.</p>
+        <div class="crit"><b>Criterio de avance</b>El costo por seguidor se sostiene en rango.</div>
+      </div>
+      <div class="tl-step">
+        <span class="when">Mes 4+</span>
+        <h4>Comunidad</h4>
+        <p>Kit de embajadores y siembra en grupos locales, apoyada en el contenido de los participantes.</p>
+        <div class="crit"><b>Criterio de avance</b>Hay un responsable operando el programa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · INVERSIÓN -->
+<section class="section" id="inversion">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.25rem;">Inversión</h2>
+    <p class="p reveal reveal-d2" style="max-width: 46rem;">
+      <strong>La parrilla mensual no cambia de precio.</strong> Todo lo relativo al contenido queda dentro del alcance vigente. Lo que sigue es el alcance adicional, modular.
+    </p>
+
+    <div class="tbl-wrap invest-card reveal reveal-d2">
+      <table class="sys">
+        <thead>
+          <tr><th scope="col">Concepto</th><th scope="col">Modelo</th><th scope="col">Monto</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="hi">Gestión de pauta</th><td>Mensual</td><td><span class="ph">$[ ____ ] MXN</span></td></tr>
+          <tr><th scope="row" class="hi">Inversión en medios <small style="display:block;color:var(--ink-muted);font-weight:400;">va directo a Meta</small></th><td>Mensual</td><td><span class="ph">$[ ____ ] MXN</span></td></tr>
+          <tr><th scope="row" class="hi">Operación del sorteo</th><td>Por evento</td><td><span class="ph">$[ ____ ] MXN</span></td></tr>
+          <tr><th scope="row" class="hi">Automatización de inbox</th><td>Setup + mensual</td><td><span class="ph">$[ ____ ] MXN</span></td></tr>
+          <tr><th scope="row" class="hi">Kit de embajadores</th><td>Único</td><td><span class="ph">$[ ____ ] MXN</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fuera reveal">
+      <h4>Fuera de alcance</h4>
+      <ul>
+        <li>Desarrollo web, landings y bases de datos propias.</li>
+        <li>Trámite y emisión de bases legales y permisos de sorteo.</li>
+        <li>Compra de premios.</li>
+      </ul>
+    </div>
+
+    <p class="invest-foot reveal">Precios antes de IVA · vigencia 30 días.</p>
+  </div>
+</section>
+
+<!-- 11 · QUÉ NECESITAMOS DE IMU (papel) -->
+<section class="section papel" id="necesitamos">
+  <div class="section-inner">
+    <div class="pleca"></div>
+    <h2 class="h-lg reveal reveal-d1" style="max-width: 44rem; margin-bottom: 1.25rem;">Qué necesitamos de IMU</h2>
+
+    <div class="need">
+      <div class="need-row reveal reveal-d1">
+        <div class="num">01</div>
+        <div>
+          <h4>Inventario de premios</h4>
+          <p>Qué boletos, accesos y palcos hay disponibles y con cuánta anticipación se confirman.</p>
+        </div>
+      </div>
+      <div class="need-row reveal reveal-d2">
+        <div class="num">02</div>
+        <div>
+          <h4>Visto bueno legal</h4>
+          <p>Emisión de bases y permiso de sorteo por parte de su área jurídica.</p>
+        </div>
+      </div>
+      <div class="need-row reveal reveal-d3">
+        <div class="num">03</div>
+        <div>
+          <h4>Presupuesto de medios</h4>
+          <p>Monto mensual disponible para pauta y quién autoriza el gasto.</p>
+        </div>
+      </div>
+      <div class="need-row reveal reveal-d4">
+        <div class="num">04</div>
+        <div>
+          <h4>Responsable de embajadores</h4>
+          <p>Quién opera el programa de comunidad del lado de IMU.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="need-close reveal">Con estas cuatro respuestas <em>arrancamos la Fase 1</em> el mes siguiente.</p>
+  </div>
+</section>
+
+<!-- CTA + FORMULARIO -->
+<section class="section cta-form-section" id="contacto">
+  <div class="cta-form-wrap">
+    <div class="pleca"></div>
+    <h2 class="reveal reveal-d1">Contactemos y lo <em>arrancamos</em>.</h2>
+    <p class="lede-form reveal reveal-d2">Dinos por dónde empezamos y afinamos los montos y el calendario contigo. Te escribimos en menos de 24 h hábiles.</p>
+
+    <form id="lead-form" data-webhook="/api/lead" novalidate class="reveal reveal-d3">
+      <input type="hidden" name="propuesta" value="IMU Recicla — Crecimiento Facebook" />
+
+      <div class="form-row">
+        <label>Nombre <span class="req">*</span>
+          <input name="nombre" type="text" required autocomplete="name" />
+        </label>
+        <label>Email <span class="req">*</span>
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+      </div>
+
+      <label>WhatsApp
+        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
+      </label>
+
+      <label>Siguiente paso <span class="req">*</span>
+        <select name="paso" required>
+          <option value="">Selecciona…</option>
+          <option>Avancemos — arranquemos la Fase 1</option>
+          <option>Me interesa, pero quiero ajustar el alcance</option>
+          <option>Tengo preguntas antes de decidir</option>
+          <option>Necesito un poco más de tiempo</option>
+        </select>
+      </label>
+
+      <label>Mensaje (opcional)
+        <textarea name="mensaje" rows="4" placeholder="Inventario de premios, presupuesto de medios, responsable del programa, fechas…"></textarea>
+      </label>
+
+      <button type="submit" class="form-submit">Enviar →</button>
+      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="wa-alt reveal reveal-d3">
+      <p>¿Prefieres platicarlo directo?</p>
+      <a class="wa-cta" href="https://wa.me/523331672223?text=Hola%20Jos%2C%20vi%20la%20propuesta%20de%20crecimiento%20en%20Facebook%20de%20IMU%20Recicla%20y%20quiero%20platicarla." target="_blank" rel="noopener">WhatsApp de Jos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="closing" id="cierre">
+  <div class="buril buril--arco" aria-hidden="true" style="--trazo:var(--verde);--tono:.14;--foco:50% 185%;--rx:210%;--ry:140%"></div>
+  <div class="closing-inner">
+    <div class="clabel reveal"><span class="dot"></span><span class="t">IMU Recicla · Facebook</span><span class="divider"></span></div>
+    <h2 class="reveal reveal-d1">Miles de comentarios no reciclan una pila. <em>Un depósito, sí.</em></h2>
+    <p class="reveal reveal-d2">
+      Crecer en Facebook y mover el número que le importa a Grupo IMU no son metas en tensión: son el mismo plan. El seguidor llega como consecuencia de la participación, no al revés.
+    </p>
+    <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" class="closing-sentido-mark reveal reveal-d3" />
+  </div>
+</section>
+
+<footer class="foot">
+  <div>
+    <a href="https://sentido.mx">sentido.mx</a> ·
+    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> ·
+    <a href="https://instagram.com/sentido.mx">@sentido.mx</a>
+  </div>
+  <div style="margin-top:0.6rem; opacity:0.7;">Sentido Branding &amp; Advertising · 2026</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+
+  const leadForm = document.getElementById('lead-form');
+  if (leadForm) {
+    const statusEl = document.getElementById('lf-status');
+    const submitBtn = leadForm.querySelector('.form-submit');
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
+      const payload = {
+        Propuesta: leadForm.propuesta.value,
+        Nombre: leadForm.nombre.value.trim(),
+        Email: leadForm.email.value.trim(),
+        WhatsApp: leadForm.whatsapp.value.trim() || '—',
+        'Siguiente paso': leadForm.paso.value,
+        Mensaje: leadForm.mensaje.value.trim() || '—',
+        Fuente: location.pathname,
+        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      try {
+        const res = await fetch(leadForm.dataset.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+        statusEl.textContent = 'Recibido. Te escribimos en menos de 24 h hábiles a ' + payload.Email + '.';
+        statusEl.classList.add('visible');
+        leadForm.reset();
+        submitBtn.textContent = '✓ Enviado';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx o por WhatsApp.';
+        statusEl.classList.add('visible', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar →';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
