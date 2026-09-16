@@ -321,37 +321,15 @@
   .cta-form-section h2 em { color: var(--accent-soft); font-style: normal; }
   .cta-form-section .lede-form { font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--ink-soft); max-width: 40rem; line-height: 1.4; font-weight: 300; }
 
-  #lead-form { display: grid; gap: 1.25rem; margin-top: 2.8rem; }
-  #lead-form label { display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-mono);
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
-  #lead-form label .req { color: var(--accent); }
-  #lead-form input, #lead-form select, #lead-form textarea {
-    font-family: var(--font-sans); font-size: 1rem; color: #0A0A0A;
-    background: var(--accent-soft); border: 1px solid var(--accent-deep); padding: 0.95rem 1.1rem; width: 100%;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; text-transform: none; letter-spacing: 0; }
-  #lead-form input::placeholder, #lead-form textarea::placeholder { color: #5C564C; }
-  #lead-form input:focus, #lead-form select:focus, #lead-form textarea:focus {
-    outline: none; background: #F1EADC; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(241, 234, 220,0.25); }
-  #lead-form select { appearance: none; cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23241C0C' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 1.1rem center; padding-right: 2.5rem; }
-  #lead-form textarea { resize: vertical; min-height: 96px; }
-  @media (min-width: 640px) { .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
-  .form-submit { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em;
-    color: #0A0A0A; background: var(--accent); border: none; padding: 1.05rem 1.5rem; cursor: pointer;
-    transition: background 0.2s, transform 0.15s; margin-top: 0.5rem; }
-  .form-submit:hover:not(:disabled) { background: var(--accent-soft); transform: translateY(-1px); }
-  .form-submit:disabled { opacity: 0.6; cursor: default; }
-  .form-status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-soft); opacity: 0; transition: opacity 0.3s; line-height: 1.6; }
-  .form-status.visible { opacity: 1; }
-  .form-status.error { color: #E0A79C; }
-  .wa-alt { margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--border);
-    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .wa-alt p { font-size: 14.5px; color: var(--ink-muted); }
+  .wa-block { margin-top: 2.8rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .wa-num { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink-muted); }
   .wa-cta { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono);
     font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-soft);
     text-decoration: none; border: 1px solid var(--border-strong); padding: 0.75rem 1.1rem; transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .wa-cta:hover { background: var(--accent-tint); color: var(--accent); border-color: var(--accent); }
+  .wa-cta--lg { font-size: 13px; letter-spacing: 0.1em; color: #0A0A0A; background: var(--accent);
+    border-color: var(--accent); padding: 1.05rem 1.6rem; }
+  .wa-cta--lg:hover { background: var(--accent-soft); color: #0A0A0A; border-color: var(--accent-soft); transform: translateY(-1px); }
 
   /* CLOSING */
   .closing { background: var(--bg); padding: 5rem 1.25rem; text-align: center; position: relative; overflow: hidden; }
@@ -936,50 +914,16 @@
   </div>
 </section>
 
-<!-- CTA + FORMULARIO -->
+<!-- CTA · CONTACTO WHATSAPP -->
 <section class="section cta-form-section" id="contacto">
   <div class="cta-form-wrap">
     <div class="pleca"></div>
-    <h2 class="reveal reveal-d1">Contáctanos y lo <em>arrancamos</em>.</h2>
-    <p class="lede-form reveal reveal-d2">Dinos por dónde empezamos y afinamos los montos y el calendario contigo. Te escribimos en menos de 24 h hábiles.</p>
+    <h2 class="reveal reveal-d1">Contacto <em>directo</em>.</h2>
+    <p class="lede-form reveal reveal-d2">Escríbenos por WhatsApp y afinamos los montos, el calendario y las respuestas que necesitamos de IMU. Arrancamos la Fase 1 el mes siguiente.</p>
 
-    <form id="lead-form" data-webhook="/api/lead" novalidate class="reveal reveal-d3">
-      <input type="hidden" name="propuesta" value="IMU Recicla — Crecimiento Facebook" />
-
-      <div class="form-row">
-        <label>Nombre <span class="req">*</span>
-          <input name="nombre" type="text" required autocomplete="name" />
-        </label>
-        <label>Email <span class="req">*</span>
-          <input name="email" type="email" required autocomplete="email" />
-        </label>
-      </div>
-
-      <label>WhatsApp
-        <input name="whatsapp" type="tel" placeholder="+52 ..." autocomplete="tel" />
-      </label>
-
-      <label>Siguiente paso <span class="req">*</span>
-        <select name="paso" required>
-          <option value="">Selecciona…</option>
-          <option>Avancemos — arranquemos la Fase 1</option>
-          <option>Me interesa, pero quiero ajustar el alcance</option>
-          <option>Tengo preguntas antes de decidir</option>
-          <option>Necesito un poco más de tiempo</option>
-        </select>
-      </label>
-
-      <label>Mensaje (opcional)
-        <textarea name="mensaje" rows="4" placeholder="Inventario de premios, presupuesto de medios, responsable del programa, fechas…"></textarea>
-      </label>
-
-      <button type="submit" class="form-submit">Enviar →</button>
-      <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
-    </form>
-
-    <div class="wa-alt reveal reveal-d3">
-      <p>¿Prefieres platicarlo directo?</p>
-      <a class="wa-cta" href="https://wa.me/523331672223?text=Hola%20Jos%2C%20vi%20la%20propuesta%20de%20crecimiento%20en%20Facebook%20de%20IMU%20Recicla%20y%20quiero%20platicarla." target="_blank" rel="noopener">WhatsApp de Jos →</a>
+    <div class="wa-block reveal reveal-d3">
+      <a class="wa-cta wa-cta--lg" href="https://wa.me/523326375264?text=Hola%20Mel%2C%20vi%20la%20propuesta%20de%20crecimiento%20en%20Facebook%20de%20IMU%20Recicla%20y%20quiero%20platicarla." target="_blank" rel="noopener">Escríbele a Mel Cruz por WhatsApp →</a>
+      <p class="wa-num">+52 33 2637 5264</p>
     </div>
   </div>
 </section>
@@ -1031,46 +975,6 @@
       }
     });
   });
-
-  const leadForm = document.getElementById('lead-form');
-  if (leadForm) {
-    const statusEl = document.getElementById('lf-status');
-    const submitBtn = leadForm.querySelector('.form-submit');
-    leadForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
-      const payload = {
-        Propuesta: leadForm.propuesta.value,
-        Nombre: leadForm.nombre.value.trim(),
-        Email: leadForm.email.value.trim(),
-        WhatsApp: leadForm.whatsapp.value.trim() || '—',
-        'Siguiente paso': leadForm.paso.value,
-        Mensaje: leadForm.mensaje.value.trim() || '—',
-        Fuente: location.pathname,
-        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
-      };
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando…';
-      try {
-        const res = await fetch(leadForm.dataset.webhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Webhook ' + res.status);
-        statusEl.textContent = 'Recibido. Te escribimos en menos de 24 h hábiles a ' + payload.Email + '.';
-        statusEl.classList.add('visible');
-        leadForm.reset();
-        submitBtn.textContent = '✓ Enviado';
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx o por WhatsApp.';
-        statusEl.classList.add('visible', 'error');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar →';
-      }
-    });
-  }
 </script>
 
 </body>
