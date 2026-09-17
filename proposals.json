@@ -1,6 +1,19 @@
 {
   "proposals": [
     {
+      "slug": "campana-landings-plp",
+      "tipo": "propuesta",
+      "cliente": "PLP — Campaña de Leads en Landing Pages",
+      "fecha": "2026-09-17",
+      "estatus": "enviada",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
+      "notas": "CLIENTE activo (PLP / Peninsula Lifestyle). Doc de ESTRATEGIA de implementacion, no propuesta de venta: no lleva cotizacion ni formulario. Campana de conversion en Meta Ads que captura leads en las landing pages propias de Amancay, Bolongo, Essentia y Brelia (capa 'Landing Pages' = 19% del mix Meta: 66% Leads nativos / 19% LP / 14% RMK). 4 desarrollos x 2 ad sets (cliente/inversionista) = 8 landings / 8 ad sets. Leads -> CRM interno Sentido (respaldo BD) -> Zoho del cliente. Ads derivados de los calendarios ya producidos.",
+      "proximoPaso": "Presentacion a PLP",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "imu-recicla-facebook",
       "tipo": "propuesta",
       "cliente": "IMU Recicla — Crecimiento en Facebook",

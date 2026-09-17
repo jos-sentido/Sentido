@@ -1,0 +1,344 @@
+<!--
+  Campaña de Leads · Landing Pages — Sentido × PLP
+  Estrategia de implementación (cliente activo, no venta).
+  Construida sobre el sistema visual de Sentido: grabado de buril, rombo como
+  módulo, una sola familia (Archivo) con contraste de peso y caja hueso.
+  Sin serif, sin monoespaciada, sin tarjetas, sin iconos, sin imágenes.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campaña de Leads · Landing Pages — Sentido × PLP</title>
+<meta name="description" content="Estrategia de implementación de la campaña de clientes potenciales en las landing pages de PLP — Amancay, Bolongo, Essentia y Brelia — desde Meta Ads con objetivo de conversión." />
+<meta name="theme-color" content="#0A0A0A" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="preload" href="/propuestas/campana-landings-plp/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/propuestas/campana-landings-plp/assets/fonts.css" />
+<link rel="stylesheet" href="/propuestas/campana-landings-plp/assets/sentido.css" />
+<style>
+  /* Ajustes locales de esta pieza — sobre el sistema, sin romperlo */
+  .franja-datos { --i: 0; }
+  .barra-mix { position: relative; display: flex; height: 46px; border: 1px solid var(--linea); margin: 40px 0 6px; overflow: hidden; }
+  .barra-mix .seg { position: relative; height: 100%; display: flex; align-items: center; padding: 0 14px; border-right: 1px solid var(--tinta); }
+  .barra-mix .seg:last-child { border-right: 0; }
+  .barra-mix .seg .p { font-weight: var(--negra); font-size: 0.8125rem; letter-spacing: -0.01em; }
+  .seg--leads { background: var(--tinta-3); flex: 0 0 66%; }
+  .seg--leads .p { color: var(--hueso-3); }
+  .seg--lp { background: var(--hueso); flex: 0 0 19%; }
+  .seg--lp .p { color: var(--tinta); }
+  .seg--rmk { background: var(--tinta-4); flex: 0 0 14%; }
+  .seg--rmk .p { color: var(--hueso-4); }
+  @media (max-width: 520px){ .barra-mix .seg { padding: 0 8px; } .barra-mix .seg .p { font-size: 0.6875rem; } }
+
+  .renglon--activo .marco { color: var(--hueso); }
+  .renglon .pct { font-family: var(--archivo); font-weight: var(--negra); font-size: 1.5rem; letter-spacing: -0.03em; color: var(--hueso-3); text-align: right; }
+  .renglon--activo .pct { color: var(--hueso); }
+
+  .cifras { display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 60px); margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--linea); }
+  .cifra .n { font-family: var(--archivo); font-weight: var(--negra); font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; color: var(--hueso); line-height: 1; }
+  .cifra .l { display: block; margin-top: 10px; font-weight: 700; font-size: 0.6875rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hueso-3); }
+
+  .raiz { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; padding: 26px 0; border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); margin-bottom: 4px; }
+  .raiz .rotulo { flex: 0 0 auto; }
+  .raiz h3 { flex: 0 0 auto; }
+  .raiz .firma { flex: 1 1 auto; text-align: right; }
+</style>
+</head>
+<body>
+<a class="salta" href="#main">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="nav-int">
+    <a class="marca" href="#portada" aria-label="Sentido — inicio">
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido · Branding &amp; Advertising" />
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a class="nav-a" href="#objetivo">Objetivo</a>
+      <a class="nav-a" href="#inversion">Inversión</a>
+      <a class="nav-a" href="#estructura">Estructura</a>
+      <a class="nav-a" href="#ruta">Ruta del lead</a>
+      <a class="nav-a" href="#contenido">Contenido</a>
+    </nav>
+    <button class="nav-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="panel">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="panel" id="panel">
+  <a href="#objetivo">Objetivo<span class="rombo"></span></a>
+  <a href="#inversion">Inversión<span class="rombo"></span></a>
+  <a href="#estructura">Estructura<span class="rombo"></span></a>
+  <a href="#ruta">Ruta del lead<span class="rombo"></span></a>
+  <a href="#contenido">Contenido<span class="rombo rombo--lleno"></span></a>
+</div>
+
+<main id="main">
+
+  <!-- ═══ PORTADA ═══ -->
+  <section class="portada" id="portada">
+    <div class="buril buril--arco"></div>
+    <div class="portada-rej">
+      <div>
+        <span class="rotulo" style="display:block;margin-bottom:22px">Estrategia de implementación · Sentido × PLP</span>
+        <h1><span class="ligera">Leads propios desde</span><br />las landing pages<br /><span class="ligera">de</span> <span class="alta">PLP</span>.</h1>
+        <p class="sub">
+          Captura de clientes potenciales directamente en los formularios de las landing
+          pages, desde Meta Ads con objetivo de conversión, para Amancay, Bolongo, Essentia
+          y Brelia.
+        </p>
+        <div class="acciones">
+          <span class="rotulo">Meta Ads · Objetivo Conversión · Septiembre 2026</span>
+        </div>
+      </div>
+      <div class="ojo-caja">
+        <div class="ojo-rombo r3"></div>
+        <div class="ojo-rombo r2"></div>
+        <div class="ojo-rombo r1"></div>
+        <div class="ojo-trama"><div class="buril buril--iris"></div></div>
+        <div class="ojo-img" role="img" aria-label="Sentido"></div>
+      </div>
+    </div>
+
+    <div class="wrap" id="objetivo">
+      <div class="capas">
+        <article class="capa" style="--i:0">
+          <div class="buril"></div>
+          <span class="rombo"></span>
+          <div class="capa-n">Qué captura</div>
+          <h2 class="capa-t">Formulario propio</h2>
+          <p>El lead entra por el formulario de la landing del desarrollo, no por el form nativo de Meta.</p>
+        </article>
+        <article class="capa" style="--i:1">
+          <div class="buril"></div>
+          <span class="rombo"></span>
+          <div class="capa-n">Cómo optimiza</div>
+          <h2 class="capa-t">Objetivo conversión</h2>
+          <p>Meta optimiza hacia el envío de formulario, no hacia el clic.</p>
+        </article>
+        <article class="capa" style="--i:2">
+          <div class="buril"></div>
+          <span class="rombo"></span>
+          <div class="capa-n">Qué gana</div>
+          <h2 class="capa-t">Lead atribuible</h2>
+          <p>Cada lead queda etiquetado por desarrollo, versión y creativo.</p>
+        </article>
+        <article class="capa" style="--i:3">
+          <div class="buril"></div>
+          <span class="rombo rombo--lleno"></span>
+          <div class="capa-n">Para qué sirve</div>
+          <h2 class="capa-t">Lead enriquecido</h2>
+          <p>El form propio califica al prospecto y da contexto que el nativo no entrega.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INVERSIÓN ═══ -->
+  <section class="seccion seccion--regla" id="inversion">
+    <div class="wrap">
+      <div class="cabeza">
+        <div class="pleca"></div>
+        <h2>Dónde vive esta campaña en el mix de Meta.</h2>
+        <p>Del presupuesto total actual de Meta Ads, esta campaña opera la capa de landing pages. Convive con la generación nativa y con la permanencia de marca.</p>
+      </div>
+
+      <div class="barra-mix" role="img" aria-label="Leads Meta 66 por ciento, Landing Pages 19 por ciento, Remarketing 14 por ciento">
+        <div class="seg seg--leads"><span class="p">Leads Meta&nbsp;66%</span></div>
+        <div class="seg seg--lp"><span class="p">LP&nbsp;19%</span></div>
+        <div class="seg seg--rmk"><span class="p">RMK&nbsp;14%</span></div>
+      </div>
+
+      <div class="plancha">
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Objetivo</span><h3>Leads Meta</h3></div>
+          <div><p>Formulario nativo. El motor de volumen del mix; nutre además la audiencia de remarketing.</p></div>
+          <div class="pct">66%</div>
+        </div>
+        <div class="renglon renglon--activo">
+          <div class="buril"></div>
+          <div><span class="marco">Esta campaña</span><h3>Landing Pages</h3></div>
+          <div><p>Captura propia y atribuible en los formularios de las landings — la capa que implementa esta propuesta.</p></div>
+          <div class="pct">19%</div>
+        </div>
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Objetivo</span><h3>Remarketing</h3></div>
+          <div><p>Permanencia de marca sobre el lead ya captado, mientras ventas lo trabaja. No genera lead nuevo.</p></div>
+          <div class="pct">14%</div>
+        </div>
+      </div>
+
+      <p class="chico apagado" style="margin-top:26px;max-width:68ch">
+        Los porcentajes se aplican sobre el presupuesto de Meta Ads vigente. El monto de cada
+        desarrollo se deriva de ese total según la distribución acordada por PLP; esta campaña
+        administra la porción de landing pages.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ ESTRUCTURA ═══ -->
+  <section class="seccion seccion--regla" id="estructura">
+    <div class="wrap">
+      <div class="cabeza">
+        <div class="pleca"></div>
+        <h2>Cómo se arma la campaña.</h2>
+        <p>Una campaña de conversión que se ordena por desarrollo. Cada desarrollo corre dos ad sets —versión cliente y versión inversionista— apuntando a su landing page.</p>
+      </div>
+
+      <div class="raiz">
+        <span class="rotulo">Campaña · Meta Ads</span>
+        <h3>Leads · Landing Pages</h3>
+        <span class="firma">Objetivo: Conversión · Envío de formulario</span>
+      </div>
+
+      <div class="plancha">
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">2 ad sets</span><h3>Amancay</h3></div>
+          <div><ul class="lista lista--chica"><li>Ad set — versión Cliente</li><li>Ad set — versión Inversionista</li></ul></div>
+          <div class="ver">2 landings</div>
+        </div>
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">2 ad sets</span><h3>Bolongo</h3></div>
+          <div><ul class="lista lista--chica"><li>Ad set — versión Cliente</li><li>Ad set — versión Inversionista</li></ul></div>
+          <div class="ver">2 landings</div>
+        </div>
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">2 ad sets</span><h3>Essentia</h3></div>
+          <div><ul class="lista lista--chica"><li>Ad set — versión Cliente</li><li>Ad set — versión Inversionista</li></ul></div>
+          <div class="ver">2 landings</div>
+        </div>
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">2 ad sets</span><h3>Brelia</h3></div>
+          <div><ul class="lista lista--chica"><li>Ad set — versión Cliente</li><li>Ad set — versión Inversionista</li></ul></div>
+          <div class="ver">2 landings</div>
+        </div>
+      </div>
+
+      <div class="cifras">
+        <div class="cifra"><span class="n">4</span><span class="l">Desarrollos</span></div>
+        <div class="cifra"><span class="n">8</span><span class="l">Landing pages</span></div>
+        <div class="cifra"><span class="n">8</span><span class="l">Ad sets</span></div>
+        <div class="cifra"><span class="n">2</span><span class="l">Versiones · Cliente / Inv.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RUTA DEL LEAD (procedimiento → papel) ═══ -->
+  <section class="seccion papel" id="ruta">
+    <div class="buril buril--arco"></div>
+    <div class="wrap">
+      <div class="cabeza">
+        <div class="pleca"></div>
+        <h2>Del anuncio al seguimiento comercial.</h2>
+        <p>Cada lead queda respaldado en el CRM interno de Sentido y se sincroniza al Zoho del cliente. Doble registro: base propia de respaldo más la operación comercial de PLP.</p>
+      </div>
+      <div class="pasos">
+        <div class="paso">
+          <div class="paso-n">01</div>
+          <div><h3 class="paso-t">Anuncio</h3><p>Creativo por versión —cliente o inversionista— servido desde Meta Ads con objetivo de conversión.</p><span class="rotulo">Meta Ads</span></div>
+        </div>
+        <div class="paso">
+          <div class="paso-n">02</div>
+          <div><h3 class="paso-t">Landing + formulario</h3><p>El prospecto llega a la landing del desarrollo y deja sus datos en el formulario propio.</p><span class="rotulo">Landing page</span></div>
+        </div>
+        <div class="paso">
+          <div class="paso-n">03</div>
+          <div><h3 class="paso-t">CRM interno de Sentido</h3><p>El lead entra al CRM interno como respaldo de la base de datos generada por la campaña.</p><span class="rotulo">Respaldo BD</span></div>
+        </div>
+        <div class="paso">
+          <div class="paso-n">04</div>
+          <div><h3 class="paso-t">Zoho del cliente</h3><p>Sincronizado a Zoho, donde el equipo comercial de PLP le da seguimiento.</p><span class="rotulo">Seguimiento</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTENIDO ═══ -->
+  <section class="seccion seccion--regla" id="contenido">
+    <div class="wrap">
+      <div class="cols cols-fija">
+        <div class="pegado">
+          <div class="cabeza"><div class="pleca"></div><h2>Los ads salen de los calendarios ya producidos.</h2></div>
+        </div>
+        <div>
+          <p class="entrada" style="margin-bottom:26px">
+            No se produce contenido nuevo para la campaña: los anuncios se derivan de los
+            calendarios de cada desarrollo.
+          </p>
+          <p class="cuerpo apagado" style="margin-bottom:24px">
+            Cada pieza del calendario ya tiene definida su categoría y a quién le habla. La
+            campaña toma esas piezas y las activa como anuncios dentro del ad set que
+            corresponde.
+          </p>
+          <ul class="lista">
+            <li>Contenido ya producido y aprobado en calendario</li>
+            <li>Categorizado por tipo de comunicación</li>
+            <li>Segmentado por versión: cliente o inversionista</li>
+            <li>Sin costo de producción adicional para la pauta</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plancha" style="margin-top:clamp(40px,5vw,64px)">
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Versión</span><h3>Cliente</h3></div>
+          <div><p>Comunicación de estilo de vida, la unidad y la confianza en la entrega.</p></div>
+          <div class="ver">Ad set A</div>
+        </div>
+        <div class="renglon">
+          <div class="buril"></div>
+          <div><span class="marco">Versión</span><h3>Inversionista</h3></div>
+          <div><p>Comunicación de plusvalía, retorno y condiciones de preventa.</p></div>
+          <div class="ver">Ad set B</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DECLARACIÓN ═══ -->
+  <section class="declara">
+    <div class="buril buril--arco"></div>
+    <div class="wrap">
+      <p>Cada lead, <span class="alta">medible</span> y respaldado. <span class="tenue">Listo para que ventas lo trabaje.</span></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="buril buril--arco"></div>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" />
+        <p>Estrategia de implementación de la campaña de leads en landing pages para los desarrollos de PLP.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Desarrollos</span>
+        <ul><li>Amancay</li><li>Bolongo</li><li>Essentia</li><li>Brelia</li></ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Campaña</span>
+        <ul><li>Meta Ads · Conversión</li><li>8 landing pages · 8 ad sets</li><li>Cliente / Inversionista</li><li>CRM Sentido → Zoho</li></ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© <span data-anio>2026</span> Sentido</p>
+      <p class="firma">Estrategia de implementación · Meta Ads · Sep 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/propuestas/campana-landings-plp/assets/sentido.js" defer></script>
+</body>
+</html>
