@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Branding Modularte — Wireframe</title>
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Wireframe de la estructura del manual de marca de Modularte: qué incluye y cómo se organiza.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#f2f1ee; --surface:#ffffff; --ink:#232527; --muted:#6b7076; --line:#e4e1db;
+    --wire:#bdbab4; --phbg:#f0eee9; --wire-ink:#8b9096; --accent:#c61f0a; --radius:14px;
+    --shadow:0 1px 2px rgba(20,20,20,.05),0 8px 22px rgba(20,20,20,.05);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#151617; --surface:#1e2022; --ink:#eceae5; --muted:#9aa0a7; --line:#2f3236;
+      --wire:#484c51; --phbg:#232629; --wire-ink:#868d94; --accent:#f04a30;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#151617; --surface:#1e2022; --ink:#eceae5; --muted:#9aa0a7; --line:#2f3236;
+    --wire:#484c51; --phbg:#232629; --wire-ink:#868d94; --accent:#f04a30;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px; margin-inline:auto; padding-inline:20px; padding-block:40px 72px;}
+  h1,h2,h3{font-family:"Archivo",sans-serif; margin:0; text-wrap:balance;}
+  .mono{font-family:"IBM Plex Mono",monospace;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+
+  header.top{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:22px;}
+  header.top h1{font-size:clamp(28px,5.5vw,46px); font-weight:800; letter-spacing:-.02em; margin-top:8px;}
+  header.top p{color:var(--muted); max-width:64ch; margin:12px 0 0; font-size:14px;}
+
+  .banner{display:flex; gap:12px; align-items:flex-start; background:var(--phbg); border:1px dashed var(--wire); border-radius:12px; padding:14px 16px; margin-bottom:34px; font-size:13px; color:var(--muted);}
+  .banner b{color:var(--ink);}
+  .banner .tag{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); white-space:nowrap;}
+
+  .page{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; margin-bottom:20px;}
+  .page-head{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
+  .page-head .n{font-family:"IBM Plex Mono",monospace; color:var(--accent); font-size:13px; font-weight:600;}
+  .page-head h2{font-size:18px; font-weight:700;}
+  .page-sub{color:var(--muted); font-size:12.5px; margin:0 0 16px;}
+
+  .row{display:flex; flex-wrap:wrap; gap:14px;}
+  .row > *{flex:1 1 0; min-width:0;}
+  .grid2{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
+  .grid3{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:14px;}
+
+  .ph{border:1.5px dashed var(--wire); background:var(--phbg); border-radius:8px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--wire-ink); font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; padding:12px; min-height:66px;}
+  .ph.tall{min-height:120px;}
+  .ph.dark{background:#22262b; color:#c9ccce; border-color:#3a3f45;}
+  .imgph{position:relative; border:1.5px dashed var(--wire); border-radius:8px; min-height:96px;
+    background:
+      linear-gradient(135deg, transparent calc(50% - 1px), var(--wire) calc(50% - 1px), var(--wire) calc(50% + 1px), transparent calc(50% + 1px)),
+      linear-gradient(45deg, transparent calc(50% - 1px), var(--wire) calc(50% - 1px), var(--wire) calc(50% + 1px), transparent calc(50% + 1px)),
+      var(--phbg);
+    display:flex; align-items:flex-end; justify-content:center;}
+  .imgph span{font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--wire-ink); background:var(--surface); padding:1px 6px; margin-bottom:8px; border-radius:4px;}
+
+  .caplbl{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; margin:8px 0 4px; display:block;}
+  .line{height:8px; background:var(--phbg); border-radius:3px; margin:6px 0;}
+  .line.s{width:55%} .line.m{width:78%} .line.l{width:92%}
+
+  /* color swatches */
+  .sw{height:52px; border-radius:8px; border:1px solid rgba(128,128,128,.25); display:flex; align-items:flex-end; padding:6px;}
+  .sw small{font-family:"IBM Plex Mono",monospace; font-size:9.5px; background:rgba(255,255,255,.85); color:#111; padding:1px 4px; border-radius:3px;}
+  .propbar{display:flex; height:16px; border-radius:6px; overflow:hidden; margin-top:10px; border:1px solid var(--line);}
+
+  .type-h{font-family:"Archivo",sans-serif; font-weight:800; font-size:34px; line-height:1; letter-spacing:-.01em;}
+  .type-b{font-size:13px; color:var(--muted);}
+
+  .ok{color:#2f9e44; font-weight:700;} .no{color:var(--accent); font-weight:700;}
+  .appcard{border:1px solid var(--line); border-radius:10px; padding:12px; background:var(--surface);}
+  .appcard .caplbl{margin-top:0;}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);}
+  a.link{color:var(--accent); text-decoration:none;}
+  a.link:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Rebranding · Estructura del manual de marca</div>
+    <h1>Branding Modularte · Wireframe</h1>
+    <p>Boceto de estructura: muestra <b>qué va a incluir</b> el manual de marca y <b>cómo se organiza</b>. Es un armazón en gris con espacios reservados, para acordar el contenido antes de diseñar.</p>
+  </header>
+
+  <div class="banner">
+    <span class="tag">Wireframe</span>
+    <div>Esto es un <b>boceto de estructura</b>, no el diseño final. Los recuadros punteados son <b>espacios reservados</b> que se llenan cuando el diseño avance. El <b>logo lo desarrolla Javi</b>; aquí solo se muestra dónde vivirá.</div>
+  </div>
+
+  <!-- 0 Portada -->
+  <section class="page">
+    <div class="page-head"><span class="n">00</span><h2>Portada del manual</h2></div>
+    <p class="page-sub">La primera página del documento de marca.</p>
+    <div class="row">
+      <div class="ph tall" style="flex:2 1 320px">LOGO MODULARTE · (propuesta de Javi)</div>
+      <div style="flex:1 1 200px; display:flex; flex-direction:column; justify-content:center; gap:8px">
+        <div class="line l"></div><div class="line m"></div>
+        <span class="caplbl">Manual de marca · versión y fecha</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 Logo -->
+  <section class="page">
+    <div class="page-head"><span class="n">01</span><h2>Logotipo</h2></div>
+    <p class="page-sub">Todas las versiones del logo y cómo usarlo bien.</p>
+    <div class="grid3">
+      <div><div class="ph tall">Logo principal</div><span class="caplbl">Versión principal</span></div>
+      <div><div class="ph tall">Símbolo solo · “M”</div><span class="caplbl">Ícono / marca de agua</span></div>
+      <div><div class="ph tall">Horizontal / vertical</div><span class="caplbl">Variantes de acomodo</span></div>
+      <div><div class="ph tall dark">Negativo (fondo oscuro)</div><span class="caplbl">Positivo / negativo</span></div>
+      <div><div class="ph tall">Área de protección + tamaño mínimo</div><span class="caplbl">Reglas de uso</span></div>
+      <div><div class="ph tall">Usos incorrectos <span class="no">✗</span></div><span class="caplbl">Qué NO hacer</span></div>
+    </div>
+  </section>
+
+  <!-- 2 Arquitectura -->
+  <section class="page">
+    <div class="page-head"><span class="n">02</span><h2>Arquitectura de marca · los 5 sistemas</h2></div>
+    <p class="page-sub">Cómo conviven la marca madre y sus sistemas, de forma consistente.</p>
+    <div class="ph" style="margin-bottom:12px">MARCA MADRE · MODULARTE</div>
+    <div class="grid3">
+      <div class="ph">Unidades Móviles</div>
+      <div class="ph">Armabox®</div>
+      <div class="ph">Tradicional</div>
+      <div class="ph">ZAR · 🚧 falta info</div>
+      <div class="ph">Flotante · 🚧 falta info</div>
+      <div class="ph" style="border-style:solid; color:var(--muted)">Regla de lockup común →</div>
+    </div>
+  </section>
+
+  <!-- 3 Color -->
+  <section class="page">
+    <div class="page-head"><span class="n">03</span><h2>Color</h2></div>
+    <p class="page-sub">Paleta propuesta (dirección nuestra, a validar): base sobria + rojo de acento.</p>
+    <div class="grid2">
+      <div class="sw" style="background:#16181a"><small>#16181A</small></div>
+      <div class="sw" style="background:#22262b"><small>#22262B</small></div>
+      <div class="sw" style="background:#5b6570"><small>#5B6570</small></div>
+      <div class="sw" style="background:#f4f2ef"><small>#F4F2EF</small></div>
+      <div class="sw" style="background:#c61f0a"><small>#C61F0A</small></div>
+    </div>
+    <span class="caplbl">Proporción de uso (base sobria manda, rojo como acento)</span>
+    <div class="propbar">
+      <div style="flex:6; background:#22262b"></div>
+      <div style="flex:5; background:#5b6570"></div>
+      <div style="flex:6; background:#f4f2ef"></div>
+      <div style="flex:1; background:#c61f0a"></div>
+    </div>
+    <p class="page-sub" style="margin-top:12px">Faltará especificar cada color en HEX / RGB / CMYK / Pantone.</p>
+  </section>
+
+  <!-- 4 Tipografia -->
+  <section class="page">
+    <div class="page-head"><span class="n">04</span><h2>Tipografía</h2></div>
+    <p class="page-sub">Un solo sistema: una para titulares y una para texto. (Familias por definir.)</p>
+    <div class="row">
+      <div>
+        <span class="caplbl">Titulares</span>
+        <div class="type-h">Aa Bb Cc</div>
+        <div class="type-h" style="font-size:20px; color:var(--muted)">0123456789</div>
+      </div>
+      <div>
+        <span class="caplbl">Texto / fichas técnicas</span>
+        <div class="line l"></div><div class="line l"></div><div class="line m"></div>
+        <span class="caplbl">Jerarquía: título · subtítulo · cuerpo · dato</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Sistema grafico -->
+  <section class="page">
+    <div class="page-head"><span class="n">05</span><h2>Sistema gráfico</h2></div>
+    <p class="page-sub">Los elementos que dan estilo: grilla/módulo, cuadro y esquinas, patrón, iconos.</p>
+    <div class="grid3">
+      <div><div class="ph tall">Grilla / módulo</div><span class="caplbl">Base de composición</span></div>
+      <div><div class="ph tall">Cuadro y esquinas</div><span class="caplbl">Recurso de contención</span></div>
+      <div><div class="ph tall">Set de iconos</div><span class="caplbl">Para sistemas y usos</span></div>
+    </div>
+  </section>
+
+  <!-- 6 Fotografia -->
+  <section class="page">
+    <div class="page-head"><span class="n">06</span><h2>Fotografía</h2></div>
+    <p class="page-sub">Estilo y tratamiento de imagen — apoyado en el banco de fotos ya organizado.</p>
+    <div class="grid3">
+      <div class="imgph"><span>Proyecto real</span></div>
+      <div class="imgph"><span>Escala / campamento</span></div>
+      <div class="imgph"><span>Detalle / interior</span></div>
+    </div>
+    <p class="page-sub" style="margin-top:12px"><span class="ok">Sí:</span> foto real, mismo tratamiento. &nbsp; <span class="no">No:</span> stock genérico o mezcla de estilos.</p>
+  </section>
+
+  <!-- 7 Aplicaciones -->
+  <section class="page">
+    <div class="page-head"><span class="n">07</span><h2>Aplicaciones</h2></div>
+    <p class="page-sub">Cómo se baja la marca a lo del día a día. Prioridad alta primero.</p>
+    <div class="grid3">
+
+      <div class="appcard">
+        <span class="caplbl">Tarjeta de presentación</span>
+        <div class="ph" style="min-height:80px; aspect-ratio:1.75/1">Tarjeta</div>
+      </div>
+      <div class="appcard">
+        <span class="caplbl">Hoja membretada</span>
+        <div class="ph" style="min-height:110px; aspect-ratio:.77/1">Membrete</div>
+      </div>
+      <div class="appcard">
+        <span class="caplbl">Firma de correo</span>
+        <div class="ph" style="min-height:60px">Firma</div>
+      </div>
+
+      <div class="appcard">
+        <span class="caplbl">Ficha de producto (por sistema)</span>
+        <div class="imgph" style="min-height:70px"><span>foto</span></div>
+        <div class="line m" style="margin-top:8px"></div><div class="line l"></div><div class="line s"></div>
+      </div>
+      <div class="appcard">
+        <span class="caplbl">Señalética / rotulación de módulo</span>
+        <div class="ph" style="min-height:100px">Módulo + logo + nº</div>
+      </div>
+      <div class="appcard">
+        <span class="caplbl">Presentación / propuesta</span>
+        <div class="ph" style="min-height:100px; aspect-ratio:1.6/1">Portada slide</div>
+      </div>
+
+      <div class="appcard">
+        <span class="caplbl">Redes (base lista) </span>
+        <div class="row" style="gap:8px">
+          <div class="ph" style="min-height:64px; flex:0 0 64px; aspect-ratio:1/1">Perfil</div>
+          <div class="ph" style="min-height:64px">Portada / post</div>
+        </div>
+      </div>
+      <div class="appcard" style="grid-column:span 2">
+        <span class="caplbl">Web (cómo aplica la identidad)</span>
+        <div style="border:1.5px dashed var(--wire); border-radius:8px; overflow:hidden">
+          <div style="height:22px; background:var(--phbg); border-bottom:1.5px dashed var(--wire); display:flex; align-items:center; gap:5px; padding:0 8px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--wire)"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--wire)"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--wire)"></span>
+          </div>
+          <div style="padding:12px; display:flex; flex-direction:column; gap:8px">
+            <div class="imgph" style="min-height:70px"><span>hero</span></div>
+            <div class="row" style="gap:8px">
+              <div class="ph" style="min-height:44px">Sistema</div>
+              <div class="ph" style="min-height:44px">Sistema</div>
+              <div class="ph" style="min-height:44px">Cotizar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Wireframe de estructura del branding · Modularte · uso interno Sentido · detalle en el documento “Estructura del branding”.
+  </footer>
+
+</div>
+</body>
+</html>
