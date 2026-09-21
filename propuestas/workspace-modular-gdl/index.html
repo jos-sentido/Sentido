@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentido · Workspace modular — business case interno (Sentido × Modularte)</title>
+<meta name="description" content="Documento interno de exploración de negocio: un complejo de oficinas y coworking construido con sistema modular Armabox de Modularte en Guadalajara. Modelo de ingresos, alianza, ecosistema digital y hoja de ruta." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/assets/sentido-sistema.css" />
+<style>
+  :root {
+    /* Paleta oficial Sentido — tinta y papel. Sin acento cromático. */
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface-elevated: #161616;
+    --surface-hover: #1A1A1A;
+    --border: #202020;
+    --border-accent: #2E2E2E;
+    --border-bright: #404040;
+    --accent: #F1EADC;
+    --accent-dim: #898275;
+    --accent-soft: rgba(241, 234, 220, 0.04);
+    --text: #F1EADC;
+    --text-dim: #B6AE9E;
+    --text-muted: #948C80;
+    --danger: #E0A79C;
+    --success: #8FD4A8;
+    --font-display: 'Archivo', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Archivo', system-ui, sans-serif;
+    --ease: cubic-bezier(0.22, 0.75, 0.20, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  a { color: inherit; }
+
+  /* ─── Buril: material, no adorno ─── */
+  .buril {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: repeating-linear-gradient(
+      var(--ang, 90deg),
+      var(--trazo, #F1EADC) 0 var(--peso, 0.6px),
+      transparent var(--peso, 0.6px) var(--paso, 5px));
+    opacity: var(--tono, 0.05);
+  }
+  .buril--arco {
+    background-image: repeating-radial-gradient(
+      ellipse var(--rx, 210%) var(--ry, 140%) at var(--foco, 50% 185%),
+      var(--trazo, #F1EADC) 0 var(--peso, 0.7px),
+      transparent var(--peso, 0.7px) var(--paso, 6px));
+  }
+
+  /* ─── Nav sticky con scroll-spy ─── */
+  .site-nav {
+    position: sticky; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 10, 10, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav-inner {
+    max-width: 84rem; margin: 0 auto; padding: 0 1.25rem;
+    display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  @media (min-width: 1024px) { .site-nav-inner { padding: 0 2rem; height: 64px; } }
+  .site-nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; flex-shrink: 0; }
+  .site-nav-brand img { height: 26px; width: auto; display: block; }
+  @media (min-width: 1024px) { .site-nav-brand img { height: 28px; } }
+  .site-nav-links { display: none; align-items: center; gap: 1.5rem; list-style: none; }
+  @media (min-width: 1024px) { .site-nav-links { display: flex; } }
+  .site-nav-links a {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-dim); text-decoration: none;
+    transition: color 0.2s ease; white-space: nowrap;
+  }
+  .site-nav-links a:hover, .site-nav-links a.active { color: var(--accent); }
+  .site-nav-mobile {
+    display: flex; align-items: center; gap: 1.25rem; overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+    padding: 0 1.25rem 0 1rem; margin-left: 0.75rem;
+    border-left: 1px solid var(--border); flex: 1; min-width: 0;
+    -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to right, black 0, black calc(100% - 28px), transparent 100%);
+  }
+  .site-nav-mobile::-webkit-scrollbar { display: none; }
+  .site-nav-mobile a {
+    font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-dim); text-decoration: none;
+    white-space: nowrap; transition: color 0.2s ease;
+  }
+  .site-nav-mobile a:hover, .site-nav-mobile a.active { color: var(--accent); }
+  @media (min-width: 1024px) { .site-nav-mobile { display: none; } }
+
+  /* ─── Reveal ─── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; } .reveal-d4 { transition-delay: 0.4s; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ─── Layout ─── */
+  .section { width: 100%; padding: 5rem 1.5rem; position: relative; }
+  @media (min-width: 768px) { .section { padding: 7rem 3rem; } }
+  @media (min-width: 1024px) { .section { padding: 8rem 5rem; } }
+  .section-inner { max-width: 72rem; margin: 0 auto; position: relative; z-index: 1; }
+  .section-surface { background-color: var(--surface); }
+  .section-divider { border-top: 1px solid var(--border); }
+
+  .pleca { height: 4px; width: 56px; background: repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 6px); opacity: 0.5; margin-bottom: 1.5rem; }
+
+  .section-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.25rem; color: var(--accent); }
+  .section-label span {
+    font-size: 11px; letter-spacing: 0.28em; font-weight: 500;
+    text-transform: uppercase; font-family: var(--font-mono);
+  }
+  .section-label .divider { height: 1px; width: 3rem; background-color: var(--accent); opacity: 0.6; }
+
+  .display-heading {
+    font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text); line-height: 1.05; margin-bottom: 2rem;
+  }
+  .display-heading.xl { font-size: 2.25rem; }
+  .display-heading.xxl { font-size: 2.6rem; }
+  @media (min-width: 768px) { .display-heading.xl { font-size: 3rem; } .display-heading.xxl { font-size: 4rem; } }
+  @media (min-width: 1024px) { .display-heading.xl { font-size: 3.4rem; } .display-heading.xxl { font-size: 4.75rem; } }
+  .display-heading .ligera { font-weight: 300; color: var(--text-dim); }
+  .display-heading .accent { color: var(--accent); }
+  .alta {
+    background: var(--accent); color: var(--bg);
+    padding: 0.02em 0.2em 0.1em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+
+  .paragraph { font-size: 16px; line-height: 1.75; font-weight: 300; color: var(--text); }
+  .paragraph.lg { font-size: 17px; }
+  .paragraph.muted { color: var(--text-dim); }
+  .paragraph + .paragraph { margin-top: 1.25rem; }
+  .paragraph strong { color: var(--text); font-weight: 500; }
+  .paragraph em { font-style: normal; color: var(--accent); font-weight: 500; }
+  .max-w-2xl { max-width: 42rem; } .max-w-3xl { max-width: 48rem; } .max-w-4xl { max-width: 56rem; }
+
+  .mono-tag {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); font-weight: 500;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 2.5rem 1.5rem; overflow: hidden;
+    background:
+      radial-gradient(ellipse 90% 60% at 15% 20%, rgba(241,234,220,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(241,234,220,0.03) 0%, transparent 60%),
+      linear-gradient(135deg, #0A0A0A 0%, #161616 50%, #0A0A0A 100%);
+  }
+  @media (min-width: 768px) { .hero { padding: 3rem; } }
+  @media (min-width: 1024px) { .hero { padding: 4rem 5rem; } }
+  .hero-top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; gap: 0.75rem; flex-wrap: wrap; }
+  .hero-logo img { height: 26px; width: auto; display: block; }
+  .hero-flag {
+    font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-accent);
+    padding: 0.35rem 0.6rem; white-space: nowrap;
+  }
+  @media (max-width: 560px) { .hero-flag { letter-spacing: 0.1em; padding: 0.3rem 0.45rem; } }
+  .hero-mark { display: flex; justify-content: center; margin: 2rem 0 2rem; position: relative; z-index: 2; }
+  .hero-mark img { height: 84px; width: auto; display: block; opacity: 0.92; filter: drop-shadow(0 0 60px rgba(241,234,220,0.08)); }
+  @media (min-width: 768px) { .hero-mark img { height: 108px; } }
+  @media (max-width: 640px) { .hero-mark img { height: 64px; } }
+  .hero-center { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 62rem; margin: 1.5rem auto; position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.75rem; display: inline-flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; height: 1px; width: 2rem; background: var(--accent); }
+  .hero-title {
+    font-family: var(--font-display); font-size: 2.4rem; line-height: 1; font-weight: 800;
+    letter-spacing: -0.03em; margin-bottom: 2rem;
+  }
+  @media (min-width: 768px) { .hero-title { font-size: 3.9rem; } }
+  @media (min-width: 1024px) { .hero-title { font-size: 5.25rem; } }
+  .hero-title .ligera { color: var(--text-dim); font-weight: 300; }
+  .hero-sub { font-size: 17px; line-height: 1.7; font-weight: 300; color: var(--text-dim); max-width: 40rem; margin: 0 auto; }
+  @media (min-width: 768px) { .hero-sub { font-size: 19px; } }
+  .hero-sub strong { color: var(--text); font-weight: 400; }
+  .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; position: relative; z-index: 2; }
+  .hero-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); line-height: 2; }
+  .hero-meta .dot { color: var(--accent); margin: 0 0.5rem; }
+  .hero-scroll { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* ─── Stat grid ─── */
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0 1rem; }
+  @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+  .stat-card { padding: 1.75rem clamp(16px, 1.6vw, 24px) 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+  @media (min-width: 1024px) { .stat-card { border-bottom: none; } }
+  .stat-card:nth-child(2n) { border-right: none; }
+  @media (min-width: 1024px) { .stat-card:nth-child(2n) { border-right: 1px solid var(--border); } .stat-card:last-child { border-right: none; } }
+  .stat-card .num { font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 800; line-height: 1; margin-bottom: 0.6rem; }
+  .stat-card .label { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 0.5rem; }
+  .stat-card .source { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
+
+  /* ─── Insight ─── */
+  .insight-block { border-left: 2px solid var(--accent); padding: 1.25rem 0 1.25rem 1.75rem; margin: 2.5rem 0; }
+  .insight-block .label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .insight-block .text { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.4; font-weight: 800; color: var(--text); }
+  @media (min-width: 768px) { .insight-block .text { font-size: 1.7rem; } }
+  .insight-block .text em { font-style: normal; color: var(--accent); font-weight: 500; }
+
+  /* ─── Split (cowork tradicional vs propuesta) ─── */
+  .split-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 3rem 0; }
+  @media (min-width: 768px) { .split-grid { grid-template-columns: 1fr 1fr; } }
+  .split-card { padding: 1.75rem clamp(18px,2vw,26px) 2rem; background: var(--surface); }
+  .split-card.problem { background: rgba(224,167,156,0.04); }
+  .split-card.solution { background: var(--surface-elevated); }
+  .split-card .head { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem; }
+  .split-card.problem .head { color: var(--danger); }
+  .split-card.solution .head { color: var(--accent); }
+  .split-card h3 { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.3; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+  .split-card ul { list-style: none; }
+  .split-card li { font-size: 14px; line-height: 1.6; color: var(--text-dim); padding: 0.4rem 0 0.4rem 1.25rem; position: relative; }
+  .split-card li::before { content: ''; position: absolute; left: 0; top: 0.72rem; width: 6px; height: 6px; border: 1px solid var(--text-muted); transform: rotate(45deg); }
+  .split-card.solution li::before { border-color: var(--accent); }
+
+  /* ─── Revenue streams ─── */
+  .rev-list { margin: 2.5rem 0; border-top: 1px solid var(--border); }
+  .rev-card { padding: clamp(22px,2.4vw,30px) 0; border-bottom: 1px solid var(--border); position: relative; }
+  .rev-head { display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin-bottom: 1rem; }
+  @media (min-width: 768px) { .rev-head { grid-template-columns: auto 1fr auto; align-items: baseline; gap: 1.25rem; } }
+  .rev-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); }
+  .rev-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+  .rev-model { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-accent); padding: 0.3rem 0.6rem; white-space: nowrap; justify-self: start; }
+  @media (min-width: 768px) { .rev-model { justify-self: end; } }
+  .rev-desc { font-size: 14.5px; color: var(--text-dim); line-height: 1.7; max-width: 52rem; }
+  .rev-desc strong { color: var(--text); font-weight: 500; }
+
+  /* ─── Amenities grid ─── */
+  .amen-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 3rem 0; }
+  @media (min-width: 640px) { .amen-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .amen-grid { grid-template-columns: repeat(3, 1fr); } }
+  .amen-card { background: var(--surface); padding: 1.75rem; transition: background 0.3s; }
+  .amen-card:hover { background: var(--surface-elevated); }
+  .amen-card .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
+  .amen-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--text); font-weight: 700; margin-bottom: 0.6rem; line-height: 1.25; }
+  .amen-card p { font-size: 13.5px; line-height: 1.65; color: var(--text-dim); }
+
+  /* ─── Specs (Armabox) ─── */
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); border-left: 1px solid var(--border); margin: 2.5rem 0; }
+  @media (min-width: 768px) { .spec-grid { grid-template-columns: repeat(4, 1fr); } }
+  .spec { padding: 1.5rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .spec .v { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+  .spec .k { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
+
+  /* ─── Pillars (ecosistema Sentido) ─── */
+  .pillars { display: grid; grid-template-columns: 1fr; gap: 0; margin: 2.5rem 0; }
+  @media (min-width: 768px) { .pillars { grid-template-columns: 1fr 1fr; gap: 0 2.5rem; } }
+  .pillar { display: flex; gap: 1rem; padding: 1.15rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .pillar-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--accent); min-width: 2rem; padding-top: 0.25rem; flex-shrink: 0; }
+  .pillar-name { font-family: var(--font-display); font-size: 1.1rem; color: var(--text); font-weight: 700; margin-bottom: 0.3rem; line-height: 1.25; }
+  .pillar-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+
+  /* ─── Membership tiers ─── */
+  .tiers-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 3rem 0; }
+  @media (min-width: 768px) { .tiers-grid { grid-template-columns: repeat(4, 1fr); } }
+  .tier { padding: 1.75rem clamp(16px,1.6vw,22px) 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+  @media (min-width: 768px) { .tier { border-bottom: none; } .tier:last-child { border-right: none; } }
+  .tier.featured { background: linear-gradient(180deg, var(--accent-soft) 0%, var(--surface) 60%); border-color: var(--accent); }
+  .tier.featured::before { content: 'MOTOR DEL MODELO'; position: absolute; top: -10px; left: 1rem; background: var(--accent); color: var(--bg); font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.18em; font-weight: 600; padding: 0.28rem 0.55rem; }
+  .tier .name { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); font-weight: 800; margin-bottom: 0.3rem; }
+  .tier .who { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.1rem; min-height: 2.2em; }
+  .tier ul { list-style: none; }
+  .tier li { font-size: 13px; color: var(--text-dim); line-height: 1.5; padding: 0.35rem 0 0.35rem 1rem; position: relative; }
+  .tier li::before { content: ''; position: absolute; left: 0; top: 0.68rem; width: 5px; height: 5px; border: 1px solid var(--text-muted); transform: rotate(45deg); }
+
+  /* ─── Investment table ─── */
+  .inv-block { border: 1px solid var(--border-bright); background: linear-gradient(180deg, var(--surface) 0%, var(--surface-elevated) 100%); padding: 1.5rem; margin: 2.5rem 0; }
+  @media (min-width: 768px) { .inv-block { padding: 2.5rem; } }
+  .inv-block .inv-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+  .inv-block .inv-head .t { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--text); }
+  .inv-block .inv-head .badge { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-accent); padding: 0.35rem 0.6rem; }
+  .inv-row { display: grid; grid-template-columns: 1fr; gap: 0.25rem 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 640px) { .inv-row { grid-template-columns: 1.4fr 1fr auto; align-items: baseline; } }
+  .inv-row:last-child { border-bottom: none; }
+  .inv-row .r-name { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--text); }
+  .inv-row .r-detail { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+  .inv-row .r-val { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  @media (min-width: 640px) { .inv-row .r-val { text-align: right; } }
+  .inv-row .r-val .cur { font-size: 0.7em; color: var(--text-dim); font-weight: 400; }
+
+  .note { display: flex; gap: 0.85rem; align-items: flex-start; border: 1px solid var(--border-accent); background: rgba(10,10,10,0.4); padding: 1.1rem 1.35rem; margin: 1.5rem 0; }
+  .note .rombo { width: 8px; height: 8px; border: 1px solid var(--accent); transform: rotate(45deg); margin-top: 0.4rem; flex-shrink: 0; }
+  .note p { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+  .note p strong { color: var(--text); font-weight: 500; }
+
+  /* ─── Roadmap ─── */
+  .road { border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  .road-phase { display: grid; grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { .road-phase { grid-template-columns: 8rem 1fr; gap: 2rem; align-items: start; } }
+  .road-phase .when { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); padding-top: 0.2rem; }
+  .road-phase h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+  .road-phase p { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+  /* ─── Risks ─── */
+  .risk-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2.5rem 0; }
+  @media (min-width: 768px) { .risk-grid { grid-template-columns: 1fr 1fr; } }
+  .risk { background: var(--surface); padding: 1.5rem 1.6rem; }
+  .risk .q { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+  .risk .a { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+  .risk .a strong { color: var(--accent); font-weight: 500; }
+
+  /* ─── Next steps / closing ─── */
+  .steps { counter-reset: step; margin: 2.5rem 0; border-top: 1px solid var(--border); }
+  .step { display: flex; gap: 1.25rem; padding: 1.35rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .step::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--accent); min-width: 2rem; padding-top: 0.15rem; }
+  .step .s-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+  .step .s-body p { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+
+  .closing { position: relative; padding: 6rem 1.5rem 4rem; text-align: center; overflow: hidden; background: linear-gradient(180deg, var(--bg) 0%, #161616 100%); }
+  @media (min-width: 768px) { .closing { padding: 8rem 3rem 5rem; } }
+  .closing h2 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; max-width: 46rem; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  @media (min-width: 768px) { .closing h2 { font-size: 3.4rem; } }
+  .closing h2 .ligera { color: var(--text-dim); font-weight: 300; }
+  .closing p { font-size: 16px; color: var(--text-dim); line-height: 1.7; max-width: 34rem; margin: 0 auto 2.5rem; position: relative; z-index: 1; }
+  .contact-grid { display: flex; flex-direction: column; gap: 1.25rem; align-items: center; position: relative; z-index: 1; }
+  @media (min-width: 640px) { .contact-grid { flex-direction: row; justify-content: center; gap: 2.5rem; } }
+  .contact-item { text-align: center; }
+  .contact-item .lbl { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .contact-item a, .contact-item span { font-family: var(--font-display); font-size: 1.05rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .contact-item a:hover { text-decoration: underline; }
+
+  .footer { background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 1.5rem; text-align: center; }
+  .footer-logo img { height: 34px; width: auto; opacity: 0.7; margin: 0 auto 1rem; display: block; }
+  .footer-meta { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); line-height: 1.9; }
+  .footer-meta .dot { color: var(--accent); margin: 0 0.5rem; }
+
+  /* ─── Papel: inversión de superficie ─── */
+  .papel {
+    --bg: #F1EADC; --surface: #E8E0D0; --surface-elevated: #DED5C2; --surface-hover: #D5CBB6;
+    --border: #D8CFBC; --border-accent: #C4B9A2; --border-bright: #B3A88E;
+    --accent: #0A0A0A; --accent-dim: #5C564C; --accent-soft: rgba(10,10,10,0.04);
+    --text: #0A0A0A; --text-dim: #2E2A24; --text-muted: #514B42;
+    background-color: var(--bg); color: var(--text);
+  }
+  .papel .buril { --trazo: #0A0A0A; opacity: 0.06; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="#top" class="site-nav-brand" aria-label="Sentido">
+      <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" />
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="#oportunidad">Oportunidad</a></li>
+      <li><a href="#modelo">Modelo</a></li>
+      <li><a href="#construccion">Construcción</a></li>
+      <li><a href="#ecosistema">Ecosistema</a></li>
+      <li><a href="#membresias">Membresías</a></li>
+      <li><a href="#inversion">Inversión</a></li>
+      <li><a href="#siguiente">Siguientes pasos</a></li>
+    </ul>
+    <div class="site-nav-mobile">
+      <a href="#oportunidad">Oportunidad</a>
+      <a href="#modelo">Modelo</a>
+      <a href="#construccion">Construcción</a>
+      <a href="#ecosistema">Ecosistema</a>
+      <a href="#membresias">Membresías</a>
+      <a href="#inversion">Inversión</a>
+      <a href="#siguiente">Siguientes pasos</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="buril buril--arco" style="--tono:0.07; --foco:50% 190%;"></div>
+  <div class="hero-top">
+    <div class="hero-logo"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></div>
+    <div class="hero-flag">Documento interno · Confidencial</div>
+  </div>
+
+  <div class="hero-mark">
+    <img src="/assets/isotipo-sentido.png" alt="" aria-hidden="true" />
+  </div>
+
+  <div class="hero-center reveal">
+    <div class="hero-eyebrow">Business case · Sentido × Modularte</div>
+    <h1 class="hero-title"><span class="ligera">Un workspace</span><br>que se arma.</h1>
+    <p class="hero-sub">Exploración de un negocio propio: un complejo de oficinas y coworking construido con <strong>sistema modular Armabox de Modularte</strong>, operado con el ecosistema digital de Sentido. Guadalajara como primera sede.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-meta">
+      Guadalajara, Jalisco <span class="dot">◇</span> Septiembre 2026<br>
+      Idea de negocio Sentido <span class="dot">◇</span> Propuesta de alianza
+    </div>
+    <div class="hero-scroll">Baja para leer ↓</div>
+  </div>
+</header>
+
+<!-- OPORTUNIDAD -->
+<section class="section" id="oportunidad">
+  <div class="buril" style="--tono:0.04; --ang:104deg; --paso:6px;"></div>
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>01 · La oportunidad</span><div class="divider"></div></div>
+    <h2 class="display-heading xxl reveal max-w-4xl">El coworking en México <span class="ligera">crece, pero</span> sigue resolviendo <span class="accent">a un solo tipo de usuario.</span></h2>
+    <p class="paragraph lg muted reveal max-w-3xl">El mercado de oficinas flexibles va al alza y la ocupación está apretada. La mayoría de los operadores compite por la misma plaza —empresas que necesitan oficina— y deja fuera al segmento que más está creciendo: el independiente y el remoto que solo necesita <em>el espacio, cuando lo necesita.</em></p>
+
+    <div class="stat-grid reveal">
+      <div class="stat-card">
+        <div class="num">~390 mil m²</div>
+        <div class="label">de coworking en México al cierre de 2024, con expansión anual promedio de ~50 mil m².</div>
+        <div class="source">Ref. sector · Centro Urbano / Real Estate Market</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">17%</div>
+        <div class="label">CAGR proyectado para coworking y oficinas flex en México, 2025–2030.</div>
+        <div class="source">Ref. sector · Mordor Intelligence</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">&gt;85%</div>
+        <div class="label">de ocupación reportan operadores; presiona a inventariar más espacio.</div>
+        <div class="source">Ref. sector · El Financiero</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">13.6 M</div>
+        <div class="label">de personas trabajan por cuenta propia en México — 22.6% de la población ocupada.</div>
+        <div class="source">Ref. sector · INEGI</div>
+      </div>
+    </div>
+
+    <div class="note reveal">
+      <span class="rombo"></span>
+      <p>Cifras de referencia del sector, no mediciones propias. Se usan para dimensionar la oportunidad y <strong>se validan con datos de plaza de Guadalajara</strong> antes de comprometer inversión.</p>
+    </div>
+
+    <p class="paragraph reveal max-w-3xl" style="margin-top:2rem;">Guadalajara es una de las tres concentraciones de coworking del país, junto con CDMX y Monterrey. Pero la oferta local está en pocas manos y orientada al contrato tradicional. <strong>El hueco no es "otro cowork más": es el modelo que atiende a los dos usuarios a la vez</strong> —el que firma por un espacio propio y el que solo quiere entrar por horas, sin contrato.</p>
+  </div>
+</section>
+
+<!-- EL HUECO / INSIGHT -->
+<section class="section section-surface section-divider" id="hueco">
+  <div class="section-inner">
+    <div class="section-label reveal"><span>02 · El motor del modelo</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">El independiente y el remoto <span class="accent">son el motor</span>, no el extra.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">En Guadalajara no es fácil hoy conseguir un espacio de trabajo profesional a demanda, por horas, sin amarrarse a una mensualidad. Ese usuario —freelance, remoto, foráneo de paso, emprendedor que aún no necesita oficina— es una base amplia y desatendida. Es la demanda que sostiene el modelo cuando las oficinas por contrato ya están rentadas.</p>
+
+    <div class="insight-block reveal">
+      <div class="label">La lectura</div>
+      <p class="text">Un solo complejo capta <em>a quien firma contrato</em> y <em>a quien nunca lo firmaría</em>. El contrato da piso de ingreso; la demanda por horas da volumen, comunidad y consumo de amenidades.</p>
+    </div>
+
+    <div class="split-grid reveal">
+      <div class="split-card problem">
+        <div class="head">Cowork tradicional</div>
+        <h3>Optimiza para el que firma.</h3>
+        <ul>
+          <li>Vive del contrato mensual y de la oficina privada.</li>
+          <li>El uso por horas es marginal o inexistente.</li>
+          <li>Amenidades genéricas: café y sala de juntas.</li>
+          <li>Operación manual, recepción cara, poca data.</li>
+          <li>El independiente entra poco y se va.</li>
+        </ul>
+      </div>
+      <div class="split-card solution">
+        <div class="head">El modelo que exploramos</div>
+        <h3>Optimiza para los dos a la vez.</h3>
+        <ul>
+          <li>Contrato anual <strong>y</strong> uso a demanda por horas, con registro previo.</li>
+          <li>Membresías por niveles —de gratuita a premium— que convierten al visitante en recurrente.</li>
+          <li>Amenidades que ningún cowork local tiene: gym, tech shop, zona comunal.</li>
+          <li>Todo digitalizado: reserva, acceso, cobro y operación en una webapp.</li>
+          <li>Recepción híbrida con IA que baja el costo fijo de operar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODELO DE NEGOCIO -->
+<section class="section" id="modelo">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>03 · Modelo de ingresos</span><div class="divider"></div></div>
+    <h2 class="display-heading xxl reveal max-w-4xl">Varias llaves de ingreso <span class="ligera">sobre</span> la misma infraestructura.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">La misma planta de módulos Armabox genera ingreso por cinco vías distintas. Unas dan piso predecible; otras, volumen y margen. Juntas reducen la dependencia de un solo tipo de cliente.</p>
+
+    <div class="rev-list reveal">
+      <div class="rev-card">
+        <div class="rev-head">
+          <div class="rev-num">A</div>
+          <div class="rev-title">Renta por contrato</div>
+          <div class="rev-model">Recurrente · piso de ingreso</div>
+        </div>
+        <p class="rev-desc">Contrato —por ejemplo anual— con oficina asignada. El cliente elige su espacio fijo, <strong>o usa cualquier oficina disponible dentro del inventario que su plan cubre.</strong> Es el ingreso predecible que ancla el flujo del complejo.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-head">
+          <div class="rev-num">B</div>
+          <div class="rev-title">Renta a demanda por horas</div>
+          <div class="rev-model">Volumen · motor del modelo</div>
+        </div>
+        <p class="rev-desc">Oficinas y salas de juntas sin contrato, con registro previo desde la webapp. Es lo que <strong>hoy no se consigue fácil en Guadalajara</strong> y lo que abre el mercado del independiente y el remoto. Genera rotación, comunidad y consumo de amenidades.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-head">
+          <div class="rev-num">C</div>
+          <div class="rev-title">Membresías por niveles</div>
+          <div class="rev-model">Recurrente · conversión</div>
+        </div>
+        <p class="rev-desc">Desde una membresía gratuita —que captura al usuario y sus datos— hasta niveles pagados con horas incluidas, descuentos y acceso a amenidades. <strong>La membresía es el puente</strong> que convierte al visitante ocasional en recurrente.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-head">
+          <div class="rev-num">D</div>
+          <div class="rev-title">Tech shop con entrega inmediata</div>
+          <div class="rev-model">Margen · e-commerce por sucursal</div>
+        </div>
+        <p class="rev-desc">Tienda en línea con inventario por sucursal y entrega inmediata en sitio: audífonos, mouse, teclados, monitores, gadgets. <strong>Resuelve una necesidad real de quien trabaja ahí</strong> y suma un ingreso de margen que no depende del metro cuadrado.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-head">
+          <div class="rev-num">E</div>
+          <div class="rev-title">Amenidades y consumo</div>
+          <div class="rev-model">Margen · retención</div>
+        </div>
+        <p class="rev-desc">Cafetería, gym y zona comunal generan consumo directo y, sobre todo, <strong>elevan el valor percibido de la membresía</strong> y el tiempo que la gente pasa en el complejo. Menos rotación, más recurrencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSTRUCCIÓN · ARMABOX (PAPEL) -->
+<section class="section section-divider papel" id="construccion">
+  <div class="buril" style="--tono:0.06; --ang:90deg; --paso:5px;"></div>
+  <div class="section-inner">
+    <div class="pleca reveal" style="background:repeating-linear-gradient(90deg,#0A0A0A 0 2px,transparent 2px 6px);"></div>
+    <div class="section-label reveal"><span>04 · La construcción · Alianza Modularte</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">Se levanta con <span class="accent">Armabox</span>, no con obra tradicional.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">La ventaja competitiva del modelo empieza en cómo se construye. <strong>Armabox de Modularte</strong> —sistema modular de acero, atornillable y desmontable— permite levantar oficinas, salas de juntas y espacios sin la lentitud ni el costo hundido de la obra convencional. Modularte es empresa mexicana con más de 30 años, con sede en la misma Guadalajara. Es el aliado natural para este proyecto.</p>
+
+    <div class="spec-grid reveal">
+      <div class="spec"><div class="v">~14.7 m²</div><div class="k">Módulo estándar<br>6055 × 2435 × 2896 mm</div></div>
+      <div class="spec"><div class="v">Atornillable</div><div class="k">Se arma sin soldar<br>ni pintar en sitio</div></div>
+      <div class="spec"><div class="v">200 kg/m²</div><div class="k">Carga viva de piso<br>techo 50 kg/m² · viento ~102 km/h</div></div>
+      <div class="spec"><div class="v">Combinable</div><div class="k">En largo, ancho y alto<br>desmontable y reubicable</div></div>
+    </div>
+
+    <p class="paragraph reveal max-w-3xl">El catálogo de Armabox ya contempla las distribuciones que este modelo necesita: <strong>oficina única, módulo de cuatro escritorios, espacio de coworking y sala de reuniones para hasta 22 personas</strong> combinando módulos. El sistema se fabrica en estándar y se embarca en contenedor, lo que ordena tiempos y costos desde el día uno.</p>
+
+    <div class="amen-grid reveal" style="margin-top:2.5rem;">
+      <div class="amen-card">
+        <div class="tag">Velocidad</div>
+        <h3>Se instala rápido</h3>
+        <p>Piezas prefabricadas y soldadas en fábrica; en sitio solo se ensambla con pernos. Menos tiempo entre inversión y primer ingreso.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Flexibilidad</div>
+        <h3>Crece y se reconfigura</h3>
+        <p>Si un tipo de espacio no jala, se reacomoda. El complejo puede escalar por fases sin rehacer obra.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Reversibilidad</div>
+        <h3>Es desmontable</h3>
+        <p>Los módulos se desinstalan y reubican. Baja el riesgo de la apuesta: la infraestructura no queda atada al terreno.</p>
+      </div>
+    </div>
+
+    <div class="note reveal">
+      <span class="rombo" style="border-color:#0A0A0A;"></span>
+      <p><strong>Rol de la alianza.</strong> Modularte aporta el sistema constructivo, la ingeniería modular y el respaldo de más de 30 años. Sentido aporta la marca del venture, el ecosistema digital y la operación de marketing. El número de módulos, las distribuciones finales y el costo de fabricación <strong>se cotizan directamente con Modularte</strong> —contacto de alianza: Alberto Rosales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AMENIDADES -->
+<section class="section" id="amenidades">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>05 · Diferenciadores</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">Amenidades que <span class="accent">ningún cowork local</span> ofrece hoy.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">No son extras cosméticos: cada amenidad resuelve una fricción real del usuario y, a la vez, abre una vía de ingreso o de retención. Es lo que hace que este complejo no compita por precio, sino por experiencia.</p>
+
+    <div class="amen-grid reveal">
+      <div class="amen-card">
+        <div class="tag">Salud · retención</div>
+        <h3>Gym en sitio</h3>
+        <p>Ningún cowork de la plaza lo tiene. Hoy el usuario se desplaza y paga otra membresía aparte. Integrarlo elimina esa fricción y ata al usuario al complejo.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Margen · servicio</div>
+        <h3>Tech shop con entrega inmediata</h3>
+        <p>E-commerce con inventario por sucursal. Audífonos, mouse, teclados, monitores y gadgets disponibles al momento, sin salir del edificio.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Consumo · comunidad</div>
+        <h3>Cafetería</h3>
+        <p>Punto de encuentro y consumo directo. Ancla social del complejo y motor de la vida diaria del espacio.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Experiencia · exclusividad</div>
+        <h3>Zona comunal al aire libre</h3>
+        <p>En la cafetería, para recibir visitas o trabajar al aire libre — <strong>reservada a quienes rentan</strong>. Un beneficio tangible de pertenecer.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Operación · costo</div>
+        <h3>Recepción híbrida con IA</h3>
+        <p>Modelo híbrido humano + IA para optimizar la operación: registro, acceso, reservas y atención con menos costo fijo de personal.</p>
+      </div>
+      <div class="amen-card">
+        <div class="tag">Acceso · flexibilidad</div>
+        <h3>Uso por horas real</h3>
+        <p>Entrar, trabajar y salir sin contrato, con registro previo. La amenidad que hoy falta en Guadalajara y que define el modelo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSISTEMA DIGITAL · SENTIDO -->
+<section class="section section-surface section-divider" id="ecosistema">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>06 · Ecosistema digital · Aportación de Sentido</span><div class="divider"></div></div>
+    <h2 class="display-heading xxl reveal max-w-4xl">La webapp <span class="ligera">no es un accesorio.</span> Es <span class="accent">cómo opera el negocio.</span></h2>
+    <p class="paragraph lg muted reveal max-w-3xl">Un modelo que mezcla contratos, uso por horas, membresías por niveles, tech shop y amenidades <strong>no se puede operar a mano.</strong> El ecosistema digital es lo que vuelve viable la complejidad — y es exactamente lo que Sentido pone sobre la mesa en la alianza.</p>
+
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-body">
+          <div class="pillar-name">Webapp de rentas unificada</div>
+          <div class="pillar-desc">Un solo sistema gestiona a todo tipo de cliente: contrato y a demanda. Reserva de oficinas y salas, disponibilidad en tiempo real, asignación y control de acceso.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-body">
+          <div class="pillar-name">Membresías y cobro automatizado</div>
+          <div class="pillar-desc">Niveles de membresía con acceso escalonado, pasarela de pagos integrada y cobro recurrente. La lógica que convierte visitante en recurrente, sin intervención manual.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-body">
+          <div class="pillar-name">Tech shop e-commerce por sucursal</div>
+          <div class="pillar-desc">Inventario por sede, catálogo, carrito y entrega inmediata en sitio. Un canal de margen conectado al mismo ecosistema.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-body">
+          <div class="pillar-name">CRM, automatización y recepción con IA</div>
+          <div class="pillar-desc">Captura de leads, seguimiento por WhatsApp/email/SMS, y la capa de IA que asiste la recepción híbrida. Menos costo fijo, más data para decidir.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-block reveal">
+      <div class="label">Por qué Sentido</div>
+      <p class="text">Sentido ya construye <em>sitios, ecosistemas de membresía, CRM y automatización con IA.</em> Aquí no somos proveedor: somos socio operador del lado digital y de marca del negocio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBRESÍAS -->
+<section class="section" id="membresias">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>07 · Tiers de membresía</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">Cuatro niveles, <span class="ligera">del que solo mira</span> al que vive ahí.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">Estructura de trabajo, a validar con modelaje financiero. La membresía gratuita existe para capturar base y datos; los niveles pagados escalan horas, acceso y amenidades. La rueda que convierte demanda por horas en ingreso recurrente.</p>
+
+    <div class="tiers-grid reveal">
+      <div class="tier">
+        <div class="name">Free</div>
+        <div class="who">Independiente / remoto que explora</div>
+        <ul>
+          <li>Registro y perfil en la webapp</li>
+          <li>Reserva por horas a tarifa lista</li>
+          <li>Acceso a cafetería</li>
+          <li>Base de captación y datos</li>
+        </ul>
+      </div>
+      <div class="tier featured">
+        <div class="name">Flex</div>
+        <div class="who">Freelance recurrente / nómada</div>
+        <ul>
+          <li>Bolsa de horas mensuales incluidas</li>
+          <li>Tarifa preferente por hora extra</li>
+          <li>Descuento en tech shop</li>
+          <li>Acceso a zona comunal</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="name">Pro</div>
+        <div class="who">Profesional / equipo pequeño</div>
+        <ul>
+          <li>Horas ampliadas + salas de juntas</li>
+          <li>Acceso a gym incluido</li>
+          <li>Prioridad de reserva</li>
+          <li>Domicilio comercial</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="name">Contrato</div>
+        <div class="who">Empresa con oficina asignada</div>
+        <ul>
+          <li>Oficina fija o inventario disponible</li>
+          <li>Acceso pleno a amenidades</li>
+          <li>Cupos para el equipo</li>
+          <li>Facturación y soporte dedicado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note reveal">
+      <span class="rombo"></span>
+      <p>Nombres, inclusiones y precios de cada tier son <strong>una estructura de trabajo</strong>, no una tarifa final. Se definen con modelaje de ocupación, aforo instalado y costo de amenidades antes de publicarse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section class="section section-surface section-divider" id="inversion">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>08 · Componentes de inversión</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">Dónde va el dinero <span class="ligera">—y qué parte</span> ya sabemos costear.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">Este no es un presupuesto cerrado. Es el mapa de los bloques de inversión del proyecto, separando lo que <strong>se cotiza con terceros</strong> (terreno, construcción modular, amenidades) de lo que <strong>Sentido aporta y ya sabe costear</strong> (marca, ecosistema digital y operación de marketing).</p>
+
+    <div class="inv-block reveal">
+      <div class="inv-head">
+        <div class="t">Bloques a cotizar con terceros</div>
+        <div class="badge">Estimación por validar</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Terreno y adaptación</div><div class="r-detail">Renta o compra + habilitación de sitio, servicios, cimentación de módulos.</div></div>
+        <div class="r-detail">Según ubicación y modelo de tenencia en GDL.</div>
+        <div class="r-val">Por cotizar</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Construcción modular · Armabox</div><div class="r-detail">Fabricación, embarque e instalación de módulos: oficinas, salas de juntas y espacios comunes.</div></div>
+        <div class="r-detail">Según número de módulos y distribuciones.</div>
+        <div class="r-val">Con Modularte</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Amenidades e interiores</div><div class="r-detail">Gym, cafetería, zona comunal, mobiliario, equipamiento y look &amp; feel de espacios.</div></div>
+        <div class="r-detail">Sentido puede cotizar look &amp; feel de interiores.</div>
+        <div class="r-val">Mixto</div>
+      </div>
+    </div>
+
+    <div class="inv-block reveal">
+      <div class="inv-head">
+        <div class="t">Aportación de Sentido · costeable hoy</div>
+        <div class="badge">Precios de referencia + IVA</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Marca del venture (branding)</div><div class="r-detail">Identidad, naming del complejo, sistema visual y aplicables.</div></div>
+        <div class="r-detail">Inversión única · 50/50</div>
+        <div class="r-val"><span class="cur">desde $</span>15,000</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Ecosistema webapp + membresías</div><div class="r-detail">Plataforma con login, niveles de acceso, pasarela de pagos y automatizaciones. Base del sistema de rentas y membresías.</div></div>
+        <div class="r-detail">Inversión única (plataforma base)</div>
+        <div class="r-val"><span class="cur">desde $</span>18,000</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Sitio / e-commerce tech shop</div><div class="r-detail">Desarrollo estratégico con inventario, administrador y pixels. Canal del tech shop.</div></div>
+        <div class="r-detail">Inversión única · 60/40</div>
+        <div class="r-val"><span class="cur">desde $</span>20,000</div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">CRM + automatización + reputación</div><div class="r-detail">Pipeline, captura y seguimiento automatizado, gestión de reseñas. Operación digital recurrente.</div></div>
+        <div class="r-detail">Mensual</div>
+        <div class="r-val"><span class="cur">desde $</span>4,000<span class="cur"> /mes</span></div>
+      </div>
+      <div class="inv-row">
+        <div><div class="r-name">Marketing de lanzamiento y presencia</div><div class="r-detail">Gestión de redes y contenido para llenar el complejo desde el arranque.</div></div>
+        <div class="r-detail">Mensual · producción de contenido eventual</div>
+        <div class="r-val"><span class="cur">desde $</span>7,500<span class="cur"> /mes</span></div>
+      </div>
+    </div>
+
+    <div class="note reveal">
+      <span class="rombo"></span>
+      <p><strong>Pauta publicitaria aparte.</strong> La inversión en Meta y Google Ads no se suma al fee de gestión: va directo a la plataforma, con un rango recomendado que se define en el plan de lanzamiento. La <strong>producción de foto y video es eventual e independiente</strong>, no un costo mensual fijo.</p>
+    </div>
+    <div class="note reveal">
+      <span class="rombo"></span>
+      <p>Los precios de Sentido son de referencia del catálogo vigente (más IVA) y se ajustan al alcance final. Los bloques de terceros <strong>no llevan cifra inventada</strong>: se cotizan con Modularte y proveedores una vez definidos módulos y ubicación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOJA DE RUTA -->
+<section class="section" id="ruta">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>09 · Hoja de ruta</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">De la idea al <span class="accent">primer módulo rentado.</span></h2>
+
+    <div class="road reveal">
+      <div class="road-phase">
+        <div class="when">Fase 0 · Validación</div>
+        <div>
+          <h3>Confirmar mercado y alianza</h3>
+          <p>Validar demanda de uso por horas en Guadalajara con datos de plaza, sondear ubicaciones y sentar la conversación de alianza con Modularte: alcance, términos y rol de cada parte.</p>
+        </div>
+      </div>
+      <div class="road-phase">
+        <div class="when">Fase 1 · Modelaje</div>
+        <div>
+          <h3>Números y configuración</h3>
+          <p>Modelaje financiero: número de módulos, mezcla de espacios, tiers de membresía, punto de equilibrio y capex/opex. Cotización formal de Armabox y de amenidades.</p>
+        </div>
+      </div>
+      <div class="road-phase">
+        <div class="when">Fase 2 · Marca y plataforma</div>
+        <div>
+          <h3>Identidad y ecosistema digital</h3>
+          <p>Sentido desarrolla la marca del complejo y construye la webapp: rentas, membresías, tech shop, CRM y la capa de recepción con IA. Aquí arranca la aportación operativa de Sentido.</p>
+        </div>
+      </div>
+      <div class="road-phase">
+        <div class="when">Fase 3 · Construcción</div>
+        <div>
+          <h3>Sitio y ensamble Armabox</h3>
+          <p>Adaptación del terreno e instalación de los módulos con Modularte, en paralelo al equipamiento de amenidades. La reversibilidad del sistema permite arrancar por fases.</p>
+        </div>
+      </div>
+      <div class="road-phase">
+        <div class="when">Fase 4 · Lanzamiento</div>
+        <div>
+          <h3>Llenado y operación</h3>
+          <p>Campaña de lanzamiento, activación de membresías gratuitas para construir base, y operación día a día sobre el ecosistema. Medir ocupación real y ajustar tiers y precios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RIESGOS Y SUPUESTOS -->
+<section class="section section-surface section-divider" id="riesgos">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>10 · Supuestos a validar</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">Lo que <span class="accent">hay que probar</span> antes de comprometer capital.</h2>
+    <p class="paragraph lg muted reveal max-w-3xl">Un business case honesto nombra sus huecos. Estos son los supuestos que sostienen el modelo y que deben validarse en la Fase 0 antes de escalar.</p>
+
+    <div class="risk-grid reveal">
+      <div class="risk">
+        <div class="q">¿La demanda por horas en GDL es tan grande como parece?</div>
+        <div class="a"><strong>A validar</strong> con datos de plaza y una prueba de concepto ligera antes de dimensionar módulos.</div>
+      </div>
+      <div class="risk">
+        <div class="q">¿En qué términos entra Modularte a la alianza?</div>
+        <div class="a"><strong>A definir</strong> — desde proveedor de sistema hasta socio con participación. Determina la estructura del negocio.</div>
+      </div>
+      <div class="risk">
+        <div class="q">¿Terreno en renta o compra?</div>
+        <div class="a"><strong>A modelar</strong> — la reversibilidad de Armabox favorece esquemas de renta y baja el riesgo de la apuesta.</div>
+      </div>
+      <div class="risk">
+        <div class="q">¿El gym y el tech shop se operan o se concesionan?</div>
+        <div class="a"><strong>A decidir</strong> — operar da margen; concesionar baja complejidad. Impacta capex y opex.</div>
+      </div>
+      <div class="risk">
+        <div class="q">¿Cuál es el punto de equilibrio de ocupación?</div>
+        <div class="a"><strong>Sale del modelaje</strong> de Fase 1 — define cuántos módulos y qué mezcla contrato/horas.</div>
+      </div>
+      <div class="risk">
+        <div class="q">¿Certificaciones y normativa de uso de suelo?</div>
+        <div class="a"><strong>A revisar</strong> — permisos municipales en GDL y respaldo técnico del sistema modular.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGUIENTES PASOS -->
+<section class="section" id="siguiente">
+  <div class="section-inner">
+    <div class="pleca reveal"></div>
+    <div class="section-label reveal"><span>11 · Siguientes pasos internos</span><div class="divider"></div></div>
+    <h2 class="display-heading xl reveal max-w-4xl">Qué hacemos <span class="accent">esta semana</span> para no dejarlo en idea.</h2>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="s-body">
+          <h3>Decisión interna: ¿lo exploramos en serio?</h3>
+          <p>Sentido define si asigna tiempo a la Fase 0. Este documento es el punto de partida de esa conversación.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="s-body">
+          <h3>Sentar la conversación con Modularte</h3>
+          <p>Presentar la idea a Alberto Rosales y explorar apetito de alianza, alcance de Armabox para el proyecto y términos posibles.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="s-body">
+          <h3>Sondeo de demanda y de ubicaciones</h3>
+          <p>Validar el hueco de uso por horas en Guadalajara y hacer un primer barrido de terrenos o inmuebles candidatos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="s-body">
+          <h3>Modelaje financiero preliminar</h3>
+          <p>Aterrizar módulos, mezcla de ingresos, tiers y punto de equilibrio para saber si el negocio cierra antes de invertir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="cierre">
+  <div class="buril buril--arco" style="--tono:0.08; --foco:50% 180%;"></div>
+  <h2 class="reveal"><span class="ligera">Un cowork no se defiende con más metros.</span><br>Se defiende con un modelo que nadie más está armando.</h2>
+  <p class="reveal">Este es un documento vivo para decidir internamente y para abrir la conversación de alianza. No es un compromiso de inversión: es la lectura de una oportunidad real, lista para validarse.</p>
+  <div class="contact-grid reveal">
+    <div class="contact-item">
+      <div class="lbl">Coordinación · Sentido</div>
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+    </div>
+    <div class="contact-item">
+      <div class="lbl">Alianza · Modularte</div>
+      <span>Alberto Rosales</span>
+    </div>
+    <div class="contact-item">
+      <div class="lbl">Instagram</div>
+      <a href="https://instagram.com/sentido.mx" target="_blank" rel="noopener">@sentido.mx</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo"><img src="/assets/logo-sentido-light.png" alt="Sentido" /></div>
+  <div class="footer-meta">
+    Documento interno · Business case <span class="dot">◇</span> Sentido × Modularte<br>
+    Guadalajara, Jalisco <span class="dot">◇</span> Septiembre 2026 <span class="dot">◇</span> Confidencial
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // Scroll-spy nav
+  (function () {
+    var sections = document.querySelectorAll('section[id], header[id]');
+    var links = Array.prototype.slice.call(document.querySelectorAll('.site-nav a[href^="#"]'));
+    function byHash(h) { return links.filter(function (l) { return l.getAttribute('href') === h; }); }
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var id = '#' + en.target.id;
+          links.forEach(function (l) { l.classList.remove('active'); });
+          byHash(id).forEach(function (l) { l.classList.add('active'); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  })();
+</script>
+</body>
+</html>

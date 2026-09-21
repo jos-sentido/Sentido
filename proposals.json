@@ -1,6 +1,20 @@
 {
   "proposals": [
     {
+      "slug": "workspace-modular-gdl",
+      "tipo": "comercial",
+      "cliente": "Interno · Workspace modular (Sentido × Modularte)",
+      "fecha": "2026-09-21",
+      "estatus": "activo",
+      "descripcion": "Documento interno / business case de una idea de negocio propia de Sentido: un complejo de oficinas y coworking construido con sistema modular Armabox de Modularte, en Guadalajara. Propuesta de alianza Sentido x Modularte. Cubre oportunidad y mercado GDL (cifras de sector referenciadas), modelo de ingresos (contrato + demanda por horas + membresias por tiers + tech shop + amenidades), rol de Armabox en construccion, ecosistema webapp/CRM/IA como aportacion de Sentido, componentes de inversion, hoja de ruta y supuestos a validar. Cierre orientado a siguientes pasos internos (sin formulario). Sistema visual estricto de Sentido (tinta/papel, Archivo, buril).",
+      "serviciosDisponibles": [],
+      "serviciosSeleccionados": [],
+      "notas": "Idea de negocio propia. Contacto de alianza: Alberto Rosales (Modularte) — alberto.rosales@modularte.com.mx, +52 33 2616 0168. Aportacion Sentido costeable: branding, ecosistema webapp+membresias, sitio/e-commerce tech shop, CRM+automatizacion, marketing de lanzamiento. Bloques de terceros (terreno, modulos Armabox, amenidades) sin cifra: a cotizar. NO es propuesta a prospecto.",
+      "proximoPaso": "Decision interna de explorar + sentar conversacion de alianza con Modularte",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "campana-landings-plp",
       "tipo": "cliente",
       "cliente": "PLP — Campaña de Leads en Landing Pages",
