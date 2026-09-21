@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Moodboard Modularte — Referencias visuales</title>
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Referencias visuales para el rebranding de Modularte: paletas, tipografías y estilo de la competencia y de Modularte hoy.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#f4f2ef; --surface:#ffffff; --surface-2:#efece7;
+    --ink:#1b1d1f; --muted:#6c7178; --line:#e3e0da;
+    --accent:#c61f0a; --graphite:#22262b;
+    --shadow:0 1px 2px rgba(20,20,20,.06),0 8px 24px rgba(20,20,20,.05);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#161718; --surface:#1f2123; --surface-2:#26292c;
+      --ink:#ece9e3; --muted:#9aa0a7; --line:#31353a;
+      --accent:#f04a30; --graphite:#c9ccd0;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#161718; --surface:#1f2123; --surface-2:#26292c;
+    --ink:#ece9e3; --muted:#9aa0a7; --line:#31353a;
+    --accent:#f04a30; --graphite:#c9ccd0;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  img{max-width:100%}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin-inline:auto; padding-inline:20px; padding-block:44px 72px;}
+  h1,h2,h3{font-family:"Archivo","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+  .mono{font-family:"IBM Plex Mono",monospace;}
+
+  header.top{border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:34px;}
+  header.top h1{font-size:clamp(30px,6vw,52px); font-weight:800; letter-spacing:-.02em; line-height:1.02; margin-top:10px;}
+  header.top p{color:var(--muted); max-width:60ch; margin:14px 0 0;}
+  .meta{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:18px; font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted);}
+
+  section{margin-top:44px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:18px; border-bottom:1px solid var(--line); padding-bottom:10px;}
+  .sec-head h2{font-size:20px; font-weight:700; letter-spacing:-.01em;}
+  .sec-head .n{font-family:"IBM Plex Mono",monospace; color:var(--muted); font-size:13px;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
+
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px;}
+  .card h3{font-size:17px; font-weight:700; display:flex; align-items:center; gap:8px;}
+  .star{color:var(--accent);}
+  .role{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
+  .card p{margin:0; font-size:13.5px; color:var(--ink);}
+  .card .note{color:var(--muted); font-size:13px;}
+
+  .swatches{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{display:flex; flex-direction:column; align-items:center; gap:5px; width:60px;}
+  .chip .sw{width:100%; height:40px; border-radius:8px; border:1px solid rgba(128,128,128,.25);}
+  .chip small{font-family:"IBM Plex Mono",monospace; font-size:9.5px; color:var(--muted); letter-spacing:-.02em;}
+
+  .kv{font-size:13px;}
+  .kv .lbl{font-family:"IBM Plex Mono",monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:block; margin-bottom:1px;}
+
+  a.link{color:var(--accent); text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:12px; word-break:break-all; margin-top:auto; padding-top:4px; border-top:1px dashed var(--line);}
+  a.link:hover{text-decoration:underline;}
+  a.link:focus-visible, a.pin-btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .feature{grid-column:1/-1; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);}
+  .feature .row{display:flex; flex-wrap:wrap; gap:24px;}
+  .feature .col{flex:1 1 240px; min-width:0;}
+  .feature h3{font-size:19px; font-weight:800; margin-bottom:6px;}
+
+  .pin{background:linear-gradient(135deg,var(--graphite),var(--ink)); color:var(--bg); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow);}
+  .pin .eyebrow{color:var(--accent);}
+  .pin h2{color:var(--bg); font-size:22px; font-weight:800; margin:8px 0 10px;}
+  .pin p{margin:0 0 14px; max-width:64ch; font-size:14px; opacity:.92;}
+  .pin ul{margin:0 0 16px; padding-left:18px; font-size:13.5px; opacity:.92; display:grid; gap:4px;}
+  a.pin-btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:13px; padding:9px 16px; border-radius:9px;}
+  a.pin-btn:hover{filter:brightness(1.08);}
+
+  .dir{background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .dir ol{margin:0; padding-left:22px; display:grid; gap:10px;}
+  .dir li{font-size:14px;}
+
+  .callout{font-size:12.5px; color:var(--muted); background:var(--surface-2); border:1px dashed var(--line); border-radius:10px; padding:12px 14px; margin-top:16px;}
+  footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Rebranding · Referencias visuales</div>
+    <h1>Moodboard Modularte</h1>
+    <p>Cómo se ve la competencia y cómo se ve Modularte hoy — paletas de color reales, tipografías y estilo — para orientar el rediseño de la marca. Para Javi.</p>
+    <div class="meta">
+      <span>Cliente: Modularte</span><span>Construcción modular</span><span>Actualizado: 21 sep 2026</span>
+    </div>
+  </header>
+
+  <section aria-label="Gusto de Jos">
+    <div class="pin">
+      <div class="eyebrow">★ El norte a explorar</div>
+      <h2>Lo que le gusta a Jos</h2>
+      <p>Tablero de Pinterest con el estilo que le llama la atención: logotipos tipo <b>monograma</b> (muchos con la letra “M”), en <b>blanco y negro</b>, <b>geométricos y minimalistas</b>, con aire <b>arquitectónico</b> (líneas de edificio), contención en cuadro/esquinas y espacio negativo. Sensación premium y sobria.</p>
+      <ul>
+        <li>La “M” de Modularte se presta perfecto para un monograma geométrico.</li>
+        <li>Confirma ir hacia lo sobrio y monocromático, con el rojo como acento medido.</li>
+        <li>A conciliar: mantener el rojo (valor de la marca) y no parecernos a Kuatro.</li>
+      </ul>
+      <a class="pin-btn" href="https://pin.it/7eS5eYtmg" target="_blank" rel="noopener">Abrir tablero de Pinterest →</a>
+    </div>
+  </section>
+
+  <section aria-label="Modularte hoy">
+    <div class="sec-head"><span class="n mono">00</span><h2>Modularte hoy · el punto de partida</h2></div>
+    <div class="grid">
+      <div class="feature">
+        <h3>Modularte — marca actual</h3>
+        <div class="row">
+          <div class="col">
+            <span class="role">Paleta actual</span>
+            <div class="swatches" style="margin-top:8px">
+              <div class="chip"><span class="sw" style="background:#c61f0a"></span><small>#C61F0A</small></div>
+              <div class="chip"><span class="sw" style="background:#4a5a73"></span><small>#4A5A73</small></div>
+              <div class="chip"><span class="sw" style="background:#595959"></span><small>#595959</small></div>
+              <div class="chip"><span class="sw" style="background:#f4eff0"></span><small>#F4EFF0</small></div>
+            </div>
+            <p class="note" style="margin-top:10px">Solo el <b>rojo #C61F0A</b> tiene intención (logo + títulos). El resto son colores de la plantilla, sin sistema.</p>
+          </div>
+          <div class="col">
+            <div class="kv"><span class="lbl">Logo</span> Palabra “MODULARTE” con la “M” de trazos diagonales rojos. Frase: “Construcciones pre fabricadas”.</div>
+            <div class="kv" style="margin-top:10px"><span class="lbl">Tipografía</span> Mezcla sin orden: Barlow (títulos), Raleway y Open Sans (texto).</div>
+            <div class="kv" style="margin-top:10px"><span class="lbl">Sitio</span> Hecho en Wix con plantilla genérica.</div>
+            <p class="note" style="margin-top:10px"><b>Lectura:</b> conservar el rojo y la idea de la “M”; construir todo lo demás como un sistema.</p>
+          </div>
+        </div>
+        <a class="link" href="https://www.modularte.com.mx/" target="_blank" rel="noopener">modularte.com.mx</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Competencia">
+    <div class="sec-head"><span class="n mono">01</span><h2>Competencia</h2></div>
+    <div class="grid">
+
+      <div class="card">
+        <h3><span class="star">★</span> Kuatro</h3>
+        <span class="role">La que más le gusta al cliente · nivel a superar</span>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#212529"></span><small>#212529</small></div>
+          <div class="chip"><span class="sw" style="background:#0f172a"></span><small>#0F172A</small></div>
+          <div class="chip"><span class="sw" style="background:#ffffff"></span><small>#FFFFFF</small></div>
+          <div class="chip"><span class="sw" style="background:#f35109"></span><small>#F35109</small></div>
+        </div>
+        <p><b>Paleta:</b> base oscura sobria + blanco + un solo acento naranja. <b>Tipografía:</b> Manrope (una sola, limpia).</p>
+        <p class="note">Fotografía real de proyecto (tomas aéreas), titulares grandes, botones “Cotizar”. Marca paraguas: Flexpace® / Reubic® / Movilx®. <b>Ojo:</b> su acento es naranja → el nuestro debe ser rojo para diferenciarnos.</p>
+        <a class="link" href="https://www.kuatro.com.mx/" target="_blank" rel="noopener">kuatro.com.mx</a>
+      </div>
+
+      <div class="card">
+        <h3>ATCO Espacio Móvil</h3>
+        <span class="role">Jugador global</span>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#003a70"></span><small>~azul</small></div>
+          <div class="chip"><span class="sw" style="background:#8a9099"></span><small>~gris</small></div>
+          <div class="chip"><span class="sw" style="background:#ffffff"></span><small>#FFFFFF</small></div>
+        </div>
+        <p class="note">Corporativo, azul, grande. Serio pero frío y genérico. <span class="mono" style="font-size:11px">(paleta aprox.)</span></p>
+        <a class="link" href="https://www.atcoespaciomovil.com/es-mx.html" target="_blank" rel="noopener">atcoespaciomovil.com</a>
+      </div>
+
+      <div class="card">
+        <h3>WillScot</h3>
+        <span class="role">Marca global</span>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#0b3d91"></span><small>~azul</small></div>
+          <div class="chip"><span class="sw" style="background:#1b1d1f"></span><small>~negro</small></div>
+          <div class="chip"><span class="sw" style="background:#ffffff"></span><small>#FFFFFF</small></div>
+        </div>
+        <p class="note">Azul corporativo fuerte, muy comercial. <span class="mono" style="font-size:11px">(paleta aprox.)</span></p>
+        <a class="link" href="https://contenedoreswillscot.com/" target="_blank" rel="noopener">contenedoreswillscot.com</a>
+      </div>
+
+      <div class="card">
+        <h3>Structurall</h3>
+        <span class="role">Modular · México</span>
+        <p class="note">Referencia de sector nacional. Revisar en vivo para paleta y estilo.</p>
+        <a class="link" href="https://structurall.com.mx/" target="_blank" rel="noopener">structurall.com.mx</a>
+      </div>
+
+      <div class="card">
+        <h3>Multi Móvil</h3>
+        <span class="role">Renta · nacional</span>
+        <p class="note">Web básica — <b>no sirve</b> como referencia visual, solo de mercado.</p>
+        <a class="link" href="https://multimovil.mx/" target="_blank" rel="noopener">multimovil.mx</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section aria-label="Referentes internacionales">
+    <div class="sec-head"><span class="n mono">02</span><h2>Techo internacional · hacia dónde apuntamos</h2></div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Portakabin</h3>
+        <span class="role">Reino Unido</span>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#00263a"></span><small>~azul</small></div>
+          <div class="chip"><span class="sw" style="background:#e4e7ea"></span><small>~gris</small></div>
+          <div class="chip"><span class="sw" style="background:#ffffff"></span><small>#FFFFFF</small></div>
+        </div>
+        <p class="note">Azul confiable, muy ordenado y serio. Sensación de calidad para empresas. <span class="mono" style="font-size:11px">(aprox.)</span></p>
+        <a class="link" href="https://www.portakabin.com/" target="_blank" rel="noopener">portakabin.com</a>
+      </div>
+
+      <div class="card">
+        <h3>Algeco</h3>
+        <span class="role">Europa</span>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#003a70"></span><small>~azul</small></div>
+          <div class="chip"><span class="sw" style="background:#5b6570"></span><small>~acero</small></div>
+          <div class="chip"><span class="sw" style="background:#ffffff"></span><small>#FFFFFF</small></div>
+        </div>
+        <p class="note">Azul/gris industrial, escala, sensación técnica. <span class="mono" style="font-size:11px">(aprox.)</span></p>
+        <a class="link" href="https://www.algeco.co.uk/" target="_blank" rel="noopener">algeco.co.uk</a>
+      </div>
+
+      <div class="card">
+        <h3>Honomobo</h3>
+        <span class="role">Canadá · nivel fotográfico</span>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#111214"></span><small>#111</small></div>
+          <div class="chip"><span class="sw" style="background:#2b2d30"></span><small>~grafito</small></div>
+          <div class="chip"><span class="sw" style="background:#c9b79c"></span><small>~arena</small></div>
+        </div>
+        <p class="note">Negro/mate, fotografía oscura y elegante, muy premium. El nivel de foto a alcanzar. <span class="mono" style="font-size:11px">(aprox.)</span></p>
+        <a class="link" href="https://www.honomobo.com/" target="_blank" rel="noopener">honomobo.com</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section aria-label="Dirección para el rebrand">
+    <div class="sec-head"><span class="n mono">03</span><h2>Dirección para el rebrand</h2></div>
+    <div class="dir">
+      <ol>
+        <li>Paleta <b>sobria</b> (grafito / acero / blanco) con el <b>rojo #C61F0A como acento</b>, no plano.</li>
+        <li><b>Un solo sistema tipográfico</b> (como Kuatro con Manrope): fuerte en títulos, legible en fichas técnicas.</li>
+        <li>La <b>“M” como monograma</b> geométrico y arquitectónico (a partir del tablero de Jos).</li>
+        <li><b>Fotografía real</b> de proyecto con un mismo tratamiento (nivel Honomobo).</li>
+        <li><b>Diferenciarnos de Kuatro</b> (su naranja) manteniendo el rojo.</li>
+      </ol>
+    </div>
+    <div class="callout">Las muestras marcadas <span class="mono">~aprox.</span> son una referencia visual, no el color exacto del sitio. Modularte y Kuatro tienen colores medidos reales. Para ver cada sitio, entra por los enlaces.</div>
+  </section>
+
+  <footer>
+    Moodboard Modularte · referencias para el rebranding · uso interno Sentido
+  </footer>
+
+</div>
+</body>
+</html>
