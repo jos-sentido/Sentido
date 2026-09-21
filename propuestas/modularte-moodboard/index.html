@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Moodboard Modularte — Referencias visuales</title>
 <link rel="icon" href="/favicon.ico">
-<meta name="description" content="Referencias de diseño para el rebranding de Modularte: paletas, tipografías, estilo de logo y fotografía.">
+<meta name="description" content="Referencias de diseño para el rebranding de Modularte: Modularte hoy, referencias visuales y la dirección de diseño.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
   :root{
@@ -74,22 +74,28 @@
   a.link:hover{text-decoration:underline;}
   a.link:focus-visible, a.pin-btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
 
-  .feature{grid-column:1/-1; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);}
+  .feature{grid-column:1/-1; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);}
+  .feature.after{border-left-color:var(--accent);}
   .feature .row{display:flex; flex-wrap:wrap; gap:24px;}
   .feature .col{flex:1 1 240px; min-width:0;}
   .feature h3{font-size:19px; font-weight:800; margin-bottom:6px;}
 
+  /* concept panel (boceto) */
+  .concept{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; background:linear-gradient(150deg,#282b2f,#141516); color:#f4f2ef; border-radius:12px; padding:30px 20px; min-height:230px;}
+  .concept .mark{width:98px; height:98px; color:#f4f2ef;}
+  .concept .wordmark{font-family:"Archivo",sans-serif; font-weight:800; letter-spacing:.2em; font-size:21px; padding-left:.2em;}
+  .concept .tag{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.24em; color:#aeb2b8; text-transform:uppercase;}
+  .ribbon{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.04em; color:var(--muted); background:var(--surface-2); border:1px dashed var(--line); border-radius:8px; padding:5px 11px;}
+  .type-sample{font-family:"Archivo",sans-serif; font-weight:800; font-size:26px; letter-spacing:-.01em; line-height:1; margin:2px 0 2px;}
+
   .pin{background:linear-gradient(135deg,var(--graphite),var(--ink)); color:var(--bg); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow);}
+  :root[data-theme="dark"] .pin, :root:not([data-theme="light"]) .pin{color:#161718;}
   .pin .eyebrow{color:var(--accent);}
-  .pin h2{color:var(--bg); font-size:22px; font-weight:800; margin:8px 0 10px;}
+  .pin h3{color:inherit; font-size:20px; font-weight:800; margin:8px 0 10px;}
   .pin p{margin:0 0 14px; max-width:64ch; font-size:14px; opacity:.92;}
   .pin ul{margin:0 0 16px; padding-left:18px; font-size:13.5px; opacity:.92; display:grid; gap:4px;}
   a.pin-btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:13px; padding:9px 16px; border-radius:9px;}
   a.pin-btn:hover{filter:brightness(1.08);}
-
-  .dir{background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
-  .dir ul{margin:0; padding-left:20px; display:grid; gap:10px;}
-  .dir li{font-size:14px;}
 
   .callout{font-size:12.5px; color:var(--muted); background:var(--surface-2); border:1px dashed var(--line); border-radius:10px; padding:12px 14px; margin-top:16px;}
   footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted);}
@@ -101,24 +107,11 @@
   <header class="top">
     <div class="eyebrow">Rebranding · Referencias de diseño</div>
     <h1>Moodboard Modularte</h1>
-    <p>Referencias visuales para el rediseño de la marca: paletas de color, tipografías, estilo de logo y fotografía. Puro material de diseño — para explorar con Javi.</p>
+    <p>Referencias visuales para el rediseño de la marca: cómo se ve hoy, referencias de diseño del sector y la dirección que proponemos. Material para explorar con Javi.</p>
     <div class="meta">
       <span>Cliente: Modularte</span><span>Construcción modular</span><span>Actualizado: 21 sep 2026</span>
     </div>
   </header>
-
-  <section aria-label="Gusto de Jos">
-    <div class="pin">
-      <div class="eyebrow">★ El estilo que le gusta a Jos</div>
-      <h2>Punto de partida del gusto</h2>
-      <p>Tablero de Pinterest con el estilo que le llama la atención: logotipos tipo <b>monograma</b> (muchos con la letra “M”), en <b>blanco y negro</b>, <b>geométricos y minimalistas</b>, con aire <b>arquitectónico</b> (líneas de edificio), contención en cuadro/esquinas y espacio negativo. Sensación premium y sobria.</p>
-      <ul>
-        <li>La “M” de Modularte se presta perfecto para un monograma geométrico.</li>
-        <li>Empuja hacia lo sobrio y monocromático, con el rojo como acento.</li>
-      </ul>
-      <a class="pin-btn" href="https://pin.it/7eS5eYtmg" target="_blank" rel="noopener">Abrir tablero de Pinterest →</a>
-    </div>
-  </section>
 
   <section aria-label="Modularte hoy">
     <div class="sec-head"><span class="n mono">00</span><h2>Modularte hoy</h2></div>
@@ -141,7 +134,7 @@
             <div class="kv"><span class="lbl">Logo</span> Palabra “MODULARTE” con la “M” de trazos diagonales rojos. Frase: “Construcciones pre fabricadas”.</div>
             <div class="kv" style="margin-top:10px"><span class="lbl">Tipografía</span> Mezcla sin orden: Barlow (títulos), Raleway y Open Sans (texto).</div>
             <div class="kv" style="margin-top:10px"><span class="lbl">Sitio</span> Hecho en Wix con plantilla genérica.</div>
-            <p class="note" style="margin-top:10px"><b>Lo rescatable:</b> el rojo y la idea de la “M”. Lo demás pide un sistema visual propio.</p>
+            <p class="note" style="margin-top:10px"><b>Lo rescatable:</b> el rojo y la idea de la “M”.</p>
           </div>
         </div>
         <a class="link" href="https://www.modularte.com.mx/" target="_blank" rel="noopener">modularte.com.mx</a>
@@ -236,26 +229,69 @@
       <div class="card">
         <h3>Structurall</h3>
         <span class="role">México</span>
-        <p><b>Estilo:</b> modular mexicano — revisar en vivo para paleta y tratamiento.</p>
+        <div class="swatches">
+          <div class="chip"><span class="sw" style="background:#2fa148"></span><small>~verde</small></div>
+          <div class="chip"><span class="sw" style="background:#2b2f36"></span><small>~grafito</small></div>
+          <div class="chip"><span class="sw" style="background:#ffffff"></span><small>#FFFFFF</small></div>
+        </div>
+        <p><b>Estilo:</b> verde corporativo + grafito. Logo de doble galón (chevron) con el nombre en bold.</p>
+        <p class="note">Tipografía redondeada, look comercial y accesible; incluso usan una <b>mascota ilustrada</b> (la hormiga “Ing. Soleno”). <span class="mono" style="font-size:11px">(colores aprox.)</span></p>
         <a class="link" href="https://structurall.com.mx/" target="_blank" rel="noopener">structurall.com.mx</a>
       </div>
 
     </div>
+    <div class="callout">Las muestras marcadas <span class="mono">~aprox.</span> son una referencia visual, no el color exacto del sitio. Modularte y Kuatro tienen colores medidos reales. Para ver cada sitio, entra por los enlaces.</div>
   </section>
 
   <section aria-label="Dirección de diseño">
     <div class="sec-head"><span class="n mono">02</span><h2>Dirección de diseño</h2></div>
-    <p class="sec-sub">Lo que sacamos de las referencias, en términos visuales.</p>
-    <div class="dir">
+    <p class="sec-sub">El rumbo visual: el estilo que le gusta a Jos y un boceto de cómo la imaginamos.</p>
+
+    <div class="pin">
+      <div class="eyebrow">★ El estilo que le gusta a Jos · Pinterest</div>
+      <h3>Monogramas “M”, blanco y negro, geométrico y arquitectónico</h3>
+      <p>Logotipos tipo <b>monograma</b> (muchos con la letra “M”), en <b>blanco y negro</b>, <b>geométricos y minimalistas</b>, con aire <b>arquitectónico</b> (líneas de edificio), contención en cuadro/esquinas y espacio negativo. Sensación premium y sobria.</p>
       <ul>
-        <li><b>Paleta sobria</b> (grafito / acero / blanco) con el <b>rojo #C61F0A como acento</b>, no plano.</li>
-        <li><b>Un solo sistema tipográfico</b>: fuerte en títulos, legible en fichas técnicas.</li>
-        <li>La <b>“M” como monograma</b> geométrico y arquitectónico (a partir del tablero de Jos).</li>
-        <li><b>Fotografía real</b> de proyecto, con un mismo tratamiento (nivel Honomobo).</li>
-        <li>El <b>rojo</b> nos da identidad propia frente al naranja que usan otros como Kuatro.</li>
+        <li>La “M” de Modularte se presta perfecto para un monograma geométrico.</li>
+        <li>Empuja hacia lo sobrio y monocromático, con el rojo como acento.</li>
       </ul>
+      <a class="pin-btn" href="https://pin.it/7eS5eYtmg" target="_blank" rel="noopener">Abrir tablero de Pinterest →</a>
     </div>
-    <div class="callout">Las muestras marcadas <span class="mono">~aprox.</span> son una referencia visual, no el color exacto del sitio. Modularte y Kuatro tienen colores medidos reales. Para ver cada sitio, entra por los enlaces.</div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="feature after">
+        <span class="ribbon">✎ Boceto de dirección · NO es el logo final — lo desarrolla Javi</span>
+        <h3 style="margin-top:12px">Cómo la imaginamos</h3>
+        <div class="row">
+          <div class="col">
+            <div class="concept">
+              <svg class="mark" viewBox="0 0 120 120" role="img" aria-label="Boceto de monograma M dentro de un cuadro">
+                <rect x="8" y="8" width="104" height="104" rx="4" fill="none" stroke="currentColor" stroke-width="3"/>
+                <polyline points="37,87 37,39 60,63 83,39 83,87" fill="none" stroke="currentColor" stroke-width="11" stroke-linejoin="miter" stroke-linecap="square"/>
+                <rect x="8" y="8" width="17" height="17" fill="#ef4a30"/>
+              </svg>
+              <div class="wordmark">MODULARTE</div>
+              <div class="tag">Construcción modular</div>
+            </div>
+          </div>
+          <div class="col">
+            <span class="role">Paleta propuesta</span>
+            <div class="swatches" style="margin-top:8px">
+              <div class="chip"><span class="sw" style="background:#16181a"></span><small>#16181A</small></div>
+              <div class="chip"><span class="sw" style="background:#22262b"></span><small>#22262B</small></div>
+              <div class="chip"><span class="sw" style="background:#5b6570"></span><small>#5B6570</small></div>
+              <div class="chip"><span class="sw" style="background:#f4f2ef"></span><small>#F4F2EF</small></div>
+              <div class="chip"><span class="sw" style="background:#c61f0a"></span><small>#C61F0A</small></div>
+            </div>
+            <div class="type-sample">Aa Bb Cc 123</div>
+            <div class="kv"><span class="lbl">Logo</span> La “M” como <b>monograma geométrico dentro de un cuadro</b> (idea del tablero de Jos), con un acento rojo. Funciona sola y junto al nombre.</div>
+            <div class="kv" style="margin-top:10px"><span class="lbl">Tipografía</span> Un solo sistema: titulares geométricos fuertes + texto legible.</div>
+            <div class="kv" style="margin-top:10px"><span class="lbl">Base</span> Grafito / acero / blanco, con el <b>rojo #C61F0A como acento</b> (no plano).</div>
+            <p class="note" style="margin-top:10px"><b>Fotografía:</b> proyecto real con tratamiento consistente (nivel Honomobo). El rojo nos distingue del naranja que usan otros como Kuatro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
