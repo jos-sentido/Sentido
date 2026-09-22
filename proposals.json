@@ -48,19 +48,19 @@
         {
           "id": "activacion",
           "nombre": "Fee de desarrollo / Activación InfoNews (Capa 1)",
-          "precio": 120000,
+          "precio": 30000,
           "tipo": "unico"
         },
         {
-          "id": "iguala",
-          "nombre": "Iguala mensual InfoNews (Capa 2) + infra a costo",
-          "precio": 20000,
-          "tipo": "mensual"
+          "id": "sociedad",
+          "nombre": "Sociedad 50/50 InfoNews (Capa 2) — reparto del neto",
+          "precio": 0,
+          "tipo": "variable"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Propuesta socio-a-socio para Juan (dueno de El Informador, Guadalajara). Producto de software InfoNews (newsletter personalizado + Hub de first-party data) YA en produccion, demo en vivo: infonews-smoky.vercel.app. No es servicio de agencia: es activacion de producto + sociedad comercial. Estructura de 3 capas: Capa 1 activacion $120k unico (50/50 por hitos); Capa 2 iguala $20k/mes + infra passthrough a costo; Capa 3 comision de socio 10-20% del ingreso neto (a cerrar, con piso de arranque y revision a 12 meses). Foto ano 1: $360,000 + IVA + infra (comision = upside aparte). Cierre por WhatsApp de Jos (no formulario). Visual dark theme El Informador (naranja #F36F21, azul #3B9FE8).",
-      "proximoPaso": "Esperando que Juan revise y agende platica para cerrar % de Capa 3 y arranque",
+      "notas": "Propuesta socio-a-socio para Juan (dueno de El Informador, Guadalajara). Producto de software InfoNews (newsletter personalizado + Hub de first-party data) YA en produccion, demo en vivo: infonews-smoky.vercel.app. No es servicio de agencia: es activacion de producto + sociedad comercial. Estructura de 2 capas: Capa 1 fee de desarrollo $30k unico (50/50 por hitos: 50% arranque, 50% go-live); Capa 2 sociedad 50/50 (50% Sentido / 50% El Informador) sobre TODO lo que genere InfoNews — publicidad vendida dentro del newsletter y publicidad sobre el trafico derivado hacia informador.mx, mas venta de segmentos/datos first-party. Reparto sobre el neto = ingreso menos costo directo de medios e infra (Anthropic, Supabase, Vercel, envio de correo, a costo). ELIMINADOS por acuerdo via WhatsApp: iguala mensual y fee de gestion. 50/50 ya cerrado con Juan (Arreee cerrado). Pendiente lateral: encontrar nombre de producto mejor que 'newsletter' (Jos pasa ideas). Cierre por WhatsApp de Jos (no formulario). Visual dark theme El Informador (naranja #F36F21, azul #3B9FE8).",
+      "proximoPaso": "50/50 cerrado por WhatsApp. Siguiente: arranque del desarrollo (fee $30k por hitos) y definir nombre de producto",
       "fechaSeguimiento": null,
       "bitacora": []
     },
