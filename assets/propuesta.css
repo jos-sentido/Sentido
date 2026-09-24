@@ -41,15 +41,18 @@
    Sin ellas, todo cae al hueso y la caja usa el default del sistema, que
    se invierte solo con la superficie. */
 :root {
-  --acento:        var(--marca, var(--hueso));   /* marca puntual: rombo lleno, subrayado, total */
+  --acento:        var(--marca, var(--hueso));   /* TEXTO de color: subrayado, total, rótulos */
   --acento-trazo:  var(--marca, var(--hueso));   /* color del buril atmosférico */
+  --acento-fill:   var(--marca, var(--hueso));   /* RELLENOS sólidos: rombo, pleca, chip */
 }
 
-/* Sobre papel, las marcas de acento se AHONDAN para contrastar con el crema;
-   sin --marca caen a hueso y el color-mix las lleva a tinta (correcto). */
+/* Sobre papel solo se ahonda el TEXTO de color, lo justo para leerse sobre el
+   crema — sigue siendo el coral de la marca, no un café. Los RELLENOS (rombo,
+   pleca, caja) se quedan vívidos: el color del prospecto aparece en las dos
+   superficies. Sin --marca, el color-mix cae a tinta, que es lo correcto. */
 .papel {
-  --acento:        color-mix(in srgb, var(--marca, var(--hueso)) 66%, #0A0A0A);
-  --acento-trazo:  color-mix(in srgb, var(--marca, var(--hueso)) 66%, #0A0A0A);
+  --acento:        color-mix(in srgb, var(--marca, var(--hueso)) 80%, #0A0A0A);
+  --acento-trazo:  color-mix(in srgb, var(--marca, var(--hueso)) 80%, #0A0A0A);
 }
 
 /* La caja lleva el color de la marca "puesto" sobre el sistema. Con --marca
@@ -64,9 +67,9 @@
 .cierre .buril,
 .pie .buril { --trazo: var(--acento-trazo); }
 
-/* Marcas puntuales de acento */
-.pleca { background: repeating-linear-gradient(90deg, var(--acento) 0 2px, transparent 2px 6px); }
-.rombo--lleno { background: var(--acento); border-color: var(--acento); }
+/* Marcas puntuales de acento — los rellenos usan el color vívido en ambas superficies */
+.pleca { background: repeating-linear-gradient(90deg, var(--acento-fill) 0 2px, transparent 2px 6px); }
+.rombo--lleno { background: var(--acento-fill); border-color: var(--acento-fill); }
 .enlace { border-bottom-color: color-mix(in srgb, var(--acento) 60%, transparent); }
 .enlace:hover { border-bottom-color: var(--acento); }
 
@@ -90,7 +93,7 @@
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px;
 }
 .sub-pauta .rotulo { color: var(--acento); display: inline-flex; align-items: center; gap: 9px; }
-.sub-pauta .rotulo::before { content: ''; width: 6px; height: 6px; background: var(--acento); transform: rotate(45deg); flex: 0 0 auto; }
+.sub-pauta .rotulo::before { content: ''; width: 6px; height: 6px; background: var(--acento-fill); transform: rotate(45deg); flex: 0 0 auto; }
 .sub-pauta p { font-size: 0.875rem; color: var(--hueso-3); margin: 0; }
 
 /* ─────────────────── COTIZACIÓN — plancha grabada por fases ───────────────────
