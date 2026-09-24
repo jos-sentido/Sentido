@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+  PLANTILLA DE PROPUESTA — sobre el sistema visual oficial de Sentido.
+  Duplica esta carpeta a /propuestas/[prospecto-kebab-case]/ y adapta el CONTENIDO.
+  Lo ÚNICO visual que cambias es el color en :root (--marca). Bórralo = 100% Sentido.
+  Clases del sistema: /sitio/assets/sentido.css · Cotización/color: /assets/propuesta.css
+  Ejemplo completo lleno: /propuestas/rootsy/index.html
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · [PROSPECTO]</title>
+<meta name="description" content="[Descripción de la propuesta para SEO/redes]" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  /* — ÚNICO bloque que cambia por prospecto. Borra ambas líneas = 100% Sentido. — */
+  :root {
+    --marca:     #E1523E;   /* color de la marca del prospecto (un solo acento) */
+    --marca-ink: #0A0A0A;   /* texto sobre la caja de marca */
+  }
+
+  .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
+  @media (min-width: 768px) { .hero-logo { height: 60px; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <a class="boton" href="#contacto">Agendar diagnóstico <span class="fl">→</span></a>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA — logo Sentido sobre el H1, titular de dos pesos, caja de marca ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    <h1><span class="ligera">[Gancho ligero del prospecto.]</span><br>
+      [Segunda mitad negra con una <span class="alta">palabra</span> en la caja de marca.]</h1>
+    <p class="sub">[Subtítulo: el diagnóstico en una o dos frases.]</p>
+    <div class="acciones">
+      <a class="boton" href="#contacto">Agendar diagnóstico <span class="fl">→</span></a>
+      <a class="enlace" href="#servicios">Ver el plan</a>
+    </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">[Prospecto]</span></div>
+      <div><span class="rotulo">Por</span><span class="val">Sentido · Branding & Advertising</span></div>
+      <div><span class="rotulo">Vigencia</span><span class="val">30 días</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ DECLARACIÓN — una frase grande en Archivo ligera ══════════ -->
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>[Frase contundente del ángulo.] <span class="tenue">[matiz apagado que la completa.]</span></p>
+  </div>
+</section>
+
+<!-- ══════════ CONTEXTO — ISLA DE PAPEL (la realidad del prospecto, a la luz) ══════════ -->
+<section class="seccion papel" id="contexto">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>[Encabezado del contexto.]</h2>
+    </div>
+    <!-- Contenido del contexto / hallazgos. Sin tarjetas: texto, listas .lista, columnas .cols-2. -->
+  </div>
+</section>
+
+<!-- ══════════ SERVICIOS — plancha grabada, la pauta va DENTRO del servicio que la opera ══════════ -->
+<section class="seccion seccion--regla" id="servicios">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El plan, por capas.</h2>
+      <p>[Bajada del plan.]</p>
+    </div>
+    <div class="plancha">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 01</span><h3>[Servicio]</h3></div>
+        <div>
+          <p>[Qué resuelve.]</p>
+          <!-- Pauta adyacente: sub-fila DENTRO del servicio operador, monto directo a plataforma -->
+          <div class="sub-pauta">
+            <span class="rotulo">+ Pauta Meta</span>
+            <p>Gestión incluida · inversión directa a la plataforma, aparte</p>
+          </div>
+        </div>
+        <div class="ver">[Etiqueta]</div>
+      </article>
+      <!-- Repite .renglon por servicio (4–6 típico). Google Ads → sub-pauta "+ Pauta Google". -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ INVERSIÓN — ISLA DE PAPEL (los números, en claro) ══════════ -->
+<section class="seccion papel" id="inversion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Inversión, por fases.</h2>
+      <p>[Bajada: la pauta va aparte, directa a la plataforma.]</p>
+    </div>
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Fase</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Gestión</span>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Fase">Fase 1<span class="fnota">[Etapa]</span></div>
+        <p class="tcol" data-l="Qué incluye">[Qué incluye.]</p>
+        <div class="tprecio tcol" data-l="Gestión">$[0,000]<span class="tper">MXN / mes</span></div>
+      </div>
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Fase">Integral</div>
+        <p class="tcol" data-l="Qué incluye">[Todo operando como un sistema.]</p>
+        <div class="tprecio tcol" data-l="Gestión">$[00,000]<span class="tper">MXN / mes</span></div>
+      </div>
+    </div>
+    <p class="tnota">Cifras de gestión. La inversión publicitaria se paga directo a cada plataforma. IVA / producción según aplique.</p>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE + FORMULARIO (o CTA WhatsApp según el eje Cierre/Contacto) ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>[Cierre — nunca "Respondamos". Usa "Contactemos"/"Conversemos".]</h2>
+      <p>[Invitación al diagnóstico.]</p>
+      <form class="forma" style="margin-top:32px" action="/api/lead" method="POST">
+        <input type="hidden" name="Propuesta" value="[slug]" />
+        <div class="rej-forma">
+          <div class="campo"><label class="etiq" for="nombre">Nombre <span class="req">*</span></label><input class="ent" id="nombre" name="nombre" type="text" required /></div>
+          <div class="campo"><label class="etiq" for="empresa">Marca</label><input class="ent" id="empresa" name="empresa" type="text" /></div>
+          <div class="campo"><label class="etiq" for="correo">Correo <span class="req">*</span></label><input class="ent" id="correo" name="correo" type="email" required /></div>
+          <div class="campo"><label class="etiq" for="tel">WhatsApp</label><input class="ent" id="tel" name="telefono" type="tel" /></div>
+          <div class="campo ancho"><label class="etiq" for="msg">¿Por dónde quieres empezar?</label><textarea class="area" id="msg" name="mensaje"></textarea></div>
+        </div>
+        <div class="pie-forma">
+          <p class="chico apagado">O escríbenos directo por <a class="enlace-txt" href="https://wa.me/5213331672223">WhatsApp</a>.</p>
+          <button class="boton" type="submit">Enviar <span class="fl">→</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PIE — logo completo 132px, idéntico al sitio ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema — para que cada peso invertido produzca ventas y clientes que regresan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Propuesta</span>
+        <ul><li><a href="#contexto">Contexto</a></li><li><a href="#servicios">El plan</a></li><li><a href="#inversion">Inversión</a></li></ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul><li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li><li><a href="https://wa.me/5213331672223">WhatsApp</a></li></ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Sentido</span>
+        <ul><li><a href="/sitio">Sitio</a></li></ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
