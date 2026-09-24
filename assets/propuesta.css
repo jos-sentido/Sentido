@@ -35,16 +35,27 @@
    chip, la caja). Nunca como color de cuerpo de texto ni como fondo de
    página. Si el color de marca no alcanza 4.5:1 donde lleve texto, se
    deriva un tinte legible: el fondo se queda neutro, la tinta manda.       */
+/* API por prospecto — DOS líneas, ambas juntas o ninguna:
+       --marca:     color de la marca del prospecto
+       --marca-ink: texto legible sobre la caja de marca (casi siempre #0A0A0A)
+   Sin ellas, todo cae al hueso y la caja usa el default del sistema, que
+   se invierte solo con la superficie. */
 :root {
-  --acento:        var(--hueso);   /* marca puntual: rombo lleno, subrayado, chip, total */
-  --acento-trazo:  var(--hueso);   /* color del buril atmosférico (hero, declara, cierre, pie) */
-  --acento-alta:   var(--hueso);   /* fondo de la caja hueso .alta */
-  --acento-texto:  var(--tinta);   /* texto sobre acento sólido (caja, chip) */
+  --acento:        var(--marca, var(--hueso));   /* marca puntual: rombo lleno, subrayado, total */
+  --acento-trazo:  var(--marca, var(--hueso));   /* color del buril atmosférico */
 }
 
-/* La caja hueso lleva el color del cliente — es el marcador de la marca
-   Sentido "puesto" en la paleta del prospecto. Sin referencia queda hueso. */
-.alta { background: var(--acento-alta); color: var(--acento-texto); }
+/* Sobre papel, las marcas de acento se AHONDAN para contrastar con el crema;
+   sin --marca caen a hueso y el color-mix las lleva a tinta (correcto). */
+.papel {
+  --acento:        color-mix(in srgb, var(--marca, var(--hueso)) 66%, #0A0A0A);
+  --acento-trazo:  color-mix(in srgb, var(--marca, var(--hueso)) 66%, #0A0A0A);
+}
+
+/* La caja lleva el color de la marca "puesto" sobre el sistema. Con --marca
+   el fondo y el texto son fijos (legibles en cualquier superficie); sin
+   --marca cae al par hueso/tinta del sistema, que se invierte con el papel. */
+.alta { background: var(--marca, var(--hueso)); color: var(--marca-ink, var(--tinta)); }
 
 /* El buril atmosférico se tinta con el acento. Baja opacidad: el campo
    sigue leyéndose neutro, el color solo "respira" en el grabado. */
