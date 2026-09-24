@@ -1,6 +1,44 @@
 {
   "proposals": [
     {
+      "slug": "rootsy",
+      "tipo": "propuesta",
+      "cliente": "Rootsy",
+      "fecha": "2026-09-24",
+      "estatus": "enviada",
+      "serviciosDisponibles": [
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes — Instagram (Meta Ads incluido)",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "tiktok",
+          "nombre": "Add-on TikTok",
+          "precio": 2500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión de Google Ads",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM + Automatización + Reputación",
+          "precio": 4000,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "DTC cuidado personal en stick (bloqueador SPF+50 NOM + desodorante natural). Contacto previo con el prospecto: dolores = faltan seguidores + subir ventas. Producto validado (reseñas fuertes), tienda activa en rootsy.mx, comunidad IG ~2,363. Plan recomendado: embudo integral por fases ($18,000/mes gestión, pauta aparte). Cierre con formulario + WhatsApp.",
+      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "workspace-modular-gdl",
       "tipo": "comercial",
       "cliente": "Interno · Workspace modular (Sentido × Modularte)",
