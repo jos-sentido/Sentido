@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SENTIDO · Capa de PROPUESTA
+   ─────────────────────────────────────────────────────────────────────
+   Se enlaza SIEMPRE encima del sistema, en este orden:
+
+       <link rel="stylesheet" href="/sitio/assets/fonts.css" />
+       <link rel="stylesheet" href="/sitio/assets/sentido.css" />
+       <link rel="stylesheet" href="/assets/propuesta.css" />
+
+   Trae dos cosas, y solo dos:
+     1. EL EJE DE COLOR — un único token de acento que se adapta a la marca
+        del prospecto. Es lo ÚNICO que cambia de una propuesta a otra.
+     2. Componentes propios de propuesta (cotización, fases, meta) escritos
+        en el idioma del sistema: filas grabadas con regla, nunca tarjetas.
+
+   El sistema base es monocromo a propósito: tinta neutra + hueso cálido,
+   sin acento. Esta capa introduce el color del cliente por UN solo punto,
+   sin tocar la neutralidad de la tinta ni las rampas de contraste del hueso.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────── EL EJE DE COLOR ───────────────────
+   Sin referencia del cliente: no se define nada aquí y la propuesta queda
+   100% Sentido (el acento cae en hueso). Con referencia: se sobreescriben
+   ESTOS tokens —y solo estos— en el <style> de la propuesta:
+
+       :root {
+         --acento:       #E1523E;   // color de la marca (marcas puntuales)
+         --acento-trazo: #E1523E;   // tinte del buril atmosférico
+         --acento-alta:  #E1523E;   // fondo de la caja hueso .alta
+         --acento-texto: #0A0A0A;   // texto sobre acento sólido
+       }
+
+   Regla de legibilidad: el acento entra como MATERIAL (líneas de buril a
+   baja opacidad) y como MARCA PUNTUAL (relleno de rombo, subrayado, un
+   chip, la caja). Nunca como color de cuerpo de texto ni como fondo de
+   página. Si el color de marca no alcanza 4.5:1 donde lleve texto, se
+   deriva un tinte legible: el fondo se queda neutro, la tinta manda.       */
+:root {
+  --acento:        var(--hueso);   /* marca puntual: rombo lleno, subrayado, chip, total */
+  --acento-trazo:  var(--hueso);   /* color del buril atmosférico (hero, declara, cierre, pie) */
+  --acento-alta:   var(--hueso);   /* fondo de la caja hueso .alta */
+  --acento-texto:  var(--tinta);   /* texto sobre acento sólido (caja, chip) */
+}
+
+/* La caja hueso lleva el color del cliente — es el marcador de la marca
+   Sentido "puesto" en la paleta del prospecto. Sin referencia queda hueso. */
+.alta { background: var(--acento-alta); color: var(--acento-texto); }
+
+/* El buril atmosférico se tinta con el acento. Baja opacidad: el campo
+   sigue leyéndose neutro, el color solo "respira" en el grabado. */
+.portada > .buril,
+.declara .buril,
+.cierre .buril,
+.pie .buril { --trazo: var(--acento-trazo); }
+
+/* Marcas puntuales de acento */
+.pleca { background: repeating-linear-gradient(90deg, var(--acento) 0 2px, transparent 2px 6px); }
+.rombo--lleno { background: var(--acento); border-color: var(--acento); }
+.enlace { border-bottom-color: color-mix(in srgb, var(--acento) 60%, transparent); }
+.enlace:hover { border-bottom-color: var(--acento); }
+
+/* ─────────────────── META DEL ENCABEZADO ───────────────────
+   Preparado por · Para · Vigencia. Tres campos bajo el hero, con regla. */
+.meta {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 44px);
+  margin-top: clamp(40px, 5vw, 60px);
+  padding-top: 28px; border-top: 1px solid var(--linea);
+}
+.meta .rotulo { display: block; margin-bottom: 9px; }
+.meta .val { font-size: 1rem; color: var(--hueso); font-weight: var(--fuerte); }
+@media (max-width: 640px) { .meta { grid-template-columns: 1fr 1fr; } }
+
+/* ─────────────────── SERVICIOS ───────────────────
+   Reusa .plancha / .renglon del sistema. La pauta va como sub-fila del
+   servicio operador, nunca como bloque suelto. */
+.sub-pauta {
+  margin-top: 16px; padding-top: 15px; border-top: 1px dashed var(--linea-2);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px;
+}
+.sub-pauta .rotulo { color: var(--acento); display: inline-flex; align-items: center; gap: 9px; }
+.sub-pauta .rotulo::before { content: ''; width: 6px; height: 6px; background: var(--acento); transform: rotate(45deg); flex: 0 0 auto; }
+.sub-pauta p { font-size: 0.875rem; color: var(--hueso-3); margin: 0; }
+
+/* ─────────────────── COTIZACIÓN — plancha grabada por fases ───────────────────
+   Idioma .renglon: tres columnas, regla, buril que sube al hover. Sin tarjetas. */
+.tabla { border-top: 1px solid var(--linea); margin-top: clamp(34px, 4vw, 48px); }
+.tfila {
+  display: grid; grid-template-columns: 172px minmax(0, 1.25fr) minmax(0, 0.85fr);
+  gap: clamp(18px, 3vw, 44px); align-items: baseline;
+  padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--linea);
+  position: relative; overflow: hidden;
+}
+.tfila .buril { --ang: 90deg; --paso: 4px; --tono: 0; --trazo: var(--acento-trazo); transition: opacity 0.45s var(--ease); }
+.tfila:hover .buril { --tono: 0.10; }
+.tfila > * { position: relative; }
+/* El buril es material, jamás celda de grid: gana a `.tfila > *`. */
+.tfila > .buril { position: absolute; }
+.tfila.cab { padding: 0 0 15px; }
+.tfase { font-weight: var(--negra); color: var(--hueso); font-size: 1.0625rem; letter-spacing: -0.02em; }
+.tfase .fnota { display: block; font-weight: var(--fuerte); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hueso-4); margin-top: 7px; }
+.tfila p { font-size: 0.9375rem; line-height: 1.62; color: var(--hueso-2); max-width: none; margin: 0; }
+.tprecio { font-weight: var(--negra); color: var(--hueso); font-size: 1.125rem; letter-spacing: -0.02em; text-align: right; }
+.tprecio .tper { display: block; font-weight: var(--fuerte); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hueso-4); margin-top: 6px; }
+.tfila.total { border-bottom: none; }
+.tfila.total .tfase, .tfila.total .tprecio { color: var(--acento); }
+.tnota { font-size: 0.875rem; color: var(--hueso-3); margin-top: 18px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .tfila { grid-template-columns: 1fr; gap: 10px; }
+  .tfila.cab { display: none; }
+  .tprecio { text-align: left; }
+  .tcol::before { content: attr(data-l); display: block; font-weight: 700; font-size: 0.625rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hueso-4); margin-bottom: 6px; }
+}

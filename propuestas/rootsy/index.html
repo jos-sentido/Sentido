@@ -4,922 +4,253 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Propuesta · Rootsy</title>
-<meta name="description" content="Propuesta estratégica de Sentido para Rootsy — convertir un producto validado en una comunidad que crece y una máquina de venta con recompra." />
-<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
-<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
-<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Propuesta estratégica de Sentido para Rootsy — conectar el embudo completo: de comunidad a venta con recompra." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
 <style>
+  /* — El único bloque que cambia por prospecto: el color de la marca.
+       Rootsy = coral #E1523E. — */
   :root {
-    --bg: #FBF6F1;
-    --surface: #F4EAE1;
-    --surface-elevated: #EEDFD2;
-    --border: #E6D5C4;
-    --border-strong: #D8C1A9;
-    --accent: #E1523E;
-    --accent-deep: #B23A2A;
-    --accent-soft: #F0A392;
-    --accent-tint: #FBE4DC;
-    --leaf: #4E7B3E;
-    --leaf-tint: #E7F1DE;
-    --ink: #241813;
-    --ink-soft: #4A382F;
-    --ink-muted: #7C6A5E;
-    --ink-whisper: #A89685;
-    --espresso: #2A160E;
-    --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --acento:       #E1523E;
+    --acento-trazo: #E1523E;
+    --acento-alta:  #E1523E;
+    --acento-texto: #0A0A0A;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background-color: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-weight: 400;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-  ::selection { background: var(--accent); color: #fff; }
+  .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
+  @media (min-width: 768px) { .hero-logo { height: 60px; } }
 
-  /* Reveal animations */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-d1 { transition-delay: 0.08s; }
-  .reveal-d2 { transition-delay: 0.16s; }
-  .reveal-d3 { transition-delay: 0.24s; }
-  .reveal-d4 { transition-delay: 0.32s; }
-  .reveal-d5 { transition-delay: 0.40s; }
-
-  /* Nav */
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(251, 246, 241, 0.88);
-    backdrop-filter: saturate(150%) blur(14px);
-    -webkit-backdrop-filter: saturate(150%) blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease, background 0.3s ease;
-  }
-  .nav.scrolled { border-bottom-color: var(--border); }
-  .nav-inner {
-    max-width: 80rem; margin: 0 auto;
-    padding: 0.75rem 1.25rem;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 1rem;
-  }
-  @media (min-width: 640px) { .nav-inner { padding: 0.9rem 1.5rem; } }
-  .nav-logo { display: flex; align-items: center; gap: 0.625rem; min-width: 0; }
-  .nav-logo img { height: 26px; display: block; opacity: 1; flex-shrink: 0; }
-  @media (min-width: 640px) { .nav-logo img { height: 30px; } }
-  .nav-logo .divider { width: 1px; height: 18px; background: var(--border-strong); flex-shrink: 0; }
-  .nav-logo .label {
-    font-family: var(--font-display);
-    font-size: 13px; font-style: italic; color: var(--ink-soft);
-    letter-spacing: 0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  @media (min-width: 640px) { .nav-logo .label { font-size: 15px; } }
-  @media (max-width: 430px) { .nav-logo .divider, .nav-logo .label { display: none; } }
-  .nav-links { display: none; gap: 2rem; }
-  @media (min-width: 940px) { .nav-links { display: flex; } }
-  .nav-links a {
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-muted); text-decoration: none; transition: color 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--accent-deep); }
-  .nav-cta {
-    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: #fff; background: var(--accent); text-decoration: none; font-weight: 600;
-    white-space: nowrap; flex-shrink: 0; padding: 0.5rem 0.9rem; border-radius: 999px;
-    transition: background 0.2s ease;
-  }
-  .nav-cta:hover { background: var(--accent-deep); }
-  @media (min-width: 640px) { .nav-cta { font-size: 12px; letter-spacing: 0.14em; } }
-
-  /* Section */
-  .section { width: 100%; padding: 4.5rem 1.25rem; position: relative; }
-  @media (min-width: 640px) { .section { padding: 5.5rem 1.5rem; } }
-  @media (min-width: 768px) { .section { padding: 8rem 3rem; } }
-  @media (min-width: 1024px) { .section { padding: 9rem 5rem; } }
-  .section-inner { max-width: 72rem; margin: 0 auto; }
-  .section-surface { background-color: var(--surface); }
-  .section-elevated { background-color: var(--surface-elevated); }
-
-  .section-label {
-    display: inline-flex; align-items: center; gap: 0.875rem;
-    margin-bottom: 2rem; color: var(--accent-deep);
-  }
-  .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .section-label .divider { height: 1px; width: 2.5rem; background-color: var(--accent); opacity: 0.55; }
-  .section-label span { font-size: 11px; letter-spacing: 0.28em; font-weight: 600; text-transform: uppercase; }
-
-  /* Typography */
-  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; color: var(--ink); line-height: 1.08; }
-  .h-xl { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.02em; }
-  .h-lg { font-size: clamp(2rem, 4.5vw, 3.25rem); }
-  .h-md { font-size: clamp(1.5rem, 3vw, 2.125rem); }
-  .h-sm { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.2; }
-  .italic-accent { font-style: italic; color: var(--accent-deep); }
-
-  .p { font-size: 17px; line-height: 1.75; font-weight: 400; color: var(--ink-soft); }
-  .p.lg { font-size: 19px; line-height: 1.7; }
-  .p.muted { color: var(--ink-muted); }
-  .p.sm { font-size: 14px; line-height: 1.65; }
-  .p + .p { margin-top: 1.25rem; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; align-items: center;
-    padding: 7rem 1.25rem 4rem; position: relative; overflow: hidden;
-  }
-  @media (min-width: 640px) { .hero { padding: 8rem 1.5rem 5rem; } }
-  @media (min-width: 768px) { .hero { padding: 10rem 3rem 6rem; } }
-  @media (min-width: 1024px) { .hero { padding: 10rem 5rem 6rem; } }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(55% 50% at 82% 18%, rgba(225, 82, 62, 0.14), transparent 70%),
-      radial-gradient(50% 55% at 8% 88%, rgba(78, 123, 62, 0.12), transparent 72%);
-    pointer-events: none;
-  }
-  .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
-  .hero-logo-sentido {
-    height: 52px; width: auto; display: block; margin-bottom: 3rem; opacity: 0.9;
-  }
-  @media (min-width: 768px) { .hero-logo-sentido { height: 60px; margin-bottom: 4.5rem; } }
-  .hero-meta {
-    display: flex; align-items: center; gap: 0.75rem;
-    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--accent-deep); font-weight: 600; margin-bottom: 2rem; flex-wrap: wrap;
-  }
-  @media (min-width: 640px) { .hero-meta { gap: 0.875rem; font-size: 11px; letter-spacing: 0.28em; margin-bottom: 2.5rem; } }
-  .hero-meta .divider { height: 1px; width: 2rem; background: var(--accent); opacity: 0.55; }
-  @media (min-width: 640px) { .hero-meta .divider { width: 2.5rem; } }
-  .hero-brand {
-    font-family: var(--font-display); font-size: clamp(3.25rem, 10vw, 7rem);
-    font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.25rem;
-  }
-  .hero-brand .dot { color: var(--accent); }
-  .hero-subtitle {
-    font-family: var(--font-display); font-size: clamp(1.3rem, 2.6vw, 1.9rem);
-    font-style: italic; color: var(--ink-soft); max-width: 50rem; margin-bottom: 3rem; line-height: 1.35;
-  }
-  .hero-subtitle em { color: var(--accent-deep); font-style: italic; }
-  .hero-details {
-    display: grid; grid-template-columns: 1fr; gap: 2rem;
-    padding-top: 2.5rem; border-top: 1px solid var(--border); max-width: 48rem;
-  }
-  @media (min-width: 640px) { .hero-details { grid-template-columns: repeat(3, 1fr); } }
-  .hero-detail .label { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-whisper); margin-bottom: 0.5rem; }
-  .hero-detail .value { font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); }
-
-  /* Lede */
-  .lede { font-family: var(--font-display); font-size: clamp(1.75rem, 3.4vw, 2.5rem); line-height: 1.25; color: var(--ink); font-weight: 400; max-width: 54rem; }
-  .lede em { font-style: italic; color: var(--accent-deep); }
-
-  /* Findings grid */
-  .findings { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
-  @media (min-width: 768px) { .findings { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
-  .finding { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem 1.25rem; transition: border-color 0.3s ease, transform 0.3s ease; }
-  @media (min-width: 640px) { .finding { padding: 2rem; } }
-  .finding:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
-  .finding .num { font-family: var(--font-display); font-size: 14px; font-style: italic; color: var(--accent-deep); margin-bottom: 1rem; letter-spacing: 0.05em; }
-  .finding h4 { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); margin-bottom: 0.75rem; letter-spacing: -0.005em; }
-  .finding p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
-  .finding .signal { display:inline-block; margin-top: 1rem; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
-  .signal.up { color: var(--leaf); }
-  .signal.gap { color: var(--accent-deep); }
-
-  /* Pillars */
-  .pillars { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3.5rem; }
-  @media (min-width: 768px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
-  .pillar { padding-top: 1.75rem; border-top: 2px solid var(--accent); }
-  .pillar .num { font-family: var(--font-display); font-style: italic; font-size: 13px; color: var(--accent-deep); letter-spacing: 0.15em; margin-bottom: 1rem; }
-  .pillar h4 { font-family: var(--font-display); font-size: 1.375rem; color: var(--ink); margin-bottom: 0.875rem; }
-  .pillar p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
-
-  /* Services */
-  .services { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
-  .service { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.75rem 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem; transition: border-color 0.3s ease; }
-  @media (min-width: 640px) { .service { padding: 2.25rem; gap: 1.5rem; } }
-  .service:hover { border-color: var(--accent-soft); }
-  @media (min-width: 768px) { .service { grid-template-columns: 190px 1fr; padding: 2.5rem; gap: 2.5rem; } }
-  .service-head { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; padding-top: 0.5rem; }
-  .service-head .num { display: block; font-size: 2.5rem; font-style: italic; font-weight: 400; color: var(--ink); margin-bottom: 0.25rem; letter-spacing: -0.02em; }
-  .service-body h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--ink); margin-bottom: 0.875rem; line-height: 1.15; }
-  .service-body > p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; margin-bottom: 1.5rem; }
-  .service-body ul { list-style: none; padding: 0; display: grid; gap: 0.625rem; }
-  .service-body ul li { position: relative; padding-left: 1.5rem; font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
-  .service-body ul li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .chip-included { display:inline-block; margin-top:1.25rem; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color: var(--leaf); background: var(--leaf-tint); border-radius: 999px; padding: 0.35rem 0.8rem; }
-
-  /* Inversión */
-  .invest-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem 1.5rem; margin-top: 3rem; }
-  @media (min-width: 640px) { .invest-card { padding: 2.5rem; } }
-  @media (min-width: 768px) { .invest-card { padding: 3.5rem; } }
-  .invest-card.featured { border-color: var(--accent); position: relative; background: linear-gradient(180deg, var(--bg) 0%, var(--accent-tint) 100%); }
-  .invest-card.featured::before { content: 'Fase 1 · Arranque'; position: absolute; top: -14px; left: 1.25rem; background: var(--accent-deep); color: #fff; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.35rem 0.875rem; border-radius: 999px; font-weight: 600; }
-  @media (min-width: 640px) { .invest-card.featured::before { left: 2rem; } }
-  .invest-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
-  @media (min-width: 640px) { .invest-head { gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; } }
-  .invest-head h3 { font-family: var(--font-display); font-size: 1.45rem; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.2; }
-  @media (min-width: 640px) { .invest-head h3 { font-size: 1.75rem; } }
-  .invest-head .sub { font-size: 14px; color: var(--ink-muted); max-width: 30rem; line-height: 1.55; }
-  .invest-price { text-align: left; min-width: 0; }
-  @media (min-width: 640px) { .invest-price { text-align: right; min-width: 160px; } }
-  .invest-price .amount { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); color: var(--ink); font-weight: 400; line-height: 1; letter-spacing: -0.01em; }
-  .invest-price .cycle { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); margin-top: 0.5rem; font-weight: 600; }
-  .invest-price .iva { font-size: 11px; color: var(--ink-whisper); margin-top: 0.25rem; letter-spacing: 0.1em; }
-  .invest-items { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-  .invest-item { display: flex; justify-content: space-between; align-items: baseline; padding: 0.875rem 0; border-bottom: 1px dashed var(--border); gap: 1rem; flex-wrap: wrap; }
-  @media (min-width: 640px) { .invest-item { gap: 1.5rem; flex-wrap: nowrap; } }
-  .invest-item:last-child { border-bottom: none; }
-  .invest-item .desc { font-size: 15px; color: var(--ink); }
-  .invest-item .desc small { display: block; color: var(--ink-muted); font-size: 13px; margin-top: 0.15rem; }
-  .invest-item .val { font-family: var(--font-display); font-size: 1rem; color: var(--ink); font-weight: 500; white-space: nowrap; }
-  .invest-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--ink-muted); line-height: 1.65; }
-  .invest-footer strong { color: var(--ink); font-weight: 500; }
-
-  /* Pauta sub-block */
-  .invest-addon { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px dashed var(--border); display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
-  @media (min-width: 640px) { .invest-addon { grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; margin-top: 2rem; padding-top: 1.75rem; } }
-  .invest-addon .addon-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin-bottom: 0.5rem; }
-  .invest-addon .addon-title { font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); line-height: 1.25; margin-bottom: 0.4rem; }
-  .invest-addon .addon-copy { font-size: 13.5px; color: var(--ink-muted); line-height: 1.6; max-width: 34rem; }
-  .invest-addon .addon-copy strong { color: var(--ink); font-weight: 500; }
-  .invest-addon .addon-price { text-align: left; display: flex; flex-direction: column; gap: 0.15rem; }
-  @media (min-width: 640px) { .invest-addon .addon-price { text-align: right; align-items: flex-end; } }
-  .invest-addon .addon-price .amount { font-family: var(--font-display); font-size: 1.4rem; color: var(--ink); line-height: 1; letter-spacing: -0.01em; }
-  .invest-addon .addon-price .cycle { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin-top: 0.4rem; }
-  .invest-addon .addon-price .iva { font-size: 10px; color: var(--ink-whisper); letter-spacing: 0.1em; }
-
-  /* Integral banner */
-  .integral { margin-top: 2rem; background: var(--espresso); color: #F7EFE6; border-radius: 8px; padding: 1.75rem 1.5rem; display:flex; justify-content: space-between; align-items:center; gap:1.5rem; flex-wrap: wrap; }
-  @media (min-width: 640px) { .integral { padding: 2.25rem 2.5rem; } }
-  .integral .txt { max-width: 40rem; }
-  .integral .txt .k { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-soft); font-weight: 600; margin-bottom: 0.6rem; }
-  .integral .txt h4 { font-family: var(--font-display); color: #F7EFE6; font-size: 1.4rem; margin-bottom: 0.5rem; }
-  .integral .txt p { font-size: 13.5px; color: #D9C7BA; line-height: 1.6; }
-  .integral .amt { text-align: left; }
-  @media (min-width: 640px) { .integral .amt { text-align: right; } }
-  .integral .amt .amount { font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 2.5rem); color: #fff; line-height: 1; }
-  .integral .amt .cycle { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-soft); margin-top: 0.5rem; font-weight: 600; }
-
-  /* Optionals */
-  .optional-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
-  @media (min-width: 640px) { .optional-grid { grid-template-columns: repeat(2, 1fr); } }
-  .optional { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.25rem; }
-  @media (min-width: 640px) { .optional { padding: 1.5rem 1.75rem; } }
-  .optional .tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin-bottom: 0.5rem; }
-  .optional h5 { font-family: var(--font-display); font-size: 1.125rem; color: var(--ink); margin-bottom: 0.35rem; }
-  .optional .price { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin-bottom: 0.65rem; }
-  .optional .price .iva { font-size: 11px; color: var(--ink-whisper); letter-spacing: 0.08em; }
-  .optional p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.55; }
-
-  /* Horizonte */
-  .horizon { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
-  @media (min-width: 768px) { .horizon { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
-  .milestone { padding: 1.5rem 1.25rem; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; position: relative; }
-  @media (min-width: 640px) { .milestone { padding: 2rem; } }
-  .milestone .when { font-family: var(--font-display); font-size: 0.875rem; font-style: italic; color: var(--accent-deep); letter-spacing: 0.05em; margin-bottom: 0.75rem; }
-  .milestone h4 { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); margin-bottom: 0.75rem; }
-  .milestone p { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
-
-  /* Cierre + form */
-  .cierre { padding: 5rem 1.25rem; }
-  @media (min-width: 640px) { .cierre { padding: 6.5rem 1.5rem; } }
-  @media (min-width: 768px) { .cierre { padding: 8rem 3rem; } }
-  .cierre-inner { max-width: 60rem; margin: 0 auto; }
-  .cierre h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; color: var(--ink); font-weight: 400; max-width: 44rem; margin-bottom: 1.5rem; }
-  .cierre h2 em { color: var(--accent-deep); font-style: italic; }
-  .cierre .lede-p { font-size: 17px; color: var(--ink-soft); max-width: 40rem; margin-bottom: 3rem; line-height: 1.7; }
-
-  .contact-card { background: var(--bg); border: 1px solid var(--border-strong); border-radius: 10px; padding: 1.75rem 1.5rem; }
-  @media (min-width: 640px) { .contact-card { padding: 2.5rem; } }
-  @media (min-width: 768px) { .contact-card { padding: 3rem; } }
-  .contact-card h3 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 0.5rem; }
-  .contact-card .card-sub { font-size: 14.5px; color: var(--ink-muted); margin-bottom: 2rem; max-width: 34rem; line-height: 1.6; }
-  form label { display: block; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin-bottom: 1.25rem; }
-  form label .req { color: var(--accent); }
-  form input, form select, form textarea {
-    width: 100%; margin-top: 0.5rem; font-family: var(--font-sans); font-size: 15px; color: var(--ink);
-    background: var(--accent-tint); border: 1px solid var(--border-strong); border-radius: 6px;
-    padding: 0.85rem 1rem; text-transform: none; letter-spacing: 0; font-weight: 400;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  form textarea { resize: vertical; min-height: 96px; }
-  form input:focus, form select:focus, form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(225,82,62,0.15); }
-  .form-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
-  @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; gap: 0 1.5rem; } }
-  .form-full { grid-column: 1 / -1; }
-  .form-submit { width: 100%; margin-top: 0.5rem; background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 1rem 1.5rem; font-family: var(--font-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s ease; }
-  .form-submit:hover { background: var(--accent-deep); }
-  .form-submit:disabled { opacity: 0.7; cursor: default; }
-  .form-status { margin-top: 1rem; font-size: 14px; color: var(--leaf); line-height: 1.6; display: none; }
-  .form-status.visible { display: block; }
-  .form-status.error { color: var(--accent-deep); }
-
-  .contact-alt { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; font-size: 14px; color: var(--ink-muted); }
-  .wa-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--leaf); text-decoration: none; border: 1px solid var(--leaf); border-radius: 999px; padding: 0.6rem 1.1rem; transition: background 0.2s ease, color 0.2s ease; }
-  .wa-cta:hover { background: var(--leaf); color: #fff; }
-  .contact-alt a.mail { color: var(--accent-deep); text-decoration: none; font-weight: 500; }
-
-  .closing-sign { margin-top: 3rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .closing-sentido-mark { height: 36px; width: auto; opacity: 0.6; }
-  .closing-sign small { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-whisper); }
-
-  /* Footer */
-  .foot { background: var(--espresso); color: #A08C7E; padding: 2rem 1.25rem; text-align: center; border-top: 1px solid rgba(247, 239, 230, 0.08); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.8; }
-  @media (min-width: 640px) { .foot { font-size: 11.5px; letter-spacing: 0.14em; padding: 2rem 1.5rem; } }
-  .foot a { color: #E0CFC1; text-decoration: none; margin: 0 0.4rem; display: inline-block; }
+  .dolor { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); }
+  .dolor .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
+  .dolor h3 { margin-bottom: 10px; }
+  .dolor p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; }
+  @media (max-width: 700px) { .dolor { grid-template-columns: 1fr; gap: 26px; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <img src="/assets/logo-sentido-dark.png" alt="Sentido" />
-      <span class="divider"></span>
-      <span class="label">para Rootsy</span>
-    </div>
-    <div class="nav-links">
-      <a href="#contexto">Contexto</a>
-      <a href="#diagnostico">Diagnóstico</a>
-      <a href="#estrategia">Estrategia</a>
-      <a href="#propuesta">Propuesta</a>
-      <a href="#inversion">Inversión</a>
-    </div>
-    <a href="#contacto" class="nav-cta">Siguiente paso →</a>
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <a class="boton" href="#contacto">Agendar diagnóstico <span class="fl">→</span></a>
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-inner">
-    <img src="/assets/logo-sentido-dark.png" alt="Sentido Branding &amp; Advertising" class="hero-logo-sentido reveal" />
-    <div class="hero-meta reveal">
-      <span>Propuesta estratégica</span>
-      <span class="divider"></span>
-      <span>Sentido · 2026</span>
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    <h1><span class="ligera">Ya vendes un buen producto.</span><br>
+      Falta el <span class="alta">sistema</span><br>que lo vuelve comunidad y recompra.</h1>
+    <p class="sub">Rootsy tiene lo difícil resuelto: producto validado, reseñas reales, categoría de reconsumo natural. Lo que falta no son más publicaciones sueltas — es conectar el embudo completo, de descubrimiento a venta que regresa.</p>
+    <div class="acciones">
+      <a class="boton" href="#contacto">Agendar diagnóstico <span class="fl">→</span></a>
+      <a class="enlace" href="#servicios">Ver el plan</a>
     </div>
-    <h1 class="hero-brand reveal reveal-d1">Rootsy<span class="dot">.</span></h1>
-    <p class="hero-subtitle reveal reveal-d2">
-      El producto ya conquistó a quien lo prueba. El siguiente reto es que <em>mucha más gente lo pruebe</em> — y que quien ya compró, <em>vuelva</em>.
-    </p>
-    <div class="hero-details reveal reveal-d3">
-      <div class="hero-detail">
-        <div class="label">Marca</div>
-        <div class="value">Cuidado personal en stick · MX</div>
-      </div>
-      <div class="hero-detail">
-        <div class="label">El reto</div>
-        <div class="value">Más comunidad · más venta</div>
-      </div>
-      <div class="hero-detail">
-        <div class="label">Horizonte</div>
-        <div class="value">90 días para activar</div>
-      </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">Rootsy</span></div>
+      <div><span class="rotulo">Por</span><span class="val">Sentido · Branding & Advertising</span></div>
+      <div><span class="rotulo">Vigencia</span><span class="val">30 días</span></div>
     </div>
   </div>
 </header>
 
-<!-- CONTEXTO -->
-<section class="section" id="contexto">
-  <div class="section-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>01 · El punto de partida</span></div>
-    <p class="lede reveal reveal-d1">
-      Rootsy ya resolvió la parte más difícil: tiene un producto que la gente <em>ama de verdad</em>. Bloqueador y desodorante en stick, naturales, prácticos, para toda la familia — con reseñas que hablan de recompra sola.
-    </p>
-    <div style="max-width: 54rem; margin-top: 2.5rem;">
-      <p class="p lg reveal reveal-d2">
-        Hay tienda en línea activa, envío a todo México, un protector solar <strong style="color: var(--ink); font-weight: 500;">certificado SPF +50 bajo norma oficial mexicana</strong> y una categoría que se consume y se vuelve a comprar. Eso es oro: no hace falta convencer a nadie de que el producto sirve.
-      </p>
-      <p class="p lg reveal reveal-d3">
-        El techo hoy no es el producto. Es que <strong style="color: var(--ink); font-weight: 500;">poca gente conoce Rootsy</strong> (una comunidad pequeña para el potencial que tiene) y que <strong style="color: var(--ink); font-weight: 500;">no existe un sistema que haga volver a quien ya compró</strong>. Esta propuesta ataca esas dos cosas de frente: más comunidad arriba del embudo, más venta y recompra abajo.
-      </p>
-    </div>
+<!-- ══════════ DECLARACIÓN ══════════ -->
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>Faltan seguidores y falta venta <span class="tenue">no son dos problemas: son el mismo embudo, incompleto.</span></p>
   </div>
 </section>
 
-<!-- DIAGNÓSTICO -->
-<section class="section section-surface" id="diagnostico">
-  <div class="section-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>02 · Diagnóstico</span></div>
-    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
-      Lo que hoy <span class="italic-accent">empuja</span> y lo que hoy <span class="italic-accent">frena</span>.
-    </h2>
-    <p class="p reveal reveal-d2" style="max-width: 44rem;">
-      Antes de proponer servicios, leímos lo que se observa desde afuera: perfil de Instagram, tienda, catálogo, reseñas y el tipo de producto. De ahí sale la estrategia.
-    </p>
-
-    <div class="findings">
-      <div class="finding reveal reveal-d1">
-        <div class="num">— 01</div>
-        <h4>Producto validado por sus clientes</h4>
-        <p>Las reseñas son contundentes: "rinde mil", "el olor es adictivo", "me ayuda con la dermatitis". Cuando el cliente vende el producto por ti, el trabajo es simple — llevar el producto a más ojos.</p>
-        <span class="signal up">↑ Ventaja a explotar</span>
+<!-- ══════════ EL CONTEXTO / DOLORES ══════════ -->
+<section class="seccion seccion--regla" id="contexto">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que nos dijiste, leído como sistema.</h2>
+    </div>
+    <div class="dolor">
+      <div>
+        <span class="rotulo">Dolor 01 · Comunidad</span>
+        <h3>«Faltan seguidores»</h3>
+        <p>Hoy el descubrimiento del cuidado personal pasa por contenido con cadencia y por alcance pagado. La cuenta crece cuando hay una voz constante y una inversión que la empuja a la gente correcta — no cuando se postea cuando se puede.</p>
       </div>
-      <div class="finding reveal reveal-d2">
-        <div class="num">— 02</div>
-        <h4>Comunidad chica para el potencial</h4>
-        <p>Con una base de seguidores modesta frente al tamaño del mercado, el alcance orgánico tiene un techo bajo. Pocos ojos nuevos por semana = pocas oportunidades de primera compra, por bueno que sea el producto.</p>
-        <span class="signal gap">↓ Dolor: faltan seguidores</span>
-      </div>
-      <div class="finding reveal reveal-d3">
-        <div class="num">— 03</div>
-        <h4>Contenido sin cadencia ni sistema</h4>
-        <p>Hay identidad y buen material, pero sin un calendario editorial constante ni presencia en donde hoy se descubren las marcas de cuidado personal. Sin ritmo, el algoritmo no tiene con qué crecer la cuenta.</p>
-        <span class="signal gap">↓ Freno de crecimiento</span>
-      </div>
-      <div class="finding reveal reveal-d4">
-        <div class="num">— 04</div>
-        <h4>Categoría de recompra sin sistema de recompra</h4>
-        <p>Bloqueador y desodorante se acaban y se vuelven a comprar — el LTV natural es altísimo. Pero quien ya compró no está registrado en ningún lado: no hay forma de recordarle que se le va a acabar, ni de traerlo de vuelta.</p>
-        <span class="signal gap">↓ Dolor: venta que se deja ir</span>
-      </div>
-      <div class="finding reveal reveal-d5">
-        <div class="num">— 05</div>
-        <h4>Demanda de intención sin capturar</h4>
-        <p>Cada día alguien busca en Google "desodorante natural", "bloqueador en stick", "protector solar para niños". Esa es gente lista para comprar. Sin pauta de búsqueda, esa demanda se la llevan Amazon y las marcas grandes.</p>
-        <span class="signal gap">↓ Venta que va a la competencia</span>
-      </div>
-      <div class="finding reveal reveal-d5">
-        <div class="num">— 06</div>
-        <h4>Reseñas fuertes, no sistematizadas</h4>
-        <p>Los testimonios que ya existen son el mejor argumento de venta de Rootsy. Hoy aparecen sueltos; convertirlos en un motor constante de reseñas es prueba social que alimenta tanto lo orgánico como la pauta.</p>
-        <span class="signal up">↑ Palanca de conversión</span>
+      <div>
+        <span class="rotulo">Dolor 02 · Venta</span>
+        <h3>«Subir las ventas»</h3>
+        <p>La venta más rentable de Rootsy es la segunda: bloqueador y desodorante se acaban y se recompran. Sin una base que capture al cliente y lo reactive, ese valor se está dejando ir en cada pedido.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ESTRATEGIA / ÁNGULO -->
-<section class="section" id="estrategia">
-  <div class="section-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>03 · El ángulo de Sentido</span></div>
-    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
-      Un embudo completo: que <span class="italic-accent">más gente llegue</span>, que <span class="italic-accent">compre</span> y que <span class="italic-accent">regrese</span>.
-    </h2>
-    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
-      Los dos dolores — faltan seguidores y falta venta — no se resuelven por separado. Son el mismo embudo. Sentido lo arma en tres tramos que trabajan juntos desde el primer mes.
-    </p>
-
-    <div class="pillars">
-      <div class="pillar reveal reveal-d1">
-        <div class="num">— TRAMO I · ARRIBA</div>
-        <h4>Comunidad que crece</h4>
-        <p>Contenido orgánico con ritmo en Instagram y TikTok — donde hoy se descubren las marcas de cuidado personal — más pauta de alcance en Meta para poner a Rootsy frente a gente nueva cada semana. La cuenta deja de estancarse y empieza a sumar seguidores reales del perfil de cliente correcto.</p>
-      </div>
-      <div class="pillar reveal reveal-d2">
-        <div class="num">— TRAMO II · CENTRO</div>
-        <h4>Demanda que convierte</h4>
-        <p>Pauta de conversión en Meta hacia el catálogo (retargeting a quien ya vio el producto) y Google Ads para capturar a quien busca activamente desodorante natural o bloqueador en stick. Dos fuentes de venta: la que despertamos y la que ya existe y hoy se va con otros.</p>
-      </div>
-      <div class="pillar reveal reveal-d3">
-        <div class="num">— TRAMO III · ABAJO</div>
-        <h4>Cliente que regresa</h4>
-        <p>CRM con base de datos propia, automatización de post-venta y recompra por WhatsApp y correo, y un motor de reseñas constante. En una categoría que se consume, hacer volver al cliente es la venta más barata y más rentable que existe.</p>
-      </div>
+<!-- ══════════ SERVICIOS — plancha grabada ══════════ -->
+<section class="seccion seccion--regla" id="servicios">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El plan, por capas.</h2>
+      <p>Cada capa resuelve un tramo del embudo. La pauta vive dentro del servicio que la opera, no como un extra al final.</p>
     </div>
-  </div>
-</section>
+    <div class="plancha">
 
-<!-- PROPUESTA -->
-<section class="section section-surface" id="propuesta">
-  <div class="section-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>04 · La propuesta</span></div>
-    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
-      Los sistemas que <span class="italic-accent">llenan el embudo</span> y lo <span class="italic-accent">cierran</span>.
-    </h2>
-    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
-      Cuatro sistemas que operan como uno solo. Se activan por fases: primero comunidad y alcance, luego intención de compra y recompra — para que la inversión crezca al ritmo de los resultados.
-    </p>
-
-    <div class="services">
-
-      <div class="service reveal reveal-d1">
-        <div class="service-head">
-          <span class="num">01</span>
-          Comunidad · Instagram
-        </div>
-        <div class="service-body">
-          <h3>Instagram con ritmo, voz y crecimiento</h3>
-          <p>Gestión de Instagram con 15 publicaciones mensuales — mix de reels, carruseles, posts e historias — con producción de contenido apoyada por IA para sostener la cadencia. Tono divertido, natural y cercano, el que ya conecta con las clientas de Rootsy, ahora con calendario editorial y foco en crecer comunidad. La gestión de campañas de Meta Ads va incluida en este servicio.</p>
-          <ul>
-            <li>Calendario editorial mensual y línea gráfica consolidada</li>
-            <li>Copywriting por pieza con CTAs claros hacia la tienda y WhatsApp</li>
-            <li>Producción de contenido con apoyo de IA (gráficos, variaciones, video)</li>
-            <li>Gestión de historias, encuestas, stickers de compra y reactivación de la comunidad "Roots"</li>
-            <li>Gestión de Meta Ads (Facebook + Instagram) para alcance y conversión</li>
-            <li>Reporte mensual con datos oficiales de las cuentas: crecimiento y piezas top</li>
-          </ul>
-          <span class="chip-included">Meta Ads · gestión incluida</span>
-        </div>
-      </div>
-
-      <div class="service reveal reveal-d2">
-        <div class="service-head">
-          <span class="num">02</span>
-          Comunidad · TikTok
-        </div>
-        <div class="service-body">
-          <h3>Donde hoy se descubren las marcas naturales</h3>
-          <p>Add-on para llevar todo el video que se produce a TikTok, adaptado al formato y al algoritmo de la plataforma. Es el canal de descubrimiento más potente hoy para cuidado personal y familia — y el costo marginal es mínimo porque el contenido ya existe. Aquí es donde una marca chica puede volverse conocida rápido.</p>
-          <ul>
-            <li>Adaptación de los videos de Instagram al formato TikTok</li>
-            <li>Copy y hashtags optimizados por plataforma</li>
-            <li>Publicación en cadencia alineada al calendario editorial</li>
-            <li>Monitoreo de tendencias y sonidos relevantes del nicho natural/skincare</li>
-            <li>Reporte de alcance y engagement mensual</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="service reveal reveal-d3">
-        <div class="service-head">
-          <span class="num">03</span>
-          Demanda · Google
-        </div>
-        <div class="service-body">
-          <h3>Capturar a quien ya está buscando comprar</h3>
-          <p>Gestión de Google Ads para aparecer cuando alguien busca activamente lo que Rootsy vende: "desodorante natural", "bloqueador en stick", "protector solar para niños sin químicos". Campañas de búsqueda y Shopping / Performance Max conectadas al catálogo de la tienda, optimizadas a costo por compra. Es venta de intención pura, la que hoy se lleva la competencia.</p>
-          <ul>
-            <li>Estructura de campañas de Búsqueda + Shopping / Performance Max</li>
-            <li>Investigación de palabras clave del nicho natural y por producto</li>
-            <li>Feed de productos conectado a la tienda para Shopping</li>
-            <li>Optimización continua a costo por compra y palabras negativas</li>
-            <li>Seguimiento de conversiones y reporte mensual de ventas atribuidas</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="service reveal reveal-d4">
-        <div class="service-head">
-          <span class="num">04</span>
-          Recompra · CRM
-        </div>
-        <div class="service-body">
-          <h3>Base de datos propia, recompra y reputación</h3>
-          <p>Implementación de CRM en GoHighLevel: cada compra y cada consulta queda registrada en un perfil de cliente. Automatizaciones de WhatsApp y correo para agradecer la compra, recordar la recompra justo cuando el producto se está por acabar, pedir reseña y reactivar a quien no compra hace tiempo. Incluye motor de reputación para convertir clientes felices en reseñas constantes.</p>
-          <ul>
-            <li>Pipeline comercial: Lead → Compra → Recompra</li>
-            <li>Automatización post-compra y recordatorio de recompra por WhatsApp + correo</li>
-            <li>Flujo de reactivación a clientes inactivos</li>
-            <li>Motor de reseñas automatizado (WhatsApp, SMS, correo) para prueba social constante</li>
-            <li>Campañas manuales para lanzamientos, temporadas (verano/sol) y preventas</li>
-          </ul>
-          <span class="chip-included">Reputación · incluida</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- INVERSIÓN -->
-<section class="section" id="inversion">
-  <div class="section-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>05 · Inversión</span></div>
-    <h2 class="h-lg reveal reveal-d1" style="max-width: 48rem; margin-bottom: 1.5rem;">
-      Por fases, para que la inversión <span class="italic-accent">crezca con los resultados</span>.
-    </h2>
-    <p class="p lg reveal reveal-d2" style="max-width: 46rem;">
-      Fase 1 ataca el primer dolor: llenar el embudo de comunidad y alcance. Fase 2 cierra la venta con intención y recompra. Cada servicio se puede contratar por separado; juntos forman el embudo completo. La pauta va siempre aparte y directa a la plataforma.
-    </p>
-
-    <!-- FASE 1 FEATURED -->
-    <div class="invest-card featured reveal reveal-d1">
-      <div class="invest-head">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 01</span><h3>Comunidad</h3></div>
         <div>
-          <h3>Fase 1 · Comunidad y alcance</h3>
-          <p class="sub">Instagram con TikTok como extensión del video, con gestión de Meta Ads incluida. Arranca desde el primer mes.</p>
-        </div>
-        <div class="invest-price">
-          <div class="amount">$10,000</div>
-          <div class="cycle">MXN / mes</div>
-          <div class="iva">+ IVA</div>
-        </div>
-      </div>
-      <div class="invest-items">
-        <div class="invest-item">
-          <div class="desc">Gestión de Redes — Instagram
-            <small>15 publicaciones mensuales · producción con apoyo IA · calendario + reportes · Meta Ads gestión incluida</small>
+          <p>Contenido con cadencia en Instagram y TikTok, con la voz de «Roots». Alcance para llevar la marca a piel sensible, familias y cuidado natural.</p>
+          <div class="sub-pauta">
+            <span class="rotulo">+ Pauta Meta</span>
+            <p>Gestión incluida · inversión directa a la plataforma, aparte</p>
           </div>
-          <div class="val">$7,500</div>
         </div>
-        <div class="invest-item">
-          <div class="desc">Add-on TikTok
-            <small>Adaptación y publicación del video en TikTok alineado al calendario de Instagram</small>
+        <div class="ver">Redes + Meta</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 02</span><h3>Captura de demanda</h3></div>
+        <div>
+          <p>Google Ads (Search + Shopping) para tomar a quien ya busca «desodorante natural» o «bloqueador en stick» y hoy compra en otra marca.</p>
+          <div class="sub-pauta">
+            <span class="rotulo">+ Pauta Google</span>
+            <p>Gestión incluida · inversión directa a la plataforma, aparte</p>
           </div>
-          <div class="val">$2,500</div>
         </div>
-      </div>
-      <div class="invest-footer">
-        <strong>Total mensual Fase 1:</strong> $10,000 MXN <strong>+ IVA</strong>. Pago mensual por adelantado. Mínimo sugerido: 3 meses para ver tracción real de crecimiento.
-      </div>
+        <div class="ver">Google Ads</div>
+      </article>
 
-      <!-- Pauta Meta — junto a Redes -->
-      <div class="invest-addon">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 03</span><h3>Recompra + reputación</h3></div>
         <div>
-          <div class="addon-label">+ Pauta sugerida</div>
-          <div class="addon-title">Meta Ads · presupuesto directo a la plataforma</div>
-          <p class="addon-copy">
-            Va <strong>directo a Meta</strong>, no es honorario Sentido. La <strong>gestión de campañas está incluida</strong> en el plan de redes — el mismo equipo que opera Instagram y TikTok corre la pauta de alcance y conversión. Escalable según resultados.
-          </p>
+          <p>Base de datos, flujos de reactivación por WhatsApp y correo, y captura de reseñas. La palanca más rentable: convertir la primera compra en la tercera.</p>
         </div>
-        <div class="addon-price">
-          <div class="amount">$5,000 – $8,000</div>
-          <div class="cycle">MXN / mes · a Meta</div>
-          <div class="iva">Recomendado para arrancar</div>
-        </div>
-      </div>
-    </div>
+        <div class="ver">CRM</div>
+      </article>
 
-    <!-- FASE 2 HEADER -->
-    <h3 class="h-md reveal" style="margin-top: 4rem; margin-bottom: 0.75rem;">Fase 2 — cerrar la venta y hacer volver al cliente</h3>
-    <p class="p reveal" style="max-width: 46rem; margin-bottom: 2rem;">
-      Con comunidad creciendo y tráfico llegando, se activa la captura de demanda de intención y el sistema de recompra. Se puede arrancar en paralelo a Fase 1 o al mes siguiente, según ritmo.
-    </p>
-
-    <!-- GOOGLE ADS + PAUTA -->
-    <div class="invest-card reveal reveal-d2" style="border-color: var(--accent-soft);">
-      <div class="invest-head">
-        <div>
-          <h3>Google Ads · Demanda de intención</h3>
-          <p class="sub">Búsqueda + Shopping / Performance Max conectados al catálogo de la tienda.</p>
-        </div>
-        <div class="invest-price">
-          <div class="amount">$4,000</div>
-          <div class="cycle">MXN / mes</div>
-          <div class="iva">+ IVA · gestión</div>
-        </div>
-      </div>
-      <div class="invest-items">
-        <div class="invest-item">
-          <div class="desc">Gestión de Google Ads
-            <small>Estructura de campañas, keywords, feed de Shopping, optimización a costo por compra, reportes de ventas atribuidas</small>
-          </div>
-          <div class="val">$4,000</div>
-        </div>
-      </div>
-      <div class="invest-footer">
-        <strong>Gestión mensual.</strong> Pago por adelantado. La pauta va aparte y directa a Google.
-      </div>
-
-      <!-- Pauta Google — junto a Google Ads -->
-      <div class="invest-addon">
-        <div>
-          <div class="addon-label">+ Pauta sugerida</div>
-          <div class="addon-title">Google Ads · presupuesto directo a la plataforma</div>
-          <p class="addon-copy">
-            Va <strong>directo a Google</strong>, no es honorario Sentido. Alimenta las campañas de búsqueda y Shopping. Se arranca conservador y se escala conforme el costo por compra confirme rentabilidad.
-          </p>
-        </div>
-        <div class="addon-price">
-          <div class="amount">$8,000 – $15,000</div>
-          <div class="cycle">MXN / mes · a Google</div>
-          <div class="iva">Escalable por resultados</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CRM -->
-    <div class="invest-card reveal reveal-d3">
-      <div class="invest-head">
-        <div>
-          <h3>CRM + Automatización + Reputación · Mensual</h3>
-          <p class="sub">Base de datos propia, recompra automatizada por WhatsApp y correo, y motor de reseñas. La palanca de LTV en una categoría que se consume.</p>
-        </div>
-        <div class="invest-price">
-          <div class="amount">$4,000</div>
-          <div class="cycle">MXN / mes</div>
-          <div class="iva">+ IVA</div>
-        </div>
-      </div>
-      <div class="invest-items">
-        <div class="invest-item">
-          <div class="desc">Implementación, pipeline, automatizaciones y motor de reseñas
-            <small>Integración con la tienda · recordatorios de recompra · reactivación · campañas de temporada</small>
-          </div>
-          <div class="val">Incluido</div>
-        </div>
-      </div>
-      <div class="invest-footer">
-        <strong>Implementación sin costo</strong> con el mantenimiento mensual activo. Incluye uso de plataforma, configuración y gestión continua.
-      </div>
-    </div>
-
-    <!-- INTEGRAL BANNER -->
-    <div class="integral reveal reveal-d2">
-      <div class="txt">
-        <div class="k">Embudo completo · los cuatro sistemas juntos</div>
-        <h4>Comunidad + Google + CRM operando como uno</h4>
-        <p>Cuando corren juntos, el crecimiento de comunidad alimenta la venta, la venta alimenta la base de datos y la base de datos abarata la siguiente venta. Honorarios de gestión integral, con la pauta siempre aparte y directa a cada plataforma.</p>
-      </div>
-      <div class="amt">
-        <div class="amount">$18,000</div>
-        <div class="cycle">MXN / mes + IVA · gestión</div>
-      </div>
-    </div>
-
-    <!-- OPCIONALES -->
-    <h3 class="h-md reveal" style="margin-top: 4.5rem; margin-bottom: 1rem;">Producción de contenido — cuando la marca lo pida</h3>
-    <p class="p reveal" style="max-width: 46rem;">
-      La producción foto/video se contrata como evento independiente, cada vez que se lance producto o se quiera refrescar catálogo. No forma parte de los honorarios mensuales.
-    </p>
-    <div class="optional-grid">
-      <div class="optional reveal reveal-d1">
-        <div class="tag">Producción</div>
-        <h5>Sesión fotográfica</h5>
-        <div class="price">$3,000 MXN <span class="iva">+ IVA / sesión</span></div>
-        <p>2 horas, 25–30 imágenes finales, retoque, adaptación a formatos para redes y tienda. Ideal para lanzamientos y temporada de sol.</p>
-      </div>
-      <div class="optional reveal reveal-d2">
-        <div class="tag">Producción</div>
-        <h5>Sesión de video</h5>
-        <div class="price">$5,500 MXN <span class="iva">+ IVA / sesión</span></div>
-        <p>2 horas de grabación. Entrega: 1 video de 40s + 4 cortos de 12s para reels, TikTok e historias. Combustible para la máquina de contenido.</p>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- HORIZONTE -->
-<section class="section section-surface">
-  <div class="section-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>06 · Qué pasa mes a mes</span></div>
-    <h2 class="h-lg reveal reveal-d1" style="max-width: 46rem; margin-bottom: 1.5rem;">
-      El recorrido de los primeros <span class="italic-accent">90 días</span>.
-    </h2>
-
-    <div class="horizon">
-      <div class="milestone reveal reveal-d1">
-        <div class="when">MES 1 · Motor encendido</div>
-        <h4>Comunidad con ritmo y pauta al aire</h4>
-        <p>Arrancan Instagram y TikTok con calendario editorial, línea gráfica consolidada y producción con apoyo de IA. Se lanza pauta de alcance en Meta para poner a Rootsy frente a gente nueva. La cuenta deja de estancarse y empieza a sumar seguidores del perfil correcto.</p>
+<!-- ══════════ COTIZACIÓN — por fases ══════════ -->
+<section class="seccion seccion--regla" id="inversion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Inversión, por fases.</h2>
+      <p>Empieza por comunidad y crece con resultados. La pauta siempre va aparte, directa a la plataforma.</p>
+    </div>
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Fase</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Gestión</span>
       </div>
-      <div class="milestone reveal reveal-d2">
-        <div class="when">MES 2 · Venta con intención</div>
-        <h4>Google captura demanda, Meta convierte</h4>
-        <p>Entran Google Ads (búsqueda + Shopping) para capturar a quien ya busca comprar y retargeting en Meta hacia el catálogo. Empieza el CRM: cada compra queda registrada y arrancan los primeros flujos de post-venta y reseñas.</p>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Fase">Fase 1<span class="fnota">Arranque</span></div>
+        <p class="tcol" data-l="Qué incluye">Redes IG + TikTok con cadencia, más pauta Meta gestionada.</p>
+        <div class="tprecio tcol" data-l="Gestión">$10,000<span class="tper">MXN / mes</span></div>
       </div>
-      <div class="milestone reveal reveal-d3">
-        <div class="when">MES 3 · Rueda girando</div>
-        <h4>Recompra y prueba social</h4>
-        <p>Con base de datos creciendo, se activan los recordatorios de recompra y la reactivación. Las reseñas empiezan a fluir de forma constante y alimentan tanto lo orgánico como la pauta. El embudo se retroalimenta solo: más comunidad, más venta, más recompra.</p>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Fase">Fase 2<span class="fnota">Venta</span></div>
+        <p class="tcol" data-l="Qué incluye">Suma Google Ads ($4,000) + CRM y recompra ($4,000).</p>
+        <div class="tprecio tcol" data-l="Gestión">$8,000<span class="tper">MXN / mes</span></div>
+      </div>
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Fase">Integral</div>
+        <p class="tcol" data-l="Qué incluye">Las tres capas operando como un solo sistema.</p>
+        <div class="tprecio tcol" data-l="Gestión">$18,000<span class="tper">MXN / mes</span></div>
       </div>
     </div>
+    <p class="tnota">Cifras de gestión. La inversión publicitaria en Meta y Google se paga directo a cada plataforma y se define según objetivo. Producción de foto y video, eventual.</p>
   </div>
 </section>
 
-<!-- CIERRE + CONTACTO -->
-<section class="section cierre" id="contacto">
-  <div class="cierre-inner">
-    <div class="section-label reveal"><span class="dot"></span><span>Siguiente paso</span><span class="divider"></span></div>
-    <h2 class="reveal reveal-d1">
-      Rootsy ya tiene lo más difícil. <em>Lo que sigue es el sistema que la hace crecer.</em>
-    </h2>
-    <p class="lede-p reveal reveal-d2">
-      Cuéntanos en dónde estás parado y arrancamos con contrato y kickoff. Las redes y la pauta salen al aire el primer mes; en 90 días la marca opera con comunidad creciendo, venta con intención y recompra automatizada.
-    </p>
-
-    <div class="contact-card reveal reveal-d3">
-      <h3>Hablemos.</h3>
-      <p class="card-sub">Marca dónde estás y te respondemos personalmente en menos de 24 h hábiles.</p>
-
-      <form id="lead-form" data-webhook="/api/lead" novalidate>
-        <input type="hidden" name="propuesta" value="rootsy" />
-        <div class="form-grid">
-          <label class="form-full">Nombre <span class="req">*</span>
-            <input name="nombre" type="text" autocomplete="name" required />
-          </label>
-          <label>Email <span class="req">*</span>
-            <input name="email" type="email" autocomplete="email" required />
-          </label>
-          <label>WhatsApp
-            <input name="whatsapp" type="tel" autocomplete="tel" placeholder="+52 ..." />
-          </label>
-          <label class="form-full">Siguiente paso <span class="req">*</span>
-            <select name="paso" required>
-              <option value="">Selecciona…</option>
-              <option>Avancemos — agendemos kickoff</option>
-              <option>Me interesa pero quiero ajustar el alcance</option>
-              <option>Tengo preguntas antes de decidir</option>
-              <option>Necesito un poco más de tiempo</option>
-            </select>
-          </label>
-          <label class="form-full">Mensaje (opcional)
-            <textarea name="mensaje" rows="4"></textarea>
-          </label>
+<!-- ══════════ CIERRE + FORMULARIO ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Conectemos el embudo de Rootsy.</h2>
+      <p>Déjanos tus datos y agendamos un diagnóstico sin costo: revisamos cuentas, números reales y por dónde empezar.</p>
+      <form class="forma" style="margin-top:32px" action="/api/lead" method="POST">
+        <input type="hidden" name="Propuesta" value="rootsy" />
+        <div class="rej-forma">
+          <div class="campo">
+            <label class="etiq" for="nombre">Nombre <span class="req">*</span></label>
+            <input class="ent" id="nombre" name="nombre" type="text" required />
+          </div>
+          <div class="campo">
+            <label class="etiq" for="empresa">Marca</label>
+            <input class="ent" id="empresa" name="empresa" type="text" value="Rootsy" />
+          </div>
+          <div class="campo">
+            <label class="etiq" for="correo">Correo <span class="req">*</span></label>
+            <input class="ent" id="correo" name="correo" type="email" required />
+          </div>
+          <div class="campo">
+            <label class="etiq" for="tel">WhatsApp</label>
+            <input class="ent" id="tel" name="telefono" type="tel" />
+          </div>
+          <div class="campo ancho">
+            <label class="etiq" for="msg">¿Por dónde quieres empezar?</label>
+            <textarea class="area" id="msg" name="mensaje"></textarea>
+          </div>
         </div>
-        <button type="submit" class="form-submit">Enviar →</button>
-        <div class="form-status" id="lf-status" role="status" aria-live="polite"></div>
+        <div class="pie-forma">
+          <p class="chico apagado">O escríbenos directo por <a class="enlace-txt" href="https://wa.me/5213331672223">WhatsApp</a>.</p>
+          <button class="boton" type="submit">Enviar <span class="fl">→</span></button>
+        </div>
       </form>
-
-      <div class="contact-alt">
-        <a class="wa-cta" href="https://wa.me/523331672223?text=Hola%2C%20vi%20la%20propuesta%20de%20Rootsy%20y%20quiero%20platicar." target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-        <span>o al correo <a class="mail" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></span>
-      </div>
-    </div>
-
-    <div class="closing-sign reveal">
-      <img src="/assets/logo-sentido-dark.png" alt="Sentido" class="closing-sentido-mark" />
-      <small>Sentido · Branding &amp; Advertising · 2026</small>
     </div>
   </div>
 </section>
 
-<footer class="foot">
-  <div>
-    <a href="https://sentido.mx">sentido.mx</a> ·
-    <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> ·
-    <a href="https://instagram.com/sentido.mx">@sentido.mx</a>
+<!-- ══════════ PIE ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema — para que cada peso invertido produzca ventas y clientes que regresan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Propuesta</span>
+        <ul>
+          <li><a href="#contexto">Contexto</a></li>
+          <li><a href="#servicios">El plan</a></li>
+          <li><a href="#inversion">Inversión</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul>
+          <li><a href="mailto:jos@sentido.mx">jos@sentido.mx</a></li>
+          <li><a href="https://wa.me/5213331672223">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Sentido</span>
+        <ul>
+          <li><a href="/sitio">Sitio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
   </div>
 </footer>
-
-<script>
-  // Nav background on scroll
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Smooth scroll for nav anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const id = a.getAttribute('href');
-      if (id.length > 1) {
-        const target = document.querySelector(id);
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-      }
-    });
-  });
-
-  // Lead form
-  const form = document.getElementById('lead-form');
-  if (form) {
-    const statusEl = document.getElementById('lf-status');
-    const submitBtn = form.querySelector('.form-submit');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      const payload = {
-        Propuesta: form.propuesta.value,
-        Nombre: form.nombre.value.trim(),
-        Email: form.email.value.trim(),
-        WhatsApp: form.whatsapp.value.trim() || '—',
-        'Siguiente paso': form.paso.value,
-        Mensaje: form.mensaje.value.trim() || '—',
-        Fuente: location.pathname,
-        Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
-      };
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando…';
-      try {
-        const res = await fetch(form.dataset.webhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Webhook ' + res.status);
-        statusEl.textContent = 'Recibido. Te respondemos en menos de 24 h hábiles a ' + payload.Email + '.';
-        statusEl.classList.add('visible');
-        form.reset();
-        submitBtn.textContent = '✓ Enviado';
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx o por WhatsApp.';
-        statusEl.classList.add('visible', 'error');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar →';
-      }
-    });
-  }
-</script>
 
 </body>
 </html>
