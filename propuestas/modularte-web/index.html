@@ -114,6 +114,20 @@
   .subpages{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
   .subpage{font-family:"IBM Plex Mono",monospace; font-size:11px; border:1.5px dashed var(--wire); background:var(--phbg); border-radius:8px; padding:5px 9px;}
   .badge{font-family:"IBM Plex Mono",monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:2px 7px; font-weight:500;}
+
+  /* sitemap ramificado con secciones */
+  .btree{padding:4px 0;}
+  .bnode{border:1.5px solid var(--line); background:var(--surface); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); max-width:580px;}
+  .bnode.root{border-left:4px solid var(--accent);}
+  .bnode h3{font-size:15px; font-weight:700; margin:0; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .bnode .desc{font-size:12.5px; color:var(--muted); margin:4px 0 0;}
+  .bnode .seclbl{font-family:"IBM Plex Mono",monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:block; margin-top:8px;}
+  .bnode ul{margin:3px 0 0; padding-left:16px; font-size:12.5px;} .bnode ul li{margin:2px 0;}
+  .bnode.compact{padding:10px 13px;}
+  .bnode.compact h3{font-size:13px;}
+  .bchildren{margin-left:18px; padding-left:26px; border-left:2px solid var(--wire);}
+  .bitem{position:relative; margin-top:14px;}
+  .bitem::before{content:''; position:absolute; left:-26px; top:24px; width:24px; border-top:2px solid var(--wire);}
 </style>
 </head>
 <body>
@@ -141,110 +155,130 @@
       <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · páginas y contenido</h2></div>
       <p class="page-sub">Cada página con su descripción y las secciones que llevará. <b>Blog</b> es Fase 2; <b>ZAR</b> y <b>Flotante</b> tienen contenido pendiente (🚧).</p>
 
-      <div class="smap root">
-        <h3>Inicio <span class="badge">Home</span></h3>
-        <p class="desc">La puerta de entrada: resume todo y empuja a cotizar.</p>
-        <span class="seclbl">Secciones (en orden)</span>
-        <ul>
-          <li>Encabezado (hero): mensaje principal + “Cotizar” + foto real.</li>
-          <li>Configurador Sistema × Aplicación (el “calificador”).</li>
-          <li>Los 5 sistemas (tarjetas con su frase).</li>
-          <li>Soluciones por sector.</li>
-          <li>Por qué Modularte (30 años, respaldo, certificaciones).</li>
-          <li>Proyectos / casos destacados.</li>
-          <li>Cierre + cotización.</li>
-        </ul>
-      </div>
+      <div class="btree">
+        <div class="bnode root">
+          <h3>Inicio <span class="badge">Home</span></h3>
+          <p class="desc">La puerta de entrada: resume todo y empuja a cotizar.</p>
+          <span class="seclbl">Secciones (en orden)</span>
+          <ul>
+            <li>Encabezado (hero): mensaje principal + “Cotizar” + foto real.</li>
+            <li>Configurador Sistema × Aplicación (el “calificador”).</li>
+            <li>Los 5 sistemas (tarjetas con su frase).</li>
+            <li>Soluciones por sector.</li>
+            <li>Por qué Modularte (30 años, respaldo, certificaciones).</li>
+            <li>Proyectos / casos destacados.</li>
+            <li>Cierre + cotización.</li>
+          </ul>
+        </div>
 
-      <div class="connector">Se ramifica en</div>
+        <div class="bchildren">
 
-      <div class="smapgrid">
-
-        <div class="smap">
-          <h3>Sistemas</h3>
-          <p class="desc">Índice de los 5 sistemas + una página por cada uno.</p>
-          <span class="seclbl">Sub-páginas</span>
-          <div class="subpages">
-            <span class="subpage">Unidades Móviles</span><span class="subpage">Armabox®</span><span class="subpage">Tradicional</span><span class="subpage">ZAR 🚧</span><span class="subpage">Flotante 🚧</span>
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Sistemas</h3>
+              <p class="desc">Índice de los 5 sistemas + una página por cada uno.</p>
+              <span class="seclbl">Secciones de cada página de sistema</span>
+              <ul>
+                <li>Qué es (frase + foto).</li>
+                <li>Características (medidas, materiales, ventajas).</li>
+                <li>Aplicaciones (dormitorios, baños, oficinas…).</li>
+                <li>Casos + certificaciones.</li>
+                <li>Cotizar este sistema.</li>
+              </ul>
+            </div>
+            <div class="bchildren">
+              <div class="bitem"><div class="bnode compact"><h3>Unidades Móviles</h3><p class="desc">Oficinas, dormitorios, baños, aulas móviles (renta).</p></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Armabox®</h3><p class="desc">Dormitorios, baños, oficinas, comedores, edificios.</p></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Tradicional</h3><p class="desc">Aulas, clínicas, hospitales, almacenes, comedores…</p></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>ZAR 🚧</h3><p class="desc">Contenido pendiente del cliente.</p></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Flotante 🚧</h3><p class="desc">Contenido pendiente del cliente.</p></div></div>
+            </div>
           </div>
-          <span class="seclbl">Secciones de cada página de sistema</span>
-          <ul>
-            <li>Qué es (frase + foto).</li>
-            <li>Características (medidas, materiales, ventajas).</li>
-            <li>Aplicaciones (dormitorios, baños, oficinas…).</li>
-            <li>Casos + certificaciones.</li>
-            <li>Cotizar este sistema.</li>
-          </ul>
-        </div>
 
-        <div class="smap">
-          <h3>Catálogo / Configurador</h3>
-          <p class="desc">Herramienta para encontrar la solución filtrando.</p>
-          <span class="seclbl">Secciones</span>
-          <ul>
-            <li>Filtro por Sistema y por Aplicación (ej. Armabox® → Dormitorios).</li>
-            <li>Resultados → ficha (foto + specs + cotizar).</li>
-          </ul>
-        </div>
-
-        <div class="smap">
-          <h3>Soluciones por sector</h3>
-          <p class="desc">La oferta explicada desde el problema de cada industria.</p>
-          <span class="seclbl">Sub-páginas</span>
-          <div class="subpages">
-            <span class="subpage">Minería</span><span class="subpage">Educación</span><span class="subpage">Salud</span><span class="subpage">Industria</span><span class="subpage">Oficinas</span>
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Catálogo / Configurador</h3>
+              <p class="desc">Encontrar la solución filtrando.</p>
+              <span class="seclbl">Secciones</span>
+              <ul>
+                <li>Filtro por Sistema y por Aplicación (ej. Armabox® → Dormitorios).</li>
+                <li>Resultados → ficha (foto + specs + cotizar).</li>
+              </ul>
+            </div>
           </div>
-          <span class="seclbl">Secciones de cada sector</span>
-          <ul>
-            <li>Problema del sector.</li>
-            <li>Cómo lo resuelve Modularte.</li>
-            <li>Sistemas recomendados + casos.</li>
-            <li>Cotizar.</li>
-          </ul>
-        </div>
 
-        <div class="smap">
-          <h3>Proyectos / Casos</h3>
-          <p class="desc">Prueba de experiencia, con fotos reales.</p>
-          <span class="seclbl">Secciones</span>
-          <ul>
-            <li>Galería filtrable por sistema o sector.</li>
-            <li>Ficha de caso (fotos, sector, sistema usado).</li>
-          </ul>
-        </div>
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Soluciones por sector</h3>
+              <p class="desc">La oferta desde el problema de cada industria.</p>
+              <span class="seclbl">Secciones de cada sector</span>
+              <ul>
+                <li>Problema del sector.</li>
+                <li>Cómo lo resuelve Modularte.</li>
+                <li>Sistemas recomendados + casos.</li>
+                <li>Cotizar.</li>
+              </ul>
+            </div>
+            <div class="bchildren">
+              <div class="bitem"><div class="bnode compact"><h3>Minería</h3></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Educación</h3></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Salud</h3></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Industria</h3></div></div>
+              <div class="bitem"><div class="bnode compact"><h3>Oficinas</h3></div></div>
+            </div>
+          </div>
 
-        <div class="smap">
-          <h3>Nosotros</h3>
-          <p class="desc">Por qué confiar en Modularte.</p>
-          <span class="seclbl">Secciones</span>
-          <ul>
-            <li>+30 años y cobertura nacional.</li>
-            <li>Respaldo de fábrica (BH Prefab / CDPH).</li>
-            <li>Certificaciones.</li>
-            <li>Sostenibilidad (a validar).</li>
-          </ul>
-        </div>
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Proyectos / Casos</h3>
+              <p class="desc">Prueba de experiencia, con fotos reales.</p>
+              <span class="seclbl">Secciones</span>
+              <ul>
+                <li>Galería filtrable por sistema o sector.</li>
+                <li>Ficha de caso (fotos, sector, sistema usado).</li>
+              </ul>
+            </div>
+          </div>
 
-        <div class="smap">
-          <h3>Blog <span class="badge">Fase 2</span></h3>
-          <p class="desc">Posicionamiento en Google con artículos.</p>
-          <span class="seclbl">Secciones</span>
-          <ul>
-            <li>Artículos por eje (técnico, casos, educar, respaldo).</li>
-            <li>Categorías y buscador.</li>
-          </ul>
-        </div>
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Nosotros</h3>
+              <p class="desc">Por qué confiar en Modularte.</p>
+              <span class="seclbl">Secciones</span>
+              <ul>
+                <li>+30 años y cobertura nacional.</li>
+                <li>Respaldo de fábrica (BH Prefab / CDPH).</li>
+                <li>Certificaciones.</li>
+                <li>Sostenibilidad (a validar).</li>
+              </ul>
+            </div>
+          </div>
 
-        <div class="smap">
-          <h3>Contacto / Cotización</h3>
-          <p class="desc">El cierre: pedir la cotización.</p>
-          <span class="seclbl">Secciones</span>
-          <ul>
-            <li>Formulario de cotización.</li>
-            <li>Tel, correo, WhatsApp, ubicación (GDL).</li>
-          </ul>
-        </div>
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Blog <span class="badge">Fase 2</span></h3>
+              <p class="desc">Posicionamiento en Google con artículos.</p>
+              <span class="seclbl">Secciones</span>
+              <ul>
+                <li>Artículos por eje (técnico, casos, educar, respaldo).</li>
+                <li>Categorías y buscador.</li>
+              </ul>
+            </div>
+          </div>
 
+          <div class="bitem">
+            <div class="bnode">
+              <h3>Contacto / Cotización</h3>
+              <p class="desc">El cierre: pedir la cotización.</p>
+              <span class="seclbl">Secciones</span>
+              <ul>
+                <li>Formulario de cotización.</li>
+                <li>Tel, correo, WhatsApp, ubicación (GDL).</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <p class="page-sub" style="margin-top:16px">En todo el sitio: menú con estas páginas + botón “Cotizar” siempre visible, y pie de página con sistemas, sectores, contacto y certificaciones.</p>
