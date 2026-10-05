@@ -99,6 +99,21 @@
   .node small{display:block; font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-top:2px;}
   .node.root{border-color:var(--ink); border-width:2px; font-size:14px;}
   .node.sub{font-weight:500; font-size:12px; border-style:dashed; background:var(--phbg); box-shadow:none;}
+
+  /* mapa del sitio · tarjetas con secciones */
+  .connector{display:flex; align-items:center; gap:12px; margin:16px 0; color:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;}
+  .connector::before,.connector::after{content:''; height:1px; background:var(--wire); flex:1;}
+  .smapgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px;}
+  .smap{border:1.5px solid var(--line); border-radius:12px; background:var(--surface); padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:7px;}
+  .smap.root{border-left:4px solid var(--accent);}
+  .smap h3{font-size:15px; font-weight:700; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .smap .desc{font-size:12.5px; color:var(--muted); margin:0;}
+  .smap .seclbl{font-family:"IBM Plex Mono",monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-top:5px;}
+  .smap ul{margin:3px 0 0; padding-left:16px; font-size:12.5px;}
+  .smap ul li{margin:2px 0;}
+  .subpages{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
+  .subpage{font-family:"IBM Plex Mono",monospace; font-size:11px; border:1.5px dashed var(--wire); background:var(--phbg); border-radius:8px; padding:5px 9px;}
+  .badge{font-family:"IBM Plex Mono",monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:2px 7px; font-weight:500;}
 </style>
 </head>
 <body>
@@ -123,45 +138,116 @@
   <!-- PANEL: Mapa visual (ramas) -->
   <div id="panel-map">
     <section class="page">
-      <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · ramas</h2></div>
-      <p class="page-sub">Las páginas del sitio y cómo se ramifican. <b>Blog</b> es Fase 2; <b>ZAR</b> y <b>Flotante</b> tienen contenido pendiente (🚧).</p>
-      <div class="treewrap">
-        <div class="tree">
+      <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · páginas y contenido</h2></div>
+      <p class="page-sub">Cada página con su descripción y las secciones que llevará. <b>Blog</b> es Fase 2; <b>ZAR</b> y <b>Flotante</b> tienen contenido pendiente (🚧).</p>
+
+      <div class="smap root">
+        <h3>Inicio <span class="badge">Home</span></h3>
+        <p class="desc">La puerta de entrada: resume todo y empuja a cotizar.</p>
+        <span class="seclbl">Secciones (en orden)</span>
+        <ul>
+          <li>Encabezado (hero): mensaje principal + “Cotizar” + foto real.</li>
+          <li>Configurador Sistema × Aplicación (el “calificador”).</li>
+          <li>Los 5 sistemas (tarjetas con su frase).</li>
+          <li>Soluciones por sector.</li>
+          <li>Por qué Modularte (30 años, respaldo, certificaciones).</li>
+          <li>Proyectos / casos destacados.</li>
+          <li>Cierre + cotización.</li>
+        </ul>
+      </div>
+
+      <div class="connector">Se ramifica en</div>
+
+      <div class="smapgrid">
+
+        <div class="smap">
+          <h3>Sistemas</h3>
+          <p class="desc">Índice de los 5 sistemas + una página por cada uno.</p>
+          <span class="seclbl">Sub-páginas</span>
+          <div class="subpages">
+            <span class="subpage">Unidades Móviles</span><span class="subpage">Armabox®</span><span class="subpage">Tradicional</span><span class="subpage">ZAR 🚧</span><span class="subpage">Flotante 🚧</span>
+          </div>
+          <span class="seclbl">Secciones de cada página de sistema</span>
           <ul>
-            <li>
-              <div class="node root">Inicio<small>Home</small></div>
-              <ul>
-                <li>
-                  <div class="node">Sistemas</div>
-                  <ul>
-                    <li><div class="node sub">Unidades Móviles</div></li>
-                    <li><div class="node sub">Armabox®</div></li>
-                    <li><div class="node sub">Tradicional</div></li>
-                    <li><div class="node sub">ZAR 🚧</div></li>
-                    <li><div class="node sub">Flotante 🚧</div></li>
-                  </ul>
-                </li>
-                <li><div class="node">Catálogo /<br>Configurador</div></li>
-                <li>
-                  <div class="node">Soluciones<br>por sector</div>
-                  <ul>
-                    <li><div class="node sub">Minería</div></li>
-                    <li><div class="node sub">Educación</div></li>
-                    <li><div class="node sub">Salud</div></li>
-                    <li><div class="node sub">Industria</div></li>
-                    <li><div class="node sub">Oficinas</div></li>
-                  </ul>
-                </li>
-                <li><div class="node">Proyectos /<br>Casos</div></li>
-                <li><div class="node">Nosotros</div></li>
-                <li><div class="node">Blog<small>Fase 2</small></div></li>
-                <li><div class="node">Contacto /<br>Cotización</div></li>
-              </ul>
-            </li>
+            <li>Qué es (frase + foto).</li>
+            <li>Características (medidas, materiales, ventajas).</li>
+            <li>Aplicaciones (dormitorios, baños, oficinas…).</li>
+            <li>Casos + certificaciones.</li>
+            <li>Cotizar este sistema.</li>
           </ul>
         </div>
+
+        <div class="smap">
+          <h3>Catálogo / Configurador</h3>
+          <p class="desc">Herramienta para encontrar la solución filtrando.</p>
+          <span class="seclbl">Secciones</span>
+          <ul>
+            <li>Filtro por Sistema y por Aplicación (ej. Armabox® → Dormitorios).</li>
+            <li>Resultados → ficha (foto + specs + cotizar).</li>
+          </ul>
+        </div>
+
+        <div class="smap">
+          <h3>Soluciones por sector</h3>
+          <p class="desc">La oferta explicada desde el problema de cada industria.</p>
+          <span class="seclbl">Sub-páginas</span>
+          <div class="subpages">
+            <span class="subpage">Minería</span><span class="subpage">Educación</span><span class="subpage">Salud</span><span class="subpage">Industria</span><span class="subpage">Oficinas</span>
+          </div>
+          <span class="seclbl">Secciones de cada sector</span>
+          <ul>
+            <li>Problema del sector.</li>
+            <li>Cómo lo resuelve Modularte.</li>
+            <li>Sistemas recomendados + casos.</li>
+            <li>Cotizar.</li>
+          </ul>
+        </div>
+
+        <div class="smap">
+          <h3>Proyectos / Casos</h3>
+          <p class="desc">Prueba de experiencia, con fotos reales.</p>
+          <span class="seclbl">Secciones</span>
+          <ul>
+            <li>Galería filtrable por sistema o sector.</li>
+            <li>Ficha de caso (fotos, sector, sistema usado).</li>
+          </ul>
+        </div>
+
+        <div class="smap">
+          <h3>Nosotros</h3>
+          <p class="desc">Por qué confiar en Modularte.</p>
+          <span class="seclbl">Secciones</span>
+          <ul>
+            <li>+30 años y cobertura nacional.</li>
+            <li>Respaldo de fábrica (BH Prefab / CDPH).</li>
+            <li>Certificaciones.</li>
+            <li>Sostenibilidad (a validar).</li>
+          </ul>
+        </div>
+
+        <div class="smap">
+          <h3>Blog <span class="badge">Fase 2</span></h3>
+          <p class="desc">Posicionamiento en Google con artículos.</p>
+          <span class="seclbl">Secciones</span>
+          <ul>
+            <li>Artículos por eje (técnico, casos, educar, respaldo).</li>
+            <li>Categorías y buscador.</li>
+          </ul>
+        </div>
+
+        <div class="smap">
+          <h3>Contacto / Cotización</h3>
+          <p class="desc">El cierre: pedir la cotización.</p>
+          <span class="seclbl">Secciones</span>
+          <ul>
+            <li>Formulario de cotización.</li>
+            <li>Tel, correo, WhatsApp, ubicación (GDL).</li>
+          </ul>
+        </div>
+
       </div>
-      <p class="page-sub" style="margin-top:14px">En todo el sitio: menú con estas páginas + botón “Cotizar” siempre visible, y pie de página con sistemas, sectores, contacto y certificaciones.</p>
+
+      <p class="page-sub" style="margin-top:16px">En todo el sitio: menú con estas páginas + botón “Cotizar” siempre visible, y pie de página con sistemas, sectores, contacto y certificaciones.</p>
     </section>
   </div>
 
