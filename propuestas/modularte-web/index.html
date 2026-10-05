@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sitio Web Modularte — Estructura</title>
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Estructura del sitio web de Modularte: mapa del sitio y contenido de cada página, en orden.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#f2f1ee; --surface:#ffffff; --ink:#232527; --muted:#6b7076; --line:#e4e1db;
+    --wire:#bdbab4; --phbg:#f0eee9; --wire-ink:#7f858b; --accent:#c61f0a; --radius:14px;
+    --shadow:0 1px 2px rgba(20,20,20,.05),0 8px 22px rgba(20,20,20,.05);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#151617; --surface:#1e2022; --ink:#eceae5; --muted:#9aa0a7; --line:#2f3236;
+      --wire:#484c51; --phbg:#232629; --wire-ink:#8d949b; --accent:#f04a30;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#151617; --surface:#1e2022; --ink:#eceae5; --muted:#9aa0a7; --line:#2f3236;
+    --wire:#484c51; --phbg:#232629; --wire-ink:#8d949b; --accent:#f04a30;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px; margin-inline:auto; padding-inline:20px; padding-block:40px 72px;}
+  h1,h2,h3{font-family:"Archivo",sans-serif; margin:0; text-wrap:balance;}
+  .mono{font-family:"IBM Plex Mono",monospace;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+
+  header.top{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:22px;}
+  header.top h1{font-size:clamp(28px,5.5vw,46px); font-weight:800; letter-spacing:-.02em; margin-top:8px;}
+  header.top p{color:var(--muted); max-width:64ch; margin:12px 0 0; font-size:14px;}
+
+  .banner{display:flex; gap:12px; align-items:flex-start; background:var(--phbg); border:1px dashed var(--wire); border-radius:12px; padding:14px 16px; margin-bottom:34px; font-size:13px; color:var(--muted);}
+  .banner b{color:var(--ink);}
+  .banner .tag{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); white-space:nowrap;}
+
+  .page{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; margin-bottom:20px;}
+  .page-head{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
+  .page-head .n{font-family:"IBM Plex Mono",monospace; color:var(--accent); font-size:13px; font-weight:600;}
+  .page-head h2{font-size:18px; font-weight:700;}
+  .page-sub{color:var(--muted); font-size:12.5px; margin:0 0 16px;}
+
+  /* sitemap chips */
+  .sitemap{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{border:1.5px solid var(--wire); background:var(--phbg); border-radius:10px; padding:10px 14px; font-weight:600; font-size:13.5px; display:flex; flex-direction:column; gap:2px; min-width:150px; flex:1 1 160px;}
+  .chip small{font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;}
+
+  /* stacked page blocks */
+  .stack{display:flex; flex-direction:column; gap:10px;}
+  .blk{border:1.5px dashed var(--wire); background:var(--phbg); border-radius:10px; padding:12px 14px; display:flex; gap:12px; align-items:flex-start;}
+  .blk .bn{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--accent); font-weight:600; flex:0 0 auto; margin-top:1px;}
+  .blk b{font-size:14px;}
+  .blk p{margin:3px 0 0; font-size:12.5px; color:var(--muted);}
+  .blk.hero{border-style:solid; background:var(--surface);}
+  .blk.cta{border-style:solid; border-color:var(--accent);}
+
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;}
+
+  .matrix{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-top:8px;}
+  .mx{border:1.5px dashed var(--wire); background:var(--phbg); border-radius:8px; padding:10px; font-size:12.5px; text-align:center;}
+  .mx b{display:block; font-size:12.5px;}
+  .mx small{font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--muted);}
+
+  ul.plain{margin:6px 0 0; padding-left:18px; font-size:13px; color:var(--ink);}
+  ul.plain li{margin:3px 0;}
+  .glob{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+  .pill{font-family:"IBM Plex Mono",monospace; font-size:11px; border:1px solid var(--line); background:var(--phbg); border-radius:20px; padding:5px 12px; color:var(--muted);}
+  .open{font-size:13.5px; margin:8px 0 0; padding-left:18px;}
+  .open li{margin:6px 0;}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Sitio web · Estructura y contenido</div>
+    <h1>Sitio Web Modularte · Estructura</h1>
+    <p>El mapa del sitio y el contenido de cada página, en orden. Es la guía para diseñar y programar el nuevo sitio. El objetivo: pasar de un sitio informativo a uno <b>comercial</b>, que lleve a <b>cotizar</b>.</p>
+  </header>
+
+  <div class="banner">
+    <span class="tag">Estructura</span>
+    <div>Esta estructura define las <b>páginas del sitio y el contenido de cada una</b>: el orden y qué integra cada página. Sirve como guía para el diseño y la programación.</div>
+  </div>
+
+  <!-- Mapa del sitio -->
+  <section class="page">
+    <div class="page-head"><span class="n">01</span><h2>Mapa del sitio</h2></div>
+    <p class="page-sub">Las páginas que tendrá el sitio.</p>
+    <div class="sitemap">
+      <div class="chip">Inicio<small>Home</small></div>
+      <div class="chip">Sistemas<small>Índice + 1 página por sistema</small></div>
+      <div class="chip">Catálogo / Configurador<small>Filtro Sistema × Aplicación</small></div>
+      <div class="chip">Soluciones por sector<small>Minería, Educación, Salud…</small></div>
+      <div class="chip">Proyectos / Casos<small>Galería con fotos</small></div>
+      <div class="chip">Nosotros<small>30 años, respaldo, certificados</small></div>
+      <div class="chip">Blog<small>Fase 2 · SEO</small></div>
+      <div class="chip">Contacto / Cotización<small>Formulario</small></div>
+    </div>
+    <div class="glob" style="margin-top:14px">
+      <span class="pill">Global: menú + botón “Cotizar” siempre visible</span>
+      <span class="pill">WhatsApp flotante (a validar)</span>
+      <span class="pill">Pie: sistemas · sectores · contacto · certificados</span>
+    </div>
+  </section>
+
+  <!-- Inicio -->
+  <section class="page">
+    <div class="page-head"><span class="n">02</span><h2>Inicio (home) — en orden</h2></div>
+    <p class="page-sub">Recorrido: llega desde Google → encuentra su solución → ve que somos serios → cotiza.</p>
+    <div class="stack">
+      <div class="blk hero"><span class="bn">1</span><div><b>Encabezado (hero)</b><p>Mensaje principal + botón “Cotizar” + foto real de proyecto a escala.</p></div></div>
+      <div class="blk"><span class="bn">2</span><div><b>Configurador Sistema × Aplicación</b><p>El “calificador”: el visitante elige y llega a su solución.</p></div></div>
+      <div class="blk"><span class="bn">3</span><div><b>Los 5 sistemas</b><p>Una tarjeta por sistema con su frase clave.</p></div></div>
+      <div class="blk"><span class="bn">4</span><div><b>Soluciones por sector</b><p>Accesos por vertical (minería, educación…) con casos.</p></div></div>
+      <div class="blk"><span class="bn">5</span><div><b>Por qué Modularte</b><p>30 años + respaldo de fábrica + certificaciones.</p></div></div>
+      <div class="blk"><span class="bn">6</span><div><b>Proyectos / casos destacados</b><p>Fotos reales de proyecto.</p></div></div>
+      <div class="blk cta"><span class="bn">7</span><div><b>Cierre + cotización</b><p>Formulario o llamado a cotizar.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Página de sistema + configurador -->
+  <section class="page">
+    <div class="page-head"><span class="n">03</span><h2>Página de Sistema + Configurador</h2></div>
+    <div class="cols">
+      <div>
+        <p class="page-sub">Plantilla que se repite por cada sistema (Unidades Móviles, Armabox®, Tradicional, ZAR 🚧, Flotante 🚧).</p>
+        <div class="stack">
+          <div class="blk"><span class="bn">1</span><div><b>Qué es</b><p>Una frase + foto.</p></div></div>
+          <div class="blk"><span class="bn">2</span><div><b>Características</b><p>Medidas, materiales, ventajas (Armabox® ya tiene specs).</p></div></div>
+          <div class="blk"><span class="bn">3</span><div><b>Aplicaciones</b><p>Dormitorios, baños, oficinas…</p></div></div>
+          <div class="blk"><span class="bn">4</span><div><b>Casos + Certificaciones</b></div></div>
+          <div class="blk cta"><span class="bn">5</span><div><b>Cotizar este sistema</b></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="page-sub">Configurador: el visitante filtra por Sistema y por Aplicación (ej. Armabox® → Dormitorios) y llega a la ficha.</p>
+        <div class="mono" style="font-size:11px; color:var(--muted); margin-bottom:6px">SISTEMA →</div>
+        <div class="matrix">
+          <div class="mx"><b>Unidades Móviles</b><small>oficinas · baños · aulas</small></div>
+          <div class="mx"><b>Armabox®</b><small>dormitorios · comedores…</small></div>
+          <div class="mx"><b>Tradicional</b><small>clínicas · hospitales…</small></div>
+          <div class="mx"><b>ZAR 🚧</b><small>falta info</small></div>
+          <div class="mx"><b>Flotante 🚧</b><small>falta info</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Otras paginas -->
+  <section class="page">
+    <div class="page-head"><span class="n">04</span><h2>Otras páginas</h2></div>
+    <div class="cols">
+      <div>
+        <b>Soluciones por sector</b>
+        <ul class="plain"><li>Problema del sector → cómo lo resuelve Modularte → sistemas recomendados → casos → cotizar.</li></ul>
+      </div>
+      <div>
+        <b>Proyectos / Casos</b>
+        <ul class="plain"><li>Galería con el banco de fotos, filtrable por sistema o sector.</li></ul>
+      </div>
+      <div>
+        <b>Nosotros</b>
+        <ul class="plain"><li>+30 años, cobertura nacional, respaldo de fábrica, certificaciones, sostenibilidad (a validar).</li></ul>
+      </div>
+      <div>
+        <b>Contacto / Cotización</b>
+        <ul class="plain"><li>Formulario de cotización + tel, correo, WhatsApp y ubicación (GDL).</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO -->
+  <section class="page">
+    <div class="page-head"><span class="n">05</span><h2>Posicionamiento en Google (SEO)</h2></div>
+    <p class="page-sub">Cada página de sistema y de sector ataca sus términos de búsqueda.</p>
+    <div class="glob">
+      <span class="pill">edificio modular</span><span class="pill">aulas prefabricadas</span>
+      <span class="pill">campamentos mineros</span><span class="pill">oficinas móviles</span>
+      <span class="pill">baños / dormitorios móviles</span><span class="pill">clínicas móviles</span>
+      <span class="pill">construcción prefabricada</span>
+    </div>
+  </section>
+
+  <!-- Decisiones -->
+  <section class="page">
+    <div class="page-head"><span class="n">06</span><h2>Decisiones por cerrar</h2></div>
+    <ol class="open">
+      <li>¿Cómo se cotiza: <b>formulario, WhatsApp o ambos</b>?</li>
+      <li>¿El <b>configurador</b> es un filtro simple o una herramienta más completa?</li>
+      <li>🚧 Contenido de <b>ZAR y Flotante</b> (falta info del cliente).</li>
+      <li>¿Se incluye <b>Blog</b> desde el inicio o se deja listo para Fase 2?</li>
+      <li><b>Plataforma</b> (a medida / CMS) y <b>dominio</b> final.</li>
+    </ol>
+  </section>
+
+  <footer>
+    Estructura del sitio web · Modularte · uso interno Sentido · detalle en el documento “Estructura del sitio web”.
+  </footer>
+
+</div>
+</body>
+</html>
