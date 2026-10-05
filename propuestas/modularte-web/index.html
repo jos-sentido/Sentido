@@ -128,6 +128,14 @@
   .bchildren{margin-left:18px; padding-left:26px; border-left:2px solid var(--wire);}
   .bitem{position:relative; margin-top:14px;}
   .bitem::before{content:''; position:absolute; left:-26px; top:24px; width:24px; border-top:2px solid var(--wire);}
+
+  /* sitemap estilo tarjetas-página (Navbar → secciones → Footer) */
+  .pcard{width:200px; border:1px solid var(--line); border-radius:12px; background:var(--surface); box-shadow:var(--shadow); overflow:hidden; text-align:left;}
+  .pcard .hd{display:flex; justify-content:space-between; align-items:center; gap:6px; padding:9px 11px; border-bottom:1px solid var(--line); font-weight:700; font-size:12.5px; font-family:"Archivo",sans-serif;}
+  .pcard .hd .dots{color:var(--muted); letter-spacing:1px;}
+  .pcard .bd{padding:9px; display:flex; flex-direction:column; gap:5px;}
+  .prow{background:var(--phbg); border:1px solid var(--line); border-radius:6px; padding:6px 8px; font-size:10.5px; line-height:1.25; color:var(--ink);}
+  .prow.nav,.prow.ft{background:transparent; border-style:dashed; color:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:9px; text-transform:uppercase; letter-spacing:.06em;}
 </style>
 </head>
 <body>
@@ -155,129 +163,112 @@
       <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · páginas y contenido</h2></div>
       <p class="page-sub">Cada página con su descripción y las secciones que llevará. <b>Blog</b> es Fase 2; <b>ZAR</b> y <b>Flotante</b> tienen contenido pendiente (🚧).</p>
 
-      <div class="btree">
-        <div class="bnode root">
-          <h3>Inicio <span class="badge">Home</span></h3>
-          <p class="desc">La puerta de entrada: resume todo y empuja a cotizar.</p>
-          <span class="seclbl">Secciones (en orden)</span>
+      <div class="treewrap">
+        <div class="tree">
           <ul>
-            <li>Encabezado (hero): mensaje principal + “Cotizar” + foto real.</li>
-            <li>Configurador Sistema × Aplicación (el “calificador”).</li>
-            <li>Los 5 sistemas (tarjetas con su frase).</li>
-            <li>Soluciones por sector.</li>
-            <li>Por qué Modularte (30 años, respaldo, certificaciones).</li>
-            <li>Proyectos / casos destacados.</li>
-            <li>Cierre + cotización.</li>
+            <li>
+              <div class="pcard">
+                <div class="hd"><span>Inicio</span><span class="dots">···</span></div>
+                <div class="bd">
+                  <div class="prow nav">Navbar</div>
+                  <div class="prow">Hero</div>
+                  <div class="prow">Configurador Sistema × Aplicación</div>
+                  <div class="prow">Los 5 sistemas</div>
+                  <div class="prow">Soluciones por sector</div>
+                  <div class="prow">Por qué Modularte</div>
+                  <div class="prow">Proyectos destacados</div>
+                  <div class="prow">Cierre y cotización</div>
+                  <div class="prow ft">Footer</div>
+                </div>
+              </div>
+              <ul>
+
+                <li>
+                  <div class="pcard">
+                    <div class="hd"><span>Sistemas</span><span class="dots">···</span></div>
+                    <div class="bd">
+                      <div class="prow nav">Navbar</div>
+                      <div class="prow">Hero — Cinco sistemas, una marca</div>
+                      <div class="prow">Comparativa — los cinco sistemas</div>
+                      <div class="prow">Cómo se elige (y qué necesito)</div>
+                      <div class="prow">Los sistemas ya construidos</div>
+                      <div class="prow">Dudas antes de decidir</div>
+                      <div class="prow">Cotiza tu combinación</div>
+                      <div class="prow ft">Footer</div>
+                    </div>
+                  </div>
+                  <ul>
+                    <li><div class="pcard"><div class="hd"><span>Unidades Móviles</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Unidades listas para operar</div><div class="prow">Para qué se usa una unidad móvil</div><div class="prow">Renta o venta</div><div class="prow">De la consulta a la unidad en sitio</div><div class="prow">Unidades entregadas</div><div class="prow">Dudas de operación y logística</div><div class="prow">Consulta disponibilidad</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Armabox®</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Acero que se arma y se mueve</div><div class="prow">Cómo funciona el sistema atornillable</div><div class="prow">Atributos del sistema</div><div class="prow">Armabox® frente a la obra tradicional</div><div class="prow">Del plano a la entrega</div><div class="prow">Obras construidas con Armabox®</div><div class="prow">Dudas técnicas del sistema</div><div class="prow">Cotiza tu Armabox®</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Tradicional</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Prefabricado a la medida</div><div class="prow">A la medida, con parámetros</div><div class="prow">Qué se construye con este sistema</div><div class="prow">Proyecto, fabricación e instalación</div><div class="prow">Obras a la medida entregadas</div><div class="prow">Dudas de proyectos a la medida</div><div class="prow">Empieza tu proyecto a la medida</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>ZAR 🚧</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Sistema ZAR (a confirmar)</div><div class="prow">Qué obtienes al consultar</div><div class="prow">El respaldo detrás del sistema</div><div class="prow">Pregunta por ZAR</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Flotante 🚧</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Sistema Flotante (a confirmar)</div><div class="prow">Qué obtienes al consultar</div><div class="prow">El respaldo detrás del sistema</div><div class="prow">Pregunta por el sistema flotante</div><div class="prow ft">Footer</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="pcard">
+                    <div class="hd"><span>Catálogo / Configurador</span><span class="dots">···</span></div>
+                    <div class="bd">
+                      <div class="prow nav">Navbar</div>
+                      <div class="prow">Hero — Encuentra tu solución</div>
+                      <div class="prow">Configurador Sistema × Aplicación</div>
+                      <div class="prow">Configuraciones por aplicación</div>
+                      <div class="prow">De tu selección a una propuesta</div>
+                      <div class="prow">Dudas antes de cotizar</div>
+                      <div class="prow">Habla con un asesor</div>
+                      <div class="prow ft">Footer</div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="pcard">
+                    <div class="hd"><span>Soluciones por sector</span><span class="dots">···</span></div>
+                    <div class="bd">
+                      <div class="prow nav">Navbar</div>
+                      <div class="prow">Hero — Entra por tu sector</div>
+                      <div class="prow">Los cinco sectores que atendemos</div>
+                      <div class="prow">Obras por sector</div>
+                      <div class="prow">Treinta años de operación</div>
+                      <div class="prow">Cotiza para tu sector</div>
+                      <div class="prow ft">Footer</div>
+                    </div>
+                  </div>
+                  <ul>
+                    <li><div class="pcard"><div class="hd"><span>Minería</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Campamentos y módulos</div><div class="prow">Qué resolvemos en minería</div><div class="prow">Campamentos entregados</div><div class="prow">De la necesidad a la operación</div><div class="prow">Dudas de minería</div><div class="prow">Cotiza tu campamento</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Educación</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Aulas y espacios escolares</div><div class="prow">Qué resolvemos en educación</div><div class="prow">Espacios escolares entregados</div><div class="prow">Cómo se entrega una escuela</div><div class="prow">Dudas de educación</div><div class="prow">Solicita tu propuesta educativa</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Salud</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Clínicas y módulos de salud</div><div class="prow">Qué resolvemos en salud</div><div class="prow">Unidades de salud entregadas</div><div class="prow">Del flujo clínico al módulo</div><div class="prow">Dudas de salud</div><div class="prow">Solicita tu propuesta de salud</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Industria</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Espacios que no frenan la obra</div><div class="prow">Qué resolvemos en industria</div><div class="prow">Espacios industriales entregados</div><div class="prow">Instalación por etapas, sin paros</div><div class="prow">Dudas de industria</div><div class="prow">Cotiza tus espacios industriales</div><div class="prow ft">Footer</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Oficinas</span><span class="dots">···</span></div><div class="bd">
+                      <div class="prow nav">Navbar</div><div class="prow">Hero — Oficinas ampliables</div><div class="prow">Qué resolvemos en oficinas</div><div class="prow">Oficinas entregadas</div><div class="prow">Del número de personas al espacio</div><div class="prow">Dudas de oficinas</div><div class="prow">Solicita tu propuesta de oficinas</div><div class="prow ft">Footer</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li><div class="pcard"><div class="hd"><span>Proyectos / Casos</span><span class="dots">···</span></div><div class="bd">
+                  <div class="prow nav">Navbar</div><div class="prow">Hero — Obra entregada, no promesas</div><div class="prow">Proyectos por sector y sistema</div><div class="prow">Un caso a fondo</div><div class="prow">Montaje en sitio</div><div class="prow">Empieza tu proyecto</div><div class="prow ft">Footer</div></div></div></li>
+
+                <li><div class="pcard"><div class="hd"><span>Nosotros</span><span class="dots">···</span></div><div class="bd">
+                  <div class="prow nav">Navbar</div><div class="prow">Hero — Treinta años construyendo</div><div class="prow">Cómo podemos entregar</div><div class="prow">Treinta años, por etapas</div><div class="prow">Lo que sostiene la promesa</div><div class="prow">Quién responde por tu proyecto</div><div class="prow">Certificaciones y cumplimiento</div><div class="prow">Lo que dicen quienes ya construyeron</div><div class="prow">Habla con el equipo</div><div class="prow ft">Footer</div></div></div></li>
+
+                <li><div class="pcard"><div class="hd"><span>Blog</span><span class="dots">Fase 2</span></div><div class="bd">
+                  <div class="prow nav">Navbar</div><div class="prow">Header — Guías técnicas del sector</div><div class="prow">Artículos</div><div class="prow">Tu duda, respondida por un experto</div><div class="prow ft">Footer</div></div></div></li>
+
+                <li><div class="pcard"><div class="hd"><span>Contacto / Cotización</span><span class="dots">···</span></div><div class="bd">
+                  <div class="prow nav">Navbar</div><div class="prow">Header — Cotiza tu proyecto</div><div class="prow">Solicita tu cotización</div><div class="prow">Base de fabricación y cobertura</div><div class="prow">Qué pasa después de enviar</div><div class="prow">Dudas antes de escribir</div><div class="prow ft">Footer</div></div></div></li>
+
+              </ul>
+            </li>
           </ul>
-        </div>
-
-        <div class="bchildren">
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Sistemas</h3>
-              <p class="desc">Índice de los 5 sistemas + una página por cada uno.</p>
-              <span class="seclbl">Secciones de cada página de sistema</span>
-              <ul>
-                <li>Qué es (frase + foto).</li>
-                <li>Características (medidas, materiales, ventajas).</li>
-                <li>Aplicaciones (dormitorios, baños, oficinas…).</li>
-                <li>Casos + certificaciones.</li>
-                <li>Cotizar este sistema.</li>
-              </ul>
-            </div>
-            <div class="bchildren">
-              <div class="bitem"><div class="bnode compact"><h3>Unidades Móviles</h3><p class="desc">Oficinas, dormitorios, baños, aulas móviles (renta).</p></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Armabox®</h3><p class="desc">Dormitorios, baños, oficinas, comedores, edificios.</p></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Tradicional</h3><p class="desc">Aulas, clínicas, hospitales, almacenes, comedores…</p></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>ZAR 🚧</h3><p class="desc">Contenido pendiente del cliente.</p></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Flotante 🚧</h3><p class="desc">Contenido pendiente del cliente.</p></div></div>
-            </div>
-          </div>
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Catálogo / Configurador</h3>
-              <p class="desc">Encontrar la solución filtrando.</p>
-              <span class="seclbl">Secciones</span>
-              <ul>
-                <li>Filtro por Sistema y por Aplicación (ej. Armabox® → Dormitorios).</li>
-                <li>Resultados → ficha (foto + specs + cotizar).</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Soluciones por sector</h3>
-              <p class="desc">La oferta desde el problema de cada industria.</p>
-              <span class="seclbl">Secciones de cada sector</span>
-              <ul>
-                <li>Problema del sector.</li>
-                <li>Cómo lo resuelve Modularte.</li>
-                <li>Sistemas recomendados + casos.</li>
-                <li>Cotizar.</li>
-              </ul>
-            </div>
-            <div class="bchildren">
-              <div class="bitem"><div class="bnode compact"><h3>Minería</h3></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Educación</h3></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Salud</h3></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Industria</h3></div></div>
-              <div class="bitem"><div class="bnode compact"><h3>Oficinas</h3></div></div>
-            </div>
-          </div>
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Proyectos / Casos</h3>
-              <p class="desc">Prueba de experiencia, con fotos reales.</p>
-              <span class="seclbl">Secciones</span>
-              <ul>
-                <li>Galería filtrable por sistema o sector.</li>
-                <li>Ficha de caso (fotos, sector, sistema usado).</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Nosotros</h3>
-              <p class="desc">Por qué confiar en Modularte.</p>
-              <span class="seclbl">Secciones</span>
-              <ul>
-                <li>+30 años y cobertura nacional.</li>
-                <li>Respaldo de fábrica (BH Prefab / CDPH).</li>
-                <li>Certificaciones.</li>
-                <li>Sostenibilidad (a validar).</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Blog <span class="badge">Fase 2</span></h3>
-              <p class="desc">Posicionamiento en Google con artículos.</p>
-              <span class="seclbl">Secciones</span>
-              <ul>
-                <li>Artículos por eje (técnico, casos, educar, respaldo).</li>
-                <li>Categorías y buscador.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="bitem">
-            <div class="bnode">
-              <h3>Contacto / Cotización</h3>
-              <p class="desc">El cierre: pedir la cotización.</p>
-              <span class="seclbl">Secciones</span>
-              <ul>
-                <li>Formulario de cotización.</li>
-                <li>Tel, correo, WhatsApp, ubicación (GDL).</li>
-              </ul>
-            </div>
-          </div>
-
         </div>
       </div>
 
