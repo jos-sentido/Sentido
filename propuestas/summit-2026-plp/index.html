@@ -147,6 +147,32 @@
   .ff-txt p { color: var(--hueso-2); font-size: 1.0625rem; line-height: 1.7; max-width: 52ch; margin: 0; }
   .ff-txt strong { color: var(--hueso); }
 
+  /* Resultados — reporte por desarrollo con tabs */
+  .res-fuente { margin-top: 18px; font-family: var(--archivo); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hueso-4); }
+  .res-tabs { display: flex; flex-wrap: wrap; gap: 7px 8px; margin-top: clamp(30px, 4vw, 44px); }
+  .res-tab { font-family: var(--archivo); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hueso-3); background: none; border: 1px solid var(--linea-2); padding: 11px 15px; cursor: pointer; transition: color 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease); }
+  .res-tab:hover { color: var(--hueso); border-color: var(--hueso-3); }
+  .res-tab.activa { color: var(--tinta); background: var(--hueso); border-color: var(--hueso); }
+  .res-panel { margin-top: clamp(30px, 4vw, 42px); }
+  .res-head { display: flex; align-items: baseline; gap: 10px 18px; flex-wrap: wrap; margin-bottom: 22px; }
+  .res-head h3 { font-family: var(--archivo); font-weight: var(--negra); }
+  .res-meta { font-family: var(--archivo); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hueso-3); }
+  .res-meta .ok { color: var(--hueso); }
+  .kpis-primary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linea); border: 1px solid var(--linea); }
+  .kpis-sec { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--linea); border: 1px solid var(--linea); border-top: none; }
+  @media (max-width: 720px) { .kpis-primary { grid-template-columns: 1fr; } .kpis-sec { grid-template-columns: 1fr 1fr; } }
+  .kpi { background: var(--tinta); padding: clamp(16px, 2vw, 24px) clamp(14px, 1.6vw, 20px); }
+  .kpis-primary .kpi { background: var(--tinta-2); }
+  .kpi .k-val { font-family: var(--archivo); font-weight: var(--negra); letter-spacing: -0.03em; color: var(--hueso); line-height: 1; font-variant-numeric: tabular-nums; }
+  .kpis-primary .k-val { font-size: clamp(1.625rem, 3.6vw, 2.375rem); }
+  .kpis-sec .k-val { font-size: clamp(1.1875rem, 2.4vw, 1.5rem); }
+  .kpi .k-lbl { display: block; margin-top: 9px; font-family: var(--archivo); font-weight: 600; font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hueso-4); }
+  .lectura-res { margin-top: clamp(26px, 3vw, 36px); padding-top: 24px; border-top: 1px solid var(--linea); }
+  .lectura-res .rotulo { display: block; margin-bottom: 12px; color: var(--hueso); }
+  .lectura-res p { color: var(--hueso-2); font-size: 1.0625rem; line-height: 1.72; max-width: 72ch; margin: 0; }
+  .res-empty { margin-top: clamp(30px, 4vw, 42px); padding: clamp(24px, 3vw, 34px); border: 1px solid var(--linea-2); background: var(--tinta-2); }
+  .res-empty p { color: var(--hueso-2); font-size: 1.0625rem; line-height: 1.72; max-width: 68ch; margin: 0; }
+
   /* Encabezado en dos columnas: texto + carrusel de artes por desarrollo */
   /* El contenido va SOBRE la trama del fondo (.portada > .buril es absolute y
      su máscara cae al lado derecho, justo sobre el carrusel). */
@@ -251,6 +277,7 @@
       <a href="#copy" class="nav-a">Copy</a>
       <a href="#formularios" class="nav-a">Formularios</a>
       <a href="#posteo" class="nav-a">Posteo</a>
+      <a href="#resultados" class="nav-a">Resultados</a>
       <a href="#cierre" class="nav-a">Cierre</a>
     </div>
     <button class="nav-btn" id="navBtn" aria-label="Menú" aria-expanded="false">
@@ -267,6 +294,7 @@
   <a href="#reglas">Reglas <span class="rombo"></span></a>
   <a href="#copy">Copy <span class="rombo"></span></a>
   <a href="#posteo">Posteo <span class="rombo"></span></a>
+  <a href="#resultados">Resultados <span class="rombo"></span></a>
   <a href="#cierre">Cierre <span class="rombo"></span></a>
 </div>
 
@@ -824,6 +852,52 @@
   </div>
 </section>
 
+<section class="seccion seccion--regla" id="resultados">
+  <div class="wrap">
+    <div class="cabeza">
+      <div class="pleca"></div>
+      <h2>Resultados del Summit.</h2>
+      <p>Rendimiento de la campaña Summit de cada desarrollo —medido por separado, sin acumular—. Solo las campañas Summit; las métricas que pidió PLP, por desarrollo.</p>
+      <p class="res-fuente">Fuente: campañas de Meta Ads de cada desarrollo · Corte: 5 oct 2026 · Objetivo: leads</p>
+    </div>
+    <div class="res-tabs"><button class="res-tab activa" type="button" data-t="res-essentia">Essentia</button><button class="res-tab" type="button" data-t="res-brelia">Brelia</button><button class="res-tab" type="button" data-t="res-amancay">Amancay</button><button class="res-tab" type="button" data-t="res-bolongo">Bolongo</button><button class="res-tab" type="button" data-t="res-bolongo-lotes">Bolongo Lotes</button><button class="res-tab" type="button" data-t="res-mazatlan">Península Mazatlán</button></div>
+      <div class="res-panel" id="res-essentia">
+        <div class="res-head"><h3>Essentia</h3><span class="res-meta">17–30 sep 2026 · <span class="ok">Concluida</span></span></div>
+        <div class="kpis-primary"><div class="kpi"><span class="k-val">$8,358.99</span><span class="k-lbl">Gasto ejecutado</span></div><div class="kpi"><span class="k-val">4</span><span class="k-lbl">Leads</span></div><div class="kpi"><span class="k-val">$2,089.75</span><span class="k-lbl">Costo por lead</span></div></div>
+        <div class="kpis-sec"><div class="kpi"><span class="k-val">26,484</span><span class="k-lbl">Impresiones</span></div><div class="kpi"><span class="k-val">14,664</span><span class="k-lbl">Alcance</span></div><div class="kpi"><span class="k-val">452</span><span class="k-lbl">Clics</span></div><div class="kpi"><span class="k-val">1.81</span><span class="k-lbl">Frecuencia</span></div><div class="kpi"><span class="k-val">1.71%</span><span class="k-lbl">CTR</span></div></div>
+        <div class="lectura-res"><span class="rotulo">Lectura y ajustes · 2027</span><p>CTR de 1.71%: el anuncio atrajo bien, pero de 452 clics solo 4 llenaron el formulario y el CPL subió a $2,089 —casi el doble del CPL de su campaña base ($1,115)—. El reto no fue el interés, sino cerrar el lead. Para 2027: menos fricción en el formulario y afinar el público; el tráfico ya responde, falta convertirlo.</p></div>
+      </div>
+      <div class="res-panel" id="res-brelia" hidden>
+        <div class="res-head"><h3>Brelia</h3><span class="res-meta">31 ago–30 sep 2026 · <span class="ok">Concluida</span></span></div>
+        <div class="kpis-primary"><div class="kpi"><span class="k-val">$15,991.38</span><span class="k-lbl">Gasto ejecutado</span></div><div class="kpi"><span class="k-val">12</span><span class="k-lbl">Leads</span></div><div class="kpi"><span class="k-val">$1,332.62</span><span class="k-lbl">Costo por lead</span></div></div>
+        <div class="kpis-sec"><div class="kpi"><span class="k-val">62,293</span><span class="k-lbl">Impresiones</span></div><div class="kpi"><span class="k-val">28,238</span><span class="k-lbl">Alcance</span></div><div class="kpi"><span class="k-val">899</span><span class="k-lbl">Clics</span></div><div class="kpi"><span class="k-val">2.21</span><span class="k-lbl">Frecuencia</span></div><div class="kpi"><span class="k-val">1.44%</span><span class="k-lbl">CTR</span></div></div>
+        <div class="lectura-res"><span class="rotulo">Lectura y ajustes · 2027</span><p>La campaña Summit más eficiente del portafolio: 12 leads al CPL más bajo ($1,333) y buen alcance (28,238), aunque todavía por encima de su campaña base ($970). La promo conectó. Para 2027: es el modelo a replicar —sostener creativo y presupuesto, y arrancar antes para aprovechar toda la ventana.</p></div>
+      </div>
+      <div class="res-panel" id="res-amancay" hidden>
+        <div class="res-head"><h3>Amancay</h3><span class="res-meta">17–30 sep 2026 · <span class="ok">Concluida</span></span></div>
+        <div class="kpis-primary"><div class="kpi"><span class="k-val">$11,541.74</span><span class="k-lbl">Gasto ejecutado</span></div><div class="kpi"><span class="k-val">6</span><span class="k-lbl">Leads</span></div><div class="kpi"><span class="k-val">$1,923.62</span><span class="k-lbl">Costo por lead</span></div></div>
+        <div class="kpis-sec"><div class="kpi"><span class="k-val">38,268</span><span class="k-lbl">Impresiones</span></div><div class="kpi"><span class="k-val">13,179</span><span class="k-lbl">Alcance</span></div><div class="kpi"><span class="k-val">297</span><span class="k-lbl">Clics</span></div><div class="kpi"><span class="k-val">2.90</span><span class="k-lbl">Frecuencia</span></div><div class="kpi"><span class="k-val">0.78%</span><span class="k-lbl">CTR</span></div></div>
+        <div class="lectura-res"><span class="rotulo">Lectura y ajustes · 2027</span><p>Frecuencia de 2.90 sobre un alcance de 13,179: el público se saturó y el CTR cayó a 0.78%, el más bajo. 6 leads a $1,924, muy lejos del CPL de su campaña base ($301). Para 2027: ampliar el público y rotar más creativos para no quemar la audiencia —el desgaste encareció el lead.</p></div>
+      </div>
+      <div class="res-panel" id="res-bolongo" hidden>
+        <div class="res-head"><h3>Bolongo</h3><span class="res-meta">17–30 sep 2026 · <span class="ok">Concluida</span></span></div>
+        <div class="kpis-primary"><div class="kpi"><span class="k-val">$15,811.52</span><span class="k-lbl">Gasto ejecutado</span></div><div class="kpi"><span class="k-val">11</span><span class="k-lbl">Leads</span></div><div class="kpi"><span class="k-val">$1,437.41</span><span class="k-lbl">Costo por lead</span></div></div>
+        <div class="kpis-sec"><div class="kpi"><span class="k-val">73,704</span><span class="k-lbl">Impresiones</span></div><div class="kpi"><span class="k-val">33,870</span><span class="k-lbl">Alcance</span></div><div class="kpi"><span class="k-val">733</span><span class="k-lbl">Clics</span></div><div class="kpi"><span class="k-val">2.18</span><span class="k-lbl">Frecuencia</span></div><div class="kpi"><span class="k-val">0.99%</span><span class="k-lbl">CTR</span></div></div>
+        <div class="lectura-res"><span class="rotulo">Lectura y ajustes · 2027</span><p>El mayor alcance de la promo (33,870) y buen volumen (11 leads) a $1,437, con una frecuencia sana (2.18). Campaña sólida; su campaña base rinde a $673. Para 2027: mantener la cobertura y probar segmentos nuevos para acercar el CPL al de la operación base.</p></div>
+      </div>
+      <div class="res-panel" id="res-bolongo-lotes" hidden>
+        <div class="res-head"><h3>Bolongo Lotes</h3><span class="res-meta">Sin campaña Summit en Meta</span></div>
+        <div class="res-empty"><p>Bolongo Lotes no corrió una campaña Summit dedicada en Meta durante el periodo, por lo que no hay resultados que reportar por separado. Para 2027, si se quiere empujar Lotes con la promo, conviene darle su propia campaña y pieza para poder medirlo de forma independiente.</p></div>
+      </div>
+      <div class="res-panel" id="res-mazatlan" hidden>
+        <div class="res-head"><h3>Península Mazatlán</h3><span class="res-meta">17–30 sep 2026 · <span class="ok">Concluida</span></span></div>
+        <div class="kpis-primary"><div class="kpi"><span class="k-val">$4,198.90</span><span class="k-lbl">Gasto ejecutado</span></div><div class="kpi"><span class="k-val">4</span><span class="k-lbl">Leads</span></div><div class="kpi"><span class="k-val">$1,049.73</span><span class="k-lbl">Costo por lead</span></div></div>
+        <div class="kpis-sec"><div class="kpi"><span class="k-val">24,965</span><span class="k-lbl">Impresiones</span></div><div class="kpi"><span class="k-val">11,870</span><span class="k-lbl">Alcance</span></div><div class="kpi"><span class="k-val">250</span><span class="k-lbl">Clics</span></div><div class="kpi"><span class="k-val">2.10</span><span class="k-lbl">Frecuencia</span></div><div class="kpi"><span class="k-val">1.00%</span><span class="k-lbl">CTR</span></div></div>
+        <div class="lectura-res"><span class="rotulo">Lectura y ajustes · 2027</span><p>Con el presupuesto más chico ($4,199) logró el CPL de formulario más bajo del Summit ($1,050) y 4 leads. El mercado respondió con eficiencia, aunque su campaña base rinde a $407. Para 2027: darle más presupuesto —hay espacio para escalar volumen sin disparar el costo.</p></div>
+      </div>
+  </div>
+</section>
+
 <!-- ═══════════════ 07 · CIERRE ═══════════════ -->
 <section class="seccion seccion--regla" id="cierre">
   <div class="wrap">
@@ -963,6 +1037,19 @@
       if (cap) cap.textContent = nombres[cur];
       cargar(cur); cargar((cur + 1) % slides.length);
     }
+    // Tabs de Resultados
+    (function () {
+      var tabs = [].slice.call(document.querySelectorAll('.res-tab'));
+      if (!tabs.length) return;
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          var id = t.getAttribute('data-t');
+          tabs.forEach(function (x) { x.classList.toggle('activa', x === t); });
+          document.querySelectorAll('.res-panel').forEach(function (p) { p.hidden = (p.id !== id); });
+        });
+      });
+    })();
+
     g.querySelector('.gprev').addEventListener('click', function () { ir(cur - 1); });
     g.querySelector('.gnext').addEventListener('click', function () { ir(cur + 1); });
     minis.forEach(function (m, i) { m.addEventListener('click', function () { ir(i); }); });
