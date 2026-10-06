@@ -81,6 +81,14 @@
   footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);}
   a.link{color:var(--accent); text-decoration:none;}
   a.link:hover{text-decoration:underline;}
+  .bankgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:12px; margin-top:8px;}
+  .bphoto{border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface); box-shadow:var(--shadow); display:flex; flex-direction:column;}
+  .bphoto img{width:100%; height:116px; object-fit:cover; display:block; background:var(--phbg);}
+  .bphoto .cap{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px;}
+  .bphoto .cap b{font-weight:600; font-size:11.5px;}
+  .dl{font-family:"IBM Plex Mono",monospace; font-size:10px; text-decoration:none; color:var(--accent); border:1px solid var(--line); border-radius:6px; padding:3px 7px; white-space:nowrap;}
+  .dl:hover{background:var(--phbg);}
+  .grouplbl{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:16px 0 2px;}
 </style>
 </head>
 <body>
@@ -201,14 +209,49 @@
 
   <!-- 6 Fotografia -->
   <section class="page">
-    <div class="page-head"><span class="n">06</span><h2>Fotografía</h2></div>
-    <p class="page-sub">Estilo y tratamiento de imagen — apoyado en el banco de fotos ya organizado.</p>
-    <div class="grid3">
-      <div class="imgph"><span>Proyecto real</span></div>
-      <div class="imgph"><span>Escala / campamento</span></div>
-      <div class="imgph"><span>Detalle / interior</span></div>
+    <div class="page-head"><span class="n">06</span><h2>Fotografía e imágenes</h2></div>
+    <p class="page-sub">Aquí no se “diseña” una foto: se define el <b>estilo de las imágenes</b> y se arma el <b>banco</b>. Hay 3 fuentes:</p>
+    <ul style="margin:0 0 12px; padding-left:18px; font-size:13px; line-height:1.55">
+      <li><b>Foto real de proyecto</b> — las que ya tenemos (en Drive).</li>
+      <li><b>Imágenes con IA</b> — para lo que no hay foto; mismo estilo que las reales (ejemplos abajo).</li>
+      <li><b>Por producir</b> — tomas que falten (se agendan).</li>
+    </ul>
+    <p class="page-sub" style="margin:0 0 4px"><span class="ok">Sí:</span> imagen realista, mismo tratamiento (luz y encuadre). &nbsp; <span class="no">No:</span> stock genérico o mezcla de estilos.</p>
+
+    <div class="grouplbl">Banco de imágenes de referencia · clic en “descargar”</div>
+    <p class="page-sub" style="margin:0 0 6px">⚠️ Varias son <b>generadas con IA</b> como ejemplo del “look” buscado para cada uso — <b>no son proyectos reales todavía</b>. Guían el estilo; se reemplazan por foto real cuando exista.</p>
+
+    <div class="grouplbl">Portada (hero) y cierre</div>
+    <div class="bankgrid">
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/hero-campamento.jpg" alt="Campamento al atardecer" loading="lazy"><div class="cap"><b>Hero — campamento</b><a class="dl" href="/propuestas/modularte-branding/banco/hero-campamento.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/cierre-modulos.jpg" alt="Módulos al anochecer" loading="lazy"><div class="cap"><b>Cierre — módulos</b><a class="dl" href="/propuestas/modularte-branding/banco/cierre-modulos.jpg" download>descargar</a></div></div>
     </div>
-    <p class="page-sub" style="margin-top:12px"><span class="ok">Sí:</span> foto real, mismo tratamiento. &nbsp; <span class="no">No:</span> stock genérico o mezcla de estilos.</p>
+
+    <div class="grouplbl">Sistemas</div>
+    <div class="bankgrid">
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sistema-armabox.jpg" alt="Armabox®" loading="lazy"><div class="cap"><b>Armabox®</b><a class="dl" href="/propuestas/modularte-branding/banco/sistema-armabox.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sistema-unidades-moviles.jpg" alt="Unidades móviles" loading="lazy"><div class="cap"><b>Unidades móviles</b><a class="dl" href="/propuestas/modularte-branding/banco/sistema-unidades-moviles.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sistema-tradicional.jpg" alt="Tradicional" loading="lazy"><div class="cap"><b>Tradicional</b><a class="dl" href="/propuestas/modularte-branding/banco/sistema-tradicional.jpg" download>descargar</a></div></div>
+    </div>
+
+    <div class="grouplbl">Sectores</div>
+    <div class="bankgrid">
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sector-mineria.jpg" alt="Minería" loading="lazy"><div class="cap"><b>Minería</b><a class="dl" href="/propuestas/modularte-branding/banco/sector-mineria.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sector-educacion.jpg" alt="Educación" loading="lazy"><div class="cap"><b>Educación</b><a class="dl" href="/propuestas/modularte-branding/banco/sector-educacion.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sector-salud.jpg" alt="Salud" loading="lazy"><div class="cap"><b>Salud</b><a class="dl" href="/propuestas/modularte-branding/banco/sector-salud.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sector-industria.jpg" alt="Industria" loading="lazy"><div class="cap"><b>Industria</b><a class="dl" href="/propuestas/modularte-branding/banco/sector-industria.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/sector-oficinas.jpg" alt="Oficinas" loading="lazy"><div class="cap"><b>Oficinas</b><a class="dl" href="/propuestas/modularte-branding/banco/sector-oficinas.jpg" download>descargar</a></div></div>
+    </div>
+
+    <div class="grouplbl">Proyectos / casos</div>
+    <div class="bankgrid">
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/proyecto-campamento-minero.jpg" alt="Campamento minero" loading="lazy"><div class="cap"><b>Campamento minero</b><a class="dl" href="/propuestas/modularte-branding/banco/proyecto-campamento-minero.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/proyecto-clinica.jpg" alt="Clínica modular" loading="lazy"><div class="cap"><b>Clínica modular</b><a class="dl" href="/propuestas/modularte-branding/banco/proyecto-clinica.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/proyecto-oficinas-obra.jpg" alt="Oficinas de obra" loading="lazy"><div class="cap"><b>Oficinas de obra</b><a class="dl" href="/propuestas/modularte-branding/banco/proyecto-oficinas-obra.jpg" download>descargar</a></div></div>
+      <div class="bphoto"><img src="/propuestas/modularte-branding/banco/proyecto-aulas.jpg" alt="Aulas escolares" loading="lazy"><div class="cap"><b>Aulas escolares</b><a class="dl" href="/propuestas/modularte-branding/banco/proyecto-aulas.jpg" download>descargar</a></div></div>
+    </div>
+
+    <p class="page-sub" style="margin-top:16px">Fotos reales de proyecto (banco completo): <a class="link" href="https://drive.google.com/drive/folders/10IAwQhq44_ObTwljUoJ6C6ykhCw_4dYO" target="_blank" rel="noopener">Carpeta “Fotos” en Drive →</a></p>
   </section>
 
   <!-- 7 Aplicaciones -->
