@@ -89,6 +89,13 @@
   .dl{font-family:"IBM Plex Mono",monospace; font-size:10px; text-decoration:none; color:var(--accent); border:1px solid var(--line); border-radius:6px; padding:3px 7px; white-space:nowrap;}
   .dl:hover{background:var(--phbg);}
   .grouplbl{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:16px 0 2px;}
+  .exrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:2px;}
+  .exfig{flex:1 1 84px; border:1px solid var(--line); border-radius:8px; background:var(--phbg); padding:10px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--ink);}
+  .exfig svg{width:100%; height:56px;}
+  .exfig small{font-family:"IBM Plex Mono",monospace; font-size:8.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; text-align:center; line-height:1.2;}
+  .icolist{margin:6px 0 0; padding:0; list-style:none; font-size:12.5px; line-height:1.5;}
+  .icolist li{margin:4px 0;}
+  .icolist .k{font-family:"IBM Plex Mono",monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); display:block; margin-top:8px;}
 </style>
 </head>
 <body>
@@ -197,12 +204,35 @@
         <p style="font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.45"><b>Una cuadrícula guía (como renglones).</b> Para que el logo, los textos y las fotos siempre queden alineados y ordenados en cualquier pieza. No se ve en el resultado final; es la guía para acomodar.</p>
       </div>
       <div>
-        <div class="ph tall">Marcos y esquinas</div>
-        <p style="font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.45"><b>Un recurso visual propio:</b> encuadrar cosas en cuadros o reforzar las esquinas (inspirado en los módulos). Es un “sello” que se repite y hace reconocible a la marca.</p>
+        <div class="exrow">
+          <div class="exfig">
+            <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="90" height="60" rx="3"/><rect x="18" y="15" width="64" height="24" stroke-width="1.2"/><line x1="18" y1="48" x2="66" y2="48" stroke-width="3"/><line x1="18" y1="56" x2="50" y2="56" stroke-width="3"/></svg>
+            <small>Todo en un cuadro</small>
+          </div>
+          <div class="exfig">
+            <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M8 24 L8 8 L24 8"/><path d="M76 8 L92 8 L92 24"/><path d="M8 46 L8 62 L24 62"/><path d="M76 62 L92 62 L92 46"/></svg>
+            <small>Ganchos en las esquinas</small>
+          </div>
+          <div class="exfig">
+            <svg viewBox="0 0 100 70"><rect x="6" y="6" width="88" height="58" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="6" y="6" width="16" height="16" fill="#c61f0a"/></svg>
+            <small>Acento en una esquina</small>
+          </div>
+          <div class="exfig">
+            <svg viewBox="0 0 100 70"><rect x="6" y="6" width="88" height="58" rx="2" style="fill:var(--wire)"/><path d="M12 24 L12 12 L26 12" fill="none" stroke="#c61f0a" stroke-width="3" stroke-linecap="square"/><path d="M88 46 L88 58 L74 58" fill="none" stroke="#c61f0a" stroke-width="3" stroke-linecap="square"/></svg>
+            <small>Foto enmarcada</small>
+          </div>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted);margin:10px 0 0;line-height:1.45"><b>Marcos y esquinas:</b> encuadrar en cuadros o reforzar las esquinas (inspirado en los módulos). Un “sello” que se repite y hace reconocible a la marca. Arriba, 4 formas de usarlo.</p>
       </div>
       <div>
-        <div class="ph tall">Iconos</div>
-        <p style="font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.45"><b>Dibujitos simples del mismo estilo</b> para señalar cosas: uno por cada sistema, por tipo de espacio o por ventaja (ej. “entrega rápida”, “certificado”).</p>
+        <div class="ph" style="min-height:42px">Iconos</div>
+        <p style="font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.45"><b>Dibujitos simples del mismo estilo</b> (línea, mismo grosor, geométricos) para señalar cosas. Ideas para que Javi los diseñe:</p>
+        <ul class="icolist">
+          <li><span class="k">Por sistema (5)</span>Unidades móviles (remolque) · Armabox® (módulo de acero) · Tradicional (edificio) · ZAR · Flotante (módulo sobre agua).</li>
+          <li><span class="k">Por tipo de espacio</span>Dormitorio (litera) · Baño (regadera) · Oficina (escritorio) · Comedor (mesa) · Aula (pizarrón) · Clínica (cruz) · Almacén (cajas).</li>
+          <li><span class="k">Por ventaja</span>Entrega rápida (rayo/reloj) · Reubicable (flechas) · Certificado (escudo ✓) · Resistente (casco) · Cobertura nacional (mapa/pin) · Sostenible (hoja).</li>
+          <li><span class="k">Contacto / web</span>Teléfono · WhatsApp · Correo · Ubicación (pin) · Cotizar ($ / documento).</li>
+        </ul>
       </div>
     </div>
   </section>
