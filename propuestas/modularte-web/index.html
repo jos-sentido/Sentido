@@ -91,8 +91,10 @@
   .tab:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 
   /* arbol / mapa de ramas */
-  .treewrap{overflow-x:auto; padding:6px 0 12px;}
-  .tree{display:flex; justify-content:center; min-width:max-content;}
+  .treewrap{overflow:auto; position:relative; max-height:72vh; background:var(--phbg); border:1px solid var(--line); border-radius:12px; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; touch-action:none; cursor:grab;}
+  .treewrap:active{cursor:grabbing;}
+  .treestage{overflow:hidden; width:max-content; will-change:width,height;}
+  .tree{display:flex; justify-content:center; min-width:max-content; padding:14px; transform-origin:0 0; will-change:transform;}
   .tree ul{padding-top:22px; position:relative; display:flex; justify-content:center; margin:0;}
   .tree li{display:flex; flex-direction:column; align-items:center; list-style:none; position:relative; padding:22px 6px 0;}
   .tree li::before,.tree li::after{content:''; position:absolute; top:0; right:50%; border-top:2px solid var(--wire); width:50%; height:22px;}
@@ -144,6 +146,16 @@
   .pcard .bd{padding:9px; display:flex; flex-direction:column; gap:5px;}
   .prow{background:var(--phbg); border:1px solid var(--line); border-radius:6px; padding:6px 8px; font-size:10.5px; line-height:1.25; color:var(--ink);}
   .prow.nav,.prow.ft{background:transparent; border-style:dashed; color:var(--muted); font-family:var(--mod-body); font-size:9px; text-transform:uppercase; letter-spacing:.06em;}
+
+  /* controles de zoom del mapa */
+  .zoombar{display:flex; align-items:center; gap:7px; margin:12px 0 10px; flex-wrap:wrap;}
+  .zoombar button{font-family:var(--mod-body); font-weight:600; font-size:16px; width:36px; height:36px; border-radius:9px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; line-height:1; -webkit-tap-highlight-color:transparent;}
+  .zoombar button:hover{border-color:var(--accent); color:var(--accent);}
+  .zoombar button:active{transform:translateY(1px);}
+  .zoombar .zlabel{font-family:var(--mod-body); font-size:12.5px; color:var(--muted); min-width:50px; text-align:center;}
+  .zoombar .zfit{width:auto; padding:0 14px; font-size:12.5px; font-weight:600; letter-spacing:.02em;}
+  .zoombar .zhint{font-family:var(--mod-body); font-size:11px; color:var(--muted); margin-left:4px;}
+  @media (max-width:640px){ .zoombar .zhint{flex-basis:100%; margin-left:0; margin-top:-2px;} }
 </style>
 </head>
 <body>
@@ -172,8 +184,16 @@
       <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · páginas y contenido</h2></div>
       <p class="page-sub">Cada página con su descripción y las secciones que llevará. <b>Blog</b> es Fase 2; <b>ZAR</b> y <b>Flotante</b> tienen contenido pendiente (🚧).</p>
 
-      <div class="treewrap">
-        <div class="tree">
+      <div class="zoombar" role="group" aria-label="Zoom del mapa">
+        <button type="button" id="zout" aria-label="Alejar">&minus;</button>
+        <span class="zlabel" id="zlabel">100%</span>
+        <button type="button" id="zin" aria-label="Acercar">+</button>
+        <button type="button" class="zfit" id="zfit">Ajustar</button>
+        <span class="zhint" id="zhint">Pellizca con dos dedos para acercar · arrastra para mover</span>
+      </div>
+      <div class="treewrap" id="twrap">
+        <div class="treestage" id="tstage">
+        <div class="tree" id="tree">
           <ul>
             <li>
               <div class="pcard">
@@ -278,6 +298,7 @@
               </ul>
             </li>
           </ul>
+        </div>
         </div>
       </div>
 
@@ -410,18 +431,91 @@
   (function(){
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
     var panels = { map: document.getElementById('panel-map'), detail: document.getElementById('panel-detail') };
-    var tw = document.querySelector('.treewrap');
-    function centerTree(){ if(tw){ tw.scrollLeft = Math.max(0, (tw.scrollWidth - tw.clientWidth) / 2); } }
+    var twrap = document.getElementById('twrap');
+    var stage = document.getElementById('tstage');
+    var tree = document.getElementById('tree');
+    var zlabel = document.getElementById('zlabel');
+    var z = 1, ZMIN = 0.25, ZMAX = 2, natW = 0, natH = 0;
+
+    function measure(){ if(tree){ natW = tree.offsetWidth; natH = tree.offsetHeight; } }
+    function apply(){
+      if(tree){ tree.style.transform = 'scale(' + z + ')'; }
+      if(stage){ stage.style.width = (natW*z) + 'px'; stage.style.height = (natH*z) + 'px'; }
+      if(zlabel){ zlabel.textContent = Math.round(z*100) + '%'; }
+    }
+    function clamp(v){ return Math.max(ZMIN, Math.min(ZMAX, v)); }
+
+    function zoomTo(nz, ax, ay){
+      if(!twrap) return;
+      nz = clamp(nz);
+      var rect = twrap.getBoundingClientRect();
+      if(ax == null){ ax = rect.left + twrap.clientWidth/2; ay = rect.top + twrap.clientHeight/2; }
+      var cx = (twrap.scrollLeft + (ax - rect.left)) / z;
+      var cy = (twrap.scrollTop  + (ay - rect.top))  / z;
+      z = nz; apply();
+      twrap.scrollLeft = cx * z - (ax - rect.left);
+      twrap.scrollTop  = cy * z - (ay - rect.top);
+    }
+
+    function fit(){
+      measure();
+      if(!twrap || !natW) return;
+      var f = Math.min(twrap.clientWidth / natW, twrap.clientHeight / natH);
+      if(f > 1) f = 1;
+      z = clamp(f); apply();
+      twrap.scrollLeft = Math.max(0, (twrap.scrollWidth - twrap.clientWidth) / 2);
+      twrap.scrollTop = 0;
+    }
+
+    var zin = document.getElementById('zin'), zout = document.getElementById('zout'), zfit = document.getElementById('zfit');
+    if(zin)  zin.addEventListener('click', function(){ zoomTo(z * 1.25); });
+    if(zout) zout.addEventListener('click', function(){ zoomTo(z / 1.25); });
+    if(zfit) zfit.addEventListener('click', fit);
+
+    if(twrap){
+      twrap.addEventListener('wheel', function(e){
+        if(e.ctrlKey || e.metaKey){ e.preventDefault(); zoomTo(z * (e.deltaY < 0 ? 1.12 : 0.89), e.clientX, e.clientY); }
+      }, { passive:false });
+
+      var mode = null, startDist = 0, startZ = 1, lastX = 0, lastY = 0;
+      function dist(t){ return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+      twrap.addEventListener('touchstart', function(e){
+        if(e.touches.length === 2){ mode='pinch'; startDist=dist(e.touches); startZ=z; e.preventDefault(); }
+        else if(e.touches.length === 1){ mode='pan'; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; }
+      }, { passive:false });
+      twrap.addEventListener('touchmove', function(e){
+        if(mode==='pinch' && e.touches.length===2){
+          e.preventDefault();
+          var d = dist(e.touches);
+          var ax = (e.touches[0].clientX + e.touches[1].clientX)/2;
+          var ay = (e.touches[0].clientY + e.touches[1].clientY)/2;
+          zoomTo(startZ * (d / startDist), ax, ay);
+        } else if(mode==='pan' && e.touches.length===1){
+          e.preventDefault();
+          var t = e.touches[0];
+          twrap.scrollLeft -= (t.clientX - lastX);
+          twrap.scrollTop  -= (t.clientY - lastY);
+          lastX = t.clientX; lastY = t.clientY;
+        }
+      }, { passive:false });
+      twrap.addEventListener('touchend', function(e){
+        if(e.touches.length===0){ mode=null; }
+        else if(e.touches.length===1){ mode='pan'; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; }
+      });
+    }
+
     tabs.forEach(function(t){
       t.addEventListener('click', function(){
         tabs.forEach(function(x){ x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
         Object.keys(panels).forEach(function(k){ if(panels[k]) panels[k].hidden = (k !== t.dataset.panel); });
-        if(t.dataset.panel === 'map'){ centerTree(); }
+        if(t.dataset.panel === 'map'){ fit(); }
       });
     });
-    window.addEventListener('load', centerTree);
-    window.addEventListener('resize', centerTree);
-    centerTree();
+
+    window.addEventListener('load', fit);
+    window.addEventListener('resize', fit);
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
+    fit();
   })();
 </script>
 </body>
