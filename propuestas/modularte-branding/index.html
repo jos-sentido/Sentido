@@ -6,32 +6,33 @@
 <title>Branding Modularte — Estructura</title>
 <link rel="icon" href="/favicon.ico">
 <meta name="description" content="Estructura y contenido del branding de Modularte: qué incluye y en qué orden se diseña.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/propuestas/modularte-assets/marca.css">
 <style>
   :root{
-    --bg:#f2f1ee; --surface:#ffffff; --ink:#232527; --muted:#6b7076; --line:#e4e1db;
-    --wire:#bdbab4; --phbg:#f0eee9; --wire-ink:#8b9096; --accent:#c61f0a; --radius:14px;
+    --bg:#f3f3f3; --surface:#ffffff; --ink:#222221; --muted:#7c838c; --line:#e3e3e1;
+    --wire:#c6c6c2; --phbg:#ececea; --wire-ink:#868d95; --accent:#be3e3e; --radius:14px;
     --shadow:0 1px 2px rgba(20,20,20,.05),0 8px 22px rgba(20,20,20,.05);
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
-      --bg:#151617; --surface:#1e2022; --ink:#eceae5; --muted:#9aa0a7; --line:#2f3236;
-      --wire:#484c51; --phbg:#232629; --wire-ink:#868d94; --accent:#f04a30;
+      --bg:#222221; --surface:#2b2b29; --ink:#f0efe9; --muted:#9aa0a7; --line:#2f3236;
+      --wire:#484c51; --phbg:#232629; --wire-ink:#868d94; --accent:#cf5a5a;
       --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#151617; --surface:#1e2022; --ink:#eceae5; --muted:#9aa0a7; --line:#2f3236;
-    --wire:#484c51; --phbg:#232629; --wire-ink:#868d94; --accent:#f04a30;
+    --bg:#222221; --surface:#2b2b29; --ink:#f0efe9; --muted:#9aa0a7; --line:#2f3236;
+    --wire:#484c51; --phbg:#232629; --wire-ink:#868d94; --accent:#cf5a5a;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
   html,body{margin:0}
-  body{background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--mod-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
   .wrap{max-width:1080px; margin-inline:auto; padding-inline:20px; padding-block:40px 72px;}
-  h1,h2,h3{font-family:"Archivo",sans-serif; margin:0; text-wrap:balance;}
-  .mono{font-family:"IBM Plex Mono",monospace;}
-  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1,h2,h3{font-family:var(--mod-body); font-weight:700; margin:0; text-wrap:balance;}
+  .mono{font-family:var(--mod-eyebrow);}
+  .eyebrow{font-family:var(--mod-eyebrow); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
 
   header.top{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:22px;}
   header.top h1{font-size:clamp(28px,5.5vw,46px); font-weight:800; letter-spacing:-.02em; margin-top:8px;}
@@ -39,11 +40,11 @@
 
   .banner{display:flex; gap:12px; align-items:flex-start; background:var(--phbg); border:1px dashed var(--wire); border-radius:12px; padding:14px 16px; margin-bottom:34px; font-size:13px; color:var(--muted);}
   .banner b{color:var(--ink);}
-  .banner .tag{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); white-space:nowrap;}
+  .banner .tag{font-family:var(--mod-eyebrow); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); white-space:nowrap;}
 
   .page{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; margin-bottom:20px;}
   .page-head{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
-  .page-head .n{font-family:"IBM Plex Mono",monospace; color:var(--accent); font-size:13px; font-weight:600;}
+  .page-head .n{font-family:var(--mod-eyebrow); color:var(--accent); font-size:13px; font-weight:600;}
   .page-head h2{font-size:18px; font-weight:700;}
   .page-sub{color:var(--muted); font-size:12.5px; margin:0 0 16px;}
 
@@ -52,7 +53,7 @@
   .grid2{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
   .grid3{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:14px;}
 
-  .ph{border:1.5px dashed var(--wire); background:var(--phbg); border-radius:8px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--wire-ink); font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; padding:12px; min-height:66px;}
+  .ph{border:1.5px dashed var(--wire); background:var(--phbg); border-radius:8px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--wire-ink); font-family:var(--mod-eyebrow); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; padding:12px; min-height:66px;}
   .ph.tall{min-height:120px;}
   .ph.dark{background:#22262b; color:#c9ccce; border-color:#3a3f45;}
   .imgph{position:relative; border:1.5px dashed var(--wire); border-radius:8px; min-height:96px;
@@ -61,24 +62,24 @@
       linear-gradient(45deg, transparent calc(50% - 1px), var(--wire) calc(50% - 1px), var(--wire) calc(50% + 1px), transparent calc(50% + 1px)),
       var(--phbg);
     display:flex; align-items:flex-end; justify-content:center;}
-  .imgph span{font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--wire-ink); background:var(--surface); padding:1px 6px; margin-bottom:8px; border-radius:4px;}
+  .imgph span{font-family:var(--mod-eyebrow); font-size:10px; color:var(--wire-ink); background:var(--surface); padding:1px 6px; margin-bottom:8px; border-radius:4px;}
 
-  .caplbl{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; margin:8px 0 4px; display:block;}
+  .caplbl{font-family:var(--mod-eyebrow); font-size:10.5px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; margin:8px 0 4px; display:block;}
   .line{height:8px; background:var(--phbg); border-radius:3px; margin:6px 0;}
   .line.s{width:55%} .line.m{width:78%} .line.l{width:92%}
 
   /* color swatches */
   .sw{height:52px; border-radius:8px; border:1px solid rgba(128,128,128,.25); display:flex; align-items:flex-end; padding:6px;}
-  .sw small{font-family:"IBM Plex Mono",monospace; font-size:9.5px; background:rgba(255,255,255,.85); color:#111; padding:1px 4px; border-radius:3px;}
+  .sw small{font-family:var(--mod-eyebrow); font-size:9.5px; background:rgba(255,255,255,.85); color:#111; padding:1px 4px; border-radius:3px;}
   .propbar{display:flex; height:16px; border-radius:6px; overflow:hidden; margin-top:10px; border:1px solid var(--line);}
 
-  .type-h{font-family:"Archivo",sans-serif; font-weight:800; font-size:34px; line-height:1; letter-spacing:-.01em;}
+  .type-h{font-family:var(--mod-display); font-weight:700; text-transform:uppercase; font-size:34px; line-height:1; letter-spacing:-.01em;}
   .type-b{font-size:13px; color:var(--muted);}
 
   .ok{color:#2f9e44; font-weight:700;} .no{color:var(--accent); font-weight:700;}
   .appcard{border:1px solid var(--line); border-radius:10px; padding:12px; background:var(--surface);}
   .appcard .caplbl{margin-top:0;}
-  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-family:var(--mod-eyebrow); font-size:11px; color:var(--muted);}
   a.link{color:var(--accent); text-decoration:none;}
   a.link:hover{text-decoration:underline;}
   .bankgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:12px; margin-top:8px;}
@@ -86,22 +87,23 @@
   .bphoto img{width:100%; height:116px; object-fit:cover; display:block; background:var(--phbg);}
   .bphoto .cap{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px;}
   .bphoto .cap b{font-weight:600; font-size:11.5px;}
-  .dl{font-family:"IBM Plex Mono",monospace; font-size:10px; text-decoration:none; color:var(--accent); border:1px solid var(--line); border-radius:6px; padding:3px 7px; white-space:nowrap;}
+  .dl{font-family:var(--mod-eyebrow); font-size:10px; text-decoration:none; color:var(--accent); border:1px solid var(--line); border-radius:6px; padding:3px 7px; white-space:nowrap;}
   .dl:hover{background:var(--phbg);}
-  .grouplbl{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:16px 0 2px;}
+  .grouplbl{font-family:var(--mod-eyebrow); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:16px 0 2px;}
   .exrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:2px;}
   .exfig{flex:1 1 84px; border:1px solid var(--line); border-radius:8px; background:var(--phbg); padding:10px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--ink);}
   .exfig svg{width:100%; height:56px;}
-  .exfig small{font-family:"IBM Plex Mono",monospace; font-size:8.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; text-align:center; line-height:1.2;}
+  .exfig small{font-family:var(--mod-eyebrow); font-size:8.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; text-align:center; line-height:1.2;}
   .icolist{margin:6px 0 0; padding:0; list-style:none; font-size:12.5px; line-height:1.5;}
   .icolist li{margin:4px 0;}
-  .icolist .k{font-family:"IBM Plex Mono",monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); display:block; margin-top:8px;}
+  .icolist .k{font-family:var(--mod-eyebrow); font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); display:block; margin-top:8px;}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="top">
+    <div class="mod-brand" style="margin-bottom:14px"><img src="/propuestas/modularte-assets/logo/imagotipo-rojo.png" alt="Imagotipo Modularte"><span class="mod-wm">MODULARTE<span class="mod-tag">Construcciones pre fabricadas</span></span></div>
     <div class="eyebrow">Rebranding · Estructura del branding</div>
     <h1>Branding Modularte · Estructura</h1>
     <p>Esta es la <b>estructura y el contenido del branding</b>: el <b>orden de las secciones</b> y <b>lo que integra cada una</b>. Es la guía para diseñar la marca.</p>
@@ -117,7 +119,7 @@
     <div class="page-head"><span class="n">00</span><h2>Portada del manual</h2></div>
     <p class="page-sub">La primera página del documento de marca.</p>
     <div class="row">
-      <div class="ph tall" style="flex:2 1 320px">LOGO MODULARTE · (propuesta de Javi)</div>
+      <div class="ph tall" style="flex:2 1 320px; background:var(--surface); border-style:solid; padding:22px"><img src="/propuestas/modularte-assets/logo/modularte-vertical.png" alt="Logo Modularte (aprobado)" style="max-width:100%; max-height:190px; width:auto; height:auto; object-fit:contain"></div>
       <div style="flex:1 1 200px; display:flex; flex-direction:column; justify-content:center; gap:8px">
         <div class="line l"></div><div class="line m"></div>
         <span class="caplbl">Manual de marca · versión y fecha</span>
@@ -158,38 +160,45 @@
   <!-- 3 Color -->
   <section class="page">
     <div class="page-head"><span class="n">03</span><h2>Color</h2></div>
-    <p class="page-sub">Paleta propuesta (dirección nuestra, a validar): base sobria + rojo de acento.</p>
+    <p class="page-sub">Paleta <b>aprobada</b>: base clara + gris pizarra para texto/estructura + rojo como acento.</p>
     <div class="grid2">
-      <div class="sw" style="background:#16181a"><small>#16181A</small></div>
-      <div class="sw" style="background:#22262b"><small>#22262B</small></div>
-      <div class="sw" style="background:#5b6570"><small>#5B6570</small></div>
-      <div class="sw" style="background:#f4f2ef"><small>#F4F2EF</small></div>
-      <div class="sw" style="background:#c61f0a"><small>#C61F0A</small></div>
+      <div class="sw" style="background:#be3e3e"><small>#BE3E3E</small></div>
+      <div class="sw" style="background:#515a65"><small>#515A65</small></div>
+      <div class="sw" style="background:#222221"><small>#222221</small></div>
+      <div class="sw" style="background:#f3f3f3"><small style="background:rgba(0,0,0,.07);color:#222">#F3F3F3</small></div>
     </div>
-    <span class="caplbl">Proporción de uso (base sobria manda, rojo como acento)</span>
+    <span class="caplbl">Especificación exacta</span>
+    <ul class="icolist">
+      <li><span class="k">Rojo · acento / marca</span>HEX #BE3E3E · CMYK 7 / 87 / 75 / 1 · HKS 15</li>
+      <li><span class="k">Gris pizarra · texto / estructura</span>HEX #515A65 · CMYK 70 / 52 / 42 / 32 · HKS 93</li>
+      <li><span class="k">Negro</span>HEX #222221 · CMYK 0 / 0 / 0 / 100 · HKS 97</li>
+      <li><span class="k">Gris claro · fondo</span>HEX #F3F3F3 · CMYK 6 / 4 / 5 / 0 · HKS 91</li>
+    </ul>
+    <span class="caplbl">Proporción de uso (base clara manda, rojo como acento)</span>
     <div class="propbar">
-      <div style="flex:6; background:#22262b"></div>
-      <div style="flex:5; background:#5b6570"></div>
-      <div style="flex:6; background:#f4f2ef"></div>
-      <div style="flex:1; background:#c61f0a"></div>
+      <div style="flex:7; background:#f3f3f3"></div>
+      <div style="flex:5; background:#515a65"></div>
+      <div style="flex:3; background:#222221"></div>
+      <div style="flex:1; background:#be3e3e"></div>
     </div>
-    <p class="page-sub" style="margin-top:12px">Faltará especificar cada color en HEX / RGB / CMYK / Pantone.</p>
   </section>
 
   <!-- 4 Tipografia -->
   <section class="page">
     <div class="page-head"><span class="n">04</span><h2>Tipografía</h2></div>
-    <p class="page-sub">Un solo sistema: una para titulares y una para texto. (Familias por definir.)</p>
+    <p class="page-sub">Sistema <b>aprobado</b>: <b>Downey</b> para logo y titulares · <b>Pastiche Grotesque</b> para texto · <b>Asket Extended</b> para etiquetas. (En web se usan estas mismas fuentes.)</p>
     <div class="row">
       <div>
-        <span class="caplbl">Titulares</span>
-        <div class="type-h">Aa Bb Cc</div>
-        <div class="type-h" style="font-size:20px; color:var(--muted)">0123456789</div>
+        <span class="caplbl">Titulares / logo — Downey</span>
+        <div class="type-h">MODULARTE</div>
+        <div class="type-h" style="font-size:20px; color:var(--muted)">ABC · 0123456789</div>
+        <span class="caplbl" style="margin-top:12px">Etiquetas — Asket Extended</span>
+        <div style="font-family:var(--mod-eyebrow); text-transform:uppercase; letter-spacing:.14em; color:var(--muted); font-size:14px">Sistemas modulares · 2026</div>
       </div>
       <div>
-        <span class="caplbl">Texto / fichas técnicas</span>
-        <div class="line l"></div><div class="line l"></div><div class="line m"></div>
-        <span class="caplbl">Jerarquía: título · subtítulo · cuerpo · dato</span>
+        <span class="caplbl">Texto / fichas técnicas — Pastiche Grotesque</span>
+        <p style="font-family:var(--mod-body); font-size:14px; line-height:1.5; color:var(--ink); margin:4px 0 0">Diseño, fabricación y montaje de espacios modulares de acero para industria, oficina y educación. Entrega en semanas, no en meses.</p>
+        <p style="font-family:var(--mod-body); font-weight:600; font-size:13px; color:var(--muted); margin:10px 0 0">Jerarquía: título · subtítulo · cuerpo · dato</p>
       </div>
     </div>
   </section>
@@ -214,11 +223,11 @@
             <small>Ganchos en las esquinas</small>
           </div>
           <div class="exfig">
-            <svg viewBox="0 0 100 70"><rect x="6" y="6" width="88" height="58" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="6" y="6" width="16" height="16" fill="#c61f0a"/></svg>
+            <svg viewBox="0 0 100 70"><rect x="6" y="6" width="88" height="58" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="6" y="6" width="16" height="16" fill="#be3e3e"/></svg>
             <small>Acento en una esquina</small>
           </div>
           <div class="exfig">
-            <svg viewBox="0 0 100 70"><rect x="6" y="6" width="88" height="58" rx="2" style="fill:var(--wire)"/><path d="M12 24 L12 12 L26 12" fill="none" stroke="#c61f0a" stroke-width="3" stroke-linecap="square"/><path d="M88 46 L88 58 L74 58" fill="none" stroke="#c61f0a" stroke-width="3" stroke-linecap="square"/></svg>
+            <svg viewBox="0 0 100 70"><rect x="6" y="6" width="88" height="58" rx="2" style="fill:var(--wire)"/><path d="M12 24 L12 12 L26 12" fill="none" stroke="#be3e3e" stroke-width="3" stroke-linecap="square"/><path d="M88 46 L88 58 L74 58" fill="none" stroke="#be3e3e" stroke-width="3" stroke-linecap="square"/></svg>
             <small>Foto enmarcada</small>
           </div>
         </div>

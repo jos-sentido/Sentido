@@ -1,0 +1,65 @@
+/* ============================================================
+   MODULARTE — identidad de marca (aprobada v1.0, oct-2026)
+   Fuentes reales auto-hospedadas + tokens de color + helpers.
+   Rutas absolutas: sirve igual desde cualquier /propuestas/modularte-*.
+   ============================================================ */
+
+/* ---- Downey: wordmark y titulares (display, caja alta) ---- */
+@font-face{
+  font-family:"Downey";
+  src:url("/propuestas/modularte-assets/fonts/Downey-Light.woff2") format("woff2");
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Downey";
+  src:url("/propuestas/modularte-assets/fonts/Downey-Bold.woff2") format("woff2");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+/* ---- Asket Extended: antetítulos / etiquetas (caja alta, tracking amplio) ---- */
+@font-face{
+  font-family:"Asket Extended";
+  src:url("/propuestas/modularte-assets/fonts/Asket-Extended-Light.woff2") format("woff2");
+  font-weight:300;font-style:normal;font-display:swap;
+}
+/* ---- Pastiche Grotesque: texto / cuerpo / UI ---- */
+@font-face{
+  font-family:"Pastiche Grotesque";
+  src:url("/propuestas/modularte-assets/fonts/Pastiche-Regular.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Pastiche Grotesque";
+  src:url("/propuestas/modularte-assets/fonts/Pastiche-SemiBold.woff2") format("woff2");
+  font-weight:600;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Pastiche Grotesque";
+  src:url("/propuestas/modularte-assets/fonts/Pastiche-Bold.woff2") format("woff2");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+
+:root{
+  --mod-display:"Downey","Jost",system-ui,sans-serif;
+  --mod-eyebrow:"Asket Extended","Jost",system-ui,sans-serif;
+  --mod-body:"Pastiche Grotesque","Jost",system-ui,sans-serif;
+
+  --mod-rojo:#be3e3e;      /* HKS 15 */
+  --mod-pizarra:#515a65;   /* HKS 93 */
+  --mod-negro:#222221;     /* HKS 97 */
+  --mod-claro:#f3f3f3;     /* HKS 91 */
+}
+
+/* ---- Marca en el header: imagotipo (M) + wordmark Downey ---- */
+.mod-brand{display:inline-flex;align-items:center;gap:13px;text-decoration:none;line-height:1;}
+.mod-brand img{height:38px;width:auto;display:block;}
+.mod-brand .mod-wm{
+  font-family:var(--mod-display);font-weight:700;
+  font-size:26px;letter-spacing:.015em;color:var(--mod-pizarra);
+  text-transform:uppercase;
+}
+.mod-brand .mod-wm b{color:var(--mod-rojo);font-weight:700;}
+.mod-brand .mod-tag{
+  display:block;font-family:var(--mod-eyebrow);font-weight:300;
+  font-size:8.5px;letter-spacing:.42em;color:var(--mod-pizarra);
+  text-transform:uppercase;margin-top:3px;
+}

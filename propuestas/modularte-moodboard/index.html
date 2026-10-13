@@ -6,12 +6,13 @@
 <title>Moodboard Modularte — Referencias visuales</title>
 <link rel="icon" href="/favicon.ico">
 <meta name="description" content="Referencias de diseño para el rebranding de Modularte: Modularte hoy, referencias visuales y la dirección de diseño.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/propuestas/modularte-assets/marca.css">
 <style>
   :root{
     --bg:#f4f2ef; --surface:#ffffff; --surface-2:#efece7;
     --ink:#1b1d1f; --muted:#6c7178; --line:#e3e0da;
-    --accent:#c61f0a; --graphite:#22262b;
+    --accent:#be3e3e; --graphite:#515a65;
     --shadow:0 1px 2px rgba(20,20,20,.06),0 8px 24px rgba(20,20,20,.05);
     --radius:14px;
   }
@@ -19,14 +20,14 @@
     :root:not([data-theme="light"]){
       --bg:#161718; --surface:#1f2123; --surface-2:#26292c;
       --ink:#ece9e3; --muted:#9aa0a7; --line:#31353a;
-      --accent:#f04a30; --graphite:#c9ccd0;
+      --accent:#cf5a5a; --graphite:#c9ccd0;
       --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
     }
   }
   :root[data-theme="dark"]{
     --bg:#161718; --surface:#1f2123; --surface-2:#26292c;
     --ink:#ece9e3; --muted:#9aa0a7; --line:#31353a;
-    --accent:#f04a30; --graphite:#c9ccd0;
+    --accent:#cf5a5a; --graphite:#c9ccd0;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
@@ -34,23 +35,23 @@
   img{max-width:100%}
   body{
     background:var(--bg); color:var(--ink);
-    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-family:var(--mod-body);
     line-height:1.55; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1040px; margin-inline:auto; padding-inline:20px; padding-block:44px 72px;}
-  h1,h2,h3{font-family:"Archivo","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0;}
-  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500;}
-  .mono{font-family:"IBM Plex Mono",monospace;}
+  h1,h2,h3{font-family:var(--mod-body); font-weight:700; text-wrap:balance; margin:0;}
+  .eyebrow{font-family:var(--mod-eyebrow); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+  .mono{font-family:var(--mod-eyebrow);}
 
   header.top{border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:34px;}
   header.top h1{font-size:clamp(30px,6vw,52px); font-weight:800; letter-spacing:-.02em; line-height:1.02; margin-top:10px;}
   header.top p{color:var(--muted); max-width:60ch; margin:14px 0 0;}
-  .meta{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:18px; font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted);}
+  .meta{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:18px; font-family:var(--mod-eyebrow); font-size:12px; color:var(--muted);}
 
   section{margin-top:44px;}
   .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:8px; border-bottom:1px solid var(--line); padding-bottom:10px;}
   .sec-head h2{font-size:20px; font-weight:700; letter-spacing:-.01em;}
-  .sec-head .n{font-family:"IBM Plex Mono",monospace; color:var(--muted); font-size:13px;}
+  .sec-head .n{font-family:var(--mod-eyebrow); color:var(--muted); font-size:13px;}
   .sec-sub{color:var(--muted); font-size:13px; margin:0 0 18px;}
 
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
@@ -58,19 +59,19 @@
   .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px;}
   .card h3{font-size:17px; font-weight:700; display:flex; align-items:center; gap:8px;}
   .star{color:var(--accent);}
-  .role{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
+  .role{font-family:var(--mod-eyebrow); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
   .card p{margin:0; font-size:13.5px; color:var(--ink);}
   .card .note{color:var(--muted); font-size:13px;}
 
   .swatches{display:flex; flex-wrap:wrap; gap:8px;}
   .chip{display:flex; flex-direction:column; align-items:center; gap:5px; width:60px;}
   .chip .sw{width:100%; height:40px; border-radius:8px; border:1px solid rgba(128,128,128,.25);}
-  .chip small{font-family:"IBM Plex Mono",monospace; font-size:9.5px; color:var(--muted); letter-spacing:-.02em;}
+  .chip small{font-family:var(--mod-eyebrow); font-size:9.5px; color:var(--muted); letter-spacing:-.02em;}
 
   .kv{font-size:13px;}
-  .kv .lbl{font-family:"IBM Plex Mono",monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:block; margin-bottom:1px;}
+  .kv .lbl{font-family:var(--mod-eyebrow); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:block; margin-bottom:1px;}
 
-  a.link{color:var(--accent); text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:12px; word-break:break-all; margin-top:auto; padding-top:4px; border-top:1px dashed var(--line);}
+  a.link{color:var(--accent); text-decoration:none; font-family:var(--mod-eyebrow); font-size:12px; word-break:break-all; margin-top:auto; padding-top:4px; border-top:1px dashed var(--line);}
   a.link:hover{text-decoration:underline;}
   a.link:focus-visible, a.pin-btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
 
@@ -83,10 +84,10 @@
   /* concept panel (boceto) */
   .concept{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; background:linear-gradient(150deg,#282b2f,#141516); color:#f4f2ef; border-radius:12px; padding:30px 20px; min-height:230px;}
   .concept .mark{width:98px; height:98px; color:#f4f2ef;}
-  .concept .wordmark{font-family:"Archivo",sans-serif; font-weight:800; letter-spacing:.2em; font-size:21px; padding-left:.2em;}
-  .concept .tag{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.24em; color:#aeb2b8; text-transform:uppercase;}
-  .ribbon{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.04em; color:var(--muted); background:var(--surface-2); border:1px dashed var(--line); border-radius:8px; padding:5px 11px;}
-  .type-sample{font-family:"Archivo",sans-serif; font-weight:800; font-size:26px; letter-spacing:-.01em; line-height:1; margin:2px 0 2px;}
+  .concept .wordmark{font-family:var(--mod-display); font-weight:700; letter-spacing:.2em; font-size:21px; padding-left:.2em;}
+  .concept .tag{font-family:var(--mod-eyebrow); font-size:10px; letter-spacing:.24em; color:#aeb2b8; text-transform:uppercase;}
+  .ribbon{display:inline-block; font-family:var(--mod-eyebrow); font-size:11px; letter-spacing:.04em; color:var(--muted); background:var(--surface-2); border:1px dashed var(--line); border-radius:8px; padding:5px 11px;}
+  .type-sample{font-family:var(--mod-display); font-weight:700; font-size:26px; letter-spacing:-.01em; line-height:1; margin:2px 0 2px;}
 
   .pin{background:linear-gradient(135deg,var(--graphite),var(--ink)); color:var(--bg); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow);}
   :root[data-theme="dark"] .pin, :root:not([data-theme="light"]) .pin{color:#161718;}
@@ -94,17 +95,18 @@
   .pin h3{color:inherit; font-size:20px; font-weight:800; margin:8px 0 10px;}
   .pin p{margin:0 0 14px; max-width:64ch; font-size:14px; opacity:.92;}
   .pin ul{margin:0 0 16px; padding-left:18px; font-size:13.5px; opacity:.92; display:grid; gap:4px;}
-  a.pin-btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:13px; padding:9px 16px; border-radius:9px;}
+  a.pin-btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-family:var(--mod-eyebrow); font-size:13px; padding:9px 16px; border-radius:9px;}
   a.pin-btn:hover{filter:brightness(1.08);}
 
   .callout{font-size:12.5px; color:var(--muted); background:var(--surface-2); border:1px dashed var(--line); border-radius:10px; padding:12px 14px; margin-top:16px;}
-  footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted);}
+  footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-family:var(--mod-eyebrow); font-size:11.5px; color:var(--muted);}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="top">
+    <div class="mod-brand" style="margin-bottom:14px"><img src="/propuestas/modularte-assets/logo/imagotipo-rojo.png" alt="Imagotipo Modularte"><span class="mod-wm">MODULARTE<span class="mod-tag">Construcciones pre fabricadas</span></span></div>
     <div class="eyebrow">Rebranding · Referencias de diseño</div>
     <h1>Moodboard Modularte</h1>
     <p>Referencias visuales para el rediseño de la marca: cómo se ve hoy, referencias de diseño del sector y la dirección que proponemos. Material para explorar con Javi.</p>
