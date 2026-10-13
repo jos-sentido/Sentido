@@ -477,19 +477,26 @@
         if(e.ctrlKey || e.metaKey){ e.preventDefault(); zoomTo(z * (e.deltaY < 0 ? 1.12 : 0.89), e.clientX, e.clientY); }
       }, { passive:false });
 
-      var mode = null, startDist = 0, startZ = 1, lastX = 0, lastY = 0;
+      var mode = null, startDist = 0, startZ = 1, lastX = 0, lastY = 0, oCX = 0, oCY = 0;
       function dist(t){ return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+      function mid(t){ return { x:(t[0].clientX + t[1].clientX)/2, y:(t[0].clientY + t[1].clientY)/2 }; }
+      function beginPinch(e){
+        mode='pinch'; startDist=dist(e.touches); startZ=z;
+        var m = mid(e.touches), rect = twrap.getBoundingClientRect();
+        oCX = (twrap.scrollLeft + (m.x - rect.left)) / z;   // punto del contenido bajo los dedos (ancla fija)
+        oCY = (twrap.scrollTop  + (m.y - rect.top))  / z;
+      }
       twrap.addEventListener('touchstart', function(e){
-        if(e.touches.length === 2){ mode='pinch'; startDist=dist(e.touches); startZ=z; e.preventDefault(); }
+        if(e.touches.length >= 2){ beginPinch(e); e.preventDefault(); }
         else if(e.touches.length === 1){ mode='pan'; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; }
       }, { passive:false });
       twrap.addEventListener('touchmove', function(e){
-        if(mode==='pinch' && e.touches.length===2){
+        if(mode==='pinch' && e.touches.length>=2){
           e.preventDefault();
-          var d = dist(e.touches);
-          var ax = (e.touches[0].clientX + e.touches[1].clientX)/2;
-          var ay = (e.touches[0].clientY + e.touches[1].clientY)/2;
-          zoomTo(startZ * (d / startDist), ax, ay);
+          var d = dist(e.touches), m = mid(e.touches), rect = twrap.getBoundingClientRect();
+          z = clamp(startZ * (d / startDist)); apply();
+          twrap.scrollLeft = oCX * z - (m.x - rect.left);   // mantiene ese punto pegado al punto medio actual
+          twrap.scrollTop  = oCY * z - (m.y - rect.top);
         } else if(mode==='pan' && e.touches.length===1){
           e.preventDefault();
           var t = e.touches[0];
@@ -501,6 +508,7 @@
       twrap.addEventListener('touchend', function(e){
         if(e.touches.length===0){ mode=null; }
         else if(e.touches.length===1){ mode='pan'; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; }
+        else if(e.touches.length>=2){ beginPinch(e); }   // recaptura ancla si cambian los dedos
       });
     }
 
