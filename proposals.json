@@ -190,42 +190,54 @@
       "slug": "massatierra",
       "tipo": "propuesta",
       "cliente": "Massatierra",
-      "fecha": "2026-08-28",
+      "fecha": "2026-10-15",
       "estatus": "enviada",
       "serviciosDisponibles": [
         {
+          "id": "acuerdo",
+          "nombre": "Acuerdo de comercialización — 15% sobre ventas",
+          "precio": 0,
+          "tipo": "unico"
+        },
+        {
           "id": "web",
-          "nombre": "Renovación Estratégica de Sitio Web (fuera de Joomla)",
+          "nombre": "Renovación de sitio web (valor de referencia)",
           "precio": 20000,
           "tipo": "unico"
         },
         {
           "id": "gads",
-          "nombre": "Gestión Google Ads — Captura inducida + Adquisición",
+          "nombre": "Google Ads (valor de referencia)",
           "precio": 4500,
           "tipo": "mensual"
         },
         {
-          "id": "pauta",
-          "nombre": "Presupuesto de pauta recomendado (a Google)",
-          "precio": 15000,
+          "id": "crm",
+          "nombre": "CRM y automatización (valor de referencia)",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "redes",
+          "nombre": "Redes sociales (valor de referencia)",
+          "precio": 7500,
           "tipo": "mensual"
         },
         {
           "id": "gbp",
-          "nombre": "Perfil de Negocio de Google (Zapopan)",
+          "nombre": "Perfil de Negocio de Google (valor de referencia)",
           "precio": 2500,
           "tipo": "mensual"
         },
         {
           "id": "webadmin",
-          "nombre": "Administración mensual del sitio",
+          "nombre": "Administración del sitio (valor de referencia)",
           "precio": 3500,
           "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Pararrayos y tierras físicas industriales, Zapopan Jal. Google Ads con bloque de captura de demanda inducida por brigadas de protección civil + renovación de sitio fuera de Joomla. Hallazgos críticos: sin SSL válido, Universal Analytics muerto desde 2023, sin landings por servicio. Gestión con descuento especial de 6,500 a 4,500."
+      "notas": "Pararrayos y tierras fisicas industriales, Zapopan Jal. 25 anos, 14 paises, +15,000 proyectos. Acuerdo de comercializacion completa (cartera existente + demanda nueva) a 15% sobre ventas, sin costo fijo. Igualas presentadas solo como valor de referencia. Lector: dueno / gerencia general. Reconstruida sobre el sistema visual Sentido con --marca #EF5A28."
     },
     {
       "slug": "propuestamodularte",
