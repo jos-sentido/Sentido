@@ -41,6 +41,15 @@
     .linea-t > div:last-child { border-bottom: none; }
   }
 
+  .capas--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .capas--5 .capa .capa-t .num { font-size: clamp(2.5rem, 3.8vw, 3.5rem); }
+  @media (max-width: 1080px) {
+    .capas--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .capas--5 .capa:nth-child(4) { border-right: none; }
+    .capas--5 .capa:nth-child(-n+4) { border-bottom: 1px solid var(--linea); }
+    .capas--5 .capa:nth-child(5) { grid-column: 1 / -1; border-right: none; }
+  }
+  @media (max-width: 640px) { .capas--5 { grid-template-columns: 1fr; } }
   .capa .capa-t .num { display: block; font-size: clamp(2.75rem, 4.6vw, 3.75rem); line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 8px; }
   .fuera { margin-top: clamp(40px, 5vw, 60px); display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 56px); align-items: start; padding-top: 30px; border-top: 1px solid var(--linea); }
   .fuera h3 { font-size: clamp(1.25rem, 1.9vw, 1.5rem); }
@@ -230,7 +239,7 @@
       <p>Cada mes el hotel recibe un calendario con 15 publicaciones para Facebook e Instagram, diseñadas, escritas y programadas por nosotros.</p>
     </div>
 
-    <div class="capas" style="margin-top:0">
+    <div class="capas capas--5" style="margin-top:0">
       <div class="capa" style="--i:0">
         <span class="buril" aria-hidden="true"></span>
         <div class="capa-n">PUBLICACIONES</div>
@@ -258,6 +267,13 @@
         <div class="capa-t negra"><span class="num">2</span>redes</div>
         <p>Facebook e Instagram, programadas en el mismo día y en su formato correcto.</p>
         <span class="rombo" aria-hidden="true"></span>
+      </div>
+      <div class="capa" style="--i:4">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="capa-n">TARIFA VIGENTE</div>
+        <div class="capa-t negra"><span class="num">$4,500</span>al mes</div>
+        <p>MXN + IVA. Si se decide pautar, la inversión en anuncios va aparte y se paga directo a la plataforma.</p>
+        <span class="rombo rombo--lleno" aria-hidden="true"></span>
       </div>
     </div>
 
@@ -293,19 +309,6 @@
         <div class="ver">Resultados</div>
       </article>
     </div>
-
-    <div class="tabla">
-      <div class="tfila cab">
-        <span class="rotulo">Servicio</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Tarifa</span>
-      </div>
-      <div class="tfila total">
-        <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Redes sociales<span class="fnota">Tarifa vigente</span></div>
-        <p class="tcol" data-l="Qué incluye">15 piezas al mes para Facebook e Instagram: 12 publicaciones con su versión para historias y 3 reels. Estrategia, diseño, textos, programación y reporte mensual.</p>
-        <div class="tprecio tcol" data-l="Tarifa">$4,500<span class="tper">MXN + IVA / mes</span></div>
-      </div>
-    </div>
-    <p class="tnota">La inversión en anuncios pagados, si se decide hacer, va aparte y se paga directo a la plataforma.</p>
 
     <div class="fuera">
       <div>
