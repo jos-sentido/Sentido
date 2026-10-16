@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!--
+  PLAN DE TRABAJO · Hotel La Casa de Maty — Redes sociales (15 piezas/mes)
+  Entregable de cliente ACTIVO (no es venta): explica cómo trabajamos, qué
+  incluye el paquete, el ciclo mensual y el estado de octubre 2026 tras el
+  cambio de administración. Incluye un reporte de redes navegable (diálogo
+  #reporte) con datos de Metricool al 15 oct 2026.
+  Sin --marca: la pieza va 100% en el sistema Sentido (tinta/hueso).
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Plan de trabajo · Hotel La Casa de Maty</title>
+<meta name="description" content="Cómo trabaja Sentido las redes sociales del Hotel La Casa de Maty: el paquete de 15 piezas al mes, el ciclo de producción y el reporte de resultados a la fecha." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
+  @media (min-width: 768px) { .hero-logo { height: 60px; } }
+
+  .nav-acc { display: flex; align-items: center; gap: 22px; }
+  .nav-acc .enlace { font-size: 0.875rem; }
+  @media (max-width: 640px) { .nav-acc .enlace { display: none; } }
+
+  /* Estado de octubre — tres momentos con regla vertical */
+  .linea-t { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--linea); }
+  .linea-t > div { padding: 28px clamp(18px, 2.4vw, 32px) 6px 0; border-right: 1px solid var(--linea); }
+  .linea-t > div + div { padding-left: clamp(18px, 2.4vw, 32px); }
+  .linea-t > div:last-child { border-right: none; }
+  .linea-t .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
+  .linea-t h3 { font-size: clamp(1.25rem, 1.9vw, 1.5rem); margin-bottom: 10px; }
+  .linea-t p { font-size: 0.9375rem; line-height: 1.65; color: var(--hueso-2); }
+  @media (max-width: 760px) {
+    .linea-t { grid-auto-flow: row; }
+    .linea-t > div, .linea-t > div + div { padding: 24px 0; border-right: none; border-bottom: 1px solid var(--linea); }
+    .linea-t > div:last-child { border-bottom: none; }
+  }
+
+  .capa .capa-t .num { display: block; font-size: clamp(2.75rem, 4.6vw, 3.75rem); line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 8px; }
+  .fuera { margin-top: clamp(40px, 5vw, 60px); display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 56px); align-items: start; padding-top: 30px; border-top: 1px solid var(--linea); }
+  .fuera h3 { font-size: clamp(1.25rem, 1.9vw, 1.5rem); }
+  @media (max-width: 760px) { .fuera { grid-template-columns: 1fr; } }
+
+  .pasos .paso-n { color: var(--acento); }
+
+  .necesita { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); }
+  .necesita h3 { font-size: clamp(1.25rem, 1.9vw, 1.5rem); margin-bottom: 18px; }
+  @media (max-width: 760px) { .necesita { grid-template-columns: 1fr; } }
+
+  /* Cifras grandes (resumen de resultados) */
+  .cifras { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
+  .cifra { padding: 26px clamp(16px, 2vw, 28px) 24px 0; border-right: 1px solid var(--linea); }
+  .cifra + .cifra { padding-left: clamp(16px, 2vw, 28px); }
+  .cifra:last-child { border-right: none; }
+  .cifra .n { display: block; font-weight: var(--negra); color: var(--hueso); font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1; letter-spacing: -0.04em; margin: 12px 0 10px; }
+  .cifra p { font-size: 0.875rem; line-height: 1.55; color: var(--hueso-3); }
+  @media (max-width: 900px) {
+    .cifras { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
+    .cifra, .cifra + .cifra { padding: 22px 16px 20px 0; border-right: none; border-bottom: 1px solid var(--linea); }
+    .cifra:nth-child(odd) { border-right: 1px solid var(--linea); }
+    .cifra:nth-child(even) { padding-left: 16px; }
+    .cifra:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 420px) {
+    .cifras { grid-template-columns: 1fr; }
+    .cifra:nth-child(odd) { border-right: none; }
+    .cifra:nth-child(even) { padding-left: 0; }
+    .cifra:nth-last-child(2) { border-bottom: 1px solid var(--linea); }
+  }
+  .abrir-rep { margin-top: clamp(30px, 4vw, 44px); display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
+
+  /* ═══════════ REPORTE — diálogo de pantalla completa ═══════════ */
+  dialog.reporte {
+    position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none;
+    margin: 0; padding: 0; border: 0; background: var(--tinta); color: var(--hueso-2);
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  dialog.reporte::backdrop { background: var(--tinta); }
+  body.con-reporte { overflow: hidden; }
+  .rep-barra {
+    position: sticky; top: 0; z-index: 5; background: rgba(10,10,10,0.94);
+    border-bottom: 1px solid var(--linea); backdrop-filter: saturate(1.1) blur(8px);
+  }
+  .rep-barra-int { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+  .rep-barra img { height: 34px; width: auto; opacity: 0.92; }
+  .rep-tit { display: flex; align-items: center; gap: 18px; min-width: 0; }
+  .rep-tit .rotulo { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (max-width: 640px) { .rep-tit .rotulo { display: none; } }
+  .rep-indice { border-bottom: 1px solid var(--linea); background: var(--tinta-2); position: sticky; top: 68px; z-index: 4; }
+  .rep-indice ul { list-style: none; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); display: flex; gap: 26px; overflow-x: auto; scrollbar-width: none; }
+  .rep-indice ul::-webkit-scrollbar { display: none; }
+  .rep-indice a { display: block; padding: 15px 0 13px; font-weight: 700; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hueso-3); white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.25s var(--ease), border-color 0.25s var(--ease); }
+  .rep-indice a:hover, .rep-indice a.activo { color: var(--hueso); border-bottom-color: var(--acento-fill); }
+  .rep-sec { padding: clamp(52px, 6.5vw, 92px) 0; border-bottom: 1px solid var(--linea); scroll-margin-top: 122px; }
+  .rep-sec:last-of-type { border-bottom: none; }
+  .rep-cab { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px 40px; margin-bottom: clamp(30px, 4vw, 46px); }
+  .rep-cab h2 { font-size: clamp(1.875rem, 3.6vw, 3rem); }
+  .rep-cab p { max-width: 52ch; font-size: 1rem; }
+
+  /* Gráfica de barras — trama de buril como relleno, sin gradientes de color */
+  .grafica { border-bottom: 1px solid var(--linea-2); }
+  .barras { display: grid; grid-template-columns: repeat(var(--n, 10), minmax(0, 1fr)); gap: clamp(6px, 1.4vw, 18px); align-items: end; height: clamp(220px, 28vw, 300px); }
+  .barra { display: flex; flex-direction: column; justify-content: end; align-items: stretch; height: 100%; position: relative; }
+  .barra .v { font-weight: var(--fuerte); font-size: 0.75rem; color: var(--hueso); text-align: center; margin-bottom: 7px; letter-spacing: -0.01em; }
+  .barra .b {
+    height: var(--h); min-height: 2px; border: 1px solid var(--hueso-3); border-bottom: 0;
+    background-image: repeating-linear-gradient(90deg, var(--hueso-2) 0 0.8px, transparent 0.8px 4px);
+  }
+  .barra.marca-b .b { border-color: var(--acento-fill); background-image: repeating-linear-gradient(90deg, var(--acento-fill) 0 1px, transparent 1px 4px); }
+  .barra.baja .b { border-style: dashed; border-color: var(--hueso-4); background-image: repeating-linear-gradient(90deg, var(--hueso-4) 0 0.6px, transparent 0.6px 6px); }
+  .barra.baja .v { color: var(--hueso-3); }
+  .ejes { display: grid; grid-template-columns: repeat(var(--n, 10), minmax(0, 1fr)); gap: clamp(6px, 1.4vw, 18px); padding-top: 10px; }
+  .ejes span { text-align: center; font-weight: 700; font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hueso-3); }
+  .ejes span small { display: block; font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: none; font-weight: 400; color: var(--hueso-4); margin-top: 3px; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 18px; font-size: 0.8125rem; color: var(--hueso-3); }
+  .leyenda span { display: inline-flex; align-items: center; gap: 9px; }
+  .leyenda i { width: 14px; height: 12px; border: 1px solid var(--hueso-3); background-image: repeating-linear-gradient(90deg, var(--hueso-2) 0 0.8px, transparent 0.8px 4px); }
+  .leyenda i.baja { border-style: dashed; border-color: var(--hueso-4); background-image: repeating-linear-gradient(90deg, var(--hueso-4) 0 0.6px, transparent 0.6px 6px); }
+  @media (max-width: 560px) {
+    .barra .v { font-size: 0.6875rem; writing-mode: vertical-rl; transform: rotate(180deg); margin: 0 auto 6px; }
+  }
+
+  /* Tabla de datos — filas con regla, sin caja */
+  .datos { width: 100%; border-collapse: collapse; margin-top: clamp(30px, 4vw, 44px); font-size: 0.9375rem; }
+  .datos-env { overflow-x: auto; }
+  .datos th { text-align: right; font-weight: 700; font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hueso-3); padding: 0 0 13px 18px; border-bottom: 1px solid var(--linea-2); white-space: nowrap; }
+  .datos td { text-align: right; padding: 13px 0 13px 18px; border-bottom: 1px solid var(--linea); color: var(--hueso-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .datos th:first-child, .datos td:first-child { text-align: left; padding-left: 0; }
+  .datos td:first-child { color: var(--hueso); font-weight: var(--fuerte); }
+  .datos tr.baja td { color: var(--hueso-4); }
+  .datos tr.baja td:first-child { color: var(--hueso-3); }
+  .datos tfoot td { color: var(--hueso); font-weight: var(--fuerte); border-bottom: none; border-top: 1px solid var(--linea-2); }
+  .nota-dato { font-size: 0.8125rem; color: var(--hueso-4); margin-top: 14px; line-height: 1.6; max-width: 80ch; }
+
+  .dos-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(36px, 5vw, 72px); margin-top: clamp(40px, 5vw, 64px); }
+  .dos-col h3 { font-size: clamp(1.25rem, 1.9vw, 1.5rem); margin-bottom: 14px; }
+  @media (max-width: 860px) { .dos-col { grid-template-columns: 1fr; } }
+
+  .top .renglon { grid-template-columns: 74px minmax(0, 1.4fr) minmax(0, 0.7fr) 130px; align-items: center; }
+  .top .pos { font-weight: var(--negra); font-size: 1.5rem; color: var(--acento); letter-spacing: -0.03em; }
+  .top .renglon h3 { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.25; letter-spacing: -0.015em; font-weight: var(--fuerte); }
+  .top .renglon .alc { font-weight: var(--negra); color: var(--hueso); font-size: 1.25rem; letter-spacing: -0.02em; }
+  .top .renglon .alc span { display: block; font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hueso-4); margin-top: 4px; }
+  @media (max-width: 900px) { .top .renglon { grid-template-columns: 52px minmax(0, 1fr); } .top .renglon > :nth-child(n+4) { grid-column: 2; } }
+
+  .rep-pie { padding: 40px 0 60px; }
+  .rep-pie p { font-size: 0.8125rem; color: var(--hueso-4); line-height: 1.7; max-width: 90ch; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <div class="nav-acc">
+      <a class="enlace" href="#ciclo">El ciclo</a>
+      <button class="boton" type="button" data-abre-reporte>Ver reporte <span class="fl">→</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    <h1><span class="ligera">Las redes del hotel,</span><br>
+      mes a mes y <span class="alta">en orden</span>.</h1>
+    <p class="sub">Este documento explica cómo trabajamos las redes sociales del Hotel La Casa de Maty: qué recibe el hotel cada mes, cómo se produce cada calendario, qué necesitamos de ustedes y cómo van los resultados hasta hoy.</p>
+    <div class="acciones">
+      <a class="boton" href="#paquete">Ver el plan de trabajo <span class="fl">→</span></a>
+      <button class="enlace" type="button" data-abre-reporte style="background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;padding:0">Abrir el reporte de redes</button>
+    </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">Hotel La Casa de Maty · Alexis</span></div>
+      <div><span class="rotulo">Por</span><span class="val">Sentido · Branding & Advertising</span></div>
+      <div><span class="rotulo">Fecha</span><span class="val">16 de octubre de 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ DECLARACIÓN ══════════ -->
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>No es una propuesta de venta. <span class="tenue">Es el acuerdo de trabajo escrito, para que la nueva administración sepa exactamente qué esperar y cuándo.</span></p>
+  </div>
+</section>
+
+<!-- ══════════ DÓNDE ESTAMOS — PAPEL ══════════ -->
+<section class="seccion papel" id="estado">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Dónde estamos hoy.</h2>
+      <p>El calendario de octubre se pausó durante el cambio de administración. En la junta con Alexis se acordó reactivar su publicación: vuelve a publicarse a partir del lunes 19 de octubre, aproximadamente.</p>
+    </div>
+    <div class="linea-t">
+      <div>
+        <span class="rotulo">Lo acordado</span>
+        <h3>Se reactiva octubre</h3>
+        <p>El calendario de octubre que quedó en pausa continúa. Retomamos su publicación tal como estaba planeado, sin perder lo ya producido.</p>
+      </div>
+      <div>
+        <span class="rotulo">Lunes 19 de octubre</span>
+        <h3>Vuelve a publicarse</h3>
+        <p>Programamos las piezas en Facebook e Instagram y revisamos al día siguiente que todo haya salido en su fecha y formato.</p>
+      </div>
+      <div>
+        <span class="rotulo">A partir de noviembre</span>
+        <h3>Ciclo mensual normal</h3>
+        <p>Retomamos el ritmo de siempre: pedimos requerimientos con anticipación y el hotel recibe cada calendario completo para aprobar antes de que arranque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL PAQUETE ══════════ -->
+<section class="seccion" id="paquete">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El paquete: 15 piezas al mes.</h2>
+      <p>Cada mes el hotel recibe un calendario con 15 publicaciones para Facebook e Instagram, diseñadas, escritas y programadas por nosotros.</p>
+    </div>
+
+    <div class="capas" style="margin-top:0">
+      <div class="capa" style="--i:0">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="capa-n">PUBLICACIONES</div>
+        <div class="capa-t negra"><span class="num">12</span>imágenes</div>
+        <p>Diseño para el muro de Facebook e Instagram, cada una con su texto.</p>
+        <span class="rombo rombo--lleno" aria-hidden="true"></span>
+      </div>
+      <div class="capa" style="--i:1">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="capa-n">HISTORIAS</div>
+        <div class="capa-t negra"><span class="num">12</span>versiones</div>
+        <p>Cada una de las 12 publicaciones también se entrega en tamaño vertical para historias.</p>
+        <span class="rombo" aria-hidden="true"></span>
+      </div>
+      <div class="capa" style="--i:2">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="capa-n">VIDEO</div>
+        <div class="capa-t negra"><span class="num">3</span>reels</div>
+        <p>Videos verticales editados, con música, textos en pantalla y su portada.</p>
+        <span class="rombo rombo--lleno" aria-hidden="true"></span>
+      </div>
+      <div class="capa" style="--i:3">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="capa-n">CANALES</div>
+        <div class="capa-t negra"><span class="num">2</span>redes</div>
+        <p>Facebook e Instagram, programadas en el mismo día y en su formato correcto.</p>
+        <span class="rombo" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="plancha" style="margin-top:clamp(48px,6vw,80px)">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Cada mes</span><h3>Estrategia del calendario</h3></div>
+        <p>Decidimos los temas del mes según la temporada, las fechas importantes de Tapalpa y lo que el hotel quiere empujar: fines de semana, puentes, promociones, el centro a pie, las habitaciones y los espacios del hotel.</p>
+        <div class="ver">Plan del mes</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Cada pieza</span><h3>Diseño y edición</h3></div>
+        <p>Diseño de las 12 publicaciones y su versión para historias, y edición de los 3 reels con su portada. Usamos el material del hotel y del pueblo; lo que haga falta lo señalamos con tiempo.</p>
+        <div class="ver">Diseño · Video</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Cada pieza</span><h3>Textos</h3></div>
+        <p>El texto de cada publicación, con el cierre fijo del hotel: dirección en Matamoros 69, teléfono de reservaciones y la invitación a escribir por mensaje.</p>
+        <div class="ver">Textos</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Al arrancar</span><h3>Programación</h3></div>
+        <p>Programamos todo el calendario aprobado en Facebook e Instagram. Al día siguiente revisamos que cada pieza haya salido en su fecha y formato.</p>
+        <div class="ver">FB + IG</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Al cerrar</span><h3>Reporte del mes</h3></div>
+        <p>Al terminar cada periodo enviamos los resultados: a cuántas personas llegamos, qué piezas funcionaron mejor y qué ajustamos para el siguiente mes.</p>
+        <div class="ver">Resultados</div>
+      </article>
+    </div>
+
+    <div class="fuera">
+      <div>
+        <span class="rotulo">Para que no haya dudas</span>
+        <h3 style="margin-top:12px">Lo que no incluye el paquete.</h3>
+      </div>
+      <ul class="lista lista--chica">
+        <li>Contestar mensajes y comentarios de huéspedes: las reservaciones y dudas las atiende el hotel directamente.</li>
+        <li>Inversión en anuncios pagados en Facebook e Instagram. Si el hotel quiere pautar una temporada, lo planeamos aparte y la inversión se paga directo a la plataforma.</li>
+        <li>Sesiones de fotografía o video en el hotel. Si se necesitan, las cotizamos por separado.</li>
+        <li>Publicaciones fuera del calendario aprobado (avisos de último momento). Las vemos caso por caso.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL CICLO ══════════ -->
+<section class="seccion seccion--regla" id="ciclo">
+  <span class="buril" aria-hidden="true" style="--ang:90deg;--paso:5px;--tono:0.06;-webkit-mask-image:linear-gradient(180deg,#000,transparent 40%);mask-image:linear-gradient(180deg,#000,transparent 40%)"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El ciclo de un calendario.</h2>
+      <p>Cada calendario se produce en unas cuatro semanas antes de publicarse. Las fechas se cuentan en días hábiles, de lunes a viernes; las publicaciones sí pueden salir en fin de semana.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-n">01</div>
+        <div>
+          <h4 class="paso-t">Requerimientos del mes</h4>
+          <p>Le preguntamos al hotel qué viene: promociones, tarifas, eventos, ocupación que se quiera mover, fotos o videos nuevos. Es el momento de avisar cualquier cambio.</p>
+          <span class="rotulo">Unas 3 semanas antes de publicar</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">02</div>
+        <div>
+          <h4 class="paso-t">Estrategia y calendario</h4>
+          <p>Armamos el calendario: qué se publica cada día, en qué formato, con qué tema y qué texto en pantalla lleva cada pieza.</p>
+          <span class="rotulo">Unas 3 semanas antes</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">03</div>
+        <div>
+          <h4 class="paso-t">Producción</h4>
+          <p>Diseño de las publicaciones y sus versiones para historias, edición de los reels y redacción de los textos. Cada parte pasa por una revisión interna antes de llegarles.</p>
+          <span class="rotulo">2 semanas antes</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">04</div>
+        <div>
+          <h4 class="paso-t">Envío del calendario al hotel</h4>
+          <p>El hotel recibe el calendario completo en una presentación: cada pieza con su fecha, su diseño y su texto, para verlo de una sola vez.</p>
+          <span class="rotulo">5 días hábiles antes de publicar</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">05</div>
+        <div>
+          <h4 class="paso-t">Ajustes y aprobación</h4>
+          <p>El hotel tiene 2 días hábiles para mandarnos sus comentarios. Hacemos los ajustes y con el visto bueno pasamos a programar.</p>
+          <span class="rotulo">De 5 a 3 días hábiles antes</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">06</div>
+        <div>
+          <h4 class="paso-t">Programación y arranque</h4>
+          <p>Programamos el calendario en Facebook e Instagram y al día siguiente revisamos que todo haya salido bien.</p>
+          <span class="rotulo">Día de arranque</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">07</div>
+        <div>
+          <h4 class="paso-t">Reporte y siguiente mes</h4>
+          <p>Al cerrar el periodo enviamos el reporte. Lo que aprendemos entra directo en la estrategia del siguiente calendario, que para entonces ya está en producción.</p>
+          <span class="rotulo">Al cierre del periodo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ QUÉ NECESITAMOS ══════════ -->
+<section class="seccion seccion--regla" id="hotel">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que necesitamos del hotel.</h2>
+      <p>El calendario sale mejor y a tiempo cuando esto está claro desde el principio.</p>
+    </div>
+    <div class="necesita">
+      <div>
+        <h3>Para producir</h3>
+        <ul class="lista">
+          <li>Una persona de contacto en el hotel que apruebe los calendarios y resuelva dudas.</li>
+          <li>Las promociones, tarifas y fechas especiales del mes, a tiempo para el paso de requerimientos.</li>
+          <li>Fotos y videos actuales del hotel cuando haya cambios: habitaciones, desayunos, chimenea, bar, detalles nuevos.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Para no frenar</h3>
+        <ul class="lista">
+          <li>Comentarios del calendario dentro de los 2 días hábiles después de recibirlo.</li>
+          <li>Avisarnos de inmediato si cambia un dato que va en todas las piezas: teléfono, dirección, horarios o políticas.</li>
+          <li>Acceso vigente a las cuentas de Facebook e Instagram para programar y medir.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ RESULTADOS — PAPEL ══════════ -->
+<section class="seccion papel" id="resultados">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Cómo van las redes, a la fecha.</h2>
+      <p>Resumen del 1 de enero al 15 de octubre de 2026, con datos de Metricool, la herramienta con la que programamos y medimos. El reporte completo está aquí mismo, mes por mes.</p>
+    </div>
+    <div class="cifras">
+      <div class="cifra"><span class="rotulo">Instagram</span><span class="n">4,181</span><p>seguidores en @lacasadematy, 33 más que en enero.</p></div>
+      <div class="cifra"><span class="rotulo">Facebook</span><span class="n">10,576</span><p>seguidores en la página, 66 más que en enero.</p></div>
+      <div class="cifra"><span class="rotulo">Publicado</span><span class="n">121</span><p>piezas en Instagram en 2026: 73 publicaciones y 48 reels.</p></div>
+      <div class="cifra"><span class="rotulo">Reels</span><span class="n">+33%</span><p>más personas alcanzadas por reel que por publicación de imagen.</p></div>
+    </div>
+    <div class="abrir-rep">
+      <button class="boton" type="button" data-abre-reporte>Abrir el reporte completo <span class="fl">→</span></button>
+      <span class="chico apagado">Mes por mes, lo más visto y lo que ajustamos.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Estamos a la orden.</h2>
+      <p>Cualquier duda o comentario sobre este plan de trabajo, el reporte o los calendarios, escríbannos. Lo vemos directo y con gusto lo ajustamos a lo que el hotel necesite.</p>
+      <div class="acciones" style="margin-top:30px">
+        <a class="boton" href="https://wa.me/5213331672223?text=Hola%20Jos%2C%20sobre%20el%20plan%20de%20redes%20de%20La%20Casa%20de%20Maty%3A">Escribirnos por WhatsApp <span class="fl">→</span></a>
+        <a class="enlace" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PIE ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema — para que cada peso invertido produzca ventas y clientes que regresan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Plan de trabajo</span>
+        <ul><li><a href="#estado">Dónde estamos</a></li><li><a href="#paquete">El paquete</a></li><li><a href="#ciclo">El ciclo</a></li><li><a href="#hotel">Lo que necesitamos</a></li></ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Resultados</span>
+        <ul><li><a href="#reporte" data-abre-reporte>Reporte de redes</a></li></ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul><li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li><li><a href="https://wa.me/5213331672223">WhatsApp</a></li></ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═════════════════════════════════════════════════════════════
+     REPORTE DE REDES — se abre al accionar cualquier [data-abre-reporte]
+     o al entrar con #reporte. Datos: Metricool, 1 ene – 15 oct 2026.
+     ═════════════════════════════════════════════════════════════ -->
+<dialog class="reporte" id="reporte" aria-labelledby="rep-titulo">
+  <div class="rep-barra">
+    <div class="rep-barra-int">
+      <div class="rep-tit">
+        <img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" />
+        <span class="rotulo">Reporte de redes · La Casa de Maty</span>
+      </div>
+      <button class="boton boton--linea" type="button" data-cierra-reporte>Cerrar</button>
+    </div>
+  </div>
+  <nav class="rep-indice" aria-label="Secciones del reporte">
+    <ul>
+      <li><a href="#r-resumen">Resumen</a></li>
+      <li><a href="#r-instagram">Instagram</a></li>
+      <li><a href="#r-facebook">Facebook</a></li>
+      <li><a href="#r-top">Lo más visto</a></li>
+      <li><a href="#r-aprendido">Lo que aprendimos</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- RESUMEN -->
+    <section class="rep-sec" id="r-resumen">
+      <div class="rep-cab">
+        <div>
+          <span class="rotulo">1 de enero – 15 de octubre de 2026</span>
+          <h2 id="rep-titulo" style="margin-top:16px">Reporte de redes<br><span class="ligera">a la fecha.</span></h2>
+        </div>
+        <p>Instagram @lacasadematy y la página de Facebook del hotel. Datos sin pauta pagada, tomados de Metricool el 16 de octubre de 2026.</p>
+      </div>
+      <div class="cifras">
+        <div class="cifra"><span class="rotulo">Seguidores IG</span><span class="n">4,181</span><p>De 4,148 en enero. El punto más alto fue 4,200 en abril.</p></div>
+        <div class="cifra"><span class="rotulo">Seguidores FB</span><span class="n">10,576</span><p>De 10,510 en enero. Crecimiento lento pero constante.</p></div>
+        <div class="cifra"><span class="rotulo">Vistas en IG</span><span class="n">38,449</span><p>Veces que se vio el contenido de la cuenta en el año.</p></div>
+        <div class="cifra"><span class="rotulo">Piezas en IG</span><span class="n">121</span><p>73 publicaciones de imagen y 48 reels.</p></div>
+      </div>
+      <div class="dos-col">
+        <div>
+          <h3>Lo que dicen los números</h3>
+          <ul class="lista lista--chica">
+            <li>La cuenta se sostiene cuando hay calendario: de enero a julio el ritmo fue de 15 piezas al mes y la visibilidad se mantuvo estable.</li>
+            <li>Los reels llegan a más personas: 135 en promedio contra 102 de una publicación de imagen.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Lo que hay que mejorar</h3>
+          <ul class="lista lista--chica">
+            <li>La conversación es baja: en promedio 2 a 3 interacciones por pieza. El contenido se ve, pero casi no se comenta ni se guarda.</li>
+            <li>En Facebook las vistas de la página bajaron desde abril aunque se siguió publicando igual: apunta a un cambio en cómo Facebook reparte el contenido de las páginas sin anuncios.</li>
+            <li>Hace falta material nuevo del interior del hotel: el contenido del pueblo funciona, pero no vende la estancia por sí solo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="rep-sec" id="r-instagram">
+      <div class="rep-cab">
+        <div>
+          <span class="rotulo">Instagram · @lacasadematy</span>
+          <h2 style="margin-top:16px">Vistas por mes.</h2>
+        </div>
+        <p>Cuántas veces se vio el contenido de la cuenta cada mes.</p>
+      </div>
+      <figure class="grafica" style="--n:10" aria-label="Vistas de Instagram por mes, enero a octubre de 2026">
+        <div class="barras" style="--n:10">
+          <div class="barra"><span class="v">6,067</span><span class="b" style="--h:76.8%"></span></div>
+          <div class="barra"><span class="v">5,059</span><span class="b" style="--h:64.1%"></span></div>
+          <div class="barra marca-b"><span class="v">7,895</span><span class="b" style="--h:100%"></span></div>
+          <div class="barra"><span class="v">2,654</span><span class="b" style="--h:33.6%"></span></div>
+          <div class="barra"><span class="v">2,927</span><span class="b" style="--h:37.1%"></span></div>
+          <div class="barra"><span class="v">3,581</span><span class="b" style="--h:45.4%"></span></div>
+          <div class="barra"><span class="v">4,029</span><span class="b" style="--h:51%"></span></div>
+          <div class="barra"><span class="v">1,361</span><span class="b" style="--h:17.2%"></span></div>
+          <div class="barra"><span class="v">4,441</span><span class="b" style="--h:56.3%"></span></div>
+          <div class="barra baja"><span class="v">435</span><span class="b" style="--h:5.5%"></span></div>
+        </div>
+      </figure>
+      <div class="ejes" style="--n:10" aria-hidden="true">
+        <span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct*</span>
+      </div>
+      <div class="leyenda"><span>* Octubre, al día 15</span></div>
+
+      <div class="datos-env">
+        <table class="datos">
+          <thead>
+            <tr><th>Mes</th><th>Vistas</th><th>Alcance del mes</th><th>Alcance prom. publicación</th><th>Alcance prom. reel</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Enero</td><td>6,067</td><td>2,946</td><td>127</td><td>151</td></tr>
+            <tr><td>Febrero</td><td>5,059</td><td>2,738</td><td>119</td><td>143</td></tr>
+            <tr><td>Marzo</td><td>7,895</td><td>4,007</td><td>110</td><td>148</td></tr>
+            <tr><td>Abril</td><td>2,654</td><td>1,232</td><td>91</td><td>118</td></tr>
+            <tr><td>Mayo</td><td>2,927</td><td>1,467</td><td>82</td><td>121</td></tr>
+            <tr><td>Junio</td><td>3,581</td><td>1,691</td><td>85</td><td>144</td></tr>
+            <tr><td>Julio</td><td>4,029</td><td>1,856</td><td>109</td><td>168</td></tr>
+            <tr><td>Agosto</td><td>1,361</td><td>195</td><td>148</td><td>—</td></tr>
+            <tr><td>Septiembre</td><td>4,441</td><td>1,505</td><td>83</td><td>89</td></tr>
+            <tr class="baja"><td>Octubre (al 15)</td><td>435</td><td>45</td><td>—</td><td>—</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Total</td><td>38,449</td><td>17,682</td><td>102</td><td>135</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="nota-dato">Alcance del mes = suma del alcance diario de la cuenta. Alcance promedio = personas distintas que vieron cada pieza.</p>
+    </section>
+
+    <!-- FACEBOOK -->
+    <section class="rep-sec" id="r-facebook">
+      <div class="rep-cab">
+        <div>
+          <span class="rotulo">Facebook · página del hotel</span>
+          <h2 style="margin-top:16px">Vistas de la página por mes.</h2>
+        </div>
+        <p>De enero a marzo la página tenía entre 37 y 50 mil vistas al mes. Desde abril ronda las 5 mil, con el mismo ritmo de publicación.</p>
+      </div>
+      <figure class="grafica" aria-label="Vistas de la página de Facebook por mes, enero a octubre de 2026">
+        <div class="barras" style="--n:10">
+          <div class="barra marca-b"><span class="v">50,475</span><span class="b" style="--h:100%"></span></div>
+          <div class="barra"><span class="v">45,662</span><span class="b" style="--h:90.5%"></span></div>
+          <div class="barra"><span class="v">37,234</span><span class="b" style="--h:73.8%"></span></div>
+          <div class="barra"><span class="v">5,789</span><span class="b" style="--h:11.5%"></span></div>
+          <div class="barra"><span class="v">3,274</span><span class="b" style="--h:6.5%"></span></div>
+          <div class="barra"><span class="v">5,309</span><span class="b" style="--h:10.5%"></span></div>
+          <div class="barra"><span class="v">5,131</span><span class="b" style="--h:10.2%"></span></div>
+          <div class="barra"><span class="v">6,910</span><span class="b" style="--h:13.7%"></span></div>
+          <div class="barra"><span class="v">6,347</span><span class="b" style="--h:12.6%"></span></div>
+          <div class="barra baja"><span class="v">779</span><span class="b" style="--h:1.5%"></span></div>
+        </div>
+      </figure>
+      <div class="ejes" style="--n:10" aria-hidden="true">
+        <span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct*</span>
+      </div>
+      <div class="leyenda"><span>* Octubre, al día 15</span></div>
+
+      <div class="datos-env">
+        <table class="datos">
+          <thead>
+            <tr><th>Mes</th><th>Alcance prom. por publicación</th><th>Seguidores al cierre</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Enero</td><td>294</td><td>10,537</td></tr>
+            <tr><td>Febrero</td><td>218</td><td>10,567</td></tr>
+            <tr><td>Marzo</td><td>265</td><td>10,584</td></tr>
+            <tr><td>Abril</td><td>228</td><td>10,583</td></tr>
+            <tr><td>Mayo</td><td>107</td><td>10,578</td></tr>
+            <tr><td>Junio</td><td>96</td><td>10,572</td></tr>
+            <tr><td>Julio</td><td>111</td><td>10,580</td></tr>
+            <tr><td>Agosto</td><td>141</td><td>10,589</td></tr>
+            <tr><td>Septiembre</td><td>90</td><td>10,580</td></tr>
+            <tr class="baja"><td>Octubre (al 15)</td><td>—</td><td>10,576</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota-dato">La publicación con más alcance en Facebook en el año fue la del 7 de abril (756 personas); la del 19 de agosto llegó a 542 y fue la que más reacciones juntó del año. Los reels de Facebook se miden aparte y no están en esta tabla.</p>
+    </section>
+
+    <!-- LO MÁS VISTO -->
+    <section class="rep-sec" id="r-top">
+      <div class="rep-cab">
+        <div>
+          <span class="rotulo">Instagram · 2026</span>
+          <h2 style="margin-top:16px">Lo más visto del año.</h2>
+        </div>
+        <p>Las seis piezas que llegaron a más personas. La mitad son reels.</p>
+      </div>
+      <div class="plancha top">
+        <a class="renglon" href="https://www.instagram.com/p/DVEVupcD14Y/" target="_blank" rel="noopener">
+          <span class="buril" aria-hidden="true"></span>
+          <span class="pos">01</span>
+          <div><span class="marco">22 feb · Publicación</span><h3>Después del bosque y la montaña, la plaza se vuelve el punto de encuentro.</h3></div>
+          <div class="alc">278<span>personas</span></div>
+          <div class="ver">Ver en Instagram</div>
+        </a>
+        <a class="renglon" href="https://www.instagram.com/reel/DbQ4PFMgW_H/" target="_blank" rel="noopener">
+          <span class="buril" aria-hidden="true"></span>
+          <span class="pos">02</span>
+          <div><span class="marco">26 jul · Reel</span><h3>Reel de julio · el reel más visto del año.</h3></div>
+          <div class="alc">262<span>personas</span></div>
+          <div class="ver">Ver en Instagram</div>
+        </a>
+        <a class="renglon" href="https://www.instagram.com/reel/DTQd6-9DeZi/" target="_blank" rel="noopener">
+          <span class="buril" aria-hidden="true"></span>
+          <span class="pos">03</span>
+          <div><span class="marco">8 ene · Reel</span><h3>Reel de arranque de año.</h3></div>
+          <div class="alc">245<span>personas</span></div>
+          <div class="ver">Ver en Instagram</div>
+        </a>
+        <a class="renglon" href="https://www.instagram.com/reel/DXmj77TDHDK/" target="_blank" rel="noopener">
+          <span class="buril" aria-hidden="true"></span>
+          <span class="pos">04</span>
+          <div><span class="marco">26 abr · Reel</span><h3>Reel de abril.</h3></div>
+          <div class="alc">223<span>personas</span></div>
+          <div class="ver">Ver en Instagram</div>
+        </a>
+        <a class="renglon" href="https://www.instagram.com/p/DT5qm_VjDOx/" target="_blank" rel="noopener">
+          <span class="buril" aria-hidden="true"></span>
+          <span class="pos">05</span>
+          <div><span class="marco">24 ene · Publicación</span><h3>Tapalpa se vive en movimiento: senderos, viento y montaña, y descanso en el centro.</h3></div>
+          <div class="alc">214<span>personas</span></div>
+          <div class="ver">Ver en Instagram</div>
+        </a>
+        <a class="renglon" href="https://www.instagram.com/p/DdZPdTTIP1M/" target="_blank" rel="noopener">
+          <span class="buril" aria-hidden="true"></span>
+          <span class="pos">06</span>
+          <div><span class="marco">17 sep · Publicación</span><h3>Caminatas, pan de pueblo, café y una habitación acogedora: el itinerario de la temporada.</h3></div>
+          <div class="alc">208<span>personas</span></div>
+          <div class="ver">Ver en Instagram</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- LO QUE APRENDIMOS -->
+    <section class="rep-sec" id="r-aprendido">
+      <div class="rep-cab">
+        <div>
+          <span class="rotulo">Para los siguientes calendarios</span>
+          <h2 style="margin-top:16px">Lo que aprendimos<br><span class="ligera">y lo que ajustamos.</span></h2>
+        </div>
+      </div>
+      <div class="pasos">
+        <div class="paso">
+          <div class="paso-n">01</div>
+          <div>
+            <h4 class="paso-t">Reels repartidos, uno por semana aprox.</h4>
+            <p>Son el formato que más lejos llega. Los 3 reels del mes se reservan para los temas con más peso —la temporada, la experiencia dentro del hotel— y se reparten a lo largo del mes.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-n">02</div>
+          <div>
+            <h4 class="paso-t">Más hotel, no solo pueblo</h4>
+            <p>Las piezas que mejor funcionan unen el plan del día con el descanso en el hotel. Con material nuevo de habitaciones, desayuno, chimenea y bar, el contenido vende la estancia y no solo el destino.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-n">03</div>
+          <div>
+            <h4 class="paso-t">Invitar a conversar</h4>
+            <p>Sumamos preguntas, planes para guardar y recomendaciones útiles —como el itinerario de septiembre, que se compartió— para pasar de 2 a 3 interacciones por pieza a una conversación real con huéspedes.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-n">04</div>
+          <div>
+            <h4 class="paso-t">Facebook, con apoyo si hace falta</h4>
+            <p>Si el hotel quiere recuperar el alcance que tenía la página a principios de año, la vía más directa es un presupuesto pequeño de anuncios en temporadas clave. Lo podemos plantear cuando lo decidan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rep-pie">
+      <p>Fuente: Metricool, cuentas de Instagram @lacasadematy y página de Facebook del Hotel La Casa de Maty. Periodo: 1 de enero al 15 de octubre de 2026; octubre es parcial. Datos orgánicos, sin anuncios pagados. Las cifras pueden variar ligeramente con las que muestra la aplicación de cada red por la forma en que cada una cuenta el alcance.</p>
+      <div class="acciones" style="margin-top:26px">
+        <button class="boton" type="button" data-cierra-reporte>Volver al plan de trabajo <span class="fl">→</span></button>
+      </div>
+    </div>
+
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById('reporte');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var secs = dlg.querySelectorAll('.rep-sec');
+  var links = dlg.querySelectorAll('.rep-indice a');
+
+  function abrir(push) {
+    if (dlg.open) return;
+    dlg.showModal();
+    document.body.classList.add('con-reporte');
+    dlg.scrollTop = 0;
+    if (push && location.hash !== '#reporte') history.pushState(null, '', '#reporte');
+  }
+  function cerrar() {
+    if (dlg.open) dlg.close();
+  }
+  dlg.addEventListener('close', function () {
+    document.body.classList.remove('con-reporte');
+    if (location.hash === '#reporte') history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  document.querySelectorAll('[data-abre-reporte]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); abrir(true); });
+  });
+  dlg.querySelectorAll('[data-cierra-reporte]').forEach(function (el) {
+    el.addEventListener('click', cerrar);
+  });
+
+  // Índice interno: desplaza dentro del diálogo, no cambia el hash.
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var t = dlg.querySelector(a.getAttribute('href'));
+      if (t) dlg.scrollTo({ top: t.offsetTop - 120, behavior: 'smooth' });
+    });
+  });
+  dlg.addEventListener('scroll', function () {
+    var y = dlg.scrollTop + 160, actual = secs[0];
+    secs.forEach(function (s) { if (s.offsetTop <= y) actual = s; });
+    links.forEach(function (a) { a.classList.toggle('activo', a.getAttribute('href') === '#' + actual.id); });
+  }, { passive: true });
+
+  if (location.hash === '#reporte') abrir(false);
+  window.addEventListener('hashchange', function () {
+    if (location.hash === '#reporte') abrir(false); else cerrar();
+  });
+})();
+</script>
+</body>
+</html>
