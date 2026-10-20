@@ -116,11 +116,11 @@
     .gu-esc .v, .gu-esc .a { border-left: 0; border-top: 1px solid #e4dccb; }
   }
 
-  .gu-gfoot { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: baseline; margin-top: 22px; }
-  .gu-cta { font-size: .82rem; letter-spacing: .04em; }
-  .gu-cta .lab { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: #8a7f6c; margin-right: 8px; }
-  .gu-cta b { background: var(--tinta); color: var(--hueso); padding: 5px 12px; border-radius: 999px; font-weight: var(--fuerte); }
-  .gu-gfoot .nota { font-size: .9rem; color: #5a5245; line-height: 1.5; flex: 1 1 320px; }
+  .gu-gfoot { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #e4dccb; }
+  .gu-cta { font-size: .82rem; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .gu-cta .lab { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: #8a7f6c; }
+  .gu-cta b { background: var(--tinta); color: var(--hueso); padding: 5px 14px; border-radius: 999px; font-weight: var(--fuerte); }
+  .gu-gfoot .nota { font-size: .9rem; color: #5a5245; line-height: 1.55; max-width: 78ch; }
 
   /* Reglas globales (producción) — en oscuro */
   .gu-prod ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: 1fr; }
