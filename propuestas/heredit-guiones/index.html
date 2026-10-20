@@ -39,11 +39,13 @@
   .gu-meta > div { display: flex; flex-direction: column; gap: 5px; }
   .gu-rot { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--hueso-4); }
   .gu-val { font-size: .98rem; color: var(--hueso); }
-  /* Anti-moiré del buril del hero: a 100% de zoom los bordes duros del patrón
-     caían sobre el pixel y producían banding ("plastas"). Se baja la frecuencia
-     y se suavizan los bordes con un micro-blur; el texto del hero no se toca. */
-  .gu-hero .buril { filter: blur(0.6px); -webkit-filter: blur(0.6px); transform: translateZ(0); }
-  .gu-hero .buril--arco { --paso: 8px; --peso: 0.9px; --tono: 0.13; }
+  /* Hero: se conserva el buril--arco (líneas curvas concéntricas, el look que
+     se ve bien a 110%). A 100% se veían plastas porque los anillos del patrón
+     batían contra la rejilla de pixeles; un blur suave promedia ese batido y
+     lo deja liso a cualquier zoom. El blur va SOLO en la capa del buril, así
+     que el texto del hero queda nítido. El hero tiene overflow:hidden, así que
+     el blur no sangra al borde. */
+  .gu-hero .buril { filter: blur(1.2px); -webkit-filter: blur(1.2px); transform: translateZ(0); }
 
   /* Secciones */
   .gu-sec { padding: clamp(48px, 7vw, 92px) 0; }
