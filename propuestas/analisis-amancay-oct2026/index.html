@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+  Amancay · El análisis detrás del plan
+  Apartado de análisis que sustenta la estrategia (estrategia-amancay-oct2026).
+  Documento para cliente existente (Peninsula Lifestyle Properties / PLP).
+  Sobre el sistema visual oficial de Sentido, con su propia identidad (sin colores del cliente).
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amancay · El análisis detrás del plan</title>
+<meta name="description" content="El análisis que sustenta el plan de recuperación de Amancay: cómo lo medimos, qué revisamos y qué encontró el análisis, por Sentido." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  /* Entregable de Sentido — identidad visual de Sentido tal cual.
+     Sin --marca: el acento cae al hueso (100% sistema). Tipografía Archivo del sistema. */
+
+  .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
+  @media (min-width: 768px) { .hero-logo { height: 60px; } }
+
+  /* Tabs de la propuesta — Plan / Análisis */
+  .tabs { display: inline-flex; align-items: stretch; border: 1px solid var(--linea-2); }
+  .tab {
+    font-family: var(--archivo); font-weight: var(--fuerte);
+    font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--hueso-3); padding: 9px 16px 8px; line-height: 1;
+    display: inline-flex; align-items: center;
+    transition: color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .tab + .tab { border-left: 1px solid var(--linea-2); }
+  .tab:hover { color: var(--hueso); }
+  .tab[aria-current="page"] { background: var(--hueso); color: var(--tinta); }
+  @media (max-width: 480px) { .tab { padding: 8px 12px 7px; letter-spacing: 0.12em; } }
+
+  /* Insights — la flecha de acción, consistente con el sistema */
+  .accion-linea { margin-top: 12px; font-weight: var(--fuerte); color: var(--hueso); font-size: 0.9375rem; line-height: 1.5; }
+
+  /* Tabla "De análisis a acción" — dos columnas, encabezado destacado, alineación pareja */
+  #accion .tfila {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 44px); align-items: baseline;
+  }
+  #accion .tfila.cab { padding: 0 0 13px; border-bottom: 2px solid var(--hueso); }
+  #accion .tfila.cab .rotulo { color: var(--hueso); text-align: left; }
+  #accion .aenc { font-weight: var(--fuerte); color: var(--hueso); font-size: 1.0625rem; letter-spacing: -0.01em; }
+  #accion .aact { font-weight: var(--fuerte); color: var(--acento); font-size: 1.0625rem; letter-spacing: -0.01em; }
+  @media (max-width: 760px) {
+    #accion .tfila { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV — tab Plan / Análisis ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido · Amancay"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <div class="tabs" role="tablist" aria-label="Apartados de la propuesta">
+      <a class="tab" href="/estrategia-amancay-oct2026">Plan</a>
+      <a class="tab" href="/analisis-amancay-oct2026" aria-current="page">Análisis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    <h1><span class="ligera">El análisis</span><br>
+      detrás del <span class="alta">plan</span>.</h1>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">Amancay · Peninsula Lifestyle Properties</span></div>
+      <div><span class="rotulo">Por</span><span class="val">Sentido · Branding &amp; Advertising</span></div>
+      <div><span class="rotulo">Sustenta</span><span class="val">El plan de recuperación</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 1 · CÓMO LO MEDIMOS ══════════ -->
+<section class="seccion" id="medimos">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Cómo lo medimos.</h2>
+    </div>
+    <p style="margin-top:clamp(18px,2.5vw,28px); max-width:68ch;">Cruzamos <strong>Meta Ads y Google Ads con su CRM</strong> para leer la <strong>calidad real del lead</strong>: de los que entran, cuántos llegan a calificar (perfilar). Esa es la vara con la que evaluamos todo, y la que guía cada acción del plan.</p>
+  </div>
+</section>
+
+<!-- ══════════ 2 · LO QUE REVISAMOS — ISLA DE PAPEL ══════════ -->
+<section class="seccion papel" id="revisamos">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que revisamos.</h2>
+    </div>
+    <div class="cols cols-2" style="margin-top:clamp(28px,3.5vw,44px);">
+      <div>
+        <span class="rotulo">Meta Ads</span>
+        <p style="margin-top:12px;">Objetivo de campaña, anuncios activos y segmentación geográfica. La cuenta está bien orientada; la oportunidad está en afinarla hacia mejor perfil.</p>
+      </div>
+      <div>
+        <span class="rotulo">Google Ads</span>
+        <p style="margin-top:12px;">Ubicaciones, sitios donde aparecen los anuncios, palabras clave y términos de búsqueda. El tráfico de búsqueda es de alta intención y está on-target.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 3 · LO QUE ENCONTRÓ EL ANÁLISIS ══════════ -->
+<section class="seccion seccion--regla" id="insights">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que encontró el análisis.</h2>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-n">01</div>
+        <div>
+          <h3 class="paso-t">Google es el canal que mejor perfila.</h3>
+          <p>Trae los leads que más califican y las únicas citas del periodo.</p>
+          <p class="accion-linea">→ Lo hacemos medible y lo potenciamos.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">02</div>
+        <div>
+          <h3 class="paso-t">Hay un perfil claro que sí califica.</h3>
+          <p>Comprador de <strong>unidad completa</strong> —para vivir, segunda residencia o inversión patrimonial—, de mayor poder adquisitivo.</p>
+          <p class="accion-linea">→ Afinamos formulario y segmentación hacia ese perfil.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">03</div>
+        <div>
+          <h3 class="paso-t">El mensaje que mejor funciona es el de prueba tangible.</h3>
+          <p>Entregas iniciadas y obra en avance, con <strong>precio y patrimonio</strong> al frente, por encima del aspiracional sin cifra.</p>
+          <p class="accion-linea">→ Ajustamos la comunicación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 4 · DE ANÁLISIS A ACCIÓN — ISLA DE PAPEL ══════════ -->
+<section class="seccion papel" id="accion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>De análisis a acción.</h2>
+    </div>
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Lo que encontramos</span>
+        <span class="rotulo">Lo que hacemos en el plan</span>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="aenc tcol" data-l="Lo que encontramos">Google es el que mejor perfila</div>
+        <div class="aact tcol" data-l="Lo que hacemos en el plan">Campaña de conversión hacia la landing page (medible)</div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="aenc tcol" data-l="Lo que encontramos">Hay un perfil que sí califica</div>
+        <div class="aact tcol" data-l="Lo que hacemos en el plan">Formulario de calificación nuevo + segmentación</div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="aenc tcol" data-l="Lo que encontramos">El mensaje ganador es prueba + precio/patrimonio</div>
+        <div class="aact tcol" data-l="Lo que hacemos en el plan">Ajuste de comunicación en Meta</div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="aenc tcol" data-l="Lo que encontramos">La calidad del lead es la vara</div>
+        <div class="aact tcol" data-l="Lo que hacemos en el plan">Reporte de perfilados por canal</div>
+      </div>
+    </div>
+    <p class="tnota" style="margin-top:22px;">¿Quieres ver el plan completo? <a class="enlace-txt" href="/estrategia-amancay-oct2026">Ir al Plan →</a></p>
+  </div>
+</section>
+
+<!-- ══════════ PIE — minimal ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-marca">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
