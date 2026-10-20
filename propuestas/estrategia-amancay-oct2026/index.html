@@ -23,13 +23,23 @@
   .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
   @media (min-width: 768px) { .hero-logo { height: 60px; } }
 
-  /* Tabla de meta: la primera columna necesita más aire que el default de fases. */
-  #meta .tfila { grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.85fr) minmax(0, 0.95fr); }
-  #meta .mval { font-weight: var(--negra); color: var(--acento); font-size: 1.125rem; letter-spacing: -0.02em; text-align: right; }
-  #meta .mhoy { font-size: 0.9375rem; color: var(--hueso-2); text-align: right; }
-  #meta .mind { font-weight: var(--fuerte); color: var(--hueso); font-size: 1.0625rem; letter-spacing: -0.01em; }
+  /* Tabla de meta — grilla ordenada: columnas de ancho fijo, todo alineado a la
+     izquierda (encabezado y datos de cada columna comparten alineación), y un
+     encabezado destacado del resto con regla fuerte y rótulos a tope de contraste. */
+  #meta .tfila {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 40px);
+    align-items: baseline;
+  }
+  #meta .tfila.cab { padding: 0 0 13px; border-bottom: 2px solid var(--hueso); }
+  #meta .tfila.cab .rotulo { color: var(--hueso); text-align: left; }
+  #meta .mind { font-weight: var(--fuerte); color: var(--hueso); font-size: 1.0625rem; letter-spacing: -0.01em; text-align: left; }
+  #meta .mhoy { font-size: 1rem; color: var(--hueso-2); text-align: left; }
+  #meta .mval { font-weight: var(--negra); color: var(--acento); font-size: 1.125rem; letter-spacing: -0.02em; text-align: left; }
   @media (max-width: 760px) {
-    #meta .mval, #meta .mhoy { text-align: left; }
+    /* colapsa a una columna (el sistema oculta .cab y muestra etiquetas data-l) */
+    #meta .tfila { grid-template-columns: 1fr; gap: 6px; }
+    #meta .mind, #meta .mhoy, #meta .mval { text-align: left; }
   }
 
   /* Hover de Compromisos: el abanico de iris queda como detalle de fondo apenas
@@ -170,8 +180,8 @@
     <div class="tabla">
       <div class="tfila cab">
         <span class="rotulo">Indicador</span>
-        <span class="rotulo" style="text-align:right">Hoy (últimos 15 días)</span>
-        <span class="rotulo" style="text-align:right">Meta (15 días del plan)</span>
+        <span class="rotulo">Hoy (últimos 15 días)</span>
+        <span class="rotulo">Meta (15 días del plan)</span>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
@@ -201,9 +211,9 @@
   <div class="wrap">
     <div class="cierre">
       <span class="buril buril--iris" aria-hidden="true"></span>
-      <h2>Una nota honesta.</h2>
-      <p>Una parte importante de los leads que entran hoy nunca contestan, aunque su equipo los trabaje —casi todos se gestionan—. Eso es, en buena medida, calidad del lead: números equivocados o baja intención, que es justo lo que este plan ataca al atraer mejor perfil; y en parte, velocidad de primer contacto. Mejorar ambas multiplica el resultado.</p>
-      <p class="chico apagado" style="margin-top:28px;">¿Dudas sobre el plan? Escríbenos a <a class="enlace-txt" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> o por <a class="enlace-txt" href="https://wa.me/523331672223">WhatsApp</a>.</p>
+      <h2>Para dudas o ajustes.</h2>
+      <p>¿Tienes dudas sobre el plan o quieres ajustar algo antes de activarlo? Escríbenos y lo afinamos juntos.</p>
+      <p class="chico apagado" style="margin-top:28px;"><a class="enlace-txt" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a class="enlace-txt" href="https://wa.me/523331672223">WhatsApp</a></p>
     </div>
   </div>
 </section>
@@ -212,23 +222,8 @@
 <footer class="pie">
   <span class="buril buril--arco" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="pie-alto">
-      <div class="pie-marca">
-        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
-        <p>Marca, pauta, sitio y CRM en un mismo sistema — para que cada peso invertido produzca ventas y clientes que regresan.</p>
-      </div>
-      <div class="pie-col">
-        <span class="rotulo">Plan</span>
-        <ul><li><a href="#diagnostico">Dónde estamos</a></li><li><a href="#plan">Compromisos</a></li><li><a href="#meta">La meta</a></li></ul>
-      </div>
-      <div class="pie-col">
-        <span class="rotulo">Contacto</span>
-        <ul><li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li><li><a href="https://wa.me/523331672223">WhatsApp</a></li></ul>
-      </div>
-      <div class="pie-col">
-        <span class="rotulo">Sentido</span>
-        <ul><li><a href="/sitio">Sitio</a></li></ul>
-      </div>
+    <div class="pie-marca">
+      <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
     </div>
     <div class="pie-bajo">
       <p>© 2026 Sentido</p>
