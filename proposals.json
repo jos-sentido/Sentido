@@ -169,7 +169,7 @@
       "tipo": "propuesta",
       "cliente": "BlackRock Maquinaria",
       "fecha": "2026-09-07",
-      "estatus": "enviada",
+      "estatus": "ganada",
       "serviciosDisponibles": [
         {
           "id": "branding",
@@ -202,11 +202,27 @@
           "tipo": "mensual"
         }
       ],
-      "serviciosSeleccionados": [],
+      "serviciosSeleccionados": [
+        "branding",
+        "web"
+      ],
       "notas": "Distribuidor SINOMACH-HI de maquinaria pesada en Mexico (excavadoras, cargadores, motoconformadoras, compactadores, bulldozers). Cliente pidio 4 servicios: branding, web, redes, Google Ads. Hallazgo critico: presencia digital nula (sin sitio localizable, sin redes oficiales, cero captura de demanda en Google) en un mercado que crece por mineria+nearshoring y con rivales chinos (XCMG/LiuGong/SANY) ya organizados. Paleta industrial graphite/steel/amber. Unico $35K (marca+web), mensual $14K gestion, pauta aparte: Meta 5-12K / Google 8-15K. Recomendado: contratar ecosistema integral (GBP preferente + Meta gestion incluida + SEO base).",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [
+        {
+          "fecha": "2026-10-29",
+          "proximoPaso": "ajustar cotizacion",
+          "notas": "- meter contenido de ia en foto y video para la pag web cotizar porque sera muco contenido\n- tienen un patio con ubicacion geo para pedirla\n- activar branding y web primero y luego lo demas",
+          "creadoEn": "2026-10-29T19:20:00.737Z"
+        },
+        {
+          "fecha": "2026-10-29",
+          "proximoPaso": "",
+          "notas": "- agregar crm personalizdo o hgl con kpi de funnel \n- sinomach.global",
+          "creadoEn": "2026-10-29T19:11:09.581Z"
+        }
+      ]
     },
     {
       "slug": "massatierra",
