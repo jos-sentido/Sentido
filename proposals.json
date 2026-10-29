@@ -774,7 +774,7 @@
       "tipo": "propuesta",
       "cliente": "Ferrari Guadalajara",
       "fecha": "2026-06-22",
-      "estatus": "presentada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "redes",
