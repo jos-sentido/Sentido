@@ -548,7 +548,7 @@
       "tipo": "propuesta",
       "cliente": "Belleza a Domicilio — Nacional (marca nueva, propuesta en frío · branding Sentido)",
       "fecha": "2026-08-07",
-      "estatus": "enviada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "branding",
@@ -589,7 +589,7 @@
       ],
       "serviciosSeleccionados": [],
       "notas": "Prospecto en frío: Agencia de Belleza Nacional (belleza a domicilio) sin marca cerrada. Sentido VENDE el servicio de branding (no entrega la marca). Refs: Foriu y GoodLook. Arranque recomendado: branding $15k + plataforma $43k (único $58k) + gestión Google Ads $4k/mes + pauta directa. Meta Ads NO se cobra aparte: su gestión va incluida en Gestión de Redes ($7,500/mes). Tienda de productos y app nativa = fases futuras por proyecto. Admin sitio $3,500/mes.",
-      "proximoPaso": "Esperando contacto vía WhatsApp / correo",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
     },
