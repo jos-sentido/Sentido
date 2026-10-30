@@ -27,7 +27,7 @@
       "tipo": "propuesta",
       "cliente": "Rootsy",
       "fecha": "2026-09-24",
-      "estatus": "enviada",
+      "estatus": "nueva",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -56,7 +56,7 @@
       ],
       "serviciosSeleccionados": [],
       "notas": "DTC cuidado personal en stick (bloqueador SPF+50 NOM + desodorante natural). Contacto previo con el prospecto: dolores = faltan seguidores + subir ventas. Producto validado (reseñas fuertes), tienda activa en rootsy.mx, comunidad IG ~2,363. Plan recomendado: embudo integral por fases ($18,000/mes gestión, pauta aparte). Cierre con formulario + WhatsApp.",
-      "proximoPaso": "Esperando respuesta vía formulario / WhatsApp",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
     },
