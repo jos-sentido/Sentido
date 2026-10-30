@@ -234,8 +234,10 @@ deja el texto del color heredado, y sale hueso sobre hueso.
 3. **El listado del panel en `admin/`.** Va en rejilla de tarjetas por decisión
    del cliente, no por descuido. Se convirtió a plancha de renglones y se
    revirtió: el panel es su herramienta de trabajo diaria y ahí la tarjeta
-   funciona mejor que la fila. **No lo vuelvas a convertir.** El resto del
-   sistema —color, tipografía, piso de 11px, marca— sí aplica.
+   funciona mejor que la fila. **No lo vuelvas a convertir.** El switch de la
+   barra de filtros alterna esa rejilla con un tablero por estatus; las dos
+   vistas usan la misma tarjeta. El resto del sistema —color, tipografía, piso
+   de 11px, marca— sí aplica.
 
 **Al convertir un contenedor a rejilla, coloca a los hijos.** Sin `grid-column`
 explícito caen en la primera columna y el texto se lee una palabra por renglón.

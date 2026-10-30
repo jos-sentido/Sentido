@@ -98,6 +98,33 @@
     .grid { padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; align-content: start; flex: 1; }
     .empty { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
 
+    /* ── SWITCH DE VISTA ── */
+    .view-switch { display: flex; margin-left: auto; border: 1px solid var(--border2); flex-shrink: 0; }
+    .view-btn { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: none; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: background .12s, color .12s; }
+    .view-btn + .view-btn { border-left: 1px solid var(--border2); }
+    .view-btn:hover { color: var(--text); }
+    .view-btn[aria-pressed="true"] { background: var(--acento); color: #0A0A0A; font-weight: 700; }
+    .view-btn:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+
+    /* ── TABLERO ── */
+    #view-dash.is-board { height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; }
+    .board { flex: 1; min-height: 0; display: flex; align-items: stretch; gap: 12px; padding: 16px 28px; overflow-x: auto; }
+    .board, .board-col-body { scrollbar-width: thin; scrollbar-color: var(--border2) transparent; }
+    .board-col { flex: 0 0 300px; min-height: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); }
+    .board-col-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .board-col-count { font-weight: 800; letter-spacing: -0.03em; font-size: 16px; color: var(--text); line-height: 1; }
+    .board-col-body { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 10px; }
+    .board-col-body .card { flex-shrink: 0; background: var(--surface2); }
+    .board-col-body .card:hover { border-color: var(--acento-dim); }
+    .board-col-body .card-head { padding: 14px 14px 8px; }
+    .board-col-body .card-head .card-status { display: none; }
+    .board-col-body .card-body { padding: 0 14px 12px; }
+    .board-col-body .card-client { font-size: 17px; margin-bottom: 10px; }
+    .board-col-body .card-foot { padding: 8px 14px; background: var(--surface); }
+    .board-col-body .card-seg { white-space: nowrap; }
+    .board-col-body .btn-ghost { padding: 6px 8px; flex-shrink: 0; }
+    .board-empty { padding: 20px 8px; text-align: center; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+
     /* ── CARDS ── */
     .card { background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; transition: border-color .15s; }
     .card:hover { border-color: var(--border2); }
@@ -236,8 +263,14 @@
       .section-tab { padding: 12px 16px; white-space: nowrap; flex-shrink: 0; }
 
       /* Toolbar + grid */
-      .toolbar { padding: 10px 14px; }
+      .toolbar { padding: 10px 14px; flex-wrap: wrap; }
+      .search-wrap { flex: 1 1 100%; max-width: none; }
+      .sort-select { flex: 1; min-width: 0; padding: 9px 6px; letter-spacing: .08em; }
       .grid { padding: 12px 14px; grid-template-columns: 1fr; }
+      .view-switch { margin-left: 0; }
+      .view-btn { padding: 9px 10px; }
+      .board { padding: 12px 14px; scroll-snap-type: x mandatory; }
+      .board-col { flex-basis: 84vw; scroll-snap-align: center; }
 
       /* Stats */
       .stat { min-width: 68px; padding: 12px 6px; }
@@ -309,6 +342,16 @@
       <option value="cliente">Cliente A–Z</option>
       <option value="valor-desc">Mayor potencial</option>
     </select>
+    <div class="view-switch" id="view-switch" role="group" aria-label="Vista del listado">
+      <button type="button" class="view-btn" data-view="rejilla" aria-pressed="true">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 12 12" aria-hidden="true"><rect width="5" height="5"/><rect x="7" width="5" height="5"/><rect y="7" width="5" height="5"/><rect x="7" y="7" width="5" height="5"/></svg>
+        Rejilla
+      </button>
+      <button type="button" class="view-btn" data-view="tablero" aria-pressed="false">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 12 12" aria-hidden="true"><rect width="3" height="12"/><rect x="4.5" width="3" height="8"/><rect x="9" width="3" height="10"/></svg>
+        Tablero
+      </button>
+    </div>
   </div>
 
   <div class="grid" id="proposal-grid"></div>
@@ -427,6 +470,8 @@ let currentTipo = 'propuesta';
 let filter = 'all', query = '', sort = 'fecha-desc';
 let editingSlug = null;
 let currentBitacora = [];
+let viewMode = 'rejilla';
+try { if (localStorage.getItem('admin-vista') === 'tablero') viewMode = 'tablero'; } catch {}
 
 // ── CONFIG BY TIPO ────────────────────────────────────────
 const TIPOS = {
@@ -615,11 +660,37 @@ function calcPotencialUnico(p) {
   return (p.serviciosDisponibles||[]).filter(s => s.tipo === 'unico').reduce((a,s) => a+s.precio, 0);
 }
 
+function cardFor(p) { return currentTipo === 'comercial' ? cardComercialHTML(p) : cardHTML(p); }
+
+// Columnas del tablero: los estatus del tipo, más cualquier otro que traigan los
+// registros (p. ej. "pausada" en propuestas), para que ninguna tarjeta quede fuera.
+function boardColumns(list) {
+  if (filter !== 'all') return [filter];
+  const cols = cfg().statuses.map(s => s.value);
+  list.forEach(p => { if (!cols.includes(p.estatus)) cols.push(p.estatus); });
+  return cols;
+}
+
+function boardHTML(list) {
+  return boardColumns(list).map(st => {
+    const items = list.filter(p => p.estatus === st);
+    return `<section class="board-col" aria-label="${esc(statusLabel(st))}">
+      <header class="board-col-head"><span class="card-status ${statusCls(st)}">${esc(statusLabel(st))}</span><span class="board-col-count">${items.length}</span></header>
+      <div class="board-col-body">${items.map(cardFor).join('') || '<p class="board-empty">Sin registros</p>'}</div>
+    </section>`;
+  }).join('');
+}
+
 function renderGrid() {
   const grid = document.getElementById('proposal-grid');
   const list = filtered();
-  if (!list.length) { grid.innerHTML = '<p class="empty">Sin registros</p>'; return; }
-  grid.innerHTML = list.map(p => currentTipo === 'comercial' ? cardComercialHTML(p) : cardHTML(p)).join('');
+  const isBoard = viewMode === 'tablero';
+  grid.className = isBoard ? 'board' : 'grid';
+  document.getElementById('view-dash').classList.toggle('is-board', isBoard);
+  document.querySelectorAll('.view-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === viewMode)));
+  if (isBoard) grid.innerHTML = boardHTML(list);
+  else if (!list.length) { grid.innerHTML = '<p class="empty">Sin registros</p>'; return; }
+  else grid.innerHTML = list.map(cardFor).join('');
   grid.querySelectorAll('.card').forEach(card => {
     card.querySelector('.btn-edit').addEventListener('click', () => openDrawer(card.dataset.slug));
     const lb = card.querySelector('.btn-link');
@@ -676,6 +747,12 @@ function today() { return new Date().toISOString().slice(0,10); }
 // ── FILTERS ───────────────────────────────────────────────
 document.getElementById('search-input').addEventListener('input', e => { query = e.target.value.trim(); renderGrid(); });
 document.getElementById('sort-select').addEventListener('change', e => { sort = e.target.value; renderGrid(); });
+document.getElementById('view-switch').addEventListener('click', e => {
+  const btn = e.target.closest('.view-btn'); if (!btn) return;
+  viewMode = btn.dataset.view;
+  try { localStorage.setItem('admin-vista', viewMode); } catch {}
+  renderGrid();
+});
 
 // ── DRAWER ────────────────────────────────────────────────
 function openDrawer(slug) {
@@ -704,7 +781,9 @@ function openDrawer(slug) {
   document.getElementById('bitacora-section').style.display = isCom ? 'none' : 'block';
 
   const sel = document.getElementById('f-estatus');
-  sel.innerHTML = cfg().statuses.map(s => `<option value="${esc(s.value)}">${esc(s.label)}</option>`).join('');
+  const opciones = cfg().statuses.map(s => s.value);
+  if (p && !opciones.includes(p.estatus)) opciones.push(p.estatus);
+  sel.innerHTML = opciones.map(v => `<option value="${esc(v)}">${esc(statusLabel(v))}</option>`).join('');
   sel.value = p ? p.estatus : cfg().statuses[0].value;
 
   if (!isCom) {
