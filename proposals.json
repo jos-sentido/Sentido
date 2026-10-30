@@ -231,6 +231,15 @@
           "notas": "- agregar crm personalizdo o hgl con kpi de funnel \n- sinomach.global",
           "creadoEn": "2026-10-29T19:11:09.581Z"
         }
+      ],
+      "trabajo": "ajustes",
+      "historial": [
+        {
+          "fecha": "2026-10-30T23:50:10.136Z",
+          "campo": "trabajo",
+          "de": "",
+          "a": "ajustes"
+        }
       ]
     },
     {
