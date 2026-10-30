@@ -5,7 +5,7 @@
       "tipo": "cliente",
       "cliente": "Hotel La Casa de Maty — Plan de trabajo de redes + reporte",
       "fecha": "2026-10-16",
-      "estatus": "ganada",
+      "estatus": "activa",
       "serviciosDisponibles": [
         {
           "id": "redes",
@@ -18,8 +18,8 @@
         "redes"
       ],
       "notas": "Cliente activo desde hace tiempo; cambió de administración (Alexis la representa). Documento de orden: cómo trabajamos, paquete, ciclo mensual, qué necesitamos del hotel + reporte Metricool 1 ene–15 oct 2026. Calendario de octubre pausado por la transición y reactivado: publica aprox. lunes 19 oct. Tarifa vigente: $4,500 + IVA/mes.",
-      "proximoPaso": "Enviar a Alexis y obtener visto bueno del calendario de octubre",
-      "fechaSeguimiento": "2026-10-19",
+      "proximoPaso": "",
+      "fechaSeguimiento": null,
       "bitacora": []
     },
     {
