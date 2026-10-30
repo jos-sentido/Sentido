@@ -907,7 +907,7 @@
       "tipo": "propuesta",
       "cliente": "Clemente 70",
       "fecha": "2026-05-22",
-      "estatus": "presentada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "redes",
