@@ -119,6 +119,7 @@
     .board-col-body .card:hover { border-color: var(--acento-dim); }
     .board-col-body .card-head { padding: 14px 14px 8px; }
     .board-col-body .card-head .card-status { display: none; }
+    .board-col-body .card-badges { order: 2; }
     .board-col-body .card-body { padding: 0 14px 12px; }
     .board-col-body .card-client { font-size: 17px; margin-bottom: 10px; }
     .board-col-body .card-foot { padding: 8px 14px; background: var(--surface); }
@@ -131,7 +132,11 @@
     .card:hover { border-color: var(--border2); }
     .card-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 18px 18px 12px; }
     .card-status { font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; padding: 4px 8px; }
-    .card-date { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+    .card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .card-trabajo { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 3px 7px; border: 1px solid var(--border2); color: var(--muted); }
+    .card-trabajo.t-ajustes { border-color: var(--s-perdida-t); color: var(--s-perdida-t); }
+    .card-trabajo.t-lista { border-color: var(--s-ganada-t); color: var(--s-ganada-t); }
+    .card-date { font-family: var(--font-mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
     .card-body { padding: 0 18px 16px; flex: 1; }
     .card-client {
       font-weight: 800;
@@ -234,6 +239,12 @@
     .bitacora-notas { font-size: 12px; color: var(--muted); line-height: 1.5; white-space: pre-wrap; }
     .bitacora-empty { font-size: 12px; color: var(--faint); }
 
+    /* ── HISTORIAL ── */
+    .historial-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text); line-height: 1.45; }
+    .historial-item:last-child { border-bottom: none; }
+    .historial-fecha { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--acento-dim); margin-bottom: 2px; }
+    .historial-campo { color: var(--muted); }
+
     /* ── DRAWER FOOTER ── */
     .btn-save { flex: 1; padding: 12px; background: var(--acento); border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #0A0A0A; font-weight: 700; transition: opacity .15s; }
     .btn-save:hover { opacity: .85; }
@@ -272,8 +283,8 @@
       .search-wrap { flex: 1 1 100%; max-width: none; }
       .sort-select { flex: 1; min-width: 0; padding: 9px 6px; letter-spacing: .08em; }
       .grid { padding: 12px 14px; grid-template-columns: 1fr; }
-      .view-switch { margin-left: 0; }
-      .view-btn { padding: 9px 10px; }
+      .view-switch { margin-left: 0; flex: 1 1 100%; }
+      .view-btn { padding: 9px 10px; flex: 1; justify-content: center; }
       .board { padding: 12px 14px; scroll-snap-type: x mandatory; }
       .board-col { flex-basis: 84vw; scroll-snap-align: center; }
 
@@ -347,6 +358,7 @@
       <option value="cliente">Cliente A–Z</option>
       <option value="valor-desc">Mayor potencial</option>
     </select>
+    <select id="trabajo-select" class="sort-select" aria-label="Filtrar por estatus de trabajo"></select>
     <div class="view-switch" id="view-switch" role="group" aria-label="Vista del listado">
       <button type="button" class="view-btn" data-view="rejilla" aria-pressed="true">
         <svg width="12" height="12" fill="currentColor" viewBox="0 0 12 12" aria-hidden="true"><rect width="5" height="5"/><rect x="7" width="5" height="5"/><rect y="7" width="5" height="5"/><rect x="7" y="7" width="5" height="5"/></svg>
@@ -391,9 +403,13 @@
         <input type="date" id="f-fecha" class="field-input">
       </div>
       <div class="field">
-        <label class="field-label">Estatus</label>
+        <label class="field-label" id="f-estatus-label">Etapa</label>
         <select id="f-estatus" class="field-select"></select>
       </div>
+    </div>
+    <div class="field" id="f-trabajo-wrap">
+      <label class="field-label">Estatus de trabajo</label>
+      <select id="f-trabajo" class="field-select"></select>
     </div>
 
     <!-- SERVICIOS (solo propuestas) -->
@@ -454,6 +470,12 @@
       <div class="bitacora-timeline" id="bitacora-timeline"></div>
     </div>
 
+    <!-- HISTORIAL (solo propuestas) -->
+    <div id="historial-section" style="margin-top:24px">
+      <p class="drawer-section">Historial de cambios</p>
+      <div id="historial-list"></div>
+    </div>
+
   </div>
   <div class="drawer-foot">
     <button class="btn-cancel" id="btn-cancel">Cancelar</button>
@@ -472,7 +494,7 @@
 let proposals = [];
 let sha = null;
 let currentTipo = 'propuesta';
-let filter = 'all', query = '', sort = 'fecha-desc';
+let filter = 'all', trabajoFilter = 'all', query = '', sort = 'fecha-desc';
 let editingSlug = null;
 let currentBitacora = [];
 let editingEntry = -1;
@@ -543,6 +565,14 @@ const TIPOS = {
   },
 };
 
+// Estatus de trabajo: qué se está haciendo con el registro, independiente de su etapa (campo `estatus`).
+const TRABAJO = [
+  { value: 'produccion', label: 'En producción' },
+  { value: 'ajustes',    label: 'Ajustes' },
+  { value: 'lista',      label: 'Lista' },
+];
+function trabajoLabel(v) { return (TRABAJO.find(t => t.value === v) || {}).label || 'Sin estatus'; }
+
 function cfg() { return TIPOS[currentTipo]; }
 
 function statusCls(s) {
@@ -610,8 +640,10 @@ document.getElementById('section-tabs').addEventListener('click', e => {
   document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
   currentTipo = tab.dataset.tipo;
-  filter = 'all'; query = '';
+  filter = 'all'; trabajoFilter = 'all'; query = '';
   document.getElementById('search-input').value = '';
+  const ts = document.getElementById('trabajo-select');
+  ts.value = 'all'; ts.style.display = currentTipo === 'comercial' ? 'none' : '';
   document.getElementById('topbar-title').textContent = cfg().label;
   render();
 });
@@ -638,6 +670,7 @@ function filtered() {
     .filter(p => {
       if ((p.tipo || 'propuesta') !== currentTipo) return false;
       if (filter !== 'all' && p.estatus !== filter) return false;
+      if (trabajoFilter !== 'all' && (p.trabajo || '') !== trabajoFilter) return false;
       if (query) {
         const q = query.toLowerCase();
         if (!p.cliente.toLowerCase().includes(q) && !p.slug.toLowerCase().includes(q)) return false;
@@ -730,8 +763,9 @@ function cardHTML(p) {
   const last = (p.bitacora||[])[0];
   const nextHtml = last?.proximoPaso ? `<div class="card-next"><span class="card-next-label">Próximo paso</span>${esc(last.proximoPaso)}</div>` : '';
   const seg = last?.fecha ? `<span class="card-seg${isUrgent(last.fecha)?' urgent':''}">Seg. ${fmtDate(last.fecha)}</span>` : '<span class="card-seg"></span>';
+  const trabajoHtml = p.trabajo ? `<span class="card-trabajo t-${esc(p.trabajo)}">${esc(trabajoLabel(p.trabajo))}</span>` : '';
   return `<div class="card" data-slug="${esc(p.slug)}">
-    <div class="card-head"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span><span class="card-date">${fmtDate(p.fecha)}</span></div>
+    <div class="card-head"><div class="card-badges"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span>${trabajoHtml}</div><span class="card-date">${fmtDate(p.fecha)}</span></div>
     <div class="card-body"><p class="card-client">${esc(p.cliente)}</p><div class="card-services">${tagsHtml}</div>${valorHtml}${potencialHtml}${nextHtml}</div>
     <div class="card-foot">${seg}<button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
   </div>`;
@@ -751,10 +785,19 @@ function fmtDate(iso) { if (!iso) return '—'; const [y,m,d] = iso.split('-'); 
 function fmtMXN(n) { return '$' + Number(n).toLocaleString('es-MX'); }
 function isUrgent(iso) { if (!iso) return false; return (new Date(iso+'T00:00:00') - new Date()) / 86400000 <= 2; }
 function today() { return new Date().toISOString().slice(0,10); }
+function fmtDateTime(iso) {
+  const d = new Date(iso), p = n => String(n).padStart(2,'0');
+  return `${fmtDate(`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`)} · ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
 
 // ── FILTERS ───────────────────────────────────────────────
 document.getElementById('search-input').addEventListener('input', e => { query = e.target.value.trim(); renderGrid(); });
 document.getElementById('sort-select').addEventListener('change', e => { sort = e.target.value; renderGrid(); });
+document.getElementById('trabajo-select').innerHTML =
+  '<option value="all">Todo el trabajo</option>' +
+  TRABAJO.map(t => `<option value="${t.value}">${t.label}</option>`).join('') +
+  '<option value="">Sin estatus</option>';
+document.getElementById('trabajo-select').addEventListener('change', e => { trabajoFilter = e.target.value; renderGrid(); });
 document.getElementById('view-switch').addEventListener('click', e => {
   const btn = e.target.closest('.view-btn'); if (!btn) return;
   viewMode = btn.dataset.view;
@@ -787,6 +830,9 @@ function openDrawer(slug) {
   document.getElementById('f-descripcion').value           = p ? (p.descripcion || '') : '';
   document.getElementById('svc-section').style.display     = isCom ? 'none' : 'block';
   document.getElementById('bitacora-section').style.display = isCom ? 'none' : 'block';
+  document.getElementById('historial-section').style.display = isCom ? 'none' : 'block';
+  document.getElementById('f-trabajo-wrap').style.display  = isCom ? 'none' : 'block';
+  document.getElementById('f-estatus-label').textContent   = isCom ? 'Estatus' : 'Etapa';
 
   const sel = document.getElementById('f-estatus');
   const opciones = cfg().statuses.map(s => s.value);
@@ -795,6 +841,10 @@ function openDrawer(slug) {
   sel.value = p ? p.estatus : cfg().statuses[0].value;
 
   if (!isCom) {
+    const ts = document.getElementById('f-trabajo');
+    ts.innerHTML = TRABAJO.map(t => `<option value="${t.value}">${t.label}</option>`).join('') + '<option value="">Sin estatus</option>';
+    ts.value = p ? (p.trabajo || '') : 'produccion';
+    renderHistorial(p);
     currentBitacora = p ? [...(p.bitacora || [])] : [];
     editingEntry = -1;
     renderSvcList(p);
@@ -957,6 +1007,29 @@ document.getElementById('btn-add-entry').addEventListener('click', () => {
   renderBitacora(); resetBitacoraForm();
 });
 
+// ── HISTORIAL ─────────────────────────────────────────────
+function historialValor(c, v) { return c.campo === 'etapa' ? statusLabel(v) : trabajoLabel(v); }
+
+function renderHistorial(p) {
+  const items = (p && p.historial) || [];
+  document.getElementById('historial-list').innerHTML = items.length
+    ? items.map(c => `<div class="historial-item">
+        <span class="historial-fecha">${fmtDateTime(c.fecha)}</span>
+        <span class="historial-campo">${c.campo === 'etapa' ? 'Etapa' : 'Estatus de trabajo'}:</span>
+        ${c.de === null ? '' : `${esc(historialValor(c, c.de))} → `}${esc(historialValor(c, c.a))}
+      </div>`).join('')
+    : '<p class="bitacora-empty">Sin cambios registrados todavía.</p>';
+}
+
+// `de: null` marca el valor con el que nació el registro.
+function cambiosDe(prev, etapa, trabajo) {
+  const fecha = new Date().toISOString(), cambios = [];
+  if (!prev || prev.estatus !== etapa) cambios.push({ fecha, campo: 'etapa', de: prev ? prev.estatus : null, a: etapa });
+  const trabajoAntes = prev ? (prev.trabajo || '') : '';
+  if (trabajoAntes !== trabajo) cambios.push({ fecha, campo: 'trabajo', de: prev ? trabajoAntes : null, a: trabajo });
+  return cambios;
+}
+
 // ── SAVE ──────────────────────────────────────────────────
 document.getElementById('btn-save').addEventListener('click', saveDrawer);
 
@@ -974,10 +1047,13 @@ async function saveDrawer() {
   const isCom = tipo === 'comercial';
   if (!isCom && !applyEntryEdit()) return;
 
+  const estatus = document.getElementById('f-estatus').value;
+  const trabajo = document.getElementById('f-trabajo').value;
+
   const updated = {
     slug, tipo, cliente,
     fecha:   document.getElementById('f-fecha').value || null,
-    estatus: document.getElementById('f-estatus').value,
+    estatus,
     ...(isCom ? {
       descripcion:            document.getElementById('f-descripcion').value.trim(),
       notas:                  document.getElementById('f-notas').value,
@@ -991,6 +1067,8 @@ async function saveDrawer() {
       proximoPaso:            '',
       fechaSeguimiento:       null,
       bitacora:               currentBitacora,
+      trabajo,
+      historial:              [...cambiosDe(existente, estatus, trabajo), ...(existente?.historial || [])],
     })
   };
 

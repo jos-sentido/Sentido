@@ -171,6 +171,9 @@ renderizándolo con su propio CSS. Está escrita a mano, no la genera `build.py`
 - **`/api/lead`** — endpoint compartido de formularios, manda correo vía Resend a
   `jos@sentido.mx`. Cada superficie se identifica con su campo `Fuente`.
 - **`proposals.json`** — lo lee el panel en `/admin`. Registra ahí cada pieza nueva.
+  `estatus` es la **etapa** (Nueva, Enviada, Presentada…); `trabajo` es el estatus de
+  trabajo (`produccion`, `ajustes`, `lista` o vacío), independiente de la etapa;
+  `historial` lo escribe el panel al guardar cada cambio de etapa o de trabajo.
 - **Las 16 páginas del sitio llevan `noindex`** mientras vivan bajo
   `propuestas.sentido.mx`, para no competir con el sentido.mx actual. Se quita al
   publicar en el dominio definitivo, junto con `BASE = ""` en `build.py`.
