@@ -229,7 +229,7 @@
       "tipo": "propuesta",
       "cliente": "Massatierra",
       "fecha": "2026-10-15",
-      "estatus": "enviada",
+      "estatus": "en negociación",
       "serviciosDisponibles": [
         {
           "id": "acuerdo",
@@ -275,7 +275,10 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Pararrayos y tierras fisicas industriales, Zapopan Jal. 25 anos, 14 paises, +15,000 proyectos. Acuerdo de comercializacion completa (cartera existente + demanda nueva) a 15% sobre ventas, sin costo fijo. Igualas presentadas solo como valor de referencia. Lector: dueno / gerencia general. Reconstruida sobre el sistema visual Sentido con --marca #EF5A28."
+      "notas": "Pararrayos y tierras fisicas industriales, Zapopan Jal. 25 anos, 14 paises, +15,000 proyectos. Acuerdo de comercializacion completa (cartera existente + demanda nueva) a 15% sobre ventas, sin costo fijo. Igualas presentadas solo como valor de referencia. Lector: dueno / gerencia general. Reconstruida sobre el sistema visual Sentido con --marca #EF5A28.",
+      "proximoPaso": "",
+      "fechaSeguimiento": null,
+      "bitacora": []
     },
     {
       "slug": "propuestamodularte",
