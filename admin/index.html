@@ -25,6 +25,7 @@
       --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
       --font-mono: 'Archivo', system-ui, sans-serif;   /* etiquetas, no código */
       --font-serif: 'Archivo', system-ui, sans-serif;  /* el sistema tiene una familia */
+      --s-nueva:        #F1EADC; --s-nueva-t:      #0A0A0A;
       --s-enviada:      #202020; --s-enviada-t:    #948C80;
       --s-presentada:   #2E2E2E; --s-presentada-t: #F1EADC;
       --s-negociacion:  #404040; --s-negociacion-t:#F1EADC;
@@ -148,6 +149,7 @@
     .btn-ghost:hover { border-color: var(--acento-dim); color: var(--text); }
 
     /* status — propuestas */
+    .s-nueva       { background: var(--s-nueva);       color: var(--s-nueva-t); }
     .s-enviada     { background: var(--s-enviada);     color: var(--s-enviada-t); }
     .s-presentada  { background: var(--s-presentada);  color: var(--s-presentada-t); }
     .s-negociacion { background: var(--s-negociacion); color: var(--s-negociacion-t); }
@@ -223,8 +225,11 @@
     .bitacora-content { flex: 1; min-width: 0; }
     .bitacora-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .bitacora-fecha { font-family: var(--font-mono); font-size: 11px; color: var(--acento-dim); }
-    .bitacora-del { background: none; border: none; cursor: pointer; color: var(--faint); font-size: 14px; padding: 0; line-height: 1; margin-left: auto; transition: color .1s; }
-    .bitacora-del:hover { color: var(--s-perdida-t); }
+    .bitacora-actions { display: flex; gap: 4px; margin-left: auto; }
+    .bitacora-act { background: none; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 4px 6px; transition: color .1s; }
+    .bitacora-act:hover { color: var(--text); }
+    .bitacora-act.del:hover { color: var(--s-perdida-t); }
+    .bitacora-edit-actions { display: flex; gap: 8px; margin-top: 10px; }
     .bitacora-paso { font-size: 13px; color: var(--text); margin-bottom: 4px; font-weight: 500; }
     .bitacora-notas { font-size: 12px; color: var(--muted); line-height: 1.5; white-space: pre-wrap; }
     .bitacora-empty { font-size: 12px; color: var(--faint); }
@@ -470,6 +475,7 @@ let currentTipo = 'propuesta';
 let filter = 'all', query = '', sort = 'fecha-desc';
 let editingSlug = null;
 let currentBitacora = [];
+let editingEntry = -1;
 let viewMode = 'rejilla';
 try { if (localStorage.getItem('admin-vista') === 'tablero') viewMode = 'tablero'; } catch {}
 
@@ -479,6 +485,7 @@ const TIPOS = {
     label:   'Propuestas a prospectos',
     urlBase: 'propuestas.sentido.mx/',
     statuses: [
+      { value: 'nueva',          label: 'Nueva',          cls: 's-nueva' },
       { value: 'enviada',        label: 'Enviada',        cls: 's-enviada' },
       { value: 'presentada',      label: 'Presentada',     cls: 's-presentada' },
       { value: 'en negociación', label: 'En negociación', cls: 's-negociacion' },
@@ -488,6 +495,7 @@ const TIPOS = {
     ],
     stats: [
       { key: 'all',            label: 'Total' },
+      { key: 'nueva',          label: 'Nuevas' },
       { key: 'enviada',        label: 'Enviadas' },
       { key: 'presentada',     label: 'Presentadas' },
       { key: 'en negociación', label: 'Negociando' },
@@ -788,6 +796,7 @@ function openDrawer(slug) {
 
   if (!isCom) {
     currentBitacora = p ? [...(p.bitacora || [])] : [];
+    editingEntry = -1;
     renderSvcList(p);
     renderBitacora();
     resetBitacoraForm();
@@ -867,21 +876,75 @@ function resetBitacoraForm() {
   document.getElementById('b-notas').value   = '';
 }
 
-function renderBitacora() {
-  const container = document.getElementById('bitacora-timeline');
-  if (!currentBitacora.length) { container.innerHTML = '<p class="bitacora-empty">Sin entradas todavía.</p>'; return; }
-  container.innerHTML = currentBitacora.map((e, i) => `
+function bitacoraEntryHTML(e, i) {
+  if (i === editingEntry) return `
     <div class="bitacora-entry">
       <div class="bitacora-line"><div class="bitacora-dot"></div><div class="bitacora-trail"></div></div>
       <div class="bitacora-content">
-        <div class="bitacora-meta"><span class="bitacora-fecha">${fmtDate(e.fecha)}</span><button class="bitacora-del" data-idx="${i}">×</button></div>
+        <div class="field-row" style="margin-bottom:10px">
+          <div class="field" style="margin:0">
+            <label class="field-label">Fecha</label>
+            <input type="date" id="be-fecha" class="field-input" value="${esc(e.fecha)}">
+          </div>
+          <div class="field" style="margin:0">
+            <label class="field-label">Próximo paso</label>
+            <input type="text" id="be-proximo" class="field-input" value="${esc(e.proximoPaso)}">
+          </div>
+        </div>
+        <div class="field" style="margin:0">
+          <label class="field-label">Notas</label>
+          <textarea id="be-notas" class="field-textarea" style="min-height:60px">${esc(e.notas)}</textarea>
+        </div>
+        <div class="bitacora-edit-actions">
+          <button class="bitacora-add-btn" style="margin:0" id="be-listo">Listo</button>
+          <button class="btn-ghost" id="be-cancelar">Cancelar</button>
+        </div>
+      </div>
+    </div>`;
+  return `
+    <div class="bitacora-entry">
+      <div class="bitacora-line"><div class="bitacora-dot"></div><div class="bitacora-trail"></div></div>
+      <div class="bitacora-content">
+        <div class="bitacora-meta"><span class="bitacora-fecha">${fmtDate(e.fecha)}</span><div class="bitacora-actions"><button class="bitacora-act edit" data-idx="${i}">Editar</button><button class="bitacora-act del" data-idx="${i}">Eliminar</button></div></div>
         ${e.proximoPaso ? `<div class="bitacora-paso">${esc(e.proximoPaso)}</div>` : ''}
         ${e.notas       ? `<div class="bitacora-notas">${esc(e.notas)}</div>` : ''}
       </div>
-    </div>`).join('');
-  container.querySelectorAll('.bitacora-del').forEach(btn => {
-    btn.addEventListener('click', () => { currentBitacora.splice(+btn.dataset.idx, 1); renderBitacora(); });
+    </div>`;
+}
+
+// Pasa al borrador lo escrito en la entrada abierta; el drawer lo persiste con Guardar.
+function applyEntryEdit() {
+  if (editingEntry < 0) return true;
+  const fecha   = document.getElementById('be-fecha').value;
+  const proximo = document.getElementById('be-proximo').value.trim();
+  const notas   = document.getElementById('be-notas').value.trim();
+  if (!fecha && !proximo && !notas) { showToast('Completa al menos un campo', true); return false; }
+  currentBitacora[editingEntry] = { ...currentBitacora[editingEntry], fecha: fecha || today(), proximoPaso: proximo, notas };
+  editingEntry = -1;
+  return true;
+}
+
+function renderBitacora() {
+  const container = document.getElementById('bitacora-timeline');
+  if (!currentBitacora.length) { container.innerHTML = '<p class="bitacora-empty">Sin entradas todavía.</p>'; return; }
+  container.innerHTML = currentBitacora.map(bitacoraEntryHTML).join('');
+  container.querySelectorAll('.bitacora-act.edit').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!applyEntryEdit()) return;
+      editingEntry = +btn.dataset.idx; renderBitacora();
+      document.getElementById('be-proximo').focus();
+    });
   });
+  container.querySelectorAll('.bitacora-act.del').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!applyEntryEdit()) return;
+      currentBitacora.splice(+btn.dataset.idx, 1); renderBitacora();
+    });
+  });
+  if (editingEntry >= 0) {
+    document.getElementById('be-listo').addEventListener('click', () => { if (applyEntryEdit()) renderBitacora(); });
+    document.getElementById('be-cancelar').addEventListener('click', () => { editingEntry = -1; renderBitacora(); });
+  }
 }
 
 document.getElementById('btn-add-entry').addEventListener('click', () => {
@@ -889,6 +952,7 @@ document.getElementById('btn-add-entry').addEventListener('click', () => {
   const proximo = document.getElementById('b-proximo').value.trim();
   const notas   = document.getElementById('b-notas').value.trim();
   if (!fecha && !proximo && !notas) return showToast('Completa al menos un campo', true);
+  if (!applyEntryEdit()) return;
   currentBitacora.unshift({ fecha: fecha || today(), proximoPaso: proximo, notas, creadoEn: new Date().toISOString() });
   renderBitacora(); resetBitacoraForm();
 });
@@ -908,6 +972,7 @@ async function saveDrawer() {
   const existente = editingSlug ? proposals.find(p => p.slug === editingSlug) : null;
   const tipo = existente ? (existente.tipo || 'propuesta') : currentTipo;
   const isCom = tipo === 'comercial';
+  if (!isCom && !applyEntryEdit()) return;
 
   const updated = {
     slug, tipo, cliente,
