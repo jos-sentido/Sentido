@@ -498,7 +498,7 @@
       "tipo": "propuesta",
       "cliente": "RE/MAX Cabo Sanctuary — Inmobiliaria de lujo, Los Cabos BCS (sistema integral de captación de leads)",
       "fecha": "2026-08-07",
-      "estatus": "enviada",
+      "estatus": "perdida",
       "serviciosDisponibles": [
         {
           "id": "redes-meta",
@@ -539,7 +539,7 @@
       ],
       "serviciosSeleccionados": [],
       "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado: subtotal recurrente $22,425/mes, -10% sistema integral = $20,182.50/mes + IVA + IVA (Redes+Meta / Google Ads / CRM, con Gestión de sitio $4,600 y GBP incluido; -10% solo si se contrata el sistema recurrente completo, aplica solo al honorario, no a pauta/mensajeria/rediseno/audiovisual) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
-      "proximoPaso": "Esperando contacto vía WhatsApp (cierre sin formulario)",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []
     },
