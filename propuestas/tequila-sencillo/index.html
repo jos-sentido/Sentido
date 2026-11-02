@@ -100,16 +100,6 @@
   .tabla-sub .tabla { margin-top: 26px; }
   .tfila .sub-pauta p { font-size: 0.875rem; color: var(--hueso-3); }
 
-  .ig { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(26px, 3.4vw, 44px); margin-top: 8px; }
-  .ig .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
-  .ig p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; }
-  .ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: 28px; }
-  .ia-grid figure { margin: 0; }
-  .ia-grid img { display: block; width: 100%; height: auto; }
-  .ia-grid figcaption { margin-top: 12px; color: var(--hueso-2); font-size: 0.875rem; line-height: 1.5; }
-  .ia-grid figcaption .rotulo { display: block; margin-bottom: 4px; color: var(--acento); }
-  @media (max-width: 860px) { .ig { grid-template-columns: 1fr; gap: 28px; } .ia-grid { grid-template-columns: repeat(2, 1fr); } }
-
   .cierre .boton { margin-top: 30px; }
   .cierre .alterno { margin-top: 24px; font-size: 0.9375rem; color: var(--hueso-3); }
 </style>
@@ -178,7 +168,7 @@
       <div>
         <span class="rotulo">Actividad</span>
         <h3>Una marca en movimiento.</h3>
-        <p>Instagram tiene publicaciones recientes y una historia destacada de puntos de venta. El tequila ya está saliendo al mercado.</p>
+        <p>Instagram tiene publicaciones recientes, campañas por fecha, eventos y una historia destacada de puntos de venta. El tequila ya está saliendo al mercado.</p>
       </div>
     </div>
     <p class="puente">El sitio actual cumple su papel de presentación y en escritorio carga rápido. El paso que sigue es convertirlo en el lugar donde la marca explica, convence y lleva a la compra.</p>
@@ -412,11 +402,15 @@
     <script>
       (function () {
         var r = document.getElementById('ruta');
-        if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        function ver() {
+          if (r.getBoundingClientRect().top > innerHeight * 0.75) return false;
+          r.classList.remove('ruta--espera');
+          removeEventListener('scroll', ver);
+          return true;
+        }
         r.classList.add('ruta--espera');
-        new IntersectionObserver(function (e, o) {
-          if (e[0].isIntersecting) { r.classList.remove('ruta--espera'); o.disconnect(); }
-        }, { threshold: 0.25 }).observe(r);
+        if (!ver()) addEventListener('scroll', ver, { passive: true });
       })();
     </script>
 
@@ -433,63 +427,6 @@
       <li><b>Venta en línea.</b> Antes de activarla se validan las condiciones de la pasarela de pago, la paquetería y los permisos de venta aplicables.</li>
     </ul>
     <p class="fuente">Orientación de marketing, no asesoría legal. Fuentes: Ley General de Salud (última reforma DOF 15-01-2026), Reglamento de la Ley General de Salud en Materia de Publicidad (última reforma DOF 08-09-2022) y políticas publicitarias de Meta y Google consultadas el 2 de noviembre de 2026.</p>
-  </div>
-</section>
-
-<!-- ══════════ CONTENIDO CON IA ══════════ -->
-<section class="seccion seccion--regla" id="contenido">
-  <div class="wrap">
-    <div class="cabeza">
-      <span class="pleca"></span>
-      <h2>Contenido con IA, sobre su botella real.</h2>
-      <p>Revisamos su Instagram el 2 de noviembre de 2026. El feed ya tiene un lenguaje propio, y la IA permite llevarlo a cada fecha, campaña y página del sitio nuevo con mucha más libertad.</p>
-    </div>
-    <div class="ig">
-      <div>
-        <span class="rotulo">Lo que ya funciona</span>
-        <p>Una voz clara con «Así de sencillo», campañas por fecha como Día de Muertos y Halloween, producto en estudio, origen y eventos en lugares como Los Trucha y Mónaco.</p>
-      </div>
-      <div>
-        <span class="rotulo">Lo que sigue</span>
-        <p>Con 36 publicaciones y 842 seguidores, la calidad va por delante del alcance. El siguiente paso es sostener ese nivel con constancia y llevarlo al sitio, donde hoy no se ve.</p>
-      </div>
-      <div>
-        <span class="rotulo">Cómo ayuda la IA</span>
-        <p>Una foto de la botella sirve de punto de partida para recrear locación, luz y temporada, sin agendar sesión ni mover producto. Eventos y momentos con gente siguen con cámara real.</p>
-      </div>
-    </div>
-    <div class="cabeza-sub">
-      <span class="pleca"></span>
-      <h3>Seis ejemplos, a partir de una sola foto.</h3>
-      <p>Tomamos una foto pública de su botella y la llevamos a los tipos de contenido que ya publican: fotografía de producto y gráficos para el feed.</p>
-    </div>
-    <div class="ia-grid">
-      <figure>
-        <img src="/assets/tequila-ia-1.webp" width="1000" height="1250" loading="lazy" alt="Botella de Tequila Sencillo sobre una caja de madera en un campo de agave al amanecer" />
-        <figcaption><span class="rotulo">Origen</span>Campo de agave en Los Altos de Jalisco, al amanecer.</figcaption>
-      </figure>
-      <figure>
-        <img src="/assets/tequila-ia-2.webp" width="1000" height="1250" loading="lazy" alt="Botella de Tequila Sencillo junto a piñas cocidas y un horno de mampostería" />
-        <figcaption><span class="rotulo">Proceso</span>Agave cocido junto al horno de mampostería.</figcaption>
-      </figure>
-      <figure>
-        <img src="/assets/tequila-ia-3.webp" width="1000" height="1250" loading="lazy" alt="Botella de Tequila Sencillo en una mesa de patio con limones y sal" />
-        <figcaption><span class="rotulo">Mesa</span>Patio, limón y sal, con la botella al centro.</figcaption>
-      </figure>
-      <figure>
-        <img src="/assets/tequila-ia-4.webp" width="1000" height="1250" loading="lazy" alt="Botella de Tequila Sencillo sobre fondo azul con hojas de agave" />
-        <figcaption><span class="rotulo">Estudio</span>Producto sobre el azul de la marca.</figcaption>
-      </figure>
-      <figure>
-        <img src="/assets/tequila-ia-5.webp" width="1000" height="1250" loading="lazy" alt="Post de posadas con la botella y el texto Así de Sencillo" />
-        <figcaption><span class="rotulo">Temporada</span>Post de posadas con la voz de la marca.</figcaption>
-      </figure>
-      <figure>
-        <img src="/assets/tequila-ia-6.webp" width="1000" height="1250" loading="lazy" alt="Portada de carrusel con la botella y datos de elaboración" />
-        <figcaption><span class="rotulo">Producto</span>Portada de carrusel con datos de su etiqueta.</figcaption>
-      </figure>
-    </div>
-    <p class="fuente">Imágenes generadas con inteligencia artificial solo para esta propuesta, como ejemplo del potencial. No son publicaciones reales ni piezas finales: en producción se ajustan detalles finos como el texto pequeño del cuello de la botella, y cada pieza se valida con la marca. Se mantienen sin escenas de consumo, en línea con las reglas descritas arriba.</p>
   </div>
 </section>
 
@@ -530,7 +467,7 @@
         <div class="tfila">
           <span class="buril" aria-hidden="true"></span>
           <div class="tfase tcol" data-l="Módulo">Sesión fotográfica<span class="fnota">Eventual</span></div>
-          <p class="tcol" data-l="Qué resuelve">Para lo que pide cámara real, como equipo, proceso y eventos. Dos horas, 25 a 30 imágenes con retoque y formatos adaptados.</p>
+          <p class="tcol" data-l="Qué resuelve">Imágenes de producto y origen a la resolución que pide el sitio nuevo. Dos horas, 25 a 30 imágenes con retoque y formatos adaptados.</p>
           <div class="tprecio tcol" data-l="Inversión">Cotizado<span class="tper">por sesión</span></div>
         </div>
         <div class="tfila">
@@ -541,9 +478,13 @@
         </div>
         <div class="tfila">
           <span class="buril" aria-hidden="true"></span>
-          <div class="tfase tcol" data-l="Módulo">Gestión de redes + contenido con IA + Meta Ads<span class="fnota">Mensual</span></div>
+          <div class="tfase tcol" data-l="Módulo">Gestión de redes + Meta Ads<span class="fnota">Mensual</span></div>
           <div class="tcol" data-l="Qué resuelve">
-            <p>Instagram y Facebook con 15 publicaciones al mes en formatos mixtos, con contenido producido con IA sobre su botella real, para llevar tráfico al sitio una vez publicado.</p>
+            <p>Instagram y Facebook con 15 publicaciones al mes en formatos mixtos, para llevar tráfico al sitio una vez publicado.</p>
+            <div class="sub-pauta">
+              <span class="rotulo">Contenido con IA</span>
+              <p>Forma parte del contenido mensual cuando conviene: más variaciones por fecha y campaña, formatos adaptados a cada red y escenas de producto u origen sin agendar sesión. Cada pieza se revisa con la marca para cuidar botella y etiqueta.</p>
+            </div>
             <div class="sub-pauta">
               <span class="rotulo">+ Pauta Meta</span>
               <p>Gestión incluida con redes · pauta recomendada de $5,000 a $15,000 MXN al mes, directa a la plataforma, aparte de este honorario</p>
@@ -589,7 +530,6 @@
           <li><a href="#contexto">Contexto</a></li>
           <li><a href="#analisis">Análisis</a></li>
           <li><a href="#sitio">Sitio nuevo</a></li>
-          <li><a href="#contenido">Contenido</a></li>
           <li><a href="#inversion">Inversión</a></li>
         </ul>
       </div>
