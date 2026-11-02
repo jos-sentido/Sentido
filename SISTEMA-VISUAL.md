@@ -308,18 +308,26 @@ Al pasar el cursor sobre una fila **no se ilumina, no se eleva y no cambia de
 fondo**: se abre un abanico de radios, como el iris. Va en `::after`, así que no
 necesita marcado adicional.
 
+Es un detalle de fondo y **el texto siempre manda**: el trazo es fino, la opacidad
+baja y una máscara lo atenúa donde hay texto. Con el trazo de `0.08deg` al `0.20`
+la fila se volvía ilegible.
+
 ```css
 .renglon::after {
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background-image: repeating-conic-gradient(
     from 0deg at var(--foco-estado, -55% 50%),
-    var(--hueso) 0deg 0.08deg,
-    transparent 0.08deg var(--salto-estado, 0.3deg));
+    var(--hueso) 0deg 0.03deg,
+    transparent 0.03deg var(--salto-estado, 0.3deg));
+  mask-image: linear-gradient(90deg, #000 0, #000 18%, rgba(0,0,0,0.25) 45%);
   opacity: 0;
   transition: opacity 0.45s var(--ease);
 }
-.renglon:hover::after { opacity: 0.20; }
+.renglon:hover::after { opacity: 0.10; }
 ```
+
+**Topes para cualquier trama detrás de texto:** radio de iris `0.03deg`, opacidad
+`0.10`, peso `0.4px`, y máscara sobre el texto.
 
 ### Reglas del buril
 
@@ -370,8 +378,12 @@ Dónde aparece:
 - Indicador de estado en las cuatro capas del sistema
 - Marcos anidados alrededor del ojo en la portada
 
-**No se usan íconos.** El rombo cubre la función que normalmente cubriría un set
-de íconos.
+**En el sitio no se usan íconos.** El rombo cubre la función que normalmente
+cubriría un set de íconos.
+
+**Excepción: propuestas.** Ahí sí van, en conjuntos de 3 a 6 piezas (etapas, capas,
+pasos): SVG inline de trazo único 1.8 sobre retícula de 24, sin relleno, dentro de
+un rombo relleno de 44px. Las viñetas de lista siguen siendo rombo.
 
 ---
 
@@ -498,6 +510,10 @@ Todo se desactiva bajo `prefers-reduced-motion`.
 **Prohibido:** easing con rebote o elástico, animar `width`/`height`/`padding`,
 y cualquier animación en bucle.
 
+**Excepción: propuestas.** Además de la portada, cada elemento visual (línea de
+tiempo, comparativo, cifra) lleva su animación: una sola vez, al entrar a pantalla,
+y contando lo que el elemento dice. Los párrafos siguen sin reveal.
+
 ---
 
 ## 8. Profundidad
@@ -536,7 +552,7 @@ Lista explícita. Cada punto es una decisión, no un descuido.
 
 - **Tarjetas.** Los servicios son filas grabadas con regla, no cajas. Nada de
   tarjetas dentro de tarjetas.
-- **Íconos.** El rombo cubre esa función.
+- **Íconos en el sitio.** El rombo cubre esa función. En propuestas sí van (sección 5).
 - **Monoespaciada.** No se usa para disfrazar de técnico.
 - **Serif.** La familia es una sola y es grotesca.
 - **Eyebrow sobre cada sección.** Solo pleca y titular.

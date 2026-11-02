@@ -156,7 +156,9 @@ a { color: inherit; text-decoration: none; }
 /* ── El estado es de iris ───────────────────────────────────────────
    Al pasar el cursor sobre una fila no se ilumina ni se eleva: se abre
    un abanico de radios, como el iris del isotipo. Va en ::after, así
-   que no requiere marcado adicional.                                */
+   que no requiere marcado adicional. Es un detalle de fondo: el texto
+   manda, por eso el trazo es fino y la máscara lo atenúa donde hay
+   texto.                                                            */
 .renglon::after, .nota::after, .capa::after {
   content: '';
   position: absolute;
@@ -164,13 +166,15 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   background-image: repeating-conic-gradient(
     from 0deg at var(--foco-estado, -55% 50%),
-    var(--hueso) 0deg 0.08deg,
-    transparent 0.08deg var(--salto-estado, 0.3deg)
+    var(--hueso) 0deg 0.03deg,
+    transparent 0.03deg var(--salto-estado, 0.3deg)
   );
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 18%, rgba(0, 0, 0, 0.25) 45%);
+          mask-image: linear-gradient(90deg, #000 0, #000 18%, rgba(0, 0, 0, 0.25) 45%);
   opacity: 0;
   transition: opacity 0.45s var(--ease);
 }
-.renglon:hover::after, .nota:hover::after, .capa:hover::after { opacity: 0.20; }
+.renglon:hover::after, .nota:hover::after, .capa:hover::after { opacity: 0.10; }
 
 /* La capa es más angosta que una fila, así que el abanico se cierra más. */
 .capa::after { --foco-estado: -22% 58%; --salto-estado: 0.62deg; }

@@ -105,8 +105,8 @@
   padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--linea);
   position: relative; overflow: hidden;
 }
-.tfila .buril { --ang: 90deg; --paso: 4px; --tono: 0; --trazo: var(--acento-trazo); transition: opacity 0.45s var(--ease); }
-.tfila:hover .buril { --tono: 0.10; }
+.tfila .buril { --ang: 90deg; --paso: 4px; --peso: 0.4px; --tono: 0; --trazo: var(--acento-trazo); transition: opacity 0.45s var(--ease); }
+.tfila:hover .buril { --tono: 0.06; }
 .tfila > * { position: relative; }
 /* El buril es material, jamás celda de grid: gana a `.tfila > *`. */
 .tfila > .buril { position: absolute; }
