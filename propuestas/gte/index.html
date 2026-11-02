@@ -40,6 +40,13 @@
   .cita-dato { margin: 0 0 clamp(24px, 3vw, 34px); padding-left: clamp(16px, 2vw, 24px); border-left: 3px solid var(--marca); max-width: 68ch; }
   .cita-dato p { font-size: clamp(1.25rem, 2.4vw, 1.625rem); line-height: 1.3; font-weight: 600; }
   .cita-dato cite { display: block; margin-top: 12px; font-size: 0.875rem; font-style: normal; }
+  /* El ángulo: momento destacado, centrado, sobre el mismo arco del pie */
+  .seccion--angulo { text-align: center; }
+  .seccion--angulo .buril { --foco: 50% 210%; --rx: 260%; --ry: 170%; --paso: 6px; --tono: 0.12; --trazo: var(--acento-trazo); -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); mask-image: linear-gradient(180deg, #000, transparent 85%); }
+  .seccion--angulo > .wrap { position: relative; }
+  .seccion--angulo .cabeza, .seccion--angulo .cuerpo { margin-left: auto; margin-right: auto; }
+  .seccion--angulo .cabeza p { margin-left: auto; margin-right: auto; }
+  .seccion--angulo .pleca { margin-left: auto; margin-right: auto; }
   .sub-bloque { margin-top: clamp(44px, 5.6vw, 72px); }
   .sub-bloque > h3 { margin-bottom: 8px; }
   .sub-bloque > .cuerpo { margin-bottom: 8px; }
@@ -188,7 +195,8 @@
 </section>
 
 <!-- ══════════ EL ÁNGULO ══════════ -->
-<section class="seccion seccion--regla" id="angulo">
+<section class="seccion seccion--placa seccion--angulo" id="angulo">
+  <span class="buril buril--arco" aria-hidden="true"></span>
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
