@@ -1,6 +1,62 @@
 {
   "proposals": [
     {
+      "slug": "gte",
+      "tipo": "propuesta",
+      "cliente": "GTE — Grúas, Trailers y Equipos",
+      "fecha": "2026-11-02",
+      "estatus": "nueva",
+      "trabajo": "produccion",
+      "historial": [],
+      "serviciosDisponibles": [
+        {
+          "id": "gads",
+          "nombre": "Gestión de Google Ads",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM y automatización",
+          "precio": 4000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "admin-sitio",
+          "nombre": "Administración Sitio Web",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "sitio",
+          "nombre": "Sitio web: evolución base con solicitud de maniobra",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "foto",
+          "nombre": "Sesión fotográfica",
+          "precio": 3000,
+          "tipo": "unico"
+        },
+        {
+          "id": "video",
+          "nombre": "Sesión de video",
+          "precio": 5500,
+          "tipo": "unico"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Contacto tibio, lo atiende Jos (CTA a su WhatsApp). Base $11,500/mes incluye Fase 0 + sitio $20,000. Dashboard y herramientas a medida por definir tras Fase 0. Google no muestra anuncios del 28 jul al 2 nov 2026; confirmar estado de la cuenta.",
+      "proximoPaso": "Esperando respuesta vía WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1220145820159497",
+        "madre_gid": "1220139452687603"
+      }
+    },
+    {
       "slug": "tequila-sencillo",
       "tipo": "propuesta",
       "cliente": "Tequila Sencillo",

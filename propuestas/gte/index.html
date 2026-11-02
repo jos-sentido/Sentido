@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · GTE</title>
+<meta name="description" content="Propuesta de Sentido para GTE: un sistema que conecta búsqueda, solicitud, cotización y venta para medir cada peso invertido en la flota." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  /* — El único bloque que cambia por prospecto: el color de la marca. GTE = rojo #FF262D. — */
+  :root {
+    --marca:     #FF262D;
+    --marca-ink: #0A0A0A;
+  }
+
+  /* Logo Sentido: 52/60 en portada, 36 en pie, 28/32 en la barra */
+  .hero-logo { height: 52px; width: auto; opacity: 0.85; margin-bottom: 3rem; }
+  .marca img { height: 28px; opacity: 1; }
+  .pie-marca img { height: 36px; opacity: 0.6; }
+  @media (min-width: 768px) {
+    .hero-logo { height: 60px; margin-bottom: 4.5rem; }
+    .marca img { height: 32px; }
+  }
+
+  /* Bloques de lectura, sobre tokens del sistema */
+  .dolor { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(26px, 3.4vw, 44px); }
+  .dolor--3 { grid-template-columns: repeat(3, 1fr); }
+  .dolor .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
+  .dolor h3 { margin-bottom: 10px; }
+  .dolor p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; max-width: 58ch; }
+  .dolor a, .cuerpo a { color: var(--hueso); border-bottom: 1px solid var(--hueso-4); }
+  @media (max-width: 900px) { .dolor--3 { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .dolor { grid-template-columns: 1fr; gap: 28px; } }
+
+  .cuerpo + .cuerpo { margin-top: 18px; }
+  .sub-bloque { margin-top: clamp(44px, 5.6vw, 72px); }
+  .sub-bloque > h3 { margin-bottom: 8px; }
+  .sub-bloque > .cuerpo { margin-bottom: 8px; }
+  .sub-bloque .lista { margin-top: 20px; }
+
+  /* La plancha del servicio lleva etiquetas de varias palabras */
+  .renglon { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 132px; }
+  @media (max-width: 900px) { .renglon { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Piso duro del sistema: nada baja de 11px, tampoco en la cotización móvil */
+  @media (max-width: 760px) { .tcol::before { font-size: 0.6875rem; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <a class="boton" href="#contacto">Contacto <span class="fl">→</span></a>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" />
+    <h1><span class="ligera">Tu flota levanta hasta 500 toneladas.</span><br>
+      Falta el <span class="alta">sistema</span> que convierte cada búsqueda en cotización.</h1>
+    <p class="sub">GTE ya tiene equipo, obra y trayectoria. Esta propuesta conecta la inversión en Google, el sitio y a tu equipo comercial, para que dirección vea qué produce cada peso.</p>
+    <div class="acciones">
+      <a class="boton" href="#contacto">Contacto <span class="fl">→</span></a>
+      <a class="enlace" href="#plan">Ver el plan</a>
+    </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">GTE · Grúas, Trailers y Equipos</span></div>
+      <div><span class="rotulo">Fecha</span><span class="val">Noviembre 2026</span></div>
+      <div><span class="rotulo">Vigencia</span><span class="val">30 días</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ DECLARACIÓN ══════════ -->
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>Lo que hoy se gana por trayectoria <span class="tenue">también puede medirse, solicitud por solicitud.</span></p>
+  </div>
+</section>
+
+<!-- ══════════ CONTEXTO — papel: la realidad de GTE, a la luz ══════════ -->
+<section class="seccion papel" id="contexto">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Una empresa hecha para las obras grandes.</h2>
+    </div>
+    <div class="cols cols-2">
+      <div>
+        <p class="cuerpo">GTE está en la industria desde 1950 y opera como Grúas, Trailers y Equipos desde 1971. Su nombre aparece en obras como la Línea 3 del Tren Ligero, el Puente Matute Remus, la Presa El Zapotillo y el Hospital Puerta de Hierro Sur.</p>
+        <p class="cuerpo">Su sitio reúne 42 fichas de equipo, de grúas todo terreno, montadas, tipo Titán, terreno difícil y articuladas a lowboys, montacargas y tractocamiones, con una Liebherr de 500 toneladas al frente.</p>
+      </div>
+      <div>
+        <p class="cuerpo">La inquietud que nos compartieron es clara: tener métricas y una estrategia en forma para la inversión en Google, conectadas con el equipo que atiende y cotiza.</p>
+        <p class="cuerpo">Esta propuesta parte de ahí. Primero claridad sobre lo que ya existe; después, crecimiento sobre una base que se pueda medir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL MOMENTO ══════════ -->
+<section class="seccion" id="momento">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Occidente sigue construyendo, y la decisión pasa por varias manos.</h2>
+      <p>Jalisco <a class="enlace-txt" href="https://clusterindustrial.com.mx/jalisco-proyecta-inversion-de-625-mdd-para-expandir-su-infraestructura-industrial/" target="_blank" rel="noopener">proyecta 625 millones de dólares</a> para expandir su infraestructura industrial. Es una proyección, y cada proyecto nuevo trae maniobras que alguien tendrá que cotizar.</p>
+    </div>
+    <p class="cuerpo">La contratación suele ser técnica. Un <a href="https://www.walmartmexico.com/content/dam/walmart-mexico/documents/bienes-raices/dic-2025/2.1%20SH-PROC-SC-002.1-25%20Trabajos%20con%20Gru%CC%81as.pdf" target="_blank" rel="noopener">procedimiento público de Walmart México</a> pide visita previa al sitio, plan de izaje y supervisor de seguridad. De ahí esperamos cuatro miradas, que confirmaremos con tu equipo:</p>
+    <div class="dolor" style="margin-top:clamp(30px,4vw,44px)">
+      <div>
+        <span class="rotulo">Residente de obra</span>
+        <h3>Necesita certeza rápida</h3>
+        <p>Disponibilidad, fecha y una persona que atienda.</p>
+      </div>
+      <div>
+        <span class="rotulo">Ingeniería de maniobras</span>
+        <h3>Necesita datos</h3>
+        <p>Peso, radio, altura y la ficha del equipo correcto.</p>
+      </div>
+      <div>
+        <span class="rotulo">Seguridad</span>
+        <h3>Necesita respaldo</h3>
+        <p>Certificaciones, plan de izaje y documentación en orden.</p>
+      </div>
+      <div>
+        <span class="rotulo">Compras</span>
+        <h3>Necesita comparar</h3>
+        <p>Cotización formal y expediente de proveedor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LO QUE VIMOS ══════════ -->
+<section class="seccion seccion--regla" id="hallazgos">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que vimos desde fuera.</h2>
+      <p>Revisión pública al 2 de noviembre de 2026. Es una foto externa; la lectura completa llega con la Fase 0.</p>
+    </div>
+    <div class="dolor">
+      <div>
+        <span class="rotulo">La base</span>
+        <h3>Un catálogo técnico real</h3>
+        <p>42 fichas de equipo y 12 fichas técnicas descargables. Es materia prima que muchos competidores todavía no publican.</p>
+      </div>
+      <div>
+        <span class="rotulo">La búsqueda</span>
+        <h3>Te encuentra quien ya te conoce</h3>
+        <p>Con el nombre de GTE, el sitio sale primero. La oportunidad está en quien busca el servicio: en siete búsquedas de muestra, como «renta de grúas guadalajara», GTE todavía no apareció en primera página.</p>
+      </div>
+      <div>
+        <span class="rotulo">El contacto</span>
+        <h3>El siguiente paso es tocar y hablar</h3>
+        <p>El sitio ofrece formularios de cuatro campos y teléfonos en texto. Con llamada y WhatsApp a un toque desde el celular, y una solicitud que pida los datos de la maniobra, tu equipo recibe mejor información desde el primer mensaje.</p>
+      </div>
+      <div>
+        <span class="rotulo">La medición</span>
+        <h3>Hoy se ven visitas; falta ver negocio</h3>
+        <p>El sitio ya registra tráfico. El escalón que sigue es unir cada solicitud con su cotización y su venta, para que la conversación pase de clics a resultados comerciales.</p>
+      </div>
+      <div>
+        <span class="rotulo">La pauta</span>
+        <h3>Empezamos por revisar la cuenta</h3>
+        <p>Los últimos anuncios visibles públicamente son de julio de 2026. Ese dato no describe el estado de la cuenta, por eso la Fase 0 arranca revisándola junto con lo invertido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL ÁNGULO ══════════ -->
+<section class="seccion seccion--regla" id="angulo">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Tu ventaja: flota propia con información técnica a la vista.</h2>
+      <p>En los sitios de grúas que revisamos en México vimos buenas ideas sueltas: WhatsApp directo, solicitudes cortas, tablas de equipo. Todavía no vimos una flota propia que reúna fichas técnicas descargables y una solicitud pensada para ingenieros.</p>
+    </div>
+    <p class="cuerpo">GTE ya tiene la flota y buena parte de la documentación. Unirlas en un mismo recorrido le da una posición difícil de copiar: la de la empresa que ayuda a resolver la maniobra desde antes de la primera llamada.</p>
+  </div>
+</section>
+
+<!-- ══════════ ESTRATEGIA GENERAL ══════════ -->
+<section class="seccion seccion--regla" id="estrategia">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>De conocer la flota a cotizar la maniobra.</h2>
+      <p>La estrategia se apoya en tres decisiones, y cada línea de negocio (renta, transporte y venta de equipo usado) se lee por separado.</p>
+    </div>
+    <div class="dolor dolor--3">
+      <div>
+        <span class="rotulo">Dos rutas</span>
+        <h3>Urgencia y proyecto</h3>
+        <p>Lo urgente se resuelve con llamada y WhatsApp inmediatos. El proyecto avanza con solicitud técnica, visita y cotización formal.</p>
+      </div>
+      <div>
+        <span class="rotulo">Un mensaje</span>
+        <h3>«Cotiza tu maniobra»</h3>
+        <p>La flota sigue siendo el argumento y la invitación se vuelve concreta. La visita técnica sin costo que GTE ya ofrece pasa al frente.</p>
+      </div>
+      <div>
+        <span class="rotulo">Una lectura</span>
+        <h3>Del anuncio a la venta</h3>
+        <p>Cada solicitud conserva su origen, para saber qué campaña trajo qué cotización y qué venta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL SISTEMA ══════════ -->
+<section class="seccion seccion--placa" id="sistema">
+  <span class="buril" style="--tono:0.05" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El recorrido, de la búsqueda a la venta.</h2>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div><h3 class="paso-t">Búsqueda</h3><p>Campañas por línea y tonelaje, con mensajes que hablan de la maniobra.</p></div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div><h3 class="paso-t">Solicitud</h3><p>Sitio, llamada o WhatsApp. Cada entrada registra su origen y los datos que tu equipo necesita.</p></div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">3</div>
+        <div><h3 class="paso-t">Seguimiento</h3><p>Cada oportunidad llega a la persona correcta, con etapa, responsable y aviso cuando el primer contacto se atrasa.</p></div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">4</div>
+        <div><h3 class="paso-t">Cotización y cierre</h3><p>Visita técnica, cotización con monto, y resultado con motivo, ganada o perdida.</p></div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">5</div>
+        <div><h3 class="paso-t">Aprendizaje</h3><p>Objetivo a validar en la Fase 0: informar a Google qué solicitudes avanzaron a cotización y venta, para orientar la inversión hacia lo que produce negocio.</p></div>
+      </div>
+    </div>
+    <div class="sub-bloque">
+      <h3>Lo que dirección vería cada semana</h3>
+      <ul class="lista">
+        <li>Inversión por línea y costo por solicitud calificada.</li>
+        <li>Solicitudes por canal, sector y tonelaje; clientes nuevos y recurrentes.</li>
+        <li>Tiempo de primer contacto y solicitudes por atender.</li>
+        <li>Cotizaciones enviadas, monto en proceso y conversión por etapa.</li>
+        <li>Ventas ganadas, motivos de pérdida y retorno por campaña.</li>
+      </ul>
+      <p class="tnota">Este tablero único se define tras la Fase 0. Para que refleje la realidad necesita que cada oportunidad registre etapa, monto y resultado, un acuerdo que construiremos con tu equipo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LA SOLUCIÓN — pauta dentro del servicio que la opera ══════════ -->
+<section class="seccion" id="plan">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>La solución, por capas.</h2>
+      <p>Tres servicios forman la base. Sobre ellos se suman las piezas a medida que la Fase 0 confirme.</p>
+    </div>
+    <div class="plancha">
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 01</span><h3>Google Ads</h3></div>
+        <div>
+          <p>Estrategia, estructura por línea y tonelaje, anuncios, palabras clave, optimización y reportes.</p>
+          <div class="sub-pauta">
+            <span class="rotulo">+ Pauta Google</span>
+            <p>Separada de la gestión y directa a la plataforma. El rango se define tras la Fase 0.</p>
+          </div>
+        </div>
+        <div class="ver">Mensual</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 02</span><h3>CRM y automatización</h3></div>
+        <div>
+          <p>Pipeline comercial ajustado a la venta de GTE, captura y asignación de solicitudes, seguimiento por WhatsApp y correo, y calendarios compartidos.</p>
+        </div>
+        <div class="ver">Mensual</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 03</span><h3>Sitio web</h3></div>
+        <div>
+          <p>Evolución base: fichas en orden, páginas clave por servicio, solicitud de maniobra y contacto directo desde el celular. La administración mensual cuida actualizaciones, estadísticas y conversiones.</p>
+        </div>
+        <div class="ver">Única + mensual</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 04</span><h3>Dashboard</h3></div>
+        <div>
+          <p>Pauta y embudo comercial en una sola vista, conectados al sistema general.</p>
+        </div>
+        <div class="ver">Por definir</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 05</span><h3>Herramientas a medida</h3></div>
+        <div>
+          <p>Catálogo filtrable de flota, preselector de grúa por peso, radio y altura, y solicitud de transporte. Cada sugerencia la valida un ingeniero de GTE; la tabla del fabricante siempre manda.</p>
+        </div>
+        <div class="ver">Por definir</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Eventual</span><h3>Producción de contenido</h3></div>
+        <div>
+          <p>Sesiones de foto y video de maniobras reales, cuando la obra y el plan lo pidan.</p>
+        </div>
+        <div class="ver">Por sesión</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HOJA DE RUTA ══════════ -->
+<section class="seccion seccion--regla" id="ruta">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Hoja de ruta.</h2>
+      <p>Plazos de referencia, que se confirman al cerrar la Fase 0.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-n">0</div>
+        <div>
+          <h3 class="paso-t">Claridad</h3>
+          <p>Arranca revisando la cuenta de Google Ads y lo invertido. Después ordena la medición del sitio, habilita llamada y WhatsApp desde el celular y define qué piezas a medida valen la pena.</p>
+          <span class="rotulo">Semanas 1 a 3</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <h3 class="paso-t">Captación</h3>
+          <p>Fichas y páginas clave en orden, solicitud de maniobra y campañas por línea de negocio.</p>
+          <span class="rotulo">Meses 2 a 3</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <h3 class="paso-t">Sistema comercial</h3>
+          <p>CRM en operación con tu equipo, seguimiento activo y lectura semanal para dirección.</p>
+          <span class="rotulo">Meses 2 a 4</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">3</div>
+        <div>
+          <h3 class="paso-t">Ventaja</h3>
+          <p>Preselector de grúa, paquete técnico descargable y casos por sector, según lo confirmado en la Fase 0.</p>
+          <span class="rotulo">Mes 5 en adelante</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ INVERSIÓN — papel: los números, en claro ══════════ -->
+<section class="seccion papel" id="inversion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Inversión.</h2>
+      <p>Escenario integral con fases. La gestión mensual corre desde el arranque e incluye la Fase 0. Todos los montos son en pesos mexicanos.</p>
+    </div>
+
+    <div class="sub-bloque" style="margin-top:0">
+      <h3>Gestión mensual</h3>
+      <div class="tabla" style="margin-top:22px">
+        <div class="tfila cab">
+          <span class="rotulo">Servicio</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Inversión</span>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Google Ads</div>
+          <div class="tcol" data-l="Qué incluye">
+            <p>Estrategia, gestión, optimización y reportes.</p>
+            <div class="sub-pauta">
+              <span class="rotulo">+ Pauta Google</span>
+              <p>Separada de esta gestión y directa a la plataforma. El rango se define tras la Fase 0.</p>
+            </div>
+          </div>
+          <div class="tprecio tcol" data-l="Inversión">$4,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">CRM y automatización</div>
+          <p class="tcol" data-l="Qué incluye">Pipeline, asignación y seguimiento. Implementación sin costo con el mantenimiento mensual activo.</p>
+          <div class="tprecio tcol" data-l="Inversión">$4,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Administración Sitio Web</div>
+          <p class="tcol" data-l="Qué incluye">Actualizaciones menores, estadísticas, tráfico, conversiones y etiquetas.</p>
+          <div class="tprecio tcol" data-l="Inversión">$3,500<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila total">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Total mensual</div>
+          <p class="tcol" data-l="Qué incluye">Las tres capas base operando como un solo sistema.</p>
+          <div class="tprecio tcol" data-l="Inversión">$11,500<span class="tper">/ mes + IVA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-bloque">
+      <h3>Inversión única</h3>
+      <div class="tabla" style="margin-top:22px">
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Sitio web</div>
+          <p class="tcol" data-l="Qué incluye">Evolución base del sitio, con solicitud de maniobra incluida. Pago 60% de anticipo y 40% a la entrega.</p>
+          <div class="tprecio tcol" data-l="Inversión">$20,000<span class="tper">+ IVA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-bloque">
+      <h3>Producción eventual</h3>
+      <div class="tabla" style="margin-top:22px">
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Sesión de foto</div>
+          <p class="tcol" data-l="Qué incluye">Independiente de la gestión mensual, cuando se requiera.</p>
+          <div class="tprecio tcol" data-l="Inversión">$3,000<span class="tper">por sesión</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Sesión de video</div>
+          <p class="tcol" data-l="Qué incluye">Independiente de la gestión mensual, cuando se requiera.</p>
+          <div class="tprecio tcol" data-l="Inversión">$5,500<span class="tper">+ IVA, por sesión</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-bloque">
+      <h3>Por definir tras la Fase 0</h3>
+      <p class="cuerpo">Su alcance depende de lo que encontremos en la cuenta, el sitio y la operación comercial. Se cotizan cuando esa información esté sobre la mesa.</p>
+      <ul class="lista">
+        <li>Dashboard de pauta y embudo comercial.</li>
+        <li>Herramientas a medida: catálogo filtrable, preselector de grúa, solicitud de transporte, paquete técnico y casos por sector.</li>
+        <li>Medición de llamadas.</li>
+        <li>WhatsApp con captura guiada, si excede lo incluido en el CRM.</li>
+        <li>SEO.</li>
+        <li>Conector de retorno de conversiones.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HORIZONTE ══════════ -->
+<section class="seccion" id="horizonte">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Hacia dónde va.</h2>
+    </div>
+    <div class="dolor dolor--3">
+      <div>
+        <span class="rotulo">A 3 meses</span>
+        <h3>Claridad</h3>
+        <p>Una lectura ordenada de la cuenta, solicitudes que conservan su origen y tu equipo trabajando sobre un mismo pipeline.</p>
+      </div>
+      <div>
+        <span class="rotulo">A 6 meses</span>
+        <h3>Decisión</h3>
+        <p>Suficiente historia para ajustar campañas según cotizaciones, y a tu equipo con menos información por pedir en cada solicitud.</p>
+      </div>
+      <div>
+        <span class="rotulo">A 12 meses</span>
+        <h3>Ventaja</h3>
+        <p>Un sistema propio de captación técnica, con aprendizaje acumulado sobre qué sectores, equipos y campañas conviene empujar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE — CTA directo a WhatsApp ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Contacto.</h2>
+      <p>Cada maniobra que cotizas puede enseñarte dónde invertir la siguiente. El primer paso es la Fase 0.</p>
+      <div class="acciones">
+        <a class="boton" href="https://wa.me/5213331672223?text=Hola%20Jos%2C%20vi%20la%20propuesta%20para%20GTE." target="_blank" rel="noopener">WhatsApp con Jos <span class="fl">→</span></a>
+        <a class="enlace" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PIE ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema, para que cada peso invertido produzca ventas y clientes que regresan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Propuesta</span>
+        <ul>
+          <li><a href="#contexto">Contexto</a></li>
+          <li><a href="#plan">El plan</a></li>
+          <li><a href="#inversion">Inversión</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul>
+          <li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li>
+          <li><a href="https://wa.me/5213331672223">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Sentido</span>
+        <ul>
+          <li><a href="/sitio">Sitio</a></li>
+          <li><a href="https://instagram.com/sentido.mx">@sentido.mx</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
