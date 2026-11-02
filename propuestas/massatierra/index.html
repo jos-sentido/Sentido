@@ -34,52 +34,88 @@
   .cartera { font-size: 0.9375rem; line-height: 2; color: var(--hueso-3); max-width: none; }
   .cartera em { color: var(--hueso); font-weight: var(--fuerte); }
 
-  /* ── Flujo comercial: hoy vs. con el sistema ── */
-  .carril { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(20px,2.4vw,30px); position:relative; overflow:hidden; }
-  .carril > * { position:relative; }
-  .carril .tit { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:baseline; margin-bottom:22px; }
-  .carril .tit h3 { font-size:1.1875rem; }
-  .carril .tit .mk { font-weight:700; font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; padding:4px 9px; border:1px solid currentColor; }
-  .mk-hoy { color:var(--hueso-4); }
-  .mk-sis { color:var(--acento); }
+  /* ── La carrera contra el reloj ── */
+  .carrera { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(22px,2.8vw,36px); position:relative; overflow:hidden; }
+  .carrera > * { position:relative; }
+  .eje { display:flex; justify-content:space-between; font-weight:700; font-size:.625rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--hueso-4); padding-bottom:9px; border-bottom:1px solid var(--linea); }
 
-  .hoy-tren { display:flex; flex-wrap:wrap; align-items:stretch; gap:0; }
-  .hoy-n { flex:1 1 150px; min-width:0; border:1px solid var(--linea-2); padding:15px 16px; }
-  .hoy-n + .hoy-n { border-left:none; }
-  .hoy-n .q { display:block; font-size:.875rem; color:var(--hueso-2); line-height:1.45; }
-  .hoy-n .t { display:block; margin-top:9px; font-weight:700; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase; color:var(--hueso-4); }
-  .hoy-n.cuello { border-color:var(--acento); background:rgba(239,90,40,.09); }
-  .hoy-n.cuello .q { color:var(--hueso); font-weight:var(--fuerte); }
-  .hoy-n.cuello .t { color:var(--acento); }
-  @media (max-width:760px){ .hoy-n{ flex:1 1 100%; } .hoy-n + .hoy-n{ border-left:1px solid var(--linea-2); border-top:none; } }
+  .via { margin-top:clamp(22px,2.6vw,32px); }
+  .via-tit { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:baseline; margin-bottom:12px; }
+  .via-tit .q { font-weight:var(--negra); font-size:1.0625rem; letter-spacing:-.02em; color:var(--hueso); }
+  .via-tit .r { font-weight:700; font-size:.625rem; letter-spacing:.16em; text-transform:uppercase; padding:4px 9px; }
+  .r-hoy { color:var(--hueso-4); border:1px solid var(--hueso-4); }
+  .r-sis { background:var(--marca); color:#0A0A0A; }
 
-  .flujo { counter-reset:f; margin-top:4px; }
-  .fpaso { display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(14px,2vw,26px);
-    align-items:baseline; padding:20px 0; border-bottom:1px solid var(--linea); position:relative; }
-  .fpaso:last-of-type { border-bottom:none; }
-  .fpaso .fn { font-weight:var(--negra); font-size:1.5rem; letter-spacing:-.04em; color:var(--acento); line-height:1; }
-  .fpaso h4 { font-size:1.0625rem; margin-bottom:7px; }
-  .fpaso p { font-size:.9375rem; line-height:1.62; color:var(--hueso-3); max-width:58ch; }
-  .fmeta { display:flex; flex-direction:column; gap:7px; align-items:flex-end; text-align:right; }
-  .fherr { font-weight:700; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase;
-    padding:5px 10px; background:var(--marca); color:#0A0A0A; white-space:nowrap; }
-  .ftiempo { font-weight:600; font-size:.6875rem; letter-spacing:.1em; text-transform:uppercase; color:var(--hueso-4); white-space:nowrap; }
-  @media (max-width:760px){
-    .fpaso { grid-template-columns:46px minmax(0,1fr); gap:14px; }
-    .fmeta { grid-column:2; flex-direction:row; flex-wrap:wrap; align-items:center; text-align:left; margin-top:12px; }
-  }
+  .pista { position:relative; height:46px; background:var(--tinta-3); border:1px solid var(--linea); overflow:hidden; }
+  .avance { position:absolute; inset:0 auto 0 0; width:0; transition:width 2.6s cubic-bezier(.33,0,.2,1); }
+  .via-hoy .avance { background:repeating-linear-gradient(135deg, rgba(137,130,117,.5) 0 8px, rgba(137,130,117,.22) 8px 16px); }
+  .via-sis .avance { background:var(--marca); transition-duration:.42s; }
+  .via-sis .avance::after { content:'Cotización enviada'; position:absolute; left:100%; top:50%; transform:translateY(-50%);
+    margin-left:12px; white-space:nowrap; font-weight:700; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; color:var(--acento); }
+  @media (max-width:560px){ .via-sis .avance::after { font-size:.5625rem; margin-left:8px; } }
 
-  .vuelta { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center;
-    margin-top:18px; padding:16px 18px; border:1px dashed var(--acento); }
-  .vuelta .s { font-size:1.25rem; color:var(--acento); line-height:1; }
-  .vuelta p { font-size:.9375rem; line-height:1.6; color:var(--hueso-2); margin:0; max-width:none; }
-  .vuelta strong { color:var(--hueso); }
+  .hito { position:absolute; top:0; bottom:0; width:1px; background:var(--linea-2); }
+  .hito span { position:absolute; top:calc(100% + 8px); left:0; transform:translateX(-50%); white-space:nowrap;
+    font-size:.625rem; letter-spacing:.08em; text-transform:uppercase; color:var(--hueso-4); }
+  .hitos { position:relative; height:30px; }
+  @media (max-width:760px){ .hitos{ height:0; } .hito span{ display:none; } }
 
-  .mirador { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; justify-content:space-between;
-    margin-top:clamp(22px,2.6vw,32px); padding:18px clamp(16px,2vw,24px); border:1px solid var(--acento); }
-  .mirador p { margin:0; font-size:.9375rem; line-height:1.6; color:var(--hueso-2); max-width:62ch; }
-  .mirador strong { color:var(--hueso); }
+  .alarma { margin-top:clamp(18px,2.2vw,26px); padding:15px 17px; border-left:2px solid var(--marca); background:rgba(239,90,40,.07); }
+  .alarma p { margin:0; font-size:.9375rem; line-height:1.6; color:var(--hueso-2); max-width:none; }
+  .alarma strong { color:var(--hueso); }
 
+  .rebobina { display:inline-flex; align-items:center; gap:9px; margin-top:clamp(18px,2.2vw,26px);
+    background:none; border:1px solid var(--linea-2); color:var(--hueso-3); cursor:pointer;
+    font-family:var(--archivo); font-weight:600; font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase; padding:11px 18px;
+    transition:border-color .2s var(--ease), color .2s var(--ease); }
+  .rebobina:hover { border-color:var(--hueso); color:var(--hueso); }
+
+  /* ── La calculadora de la fuga ── */
+  .calc { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(24px,3vw,46px); align-items:start; }
+  @media (max-width:980px){ .calc{ grid-template-columns:1fr; } }
+
+  .dials { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(20px,2.4vw,30px); }
+  .dial { padding:17px 0; border-bottom:1px solid var(--linea); }
+  .dial:first-child { padding-top:0; }
+  .dial:last-child { border-bottom:none; padding-bottom:0; }
+  .dial .fila-d { display:flex; justify-content:space-between; align-items:baseline; gap:14px; margin-bottom:11px; }
+  .dial .etiq { line-height:1.4; }
+  .dial .val { font-family:var(--archivo); font-weight:var(--negra); font-size:1.1875rem; letter-spacing:-.025em; color:var(--acento); white-space:nowrap; }
+  .dial input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:3px; background:var(--linea-2); cursor:pointer; }
+  .dial input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; background:var(--marca); border:none; cursor:pointer; transform:rotate(45deg); }
+  .dial input[type=range]::-moz-range-thumb { width:18px; height:18px; background:var(--marca); border:none; cursor:pointer; border-radius:0; transform:rotate(45deg); }
+  .dial input[type=range]:focus-visible { outline:2px solid var(--hueso); outline-offset:6px; }
+
+  .vs { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--linea); }
+  .col-v { padding:clamp(18px,2.2vw,26px); }
+  .col-v + .col-v { border-left:1px solid var(--linea); }
+  .col-v.sis { background:rgba(239,90,40,.07); }
+  .col-v .enc { display:block; font-weight:700; font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:18px; }
+  .col-v.hoy .enc { color:var(--hueso-4); }
+  .col-v.sis .enc { color:var(--acento); }
+  .lin { display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:9px 0; border-bottom:1px solid var(--linea); font-size:.875rem; }
+  .lin:last-of-type { border-bottom:none; }
+  .lin .k { color:var(--hueso-3); }
+  .lin .n { font-family:var(--archivo); font-weight:600; color:var(--hueso); white-space:nowrap; }
+  .col-v .gran { display:block; margin-top:16px; padding-top:16px; border-top:1px solid var(--linea-2);
+    font-weight:var(--negra); font-size:clamp(1.375rem,3vw,1.875rem); letter-spacing:-.035em; line-height:1.05; }
+  .col-v.hoy .gran { color:var(--hueso-2); }
+  .col-v.sis .gran { color:var(--acento); }
+  .col-v .gran small { display:block; font-weight:600; font-size:.625rem; letter-spacing:.16em; text-transform:uppercase; color:var(--hueso-4); margin-top:8px; }
+  @media (max-width:560px){ .vs{ grid-template-columns:1fr; } .col-v + .col-v{ border-left:none; border-top:1px solid var(--linea); } }
+
+  .delta { margin-top:clamp(20px,2.4vw,30px); border:1px solid var(--marca); padding:clamp(20px,2.4vw,30px); }
+  .delta .l { display:block; font-weight:700; font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--acento); }
+  .delta .big { display:block; margin-top:14px; font-weight:var(--negra); font-size:clamp(2.25rem,6vw,4rem); letter-spacing:-.045em; line-height:.95; color:var(--hueso); }
+  .delta p { margin-top:16px; font-size:.9375rem; line-height:1.62; color:var(--hueso-3); max-width:none; }
+  .delta p strong { color:var(--hueso); }
+
+  /* ── Tira de pasos compacta ── */
+  .tira { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:clamp(26px,3vw,38px); }
+  .tira .n { font-size:.8125rem; color:var(--hueso-2); border:1px solid var(--linea-2); padding:9px 13px; }
+  .tira .n b { color:var(--acento); font-weight:700; margin-right:7px; }
+  .tira .fl { color:var(--hueso-4); font-size:.8125rem; }
 </style>
 </head>
 <body>
@@ -417,79 +453,101 @@
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
-      <h2>El mismo cliente, los dos caminos.</h2>
-      <p>Todo lo anterior se entiende mejor siguiendo a un cliente desde que levanta la mano hasta que vuelve a comprar. Este es el recorrido hoy, y el recorrido con el sistema puesto.</p>
+      <h2>La diferencia, en tiempo y en dinero.</h2>
+      <p>Dos formas de verlo. Primero contra el reloj: lo que tarda hoy una cotización contra lo que tardaría. Después, lo que esa diferencia vale al año — con los números de Massatierra, no con los nuestros.</p>
     </div>
 
-    <div class="carril" style="margin-bottom:clamp(24px,3vw,38px)">
-      <div class="tit"><span class="mk mk-hoy">Hoy</span><h3>Un solo carril, y todo pasa por el mismo punto.</h3></div>
-      <div class="hoy-tren">
-        <div class="hoy-n"><span class="q">El cliente escribe o llama</span><span class="t">Correo, teléfono o WhatsApp personal</span></div>
-        <div class="hoy-n cuello"><span class="q">Todo entra al mismo punto: una persona</span><span class="t">Si no alcanza a verlo, se pierde</span></div>
-        <div class="hoy-n"><span class="q">Se piden precios a tres proveedores, uno por uno</span><span class="t">1 semana</span></div>
-        <div class="hoy-n"><span class="q">Se arma la cotización en el archivo de 500 conceptos</span><span class="t">1 a 2 semanas</span></div>
-        <div class="hoy-n"><span class="q">Se envía y el seguimiento queda al criterio de quien pueda</span><span class="t">Sin registro</span></div>
+    <div class="carrera" id="carrera">
+      <span class="buril" aria-hidden="true" style="--ang:90deg;--paso:6px;--tono:.04"></span>
+      <div class="eje"><span>Día 0</span><span>Día 7</span><span>Día 14</span><span>Día 21</span></div>
+
+      <div class="via via-sis">
+        <div class="via-tit"><span class="r r-sis">Con el sistema</span><span class="q">Cotizado el mismo día.</span></div>
+        <div class="pista"><span class="avance" id="avSis"></span></div>
       </div>
-      <p class="chico apagado" style="margin-top:18px">Hasta tres semanas de punta a punta. El cliente no espera: para entonces ya pidió otras tres cotizaciones. Y la revisión anual, que la norma obliga, no la persigue nadie.</p>
+
+      <div class="via via-hoy">
+        <div class="via-tit"><span class="r r-hoy">Hoy</span><span class="q">Veintiún días después.</span></div>
+        <div class="pista">
+          <span class="avance" id="avHoy"></span>
+          <span class="hito" style="left:23.8%"></span>
+          <span class="hito" style="left:66.6%"></span>
+        </div>
+        <div class="hitos">
+          <span class="hito" style="left:23.8%;background:none"><span>Llegan precios de los 3 proveedores</span></span>
+          <span class="hito" style="left:66.6%;background:none"><span>Se arma la cotización</span></span>
+        </div>
+      </div>
+
+      <div class="alarma">
+        <p><strong>Al quinto día el cliente ya pidió otras tres cotizaciones.</strong> Cuando por fin llega la de Massatierra —con el mejor producto del mercado y veinte años de garantía— ya está compitiendo contra una decisión tomada.</p>
+      </div>
+
+      <button class="rebobina" type="button" id="rebobina">↻ Repetir</button>
     </div>
 
-    <div class="carril">
-      <div class="tit"><span class="mk mk-sis">Con el sistema</span><h3>Siete pasos, cada uno con su herramienta.</h3></div>
+    <h3 style="margin:clamp(46px,5.5vw,76px) 0 20px">Y lo que eso vale al año.</h3>
+    <p class="cuerpo" style="margin-bottom:clamp(26px,3vw,38px)">Mueva los cuatro valores a lo que usted sabe de su operación. El cálculo se ajusta solo.</p>
 
-      <div class="flujo">
-        <article class="fpaso">
-          <span class="fn">1</span>
-          <div><h4>Llega la oportunidad</h4><p>Del buscador, de una recomendación, de un levantamiento normativo o de un distribuidor. Venga de donde venga, entra a un solo lugar con responsable asignado.</p></div>
-          <div class="fmeta"><span class="fherr">Sitio + Ads</span><span class="ftiempo">Inmediato</span></div>
-        </article>
-
-        <article class="fpaso">
-          <span class="fn">2</span>
-          <div><h4>Se levanta la información técnica</h4><p>Un formulario de seis preguntas recoge qué se va a proteger, la capacidad del equipo y la aplicación, con fotos de tableros y fichas técnicas adjuntas. Lo que hoy toma tres llamadas.</p></div>
-          <div class="fmeta"><span class="fherr">Formulario</span><span class="ftiempo">Minutos</span></div>
-        </article>
-
-        <article class="fpaso">
-          <span class="fn">3</span>
-          <div><h4>Sale la cotización</h4><p>Con la lista de precios ya cargada, el cotizador selecciona el equipo, calcula y emite. Cualquier vendedor o distribuidor lo hace sin consultar a la matriz.</p></div>
-          <div class="fmeta"><span class="fherr">Cotizador</span><span class="ftiempo">El mismo día</span></div>
-        </article>
-
-        <article class="fpaso">
-          <span class="fn">4</span>
-          <div><h4>El seguimiento corre solo</h4><p>Recordatorios por WhatsApp y correo en los días que corresponde. Ninguna cotización enviada se queda sin respuesta, porque el sistema avisa antes de que se enfríe.</p></div>
-          <div class="fmeta"><span class="fherr">CRM</span><span class="ftiempo">Automático</span></div>
-        </article>
-
-        <article class="fpaso">
-          <span class="fn">5</span>
-          <div><h4>Se cierra y se confirma el depósito</h4><p>Confirmado el pago, la autorización de envío se dispara sola hacia logística, con el producto, la cantidad y el destino ya cargados. Nadie tiene que volver a capturar nada.</p></div>
-          <div class="fmeta"><span class="fherr">CRM</span><span class="ftiempo">El mismo día</span></div>
-        </article>
-
-        <article class="fpaso">
-          <span class="fn">6</span>
-          <div><h4>Se entrega y se certifica</h4><p>Con obra de Massatierra o con planos para que el cliente instale y una visita posterior de certificación. En los dos casos se libera la garantía escrita de 20 años.</p></div>
-          <div class="fmeta"><span class="fherr">Operación</span><span class="ftiempo">Según proyecto</span></div>
-        </article>
-
-        <article class="fpaso">
-          <span class="fn">7</span>
-          <div><h4>Se agenda la revisión anual</h4><p>El sistema ya sabe cuándo vence. Avisa con tiempo, agenda la visita y genera el informe, el dictamen y el sello del año. Esa venta no hay que salir a buscarla.</p></div>
-          <div class="fmeta"><span class="fherr">CRM</span><span class="ftiempo">Cada 12 meses</span></div>
-        </article>
+    <div class="calc">
+      <div class="dials">
+        <div class="dial">
+          <div class="fila-d"><label class="etiq" for="d1">Solicitudes que llegan al mes</label><span class="val" id="v1">40</span></div>
+          <input type="range" id="d1" min="10" max="150" step="5" value="40" />
+        </div>
+        <div class="dial">
+          <div class="fila-d"><label class="etiq" for="d2">De cada 10, cuántas alcanzan a atenderse hoy</label><span class="val" id="v2">7</span></div>
+          <input type="range" id="d2" min="3" max="10" step="1" value="7" />
+        </div>
+        <div class="dial">
+          <div class="fila-d"><label class="etiq" for="d3">De cada 10 cotizaciones, cuántas cierran</label><span class="val" id="v3">2</span></div>
+          <input type="range" id="d3" min="1" max="7" step="1" value="2" />
+        </div>
+        <div class="dial">
+          <div class="fila-d"><label class="etiq" for="d4">Ticket promedio por proyecto</label><span class="val" id="v4">$85,000</span></div>
+          <input type="range" id="d4" min="20000" max="400000" step="5000" value="85000" />
+        </div>
       </div>
 
-      <div class="vuelta">
-        <span class="s" aria-hidden="true">↻</span>
-        <p>Y del paso 7 se regresa al 3: <strong>cada cliente instalado vuelve a cotizar cada año, por obligación normativa.</strong> El ciclo se cierra solo, y la cartera deja de comprar una vez para comprar siempre.</p>
-      </div>
+      <div>
+        <div class="vs">
+          <div class="col-v hoy">
+            <span class="enc">Hoy</span>
+            <div class="lin"><span class="k">Se atienden</span><span class="n" id="h1">—</span></div>
+            <div class="lin"><span class="k">Se pierden sin respuesta</span><span class="n" id="h2">—</span></div>
+            <div class="lin"><span class="k">Cierran</span><span class="n" id="h3">—</span></div>
+            <div class="lin"><span class="k">Revisiones anuales cobradas</span><span class="n" id="h4">—</span></div>
+            <span class="gran" id="hT">—<small>Venta al mes</small></span>
+          </div>
+          <div class="col-v sis">
+            <span class="enc">Con el sistema</span>
+            <div class="lin"><span class="k">Se atienden</span><span class="n" id="s1">—</span></div>
+            <div class="lin"><span class="k">Se pierden sin respuesta</span><span class="n" id="s2">—</span></div>
+            <div class="lin"><span class="k">Cierran</span><span class="n" id="s3">—</span></div>
+            <div class="lin"><span class="k">Revisiones anuales cobradas</span><span class="n" id="s4">—</span></div>
+            <span class="gran" id="sT">—<small>Venta al mes</small></span>
+          </div>
+        </div>
 
-      <div class="mirador">
-        <p><strong>Y sobre los siete pasos, el tablero de dirección.</strong> En cualquier momento, desde el celular: cuántas oportunidades entraron, cuántas se cotizaron, cuánto se cerró, qué falta cobrar y qué revisiones vencen.</p>
-        <a class="enlace" href="/massatierra/tablero">Ver el tablero</a>
+        <div class="delta">
+          <span class="l">Diferencia al año</span>
+          <span class="big" id="dAnual">—</span>
+          <p id="dTexto"></p>
+        </div>
       </div>
     </div>
+
+    <h3 style="margin:clamp(46px,5.5vw,76px) 0 16px">Cómo se consigue.</h3>
+    <div class="tira">
+      <span class="n"><b>1</b>Entra la solicitud</span><span class="fl">→</span>
+      <span class="n"><b>2</b>Formulario técnico</span><span class="fl">→</span>
+      <span class="n"><b>3</b>Cotizador</span><span class="fl">→</span>
+      <span class="n"><b>4</b>Seguimiento automático</span><span class="fl">→</span>
+      <span class="n"><b>5</b>Cierre y envío</span><span class="fl">→</span>
+      <span class="n"><b>6</b>Entrega y certificación</span><span class="fl">→</span>
+      <span class="n"><b>7</b>Revisión anual</span><span class="fl">↻</span>
+    </div>
+    <p class="chico apagado" style="margin-top:16px;max-width:72ch">Del paso 7 se regresa al 3: la revisión anual es obligatoria por norma, así que cada cliente instalado vuelve a cotizar cada año sin que nadie salga a buscarlo. Las dos piezas centrales pueden verse funcionando — <a class="enlace-txt" href="/massatierra/cotizador">el cotizador</a> y <a class="enlace-txt" href="/massatierra/tablero">el tablero</a>.</p>
   </div>
 </section>
 
@@ -712,6 +770,60 @@
         e.className = 'estado visible error';
         e.innerHTML = 'No se pudo enviar. Escríbenos a <a class="enlace-txt" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> o por <a class="enlace-txt" href="https://wa.me/5213331672223">WhatsApp</a>.'; });
   });
+})();
+</script>
+
+<script>
+(function () {
+  var hoy = document.getElementById('avHoy'), sis = document.getElementById('avSis');
+  function correr() {
+    hoy.style.width = '0'; sis.style.width = '0';
+    void hoy.offsetWidth;
+    requestAnimationFrame(function () { hoy.style.width = '100%'; sis.style.width = '4.8%'; });
+  }
+  var vista = false;
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting && !vista) { vista = true; correr(); } });
+  }, { threshold: 0.35 }).observe(document.getElementById('carrera'));
+  document.getElementById('rebobina').addEventListener('click', correr);
+
+  var d = [1, 2, 3, 4].map(function (i) { return document.getElementById('d' + i); });
+  function mx(n) { return '$' + Math.round(n).toLocaleString('es-MX'); }
+  function kmx(n) { return n >= 1000000 ? '$' + (n / 1000000).toFixed(1).replace('.0', '') + ' M'
+                                        : '$' + Math.round(n / 1000) + ' K'; }
+
+  function calc() {
+    var sol = +d[0].value, aten = +d[1].value, cierra = +d[2].value, tk = +d[3].value;
+    document.getElementById('v1').textContent = sol;
+    document.getElementById('v2').textContent = aten;
+    document.getElementById('v3').textContent = cierra;
+    document.getElementById('v4').textContent = mx(tk);
+
+    // HOY: solo se atiende una parte, y de lo cotizado cierra la tasa actual
+    var hA = sol * aten / 10, hP = sol - hA, hC = hA * cierra / 10;
+    // SISTEMA: se atiende todo. El cierre sube un punto de cada 10 por responder el mismo día (supuesto conservador)
+    var sCierra = Math.min(cierra + 1, 10), sA = sol, sP = 0, sC = sA * sCierra / 10;
+
+    // Revisiones anuales: hoy casi nadie las persigue; con el sistema se cobran sobre la base cerrada del año previo
+    var hR = hC * 12 * 0.10, sR = sC * 12 * 0.75, tkR = tk * 0.12;
+
+    var hV = hC * tk + hR / 12 * tkR, sV = sC * tk + sR / 12 * tkR;
+
+    var set = function (id, v) { document.getElementById(id).textContent = v; };
+    set('h1', hA.toFixed(0)); set('h2', hP.toFixed(0)); set('h3', hC.toFixed(1)); set('h4', (hR / 12).toFixed(1) + ' / mes');
+    set('s1', sA.toFixed(0)); set('s2', sP.toFixed(0)); set('s3', sC.toFixed(1)); set('s4', (sR / 12).toFixed(1) + ' / mes');
+    document.getElementById('hT').innerHTML = kmx(hV) + '<small>Venta al mes</small>';
+    document.getElementById('sT').innerHTML = kmx(sV) + '<small>Venta al mes</small>';
+
+    var dif = (sV - hV) * 12;
+    document.getElementById('dAnual').textContent = '+' + mx(dif);
+    document.getElementById('dTexto').innerHTML =
+      'Son <strong>' + (hP * 12).toFixed(0) + ' solicitudes al año</strong> que hoy no alcanzan a atenderse y que el sistema sí recoge, más ' +
+      '<strong>' + (sR - hR).toFixed(0) + ' revisiones anuales</strong> que hoy nadie persigue. ' +
+      'Contra esa diferencia, la comisión del 15% representa ' + mx(dif * 0.15) + ' al año.';
+  }
+  d.forEach(function (x) { x.addEventListener('input', calc); });
+  calc();
 })();
 </script>
 </body>
