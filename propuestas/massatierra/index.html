@@ -769,7 +769,7 @@
 
 <script>
 (function () {
-  var hoy = document.getElementById('avHoy'), sis = document.getElementById('avSis');
+  var hoy = document.getElementById('avHoy'), sis = document.getElementById('avSis'), pendiente;
   function correr() {
     hoy.classList.remove('corriendo'); sis.classList.remove('corriendo');
     // El reset debe ser instantáneo: si se deja la transición activa, volver a 0
@@ -777,11 +777,14 @@
     hoy.style.transition = 'none'; sis.style.transition = 'none';
     hoy.style.width = '0'; sis.style.width = '0';
     void hoy.offsetWidth; void sis.offsetWidth;
-    requestAnimationFrame(function () {
+    // setTimeout y no requestAnimationFrame: en una pestaña en segundo plano
+    // el rAF no se dispara y la carrera se quedaba congelada en cero.
+    clearTimeout(pendiente);
+    pendiente = setTimeout(function () {
       hoy.style.transition = ''; sis.style.transition = '';
       hoy.style.width = '100%'; sis.style.width = '4.8%';
       hoy.classList.add('corriendo'); sis.classList.add('corriendo');
-    });
+    }, 40);
   }
   var vista = false;
   new IntersectionObserver(function (es) {
