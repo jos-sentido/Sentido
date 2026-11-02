@@ -45,6 +45,45 @@
   .cabeza-sub h3 { margin-bottom: 10px; }
   .cabeza-sub p { color: var(--hueso-2); max-width: 68ch; }
 
+  /* Ruta del proyecto: la trama de buril se cierra de etapa en etapa (la densidad es el énfasis). */
+  .ruta { --hueco: clamp(24px, 3vw, 44px); --nodo: 16px; list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; column-gap: var(--hueco); }
+  .etapa { display: grid; grid-row: span 3; grid-template-rows: subgrid; min-width: 0; }
+  .etapa:nth-child(1) { --paso: 11px; --retardo: 0s; }
+  .etapa:nth-child(2) { --paso: 7px; --retardo: 0.45s; }
+  .etapa:nth-child(3) { --paso: 4px; --retardo: 0.9s; }
+  .etapa:nth-child(4) { --retardo: 1.35s; }
+  .etapa-cab h4 { margin: 0 0 8px; color: var(--hueso); font-size: clamp(1.125rem, 1.6vw, 1.3125rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+  .etapa-cab p { margin: 0; color: var(--hueso-2); font-size: 0.9375rem; line-height: 1.6; }
+  .nodo { position: relative; display: block; height: 18px; margin: 26px 0 0; }
+  .tramo { position: absolute; top: 2px; left: 0; width: calc(100% + var(--hueco)); height: 14px; background: repeating-linear-gradient(90deg, var(--acento-fill) 0 2px, transparent 2px var(--paso)); transform-origin: left center; transition: transform 0.5s linear var(--retardo); }
+  .nodo::after { content: ''; position: absolute; top: 1px; left: 0; width: var(--nodo); height: var(--nodo); box-sizing: border-box; background: var(--acento-fill); border: 1px solid var(--acento-fill); box-shadow: 0 0 0 5px var(--tinta, #0A0A0A); transform: rotate(45deg); transition: background 0.3s var(--ease) var(--retardo), transform 0.3s var(--ease) var(--retardo); }
+  .etapa:last-child .nodo::after { --nodo: 22px; top: -2px; }
+  .etapa-sale { list-style: none; margin: 0 0 0 7px; padding: 24px 0 0; border-left: 1px solid color-mix(in srgb, var(--acento-fill) 45%, transparent); transition: opacity 0.5s var(--ease) calc(var(--retardo) + 0.25s); }
+  .etapa-sale .rotulo { display: block; padding-left: 20px; margin-bottom: 12px; color: var(--acento); }
+  .etapa-sale li { position: relative; padding: 0 0 0 20px; color: var(--hueso); font-size: 0.9375rem; line-height: 1.5; }
+  .etapa-sale li + li { margin-top: 12px; }
+  .etapa-sale li::before { content: ''; position: absolute; top: 0.72em; left: 0; width: 12px; height: 1px; background: color-mix(in srgb, var(--acento-fill) 45%, transparent); }
+  .ruta--espera .tramo { transform: scaleX(0); }
+  .ruta--espera .nodo::after { background: var(--tinta, #0A0A0A); transform: rotate(45deg) scale(0.7); }
+  .ruta--espera .etapa-sale { opacity: 0; }
+  @media (max-width: 860px) {
+    .ruta { display: block; margin-top: 30px; }
+    .etapa { display: grid; grid-template-columns: 34px minmax(0, 1fr); grid-template-rows: auto auto; padding-bottom: 34px; }
+    .etapa:last-child { padding-bottom: 0; }
+    .nodo { grid-column: 1; grid-row: 1 / 3; height: auto; margin: 3px 0 -37px; }
+    .etapa:last-child .nodo { margin-bottom: 0; }
+    .tramo { top: 0; left: 1px; width: 14px; height: 100%; background: repeating-linear-gradient(180deg, var(--acento-fill) 0 2px, transparent 2px var(--paso)); transform-origin: center top; }
+    .etapa:last-child .tramo { display: none; }
+    .etapa:last-child .nodo::after { left: -3px; }
+    .etapa-cab, .etapa-sale { grid-column: 2; }
+    .etapa-sale { margin: 0; padding: 18px 0 0; border-left: 0; }
+    .etapa-sale .rotulo { padding-left: 0; }
+    .etapa-sale li { padding-left: 18px; }
+    .etapa-sale li::before { top: 0.5em; width: 6px; height: 6px; background: var(--acento-fill); transform: rotate(45deg); }
+    .ruta--espera .tramo { transform: scaleY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .tramo, .nodo::after, .etapa-sale { transition: none; } }
+
   .dos-listas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 5vw, 72px); margin-top: 30px; }
   .dos-listas .rotulo { display: block; margin-bottom: 18px; }
   .dos-listas .lista li { color: var(--hueso-2); }
@@ -329,28 +368,57 @@
       <h3>Cómo se trabaja y qué se entrega.</h3>
       <p>Su tienda ya vive en Shopify. En la primera etapa definimos si el sitio nuevo se construye sobre esa base, y el calendario se fija al arranque según los contenidos disponibles.</p>
     </div>
-    <div class="dos-listas">
-      <div>
-        <span class="rotulo">Proceso</span>
-        <ol class="lista lista--chica">
-          <li>Arquitectura: objetivos, secciones y recorrido de compra.</li>
-          <li>Contenido y diseño: información editorial y gráficos, con validación de la marca.</li>
-          <li>Desarrollo: programación, base de datos y módulo administrable.</li>
-          <li>Lanzamiento: pruebas en teléfono y escritorio, medición y publicación.</li>
-        </ol>
-      </div>
-      <div>
-        <span class="rotulo">Entregables</span>
-        <ul class="lista lista--chica">
+    <ol class="ruta" id="ruta">
+      <li class="etapa">
+        <div class="etapa-cab"><h4>Arquitectura</h4><p>Objetivos, secciones y recorrido de compra.</p></div>
+        <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
+        <div>
+          <ul class="etapa-sale">
           <li>Distribución de elementos y secciones.</li>
-          <li>Programación interna, responsive mobile-first.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-cab"><h4>Contenido y diseño</h4><p>Información editorial y gráficos, con validación de la marca.</p></div>
+        <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
+        <div>
+          <ul class="etapa-sale">
           <li>Contenido gráfico e información editorial.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-cab"><h4>Desarrollo</h4><p>Programación interna del sitio, listo para que el equipo lo administre.</p></div>
+        <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
+        <div>
+          <ul class="etapa-sale">
+          <li>Responsive mobile-first.</li>
           <li>Base de datos y módulo administrable.</li>
           <li>Administrador de inventarios y buscador.</li>
-          <li>SEO URLs, tags y pixels, SSL y WhatsApp.</li>
-        </ul>
-      </div>
-    </div>
+          </ul>
+        </div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-cab"><h4>Lanzamiento</h4><p>Pruebas en teléfono y escritorio, medición y publicación.</p></div>
+        <span class="nodo" aria-hidden="true"></span>
+        <div>
+          <ul class="etapa-sale">
+          <li>SEO URLs, tags y pixels.</li>
+          <li>SSL y WhatsApp.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+    <script>
+      (function () {
+        var r = document.getElementById('ruta');
+        if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        r.classList.add('ruta--espera');
+        new IntersectionObserver(function (e, o) {
+          if (e[0].isIntersecting) { r.classList.remove('ruta--espera'); o.disconnect(); }
+        }, { threshold: 0.25 }).observe(r);
+      })();
+    </script>
 
     <div class="cabeza-sub">
       <span class="pleca"></span>
