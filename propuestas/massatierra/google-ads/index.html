@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plan de pauta Massatierra · Anexo técnico</title>
+<meta name="description" content="Anexo técnico de la Capa 02: análisis de demanda de búsqueda, captura de demanda inducida, competencia, arquitectura de campaña y presupuesto de pauta para Massatierra." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  :root { --marca:#EF5A28; --marca-ink:#0A0A0A; }
+
+  .cinta { position:sticky; top:0; z-index:140; background:var(--marca); color:#0A0A0A;
+    font-weight:700; font-size:.6875rem; letter-spacing:.18em; text-transform:uppercase;
+    padding:10px var(--gut); display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center; justify-content:space-between; }
+  .cinta a { color:#0A0A0A; border-bottom:1px solid rgba(10,10,10,.45); padding-bottom:2px; }
+
+  .cab-demo { padding:clamp(40px,5vw,66px) 0 clamp(24px,3vw,36px); }
+  .cab-demo h1 { font-size:clamp(2rem,4.6vw,3.25rem); margin-bottom:16px; }
+  .cab-demo .sub { max-width:62ch; font-size:1.0625rem; line-height:1.7; color:var(--hueso-2); }
+
+  .indice { display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,3vw,38px);
+    padding-top:clamp(22px,2.6vw,30px); border-top:1px solid var(--linea); }
+  .indice a { font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; font-weight:var(--fuerte);
+    padding:9px 14px; border:1px solid var(--linea-2); color:var(--hueso-3);
+    transition:border-color .2s var(--ease), color .2s var(--ease); }
+  .indice a:hover { border-color:var(--marca); color:var(--hueso); }
+
+  .kw { font-family:var(--archivo); font-weight:600; font-size:.9em; color:var(--acento); white-space:nowrap; }
+
+  .trio { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--linea);
+    border:1px solid var(--linea); margin:clamp(30px,3.6vw,44px) 0; }
+  @media (max-width:860px){ .trio{ grid-template-columns:1fr; } }
+  .trio > div { background:var(--tinta); padding:clamp(20px,2.4vw,28px); }
+  .trio > div.foco { background:var(--tinta-3); }
+  .trio .rotulo { display:block; margin-bottom:12px; }
+  .trio .foco .rotulo { color:var(--acento); }
+  .trio p { font-size:.9375rem; line-height:1.66; color:var(--hueso-3); margin:0; }
+  .trio strong { color:var(--hueso); }
+
+  .duo { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--linea);
+    border:1px solid var(--linea); margin-top:clamp(26px,3vw,36px); }
+  @media (max-width:760px){ .duo{ grid-template-columns:1fr; } }
+  .duo > div { background:var(--tinta); padding:clamp(20px,2.4vw,28px); }
+  .duo h4 { font-size:1.0625rem; letter-spacing:-.02em; margin-bottom:10px; }
+  .duo p { font-size:.9375rem; line-height:1.66; color:var(--hueso-3); margin:0; }
+  .duo strong { color:var(--hueso); }
+
+  .grupos { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--linea);
+    border:1px solid var(--linea); }
+  @media (max-width:980px){ .grupos{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:620px){ .grupos{ grid-template-columns:1fr; } }
+  .gr { background:var(--tinta); padding:clamp(20px,2.4vw,26px); }
+  .gr.suma { background:var(--tinta-3); }
+  .gr h4 { font-size:1.0625rem; letter-spacing:-.02em; margin:10px 0 12px; }
+  .gr .vol { display:block; font-weight:var(--negra); font-size:clamp(1.25rem,2.2vw,1.625rem);
+    letter-spacing:-.035em; line-height:1; color:var(--hueso); }
+  .gr.suma .vol { color:var(--acento); }
+  .gr .vol small { display:block; font-family:var(--archivo); font-weight:var(--fuerte); font-size:.6875rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--hueso-4); margin-top:8px; }
+  .gr p { font-size:.875rem; line-height:1.62; color:var(--hueso-3); margin:14px 0 0; }
+  .gr strong { color:var(--hueso); }
+
+  .rodillo { overflow-x:auto; border:1px solid var(--linea); margin-top:clamp(28px,3.4vw,40px); }
+  table.densa { width:100%; min-width:720px; border-collapse:collapse; }
+  table.densa th, table.densa td { padding:13px 16px; text-align:left; border-bottom:1px solid var(--linea);
+    font-size:.875rem; line-height:1.5; }
+  table.densa thead th { background:var(--tinta-2); font-family:var(--archivo); font-weight:var(--fuerte);
+    font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase; color:var(--hueso-4); white-space:nowrap; }
+  table.densa tbody tr:last-child td { border-bottom:none; }
+  table.densa tbody tr:hover td { background:var(--tinta-2); }
+  table.densa td.n { text-align:right; font-family:var(--archivo); font-weight:600; color:var(--hueso-2); white-space:nowrap; }
+  table.densa td.c { color:var(--hueso-3); white-space:nowrap; }
+  .punto { display:inline-block; width:7px; height:7px; transform:rotate(45deg); margin-right:8px; vertical-align:middle; }
+  .p-alta { background:var(--marca); }
+  .p-media { background:var(--hueso-4); }
+  .p-baja { background:none; border:1px solid var(--hueso-4); }
+
+  .temporada { display:grid; grid-template-columns:repeat(12,1fr); gap:5px; align-items:end;
+    height:170px; margin-top:clamp(26px,3vw,34px); padding:0; }
+  .temporada i { display:block; background:var(--tinta-4); border:1px solid var(--linea-2); border-bottom:none; }
+  .temporada i.pico { background:var(--marca); border-color:var(--marca); }
+  .meses { display:grid; grid-template-columns:repeat(12,1fr); gap:5px; margin-top:9px; }
+  .meses span { font-family:var(--archivo); font-weight:var(--fuerte); font-size:.6875rem; letter-spacing:.1em;
+    text-align:center; color:var(--hueso-4); }
+
+  .bloque-t { display:flex; align-items:baseline; gap:8px 18px; flex-wrap:wrap;
+    margin:clamp(34px,4vw,48px) 0 18px; padding-bottom:14px; border-bottom:2px solid var(--marca); }
+  .bloque-t.b { border-bottom-color:var(--linea); }
+  .bloque-t h3 { margin:0; font-size:clamp(1.25rem,2.2vw,1.5rem); }
+  .bloque-t .cuota { font-family:var(--archivo); font-weight:700; font-size:.9375rem;
+    letter-spacing:.06em; color:var(--acento); }
+  .bloque-t.b .cuota { color:var(--hueso-4); }
+  .bloque-i { font-size:.9375rem; line-height:1.68; color:var(--hueso-3); max-width:66ch; margin-bottom:22px; }
+  .bloque-i strong { color:var(--hueso); }
+
+  .camp { border:1px solid var(--linea); margin-bottom:12px; }
+  .camp-c { display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    padding:15px clamp(16px,2vw,22px); border-bottom:1px solid var(--linea); background:var(--tinta-2); }
+  .camp-c h4 { margin:0; font-size:1rem; letter-spacing:-.015em; }
+  .camp-c .pc { font-family:var(--archivo); font-weight:700; font-size:.9375rem; color:var(--acento); white-space:nowrap; }
+  .camp-b { padding:16px clamp(16px,2vw,22px); font-size:.9375rem; line-height:1.66; color:var(--hueso-3); }
+  .camp-b ul { list-style:none; margin:13px 0 0; padding:0; }
+  .camp-b li { position:relative; padding-left:18px; margin-bottom:8px; font-size:.875rem; line-height:1.6; }
+  .camp-b li::before { content:''; position:absolute; left:0; top:.55em; width:5px; height:5px;
+    background:var(--hueso-4); transform:rotate(45deg); }
+  .camp-b li:last-child { margin-bottom:0; }
+  .camp-b strong { color:var(--hueso); }
+
+  .escenarios { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--linea);
+    border:1px solid var(--linea); }
+  @media (max-width:860px){ .escenarios{ grid-template-columns:1fr; } }
+  .esc { background:var(--tinta); padding:clamp(22px,2.6vw,30px); }
+  .esc.rec { background:var(--tinta-3); border-top:3px solid var(--marca); }
+  .esc h4 { font-size:1.0625rem; letter-spacing:-.02em; margin-bottom:14px; }
+  .esc .cifra { display:block; font-weight:var(--negra); font-size:clamp(1.625rem,3vw,2.125rem);
+    letter-spacing:-.04em; line-height:1; color:var(--hueso); }
+  .esc.rec .cifra { color:var(--acento); }
+  .esc .cifra small { display:block; font-family:var(--archivo); font-weight:var(--fuerte); font-size:.6875rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--hueso-4); margin-top:9px; }
+  .esc dl { margin:20px 0 0; display:grid; grid-template-columns:1fr; gap:0; }
+  .esc dt { font-family:var(--archivo); font-weight:var(--fuerte); font-size:.6875rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--hueso-4); padding-top:12px; border-top:1px solid var(--linea); }
+  .esc dd { margin:5px 0 0; font-size:.9375rem; line-height:1.55; color:var(--hueso-2); padding-bottom:12px; }
+  .esc .marca-rec { display:inline-block; font-family:var(--archivo); font-weight:700; font-size:.625rem;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--marca-ink); background:var(--marca);
+    padding:4px 9px; margin-bottom:12px; }
+
+  .aviso { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(20px,2.4vw,28px);
+    margin-top:clamp(24px,2.8vw,34px); font-size:.9375rem; line-height:1.7; color:var(--hueso-3); }
+  .aviso strong { color:var(--hueso); }
+  .aviso + .aviso { margin-top:12px; }
+</style>
+</head>
+<body>
+
+<div class="cinta">
+  <span>Anexo técnico · Capa 02 · Plan de pauta</span>
+  <a href="/massatierra">← Volver a la propuesta</a>
+</div>
+
+<header class="cab-demo">
+  <div class="wrap">
+    <span class="rotulo">Capa 02 · Parte 1</span>
+    <h1 style="margin-top:14px">El plan de <span class="alta">pauta</span>, completo.</h1>
+    <p class="sub">Este es el análisis que sostiene la Capa 02 de la propuesta: qué busca el mercado mexicano en esta categoría, cuánto vale cada búsqueda, contra quién se compite realmente y cómo se arma la cuenta para ganar. La gestión queda incluida en el acuerdo de comercialización; la inversión publicitaria se paga directo a la plataforma, y aquí están los escenarios.</p>
+    <nav class="indice">
+      <a href="#inducida">01 · Demanda inducida</a>
+      <a href="#mapa">02 · Mapa de demanda</a>
+      <a href="#competencia">03 · Competencia</a>
+      <a href="#arquitectura">04 · Arquitectura de campaña</a>
+      <a href="#presupuesto">05 · Presupuesto de pauta</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════ 01 · DEMANDA INDUCIDA ══════════ -->
+<section class="seccion seccion--placa" id="inducida">
+  <span class="buril" aria-hidden="true" style="--ang:90deg;--paso:7px;--tono:0.05"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Ustedes ya están creando la búsqueda. Falta cobrarla.</h2>
+      <p>Hay una estrategia de campo que cambia por completo la lógica de esta pauta: ingenieros que hacen levantamiento y análisis de cumplimiento normativo en empresas y proyectos. Al cerrar, recomiendan buscar ciertos productos y soluciones — <strong>pero no recomiendan proveedores</strong>.</p>
+      <p style="margin-top:14px">Cada visita deja a un responsable de planta con un dictamen en la mano, un término técnico anotado y una instrucción implícita: <em>búscalo</em>. Esa persona abre Google, escribe exactamente lo que le dijeron, y ahí se decide todo. Hoy esa búsqueda la capitaliza alguien más.</p>
+    </div>
+
+    <div class="trio">
+      <div>
+        <span class="rotulo">Paso 1 · El ingeniero</span>
+        <p>Hace el levantamiento, detecta el incumplimiento y nombra la solución en lenguaje técnico. Sin marca, sin proveedor. <strong>Deja sembrado el término de búsqueda.</strong></p>
+      </div>
+      <div>
+        <span class="rotulo">Paso 2 · El prospecto</span>
+        <p>Días después, con presión de auditoría encima, escribe ese término en Google. No tiene marca en mente. <strong>El primero que aparece se lleva la cotización.</strong></p>
+      </div>
+      <div class="foco">
+        <span class="rotulo">Paso 3 · Massatierra</span>
+        <p><strong>Aquí entra la pauta.</strong> No para generar demanda: para estar parados en la puerta exacta por la que va a salir una demanda que ustedes ya generaron.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:clamp(1.25rem,2.2vw,1.5rem);margin:0 0 14px">Por qué esto se paga distinto</h3>
+    <p class="chico apagado" style="max-width:66ch;margin-bottom:clamp(30px,3.6vw,42px)">En una campaña comercial normal se optimiza costo por oportunidad: se sacrifica cobertura para bajar el costo. <strong style="color:var(--hueso)">Aquí eso sería un error.</strong> Estas búsquedas son pocas, impredecibles en el tiempo y cada una vale una cotización de cinco o seis cifras. Perder una por ahorrarse doce pesos de puja es perder la venta completa. Por eso este bloque no se puja a costo por adquisición: se puja a <strong style="color:var(--hueso)">cuota de impresión absoluta en la parte superior</strong>. El objetivo literal es aparecer lo más posible.</p>
+
+    <h3 style="font-size:clamp(1.25rem,2.2vw,1.5rem);margin:0 0 14px">El vocabulario a interceptar</h3>
+    <p class="chico apagado" style="max-width:66ch">Cinco familias de término. No son las palabras de la marca — son las palabras del dictamen. Volúmenes bajos, intención prácticamente total.</p>
+
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Familia</span><span class="rotulo">Cómo lo escribiría el prospecto</span><span class="rotulo" style="text-align:right">Vol. est. / mes</span>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Familia">Código de norma<span class="fnota">Núcleo del bloque</span></div>
+        <p class="tcol" data-l="Cómo lo escribiría"><span class="kw">nom 022 stps pararrayos</span> · <span class="kw">nmx-j-549-ance</span> · <span class="kw">nom 001 sede puesta a tierra</span></p>
+        <div class="tprecio tcol" data-l="Volumen">400–900<span class="tper">búsquedas / mes</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Familia">Valor del dictamen<span class="fnota">Máxima intención</span></div>
+        <p class="tcol" data-l="Cómo lo escribiría"><span class="kw">resistencia a tierra menor a 10 ohms</span> · <span class="kw">cómo bajar la resistencia de tierra física</span></p>
+        <div class="tprecio tcol" data-l="Volumen">220–450<span class="tper">búsquedas / mes</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Familia">Producto nombrado<span class="fnota">Donde el producto gana solo</span></div>
+        <p class="tcol" data-l="Cómo lo escribiría"><span class="kw">electrodo de puesta a tierra</span> · <span class="kw">dispersor a tierra</span> · <span class="kw">electrodo químico</span> · <span class="kw">punta franklin</span> · <span class="kw">apartarrayos</span> · <span class="kw">supresor de picos TVSS</span> · <span class="kw">malla de tierra</span></p>
+        <div class="tprecio tcol" data-l="Volumen">900–1,700<span class="tper">búsquedas / mes</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Familia">Acción requerida<span class="fnota">Entrada al servicio integral</span></div>
+        <p class="tcol" data-l="Cómo lo escribiría"><span class="kw">quién certifica tierras físicas</span> · <span class="kw">cómo cumplir la nom 022</span> · <span class="kw">instalación de puesta a tierra industrial</span></p>
+        <div class="tprecio tcol" data-l="Volumen">300–650<span class="tper">búsquedas / mes</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Familia">Consecuencia<span class="fnota">Urgencia pura</span></div>
+        <p class="tcol" data-l="Cómo lo escribiría"><span class="kw">multa por no cumplir nom 022 stps</span> · <span class="kw">sanción stps electricidad estática</span></p>
+        <div class="tprecio tcol" data-l="Volumen">90–200<span class="tper">búsquedas / mes</span></div>
+      </div>
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Familia">Suma del bloque inducido</div>
+        <p class="tcol" data-l="Cómo lo escribiría">Parte de este vocabulario también aparece en el mapa de demanda general. La diferencia no es la palabra: es el momento y la geografía en que se dispara, y que Massatierra es el único actor del mercado capaz de anticiparlos.</p>
+        <div class="tprecio tcol" data-l="Volumen">1,900–3,900<span class="tper">búsquedas / mes</span></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:clamp(1.25rem,2.2vw,1.5rem);margin:clamp(38px,4.4vw,54px) 0 14px">La ventaja que nadie más puede copiar</h3>
+    <div class="duo">
+      <div>
+        <h4>Sincronizar la pauta con la ruta de campo</h4>
+        <p>Si cada mes nos comparten en qué municipios y parques industriales van a operar los ingenieros, ponderamos la puja geográfica hacia esas zonas durante los catorce días posteriores a cada visita. <strong>Massatierra sería el único anunciante del país que sabe dónde está a punto de aparecer la demanda</strong> — y paga solo ahí.</p>
+      </div>
+      <div>
+        <h4>Hablar el idioma exacto del dictamen</h4>
+        <p>El anuncio y la página de aterrizaje deben repetir, casi literalmente, la frase que el prospecto leyó en el reporte. Reconocimiento inmediato, mejor nivel de calidad y menor costo por clic. Para eso necesitamos <strong>el formato de dictamen y la terminología que los ingenieros usan en campo</strong> — es el insumo más valioso de todo el proyecto.</p>
+      </div>
+      <div>
+        <h4>Medir cuánto rinde la estrategia de campo</h4>
+        <p>Añadimos al formulario una pregunta de origen: <em>«¿Recibió recientemente un levantamiento o dictamen de cumplimiento?»</em>. Con eso se separa la oportunidad inducida de la comercial y, por primera vez, <strong>se le puede poner un número a lo que la estrategia de campo produce en ventas.</strong></p>
+      </div>
+      <div>
+        <h4>Ganarlo también sin pagar</h4>
+        <p>Este vocabulario es técnico, de cola larga y con poca competencia orgánica real. Es de lo poco que se puede posicionar en resultados naturales sin una guerra de contenidos. La pauta lo cubre desde el día uno; el contenido lo va volviendo <strong>gratuito y permanente</strong>.</p>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>Lo que necesitamos de ustedes para afinar esto.</strong> El listado de términos de arriba es nuestra reconstrucción del vocabulario probable. La versión definitiva sale de una fuente que solo Massatierra tiene: el formato de dictamen, el guion de cierre de los ingenieros y el calendario de rutas. Con eso en mano, la primera semana convertimos ese material en el diccionario de intercepción real de la cuenta — y ese diccionario se sigue alimentando cada mes con los términos de búsqueda que la propia campaña vaya revelando.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 · MAPA DE DEMANDA ══════════ -->
+<section class="seccion seccion--regla" id="mapa">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Quién busca qué, y cuánto vale cada búsqueda.</h2>
+      <p>Además del bloque inducido existe todo el mercado que busca por su cuenta. Lo mapeamos a nivel nacional en cinco grupos de intención. No todos valen lo mismo: hay volumen que es puro tráfico de tarea escolar y hay volumen pequeño que trae una cotización de seis cifras. La estrategia consiste en pagar solo por el segundo.</p>
+    </div>
+
+    <div class="grupos">
+      <div class="gr">
+        <span class="rotulo">Grupo A</span>
+        <h4>Cumplimiento normativo</h4>
+        <span class="vol">2,100–4,000<small>búsquedas / mes · nacional</small></span>
+        <p>Estudios, mediciones y certificados NOM-022. Volumen medio, intención comercial altísima y recurrencia anual por ley. <strong>El territorio a ganar primero.</strong></p>
+      </div>
+      <div class="gr">
+        <span class="rotulo">Grupo B</span>
+        <h4>Pararrayos (producto)</h4>
+        <span class="vol">13,000–20,000<small>búsquedas / mes · nacional</small></span>
+        <p>El volumen grande de la categoría. Mayoritariamente informativo: hay que filtrarlo con quirófano para no quemar presupuesto en curiosos.</p>
+      </div>
+      <div class="gr">
+        <span class="rotulo">Grupo C</span>
+        <h4>Tierras físicas y electrodos</h4>
+        <span class="vol">4,000–6,500<small>búsquedas / mes · nacional</small></span>
+        <p>El corazón técnico del producto. Mezcla de especificador, contratista e instalador. Buen balance entre volumen e intención.</p>
+      </div>
+      <div class="gr">
+        <span class="rotulo">Grupo D</span>
+        <h4>Geolocalizado industrial</h4>
+        <span class="vol">400–800<small>búsquedas / mes · nacional</small></span>
+        <p>«Pararrayos Guadalajara», «tierras físicas Monterrey». Poco volumen, conversión desproporcionada. Aquí se compran oportunidades baratas.</p>
+      </div>
+      <div class="gr">
+        <span class="rotulo">Grupo E</span>
+        <h4>Marca y competencia</h4>
+        <span class="vol">250–500<small>búsquedas / mes · nacional</small></span>
+        <p>Marcas rivales con nombre propio ya instaladas en el autocompletado de Google. Territorio barato para aparecer al lado del líder.</p>
+      </div>
+      <div class="gr suma">
+        <span class="rotulo">Total</span>
+        <h4>Mercado direccionable</h4>
+        <span class="vol">20,000–31,000<small>búsquedas / mes</small></span>
+        <p>De ese universo, el <strong>núcleo comercialmente accionable</strong> —el que trae cotización real— se ubica entre 3,500 y 6,000 búsquedas mensuales.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:clamp(1.25rem,2.2vw,1.5rem);margin:clamp(40px,4.6vw,56px) 0 0">Términos de alto impacto, uno por uno</h3>
+    <div class="rodillo">
+      <table class="densa">
+        <thead>
+          <tr><th>Término de búsqueda</th><th>Grupo</th><th>Vol. mensual est.</th><th>CPC est. (MXN)</th><th>Intención</th><th>Prioridad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="kw">estudio de tierras físicas</span></td><td class="c">A</td><td class="n">320 – 590</td><td class="n">$14 – $24</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">medición de tierra física</span></td><td class="c">A</td><td class="n">260 – 480</td><td class="n">$12 – $22</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">nom 022 stps tierras físicas</span></td><td class="c">A</td><td class="n">1,300 – 2,400</td><td class="n">$6 – $13</td><td class="c"><span class="punto p-media"></span>Mixta</td><td class="n">2</td></tr>
+          <tr><td><span class="kw">certificado de tierra física</span></td><td class="c">A</td><td class="n">90 – 210</td><td class="n">$13 – $23</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">valores permitidos resistencia a tierra</span></td><td class="c">A</td><td class="n">170 – 320</td><td class="n">$5 – $11</td><td class="c"><span class="punto p-baja"></span>Informativa</td><td class="n">3</td></tr>
+          <tr><td><span class="kw">pararrayos</span></td><td class="c">B</td><td class="n">9,900 – 14,800</td><td class="n">$5 – $12</td><td class="c"><span class="punto p-baja"></span>Informativa</td><td class="n">3</td></tr>
+          <tr><td><span class="kw">tipos de pararrayos</span></td><td class="c">B</td><td class="n">1,600 – 2,900</td><td class="n">$4 – $9</td><td class="c"><span class="punto p-baja"></span>Informativa</td><td class="n">3</td></tr>
+          <tr><td><span class="kw">sistema de pararrayos</span></td><td class="c">B</td><td class="n">590 – 1,000</td><td class="n">$9 – $17</td><td class="c"><span class="punto p-media"></span>Mixta</td><td class="n">2</td></tr>
+          <tr><td><span class="kw">pararrayos precio</span></td><td class="c">B</td><td class="n">320 – 590</td><td class="n">$11 – $20</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">instalación de pararrayos</span></td><td class="c">B</td><td class="n">260 – 480</td><td class="n">$13 – $23</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">pararrayos pdc</span></td><td class="c">B</td><td class="n">210 – 390</td><td class="n">$10 – $18</td><td class="c"><span class="punto p-media"></span>Mixta</td><td class="n">2</td></tr>
+          <tr><td><span class="kw">pararrayos para casas</span></td><td class="c">B</td><td class="n">260 – 480</td><td class="n">$8 – $15</td><td class="c"><span class="punto p-baja"></span>Fuera de perfil</td><td class="n">Neg.</td></tr>
+          <tr><td><span class="kw">tierra física</span></td><td class="c">C</td><td class="n">2,900 – 4,400</td><td class="n">$5 – $11</td><td class="c"><span class="punto p-baja"></span>Informativa</td><td class="n">3</td></tr>
+          <tr><td><span class="kw">sistema de tierra física industrial</span></td><td class="c">C</td><td class="n">480 – 880</td><td class="n">$12 – $21</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">electrodo de puesta a tierra</span></td><td class="c">C</td><td class="n">320 – 590</td><td class="n">$9 – $17</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">electrodo químico para tierra física</span></td><td class="c">C</td><td class="n">90 – 170</td><td class="n">$11 – $19</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">dispersor a tierra</span></td><td class="c">C</td><td class="n">70 – 140</td><td class="n">$8 – $16</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">2</td></tr>
+          <tr><td><span class="kw">pararrayos guadalajara</span></td><td class="c">D</td><td class="n">90 – 170</td><td class="n">$10 – $19</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">tierras físicas guadalajara</span></td><td class="c">D</td><td class="n">70 – 140</td><td class="n">$11 – $20</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">pararrayos monterrey / cdmx / querétaro</span></td><td class="c">D</td><td class="n">220 – 440</td><td class="n">$10 – $20</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">1</td></tr>
+          <tr><td><span class="kw">marcas competidoras del sector</span></td><td class="c">E</td><td class="n">250 – 500</td><td class="n">$4 – $10</td><td class="c"><span class="punto p-alta"></span>Comercial</td><td class="n">2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="aviso">
+      <strong>Sobre estas cifras.</strong> Son rangos modelados a partir del comportamiento observable de Google en México — autocompletado, preguntas relacionadas, competencia visible en resultados pagados y estructura de la categoría — cruzado con nuestros históricos de sectores industriales comparables. <strong>No son lecturas literales del Planificador de Palabras Clave</strong>, cuyo acceso a rangos cerrados requiere una cuenta con inversión activa. La primera semana de trabajo consiste precisamente en abrir la cuenta, extraer los volúmenes exactos y ajustar el plan con datos duros antes de gastar el primer peso. Los rangos anchos son deliberados: preferimos entregar un piso y un techo honestos a una cifra falsamente precisa.
+    </div>
+
+    <h3 style="font-size:clamp(1.25rem,2.2vw,1.5rem);margin:clamp(40px,4.6vw,56px) 0 14px">La estacionalidad manda</h3>
+    <p class="chico apagado" style="max-width:66ch">La demanda de protección contra rayo en México sigue a la temporada de tormentas. El interés se dispara cuando ya está lloviendo y cuando ya se quemó algo. Un presupuesto plano de doce meses desperdicia la mitad de su potencia.</p>
+    <div class="temporada" aria-hidden="true">
+      <i style="height:34%"></i><i style="height:30%"></i><i style="height:38%"></i><i style="height:52%"></i>
+      <i class="pico" style="height:82%"></i><i class="pico" style="height:96%"></i><i class="pico" style="height:100%"></i><i class="pico" style="height:94%"></i>
+      <i class="pico" style="height:81%"></i><i style="height:60%"></i><i style="height:41%"></i><i style="height:33%"></i>
+    </div>
+    <div class="meses"><span>E</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+    <p class="tnota" style="max-width:76ch">Índice estimado de interés de búsqueda a lo largo del año. Mayo a septiembre concentra el pico. <strong style="color:var(--hueso)">Recomendación:</strong> presupuesto base todo el año para no perder aprendizaje del algoritmo, con refuerzo de 30–40% en los meses de temporada, y una campaña siempre activa sobre cumplimiento normativo — esa no depende del clima, depende del calendario de auditorías.</p>
+  </div>
+</section>
+
+<!-- ══════════ 03 · COMPETENCIA ══════════ -->
+<section class="seccion papel" id="competencia">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Contra quién se compite realmente.</h2>
+      <p>El competidor de Massatierra en Google no es únicamente otro fabricante de electrodos. Son cuatro tipos de rival distintos, y a cada uno se le gana de una manera distinta.</p>
+    </div>
+    <div class="duo" style="margin-top:0">
+      <div>
+        <span class="rotulo">Tipo 1</span>
+        <h4 style="margin-top:10px">Portales de cotización</h4>
+        <p>Dominan orgánicamente las búsquedas de precio, revenden la misma oportunidad a cinco proveedores y convierten la decisión en una subasta a la baja. <strong>Se les gana</strong> apareciendo <em>arriba</em> de ellos en pauta, con una oferta específica en lugar de un formulario genérico.</p>
+      </div>
+      <div>
+        <span class="rotulo">Tipo 2</span>
+        <h4 style="margin-top:10px">Consultoras de cumplimiento</h4>
+        <p>Laboratorios acreditados y consultoras normativas. Se posicionan con contenido denso y capturan al responsable de seguridad e higiene <em>antes</em> de que se piense en comprar hardware. <strong>Se les gana</strong> entrando por la misma puerta: el estudio, la medición, el diagnóstico — y ahí presentando la solución integral.</p>
+      </div>
+      <div>
+        <span class="rotulo">Tipo 3</span>
+        <h4 style="margin-top:10px">Integradores eléctricos regionales</h4>
+        <p>Empresas locales que ofrecen tierras y pararrayos como una línea más dentro de un catálogo eléctrico amplio. Presencia digital irregular, sin especialización visible. <strong>Se les gana</strong> con lo que ellos no tienen: sistema patentado, unidireccionalidad, veinte años de garantía por escrito, libre de mantenimiento.</p>
+      </div>
+      <div>
+        <span class="rotulo">Tipo 4</span>
+        <h4 style="margin-top:10px">Marcas de pararrayos con nombre propio</h4>
+        <p>Fabricantes cuyo nombre ya aparece sugerido por Google al escribir «pararrayos». Han construido reconocimiento en la categoría. <strong>Se les gana</strong> con campaña de conquista sobre su marca —legal, barata y de altísima intención— y con diferenciación técnica frente a los sistemas convencionales.</p>
+      </div>
+    </div>
+    <div class="aviso">
+      <strong>La conclusión estratégica.</strong> Ninguno de los cuatro tiene la categoría amarrada a nivel nacional. No hay un jugador que compre todo el inventario ni que haya construido autoridad orgánica dominante. En un mercado así, el que llega primero con una estructura de campaña disciplinada y un destino decente no compite: se instala.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 · ARQUITECTURA ══════════ -->
+<section class="seccion seccion--regla" id="arquitectura">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Arquitectura de campaña.</h2>
+      <p>Dos bloques con lógicas opuestas conviviendo en la misma cuenta. El primero existe para <strong>no perder ni una</strong> de las búsquedas que ustedes mismos provocan. El segundo existe para <strong>comprar volumen al mejor costo posible</strong> en el resto del mercado. Se separan porque se pujan distinto, se miden distinto y se declaran ganadores por razones distintas.</p>
+    </div>
+
+    <div class="bloque-t">
+      <h3>Bloque A · Captura de demanda inducida</h3>
+      <span class="cuota">30% del presupuesto</span>
+    </div>
+    <p class="bloque-i">Puja a <strong>cuota de impresión absoluta en la parte superior, objetivo 85–90%</strong>. No se optimiza a costo por oportunidad. Aquí el éxito es estar, siempre.</p>
+
+    <div class="camp">
+      <div class="camp-c"><h4>A1 · Intercepción normativa y de producto</h4><span class="pc">22%</span></div>
+      <div class="camp-b">
+        El diccionario de intercepción: los términos exactos del dictamen, en concordancia de frase y exacta. Cola larga, volumen bajo, intención total.
+        <ul>
+          <li><strong>Puja:</strong> cuota de impresión objetivo, no costo por adquisición. Se acepta un costo por clic más alto a cambio de cobertura.</li>
+          <li><strong>Geografía:</strong> ponderada hacia la ruta de campo del mes, con ventana de refuerzo de catorce días por zona visitada.</li>
+          <li><strong>Destino:</strong> página que replica el lenguaje del dictamen y la norma citada.</li>
+          <li><strong>Éxito:</strong> cuota de impresión sobre el diccionario y oportunidades marcadas como inducidas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="camp">
+      <div class="camp-c"><h4>A2 · Defensa de marca</h4><span class="pc">3%</span></div>
+      <div class="camp-b">
+        Cuando el prospecto sí llega a escuchar el nombre Massatierra, esa búsqueda no se comparte con nadie. Es el clic más barato de la cuenta y el más caro de perder.
+        <ul>
+          <li><strong>Puja:</strong> costo por clic bajo, primera posición absoluta.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="camp">
+      <div class="camp-c"><h4>A3 · Remarketing del inducido</h4><span class="pc">5%</span></div>
+      <div class="camp-b">
+        Un dictamen se resuelve en semanas, no en horas. Esta campaña sostiene la presencia frente a quien ya buscó el término y todavía no autoriza el gasto, con comparativo técnico, garantía de veinte años y casos de aplicación industrial.
+        <ul>
+          <li><strong>Se activa</strong> en el mes 2, cuando la etiqueta ya acumuló audiencia suficiente.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bloque-t b">
+      <h3>Bloque B · Adquisición comercial</h3>
+      <span class="cuota">70% del presupuesto</span>
+    </div>
+    <p class="bloque-i">Puja a <strong>costo por adquisición</strong>. Aquí sí se sacrifica cobertura para bajar el costo, se pausa lo que no rinde y se escala lo que sí. Es el motor de volumen.</p>
+
+    <div class="camp">
+      <div class="camp-c"><h4>B1 · Cumplimiento NOM-022 (genérico comercial)</h4><span class="pc">25%</span></div>
+      <div class="camp-b">
+        Estudios, mediciones y certificación de tierras físicas buscados por cuenta propia, sin dictamen de por medio. Demanda obligatoria por norma, recurrente cada doce meses y con poca competencia pagada.
+        <ul>
+          <li><strong>Puja:</strong> maximizar conversiones, migrando a costo por adquisición objetivo al acumular treinta conversiones mensuales.</li>
+          <li><strong>Separación:</strong> exclusión cruzada de negativas contra A1 — el mismo término nunca compite consigo mismo entre bloques, y cada oportunidad queda atribuida a su origen real.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="camp">
+      <div class="camp-c"><h4>B2 · Sistema y producto</h4><span class="pc">18%</span></div>
+      <div class="camp-b">
+        Electrodos, dispersores, sistemas de puesta a tierra y pararrayos con lenguaje técnico e industrial. Aquí es donde el diferencial patentado hace todo el trabajo.
+        <ul>
+          <li><strong>Puja:</strong> costo por clic manual mejorado al inicio, para controlar el aprendizaje y observar términos reales.</li>
+          <li><strong>Éxito:</strong> descargas de ficha técnica y solicitudes de cotización.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="camp">
+      <div class="camp-c"><h4>B3 · Geolocalizada industrial</h4><span class="pc">15%</span></div>
+      <div class="camp-b">
+        Zona Metropolitana de Guadalajara y El Salto, Monterrey, Valle de México, Bajío (Querétaro, León, Aguascalientes, San Luis Potosí). Poco volumen, conversión desproporcionadamente alta.
+        <ul>
+          <li><strong>Extensiones:</strong> llamada, ubicación y mensaje directo a WhatsApp.</li>
+          <li><strong>Éxito:</strong> llamadas y mensajes iniciados desde el anuncio.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="camp">
+      <div class="camp-c"><h4>B4 · Conquista de competencia</h4><span class="pc">5%</span></div>
+      <div class="camp-b">
+        Marcas rivales que ya tienen reconocimiento en la categoría y aparecen sugeridas por Google. Altísima intención, costo por clic bajo.
+        <ul>
+          <li><strong>Mensaje:</strong> comparativo técnico, sin mencionar marcas rivales en el texto del anuncio.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="camp">
+      <div class="camp-c"><h4>B5 · Remarketing y Demand Gen</h4><span class="pc">7%</span></div>
+      <div class="camp-b">
+        Persigue a todo el tráfico comercial que no convirtió en la primera visita, a lo largo de un ciclo de decisión de semanas.
+        <ul>
+          <li><strong>Audiencias:</strong> visitantes de páginas de producto, descargas de ficha técnica, abandonos de formulario.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>Sobre el 30% del Bloque A.</strong> Es un techo, no una cuota a gastar. Ese vocabulario tiene poco volumen: es probable que en algunos meses no alcance a consumirlo todo, incluso pujando a cobertura máxima. Lo que sobre se reasigna automáticamente al Bloque B. Nunca al revés: <strong>el Bloque A se sirve primero, siempre.</strong> Si la estrategia de campo escala y el volumen inducido crece, la proporción se revisa en favor del Bloque A.
+    </div>
+    <div class="aviso">
+      <strong>Lo que deliberadamente no hacemos al inicio.</strong> Nada de Performance Max ni Display abierto en los primeros meses. Sin datos de conversión históricos, esas campañas se comen el presupuesto en tráfico incidental. Entran cuando la cuenta tenga señal propia que alimentar. Tampoco pautamos sobre <span class="kw">pararrayos para casas</span> ni sobre términos escolares: van a la lista de negativas desde el día uno, que es la que protege el presupuesto real.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 05 · PRESUPUESTO ══════════ -->
+<section class="seccion seccion--placa" id="presupuesto">
+  <span class="buril" aria-hidden="true" style="--ang:90deg;--paso:7px;--tono:0.05"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Presupuesto de pauta.</h2>
+      <p>La gestión de la cuenta queda cubierta por el acuerdo de comercialización: no se cobra por separado. Lo único que Massatierra pone aquí es la inversión publicitaria, que se paga directo a la plataforma. Tres escenarios sobre el mismo motor — cambia la velocidad, no la estrategia. Las proyecciones asumen los costos por clic estimados de la tabla anterior y una tasa de conversión de 2.5% a 4%: el extremo bajo con el sitio en su estado actual, el alto una vez renovado.</p>
+    </div>
+
+    <div class="escenarios">
+      <div class="esc">
+        <h4>Entrada</h4>
+        <span class="cifra">$8,000<small>+ IVA / mes de pauta</small></span>
+        <dl>
+          <dt>Clics estimados</dt><dd>600 – 900 / mes</dd>
+          <dt>Oportunidades estimadas</dt><dd>15 – 30 / mes</dd>
+          <dt>Alcance</dt><dd>Jalisco y Bajío</dd>
+          <dt>Uso</dt><dd>Validar el canal con riesgo mínimo</dd>
+        </dl>
+      </div>
+      <div class="esc rec">
+        <span class="marca-rec">Recomendado</span>
+        <h4>Posicionamiento nacional</h4>
+        <span class="cifra">$15,000<small>+ IVA / mes de pauta</small></span>
+        <dl>
+          <dt>Clics estimados</dt><dd>1,100 – 1,700 / mes</dd>
+          <dt>Oportunidades estimadas</dt><dd>30 – 55 / mes</dd>
+          <dt>Alcance</dt><dd>Los dos bloques completos, cobertura nacional</dd>
+          <dt>Uso</dt><dd>Competir de frente en todo México</dd>
+        </dl>
+      </div>
+      <div class="esc">
+        <h4>Dominio de categoría</h4>
+        <span class="cifra">$25,000<small>+ IVA / mes de pauta</small></span>
+        <dl>
+          <dt>Clics estimados</dt><dd>1,900 – 2,800 / mes</dd>
+          <dt>Oportunidades estimadas</dt><dd>50 – 90 / mes</dd>
+          <dt>Alcance</dt><dd>Todo lo anterior + participación máxima en temporada</dd>
+          <dt>Uso</dt><dd>Ocupar el mercado antes que la competencia</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>Cómo se juzga cada bloque.</strong> Las cifras de oportunidades de arriba corresponden al Bloque B, que es el que se mide a costo por adquisición. El Bloque A se juzga con otra vara: <strong>cuota de impresión absoluta sobre el diccionario de intercepción</strong> —la meta es 85–90%— y número de oportunidades que declaran venir de un levantamiento. Un mes con pocas oportunidades inducidas pero 90% de cobertura es un mes exitoso del Bloque A: significa que no se escapó ninguna de las búsquedas que hubo.
+    </div>
+    <div class="aviso">
+      <strong>Honestidad sobre las proyecciones.</strong> Son modelos, no promesas. Ninguna agencia seria puede garantizar un número de oportunidades antes de tener el primer mes de datos reales de la cuenta. Lo que sí garantizamos es el método: medir todo, reportar sin maquillaje y ajustar cada semana. Con un ticket promedio en el rango de $40,000 a $80,000 MXN, el escenario recomendado se paga solo con una venta cerrada al mes — y bajo el acuerdo de comercialización, Sentido solo cobra si esa venta ocurre.
+    </div>
+
+    <h3 style="font-size:clamp(1.25rem,2.2vw,1.5rem);margin:clamp(40px,4.6vw,56px) 0 14px">Lo que hace falta para que esto rinda al máximo</h3>
+    <p class="chico apagado" style="max-width:66ch">Se puede arrancar sin esto y va a funcionar. Con esto, funciona notablemente mejor.</p>
+    <div class="duo">
+      <div>
+        <h4>Certificado de seguridad — lo resuelve el sitio nuevo</h4>
+        <p>Es el requisito no negociable antes de encender la primera campaña: hoy el certificado del sitio está vencido y el navegador marca la página como no segura. Si se prefiere arrancar la pauta antes del sitio nuevo, hay que pedirlo al hosting actual: entregamos la especificación técnica y validamos la implementación. <strong>Con la renovación viene incluido y automático.</strong></p>
+      </div>
+      <div>
+        <h4>Páginas de campaña — nacen con el sitio</h4>
+        <p>Los destinos construidos para convertir no se cotizan aparte: nacen dentro del sitio nuevo. Son la palanca individual más grande sobre el costo por oportunidad, y es la razón por la que renovar el sitio y pautar se defienden mejor juntos que por separado.</p>
+      </div>
+      <div>
+        <h4>Perfil de Negocio de Google</h4>
+        <p>Alta y optimización del perfil de la matriz en Zapopan. Alimenta las extensiones de ubicación de la pauta y captura búsquedas locales de forma orgánica. Es la Capa 03 de la propuesta.</p>
+      </div>
+      <div>
+        <h4>Contenido sobre normativa</h4>
+        <p>Doble beneficio. Por un lado, el Grupo B —«tipos de pararrayos», «tierra física», «NOM-022»— suma más de quince mil búsquedas mensuales que no conviene comprar pero sí ganar. Por otro, <strong>el vocabulario del diccionario de intercepción es de cola larga y poca competencia orgánica</strong>: posicionarlo convierte la captura inducida en gratuita y permanente. Es la Capa 04.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE ══════════ -->
+<section class="seccion seccion--regla">
+  <div class="wrap">
+    <div class="cabeza" style="margin-bottom:0">
+      <span class="pleca"></span>
+      <h2>Esto es una capa de un sistema más grande.</h2>
+      <p>La pauta trae la oportunidad a la puerta. Lo que decide si se convierte en venta es lo que pasa después: quién la atiende, en cuánto tiempo sale la cotización y si alguien le da seguimiento. Eso es la Parte 2 de la propuesta.</p>
+      <div class="acciones">
+        <a class="boton" href="/massatierra#demanda-plan">Volver a la propuesta <span class="fl">→</span></a>
+        <a class="enlace" href="/massatierra#contacto">Contacto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" style="height:36px;width:auto;display:block;margin-bottom:22px" />
+    <div class="pie-bajo">
+      <p>Sentido · Anexo técnico para Massatierra</p>
+      <p>Volúmenes y costos por clic: rangos modelados, sujetos a validación en cuenta</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

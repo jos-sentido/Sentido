@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Requerimientos · Agente IA HAZBOOM</title>
+<meta name="description" content="Lo que necesitamos de IA HAZBOOM para construir su agente de IA en WhatsApp conectado a GoHighLevel: accesos, conocimiento del negocio, reglas de venta y decisiones." />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="shortcut icon" type="image/png" href="/assets/logo-sentido-dark.png" />
+<link rel="apple-touch-icon" href="/assets/logo-sentido-dark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f2ea;
+    --bg-alt:#efeade;
+    --surface:#ffffff;
+    --ink:#0b2145;
+    --ink-soft:#12305e;
+    --accent:#e0492f;
+    --accent-soft:rgba(224,73,47,.09);
+    --dim:rgba(11,33,69,.64);
+    --dimmer:rgba(11,33,69,.62);
+    --line:rgba(11,33,69,.14);
+    --line-soft:rgba(11,33,69,.08);
+    --display:'Archivo',system-ui,sans-serif;
+    --sans:'Inter',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 1.5rem}
+  section{padding:4.5rem 0}
+  @media(min-width:768px){section{padding:6.5rem 0}}
+  h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.1;letter-spacing:-.025em}
+  h1{font-size:clamp(2.3rem,6.5vw,4.3rem)}
+  h2{font-size:clamp(1.9rem,4.6vw,3rem)}
+  h3{font-size:clamp(1.2rem,2.3vw,1.5rem);letter-spacing:-.015em}
+  h4{font-size:1rem;font-weight:600;letter-spacing:-.005em}
+  p{color:var(--dim)}
+  strong{color:var(--ink);font-weight:600}
+  .lede{font-size:clamp(1.05rem,2vw,1.25rem);line-height:1.55;color:var(--dim);max-width:54ch}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .eyebrow{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem}
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:120px}
+  .sec-head{max-width:760px;margin-bottom:3rem}
+  .sec-head h2{margin-bottom:1.2rem}
+  .band{background:var(--bg-alt)}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:100;height:60px;background:rgba(245,242,234,.9);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);border-bottom:1px solid var(--line-soft)}
+  .nav-in{height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .nav-mark{height:24px;width:auto;display:block}
+  @media(min-width:768px){.nav-mark{height:28px}}
+  .nav-links{display:none;gap:1.6rem}
+  @media(min-width:940px){.nav-links{display:flex}}
+  .nav-links a{font-size:.82rem;font-weight:500;color:var(--dim);text-decoration:none;position:relative;padding:.2rem 0;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.on{color:var(--accent)}
+  .nav-links a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--accent)}
+  .nav-cta{font-size:.8rem;font-weight:600;background:var(--ink);color:var(--bg);text-decoration:none;padding:.55rem 1.1rem;border-radius:100px;white-space:nowrap;transition:background .2s}
+  .nav-cta:hover{background:var(--accent)}
+
+  /* HERO */
+  .hero{padding:3.5rem 0 4rem;position:relative;overflow:hidden}
+  @media(min-width:768px){.hero{padding:5rem 0 6rem}}
+  .hero::before{content:"";position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;max-width:680px;max-height:680px;border-radius:50%;background:radial-gradient(circle,rgba(224,73,47,.10) 0%,rgba(224,73,47,0) 68%);pointer-events:none}
+  .hero-logo-sentido{height:52px;width:auto;display:block;margin-bottom:3rem;opacity:.85}
+  @media(min-width:768px){.hero-logo-sentido{height:60px;margin-bottom:4rem}}
+  .hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.4rem;margin-bottom:2rem}
+  .hero-prospect{height:46px;width:auto;display:block;border-radius:10px;box-shadow:0 2px 14px rgba(11,33,69,.10)}
+  .hero-date{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer)}
+  .hero h1{max-width:17ch}
+  .hero h1 .hl{color:var(--accent)}
+  .hero .lede{margin-top:1.8rem}
+  .legend{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.7rem 2rem;font-size:.85rem;color:var(--dim)}
+  .legend b{font-family:var(--mono);font-size:.72rem;color:var(--accent);font-weight:700;margin-right:.35rem}
+
+  /* FLUJO */
+  .flow{display:grid;gap:1rem;counter-reset:step}
+  @media(min-width:900px){.flow{grid-template-columns:repeat(5,1fr);gap:.9rem}}
+  .flow-step{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:1.4rem 1.3rem;position:relative}
+  .flow-step::before{counter-increment:step;content:"0" counter(step);font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--accent);display:block;margin-bottom:.7rem;letter-spacing:.06em}
+  .flow-step h4{margin-bottom:.45rem}
+  .flow-step p{font-size:.88rem;line-height:1.5}
+  .principles{display:grid;gap:1rem;margin-top:2.2rem}
+  @media(min-width:820px){.principles{grid-template-columns:repeat(3,1fr)}}
+  .principle{border-top:2px solid var(--ink);padding-top:1rem}
+  .principle h4{margin-bottom:.4rem}
+  .principle p{font-size:.92rem;line-height:1.55}
+
+  /* PLAN */
+  .weeks{display:grid;gap:1rem}
+  @media(min-width:860px){.weeks{grid-template-columns:repeat(4,1fr)}}
+  .week{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:1.5rem 1.35rem}
+  .week-n{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.7rem}
+  .week h4{margin-bottom:.5rem;font-size:1.05rem}
+  .week p{font-size:.9rem;line-height:1.55}
+  .week .needs{margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:.72rem;color:var(--dimmer)}
+
+  /* CALLOUT */
+  .callout{margin-top:2.5rem;background:var(--accent-soft);border:1px solid rgba(224,73,47,.3);border-radius:16px;padding:1.5rem 1.4rem}
+  @media(min-width:768px){.callout{padding:1.8rem 2rem}}
+  .callout-tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.6rem}
+  .callout h4{margin-bottom:.5rem;font-size:1.05rem}
+  .callout p{font-size:.94rem;line-height:1.6}
+
+  /* REQUERIMIENTOS */
+  .req-group{margin-bottom:3.5rem}
+  .req-group:last-child{margin-bottom:0}
+  .req-group-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.4rem 1rem;padding-bottom:1rem;border-bottom:2px solid var(--ink);margin-bottom:.3rem}
+  .req-group-head h3 span{color:var(--accent);font-family:var(--mono);font-size:.85em;margin-right:.5rem}
+  .req-group-head small{font-family:var(--mono);font-size:.72rem;color:var(--dimmer);letter-spacing:.04em}
+  .req{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.1rem;padding:1.35rem 0;border-bottom:1px solid var(--line)}
+  @media(min-width:900px){.req{grid-template-columns:70px 1.15fr 1fr;gap:1.8rem;align-items:start}}
+  .req-id{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--accent);padding-top:.15rem}
+  .req-body h4{margin-bottom:.3rem}
+  .req-body p{font-size:.92rem;line-height:1.55}
+  .req-how{grid-column:2/-1;font-size:.86rem;line-height:1.55;color:var(--dim);background:var(--surface);border:1px solid var(--line-soft);border-radius:10px;padding:.75rem .95rem}
+  @media(min-width:900px){.req-how{grid-column:auto}}
+  .req-how b{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer);font-weight:700;margin-bottom:.25rem}
+  .req-how a{color:var(--ink)}
+
+  .security{margin-top:2.5rem;display:flex;gap:1rem;align-items:flex-start;background:var(--ink);color:#fff;border-radius:16px;padding:1.4rem 1.4rem}
+  .security p{color:rgba(245,242,234,.8);font-size:.93rem;line-height:1.6}
+  .security strong{color:#fff}
+  .security-ico{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.95rem;color:#fff}
+
+  /* COSTOS */
+  .cost-grid{display:grid;gap:1.2rem}
+  @media(min-width:880px){.cost-grid{grid-template-columns:1.4fr 1fr}}
+  .card{background:var(--surface);border:1px solid var(--line-soft);border-radius:18px;padding:1.8rem 1.5rem}
+  @media(min-width:768px){.card{padding:2.2rem 2rem}}
+  .card h3{margin-bottom:.4rem}
+  .card-sub{font-size:.88rem;color:var(--dimmer);margin-bottom:1.4rem}
+  .tbl{width:100%;border-collapse:collapse;font-size:.9rem}
+  .tbl th{text-align:left;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dimmer);font-weight:600;padding:.6rem .4rem;border-bottom:1px solid var(--line)}
+  .tbl td{padding:.75rem .4rem;border-bottom:1px solid var(--line-soft);color:var(--dim);vertical-align:top}
+  .tbl td:first-child{color:var(--ink);font-weight:600}
+  .tbl td.n{font-family:var(--mono);color:var(--ink);white-space:nowrap}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -.4rem}
+  .cost-grid>*{min-width:0}
+  @media(max-width:520px){
+    .card{padding:1.5rem 1.1rem}
+    .tbl{font-size:.8rem}
+    .tbl th,.tbl td{padding:.6rem .3rem}
+    .tbl th{font-size:.58rem;letter-spacing:.06em}
+    .tbl td.n{white-space:normal}
+    .tbl-wrap{margin:0}
+  }
+  .fine{font-size:.82rem;line-height:1.55;color:var(--dimmer);margin-top:1.1rem}
+  .card ul{list-style:none;display:grid;gap:.9rem}
+  .card li{position:relative;padding-left:1.3rem;font-size:.92rem;line-height:1.55;color:var(--dim)}
+  .card li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:2px;background:var(--accent)}
+  .card li strong{display:block}
+
+  /* DECISIONES / FORM */
+  .dec-sec{background:var(--ink);color:var(--bg)}
+  .dec-sec h2,.dec-sec h3,.dec-sec h4,.dec-sec strong{color:#fff}
+  .dec-sec p{color:rgba(245,242,234,.7)}
+  .dec-sec .eyebrow{color:#ff8b6e}
+  .dec-sec .eyebrow::after{background:rgba(245,242,234,.2)}
+  .dec-sec .lede{color:rgba(245,242,234,.72)}
+  form{display:grid;gap:1.15rem;margin-top:2.6rem;max-width:860px}
+  .row2{display:grid;gap:1.15rem}
+  @media(min-width:720px){.row2{grid-template-columns:1fr 1fr}}
+  fieldset{border:none;display:grid;gap:1.15rem;padding:1.6rem 0 0;border-top:1px solid rgba(245,242,234,.16)}
+  legend{float:left;width:100%;font-family:var(--display);font-weight:600;font-size:1.05rem;color:#fff;padding:0 0 .2rem}
+  legend small{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#ff8b6e;font-weight:500;margin-bottom:.35rem}
+  label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,242,234,.68);font-weight:500}
+  .hint{display:block;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:.8rem;color:rgba(245,242,234,.5);margin-top:.25rem}
+  .req-mark{color:#ff8b6e}
+  input,select,textarea{width:100%;margin-top:.55rem;padding:.85rem 1rem;background:var(--bg);border:1px solid transparent;border-radius:10px;color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.4;transition:border-color .18s,box-shadow .18s}
+  select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%230b2145' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+  textarea{resize:vertical;min-height:96px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(224,73,47,.25)}
+  .form-warn{font-size:.86rem;line-height:1.5;color:rgba(245,242,234,.78);background:rgba(224,73,47,.16);border:1px solid rgba(224,73,47,.4);border-radius:10px;padding:.85rem 1rem}
+  .form-submit{margin-top:.4rem;width:100%;padding:1.05rem 1.5rem;background:var(--accent);color:#fff;border:none;border-radius:100px;font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;transition:transform .18s,background .18s}
+  .form-submit:hover:not(:disabled){background:#c73d25;transform:translateY(-1px)}
+  .form-submit:disabled{opacity:.6;cursor:default}
+  .form-status{display:none;font-size:.92rem;line-height:1.5;padding:.9rem 1.1rem;border-radius:10px;background:rgba(245,242,234,.1);color:rgba(245,242,234,.88)}
+  .form-status.visible{display:block}
+  .form-status.error{background:rgba(224,73,47,.18);color:#ffb3a0}
+
+  .alt{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(245,242,234,.16);display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem}
+  .alt p{font-size:.92rem;margin:0}
+  .wa-btn{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#04331a;text-decoration:none;font-weight:600;font-size:.93rem;padding:.8rem 1.35rem;border-radius:100px;transition:transform .18s}
+  .wa-btn:hover{transform:translateY(-1px)}
+  .alt a.mail{font-family:var(--mono);font-size:.84rem;color:rgba(245,242,234,.8);text-decoration:none}
+  .alt a.mail:hover{color:#ff8b6e}
+
+  footer{background:var(--ink);padding:0 0 3.5rem}
+  .foot-in{border-top:1px solid rgba(245,242,234,.14);padding-top:2.4rem;display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:space-between;align-items:center}
+  .closing-sentido-mark{height:36px;width:auto;opacity:.6}
+  .foot-meta{font-family:var(--mono);font-size:.72rem;color:rgba(245,242,234,.5);line-height:1.7}
+  .foot-meta a{color:rgba(245,242,234,.65);text-decoration:none}
+  @media(min-width:640px){.foot-meta{text-align:right}}
+
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="#top"><img class="nav-mark" src="/assets/logo-sentido-dark.png" alt="Sentido" /></a>
+    <div class="nav-links">
+      <a href="#funcionamiento">Cómo funciona</a>
+      <a href="#plan">Plan</a>
+      <a href="#requerimientos">Requerimientos</a>
+      <a href="#costos">Costos</a>
+      <a href="#decisiones">Decisiones</a>
+    </div>
+    <a class="nav-cta" href="#decisiones">Enviar decisiones</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <img class="hero-logo-sentido" src="/assets/logo-sentido-dark.png" alt="Sentido" />
+    <div class="hero-meta rv">
+      <img class="hero-prospect" src="/propuestas/ia-hazboom/logo-prospecto.png" alt="IA HAZBOOM" />
+      <span class="hero-date">Requerimientos · Arranque septiembre 2026</span>
+    </div>
+    <h1 class="rv">Todo lo que necesitamos para poner a trabajar <span class="hl">su agente.</span></h1>
+    <p class="lede rv">Este documento reúne los accesos, la información del negocio y las decisiones que necesitamos de ustedes para construir el agente de WhatsApp y conectarlo a GoHighLevel. Cada punto tiene un código: así lo vamos a rastrear en el plan de trabajo.</p>
+    <div class="legend rv">
+      <span><b>A</b>Accesos y cuentas</span>
+      <span><b>B</b>Conocimiento del negocio</span>
+      <span><b>C</b>Perfilamiento y reglas de venta</span>
+      <span><b>D</b>Voz del agente</span>
+    </div>
+  </div>
+</header>
+
+<!-- COMO FUNCIONA -->
+<section id="funcionamiento" class="band">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Cómo va a funcionar</div>
+      <h2>Un solo WhatsApp, una sola bandeja.</h2>
+      <p class="lede">El agente vive dentro del sistema que su equipo ya va a usar. Cada conversación queda en GoHighLevel, con el perfil del restaurante llenado y listo para que un asesor la tome.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step rv"><h4>Llega el mensaje</h4><p>El restaurantero escribe al WhatsApp de IA HAZBOOM, desde el sitio, un anuncio o directo.</p></div>
+      <div class="flow-step rv"><h4>Entra a GoHighLevel</h4><p>La conversación aparece en la bandeja única del CRM, con su historial completo.</p></div>
+      <div class="flow-step rv"><h4>El agente atiende</h4><p>Resuelve dudas con las respuestas que ustedes aprueben y perfila al restaurante mientras conversa.</p></div>
+      <div class="flow-step rv"><h4>La ficha se llena sola</h4><p>Datos del restaurante, temperatura del lead y etapa del pipeline se actualizan en el CRM.</p></div>
+      <div class="flow-step rv"><h4>Entra una persona</h4><p>Cuando hay intención de compra o algo fuera de guion, el agente asigna al asesor y se hace a un lado.</p></div>
+    </div>
+    <div class="principles">
+      <div class="principle rv"><h4>El asesor siempre tiene la última palabra</h4><p>En cuanto alguien del equipo escribe en una conversación, el agente se detiene en esa conversación. Nunca contestan los dos al mismo tiempo.</p></div>
+      <div class="principle rv"><h4>Habla solo de IA HAZBOOM</h4><p>El agente atiende su negocio y nada más, como pide la política de WhatsApp para agentes de IA. Se presenta como asistente virtual.</p></div>
+      <div class="principle rv"><h4>Dice solo lo aprobado</h4><p>Precios, condiciones y alcance salen de la información que ustedes validen. Lo que no está aprobado, lo escala.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Plan de trabajo</div>
+      <h2>Treinta días, cuatro etapas.</h2>
+      <p class="lede">El calendario depende de que los accesos y la información lleguen a tiempo. Cada etapa indica qué requerimientos la destraban.</p>
+    </div>
+    <div class="weeks">
+      <div class="week rv">
+        <div class="week-n">Semana 1</div>
+        <h4>Accesos y diseño</h4>
+        <p>Conectamos WhatsApp, Meta, la cuenta de IA y el CRM. Diseñamos las conversaciones a partir de sus chats reales.</p>
+        <div class="needs">A01–A08 · B12</div>
+      </div>
+      <div class="week rv">
+        <div class="week-n">Semana 2</div>
+        <h4>Construcción</h4>
+        <p>Armamos el agente, su base de conocimiento, los campos del CRM, el pipeline y las reglas de asignación.</p>
+        <div class="needs">B09–B15 · C16–C22 · D23–D24</div>
+      </div>
+      <div class="week rv">
+        <div class="week-n">Semana 3</div>
+        <h4>Pruebas internas</h4>
+        <p>Lo ponemos a prueba con decenas de conversaciones basadas en casos reales hasta que atienda y escale como debe.</p>
+        <div class="needs">Validación de ustedes</div>
+      </div>
+      <div class="week rv">
+        <div class="week-n">Semana 4</div>
+        <h4>Piloto y salida</h4>
+        <p>Su equipo lo prueba en vivo, ajustamos lo último y el agente queda operando en su número.</p>
+        <div class="needs">Aprobación final</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUERIMIENTOS -->
+<section id="requerimientos" class="band">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Requerimientos</div>
+      <h2>Lo que necesitamos de ustedes.</h2>
+      <p class="lede">Veinticuatro puntos en cuatro bloques. Los del bloque A son los más urgentes: sin ellos no podemos conectar nada.</p>
+    </div>
+
+    <div class="callout rv">
+      <div class="callout-tag">Antes de empezar · A03</div>
+      <h4>Hay que definir el número del agente</h4>
+      <p>Los botones de WhatsApp de su sitio abren el <strong class="num">+60 11 6083 6224</strong>, que es el WhatsApp de Miguel de Lima, y el contacto directo publicado es el <strong class="num">+52 55 6498 3418</strong>, de Pamela Flores. El agente necesita un número comercial de IA HAZBOOM: puede ser uno de estos o uno nuevo solo para atender leads. Lo recomendable es un número dedicado, para que las conversaciones de venta no se mezclen con las personales. Necesitamos esta decisión antes de configurar cualquier cosa.</p>
+    </div>
+
+    <!-- A -->
+    <div class="req-group" style="margin-top:3.5rem">
+      <div class="req-group-head rv"><h3><span>A</span>Accesos y cuentas</h3><small>Semana 1 · urgente</small></div>
+
+      <div class="req rv"><div class="req-id">A01</div>
+        <div class="req-body"><h4>Acceso a su portafolio de Meta Business</h4><p>Para conectar el número de WhatsApp, gestionar plantillas y revisar el estado de la cuenta.</p></div>
+        <div class="req-how"><b>Cómo</b>En Meta Business Suite › Configuración del negocio › Socios, agreguen a Sentido como socio con acceso a la cuenta de WhatsApp. Les compartimos nuestro ID de negocio.</div></div>
+
+      <div class="req rv"><div class="req-id">A02</div>
+        <div class="req-body"><h4>Estado de verificación del negocio en Meta</h4><p>Un negocio verificado tiene más límites de envío y más confianza. Si aún no está verificado, arrancamos el trámite desde la semana 1.</p></div>
+        <div class="req-how"><b>Cómo</b>Confirmen si ya está verificado. Si no, tengan a mano razón social, RFC, comprobante de domicilio fiscal y un dominio o correo corporativo.</div></div>
+
+      <div class="req rv"><div class="req-id">A03</div>
+        <div class="req-body"><h4>Número para el agente</h4><p>Cuál número va a atender el agente y si hoy está activo en la app de WhatsApp Business. Si lo usan en su celular, pueden seguir usándolo: la app y el CRM funcionan juntos sobre el mismo número.</p></div>
+        <div class="req-how"><b>Cómo</b>Indíquenlo en la sección de decisiones. Para conectarlo necesitaremos 10 minutos con el celular que tiene el número, para el código de verificación.</div></div>
+
+      <div class="req rv"><div class="req-id">A04</div>
+        <div class="req-body"><h4>Perfil de WhatsApp</h4><p>Nombre visible, foto o logo, descripción corta, horario y sitio web del perfil comercial.</p></div>
+        <div class="req-how"><b>Cómo</b>Logo en PNG cuadrado y los textos en un correo. El nombre visible pasa por aprobación de Meta.</div></div>
+
+      <div class="req rv"><div class="req-id">A05</div>
+        <div class="req-body"><h4>Cuenta de IA a nombre de IA HAZBOOM</h4><p>El consumo del modelo se factura directo a ustedes, como quedó en la propuesta. La cuenta y la llave de acceso son suyas.</p></div>
+        <div class="req-how"><b>Cómo</b>Creen una organización en <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>, agreguen método de pago y un límite de gasto mensual, e inviten a Sentido como miembro. La llave se genera dentro de su cuenta.</div></div>
+
+      <div class="req rv"><div class="req-id">A06</div>
+        <div class="req-body"><h4>Método de pago para WhatsApp</h4><p>Meta cobra los mensajes de plantilla que se usan en los seguimientos automáticos.</p></div>
+        <div class="req-how"><b>Cómo</b>Tarjeta registrada en la cuenta de WhatsApp dentro de su Meta Business. Lo revisamos juntos al conectar el número.</div></div>
+
+      <div class="req rv"><div class="req-id">A07</div>
+        <div class="req-body"><h4>Equipo que usará el CRM</h4><p>Quiénes van a atender leads, quién supervisa y quién solo consulta.</p></div>
+        <div class="req-how"><b>Cómo</b>Lista con nombre, correo, celular y rol de cada persona. Cada quien recibe su propio usuario.</div></div>
+
+      <div class="req rv"><div class="req-id">A08</div>
+        <div class="req-body"><h4>Aviso de privacidad</h4><p>El agente recaba datos personales, así que comparte el enlace al aviso de privacidad en la primera conversación.</p></div>
+        <div class="req-how"><b>Cómo</b>URL del aviso publicado. Si todavía no lo tienen, conviene que su asesor legal lo prepare antes de salir a producción.</div></div>
+    </div>
+
+    <!-- B -->
+    <div class="req-group">
+      <div class="req-group-head rv"><h3><span>B</span>Conocimiento del negocio</h3><small>Semanas 1–2</small></div>
+      <p class="rv" style="font-size:.95rem;margin:1.2rem 0 .4rem;max-width:70ch">Ya armamos un borrador de la base de conocimiento con todo lo que publican en su sitio: paquetes, condiciones, servicios, metodología, calculadora, preguntas frecuentes y equipo. En este bloque les toca validarlo y completar lo que solo ustedes tienen.</p>
+
+      <div class="req rv"><div class="req-id">B09</div>
+        <div class="req-body"><h4>Validar paquetes, precios y comisión</h4><p>Básico <span class="num">$3,900</span> y Plus <span class="num">$5,500</span> + IVA al mes, la comisión del 8% desde el cuarto mes y cómo explicar el margen promedio del 33%.</p></div>
+        <div class="req-how"><b>Cómo</b>Revisen la sección de paquetes del borrador y corrijan ahí mismo. Hay tres dudas marcadas para resolver.</div></div>
+
+      <div class="req rv"><div class="req-id">B10</div>
+        <div class="req-body"><h4>Validar condiciones y servicios</h4><p>Contrato, facturación, lo que entrega el restaurante, los ocho servicios y la metodología mes por mes.</p></div>
+        <div class="req-how"><b>Cómo</b>Revisen esas secciones del borrador. Todo viene de su sitio; solo confirmen que sigue vigente.</div></div>
+
+      <div class="req rv"><div class="req-id">B11</div>
+        <div class="req-body"><h4>Completar preguntas frecuentes</h4><p>El borrador trae las ocho que ya publican. Faltan unas doce más, empezando por siete preguntas probables que sugerimos.</p></div>
+        <div class="req-how"><b>Cómo</b>Agreguen pregunta y respuesta en el borrador. Nosotros las pulimos y ustedes aprueban la versión final.</div></div>
+
+      <div class="req rv"><div class="req-id">B12</div>
+        <div class="req-body"><h4>Conversaciones reales de WhatsApp</h4><p>Es la fuente más valiosa: nos muestra cómo escriben los restaurantes y qué funciona para cerrar. Se usan para diseñar y probar el agente, no para entrenar modelos.</p></div>
+        <div class="req-how"><b>Cómo</b>Exporten entre 30 y 50 chats de los últimos 2–3 meses desde la app (chat › Más › Exportar chat, sin archivos multimedia). Incluyan los que cerraron y los que no.</div></div>
+
+      <div class="req rv"><div class="req-id">B13</div>
+        <div class="req-body"><h4>Objeciones y cómo las manejan</h4><p>"Está caro", "ya tengo quien me lo haga", "8 meses es mucho": qué contesta hoy su mejor vendedor.</p></div>
+        <div class="req-how"><b>Cómo</b>Una llamada de 30 minutos con quien más vende, o la lista por escrito.</div></div>
+
+      <div class="req rv"><div class="req-id">B14</div>
+        <div class="req-body"><h4>Cobertura</h4><p>Ciudades y zonas donde atienden, y si pueden dar servicio a restaurantes fuera de Guadalajara.</p></div>
+        <div class="req-how"><b>Cómo</b>Lista de ciudades o zonas. Si hay restricciones por zona, indíquenlas.</div></div>
+
+      <div class="req rv"><div class="req-id">B15</div>
+        <div class="req-body"><h4>Lo que el agente nunca debe decir</h4><p>Temas, promesas o comparaciones que ustedes prefieren que siempre maneje una persona.</p></div>
+        <div class="req-how"><b>Cómo</b>Lista corta. Ya incluimos por defecto: no promete resultados de venta y no da descuentos.</div></div>
+    </div>
+
+    <!-- C -->
+    <div class="req-group">
+      <div class="req-group-head rv"><h3><span>C</span>Perfilamiento y reglas de venta</h3><small>Semana 2</small></div>
+
+      <div class="req rv"><div class="req-id">C16</div>
+        <div class="req-body"><h4>Datos a capturar de cada restaurante</h4><p>Propuesta: nombre y rol de quien escribe, restaurante, tipo de cocina, sucursales, ciudad y zona, plataformas donde ya venden, ticket promedio, mesas, días de operación, urgencia y paquete de interés.</p></div>
+        <div class="req-how"><b>Cómo</b>Validen la lista y quiten o agreguen lo necesario. Son los mismos datos que pide su calculadora.</div></div>
+
+      <div class="req rv"><div class="req-id">C17</div>
+        <div class="req-body"><h4>Qué es un lead calificado</h4><p>El perfil del restaurante ideal y los casos que no atienden: cadenas, cocinas ocultas, negocios que aún no venden en delivery, zonas fuera de cobertura.</p></div>
+        <div class="req-how"><b>Cómo</b>En la sección de decisiones.</div></div>
+
+      <div class="req rv"><div class="req-id">C18</div>
+        <div class="req-body"><h4>Estimación en la conversación</h4><p>Si el agente comparte una estimación con la lógica de su calculadora, siempre como cifra de referencia, o si solo recopila los datos y el asesor presenta el número.</p></div>
+        <div class="req-how"><b>Cómo</b>En la sección de decisiones.</div></div>
+
+      <div class="req rv"><div class="req-id">C19</div>
+        <div class="req-body"><h4>Reglas de asignación</h4><p>Quién recibe cada lead: por turno, por zona, por paquete o en rotación.</p></div>
+        <div class="req-how"><b>Cómo</b>En la sección de decisiones.</div></div>
+
+      <div class="req rv"><div class="req-id">C20</div>
+        <div class="req-body"><h4>Horario humano y tiempo de atención</h4><p>En qué horario hay asesores disponibles, en cuánto tiempo toman un lead escalado y qué dice el agente fuera de ese horario.</p></div>
+        <div class="req-how"><b>Cómo</b>En la sección de decisiones.</div></div>
+
+      <div class="req rv"><div class="req-id">C21</div>
+        <div class="req-body"><h4>Señales de escalamiento propias</h4><p>Ya incluimos: intención de compra, petición de hablar con alguien, preguntas fuera de guion y clientes activos. Agreguen las que su operación necesite.</p></div>
+        <div class="req-how"><b>Cómo</b>En comentarios de la sección de decisiones.</div></div>
+
+      <div class="req rv"><div class="req-id">C22</div>
+        <div class="req-body"><h4>Agenda de diagnósticos</h4><p>Si el agente puede agendar el diagnóstico directo en el calendario del asesor, cuánto dura y en qué horarios.</p></div>
+        <div class="req-how"><b>Cómo</b>En la sección de decisiones.</div></div>
+    </div>
+
+    <!-- D -->
+    <div class="req-group">
+      <div class="req-group-head rv"><h3><span>D</span>Voz del agente</h3><small>Semana 2</small></div>
+
+      <div class="req rv"><div class="req-id">D23</div>
+        <div class="req-body"><h4>Tono y trato</h4><p>Tuteo o usted, uso de emojis y si el asistente lleva un nombre propio. En cualquier caso se presenta como asistente virtual de IA HAZBOOM.</p></div>
+        <div class="req-how"><b>Cómo</b>En la sección de decisiones.</div></div>
+
+      <div class="req rv"><div class="req-id">D24</div>
+        <div class="req-body"><h4>Aprobación de mensajes clave</h4><p>Nosotros redactamos la bienvenida, el mensaje fuera de horario, el aviso de traspaso a un asesor y las plantillas de seguimiento. Ustedes los aprueban antes de salir.</p></div>
+        <div class="req-how"><b>Cómo</b>Les enviamos los textos en la semana 2 para su visto bueno.</div></div>
+    </div>
+
+    <div class="security rv">
+      <div class="security-ico">!</div>
+      <p><strong>Nunca compartan contraseñas, llaves de API ni códigos de verificación</strong> por WhatsApp, correo o formulario. Para cada cuenta, invitan a Sentido como miembro y cada quien entra con su propio acceso. Los códigos de verificación los capturan ustedes en el momento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COSTOS -->
+<section id="costos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Costos por su cuenta</div>
+      <h2>Lo que se paga directo a cada plataforma.</h2>
+      <p class="lede">Aparte de la implementación y la mensualidad de Sentido, hay dos consumos que se facturan directo a IA HAZBOOM. Aquí están con la mayor precisión posible antes de tener datos reales.</p>
+    </div>
+    <div class="cost-grid">
+      <div class="card rv">
+        <h3>Consumo del modelo de IA</h3>
+        <div class="card-sub">Facturado por Anthropic a su cuenta, en dólares</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Modelo</th><th>Por conversación</th><th>300 al mes</th><th>1,000 al mes</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Opus 5 <br><span style="font-weight:400;font-size:.8rem;color:var(--dimmer)">recomendado para arrancar</span></td><td class="n">~USD 0.30</td><td class="n">~USD 90</td><td class="n">~USD 300</td></tr>
+              <tr><td>Claude Sonnet 5 <br><span style="font-weight:400;font-size:.8rem;color:var(--dimmer)">alternativa de menor costo</span></td><td class="n">~USD 0.12</td><td class="n">~USD 36</td><td class="n">~USD 120</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">Estimado de referencia para una conversación completa de perfilamiento. Arrancamos con el modelo de mejor criterio para manejar objeciones y decidir cuándo escalar; con el consumo real del piloto decidimos juntos si conviene cambiar. El límite de gasto mensual que configuren en su cuenta funciona como tope.</p>
+      </div>
+      <div class="card rv">
+        <h3>Mensajes de WhatsApp</h3>
+        <div class="card-sub">Facturado por Meta</div>
+        <ul>
+          <li><strong>Conversaciones que inicia el restaurante</strong>Las respuestas del agente a un mensaje entrante, dentro de las 24 horas siguientes, no generan cargo por plantilla.</li>
+          <li><strong>Seguimientos automáticos</strong>Los mensajes que el CRM envía para retomar una conversación fuera de esa ventana usan plantillas aprobadas por Meta, que se cobran por envío. Les compartimos la tarifa vigente al configurar el número.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECISIONES -->
+<section id="decisiones" class="dec-sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">Decisiones</div>
+      <h2>Lo que definen ustedes.</h2>
+      <p class="lede">Estas decisiones cubren los puntos A03, C17 a C22 y D23. Llénenlo con calma; lo que no tengan claro lo resolvemos en la sesión de arranque.</p>
+    </div>
+
+    <form id="req-form" data-webhook="/api/lead" novalidate>
+      <input type="hidden" name="propuesta" value="ia-hazboom-requerimientos" />
+
+      <div class="form-warn">Este formulario es solo para decisiones. No escriban contraseñas, llaves de API ni códigos de verificación.</div>
+
+      <div class="row2">
+        <label>Nombre <span class="req-mark">*</span><input name="nombre" type="text" autocomplete="name" required /></label>
+        <label>Email <span class="req-mark">*</span><input name="email" type="email" autocomplete="email" required /></label>
+      </div>
+
+      <fieldset>
+        <legend><small>A03</small>Número de WhatsApp</legend>
+        <div class="row2">
+          <label>Número del agente <span class="req-mark">*</span>
+            <select name="numero" required>
+              <option value="">Selecciona…</option>
+              <option>Un número nuevo solo para el agente (recomendado)</option>
+              <option>+52 55 6498 3418 (Pamela)</option>
+              <option>+60 11 6083 6224 (Miguel)</option>
+              <option>Otro (lo indico en comentarios)</option>
+              <option>Aún no lo decidimos</option>
+            </select>
+          </label>
+          <label>¿Hoy usa la app de WhatsApp Business?
+            <select name="app">
+              <option value="">Selecciona…</option>
+              <option>Sí, y queremos seguir usándola en el celular</option>
+              <option>Sí, pero podemos dejar de usarla</option>
+              <option>No, es un número nuevo</option>
+              <option>No sé</option>
+            </select>
+          </label>
+        </div>
+        <label>¿Su negocio está verificado en Meta?
+          <select name="verificado">
+            <option value="">Selecciona…</option>
+            <option>Sí</option>
+            <option>No</option>
+            <option>No sé</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><small>C17 · C18</small>Calificación</legend>
+        <label>¿Qué hace que un restaurante sea buen cliente para ustedes? ¿Cuáles no atienden?
+          <span class="hint">Ej.: independientes con 1 a 5 sucursales; no atendemos cadenas nacionales.</span>
+          <textarea name="calificado" rows="3"></textarea>
+        </label>
+        <label>Estimación en la conversación
+          <select name="estimacion">
+            <option value="">Selecciona…</option>
+            <option>El agente comparte una estimación de referencia con la lógica de la calculadora</option>
+            <option>El agente solo recopila datos; el asesor presenta el número</option>
+            <option>Lo platicamos en la sesión de arranque</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><small>C19 · C20 · C22</small>Equipo y horarios</legend>
+        <label>¿Quién recibe los leads y con qué regla?
+          <span class="hint">Ej.: rotación entre Miguel y Pamela; Plus siempre a Rafael.</span>
+          <textarea name="asignacion" rows="3"></textarea>
+        </label>
+        <div class="row2">
+          <label>Horario con asesores disponibles
+            <input name="horario" type="text" placeholder="Ej.: L–V 9:00–19:00, S 10:00–14:00" />
+          </label>
+          <label>Tiempo máximo para tomar un lead escalado
+            <select name="tiempo">
+              <option value="">Selecciona…</option>
+              <option>15 minutos</option>
+              <option>1 hora</option>
+              <option>Mismo día</option>
+              <option>Siguiente día hábil</option>
+            </select>
+          </label>
+        </div>
+        <label>Agenda de diagnósticos
+          <select name="agenda">
+            <option value="">Selecciona…</option>
+            <option>Sí, el agente agenda directo en el calendario del asesor</option>
+            <option>No, el asesor agenda después del traspaso</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><small>D23</small>Voz del agente</legend>
+        <div class="row2">
+          <label>Trato
+            <select name="trato">
+              <option value="">Selecciona…</option>
+              <option>Tuteo</option>
+              <option>Usted</option>
+              <option>Se adapta a como escriba el restaurante</option>
+            </select>
+          </label>
+          <label>Emojis
+            <select name="emojis">
+              <option value="">Selecciona…</option>
+              <option>Sí, con moderación</option>
+              <option>No</option>
+            </select>
+          </label>
+        </div>
+        <label>Nombre del asistente (opcional)
+          <span class="hint">Déjenlo vacío si prefieren que se presente solo como asistente virtual de IA HAZBOOM.</span>
+          <input name="nombre_asistente" type="text" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><small>C21</small>Comentarios</legend>
+        <label>Señales de escalamiento adicionales, dudas o cualquier cosa que debamos saber
+          <textarea name="comentarios" rows="4"></textarea>
+        </label>
+      </fieldset>
+
+      <button type="submit" class="form-submit">Enviar decisiones →</button>
+      <div class="form-status" id="req-status" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="alt rv">
+      <p>¿Prefieren verlo en llamada o enviar los materiales directo?</p>
+      <a class="wa-btn" href="https://wa.me/5213331672223?text=Hola%2C%20les%20escribo%20sobre%20los%20requerimientos%20del%20agente%20de%20IA%20HAZBOOM" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="mail" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <img class="closing-sentido-mark" src="/assets/logo-sentido-light.png" alt="Sentido" />
+    <div class="foot-meta">
+      Requerimientos · Agente de IA en WhatsApp · IA HAZBOOM<br>
+      Sentido Branding &amp; Advertising · Guadalajara<br>
+      <a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> · <a href="/ia-hazboom">Ver propuesta</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(function(a){ var t = document.querySelector(a.getAttribute('href')); if(t) spy.observe(t); });
+
+  var form = document.getElementById('req-form');
+  var statusEl = document.getElementById('req-status');
+  var btn = form.querySelector('.form-submit');
+  function v(n){ var el = form.elements[n]; return (el && el.value.trim()) || '—'; }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    var payload = {
+      Propuesta: form.propuesta.value,
+      Nombre: v('nombre'),
+      Email: v('email'),
+      'A03 · Número del agente': v('numero'),
+      'A03 · Usa app WhatsApp Business': v('app'),
+      'A02 · Verificado en Meta': v('verificado'),
+      'C17 · Lead calificado': v('calificado'),
+      'C18 · Estimación': v('estimacion'),
+      'C19 · Asignación': v('asignacion'),
+      'C20 · Horario humano': v('horario'),
+      'C20 · Tiempo de atención': v('tiempo'),
+      'C22 · Agenda': v('agenda'),
+      'D23 · Trato': v('trato'),
+      'D23 · Emojis': v('emojis'),
+      'D23 · Nombre del asistente': v('nombre_asistente'),
+      'C21 · Comentarios': v('comentarios'),
+      Fuente: location.pathname,
+      Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+    };
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    try{
+      var res = await fetch(form.dataset.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      if(!res.ok) throw new Error('Webhook ' + res.status);
+      statusEl.textContent = 'Recibido. Revisamos sus decisiones y les escribimos a ' + payload.Email + ' con los siguientes pasos.';
+      statusEl.classList.remove('error'); statusEl.classList.add('visible');
+      btn.textContent = '✓ Enviado';
+    }catch(err){
+      console.error(err);
+      statusEl.textContent = 'No se pudo enviar. Escríbannos a contacto@sentido.mx o por WhatsApp al +52 333 167 22 23.';
+      statusEl.classList.add('visible','error');
+      btn.disabled = false; btn.textContent = 'Enviar decisiones →';
+    }
+  });
+})();
+</script>
+</body>
+</html>

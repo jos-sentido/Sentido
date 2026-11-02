@@ -34,6 +34,17 @@
   .cartera { font-size: 0.9375rem; line-height: 2; color: var(--hueso-3); max-width: none; }
   .cartera em { color: var(--hueso); font-weight: var(--fuerte); }
 
+  /* El abanico de hover venía demasiado opaco y de trazo grueso:
+     se comía el texto de la fila. Mismo gesto, mucho más tenue. */
+  .renglon::after, .nota::after, .capa::after {
+    background-image: repeating-conic-gradient(
+      from 0deg at var(--foco-estado, -55% 50%),
+      var(--hueso) 0deg 0.035deg,
+      transparent 0.035deg var(--salto-estado, 0.34deg)
+    );
+  }
+  .renglon:hover::after, .nota:hover::after, .capa:hover::after { opacity: 0.085; }
+
   /* ── La carrera contra el reloj ── */
   .carrera { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(22px,2.8vw,36px); position:relative; overflow:hidden; }
   .carrera > * { position:relative; }
@@ -322,7 +333,7 @@
         <div class="tprecio tcol" data-l="Volumen">20,000–31,000<span class="tper">búsquedas / mes</span></div>
       </div>
     </div>
-    <p class="tnota">Rangos modelados a partir del comportamiento observable de Google en México y de nuestros históricos en sectores industriales comparables. No son lecturas literales del Planificador de Palabras Clave, cuyo acceso exige una cuenta con inversión activa: la primera semana de trabajo consiste en abrirla y sustituir estas estimaciones por datos duros. Preferimos un piso y un techo honestos a una cifra falsamente precisa.</p>
+    <p class="tnota">Rangos modelados a partir del comportamiento observable de Google en México y de nuestros históricos en sectores industriales comparables. No son lecturas literales del Planificador de Palabras Clave, cuyo acceso exige una cuenta con inversión activa: la primera semana de trabajo consiste en abrirla y sustituir estas estimaciones por datos duros. Preferimos un piso y un techo honestos a una cifra falsamente precisa. El análisis completo —término por término, con la arquitectura de campaña y los escenarios de inversión— está en el <a class="enlace-txt" href="/massatierra/google-ads">anexo de pauta</a>.</p>
   </div>
 </section>
 
@@ -351,8 +362,9 @@
           <p>Dos bloques con lógicas distintas. Uno de <strong>captura</strong>, que se puja a cobertura máxima sobre los términos que los levantamientos y los fabricantes dejan sembrados: ahí no se optimiza costo, se optimiza no perder ninguna. Otro de <strong>adquisición</strong>, que compra volumen al mejor costo en el resto del mercado y se mide por costo por oportunidad.</p>
           <div class="sub-pauta">
             <span class="rotulo">+ Pauta Google</span>
-            <p>Gestión incluida en el acuerdo · la inversión publicitaria se paga directo a la plataforma</p>
+            <p>Gestión incluida en el acuerdo · la inversión publicitaria la paga Massatierra directo a la plataforma</p>
           </div>
+          <p style="margin-top:14px"><a class="enlace" href="/massatierra/google-ads">Ver el plan de pauta completo →</a></p>
         </div>
         <div class="ver">Captación</div>
       </article>
@@ -585,64 +597,70 @@
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Google Ads</div>
         <p class="tcol" data-l="Qué cubre">Estructura de campañas, optimización semanal y reporte mensual</p>
-        <div class="tprecio tcol" data-l="Iguala">$4,500<span class="tper">MXN / mes</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$5,200<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">CRM y automatización</div>
         <p class="tcol" data-l="Qué cubre">Pipeline, captura y asignación de oportunidades, seguimiento automatizado</p>
-        <div class="tprecio tcol" data-l="Iguala">$4,000<span class="tper">MXN / mes</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$4,600<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Redes sociales</div>
         <p class="tcol" data-l="Qué cubre">Producción y publicación de contenido con mezcla de formatos</p>
-        <div class="tprecio tcol" data-l="Iguala">$7,500<span class="tper">MXN / mes</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$8,600<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Perfil de Negocio de Google</div>
         <p class="tcol" data-l="Qué cubre">Alta, verificación, contenido mensual y posicionamiento local</p>
-        <div class="tprecio tcol" data-l="Iguala">$2,500<span class="tper">MXN / mes</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$2,900<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Administración del sitio</div>
         <p class="tcol" data-l="Qué cubre">Actualizaciones, contenido nuevo, analítica y mantenimiento</p>
-        <div class="tprecio tcol" data-l="Iguala">$3,500<span class="tper">MXN / mes</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$4,000<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Carga fija mensual<span class="fnota">Suma de las cinco igualas</span></div>
         <p class="tcol" data-l="Qué cubre">Lo que costaría sostener cada mes la operación de marketing y CRM contratada pieza por pieza</p>
-        <div class="tprecio tcol" data-l="Iguala">$22,000<span class="tper">MXN / mes</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$25,300<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Renovación del sitio<span class="fnota">Inversión única</span></div>
         <p class="tcol" data-l="Qué cubre">Fuera de la plataforma de 2017, con medición, SEO técnico y las páginas de campaña incluidas</p>
-        <div class="tprecio tcol" data-l="Iguala">$20,000<span class="tper">MXN · una vez</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$23,000<span class="tper">MXN · una vez</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Cotizador y tablero<span class="fnota">Inversión única · desarrollo a la medida</span></div>
         <p class="tcol" data-l="Qué cubre">El cotizador sistematizado y el tablero de dirección en tiempo real. Pueden verse funcionando: <a class="enlace-txt" href="/massatierra/cotizador">cotizador</a> · <a class="enlace-txt" href="/massatierra/tablero">tablero</a></p>
-        <div class="tprecio tcol" data-l="Iguala">$35,000<span class="tper">MXN · una vez</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$40,000<span class="tper">MXN · una vez</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Lo que costaría el primer año<span class="fnota">Igualas doce meses + desarrollos</span></div>
         <p class="tcol" data-l="Qué cubre">Sin contar el canal de distribuidores ni la inversión publicitaria</p>
-        <div class="tprecio tcol" data-l="Iguala">$319,000<span class="tper">MXN · año uno</span></div>
+        <div class="tprecio tcol" data-l="Iguala">$366,600<span class="tper">MXN · año uno</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Servicio">Inversión publicitaria<span class="fnota">A cargo de Massatierra · también bajo el acuerdo</span></div>
+        <p class="tcol" data-l="Qué cubre">Es el único costo que la empresa sigue pagando aparte, porque no es honorario: es el dinero que compra la aparición en Google y Meta, y se paga directo a cada plataforma desde cuentas a nombre de Massatierra. El plan completo está en el <a class="enlace-txt" href="/massatierra/google-ads">anexo de pauta</a>.</p>
+        <div class="tprecio tcol" data-l="Iguala">$15,000<span class="tper">MXN / mes · recomendado</span></div>
       </div>
       <div class="tfila total">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Bajo este acuerdo</div>
-        <p class="tcol" data-l="Qué cubre">Todo lo anterior operando, más el canal de distribuidores y la comercialización completa. Sin iguala, sin los $55,000 de desarrollo, sin licencias de software a cargo de la empresa, sin nómina adicional.</p>
+        <p class="tcol" data-l="Qué cubre">Todo lo anterior operando, más el canal de distribuidores y la comercialización completa. Sin iguala, sin los $63,000 de desarrollo, sin licencias de software a cargo de la empresa, sin nómina adicional.</p>
         <div class="tprecio tcol" data-l="Iguala">15%<span class="tper">sobre ventas</span></div>
       </div>
     </div>
-    <p class="tnota">La inversión publicitaria en Google y Meta se paga directo a cada plataforma, desde cuentas a nombre de Massatierra. Las cuentas, los datos y las herramientas son de la empresa, siempre. IVA según aplique.</p>
+    <p class="tnota">La comisión del 15% se calcula sobre la venta, no sobre la inversión publicitaria. Las cuentas, los datos y las herramientas son de la empresa, siempre. IVA según aplique. Las igualas de la columna derecha son valor de referencia de mercado: bajo este acuerdo no se cobran.</p>
 
     <div class="cols cols-2" style="margin-top:clamp(50px,6vw,78px)">
       <div>
@@ -711,31 +729,11 @@
       <span class="buril buril--iris" aria-hidden="true"></span>
       <h2>La empresa ya está hecha. Falta encenderla.</h2>
       <p>Veinticinco años de ingeniería y quince mil proyectos no deberían depender de que alguien ya conozca el nombre. Díganos por dónde quieren empezar y lo aterrizamos.</p>
-      <form class="forma" id="lead" style="margin-top:32px" action="/api/lead" method="POST">
-        <input type="hidden" name="Propuesta" value="massatierra" />
-        <input type="hidden" name="Fuente" value="propuestas.sentido.mx/massatierra" />
-        <div class="rej-forma">
-          <div class="campo"><label class="etiq" for="nombre">Nombre <span class="req">*</span></label><input class="ent" id="nombre" name="Nombre" type="text" required /></div>
-          <div class="campo"><label class="etiq" for="empresa">Cargo</label><input class="ent" id="empresa" name="Cargo" type="text" /></div>
-          <div class="campo"><label class="etiq" for="correo">Correo <span class="req">*</span></label><input class="ent" id="correo" name="Email" type="email" required /></div>
-          <div class="campo"><label class="etiq" for="tel">WhatsApp</label><input class="ent" id="tel" name="WhatsApp" type="tel" /></div>
-          <div class="campo ancho"><label class="etiq" for="paso">Siguiente paso</label>
-            <select class="sel" id="paso" name="Siguiente paso">
-              <option value="">Selecciona una opción</option>
-              <option>Avancemos, agendemos arranque</option>
-              <option>Quiero revisar el modelo de comisión</option>
-              <option>Tengo preguntas antes de decidir</option>
-              <option>Me interesa, pero necesito más tiempo</option>
-            </select>
-          </div>
-          <div class="campo ancho"><label class="etiq" for="msg">Mensaje</label><textarea class="area" id="msg" name="Mensaje"></textarea></div>
-          <div class="estado" id="estado" role="status" aria-live="polite"></div>
-        </div>
-        <div class="pie-forma">
-          <p class="chico apagado">O escríbenos directo por <a class="enlace-txt" href="https://wa.me/5213331672223">WhatsApp</a>.</p>
-          <button class="boton" type="submit">Enviar <span class="fl">→</span></button>
-        </div>
-      </form>
+      <div class="acciones" style="margin-top:36px">
+        <a class="boton" href="https://wa.me/5213331672223?text=Hola%2C%20vi%20la%20propuesta%20de%20Sentido%20para%20Massatierra%20y%20quiero%20platicarla." target="_blank" rel="noopener">Escribir por WhatsApp <span class="fl">→</span></a>
+        <a class="enlace" href="mailto:contacto@sentido.mx?subject=Propuesta%20Massatierra">O por correo</a>
+      </div>
+      <p class="chico apagado" style="margin-top:26px;max-width:58ch">Un mensaje basta. Si prefiere, agendamos una sesión de cuarenta minutos para recorrer el modelo con números de su operación en la mano.</p>
     </div>
   </div>
 </section>
@@ -771,33 +769,16 @@
 
 <script>
 (function () {
-  var f = document.getElementById('lead'), e = document.getElementById('estado');
-  if (!f) return;
-  f.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    if (!f.checkValidity()) { f.reportValidity(); return; }
-    var b = f.querySelector('button[type=submit]');
-    b.disabled = true; b.textContent = 'Enviando…';
-    e.className = 'estado visible'; e.textContent = 'Enviando…';
-    var d = {}; new FormData(f).forEach(function (v, k) { d[k] = v; });
-    fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
-      .then(function (r) { if (!r.ok) throw 0; f.reset(); b.textContent = 'Enviado';
-        e.className = 'estado visible'; e.textContent = 'Listo. Te contactamos personalmente en menos de 24 horas hábiles.'; })
-      .catch(function () { b.disabled = false; b.innerHTML = 'Enviar <span class="fl">→</span>';
-        e.className = 'estado visible error';
-        e.innerHTML = 'No se pudo enviar. Escríbenos a <a class="enlace-txt" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a> o por <a class="enlace-txt" href="https://wa.me/5213331672223">WhatsApp</a>.'; });
-  });
-})();
-</script>
-
-<script>
-(function () {
   var hoy = document.getElementById('avHoy'), sis = document.getElementById('avSis');
   function correr() {
     hoy.classList.remove('corriendo'); sis.classList.remove('corriendo');
+    // El reset debe ser instantáneo: si se deja la transición activa, volver a 0
+    // se anima durante 2.6s y el nuevo avance arranca desde donde ya estaba.
+    hoy.style.transition = 'none'; sis.style.transition = 'none';
     hoy.style.width = '0'; sis.style.width = '0';
-    void hoy.offsetWidth;
+    void hoy.offsetWidth; void sis.offsetWidth;
     requestAnimationFrame(function () {
+      hoy.style.transition = ''; sis.style.transition = '';
       hoy.style.width = '100%'; sis.style.width = '4.8%';
       hoy.classList.add('corriendo'); sis.classList.add('corriendo');
     });
