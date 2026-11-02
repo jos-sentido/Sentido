@@ -149,6 +149,9 @@ no las gestiona a mano. **Antes de crear o ajustar cualquier propuesta, sigue la
   en `proposals.json` (el panel lo muestra como «Asana →» y lo conserva al guardar).
 - **Ajustes:** leer notas + comentarios de la tarea (recursos, reuniones) como insumo; al
   terminar, comentar *Solicitado / Aplicado / Pendiente* con la versión vigente.
+- **Automático con ventas:** cada hora una tarea programada lee las solicitudes que crea
+  ventas (tarea del vendedor → subtarea para Jos) y las palabras clave `lpc` / `pac`.
+  Ver la sección «Flujo automático» de la skill.
 
 La misma skill vive en `jos-sentido/sentido-core` (con memoria por propuesta en
 `propuestas/{slug}.yaml`, doc 16). Si cambias una, copia el cambio a la otra.

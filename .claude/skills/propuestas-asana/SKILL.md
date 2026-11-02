@@ -105,6 +105,29 @@ Tres capas; se usa la que esté disponible y se escriben **todas** las que esté
 6. Lo que Jos cuente en el chat (reunión, recurso) y no esté en Asana → asentarlo también como
    comentario (`🗓 Notas de reunión` / `📎 Recurso`) para que la tarea sea la fuente.
 
+## Flujo automático con el equipo de ventas (ronda cada hora)
+
+Una tarea programada en la nube corre cada hora (L–V) y sigue
+`sentido-core/agentes/propuestas/ronda-horaria.md`. Estructura que usa ventas:
+
+```
+Madre del mes → Tarea del VENDEDOR (asignada a él: prospecto + lo que platicaron)
+                  └─ Subtarea para JOS (asignada a Jos: aquí va el borrador y la revisión)
+```
+
+Palabras clave (en comentarios, como palabra suelta):
+
+| Palabra | Quién | Qué hace el agente |
+|---|---|---|
+| *(nueva subtarea para Jos)* | vendedor | arma el borrador v1, lo publica y lo comenta en la subtarea de Jos |
+| **`lpc`** — Lista Para Compartir | solo Jos | avisa al vendedor en su tarea (mención) que la vN está aprobada |
+| **`pac`** — Producir Ajustes Cliente | vendedor o Jos | produce la vN+1 con lo pedido y la deja en revisión con Jos |
+
+Ciclo: nueva → borrador v1 → `lpc` → `pac` → ajustes v2 → `lpc` → … Cada comentario del agente
+termina con `— agente de propuestas · <tipo> v<n> · ref <gid>`: es la memoria de la ronda,
+**no borrar ni editar esas firmas**. Cuando Jos trabaja ajustes en vivo (en una sesión), no hace
+falta `pac`; al terminar basta con escribir `lpc` en su subtarea para que se avise al vendedor.
+
 ## Reglas
 
 - **Nunca duplicar**: si hay memoria o una tarea que coincide, se usa esa.
