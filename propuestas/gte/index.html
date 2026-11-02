@@ -102,6 +102,16 @@
   .incluye li { line-height: 1.45; }
   .alcance { margin-top: 16px; font-size: 0.875rem; line-height: 1.55; color: var(--hueso-3); }
   @media (max-width: 700px) { .incluye { grid-template-columns: minmax(0, 1fr); } }
+  /* Hoja de ruta: cuatro cajas con ícono en rombo */
+  .etapas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 22px); }
+  .etapa { background: var(--tinta-2); border: 1px solid var(--linea); padding: clamp(26px, 3.2vw, 40px); }
+  .etapa-ico { display: grid; place-items: center; width: 44px; height: 44px; margin: 8px 8px 26px; background: var(--acento-fill); color: var(--marca-ink); transform: rotate(45deg); }
+  .etapa-ico svg { width: 24px; height: 24px; transform: rotate(-45deg); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .etapa .rotulo { display: block; margin-bottom: 10px; color: var(--acento); }
+  .etapa h3 { margin-bottom: 10px; }
+  .etapa p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.65; }
+  @media (max-width: 760px) { .etapas { grid-template-columns: minmax(0, 1fr); } }
+
   /* Hover de renglones: líneas finas y transparentes, el texto siempre manda */
   .renglon::after { background-image: repeating-conic-gradient(from 0deg at var(--foco-estado, -55% 50%), var(--hueso) 0deg 0.03deg, transparent 0.03deg var(--salto-estado, 0.3deg)); }
   .renglon:hover::after { opacity: 0.1; }
@@ -488,39 +498,31 @@
       <h2>Hoja de ruta.</h2>
       <p>Plazos de referencia, que se confirman al cerrar la Fase 0.</p>
     </div>
-    <div class="pasos">
-      <div class="paso">
-        <div class="paso-n">0</div>
-        <div>
-          <h3 class="paso-t">Claridad</h3>
-          <p>Arranca revisando la cuenta de Google Ads y lo invertido. Después ordena la medición del sitio, habilita llamada y WhatsApp desde el celular y define qué piezas a medida valen la pena.</p>
-          <span class="rotulo">Semanas 1 a 3</span>
-        </div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">1</div>
-        <div>
-          <h3 class="paso-t">Captación</h3>
-          <p>Fichas y páginas clave en orden, solicitud de maniobra, campañas por línea de negocio y redes con maniobras reales.</p>
-          <span class="rotulo">Meses 2 a 3</span>
-        </div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">2</div>
-        <div>
-          <h3 class="paso-t">Sistema comercial</h3>
-          <p>CRM en operación con tu equipo, seguimiento activo y lectura semanal para dirección.</p>
-          <span class="rotulo">Meses 2 a 4</span>
-        </div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">3</div>
-        <div>
-          <h3 class="paso-t">Ventaja</h3>
-          <p>Preselector de grúa, paquete técnico descargable y casos por sector, según lo confirmado en la Fase 0.</p>
-          <span class="rotulo">Mes 5 en adelante</span>
-        </div>
-      </div>
+    <div class="etapas">
+      <article class="etapa">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v9"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></svg></span>
+        <span class="rotulo">Fase 0 · Semanas 1 a 3</span>
+        <h3>Claridad</h3>
+        <p>Arranca revisando la cuenta de Google Ads y lo invertido. Después ordena la medición del sitio, habilita llamada y WhatsApp desde el celular y define qué piezas a medida valen la pena.</p>
+      </article>
+      <article class="etapa">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
+        <span class="rotulo">Fase 1 · Meses 2 a 3</span>
+        <h3>Captación</h3>
+        <p>Fichas y páginas clave en orden, solicitud de maniobra, campañas por línea de negocio y redes con maniobras reales.</p>
+      </article>
+      <article class="etapa">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M10.8 7.2 6.2 16.8"/><path d="M13.2 7.2l4.6 9.6"/><path d="M7.5 19h9"/></svg></span>
+        <span class="rotulo">Fase 2 · Meses 2 a 4</span>
+        <h3>Sistema comercial</h3>
+        <p>CRM en operación con tu equipo, seguimiento activo y lectura semanal para dirección.</p>
+      </article>
+      <article class="etapa">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+        <span class="rotulo">Fase 3 · Mes 5 en adelante</span>
+        <h3>Ventaja</h3>
+        <p>Preselector de grúa, paquete técnico descargable y casos por sector, según lo confirmado en la Fase 0.</p>
+      </article>
     </div>
   </div>
 </section>
