@@ -102,6 +102,12 @@
   .incluye li { line-height: 1.45; }
   .alcance { margin-top: 16px; font-size: 0.875rem; line-height: 1.55; color: var(--hueso-3); }
   @media (max-width: 700px) { .incluye { grid-template-columns: minmax(0, 1fr); } }
+  /* Hover de renglones: líneas finas y transparentes, el texto siempre manda */
+  .renglon::after { background-image: repeating-conic-gradient(from 0deg at var(--foco-estado, -55% 50%), var(--hueso) 0deg 0.03deg, transparent 0.03deg var(--salto-estado, 0.3deg)); }
+  .renglon:hover::after { opacity: 0.1; }
+  .tfila .buril { --peso: 0.4px; }
+  .tfila:hover .buril { --tono: 0.06; }
+
   /* La plancha del servicio lleva etiquetas de varias palabras */
   .renglon { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 132px; }
   @media (max-width: 900px) { .renglon { grid-template-columns: minmax(0, 1fr); } }
