@@ -152,6 +152,7 @@
     .card-seg.urgent { color: #E0A79C; }
     .btn-ghost { padding: 6px 10px; background: none; border: 1px solid var(--border2); cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: border-color .12s, color .12s; }
     .btn-ghost:hover { border-color: var(--acento-dim); color: var(--text); }
+    .btn-asana { text-decoration: none; display: inline-block; }
 
     /* status — propuestas */
     .s-nueva       { background: var(--s-nueva);       color: var(--s-nueva-t); }
@@ -767,8 +768,15 @@ function cardHTML(p) {
   return `<div class="card" data-slug="${esc(p.slug)}">
     <div class="card-head"><div class="card-badges"><span class="card-status ${statusCls(p.estatus)}">${statusLabel(p.estatus)}</span>${trabajoHtml}</div><span class="card-date">${fmtDate(p.fecha)}</span></div>
     <div class="card-body"><p class="card-client">${esc(p.cliente)}</p><div class="card-services">${tagsHtml}</div>${valorHtml}${potencialHtml}${nextHtml}</div>
-    <div class="card-foot">${seg}<button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
+    <div class="card-foot">${seg}${asanaBtn(p)}<button class="btn-ghost btn-link">Ver →</button><button class="btn-ghost btn-edit">Editar</button></div>
   </div>`;
+}
+
+// Enlace a la tarea de seguimiento en Asana (proposals.json → asana.tarea_gid).
+function asanaBtn(p) {
+  const gid = p.asana?.tarea_gid;
+  if (!/^\d+$/.test(gid || '')) return '';
+  return `<a class="btn-ghost btn-asana" href="https://app.asana.com/0/0/${gid}" target="_blank" rel="noopener">Asana →</a>`;
 }
 
 function cardComercialHTML(p) {
@@ -1052,6 +1060,8 @@ async function saveDrawer() {
 
   const updated = {
     slug, tipo, cliente,
+    // Vínculo con la tarea de Asana: lo escribe el agente de propuestas, el panel solo lo conserva.
+    ...(existente?.asana ? { asana: existente.asana } : {}),
     fecha:   document.getElementById('f-fecha').value || null,
     estatus,
     ...(isCom ? {

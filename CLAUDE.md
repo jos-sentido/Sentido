@@ -134,6 +134,27 @@ transparente y desaparece en la pestaña). Toda pieza declara:
 
 ---
 
+## Seguimiento en Asana (obligatorio en toda propuesta)
+
+Cada propuesta tiene **una tarea en Asana** que el agente crea, encuentra y alimenta; Jos
+no las gestiona a mano. **Antes de crear o ajustar cualquier propuesta, sigue la skill
+[`propuestas-asana`](.claude/skills/propuestas-asana/SKILL.md).** Resumen:
+
+- Dónde: Sentido ⚡️ → 📑 PROPUESTAS → madre `Sentido - Propuestas {Mmm} {AAAA}` →
+  subtarea `Sentido - Propuesta {Prospecto}`.
+- **Antes de empezar:** ¿ya tiene tarea? `proposals.json` (`asana.tarea_gid`) → búsqueda en
+  Asana por `propuestas.sentido.mx/{slug}` → subtareas de las madres. Nunca duplicar.
+- **Prospecto nuevo:** crear la tarea (y la madre del mes si falta) con el contexto en notas.
+- **Publicada:** comentar el enlace en la tarea y registrar `"asana": {"tarea_gid", "madre_gid"}`
+  en `proposals.json` (el panel lo muestra como «Asana →» y lo conserva al guardar).
+- **Ajustes:** leer notas + comentarios de la tarea (recursos, reuniones) como insumo; al
+  terminar, comentar *Solicitado / Aplicado / Pendiente* con la versión vigente.
+
+La misma skill vive en `jos-sentido/sentido-core` (con memoria por propuesta en
+`propuestas/{slug}.yaml`, doc 16). Si cambias una, copia el cambio a la otra.
+
+---
+
 ## Cómo trabajar cada parte
 
 ### Una propuesta nueva

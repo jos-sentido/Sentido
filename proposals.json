@@ -20,7 +20,11 @@
       "notas": "Cliente activo desde hace tiempo; cambió de administración (Alexis la representa). Documento de orden: cómo trabajamos, paquete, ciclo mensual, qué necesitamos del hotel + reporte Metricool 1 ene–15 oct 2026. Calendario de octubre pausado por la transición y reactivado: publica aprox. lunes 19 oct. Tarifa vigente: $4,500 + IVA/mes.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1219459596376277",
+        "madre_gid": "1219459596376273"
+      }
     },
     {
       "slug": "rootsy",
@@ -67,7 +71,11 @@
           "de": "",
           "a": "produccion"
         }
-      ]
+      ],
+      "asana": {
+        "tarea_gid": "1218837010077977",
+        "madre_gid": "1218016095653717"
+      }
     },
     {
       "slug": "workspace-modular-gdl",
@@ -240,7 +248,11 @@
           "de": "",
           "a": "ajustes"
         }
-      ]
+      ],
+      "asana": {
+        "tarea_gid": "1218154036395615",
+        "madre_gid": "1218016095653717"
+      }
     },
     {
       "slug": "massatierra",
@@ -397,7 +409,11 @@
           "notas": "presentada en meet, quedo en seguimeinto mel",
           "creadoEn": "2026-08-21T17:47:45.339Z"
         }
-      ]
+      ],
+      "asana": {
+        "tarea_gid": "1217472096321793",
+        "madre_gid": "1217165176467717"
+      }
     },
     {
       "slug": "grupo-louva",
@@ -509,7 +525,11 @@
           "notas": "se esta dando seguimeinto, gran potencial de cierre, quedaron de mandar info mas real de estatus de cada negocio para adaptar detalles de la propuesta",
           "creadoEn": "2026-08-21T17:48:28.076Z"
         }
-      ]
+      ],
+      "asana": {
+        "tarea_gid": "1217559295044837",
+        "madre_gid": "1217165176467717"
+      }
     },
     {
       "slug": "remax-cabo-sanctuary",
@@ -559,7 +579,11 @@
       "notas": "Prospecto franquicia RE/MAX de lujo en Los Cabos. Lectura: mercado de comprador (inventario 1,100->2,500+ listings), gana quien capta y da seguimiento, no quien tiene mejor propiedad. Combo recomendado: subtotal recurrente $22,425/mes, -10% sistema integral = $20,182.50/mes + IVA + IVA (Redes+Meta / Google Ads / CRM, con Gestión de sitio $4,600 y GBP incluido; -10% solo si se contrata el sistema recurrente completo, aplica solo al honorario, no a pauta/mensajeria/rediseno/audiovisual) + sitio desde $20,000 + audiovisual por proyecto. Pauta separada: Meta y Google $5,000-15,000/mes c/u directo a plataforma. Cierre: form + WhatsApp de Jos.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1217287008318040",
+        "madre_gid": "1217165176467717"
+      }
     },
     {
       "slug": "belleza-a-domicilio",
@@ -653,7 +677,11 @@
       "notas": "Contacto: Regina Yañez Ochoa. Ya hubo reunión de primer acercamiento. Foco central = migración a Shopify ($20k unico). Módulo 2 = estrategia + pauta Meta/Google ($8k/mes gestión, pauta directa a plataformas aparte). NO ofrecer contenido/diseño de redes: lo maneja el equipo interno. Arranque recomendado: Módulo 1 + Módulo 2 en paralelo. 58K seguidores en IG, showroom con cita en Guadalajara.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1217165176467719",
+        "madre_gid": "1217165176467717"
+      }
     },
     {
       "slug": "reel-yacht",
@@ -706,7 +734,11 @@
           "notas": "van a confirmar si tambien activamos mkt digital",
           "creadoEn": "2026-08-07T23:31:16.242Z"
         }
-      ]
+      ],
+      "asana": {
+        "tarea_gid": "1217165176467721",
+        "madre_gid": "1217165176467717"
+      }
     },
     {
       "slug": "webrentadepasdanitellez",
@@ -728,7 +760,11 @@
       "notas": "Prospecto: Dani Tellez. Proyecto solo desarrollo web (plataforma de rentas para edificio de departamentos en Los Cabos, BCS). Inversión total $30,000 MXN + IVA, sin marketing/pauta. Esperando respuesta vía formulario.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1216938710682912",
+        "madre_gid": "1216938710682910"
+      }
     },
     {
       "slug": "murotech-plan-contenido",
@@ -838,7 +874,11 @@
       "notas": "Plan integral lo restante del año. Diferenciador: ecosistema de seminuevos premium (Ferrari + Lamborghini + McLaren + Maserati). Plan recomendado $18,000/mes + IVA (dentro de rango $15K-$25K). Pauta Meta+Google directa a plataforma, aparte. Contacto: Santi Evva.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1215937625434224",
+        "madre_gid": "1215937625434222"
+      }
     },
     {
       "slug": "agua-costa-rica-vallarta",
@@ -957,7 +997,11 @@
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1214944447092936",
+        "madre_gid": "1214944447092906"
+      }
     },
     {
       "slug": "desarrolladores",
@@ -1068,7 +1112,11 @@
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1214944447092908",
+        "madre_gid": "1214944447092906"
+      }
     },
     {
       "slug": "inmobiliarias",
@@ -1102,7 +1150,11 @@
       "notas": "",
       "proximoPaso": "",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1208312154167181",
+        "madre_gid": "1214944447092906"
+      }
     },
     {
       "slug": "manufaktura",
