@@ -36,13 +36,13 @@
         {
           "id": "foto",
           "nombre": "Sesión fotográfica",
-          "precio": 3000,
+          "precio": 0,
           "tipo": "unico"
         },
         {
           "id": "video",
           "nombre": "Sesión de video",
-          "precio": 5500,
+          "precio": 0,
           "tipo": "unico"
         }
       ],
