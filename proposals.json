@@ -34,8 +34,14 @@
           "tipo": "mensual"
         },
         {
+          "id": "blog",
+          "nombre": "Blog (3 entradas mensuales con SEO)",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
           "id": "sitio",
-          "nombre": "Sitio web: evolución base con solicitud de maniobra",
+          "nombre": "Sitio web: rediseño con SEO y solicitud de maniobra",
           "precio": 20000,
           "tipo": "unico"
         },
@@ -53,7 +59,7 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Contacto tibio, lo atiende Rodrigo (CTA a su WhatsApp). Base $19,000/mes incluye Fase 0 + sitio $20,000. Dashboard y herramientas a medida por definir tras Fase 0. Google no muestra anuncios del 28 jul al 2 nov 2026; confirmar estado de la cuenta.",
+      "notas": "Contacto tibio, lo atiende Rodrigo (CTA a su WhatsApp). Base $22,500/mes incluye Fase 0 + sitio $20,000. Dashboard y herramientas a medida por definir tras Fase 0. Google no muestra anuncios del 28 jul al 2 nov 2026; confirmar estado de la cuenta.",
       "proximoPaso": "Esperando respuesta vía WhatsApp",
       "fechaSeguimiento": null,
       "bitacora": [],
