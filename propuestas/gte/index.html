@@ -37,9 +37,53 @@
   @media (max-width: 700px) { .dolor { grid-template-columns: 1fr; gap: 28px; } }
 
   .cuerpo + .cuerpo { margin-top: 18px; }
-  .cita-dato { margin: 0 0 clamp(24px, 3vw, 34px); padding-left: clamp(16px, 2vw, 24px); border-left: 3px solid var(--marca); max-width: 68ch; }
-  .cita-dato p { font-size: clamp(1.25rem, 2.4vw, 1.625rem); line-height: 1.3; font-weight: 600; }
+  /* El momento: cifra grande y una maniobra leída por cuatro miradas */
+  .momento-alto { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: end; margin-bottom: clamp(34px, 4.6vw, 60px); }
+  .cita-dato { margin: 0; padding-left: clamp(16px, 2vw, 24px); border-left: 3px solid var(--marca); }
+  .cita-dato .cifra { display: block; font-weight: var(--negra); font-size: clamp(3.5rem, 8vw, 6.25rem); line-height: 0.95; letter-spacing: -0.04em; color: var(--acento); margin-bottom: 14px; }
+  .cita-dato .cifra small { font-size: 0.42em; letter-spacing: -0.02em; }
+  .cita-dato p { font-size: 1.0625rem; line-height: 1.5; font-weight: 600; }
   .cita-dato cite { display: block; margin-top: 12px; font-size: 0.875rem; font-style: normal; }
+  .miradas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(38px, 5vw, 64px); border-top: 1px solid var(--linea); }
+  .mirada { position: relative; padding: 30px clamp(16px, 2vw, 26px) 4px; border-left: 1px solid var(--linea); }
+  .mirada:first-child { padding-left: 0; border-left: 0; }
+  .mirada::before { content: ''; position: absolute; top: -6px; left: -6px; width: 11px; height: 11px; background: var(--acento-fill); transform: rotate(45deg); }
+  .mirada:first-child::before { left: 0; }
+  .mirada .rotulo { display: block; min-height: 2.6em; margin-bottom: 18px; color: var(--acento); }
+  .mirada h3 { font-size: clamp(1.625rem, 2.5vw, 2.25rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: var(--negra); margin-bottom: 12px; overflow-wrap: anywhere; }
+  .mirada p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.6; }
+  @media (max-width: 900px) {
+    .momento-alto { grid-template-columns: minmax(0, 1fr); align-items: start; }
+    .miradas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mirada:nth-child(3) { padding-left: 0; border-left: 0; }
+    .mirada:nth-child(3)::before { left: 0; }
+    .mirada:nth-child(n+3) { border-top: 1px solid var(--linea); margin-top: 30px; }
+  }
+  @media (max-width: 560px) {
+    .miradas { grid-template-columns: minmax(0, 1fr); }
+    .mirada { padding-left: 0; border-left: 0; }
+    .mirada::before { left: 0; }
+    .mirada:nth-child(n+2) { border-top: 1px solid var(--linea); margin-top: 28px; }
+    .mirada .rotulo { min-height: 0; }
+  }
+  /* El recorrido: una sola línea, de la búsqueda a la venta */
+  .recorrido { list-style: none; position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 2vw, 30px); margin-top: clamp(32px, 4vw, 52px); }
+  .recorrido::before { content: ''; position: absolute; left: 0; right: 0; top: 34px; height: 2px; background: var(--acento-fill); }
+  .recorrido li { position: relative; padding-top: 62px; }
+  .recorrido li::before { content: ''; position: absolute; left: 0; top: 29px; width: 12px; height: 12px; background: var(--acento-fill); transform: rotate(45deg); }
+  .recorrido li:last-child::before { top: 25px; width: 20px; height: 20px; }
+  .recorrido .rotulo { position: absolute; top: 0; left: 0; }
+  .recorrido h3 { font-size: clamp(1.125rem, 1.6vw, 1.4375rem); letter-spacing: -0.025em; margin-bottom: 8px; overflow-wrap: anywhere; }
+  .recorrido p { font-size: 0.9375rem; line-height: 1.5; color: var(--hueso-3); }
+  @media (max-width: 860px) {
+    .recorrido { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .recorrido::before { left: 5px; right: auto; top: 8px; bottom: 34px; width: 2px; height: auto; }
+    .recorrido li { padding: 0 0 26px 36px; }
+    .recorrido li:last-child { padding-bottom: 0; }
+    .recorrido li::before { top: 4px; }
+    .recorrido li:last-child::before { left: -4px; top: 2px; }
+    .recorrido .rotulo { position: static; display: block; margin-bottom: 6px; }
+  }
   /* El ángulo: momento destacado, centrado, sobre el mismo arco del pie */
   .seccion--angulo { text-align: center; }
   .seccion--angulo .buril { --foco: 50% 210%; --rx: 260%; --ry: 170%; --paso: 6px; --tono: 0.24; --trazo: var(--acento-trazo); -webkit-mask-image: radial-gradient(ellipse 62% 78% at 50% 50%, rgba(0,0,0,0.3) 30%, #000 100%); mask-image: radial-gradient(ellipse 62% 78% at 50% 50%, rgba(0,0,0,0.3) 30%, #000 100%); }
@@ -52,6 +96,12 @@
   .sub-bloque > .cuerpo { margin-bottom: 8px; }
   .sub-bloque .lista { margin-top: 20px; }
 
+  /* Servicios: alcance oficial de cada capa */
+  .renglon .rotulo { display: block; margin-bottom: 12px; }
+  .incluye { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 26px; }
+  .incluye li { line-height: 1.45; }
+  .alcance { margin-top: 16px; font-size: 0.875rem; line-height: 1.55; color: var(--hueso-3); }
+  @media (max-width: 700px) { .incluye { grid-template-columns: minmax(0, 1fr); } }
   /* La plancha del servicio lleva etiquetas de varias palabras */
   .renglon { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 132px; }
   @media (max-width: 900px) { .renglon { grid-template-columns: minmax(0, 1fr); } }
@@ -121,35 +171,37 @@
 <!-- ══════════ EL MOMENTO ══════════ -->
 <section class="seccion" id="momento">
   <div class="wrap">
-    <div class="cabeza">
-      <span class="pleca"></span>
-      <h2>Occidente sigue construyendo, y la decisión pasa por varias manos.</h2>
-    </div>
-    <blockquote class="cita-dato">
-      <p>Jalisco proyecta 625 millones de dólares para expandir su infraestructura industrial.</p>
-      <cite>Fuente: <a class="enlace-txt" href="https://clusterindustrial.com.mx/jalisco-proyecta-inversion-de-625-mdd-para-expandir-su-infraestructura-industrial/" target="_blank" rel="noopener">Cluster Industrial</a></cite>
-    </blockquote>
-    <p class="cuerpo">Es una proyección, y cada proyecto nuevo trae maniobras que alguien tendrá que cotizar.</p>
-    <p class="cuerpo">La contratación suele ser técnica: las empresas grandes piden visita previa al sitio, plan de izaje y supervisor de seguridad. De ahí esperamos cuatro miradas, que confirmaremos con tu equipo:</p>
-    <div class="dolor" style="margin-top:clamp(30px,4vw,44px)">
+    <div class="momento-alto">
       <div>
+        <span class="pleca"></span>
+        <h2>Occidente sigue construyendo, y la decisión pasa por varias manos.</h2>
+      </div>
+      <blockquote class="cita-dato">
+        <span class="cifra">625 <small>mdd</small></span>
+        <p>Jalisco proyecta 625 millones de dólares para expandir su infraestructura industrial.</p>
+        <cite>Fuente: <a class="enlace-txt" href="https://clusterindustrial.com.mx/jalisco-proyecta-inversion-de-625-mdd-para-expandir-su-infraestructura-industrial/" target="_blank" rel="noopener">Cluster Industrial</a></cite>
+      </blockquote>
+    </div>
+    <p class="cuerpo">Es una proyección, y cada proyecto nuevo trae maniobras que alguien tendrá que cotizar. La contratación suele ser técnica: las empresas grandes piden visita previa al sitio, plan de izaje y supervisor de seguridad. De ahí esperamos cuatro miradas sobre una misma maniobra, que confirmaremos con tu equipo:</p>
+    <div class="miradas">
+      <div class="mirada">
         <span class="rotulo">Residente de obra</span>
-        <h3>Necesita certeza rápida</h3>
+        <h3>Certeza</h3>
         <p>Disponibilidad, fecha y una persona que atienda.</p>
       </div>
-      <div>
+      <div class="mirada">
         <span class="rotulo">Ingeniería de maniobras</span>
-        <h3>Necesita datos</h3>
+        <h3>Datos</h3>
         <p>Peso, radio, altura y la ficha del equipo correcto.</p>
       </div>
-      <div>
+      <div class="mirada">
         <span class="rotulo">Seguridad</span>
-        <h3>Necesita respaldo</h3>
+        <h3>Respaldo</h3>
         <p>Certificaciones, plan de izaje y documentación en orden.</p>
       </div>
-      <div>
+      <div class="mirada">
         <span class="rotulo">Compras</span>
-        <h3>Necesita comparar</h3>
+        <h3>Comparación</h3>
         <p>Cotización formal y expediente de proveedor.</p>
       </div>
     </div>
@@ -157,7 +209,7 @@
 </section>
 
 <!-- ══════════ LO QUE VIMOS ══════════ -->
-<section class="seccion seccion--regla" id="hallazgos">
+<section class="seccion papel" id="hallazgos">
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
@@ -208,7 +260,7 @@
 </section>
 
 <!-- ══════════ ESTRATEGIA GENERAL ══════════ -->
-<section class="seccion seccion--regla" id="estrategia">
+<section class="seccion papel" id="estrategia">
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
@@ -243,28 +295,13 @@
       <span class="pleca"></span>
       <h2>El recorrido, de la búsqueda a la venta.</h2>
     </div>
-    <div class="pasos">
-      <div class="paso">
-        <div class="paso-n">1</div>
-        <div><h3 class="paso-t">Búsqueda</h3><p>Campañas por línea y tonelaje, con mensajes que hablan de la maniobra.</p></div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">2</div>
-        <div><h3 class="paso-t">Solicitud</h3><p>Sitio, llamada o WhatsApp. Cada entrada registra su origen y los datos que tu equipo necesita.</p></div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">3</div>
-        <div><h3 class="paso-t">Seguimiento</h3><p>Cada oportunidad llega a la persona correcta, con etapa, responsable y aviso cuando el primer contacto se atrasa.</p></div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">4</div>
-        <div><h3 class="paso-t">Cotización y cierre</h3><p>Visita técnica, cotización con monto, y resultado con motivo, ganada o perdida.</p></div>
-      </div>
-      <div class="paso">
-        <div class="paso-n">5</div>
-        <div><h3 class="paso-t">Aprendizaje</h3><p>Objetivo a validar en la Fase 0: informar a Google qué solicitudes avanzaron a cotización y venta, para orientar la inversión hacia lo que produce negocio.</p></div>
-      </div>
-    </div>
+    <ol class="recorrido">
+      <li><span class="rotulo">01</span><h3>Búsqueda</h3><p>Campañas por línea y tonelaje.</p></li>
+      <li><span class="rotulo">02</span><h3>Solicitud</h3><p>Sitio, llamada o WhatsApp, con su origen.</p></li>
+      <li><span class="rotulo">03</span><h3>Seguimiento</h3><p>Responsable, etapa y aviso si se atrasa.</p></li>
+      <li><span class="rotulo">04</span><h3>Cotización</h3><p>Visita, monto y resultado con motivo.</p></li>
+      <li><span class="rotulo">05</span><h3>Aprendizaje</h3><p>Google aprende qué se vendió. Objetivo a validar en la Fase 0.</p></li>
+    </ol>
     <div class="sub-bloque">
       <h3>Lo que dirección vería cada semana</h3>
       <ul class="lista">
@@ -280,20 +317,27 @@
 </section>
 
 <!-- ══════════ LA SOLUCIÓN — pauta dentro del servicio que la opera ══════════ -->
-<section class="seccion" id="plan">
+<section class="seccion papel" id="plan">
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
       <h2>La solución, por capas.</h2>
-      <p>Tres servicios forman la base. Sobre ellos se suman las piezas a medida que la Fase 0 confirme.</p>
+      <p>Cuatro servicios forman la base, cada uno con su alcance. Sobre ellos se suman las piezas a medida que la Fase 0 confirme.</p>
     </div>
     <div class="plancha">
 
       <article class="renglon">
         <span class="buril" aria-hidden="true"></span>
-        <div><span class="marco">Capa 01</span><h3>Google Ads</h3></div>
+        <div><span class="marco">Capa 01</span><h3>Gestión de Google Ads</h3><p class="bajo-titulo">Capta a quien ya busca el servicio.</p></div>
         <div>
-          <p>Estrategia, estructura por línea y tonelaje, anuncios, palabras clave, optimización y reportes.</p>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Anuncios</li>
+            <li>Palabras clave</li>
+            <li>Segmentación</li>
+            <li>Optimización</li>
+            <li>Reportes</li>
+          </ul>
           <div class="sub-pauta">
             <span class="rotulo">+ Pauta Google</span>
             <p>Separada de la gestión y directa a la plataforma. El rango se define tras la Fase 0.</p>
@@ -304,45 +348,104 @@
 
       <article class="renglon">
         <span class="buril" aria-hidden="true"></span>
-        <div><span class="marco">Capa 02</span><h3>CRM y automatización</h3></div>
+        <div><span class="marco">Capa 02</span><h3>Automatización CRM</h3><p class="bajo-titulo">Convierte cada solicitud en una oportunidad con responsable.</p></div>
         <div>
-          <p>Pipeline comercial ajustado a la venta de GTE, captura y asignación de solicitudes, seguimiento por WhatsApp y correo, y calendarios compartidos.</p>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Pipeline comercial configurado</li>
+            <li>Captura automática y asignación inteligente de solicitudes</li>
+            <li>Etapas del embudo, de la solicitud a ganada o perdida</li>
+            <li>Seguimiento automatizado por WhatsApp, correo y SMS</li>
+            <li>Calendarios compartidos con Google u Outlook</li>
+            <li>Landing pages y formularios</li>
+            <li>1 número de WhatsApp, con mensajes y correos ilimitados</li>
+          </ul>
+          <p class="alcance">Configuración e implementación sin costo con el mantenimiento mensual activo.</p>
         </div>
         <div class="ver">Mensual</div>
       </article>
 
       <article class="renglon">
         <span class="buril" aria-hidden="true"></span>
-        <div><span class="marco">Capa 03</span><h3>Sitio web</h3></div>
+        <div><span class="marco">Capa 03</span><h3>Sitio web</h3><p class="bajo-titulo">Evoluciona el sitio actual para cotizar mejor.</p></div>
         <div>
-          <p>Evolución base: fichas en orden, páginas clave por servicio, solicitud de maniobra y contacto directo desde el celular. La administración mensual cuida actualizaciones, estadísticas y conversiones.</p>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Distribución de elementos y secciones</li>
+            <li>Programación interna</li>
+            <li>Contenido gráfico e información editorial</li>
+            <li>Diseño responsive, primero en móvil</li>
+            <li>Base de datos</li>
+            <li>Módulo administrable</li>
+            <li>Tags y pixels</li>
+            <li>SEO en URLs</li>
+            <li>WhatsApp y SSL</li>
+            <li>Solicitud de maniobra</li>
+          </ul>
+          <p class="alcance">No incluye servidor, dominio, fotografía, video ni pauta.</p>
         </div>
-        <div class="ver">Única + mensual</div>
+        <div class="ver">Pago único</div>
       </article>
 
       <article class="renglon">
         <span class="buril" aria-hidden="true"></span>
-        <div><span class="marco">Capa 04</span><h3>Dashboard</h3></div>
+        <div><span class="marco">Capa 04</span><h3>Administración Sitio Web</h3><p class="bajo-titulo">Mantiene el sitio al día y medido.</p></div>
         <div>
-          <p>Pauta y embudo comercial en una sola vista, conectados al sistema general.</p>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Gráficos para promoción constante</li>
+            <li>Actualizaciones menores</li>
+            <li>Análisis de estadísticas</li>
+            <li>Administración de tráfico y conversiones</li>
+            <li>Integración con pixels y tags</li>
+          </ul>
+          <p class="alcance">Las reestructuraciones se cotizan aparte.</p>
+        </div>
+        <div class="ver">Mensual</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Capa 05</span><h3>Dashboard</h3><p class="bajo-titulo">Une pauta y embudo comercial en una sola vista.</p></div>
+        <div>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Resultados de pauta</li>
+            <li>Embudo comercial por etapa</li>
+            <li>Lectura semanal para dirección</li>
+          </ul>
+          <p class="alcance">Alcance y cotización por definir tras la Fase 0.</p>
         </div>
         <div class="ver">Por definir</div>
       </article>
 
       <article class="renglon">
         <span class="buril" aria-hidden="true"></span>
-        <div><span class="marco">Capa 05</span><h3>Herramientas a medida</h3></div>
+        <div><span class="marco">Capa 06</span><h3>Herramientas a medida</h3><p class="bajo-titulo">Piezas que se suman según lo que confirme la Fase 0.</p></div>
         <div>
-          <p>Catálogo filtrable de flota, preselector de grúa por peso, radio y altura, y solicitud de transporte. Cada sugerencia la valida un ingeniero de GTE; la tabla del fabricante siempre manda.</p>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Catálogo filtrable de flota</li>
+            <li>Preselector de grúa por peso, radio y altura</li>
+            <li>Solicitud de transporte</li>
+            <li>Paquete técnico descargable</li>
+            <li>Casos por sector</li>
+          </ul>
+          <p class="alcance">Cada sugerencia la valida un ingeniero de GTE; la tabla del fabricante siempre manda.</p>
         </div>
         <div class="ver">Por definir</div>
       </article>
 
       <article class="renglon">
         <span class="buril" aria-hidden="true"></span>
-        <div><span class="marco">Eventual</span><h3>Producción de contenido</h3></div>
+        <div><span class="marco">Eventual</span><h3>Producción de contenido</h3><p class="bajo-titulo">Muestra maniobras reales, cuando la obra y el plan lo pidan.</p></div>
         <div>
-          <p>Sesiones de foto y video de maniobras reales, cuando la obra y el plan lo pidan.</p>
+          <span class="rotulo">Incluye</span>
+          <ul class="lista lista--chica incluye">
+            <li>Sesiones de foto</li>
+            <li>Sesiones de video</li>
+          </ul>
+          <p class="alcance">Independiente de la gestión mensual y cotizada sobre proyecto.</p>
         </div>
         <div class="ver">Sobre proyecto</div>
       </article>
@@ -438,7 +541,7 @@
         <div class="tfila total">
           <span class="buril" aria-hidden="true"></span>
           <div class="tfase tcol" data-l="Servicio">Total mensual</div>
-          <p class="tcol" data-l="Qué incluye">Las tres capas base operando como un solo sistema.</p>
+          <p class="tcol" data-l="Qué incluye">Google Ads, CRM y administración del sitio, operando como un solo sistema.</p>
           <div class="tprecio tcol" data-l="Inversión">$11,500<span class="tper">/ mes + IVA</span></div>
         </div>
       </div>
