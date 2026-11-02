@@ -37,6 +37,9 @@
   @media (max-width: 700px) { .dolor { grid-template-columns: 1fr; gap: 28px; } }
 
   .cuerpo + .cuerpo { margin-top: 18px; }
+  .cita-dato { margin: 0 0 clamp(24px, 3vw, 34px); padding-left: clamp(16px, 2vw, 24px); border-left: 3px solid var(--marca); max-width: 68ch; }
+  .cita-dato p { font-size: clamp(1.25rem, 2.4vw, 1.625rem); line-height: 1.3; font-weight: 600; }
+  .cita-dato cite { display: block; margin-top: 12px; font-size: 0.875rem; font-style: normal; }
   .sub-bloque { margin-top: clamp(44px, 5.6vw, 72px); }
   .sub-bloque > h3 { margin-bottom: 8px; }
   .sub-bloque > .cuerpo { margin-bottom: 8px; }
@@ -114,8 +117,12 @@
     <div class="cabeza">
       <span class="pleca"></span>
       <h2>Occidente sigue construyendo, y la decisión pasa por varias manos.</h2>
-      <p>Jalisco <a class="enlace-txt" href="https://clusterindustrial.com.mx/jalisco-proyecta-inversion-de-625-mdd-para-expandir-su-infraestructura-industrial/" target="_blank" rel="noopener">proyecta 625 millones de dólares</a> para expandir su infraestructura industrial. Es una proyección, y cada proyecto nuevo trae maniobras que alguien tendrá que cotizar.</p>
     </div>
+    <blockquote class="cita-dato">
+      <p>Jalisco proyecta 625 millones de dólares para expandir su infraestructura industrial.</p>
+      <cite>Fuente: <a class="enlace-txt" href="https://clusterindustrial.com.mx/jalisco-proyecta-inversion-de-625-mdd-para-expandir-su-infraestructura-industrial/" target="_blank" rel="noopener">Cluster Industrial</a></cite>
+    </blockquote>
+    <p class="cuerpo">Es una proyección, y cada proyecto nuevo trae maniobras que alguien tendrá que cotizar.</p>
     <p class="cuerpo">La contratación suele ser técnica: las empresas grandes piden visita previa al sitio, plan de izaje y supervisor de seguridad. De ahí esperamos cuatro miradas, que confirmaremos con tu equipo:</p>
     <div class="dolor" style="margin-top:clamp(30px,4vw,44px)">
       <div>
