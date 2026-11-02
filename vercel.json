@@ -15,6 +15,10 @@
       "destination": "/propuestas/:slug"
     },
     {
+      "source": "/massatierra/:sub",
+      "destination": "/propuestas/massatierra/:sub"
+    },
+    {
       "source": "/:prospecto",
       "destination": "/propuestas/:prospecto"
     }
