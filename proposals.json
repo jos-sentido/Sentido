@@ -250,50 +250,50 @@
       "estatus": "en negociación",
       "serviciosDisponibles": [
         {
-          "id": "acuerdo",
-          "nombre": "Acuerdo de comercialización — 15% sobre ventas",
-          "precio": 0,
-          "tipo": "unico"
-        },
-        {
           "id": "web",
-          "nombre": "Renovación de sitio web (valor de referencia)",
+          "nombre": "Renovación de sitio web (lista $23,000 · desc. 15%)",
           "precio": 20000,
           "tipo": "unico"
         },
         {
+          "id": "herramientas",
+          "nombre": "Cotizador y tablero a la medida (lista $40,000 · desc. 15%)",
+          "precio": 35000,
+          "tipo": "unico"
+        },
+        {
           "id": "gads",
-          "nombre": "Google Ads (valor de referencia)",
+          "nombre": "Google Ads (lista $5,200 · desc. 15%)",
           "precio": 4500,
           "tipo": "mensual"
         },
         {
           "id": "crm",
-          "nombre": "CRM y automatización (valor de referencia)",
+          "nombre": "CRM y automatización (lista $4,600 · desc. 15%)",
           "precio": 4000,
           "tipo": "mensual"
         },
         {
           "id": "redes",
-          "nombre": "Redes sociales (valor de referencia)",
+          "nombre": "Contenido y redes (lista $8,600 · desc. 15%)",
           "precio": 7500,
           "tipo": "mensual"
         },
         {
           "id": "gbp",
-          "nombre": "Perfil de Negocio de Google (valor de referencia)",
+          "nombre": "Perfil de Negocio de Google (lista $2,900 · desc. 15%)",
           "precio": 2500,
           "tipo": "mensual"
         },
         {
           "id": "webadmin",
-          "nombre": "Administración del sitio (valor de referencia)",
+          "nombre": "Administración del sitio (lista $4,000 · desc. 15%)",
           "precio": 3500,
           "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Pararrayos y tierras fisicas industriales, Zapopan Jal. 25 anos, 14 paises, +15,000 proyectos. Acuerdo de comercializacion completa (cartera existente + demanda nueva) a 15% sobre ventas, sin costo fijo. Igualas presentadas solo como valor de referencia. Lector: dueno / gerencia general. Reconstruida sobre el sistema visual Sentido con --marca #EF5A28.",
+      "notas": "Pararrayos y tierras fisicas industriales, Zapopan Jal. 25 anos, 14 paises, +15,000 proyectos. Propuesta en dos partes: Parte 1 marketing (sitio, Google Ads, perfil local, contenido, canal de distribuidores) y Parte 2 comercializacion (captura, cotizador, CRM, postventa, tablero, equipo de ventas). Modelo de cobro: igualas + desarrollos con 15% de descuento visible sobre tarifa de lista. Arranque $92,000 mes uno, recurrente $37,000/mes (incluye $15,000 de pauta pagada directo a plataforma). La comision sobre ventas se negocia aparte y NO se menciona en la propuesta. Subpaginas: /massatierra/google-ads (anexo de pauta), /massatierra/cotizador y /massatierra/tablero (demos). Cierre por WhatsApp, sin formulario.",
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": []

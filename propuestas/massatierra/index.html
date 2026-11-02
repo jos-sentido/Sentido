@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Propuesta · Massatierra</title>
-<meta name="description" content="Acuerdo de colaboración comercial entre Massatierra y Sentido: tomar la comercialización completa —cartera existente y demanda nueva— sin costo fijo para la empresa." />
+<meta name="description" content="Propuesta de Sentido para Massatierra: sistema completo de marketing y comercialización, de la presencia digital al cierre y la recompra." />
 <link rel="icon" href="/assets/favicon.png" />
 <link rel="apple-touch-icon" href="/assets/favicon-180.png" />
 <link rel="stylesheet" href="/sitio/assets/fonts.css" />
@@ -33,6 +33,19 @@
   /* Marcas de cartera — texto corrido, no logos */
   .cartera { font-size: 0.9375rem; line-height: 2; color: var(--hueso-3); max-width: none; }
   .cartera em { color: var(--hueso); font-weight: var(--fuerte); }
+
+  /* Precio de lista tachado + precio con descuento */
+  .tprecio .lista { display:block; font-weight:var(--media); font-size:.9375rem; letter-spacing:-.01em;
+    color:var(--hueso-4); text-decoration:line-through; text-decoration-thickness:1px; margin-bottom:5px; }
+  .sello { display:inline-flex; align-items:center; gap:7px; font-family:var(--archivo); font-weight:700;
+    font-size:.625rem; letter-spacing:.18em; text-transform:uppercase; color:var(--marca-ink);
+    background:var(--marca); padding:5px 11px; }
+  .sello::before { content:''; width:5px; height:5px; background:var(--marca-ink); transform:rotate(45deg); }
+  .papel .sello { color:#fff; }
+  .franja-desc { display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px;
+    margin-top:clamp(26px,3vw,36px); padding:16px 0; border-top:1px solid var(--linea); border-bottom:1px solid var(--linea); }
+  .franja-desc p { font-size:.9375rem; line-height:1.6; color:var(--hueso-3); margin:0; max-width:62ch; }
+  .franja-desc strong { color:var(--hueso); }
 
   /* El abanico de hover venía demasiado opaco y de trazo grueso:
      se comía el texto de la fila. Mismo gesto, mucho más tenue. */
@@ -159,10 +172,10 @@
     <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" />
     <h1><span class="ligera">Veinticinco años, catorce países.</span><br>
       Y una sola <span class="alta">puerta</span> de entrada.</h1>
-    <p class="sub">Propuesta de colaboración comercial: Sentido toma la comercialización de Massatierra —la cartera que ya existe y la demanda que vamos a crear— sin costo fijo para la empresa.</p>
+    <p class="sub">Propuesta para tomar la comercialización de Massatierra de punta a punta: que el mercado los encuentre, que cada oportunidad se atienda a tiempo y que cada cliente vuelva cada año.</p>
     <div class="acciones">
       <a class="boton" href="#contacto">Agendar presentación <span class="fl">→</span></a>
-      <a class="enlace" href="#modelo">Ver el modelo</a>
+      <a class="enlace" href="#modelo">Ver la inversión</a>
     </div>
     <div class="meta">
       <div><span class="rotulo">Preparado para</span><span class="val">Massatierra</span></div>
@@ -362,7 +375,7 @@
           <p>Dos bloques con lógicas distintas. Uno de <strong>captura</strong>, que se puja a cobertura máxima sobre los términos que los levantamientos y los fabricantes dejan sembrados: ahí no se optimiza costo, se optimiza no perder ninguna. Otro de <strong>adquisición</strong>, que compra volumen al mejor costo en el resto del mercado y se mide por costo por oportunidad.</p>
           <div class="sub-pauta">
             <span class="rotulo">+ Pauta Google</span>
-            <p>Gestión incluida en el acuerdo · la inversión publicitaria la paga Massatierra directo a la plataforma</p>
+            <p>Gestión mensual en la iguala · la inversión publicitaria la paga Massatierra directo a la plataforma</p>
           </div>
           <p style="margin-top:14px"><a class="enlace" href="/massatierra/google-ads">Ver el plan de pauta completo →</a></p>
         </div>
@@ -385,7 +398,7 @@
           <p>Una década sin publicar nada es también una década de casos sin contar. Proyectos terminados, comparativos técnicos, guía normativa descargable y los videos de instalación que los diagramas existentes ya permiten producir — eso último abre la venta a quien quiere instalar por su cuenta, sin consumir capacidad de obra.</p>
           <div class="sub-pauta">
             <span class="rotulo">+ Pauta Meta</span>
-            <p>Gestión incluida en el acuerdo · la inversión publicitaria se paga directo a la plataforma</p>
+            <p>Gestión mensual en la iguala · la inversión publicitaria la paga Massatierra directo a la plataforma</p>
           </div>
         </div>
         <div class="ver">Autoridad</div>
@@ -585,94 +598,115 @@
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
-      <h2>El modelo: comisión sobre ventas. Cero costo fijo.</h2>
-      <p>Lo de arriba, contratado pieza por pieza como lo cotiza cualquier agencia, es una carga mensual fija más una inversión inicial. Vale la pena verlo con número, porque es exactamente lo que este acuerdo elimina.</p>
+      <h2>La inversión, pieza por pieza.</h2>
+      <p>Cada capa se cotiza por separado y se puede contratar por separado. La columna izquierda es nuestra tarifa de lista; la derecha, el precio para Massatierra. El descuento aplica sobre todo el programa y se sostiene mientras el programa esté vigente.</p>
+    </div>
+
+    <div class="franja-desc">
+      <span class="sello">Descuento especial Massatierra</span>
+      <p><strong>15% sobre la tarifa de lista</strong> en todas las igualas y en los dos desarrollos. Es el precio que dejamos fijo por contratar el programa completo, no una promoción de arranque: no sube en el mes cuatro.</p>
     </div>
 
     <div class="tabla">
       <div class="tfila cab">
-        <span class="rotulo">Servicio</span><span class="rotulo">Qué cubre</span><span class="rotulo" style="text-align:right">Iguala de referencia</span>
+        <span class="rotulo">Servicio</span><span class="rotulo">Qué cubre</span><span class="rotulo" style="text-align:right">Inversión</span>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Google Ads</div>
-        <p class="tcol" data-l="Qué cubre">Estructura de campañas, optimización semanal y reporte mensual</p>
-        <div class="tprecio tcol" data-l="Iguala">$5,200<span class="tper">MXN / mes</span></div>
+        <p class="tcol" data-l="Qué cubre">Estructura de campañas, optimización semanal y reporte mensual. El plan completo está en el <a class="enlace-txt" href="/massatierra/google-ads">anexo de pauta</a>.</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$5,200</span>$4,500<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">CRM y automatización</div>
-        <p class="tcol" data-l="Qué cubre">Pipeline, captura y asignación de oportunidades, seguimiento automatizado</p>
-        <div class="tprecio tcol" data-l="Iguala">$4,600<span class="tper">MXN / mes</span></div>
+        <p class="tcol" data-l="Qué cubre">Pipeline, captura y asignación de oportunidades, seguimiento automatizado por WhatsApp y correo</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$4,600</span>$4,000<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Redes sociales</div>
-        <p class="tcol" data-l="Qué cubre">Producción y publicación de contenido con mezcla de formatos</p>
-        <div class="tprecio tcol" data-l="Iguala">$8,600<span class="tper">MXN / mes</span></div>
+        <div class="tfase tcol" data-l="Servicio">Contenido y redes</div>
+        <p class="tcol" data-l="Qué cubre">Producción y publicación con mezcla de formatos: casos de proyecto, comparativos técnicos y video de instalación</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$8,600</span>$7,500<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Perfil de Negocio de Google</div>
-        <p class="tcol" data-l="Qué cubre">Alta, verificación, contenido mensual y posicionamiento local</p>
-        <div class="tprecio tcol" data-l="Iguala">$2,900<span class="tper">MXN / mes</span></div>
+        <p class="tcol" data-l="Qué cubre">Alta, verificación, contenido mensual, reseñas y posicionamiento local en Zapopan</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$2,900</span>$2,500<span class="tper">MXN / mes</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Administración del sitio</div>
-        <p class="tcol" data-l="Qué cubre">Actualizaciones, contenido nuevo, analítica y mantenimiento</p>
-        <div class="tprecio tcol" data-l="Iguala">$4,000<span class="tper">MXN / mes</span></div>
+        <p class="tcol" data-l="Qué cubre">Actualizaciones, contenido nuevo, analítica, respaldos y mantenimiento</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$4,000</span>$3,500<span class="tper">MXN / mes</span></div>
       </div>
-      <div class="tfila">
+      <div class="tfila total">
         <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Carga fija mensual<span class="fnota">Suma de las cinco igualas</span></div>
-        <p class="tcol" data-l="Qué cubre">Lo que costaría sostener cada mes la operación de marketing y CRM contratada pieza por pieza</p>
-        <div class="tprecio tcol" data-l="Iguala">$25,300<span class="tper">MXN / mes</span></div>
+        <div class="tfase tcol" data-l="Servicio">Iguala mensual completa<span class="fnota">Las cinco capas operando juntas</span></div>
+        <p class="tcol" data-l="Qué cubre">Es como se defiende mejor: la pauta trae la oportunidad, el CRM la sostiene, el contenido y el perfil la abaratan. Por separado funciona; junto se multiplica.</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$25,300</span>$22,000<span class="tper">MXN / mes</span></div>
       </div>
+    </div>
+
+    <h3 style="margin:clamp(46px,5.4vw,66px) 0 0">Los desarrollos, una sola vez.</h3>
+    <div class="tabla" style="margin-top:clamp(22px,2.6vw,30px)">
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Renovación del sitio<span class="fnota">Inversión única</span></div>
-        <p class="tcol" data-l="Qué cubre">Fuera de la plataforma de 2017, con medición, SEO técnico y las páginas de campaña incluidas</p>
-        <div class="tprecio tcol" data-l="Iguala">$23,000<span class="tper">MXN · una vez</span></div>
+        <p class="tcol" data-l="Qué cubre">Fuera de la plataforma de 2017, con certificado de seguridad, medición, SEO técnico y las páginas de campaña incluidas</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$23,000</span>$20,000<span class="tper">MXN · una vez</span></div>
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Cotizador y tablero<span class="fnota">Inversión única · desarrollo a la medida</span></div>
         <p class="tcol" data-l="Qué cubre">El cotizador sistematizado y el tablero de dirección en tiempo real. Pueden verse funcionando: <a class="enlace-txt" href="/massatierra/cotizador">cotizador</a> · <a class="enlace-txt" href="/massatierra/tablero">tablero</a></p>
-        <div class="tprecio tcol" data-l="Iguala">$40,000<span class="tper">MXN · una vez</span></div>
-      </div>
-      <div class="tfila">
-        <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Lo que costaría el primer año<span class="fnota">Igualas doce meses + desarrollos</span></div>
-        <p class="tcol" data-l="Qué cubre">Sin contar el canal de distribuidores ni la inversión publicitaria</p>
-        <div class="tprecio tcol" data-l="Iguala">$366,600<span class="tper">MXN · año uno</span></div>
-      </div>
-      <div class="tfila">
-        <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Inversión publicitaria<span class="fnota">A cargo de Massatierra · también bajo el acuerdo</span></div>
-        <p class="tcol" data-l="Qué cubre">Es el único costo que la empresa sigue pagando aparte, porque no es honorario: es el dinero que compra la aparición en Google y Meta, y se paga directo a cada plataforma desde cuentas a nombre de Massatierra. El plan completo está en el <a class="enlace-txt" href="/massatierra/google-ads">anexo de pauta</a>.</p>
-        <div class="tprecio tcol" data-l="Iguala">$15,000<span class="tper">MXN / mes · recomendado</span></div>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$40,000</span>$35,000<span class="tper">MXN · una vez</span></div>
       </div>
       <div class="tfila total">
         <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Bajo este acuerdo</div>
-        <p class="tcol" data-l="Qué cubre">Todo lo anterior operando, más el canal de distribuidores y la comercialización completa. Sin iguala, sin los $63,000 de desarrollo, sin licencias de software a cargo de la empresa, sin nómina adicional.</p>
-        <div class="tprecio tcol" data-l="Iguala">15%<span class="tper">sobre ventas</span></div>
+        <div class="tfase tcol" data-l="Servicio">Desarrollo completo</div>
+        <p class="tcol" data-l="Qué cubre">Las dos piezas que hay que construir una vez y quedan siendo de la empresa para siempre</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$63,000</span>$55,000<span class="tper">MXN · una vez</span></div>
       </div>
     </div>
-    <p class="tnota">La comisión del 15% se calcula sobre la venta, no sobre la inversión publicitaria. Las cuentas, los datos y las herramientas son de la empresa, siempre. IVA según aplique. Las igualas de la columna derecha son valor de referencia de mercado: bajo este acuerdo no se cobran.</p>
+
+    <h3 style="margin:clamp(46px,5.4vw,66px) 0 0">Lo que se paga aparte.</h3>
+    <div class="tabla" style="margin-top:clamp(22px,2.6vw,30px)">
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Servicio">Inversión publicitaria<span class="fnota">Directo a Google y Meta</span></div>
+        <p class="tcol" data-l="Qué cubre">No es honorario: es el dinero que compra la aparición. Se paga directo a cada plataforma, desde cuentas a nombre de Massatierra, y la empresa decide el monto mes con mes. El escenario recomendado y las alternativas están en el <a class="enlace-txt" href="/massatierra/google-ads">anexo de pauta</a>.</p>
+        <div class="tprecio tcol" data-l="Inversión">$15,000<span class="tper">MXN / mes · recomendado</span></div>
+      </div>
+    </div>
+
+    <div class="tabla" style="margin-top:clamp(40px,4.6vw,56px)">
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Concepto">Arranque — primer mes<span class="fnota">Desarrollos + iguala + pauta</span></div>
+        <p class="tcol" data-l="Qué incluye">Los dos desarrollos en marcha, las cinco capas operando y las primeras campañas al aire</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$103,300</span>$92,000<span class="tper">MXN · mes uno</span></div>
+      </div>
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Concepto">Recurrente — del mes dos en adelante<span class="fnota">Iguala + pauta</span></div>
+        <p class="tcol" data-l="Qué incluye">La operación completa sostenida, con reporte mensual y ajuste semanal</p>
+        <div class="tprecio tcol" data-l="Inversión"><span class="lista">$40,300</span>$37,000<span class="tper">MXN / mes</span></div>
+      </div>
+    </div>
+    <p class="tnota">Los precios tachados son nuestra tarifa de lista. Las cuentas publicitarias, los datos, el CRM y las herramientas quedan a nombre de Massatierra y son de la empresa, siempre. El canal de distribuidores se cotiza al definir su alcance. Precios en pesos, IVA según aplique. Vigencia de la cotización: 30 días.</p>
 
     <div class="cols cols-2" style="margin-top:clamp(50px,6vw,78px)">
       <div>
-        <h3 style="margin-bottom:18px">Por qué conviene de este lado</h3>
-        <p class="cuerpo">Porque invierte el riesgo. Una agencia cobrada por iguala gana igual venda la empresa o no. Aquí, Sentido solo gana cuando Massatierra factura — y gana más cuando factura más. Eso alinea cada decisión que tomemos: ninguna campaña, ningún desarrollo y ninguna hora de trabajo tiene sentido para nosotros si no termina en una venta.</p>
-        <p class="cuerpo">Y elimina la barrera que normalmente detiene estos proyectos: el software, las herramientas, la implementación y la capacitación no se cobran por separado. Los absorbe el acuerdo.</p>
+        <h3 style="margin-bottom:18px">Por qué conviene contratarlo junto</h3>
+        <p class="cuerpo">Porque las capas se abaratan entre ellas. El contenido y el perfil local bajan el costo de la pauta; el CRM evita que lo que la pauta trae se pierda; el cotizador convierte en un día lo que hoy tarda tres semanas. Contratar solo la pauta es pagar por traer gente a una puerta que sigue tardando en abrir.</p>
+        <p class="cuerpo">El descuento del 15% está puesto exactamente ahí: en reconocer que esto se contrata como sistema y no como piezas sueltas.</p>
       </div>
       <div>
-        <h3 style="margin-bottom:18px">La pregunta justa</h3>
-        <p class="cuerpo"><em>«¿Por qué pagaría comisión sobre la cartera que ya me compra sola?»</em></p>
-        <p class="cuerpo">Porque esa venta no es gratuita hoy: tiene un costo en estructura, y tiene un costo mayor en lo que no se atiende. Una solicitud de septiembre que nadie respondió, proyectos que tardan tres semanas en cotizarse, revisiones anuales que nadie persigue. Lo que este acuerdo cubre no es «cobrar por lo que ya pasa»: es hacerse cargo de que esa cartera se atienda mejor, se le venda más y vuelva cada año — además de construir el canal que hoy no existe.</p>
-        <p class="cuerpo">Si prefiere separarlo, se puede: una tasa para la cartera existente y otra para la demanda nueva. Es una conversación de números, y la tenemos con gusto.</p>
+        <h3 style="margin-bottom:18px">Si prefiere empezar por partes</h3>
+        <p class="cuerpo">Se puede, y es una decisión legítima. El orden que yo defendería es: primero el sitio y la medición, porque sin eso la pauta corre a ciegas; luego Google Ads y el CRM juntos, que es donde el dinero empieza a volver; y al final contenido, perfil local y el canal de distribuidores.</p>
+        <p class="cuerpo">Lo que no recomiendo es encender pauta antes que el sitio. El certificado de seguridad está vencido y cada peso invertido llegaría a una página que el navegador marca como no segura.</p>
       </div>
     </div>
   </div>
@@ -828,7 +862,7 @@
     document.getElementById('dTexto').innerHTML =
       'Son <strong>' + Math.round(hP * 12) + ' solicitudes al año</strong> que hoy no alcanzan a atenderse y que el sistema sí recoge, más ' +
       '<strong>' + Math.round((sRev - hRev) * 12) + ' revisiones anuales</strong> que hoy nadie persigue. ' +
-      'Contra esa diferencia, la comisión del 15% representa <strong>' + mx(dif * 0.15) + ' al año</strong>.';
+      'Contra esa diferencia, el programa completo del primer año —desarrollos, iguala y pauta— cuesta <strong>$499,000 al año</strong>.';
   }
   d.forEach(function (x) { x.addEventListener('input', calc); });
   calc();
