@@ -44,7 +44,11 @@
       "notas": "Contacto tibio, lo atiende Pao Monroy (CTA a su WhatsApp). Sitio nuevo como pieza central; complementos opcionales. Análisis de oportunidades del sitio actual al 2 nov 2026.",
       "proximoPaso": "Enviar propuesta y esperar respuesta por WhatsApp",
       "fechaSeguimiento": null,
-      "bitacora": []
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1220145174387904",
+        "madre_gid": "1220139452687603"
+      }
     },
     {
       "slug": "casa-de-maty-plan-redes",
