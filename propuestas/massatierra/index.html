@@ -33,6 +33,53 @@
   /* Marcas de cartera — texto corrido, no logos */
   .cartera { font-size: 0.9375rem; line-height: 2; color: var(--hueso-3); max-width: none; }
   .cartera em { color: var(--hueso); font-weight: var(--fuerte); }
+
+  /* ── Flujo comercial: hoy vs. con el sistema ── */
+  .carril { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(20px,2.4vw,30px); position:relative; overflow:hidden; }
+  .carril > * { position:relative; }
+  .carril .tit { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:baseline; margin-bottom:22px; }
+  .carril .tit h3 { font-size:1.1875rem; }
+  .carril .tit .mk { font-weight:700; font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; padding:4px 9px; border:1px solid currentColor; }
+  .mk-hoy { color:var(--hueso-4); }
+  .mk-sis { color:var(--acento); }
+
+  .hoy-tren { display:flex; flex-wrap:wrap; align-items:stretch; gap:0; }
+  .hoy-n { flex:1 1 150px; min-width:0; border:1px solid var(--linea-2); padding:15px 16px; }
+  .hoy-n + .hoy-n { border-left:none; }
+  .hoy-n .q { display:block; font-size:.875rem; color:var(--hueso-2); line-height:1.45; }
+  .hoy-n .t { display:block; margin-top:9px; font-weight:700; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase; color:var(--hueso-4); }
+  .hoy-n.cuello { border-color:var(--acento); background:rgba(239,90,40,.09); }
+  .hoy-n.cuello .q { color:var(--hueso); font-weight:var(--fuerte); }
+  .hoy-n.cuello .t { color:var(--acento); }
+  @media (max-width:760px){ .hoy-n{ flex:1 1 100%; } .hoy-n + .hoy-n{ border-left:1px solid var(--linea-2); border-top:none; } }
+
+  .flujo { counter-reset:f; margin-top:4px; }
+  .fpaso { display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(14px,2vw,26px);
+    align-items:baseline; padding:20px 0; border-bottom:1px solid var(--linea); position:relative; }
+  .fpaso:last-of-type { border-bottom:none; }
+  .fpaso .fn { font-weight:var(--negra); font-size:1.5rem; letter-spacing:-.04em; color:var(--acento); line-height:1; }
+  .fpaso h4 { font-size:1.0625rem; margin-bottom:7px; }
+  .fpaso p { font-size:.9375rem; line-height:1.62; color:var(--hueso-3); max-width:58ch; }
+  .fmeta { display:flex; flex-direction:column; gap:7px; align-items:flex-end; text-align:right; }
+  .fherr { font-weight:700; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase;
+    padding:5px 10px; background:var(--marca); color:#0A0A0A; white-space:nowrap; }
+  .ftiempo { font-weight:600; font-size:.6875rem; letter-spacing:.1em; text-transform:uppercase; color:var(--hueso-4); white-space:nowrap; }
+  @media (max-width:760px){
+    .fpaso { grid-template-columns:46px minmax(0,1fr); gap:14px; }
+    .fmeta { grid-column:2; flex-direction:row; flex-wrap:wrap; align-items:center; text-align:left; margin-top:12px; }
+  }
+
+  .vuelta { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center;
+    margin-top:18px; padding:16px 18px; border:1px dashed var(--acento); }
+  .vuelta .s { font-size:1.25rem; color:var(--acento); line-height:1; }
+  .vuelta p { font-size:.9375rem; line-height:1.6; color:var(--hueso-2); margin:0; max-width:none; }
+  .vuelta strong { color:var(--hueso); }
+
+  .mirador { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; justify-content:space-between;
+    margin-top:clamp(22px,2.6vw,32px); padding:18px clamp(16px,2vw,24px); border:1px solid var(--acento); }
+  .mirador p { margin:0; font-size:.9375rem; line-height:1.6; color:var(--hueso-2); max-width:62ch; }
+  .mirador strong { color:var(--hueso); }
+
 </style>
 </head>
 <body>
@@ -301,7 +348,7 @@
     <div class="cabeza">
       <span class="pleca"></span>
       <h2>Parte 2 — Que cada oportunidad se convierta y regrese.</h2>
-      <p>Cerrar la brecha de conversión. De poco sirve traer el triple de oportunidades si entran al mismo embudo que hoy tarda tres semanas en cotizar.</p>
+      <p>Cerrar la brecha de conversión. De poco sirve traer el triple de oportunidades si entran al mismo embudo que hoy tarda tres semanas en cotizar. Dos de estas capas —el cotizador y el tablero— están armadas como demostración navegable para verlas funcionando.</p>
     </div>
     <div class="plancha">
       <article class="renglon">
@@ -318,6 +365,7 @@
         <div><span class="marco">Capa 07</span><h3>Cotizador sistematizado</h3></div>
         <div>
           <p>Los quinientos conceptos no son el problema: son el activo. El problema es que solo una persona sabe navegarlos. Se sistematiza sobre una lista de precios estandarizada, con parámetros simples al frente y el detalle atrás, de modo que cualquier vendedor cotice sin consultar a nadie. <strong>De tres semanas a un día.</strong></p>
+          <p style="margin-top:14px"><a class="enlace" href="/massatierra/cotizador">Ver demostración →</a></p>
         </div>
         <div class="ver">De cuello a activo</div>
       </article>
@@ -345,6 +393,7 @@
         <div><span class="marco">Capa 10</span><h3>Tablero de dirección</h3></div>
         <div>
           <p>Desde el celular, en tiempo real: cotizaciones enviadas, ventas cerradas, facturas por cobrar, postventa activa y crecimiento por cliente. La dirección deja de depender de que alguien le reporte y pasa a ver la operación completa cuando quiera.</p>
+          <p style="margin-top:14px"><a class="enlace" href="/massatierra/tablero">Ver demostración →</a></p>
         </div>
         <div class="ver">Control</div>
       </article>
@@ -357,6 +406,89 @@
         </div>
         <div class="ver">Escala</div>
       </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FLUJO COMERCIAL ══════════ -->
+<section class="seccion seccion--placa" id="flujo">
+  <span class="buril" aria-hidden="true" style="--ang:90deg;--paso:7px;--tono:0.05"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El mismo cliente, los dos caminos.</h2>
+      <p>Todo lo anterior se entiende mejor siguiendo a un cliente desde que levanta la mano hasta que vuelve a comprar. Este es el recorrido hoy, y el recorrido con el sistema puesto.</p>
+    </div>
+
+    <div class="carril" style="margin-bottom:clamp(24px,3vw,38px)">
+      <div class="tit"><span class="mk mk-hoy">Hoy</span><h3>Un solo carril, y todo pasa por el mismo punto.</h3></div>
+      <div class="hoy-tren">
+        <div class="hoy-n"><span class="q">El cliente escribe o llama</span><span class="t">Correo, teléfono o WhatsApp personal</span></div>
+        <div class="hoy-n cuello"><span class="q">Todo entra al mismo punto: una persona</span><span class="t">Si no alcanza a verlo, se pierde</span></div>
+        <div class="hoy-n"><span class="q">Se piden precios a tres proveedores, uno por uno</span><span class="t">1 semana</span></div>
+        <div class="hoy-n"><span class="q">Se arma la cotización en el archivo de 500 conceptos</span><span class="t">1 a 2 semanas</span></div>
+        <div class="hoy-n"><span class="q">Se envía y el seguimiento queda al criterio de quien pueda</span><span class="t">Sin registro</span></div>
+      </div>
+      <p class="chico apagado" style="margin-top:18px">Hasta tres semanas de punta a punta. El cliente no espera: para entonces ya pidió otras tres cotizaciones. Y la revisión anual, que la norma obliga, no la persigue nadie.</p>
+    </div>
+
+    <div class="carril">
+      <div class="tit"><span class="mk mk-sis">Con el sistema</span><h3>Siete pasos, cada uno con su herramienta.</h3></div>
+
+      <div class="flujo">
+        <article class="fpaso">
+          <span class="fn">1</span>
+          <div><h4>Llega la oportunidad</h4><p>Del buscador, de una recomendación, de un levantamiento normativo o de un distribuidor. Venga de donde venga, entra a un solo lugar con responsable asignado.</p></div>
+          <div class="fmeta"><span class="fherr">Sitio + Ads</span><span class="ftiempo">Inmediato</span></div>
+        </article>
+
+        <article class="fpaso">
+          <span class="fn">2</span>
+          <div><h4>Se levanta la información técnica</h4><p>Un formulario de seis preguntas recoge qué se va a proteger, la capacidad del equipo y la aplicación, con fotos de tableros y fichas técnicas adjuntas. Lo que hoy toma tres llamadas.</p></div>
+          <div class="fmeta"><span class="fherr">Formulario</span><span class="ftiempo">Minutos</span></div>
+        </article>
+
+        <article class="fpaso">
+          <span class="fn">3</span>
+          <div><h4>Sale la cotización</h4><p>Con la lista de precios ya cargada, el cotizador selecciona el equipo, calcula y emite. Cualquier vendedor o distribuidor lo hace sin consultar a la matriz.</p></div>
+          <div class="fmeta"><span class="fherr">Cotizador</span><span class="ftiempo">El mismo día</span></div>
+        </article>
+
+        <article class="fpaso">
+          <span class="fn">4</span>
+          <div><h4>El seguimiento corre solo</h4><p>Recordatorios por WhatsApp y correo en los días que corresponde. Ninguna cotización enviada se queda sin respuesta, porque el sistema avisa antes de que se enfríe.</p></div>
+          <div class="fmeta"><span class="fherr">CRM</span><span class="ftiempo">Automático</span></div>
+        </article>
+
+        <article class="fpaso">
+          <span class="fn">5</span>
+          <div><h4>Se cierra y se confirma el depósito</h4><p>Confirmado el pago, la autorización de envío se dispara sola hacia logística, con el producto, la cantidad y el destino ya cargados. Nadie tiene que volver a capturar nada.</p></div>
+          <div class="fmeta"><span class="fherr">CRM</span><span class="ftiempo">El mismo día</span></div>
+        </article>
+
+        <article class="fpaso">
+          <span class="fn">6</span>
+          <div><h4>Se entrega y se certifica</h4><p>Con obra de Massatierra o con planos para que el cliente instale y una visita posterior de certificación. En los dos casos se libera la garantía escrita de 20 años.</p></div>
+          <div class="fmeta"><span class="fherr">Operación</span><span class="ftiempo">Según proyecto</span></div>
+        </article>
+
+        <article class="fpaso">
+          <span class="fn">7</span>
+          <div><h4>Se agenda la revisión anual</h4><p>El sistema ya sabe cuándo vence. Avisa con tiempo, agenda la visita y genera el informe, el dictamen y el sello del año. Esa venta no hay que salir a buscarla.</p></div>
+          <div class="fmeta"><span class="fherr">CRM</span><span class="ftiempo">Cada 12 meses</span></div>
+        </article>
+      </div>
+
+      <div class="vuelta">
+        <span class="s" aria-hidden="true">↻</span>
+        <p>Y del paso 7 se regresa al 3: <strong>cada cliente instalado vuelve a cotizar cada año, por obligación normativa.</strong> El ciclo se cierra solo, y la cartera deja de comprar una vez para comprar siempre.</p>
+      </div>
+
+      <div class="mirador">
+        <p><strong>Y sobre los siete pasos, el tablero de dirección.</strong> En cualquier momento, desde el celular: cuántas oportunidades entraron, cuántas se cotizaron, cuánto se cerró, qué falta cobrar y qué revisiones vencen.</p>
+        <a class="enlace" href="/massatierra/tablero">Ver el tablero</a>
+      </div>
     </div>
   </div>
 </section>
@@ -406,14 +538,32 @@
       </div>
       <div class="tfila">
         <span class="buril" aria-hidden="true"></span>
-        <div class="tfase tcol" data-l="Servicio">Carga fija mensual<span class="fnota">Suma de las igualas</span></div>
-        <p class="tcol" data-l="Qué cubre">Más la renovación del sitio como inversión inicial, más el desarrollo del cotizador, el tablero de dirección y el canal de distribuidores</p>
-        <div class="tprecio tcol" data-l="Iguala">$22,000<span class="tper">MXN / mes + inicial</span></div>
+        <div class="tfase tcol" data-l="Servicio">Carga fija mensual<span class="fnota">Suma de las cinco igualas</span></div>
+        <p class="tcol" data-l="Qué cubre">Lo que costaría sostener cada mes la operación de marketing y CRM contratada pieza por pieza</p>
+        <div class="tprecio tcol" data-l="Iguala">$22,000<span class="tper">MXN / mes</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Servicio">Renovación del sitio<span class="fnota">Inversión única</span></div>
+        <p class="tcol" data-l="Qué cubre">Fuera de la plataforma de 2017, con medición, SEO técnico y las páginas de campaña incluidas</p>
+        <div class="tprecio tcol" data-l="Iguala">$20,000<span class="tper">MXN · una vez</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Servicio">Cotizador y tablero<span class="fnota">Inversión única · desarrollo a la medida</span></div>
+        <p class="tcol" data-l="Qué cubre">El cotizador sistematizado y el tablero de dirección en tiempo real. Pueden verse funcionando: <a class="enlace-txt" href="/massatierra/cotizador">cotizador</a> · <a class="enlace-txt" href="/massatierra/tablero">tablero</a></p>
+        <div class="tprecio tcol" data-l="Iguala">$35,000<span class="tper">MXN · una vez</span></div>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Servicio">Lo que costaría el primer año<span class="fnota">Igualas doce meses + desarrollos</span></div>
+        <p class="tcol" data-l="Qué cubre">Sin contar el canal de distribuidores ni la inversión publicitaria</p>
+        <div class="tprecio tcol" data-l="Iguala">$319,000<span class="tper">MXN · año uno</span></div>
       </div>
       <div class="tfila total">
         <span class="buril" aria-hidden="true"></span>
         <div class="tfase tcol" data-l="Servicio">Bajo este acuerdo</div>
-        <p class="tcol" data-l="Qué cubre">Todo lo anterior operando, más la comercialización completa. Sin iguala, sin inversión inicial, sin licencias de software a cargo de la empresa, sin nómina adicional.</p>
+        <p class="tcol" data-l="Qué cubre">Todo lo anterior operando, más el canal de distribuidores y la comercialización completa. Sin iguala, sin los $55,000 de desarrollo, sin licencias de software a cargo de la empresa, sin nómina adicional.</p>
         <div class="tprecio tcol" data-l="Iguala">15%<span class="tper">sobre ventas</span></div>
       </div>
     </div>
@@ -526,7 +676,7 @@
       </div>
       <div class="pie-col">
         <span class="rotulo">Propuesta</span>
-        <ul><li><a href="#contexto">Contexto</a></li><li><a href="#diagnostico">Diagnóstico</a></li><li><a href="#demanda">Demanda</a></li><li><a href="#modelo">El modelo</a></li></ul>
+        <ul><li><a href="#contexto">Contexto</a></li><li><a href="#diagnostico">Diagnóstico</a></li><li><a href="#demanda">Demanda</a></li><li><a href="#flujo">El flujo</a></li><li><a href="#modelo">El modelo</a></li></ul>
       </div>
       <div class="pie-col">
         <span class="rotulo">Contacto</span>

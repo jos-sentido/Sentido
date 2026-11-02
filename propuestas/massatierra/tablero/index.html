@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tablero de dirección Massatierra · Demostración</title>
+<meta name="description" content="Demostración del tablero de dirección propuesto para Massatierra: ventas, cotizaciones, cobranza y postventa en tiempo real, desde el celular." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  :root { --marca:#EF5A28; --marca-ink:#0A0A0A; }
+
+  .cinta { position:sticky; top:0; z-index:140; background:var(--marca); color:#0A0A0A;
+    font-weight:700; font-size:.6875rem; letter-spacing:.18em; text-transform:uppercase;
+    padding:10px var(--gut); display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center; justify-content:space-between; }
+  .cinta a { color:#0A0A0A; border-bottom:1px solid rgba(10,10,10,.45); padding-bottom:2px; }
+
+  .cab-demo { padding:clamp(40px,5vw,66px) 0 clamp(24px,3vw,36px); }
+  .cab-demo h1 { font-size:clamp(2rem,4.6vw,3.25rem); margin-bottom:16px; }
+  .cab-demo .sub { max-width:62ch; font-size:1.0625rem; line-height:1.7; color:var(--hueso-2); }
+
+  .periodo { display:flex; flex-wrap:wrap; gap:8px; margin:clamp(26px,3vw,38px) 0 0; }
+  .pbtn { font-family:var(--archivo); font-weight:600; font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase;
+    padding:11px 18px; border:1px solid var(--linea-2); background:none; color:var(--hueso-3); cursor:pointer;
+    transition:border-color .2s var(--ease), color .2s var(--ease), background .2s var(--ease); }
+  .pbtn:hover { border-color:var(--hueso-3); color:var(--hueso); }
+  .pbtn[aria-pressed="true"] { background:var(--marca); border-color:var(--marca); color:#0A0A0A; }
+
+  /* KPIs */
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--linea); border-bottom:1px solid var(--linea); }
+  .kpi { padding:24px clamp(14px,1.8vw,24px) 28px; border-right:1px solid var(--linea); }
+  .kpi:last-child { border-right:none; }
+  .kpi .l { display:block; font-weight:600; font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--hueso-4); }
+  .kpi .v { display:block; margin-top:13px; font-weight:var(--negra); font-size:clamp(1.375rem,2.8vw,2.125rem); letter-spacing:-.035em; line-height:1; color:var(--hueso); }
+  .kpi .d { display:block; margin-top:10px; font-size:.75rem; color:var(--hueso-4); }
+  .kpi .d b { color:var(--acento); font-weight:600; }
+  @media (max-width:860px){ .kpis{ grid-template-columns:1fr 1fr; }
+    .kpi:nth-child(2){ border-right:none; } .kpi:nth-child(-n+2){ border-bottom:1px solid var(--linea); } }
+
+  .rej { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:clamp(24px,3vw,44px); margin-top:clamp(36px,4vw,56px); align-items:start; }
+  @media (max-width:980px){ .rej{ grid-template-columns:1fr; } }
+
+  .bloque { border:1px solid var(--linea); position:relative; overflow:hidden; }
+  .bloque > .cabz { padding:17px clamp(16px,2vw,24px); border-bottom:1px solid var(--linea); background:var(--tinta-2);
+    display:flex; flex-wrap:wrap; gap:8px 16px; align-items:baseline; justify-content:space-between; }
+  .bloque .cabz h3 { font-size:1.0625rem; letter-spacing:-.02em; }
+  .bloque .cabz .nota { font-size:.75rem; color:var(--hueso-4); }
+  .bloque .cuerpo-b { padding:clamp(18px,2.2vw,26px); }
+
+  /* Barras */
+  .barras { display:grid; grid-template-columns:repeat(12,1fr); gap:6px; align-items:end; height:168px; }
+  .barras i { display:block; background:linear-gradient(180deg, var(--marca), rgba(239,90,40,.3)); border-radius:2px 2px 0 0; transition:height .55s var(--ease); }
+  .barras i.tenue { background:linear-gradient(180deg, var(--hueso-4), rgba(137,130,117,.22)); }
+  .barras-l { display:grid; grid-template-columns:repeat(12,1fr); gap:6px; margin-top:10px;
+    font-weight:600; font-size:.625rem; letter-spacing:.06em; text-transform:uppercase; color:var(--hueso-4); text-align:center; }
+
+  /* Embudo */
+  .embudo { display:flex; flex-direction:column; gap:3px; }
+  .et { position:relative; padding:14px 16px; background:var(--tinta-3); display:flex; justify-content:space-between; align-items:baseline; gap:14px; overflow:hidden; }
+  .et span.f { position:absolute; inset:0 auto 0 0; background:rgba(239,90,40,.19); transition:width .55s var(--ease); }
+  .et .n, .et .c { position:relative; }
+  .et .n { font-size:.875rem; color:var(--hueso); font-weight:var(--fuerte); }
+  .et .c { font-family:var(--archivo); font-weight:var(--negra); font-size:1rem; color:var(--acento); letter-spacing:-.02em; white-space:nowrap; }
+
+  /* Filas */
+  .fila { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:baseline;
+    padding:13px 0; border-bottom:1px solid var(--linea); }
+  .fila:last-child { border-bottom:none; }
+  .fila .q { font-size:.9375rem; color:var(--hueso); }
+  .fila .q small { display:block; font-size:.75rem; color:var(--hueso-4); margin-top:4px; }
+  .fila .w { font-family:var(--archivo); font-weight:600; font-size:.8125rem; white-space:nowrap; }
+  .ok { color:#7FA06A; } .warn { color:var(--marca); } .cold { color:var(--hueso-4); }
+
+  .chip { display:inline-block; font-weight:700; font-size:.5625rem; letter-spacing:.14em; text-transform:uppercase;
+    padding:3px 7px; border:1px solid currentColor; margin-left:8px; vertical-align:middle; }
+</style>
+</head>
+<body>
+
+<div class="cinta">
+  <span>Demostración · datos de ejemplo</span>
+  <a href="/massatierra">← Volver a la propuesta</a>
+</div>
+
+<header class="cab-demo">
+  <div class="wrap">
+    <span class="rotulo">Capa 10 · Parte 2</span>
+    <h1 style="margin-top:14px">Tablero de <span class="alta">dirección</span></h1>
+    <p class="sub">La operación completa en una sola pantalla, en el celular, sin pedirle el reporte a nadie: qué se cotizó, qué se cerró, qué falta cobrar, qué revisiones vencen y qué clientes están creciendo o enfriándose.</p>
+    <div class="periodo" id="periodo">
+      <button class="pbtn" data-p="mes" aria-pressed="true">Este mes</button>
+      <button class="pbtn" data-p="tri" aria-pressed="false">Trimestre</button>
+      <button class="pbtn" data-p="ano" aria-pressed="false">Año</button>
+    </div>
+  </div>
+</header>
+
+<section class="seccion" style="padding-top:clamp(18px,2.2vw,28px)">
+  <div class="wrap">
+
+    <div class="kpis">
+      <div class="kpi"><span class="l">Cotizado</span><span class="v" id="k1">—</span><span class="d" id="d1"></span></div>
+      <div class="kpi"><span class="l">Cerrado</span><span class="v" id="k2">—</span><span class="d" id="d2"></span></div>
+      <div class="kpi"><span class="l">Por cobrar</span><span class="v" id="k3">—</span><span class="d" id="d3"></span></div>
+      <div class="kpi"><span class="l">Tiempo de cotización</span><span class="v" id="k4">—</span><span class="d" id="d4"></span></div>
+    </div>
+
+    <div class="rej">
+      <div class="bloque">
+        <div class="cabz"><h3>Facturación</h3><span class="nota" id="notaBarras"></span></div>
+        <div class="cuerpo-b">
+          <div class="barras" id="barras"></div>
+          <div class="barras-l" id="barrasL"></div>
+        </div>
+      </div>
+
+      <div class="bloque">
+        <div class="cabz"><h3>Embudo comercial</h3><span class="nota" id="notaEmbudo"></span></div>
+        <div class="cuerpo-b"><div class="embudo" id="embudo"></div></div>
+      </div>
+    </div>
+
+    <div class="rej">
+      <div class="bloque">
+        <div class="cabz"><h3>Revisiones anuales por vencer</h3><span class="nota">Obligatorias por NOM-022 · recompra</span></div>
+        <div class="cuerpo-b">
+          <div class="fila"><span class="q">Hotelería · Vallarta <small>Sistema instalado hace 11 meses · 14 electrodos</small></span><span class="w warn">Vence en 18 días</span></div>
+          <div class="fila"><span class="q">Invernadero · Zapopan <small>Sistema instalado hace 11 meses · 8 electrodos</small></span><span class="w warn">Vence en 26 días</span></div>
+          <div class="fila"><span class="q">Centro de datos · Guadalajara <small>Sistema instalado hace 10 meses · 22 electrodos</small></span><span class="w">Vence en 41 días</span></div>
+          <div class="fila"><span class="q">Manufactura · El Salto <small>Sistema instalado hace 10 meses · 6 electrodos</small></span><span class="w">Vence en 52 días</span></div>
+          <div class="fila"><span class="q">Minería · Zacatecas <small>Sistema instalado hace 9 meses · 31 electrodos</small></span><span class="w cold">Vence en 74 días</span></div>
+          <div class="fila"><span class="q"><strong>Valor de la cartera por renovar</strong></span><span class="w ok" id="renov">—</span></div>
+        </div>
+      </div>
+
+      <div class="bloque">
+        <div class="cabz"><h3>Atención</h3><span class="nota">Nada se queda sin respuesta</span></div>
+        <div class="cuerpo-b">
+          <div class="fila"><span class="q">Solicitudes sin responder <small>Más de 24 horas hábiles</small></span><span class="w ok">0<span class="chip ok">Al día</span></span></div>
+          <div class="fila"><span class="q">Cotizaciones enviadas sin seguimiento <small>Más de 5 días</small></span><span class="w warn">2<span class="chip warn">Atender</span></span></div>
+          <div class="fila"><span class="q">Envíos autorizados pendientes de salida</span><span class="w">3</span></div>
+          <div class="fila"><span class="q">Clientes con caída contra el año pasado</span><span class="w warn">4</span></div>
+          <div class="fila"><span class="q">Distribuidores activos este periodo</span><span class="w" id="distri">—</span></div>
+          <div class="fila"><span class="q">Origen de las oportunidades <small>Buscador · levantamiento · cartera · distribuidor</small></span><span class="w" id="origen">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cierre" style="margin-top:clamp(44px,5vw,70px)">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>La dirección deja de depender de que alguien le reporte.</h2>
+      <p>Cada número de esta pantalla sale solo del sistema: la cotización que generó el cotizador, el depósito que autorizó el envío, la revisión anual que el CRM ya tenía agendada. No hay nadie capturando nada a mano, y por eso nadie puede decidir qué se ve y qué no.</p>
+      <div class="acciones">
+        <a class="boton" href="/massatierra#modelo">Ver el modelo <span class="fl">→</span></a>
+        <a class="enlace" href="/massatierra/cotizador">Ver el cotizador</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-bajo" style="margin-top:0;border-top:none;padding-top:0">
+      <p>Sentido · Demostración para Massatierra</p>
+      <p>Cifras ilustrativas</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var D = {
+    mes: { k:['$1.84 M','$1.12 M','$640 K','1.2 días'],
+           d:['38 cotizaciones enviadas','<b>+22%</b> contra el mes pasado','7 facturas · 2 vencidas','Meta: 1 día'],
+           barras:[42,55,38,61,49,72,58,80,66,91,74,88], ultimas:2,
+           etiquetas:['S1','S2','S3','S4','S5','S6','S7','S8','S9','S10','S11','S12'],
+           notaB:'Últimas 12 semanas', notaE:'Este mes',
+           embudo:[['Solicitudes recibidas',54],['Cotizadas',38],['En seguimiento',21],['Cerradas',11]],
+           renov:'$1.3 M', distri:'3', origen:'41 / 22 / 28 / 9 %' },
+    tri: { k:['$5.37 M','$3.28 M','$1.21 M','1.4 días'],
+           d:['112 cotizaciones enviadas','<b>+31%</b> contra el trimestre anterior','19 facturas · 3 vencidas','Antes: hasta 21 días'],
+           barras:[48,52,61,57,70,66,78,74,85,81,94,97], ultimas:2,
+           etiquetas:['','Ago','','','Sep','','','Oct','','','Nov',''],
+           notaB:'Semanal, últimos 3 meses', notaE:'Trimestre',
+           embudo:[['Solicitudes recibidas',163],['Cotizadas',112],['En seguimiento',58],['Cerradas',34]],
+           renov:'$3.9 M', distri:'7', origen:'38 / 25 / 26 / 11 %' },
+    ano: { k:['$19.4 M','$11.6 M','$2.05 M','1.6 días'],
+           d:['406 cotizaciones enviadas','<b>+54%</b> contra el año pasado','31 facturas · 5 vencidas','Antes: hasta 21 días'],
+           barras:[34,39,45,41,58,63,71,68,79,86,92,100], ultimas:3,
+           etiquetas:['E','F','M','A','M','J','J','A','S','O','N','D'],
+           notaB:'Mensual, doce meses', notaE:'Acumulado del año',
+           embudo:[['Solicitudes recibidas',587],['Cotizadas',406],['En seguimiento',198],['Cerradas',124]],
+           renov:'$8.6 M', distri:'12', origen:'36 / 27 / 24 / 13 %' }
+  };
+
+  function pinta(p) {
+    var d = D[p];
+    for (var i = 0; i < 4; i++) {
+      document.getElementById('k' + (i + 1)).textContent = d.k[i];
+      document.getElementById('d' + (i + 1)).innerHTML = d.d[i];
+    }
+    document.getElementById('barras').innerHTML = d.barras.map(function (h, i) {
+      return '<i style="height:' + h + '%" class="' + (i >= d.barras.length - d.ultimas ? '' : 'tenue') + '"></i>';
+    }).join('');
+    document.getElementById('barrasL').innerHTML = d.etiquetas.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+    document.getElementById('notaBarras').textContent = d.notaB;
+    document.getElementById('notaEmbudo').textContent = d.notaE;
+
+    var max = d.embudo[0][1];
+    document.getElementById('embudo').innerHTML = d.embudo.map(function (e) {
+      return '<div class="et"><span class="f" style="width:' + Math.round(e[1] / max * 100) + '%"></span>' +
+             '<span class="n">' + e[0] + '</span><span class="c">' + e[1] + '</span></div>';
+    }).join('');
+
+    document.getElementById('renov').textContent = d.renov;
+    document.getElementById('distri').textContent = d.distri;
+    document.getElementById('origen').textContent = d.origen;
+  }
+
+  document.getElementById('periodo').addEventListener('click', function (ev) {
+    var b = ev.target.closest('.pbtn'); if (!b) return;
+    this.querySelectorAll('.pbtn').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+    b.setAttribute('aria-pressed', 'true');
+    pinta(b.dataset.p);
+  });
+
+  pinta('mes');
+})();
+</script>
+</body>
+</html>

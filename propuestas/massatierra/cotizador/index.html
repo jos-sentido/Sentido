@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cotizador Massatierra · Demostración</title>
+<meta name="description" content="Demostración del cotizador sistematizado propuesto para Massatierra: de tres semanas a un día." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  :root { --marca:#EF5A28; --marca-ink:#0A0A0A; }
+
+  .cinta { position:sticky; top:0; z-index:140; background:var(--marca); color:#0A0A0A;
+    font-weight:700; font-size:.6875rem; letter-spacing:.18em; text-transform:uppercase;
+    padding:10px var(--gut); display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center; justify-content:space-between; }
+  .cinta a { color:#0A0A0A; border-bottom:1px solid rgba(10,10,10,.45); padding-bottom:2px; }
+
+  .cab-demo { padding:clamp(40px,5vw,66px) 0 clamp(26px,3vw,40px); }
+  .cab-demo h1 { font-size:clamp(2rem,4.6vw,3.25rem); margin-bottom:16px; }
+  .cab-demo .sub { max-width:60ch; font-size:1.0625rem; line-height:1.7; color:var(--hueso-2); }
+
+  .reloj { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--linea); margin-top:clamp(28px,3.4vw,40px); }
+  .reloj div { padding:20px clamp(16px,2vw,26px); }
+  .reloj div + div { border-left:1px solid var(--linea); }
+  .reloj .n { display:block; font-weight:var(--negra); font-size:clamp(1.5rem,3vw,2.25rem); letter-spacing:-.035em; line-height:1; }
+  .reloj .antes .n { color:var(--hueso-4); text-decoration:line-through; text-decoration-thickness:2px; }
+  .reloj .ahora .n { color:var(--acento); }
+  .reloj .d { display:block; margin-top:9px; font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--hueso-4); }
+
+  .motor { display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:clamp(24px,3.4vw,52px); align-items:start; }
+  @media (max-width:980px){ .motor{ grid-template-columns:1fr; } }
+
+  .panel-p { border:1px solid var(--linea); background:var(--tinta-2); padding:clamp(22px,2.6vw,32px); position:relative; overflow:hidden; }
+  .panel-p > * { position:relative; }
+  .grupo { padding:18px 0; border-bottom:1px solid var(--linea); }
+  .grupo:first-of-type { padding-top:0; }
+  .grupo:last-of-type { border-bottom:none; padding-bottom:0; }
+  .grupo > .etiq { display:block; margin-bottom:12px; }
+
+  .ops { display:flex; flex-wrap:wrap; gap:8px; }
+  .op { font-size:.8125rem; line-height:1.3; padding:10px 14px; border:1px solid var(--linea-2); color:var(--hueso-2);
+    cursor:pointer; transition:border-color .2s var(--ease), color .2s var(--ease), background .2s var(--ease); background:none; text-align:left; }
+  .op:hover { border-color:var(--hueso-3); color:var(--hueso); }
+  .op[aria-pressed="true"] { background:var(--marca); border-color:var(--marca); color:#0A0A0A; font-weight:600; }
+
+  .salida { border:1px solid var(--linea); position:relative; overflow:hidden; }
+  .salida-cab { padding:18px clamp(16px,2vw,26px); border-bottom:1px solid var(--linea); background:var(--tinta-2);
+    display:flex; flex-wrap:wrap; gap:10px 18px; align-items:baseline; justify-content:space-between; }
+  .salida-cab .t { font-weight:var(--negra); font-size:1.0625rem; letter-spacing:-.02em; color:var(--hueso); }
+  .salida-cab .folio { font-family:var(--archivo); font-weight:600; font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase; color:var(--hueso-4); }
+
+  .diag { padding:16px clamp(16px,2vw,26px); border-bottom:1px solid var(--linea); font-size:.875rem; line-height:1.6; color:var(--hueso-3); }
+  .diag strong { color:var(--acento); }
+
+  .part { display:grid; grid-template-columns:46px minmax(0,1fr) 112px; gap:14px; align-items:baseline;
+    padding:15px clamp(16px,2vw,26px); border-bottom:1px solid var(--linea); }
+  .part:last-of-type { border-bottom:none; }
+  .part .c { font-family:var(--archivo); font-weight:700; font-size:.875rem; color:var(--acento); }
+  .part .n { font-size:.9375rem; color:var(--hueso); font-weight:var(--fuerte); }
+  .part .n small { display:block; font-weight:400; font-size:.8125rem; color:var(--hueso-4); margin-top:4px; line-height:1.5; }
+  .part .m { font-family:var(--archivo); font-weight:600; font-size:.9375rem; color:var(--hueso-2); text-align:right; }
+  @media (max-width:520px){ .part{ grid-template-columns:40px minmax(0,1fr); } .part .m{ grid-column:2; text-align:left; } }
+
+  .total-f { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:baseline; justify-content:space-between;
+    padding:20px clamp(16px,2vw,26px); border-top:1px solid var(--linea-2); background:var(--tinta-2); }
+  .total-f .l { font-weight:600; font-size:.6875rem; letter-spacing:.18em; text-transform:uppercase; color:var(--hueso-4); }
+  .total-f .v { font-weight:var(--negra); font-size:clamp(1.5rem,3vw,2rem); letter-spacing:-.035em; color:var(--acento); }
+
+  .avisos { padding:16px clamp(16px,2vw,26px); border-top:1px solid var(--linea); font-size:.8125rem; line-height:1.65; color:var(--hueso-4); }
+  .pulso { animation:pulso .5s var(--ease); }
+  @keyframes pulso { from{ background:rgba(239,90,40,.13);} to{ background:transparent; } }
+  @media (prefers-reduced-motion:reduce){ .pulso{ animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="cinta">
+  <span>Demostración · datos y precios de ejemplo</span>
+  <a href="/massatierra">← Volver a la propuesta</a>
+</div>
+
+<header class="cab-demo">
+  <div class="wrap">
+    <span class="rotulo">Capa 07 · Parte 2</span>
+    <h1 style="margin-top:14px">Cotizador <span class="alta">sistematizado</span></h1>
+    <p class="sub">Los más de quinientos conceptos no son el problema: son el activo. El problema es que hoy solo una persona sabe navegarlos. Así se vería puesto al frente, con parámetros simples y el detalle atrás — para que cualquier vendedor o distribuidor cotice sin consultar a nadie.</p>
+    <div class="reloj">
+      <div class="antes"><span class="n">3 semanas</span><span class="d">Tiempo de cotización hoy</span></div>
+      <div class="ahora"><span class="n">1 día</span><span class="d">Con el cotizador en operación</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="seccion" style="padding-top:clamp(20px,2.4vw,32px)">
+  <div class="wrap">
+    <div class="motor">
+
+      <form class="panel-p" id="param" autocomplete="off">
+        <span class="buril" aria-hidden="true" style="--ang:90deg;--paso:6px;--tono:.05"></span>
+
+        <div class="grupo">
+          <span class="etiq">1 · ¿Qué se va a proteger?</span>
+          <div class="ops" data-campo="activo">
+            <button type="button" class="op" data-v="transformador" aria-pressed="true">Transformador o subestación</button>
+            <button type="button" class="op" data-v="site">Site o centro de datos</button>
+            <button type="button" class="op" data-v="maquinaria">Maquinaria nueva</button>
+            <button type="button" class="op" data-v="nave">Nave industrial completa</button>
+            <button type="button" class="op" data-v="torre">Torre o antena</button>
+          </div>
+        </div>
+
+        <div class="grupo">
+          <span class="etiq">2 · Capacidad instalada</span>
+          <div class="ops" data-campo="kva">
+            <button type="button" class="op" data-v="75">Hasta 75 kVA</button>
+            <button type="button" class="op" data-v="150">76 – 150 kVA</button>
+            <button type="button" class="op" data-v="300" aria-pressed="true">151 – 300 kVA</button>
+            <button type="button" class="op" data-v="500">301 – 500 kVA</button>
+            <button type="button" class="op" data-v="1000">501 – 1,000 kVA</button>
+            <button type="button" class="op" data-v="1500">Más de 1,000 kVA</button>
+          </div>
+        </div>
+
+        <div class="grupo">
+          <span class="etiq">3 · Aplicación requerida</span>
+          <div class="ops" data-campo="aplica">
+            <button type="button" class="op" data-v="tierra" aria-pressed="true">Tierra física</button>
+            <button type="button" class="op" data-v="pararrayos">Pararrayos</button>
+            <button type="button" class="op" data-v="ambas">Ambas</button>
+          </div>
+        </div>
+
+        <div class="grupo">
+          <span class="etiq">4 · Resistividad del terreno</span>
+          <div class="ops" data-campo="terreno">
+            <button type="button" class="op" data-v="baja">Baja · suelo húmedo</button>
+            <button type="button" class="op" data-v="media" aria-pressed="true">Media · mixto</button>
+            <button type="button" class="op" data-v="alta">Alta · rocoso o arenoso</button>
+          </div>
+        </div>
+
+        <div class="grupo">
+          <span class="etiq">5 · ¿Quién instala?</span>
+          <div class="ops" data-campo="obra">
+            <button type="button" class="op" data-v="massatierra" aria-pressed="true">Massatierra ejecuta la obra</button>
+            <button type="button" class="op" data-v="cliente">El cliente instala con planos</button>
+          </div>
+        </div>
+
+        <div class="grupo">
+          <span class="etiq">6 · Plaza</span>
+          <div class="ops" data-campo="plaza">
+            <button type="button" class="op" data-v="zmg" aria-pressed="true">Zona metropolitana de Guadalajara</button>
+            <button type="button" class="op" data-v="foraneo">Foráneo</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="salida" id="salida">
+        <div class="salida-cab">
+          <span class="t">Cotización preliminar</span>
+          <span class="folio" id="folio">MT-2026-0418</span>
+        </div>
+        <p class="diag" id="diag"></p>
+        <div id="partidas"></div>
+        <div class="total-f">
+          <span class="l">Total estimado · MXN + IVA</span>
+          <span class="v" id="total">$0</span>
+        </div>
+        <p class="avisos" id="avisos"></p>
+      </div>
+
+    </div>
+
+    <div class="cierre" style="margin-top:clamp(44px,5vw,70px)">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Lo que cambia cuando esto existe.</h2>
+      <p>El cliente recibe respuesta el mismo día en lugar de a las tres semanas. Siete vendedores dan el mismo precio en lugar de siete precios distintos. Un distribuidor cotiza desde su propia oficina sin pasar por la matriz. Y la cotización sale ya registrada en el CRM, con su seguimiento automático andando.</p>
+      <div class="acciones">
+        <a class="boton" href="/massatierra#modelo">Ver el modelo <span class="fl">→</span></a>
+        <a class="enlace" href="/massatierra/tablero">Ver el tablero de dirección</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-bajo" style="margin-top:0;border-top:none;padding-top:0">
+      <p>Sentido · Demostración para Massatierra</p>
+      <p>Precios y lógica de selección ilustrativos</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sel = { activo:'transformador', kva:'300', aplica:'tierra', terreno:'media', obra:'massatierra', plaza:'zmg' };
+
+  var ELECTRODO = {
+    '75':   { m:'MTK45A-D',   p:14800 },
+    '150':  { m:'MTK85A-D',   p:19600 },
+    '300':  { m:'MTK200A-D',  p:27400 },
+    '500':  { m:'MTK400A-D',  p:38900 },
+    '1000': { m:'MTK600A-D',  p:52300 },
+    '1500': { m:'MTK1000A-D', p:71500 }
+  };
+  var PUNTA = { m:'MTPP02', p:18700 };
+  var SACO  = { m:'MTAT02', p:1850 };
+
+  var NOMBRE = {
+    transformador:'transformador o subestación', site:'site o centro de datos',
+    maquinaria:'maquinaria nueva', nave:'nave industrial', torre:'torre o antena'
+  };
+
+  function mx(n){ return '$' + n.toLocaleString('es-MX'); }
+
+  function calcular() {
+    var e = ELECTRODO[sel.kva], items = [], total = 0;
+
+    // Cantidad de electrodos: base por aplicación y activo, más refuerzo por terreno
+    var nE = (sel.aplica === 'pararrayos') ? 1 : 2;
+    if (sel.activo === 'nave' || sel.activo === 'site') nE += 1;
+    if (sel.terreno === 'alta') nE += 1;
+    if (sel.aplica === 'ambas') nE += 1;
+
+    items.push({ c:nE, n:'Electrodo magneto activo ' + e.m,
+      d:'Cobre electrolítico 100% · garantía escrita de 20 años a 2 Ω permanentes', m:nE * e.p });
+    total += nE * e.p;
+
+    if (sel.aplica !== 'tierra') {
+      var nP = (sel.activo === 'nave') ? 3 : (sel.activo === 'torre' ? 2 : 1);
+      items.push({ c:nP, n:'Punta pararrayos ' + PUNTA.m,
+        d:'Acero inoxidable, cuerpo central y tres laterales · incluye bajante', m:nP * PUNTA.p });
+      total += nP * PUNTA.p;
+    }
+
+    var nS = sel.terreno === 'alta' ? nE * 3 : (sel.terreno === 'media' ? nE * 2 : 0);
+    if (nS) {
+      items.push({ c:nS, n:'Compuesto acondicionador ' + SACO.m,
+        d:'Reduce la resistividad del terreno hasta alcanzar el valor garantizado', m:nS * SACO.p });
+      total += nS * SACO.p;
+    }
+
+    var ing = sel.obra === 'cliente' ? 9500 : 14500;
+    items.push({ c:1, n: sel.obra === 'cliente' ? 'Ingeniería de planos y certificación posterior' : 'Ingeniería, instalación y puesta en marcha',
+      d: sel.obra === 'cliente'
+        ? 'Diagramas de instalación, memoria de cálculo y visita de certificación para liberar la garantía'
+        : 'Ejecución con cuadrilla propia, mediciones de entrega y dictamen firmado',
+      m: sel.obra === 'cliente' ? ing : ing + nE * 6200 });
+    total += sel.obra === 'cliente' ? ing : ing + nE * 6200;
+
+    if (sel.plaza === 'foraneo') {
+      items.push({ c:1, n:'Viáticos y logística foránea', d:'Traslado de equipo y personal · se ajusta al destino confirmado', m:12400 });
+      total += 12400;
+    }
+
+    items.push({ c:1, n:'Revisión anual · primer año incluido',
+      d:'Medición, informe técnico firmado, dictamen de cumplimiento y sello con año de vigencia', m:0 });
+
+    // Diagnóstico
+    var val = sel.aplica === 'pararrayos' ? '10 Ω' : (sel.aplica === 'ambas' ? '10 Ω y 25 Ω' : '25 Ω');
+    document.getElementById('diag').innerHTML =
+      'Para un <strong>' + NOMBRE[sel.activo] + '</strong> de esta capacidad en terreno de resistividad ' +
+      sel.terreno + ', la norma admite hasta ' + val + '. El sistema propuesto queda <strong>garantizado a 2 Ω permanentes durante 20 años</strong>.';
+
+    // Partidas
+    document.getElementById('partidas').innerHTML = items.map(function (i) {
+      return '<div class="part"><span class="c">' + i.c + '×</span>' +
+             '<span class="n">' + i.n + '<small>' + i.d + '</small></span>' +
+             '<span class="m">' + (i.m ? mx(i.m) : 'Incluido') + '</span></div>';
+    }).join('');
+
+    document.getElementById('total').textContent = mx(total);
+
+    document.getElementById('avisos').textContent =
+      'Vigencia 30 días · Entrega estimada ' + (sel.plaza === 'foraneo' ? '8 a 12' : '5 a 7') +
+      ' días hábiles tras confirmación de depósito · Esta cotización se generó en segundos y queda registrada en el CRM con su seguimiento automático activo.';
+
+    var s = document.getElementById('salida');
+    s.classList.remove('pulso'); void s.offsetWidth; s.classList.add('pulso');
+  }
+
+  document.querySelectorAll('.ops').forEach(function (g) {
+    g.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.op'); if (!b) return;
+      g.querySelectorAll('.op').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      sel[g.dataset.campo] = b.dataset.v;
+      calcular();
+    });
+  });
+
+  calcular();
+})();
+</script>
+</body>
+</html>
