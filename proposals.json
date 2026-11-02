@@ -1509,6 +1509,46 @@
       "serviciosSeleccionados": [],
       "notas": "",
       "bitacora": []
+    },
+    {
+      "slug": "prueba-cafe-brujula",
+      "tipo": "propuesta",
+      "cliente": "PRUEBA Café Brújula",
+      "fecha": "2026-11-02",
+      "estatus": "nueva",
+      "trabajo": "produccion",
+      "historial": [],
+      "serviciosDisponibles": [
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes Sociales + Meta Ads",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "sitio",
+          "nombre": "Sitio nuevo (tienda de café y suscripción)",
+          "precio": 25000,
+          "tipo": "unico"
+        },
+        {
+          "id": "admin-sitio",
+          "nombre": "Administración del sitio",
+          "precio": 3500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "CORRIDA DE PRUEBA del agente (prospecto ficticio). Cafetería de especialidad, 2 sucursales; redes + sitio que venda grano y suscripciones. Precios del catálogo (redes $7,500; sitio $25,000 como en Tequila Sencillo) — supuesto por confirmar.",
+      "proximoPaso": "Revisión de Jos",
+      "fechaSeguimiento": null,
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1220146130100764",
+        "madre_gid": "1220139452687603",
+        "vendedor_tarea_gid": "1220146178181040",
+        "vendedor_gid": "29910024506284"
+      }
     }
   ]
 }

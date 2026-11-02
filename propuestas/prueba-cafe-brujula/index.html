@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Café Brújula</title>
+<meta name="description" content="Propuesta de Sentido para Café Brújula: redes con constancia y un sitio que venda café en grano y suscripciones." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  /* Único bloque por prospecto: el color. Café Brújula = tostado de grano de café. */
+  :root {
+    --marca:     #C98A4B;
+    --marca-ink: #0A0A0A;
+  }
+  .papel {
+    --acento:       color-mix(in srgb, var(--marca) 60%, #0A0A0A);
+    --acento-trazo: color-mix(in srgb, var(--marca) 60%, #0A0A0A);
+  }
+  .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
+  @media (min-width: 768px) { .hero-logo { height: 60px; } }
+
+  .favor { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(26px, 3.4vw, 44px); }
+  .favor .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
+  .favor h3 { margin-bottom: 10px; }
+  .favor p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; max-width: 52ch; }
+  .puente { margin-top: clamp(34px, 4vw, 52px); padding-top: 26px; border-top: 1px solid var(--linea); max-width: 68ch; color: var(--hueso-2); }
+  @media (max-width: 700px) { .favor { grid-template-columns: 1fr; gap: 28px; } }
+
+  .tabla-sub { margin-top: clamp(50px, 6vw, 76px); }
+  .tabla-sub h3 { margin-bottom: 10px; }
+  .tabla-sub > p { color: var(--hueso-2); max-width: 68ch; }
+  .tabla-sub .tabla { margin-top: 26px; }
+  .tfila .sub-pauta p { font-size: 0.875rem; color: var(--hueso-3); }
+
+  .cierre .boton { margin-top: 30px; }
+  .cierre .alterno { margin-top: 24px; font-size: 0.9375rem; color: var(--hueso-3); }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <a class="boton" href="#contacto">Contacto <span class="fl">→</span></a>
+  </div>
+</nav>
+
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    <h1><span class="ligera">El café ya se vende solo en la barra.</span><br>
+      Falta que también <span class="alta">venda</span><br>fuera de ella.</h1>
+    <p class="sub">Café Brújula lleva seis años tostando, tiene dos sucursales y una comunidad que lo sigue en Instagram. Esta propuesta ordena las redes y arma un sitio que vende café en grano y suscripciones mensuales.</p>
+    <div class="acciones">
+      <a class="boton" href="#servicios">Ver el plan <span class="fl">→</span></a>
+      <a class="enlace" href="#inversion">Ir a la inversión</a>
+    </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">Café Brújula</span></div>
+      <div><span class="rotulo">Por</span><span class="val">Sentido · Branding & Advertising</span></div>
+      <div><span class="rotulo">Vigencia</span><span class="val">30 días</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>Quien ya probó su café, vuelve. <span class="tenue">El reto es que también pueda comprarlo en casa.</span></p>
+  </div>
+</section>
+
+<section class="seccion papel" id="contexto">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que Café Brújula ya tiene.</h2>
+    </div>
+    <div class="favor">
+      <div>
+        <span class="rotulo">Oficio</span>
+        <h3>Tostado propio.</h3>
+        <p>El café lo tuestan ellos. Eso da una historia real que contar y un producto que se puede llevar a casa.</p>
+      </div>
+      <div>
+        <span class="rotulo">Trayectoria</span>
+        <h3>Seis años y dos sucursales.</h3>
+        <p>Es un negocio probado, con clientes que ya conocen la marca y un dueño que decide directo.</p>
+      </div>
+      <div>
+        <span class="rotulo">Audiencia</span>
+        <h3>Cerca de 4,000 seguidores.</h3>
+        <p>La comunidad en Instagram existe. Hoy publican sin constancia y nadie lleva la cuenta de forma continua.</p>
+      </div>
+      <div>
+        <span class="rotulo">Meta</span>
+        <h3>Vender más café en grano.</h3>
+        <p>Quieren crecer en grano para llevar y en suscripciones mensuales, y hacerlo desde su propio sitio.</p>
+      </div>
+    </div>
+    <p class="puente">Hoy el sitio es una página de Wix con el menú en PDF y no vende en línea. Las redes tienen audiencia, pero sin ritmo no la llevan a ningún lado. Son dos piezas que hay que conectar.</p>
+  </div>
+</section>
+
+<section class="seccion seccion--regla" id="servicios">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El plan, en dos piezas.</h2>
+      <p>Primero el sitio, porque es donde se cierra la venta; después las redes, que llevan a la gente hasta ahí. Cada una se contrata por separado.</p>
+    </div>
+    <div class="plancha">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Pieza 01</span><h3>Sitio que vende café en grano</h3></div>
+        <div>
+          <p>Tienda con ficha por café (origen, perfil, molienda y presentación), compra de grano para llevar y suscripción mensual con entrega recurrente. El menú deja de ser un PDF y pasa a ser una página que se lee bien en teléfono.</p>
+          <p>Incluye medición desde el primer día y un acceso por WhatsApp para dudas de pedido.</p>
+        </div>
+        <div class="ver">Venta</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Pieza 02</span><h3>Gestión de redes con constancia</h3></div>
+        <div>
+          <p>Calendario mensual de publicaciones en Instagram y Facebook, con diseño, textos y programación. El contenido alterna producto, proceso de tostado, las dos sucursales y la suscripción.</p>
+          <div class="sub-pauta">
+            <span class="rotulo">+ Pauta Meta</span>
+            <p>Gestión incluida con redes · la inversión en anuncios se paga directo a Meta, aparte de este honorario</p>
+          </div>
+        </div>
+        <div class="ver">Constancia</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="seccion papel" id="inversion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Inversión.</h2>
+      <p>La gestión mensual de redes incluye Meta Ads. El sitio es un pago único. La pauta va directo a Meta, con su medio de pago.</p>
+    </div>
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Pieza</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Inversión</span>
+      </div>
+      <div class="tfila">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Pieza">Gestión de redes + Meta Ads<span class="fnota">Mensual</span></div>
+        <p class="tcol" data-l="Qué incluye">Instagram y Facebook con calendario mensual, diseño, textos, programación y gestión de campañas en Meta.</p>
+        <div class="tprecio tcol" data-l="Inversión">$7,500<span class="tper">MXN + IVA / mes</span></div>
+      </div>
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Pieza">Sitio nuevo<span class="fnota">Pago único</span></div>
+        <p class="tcol" data-l="Qué incluye">Tienda de café en grano y suscripción mensual, ficha por producto, medición y diseño pensado primero para teléfono. Pago 60% de anticipo y 40% contra entrega.</p>
+        <div class="tprecio tcol" data-l="Inversión">$25,000<span class="tper">MXN + IVA · pago único</span></div>
+      </div>
+    </div>
+    <p class="tnota">No incluye dominio, servidor, fotografía ni pauta. Arranque propuesto: diciembre.</p>
+
+    <div class="tabla-sub">
+      <h3>Complemento opcional.</h3>
+      <p>Para mantener el sitio al día una vez publicado.</p>
+      <div class="tabla">
+        <div class="tfila cab">
+          <span class="rotulo">Módulo</span><span class="rotulo">Qué resuelve</span><span class="rotulo" style="text-align:right">Inversión</span>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Módulo">Administración del sitio<span class="fnota">Mensual</span></div>
+          <p class="tcol" data-l="Qué resuelve">Actualizaciones menores, gráficos para promociones y análisis mensual de tráfico y ventas.</p>
+          <div class="tprecio tcol" data-l="Inversión">$3,500<span class="tper">MXN + IVA / mes</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Contacto</h2>
+      <p>Si quieren revisar el plan con nosotros o ajustar el alcance, estamos a un mensaje de distancia.</p>
+      <a class="boton" id="cta-contacto" href="https://wa.me/5213222253390?text=Hola%2C%20vi%20la%20propuesta%20de%20Caf%C3%A9%20Br%C3%BAjula%20y%20me%20gustar%C3%ADa%20platicarla." target="_blank" rel="noopener">Escríbenos por WhatsApp <span class="fl">→</span></a>
+      <p class="alterno">También en <a class="enlace-txt" href="mailto:jos@sentido.mx?subject=Propuesta%20Caf%C3%A9%20Br%C3%BAjula">jos@sentido.mx</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema, para que cada peso invertido produzca ventas y clientes que regresan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Propuesta</span>
+        <ul>
+          <li><a href="#contexto">Contexto</a></li>
+          <li><a href="#servicios">El plan</a></li>
+          <li><a href="#inversion">Inversión</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul>
+          <li><a href="mailto:jos@sentido.mx">jos@sentido.mx</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Sentido</span>
+        <ul><li><a href="/sitio">Sitio</a></li></ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
