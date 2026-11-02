@@ -16,6 +16,12 @@
           "tipo": "mensual"
         },
         {
+          "id": "redes",
+          "nombre": "Gestión de Redes Sociales + Meta Ads",
+          "precio": 7500,
+          "tipo": "mensual"
+        },
+        {
           "id": "crm",
           "nombre": "CRM y automatización",
           "precio": 4000,
@@ -47,7 +53,7 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Contacto tibio, lo atiende Rodrigo (CTA a su WhatsApp). Base $11,500/mes incluye Fase 0 + sitio $20,000. Dashboard y herramientas a medida por definir tras Fase 0. Google no muestra anuncios del 28 jul al 2 nov 2026; confirmar estado de la cuenta.",
+      "notas": "Contacto tibio, lo atiende Rodrigo (CTA a su WhatsApp). Base $19,000/mes incluye Fase 0 + sitio $20,000. Dashboard y herramientas a medida por definir tras Fase 0. Google no muestra anuncios del 28 jul al 2 nov 2026; confirmar estado de la cuenta.",
       "proximoPaso": "Esperando respuesta vía WhatsApp",
       "fechaSeguimiento": null,
       "bitacora": [],
