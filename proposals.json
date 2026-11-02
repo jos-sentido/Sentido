@@ -1,6 +1,52 @@
 {
   "proposals": [
     {
+      "slug": "tequila-sencillo",
+      "tipo": "propuesta",
+      "cliente": "Tequila Sencillo",
+      "fecha": "2026-11-02",
+      "estatus": "nueva",
+      "trabajo": "produccion",
+      "historial": [],
+      "serviciosDisponibles": [
+        {
+          "id": "sitio",
+          "nombre": "Sitio nuevo (Desarrollo E-Commerce estratégico)",
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "admin-sitio",
+          "nombre": "Administración del sitio",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "foto",
+          "nombre": "Sesión fotográfica",
+          "precio": 3000,
+          "tipo": "unico"
+        },
+        {
+          "id": "video",
+          "nombre": "Sesión de video",
+          "precio": 5500,
+          "tipo": "unico"
+        },
+        {
+          "id": "redes",
+          "nombre": "Gestión de Redes Sociales + Meta Ads",
+          "precio": 7500,
+          "tipo": "mensual"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Contacto tibio, lo atiende Pao Monroy (CTA a su WhatsApp). Sitio nuevo como pieza central; complementos opcionales. Análisis de oportunidades del sitio actual al 2 nov 2026.",
+      "proximoPaso": "Enviar propuesta y esperar respuesta por WhatsApp",
+      "fechaSeguimiento": null,
+      "bitacora": []
+    },
+    {
       "slug": "casa-de-maty-plan-redes",
       "tipo": "cliente",
       "cliente": "Hotel La Casa de Maty — Plan de trabajo de redes + reporte",

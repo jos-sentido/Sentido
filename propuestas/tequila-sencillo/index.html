@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Tequila Sencillo</title>
+<meta name="description" content="Propuesta de Sentido para Tequila Sencillo: análisis de oportunidades del sitio actual y un sitio nuevo a la altura del tequila." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css" />
+<style>
+  /* El único bloque que cambia por prospecto: el color de la marca.
+     Tequila Sencillo = azul de la tira de la botella y de su encabezado (#449DD7). */
+  :root {
+    --marca:     #449DD7;
+    --marca-ink: #0A0A0A;
+  }
+
+  /* Este azul es claro: con el 80% por defecto da 3.62:1 sobre papel.
+     Al 60% da 5.48:1 y cumple el piso de 4.5:1 hasta en --tinta-3. */
+  .papel {
+    --acento:       color-mix(in srgb, var(--marca) 60%, #0A0A0A);
+    --acento-trazo: color-mix(in srgb, var(--marca) 60%, #0A0A0A);
+  }
+
+  .hero-logo { height: 52px; width: auto; margin-bottom: clamp(30px, 4vw, 46px); }
+  @media (min-width: 768px) { .hero-logo { height: 60px; } }
+
+  .favor { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(26px, 3.4vw, 44px); }
+  .favor .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
+  .favor h3 { margin-bottom: 10px; }
+  .favor p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; max-width: 52ch; }
+  .puente { margin-top: clamp(34px, 4vw, 52px); padding-top: 26px; border-top: 1px solid var(--linea); max-width: 68ch; color: var(--hueso-2); }
+  @media (max-width: 700px) { .favor { grid-template-columns: 1fr; gap: 28px; } }
+
+  .renglon .abre { margin-top: 12px; color: var(--hueso-2); }
+  .renglon .abre b { color: var(--acento); font-weight: var(--fuerte); }
+  .renglon .ver { line-height: 1.5; }
+
+  .cabeza-sub { margin: clamp(52px, 6vw, 80px) 0 0; }
+  .cabeza-sub .pleca { width: 56px; margin-bottom: 22px; }
+  .cabeza-sub h3 { margin-bottom: 10px; }
+  .cabeza-sub p { color: var(--hueso-2); max-width: 68ch; }
+
+  .dos-listas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 5vw, 72px); margin-top: 30px; }
+  .dos-listas .rotulo { display: block; margin-bottom: 18px; }
+  .dos-listas .lista li { color: var(--hueso-2); }
+  @media (max-width: 760px) { .dos-listas { grid-template-columns: 1fr; } }
+
+  .reglas { margin-top: 28px; max-width: 76ch; }
+  .reglas li { color: var(--hueso-2); }
+  .reglas b { color: var(--hueso); font-weight: var(--fuerte); }
+  .fuente { margin-top: 22px; max-width: 76ch; font-size: 0.8125rem; line-height: 1.6; color: var(--hueso-4); }
+
+  .tabla-sub { margin-top: clamp(50px, 6vw, 76px); }
+  .tabla-sub h3 { margin-bottom: 10px; }
+  .tabla-sub > p { color: var(--hueso-2); max-width: 68ch; }
+  .tabla-sub .tabla { margin-top: 26px; }
+  .tfila .sub-pauta p { font-size: 0.875rem; color: var(--hueso-3); }
+
+  .cierre .boton { margin-top: 30px; }
+  .cierre .alterno { margin-top: 24px; font-size: 0.9375rem; color: var(--hueso-3); }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <a class="boton" href="#contacto">Contacto <span class="fl">→</span></a>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+    <h1><span class="ligera">El tequila ya está bien hecho.</span><br>
+      Ahora toca un <span class="alta">sitio</span><br>que lo pueda vender.</h1>
+    <p class="sub">Tequila Sencillo tiene producto, origen en Arandas y una voz propia. Revisamos el sitio actual a detalle: aquí está lo que encontramos y lo que un sitio nuevo puede hacer por la marca.</p>
+    <div class="acciones">
+      <a class="boton" href="#analisis">Ver el análisis <span class="fl">→</span></a>
+      <a class="enlace" href="#inversion">Ir a la inversión</a>
+    </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">Tequila Sencillo</span></div>
+      <div><span class="rotulo">Por</span><span class="val">Sentido · Branding & Advertising</span></div>
+      <div><span class="rotulo">Vigencia</span><span class="val">30 días</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ DECLARACIÓN ══════════ -->
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>La botella dice «bien hecho». <span class="tenue">El sitio es donde eso se demuestra.</span></p>
+  </div>
+</section>
+
+<!-- ══════════ CONTEXTO — isla de papel ══════════ -->
+<section class="seccion papel" id="contexto">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Lo que la marca ya tiene a favor.</h2>
+    </div>
+    <div class="favor">
+      <div>
+        <span class="rotulo">Producto</span>
+        <h3>Una definición clara.</h3>
+        <p>Tequila blanco 100% puro de agave, elaborado en Arandas, Jalisco, a 35% Alc. Vol. En una línea ya se entiende qué es y de dónde viene.</p>
+      </div>
+      <div>
+        <span class="rotulo">Voz</span>
+        <h3>Una idea propia.</h3>
+        <p>«Bien hecho sin complicaciones» se recuerda fácil, y Simplicidad, Cercanía y Calidad le dan a la marca una dirección clara para todo lo que diga.</p>
+      </div>
+      <div>
+        <span class="rotulo">Imagen</span>
+        <h3>Una botella con presencia.</h3>
+        <p>Etiqueta, tira y caja ya hablan el mismo idioma. Hay material real para construir un sitio con personalidad propia.</p>
+      </div>
+      <div>
+        <span class="rotulo">Actividad</span>
+        <h3>Una marca en movimiento.</h3>
+        <p>Instagram tiene publicaciones recientes y una historia destacada de puntos de venta. El tequila ya está saliendo al mercado.</p>
+      </div>
+    </div>
+    <p class="puente">El sitio actual cumple su papel de presentación y en escritorio carga rápido. El paso que sigue es convertirlo en el lugar donde la marca explica, convence y lleva a la compra.</p>
+  </div>
+</section>
+
+<!-- ══════════ ANÁLISIS — el corazón de la propuesta ══════════ -->
+<section class="seccion seccion--regla" id="analisis">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Ocho oportunidades en el sitio actual.</h2>
+      <p>Revisamos el sitio en vivo el 2 de noviembre de 2026, en escritorio y en teléfono. Cada punto dice qué vimos y qué abre. A la derecha, su prioridad para el proyecto.</p>
+    </div>
+    <div class="plancha">
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Venta</span><h3>La tienda está instalada y espera producto.</h3></div>
+        <div>
+          <p>El sitio corre en Shopify, con carrito y cuenta de cliente a la vista, y el catálogo aparece vacío: «No products found», 0 artículos. Quien llega con ganas de comprar se queda sin siguiente paso.</p>
+          <p class="abre"><b>Abre:</b> ficha de producto y un camino claro a la compra, directa o por punto de venta.</p>
+        </div>
+        <div class="ver">Alta</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Dónde comprar</span><h3>Los puntos de venta viven en Instagram.</h3></div>
+        <div>
+          <p>La cuenta tiene una historia destacada llamada «Puntos de venta». En el sitio todavía no hay una sección equivalente, así que quien entra por ahí no tiene cómo enterarse.</p>
+          <p class="abre"><b>Abre:</b> una sección propia, fácil de actualizar cada vez que se sume un punto nuevo.</p>
+        </div>
+        <div class="ver">Alta</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Historia de marca</span><h3>Arandas tiene espacio para crecer.</h3></div>
+        <div>
+          <p>Hoy la historia cabe en un párrafo y un video de proceso. El mapa del sitio registra la portada, una página de contacto y un blog aún sin publicaciones.</p>
+          <p class="abre"><b>Abre:</b> páginas propias de origen, proceso y producto, para que la promesa de calidad se pueda recorrer.</p>
+        </div>
+        <div class="ver">Alta</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Teléfono y velocidad</span><h3>Escritorio va rápido; en teléfono hay margen.</h3></div>
+        <div>
+          <p>En pruebas de laboratorio con Lighthouse, escritorio obtiene 99 de 100 y su contenido principal aparece en 0.9 s. En teléfono simulado baja a 62 de 100, con 6.0 s. La imagen principal mide 800 × 342 px y se amplía para llenar la pantalla; en teléfono, el eslogan se monta sobre las cajas.</p>
+          <p class="abre"><b>Abre:</b> un diseño pensado primero para teléfono, con imágenes a la medida de cada pantalla.</p>
+        </div>
+        <div class="ver">Alta</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Verificación de edad</span><h3>La entrada puede recibir solo a mayores de edad.</h3></div>
+        <div>
+          <p>Hoy el sitio abre directo. El pie ya lleva «Evita el exceso», un buen punto de partida. Siete Leguas, Cazadores, Casamigos y Tequila Ocho preguntan la edad antes de dejar entrar.</p>
+          <p class="abre"><b>Abre:</b> una entrada de verificación con la voz de la marca, clave si el sitio va a vender.</p>
+        </div>
+        <div class="ver">Alta</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Buscadores</span><h3>Hay poco texto para que la marca se encuentre.</h3></div>
+        <div>
+          <p>La portada aún no tiene meta descripción y tampoco hay páginas de producto que posicionar. En una búsqueda de prueba en Bing México, el sitio sale como primer resultado orgánico, debajo de un bloque patrocinado con tequilas de otras marcas.</p>
+          <p class="abre"><b>Abre:</b> estructura, textos y URLs pensados para quien busca la marca y para quien busca la categoría.</p>
+        </div>
+        <div class="ver">Media</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Idioma y exportación</span><h3>El sitio mezcla español e inglés.</h3></div>
+        <div>
+          <p>El contenido va en español y la interfaz sale en inglés: «Products», «Contact», «Send». El idioma declarado del sitio también es inglés. Para visitantes de otros países aún no hay una versión propia: la ruta /en da error 404.</p>
+          <p class="abre"><b>Abre:</b> español completo desde el arranque y una base lista para sumar inglés si la exportación entra en los planes.</p>
+        </div>
+        <div class="ver">Media</div>
+      </article>
+
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Confianza y medición</span><h3>Faltan piezas que sostienen una venta.</h3></div>
+        <div>
+          <p>La política de privacidad existe, en inglés. Términos, envíos y devoluciones dan error 404. Desde fuera no detectamos Google Analytics, Tag Manager ni píxel de Meta en la portada; se confirma con accesos. El logo tampoco se ve en la barra de la portada, y en Contacto sale blanco sobre blanco.</p>
+          <p class="abre"><b>Abre:</b> políticas completas, medición desde el primer día y una barra con la marca siempre visible.</p>
+        </div>
+        <div class="ver">Media</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COMPARABLES ══════════ -->
+<section class="seccion seccion--regla" id="comparables">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Qué hacen bien otras marcas de tequila.</h2>
+      <p>Son marcas de distinto tamaño. Lo que interesa aquí es la estructura que usan, y esa queda al alcance de un sitio bien planeado.</p>
+    </div>
+    <div class="plancha">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><h3>Cazadores</h3><p class="bajo-titulo">cazadores.com/mx/es</p></div>
+        <div><p>También cuenta su historia desde Arandas. Tiene sitio en español para México, una página por expresión, una sección de raíces y otra de cocteles. Pide año de nacimiento al entrar.</p></div>
+        <div class="ver">Origen</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><h3>Siete Leguas</h3><p class="bajo-titulo">casasieteleguas.com</p></div>
+        <div><p>Marca mexicana que abre con «¿Eres mayor de edad?» y lleva «Evita el exceso» en esa misma pantalla. Funciona en español e inglés, y sus cocteles van organizados por expresión.</p></div>
+        <div class="ver">Entrada</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><h3>Tequila Ocho</h3><p class="bajo-titulo">ochotequila.com</p></div>
+        <div><p>Da al proceso una página propia, igual que a dónde comprar y a los cocteles. Declara versiones en inglés y español.</p></div>
+        <div class="ver">Proceso</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><h3>Casamigos</h3><p class="bajo-titulo">casamigos.com</p></div>
+        <div><p>Separa con claridad historia, tequilas, cocteles y dónde comprar, cada uno en su propia página. Pregunta la fecha de nacimiento al entrar.</p></div>
+        <div class="ver">Navegación</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><h3>Teremana</h3><p class="bajo-titulo">teremana.com</p></div>
+        <div><p>También corre sobre Shopify, y ahí sostiene historia, recetas y una página para encontrar el producto. La plataforma que Tequila Sencillo ya tiene permite llegar a ese nivel de estructura.</p></div>
+        <div class="ver">Plataforma</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL SITIO NUEVO ══════════ -->
+<section class="seccion seccion--regla" id="sitio">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El sitio nuevo, pieza por pieza.</h2>
+      <p>Cada pieza atiende una oportunidad del análisis. El diseño, los textos y las imágenes se desarrollan ya dentro del proyecto, con la marca en la mesa.</p>
+    </div>
+    <div class="plancha">
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Entrada</span><h3>Verificación de edad</h3></div>
+        <div><p>Primer contacto con el sitio, resuelto con la voz de la marca y con la leyenda de consumo responsable a la vista.</p></div>
+        <div class="ver">Edad</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Producto</span><h3>La ficha del tequila</h3></div>
+        <div><p>Toda la información del producto en una página propia, y una estructura lista para recibir nuevas expresiones si la marca las lanza.</p></div>
+        <div class="ver">Venta</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Marca</span><h3>Origen y proceso</h3></div>
+        <div><p>Arandas, materia prima y elaboración contadas con calma. El video de proceso que ya existe entra como una pieza más de esa historia.</p></div>
+        <div class="ver">Historia</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Compra</span><h3>Dónde comprar y tienda</h3></div>
+        <div><p>Puntos de venta en una sección que el equipo pueda mantener al día. La venta directa se activa sobre el catálogo en cuanto la marca confirme condiciones de pago y envío.</p></div>
+        <div class="ver">Venta</div>
+      </article>
+      <article class="renglon">
+        <span class="buril" aria-hidden="true"></span>
+        <div><span class="marco">Base técnica</span><h3>Teléfono, buscadores y medición</h3></div>
+        <div><p>Diseño mobile-first, URLs para SEO, etiquetas y píxeles instalados, políticas completas e interfaz en español, con la base lista para sumar inglés.</p></div>
+        <div class="ver">Fundamentos</div>
+      </article>
+    </div>
+
+    <div class="cabeza-sub">
+      <span class="pleca"></span>
+      <h3>Cómo se trabaja y qué se entrega.</h3>
+      <p>Su tienda ya vive en Shopify. En la primera etapa definimos si el sitio nuevo se construye sobre esa base, y el calendario se fija al arranque según los contenidos disponibles.</p>
+    </div>
+    <div class="dos-listas">
+      <div>
+        <span class="rotulo">Proceso</span>
+        <ol class="lista lista--chica">
+          <li>Arquitectura: objetivos, secciones y recorrido de compra.</li>
+          <li>Contenido y diseño: información editorial y gráficos, con validación de la marca.</li>
+          <li>Desarrollo: programación, base de datos y módulo administrable.</li>
+          <li>Lanzamiento: pruebas en teléfono y escritorio, medición y publicación.</li>
+        </ol>
+      </div>
+      <div>
+        <span class="rotulo">Entregables</span>
+        <ul class="lista lista--chica">
+          <li>Distribución de elementos y secciones.</li>
+          <li>Programación interna, responsive mobile-first.</li>
+          <li>Contenido gráfico e información editorial.</li>
+          <li>Base de datos y módulo administrable.</li>
+          <li>Administrador de inventarios y buscador.</li>
+          <li>SEO URLs, tags y pixels, SSL y WhatsApp.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cabeza-sub">
+      <span class="pleca"></span>
+      <h3>Alcohol: el sitio se diseña dentro de las reglas.</h3>
+      <p>Aquí la regla y la marca empujan hacia el mismo lado. La Ley General de Salud pide que la publicidad de bebidas alcohólicas se limite a informar sobre características, calidad y técnicas de elaboración, y «buena materia prima, buen proceso, buen sabor» ya es la promesa de Tequila Sencillo.</p>
+    </div>
+    <ul class="lista lista--chica reglas">
+      <li><b>Menores de edad.</b> El artículo 220 de la Ley prohíbe expender o suministrar bebidas alcohólicas a menores. No encontramos una norma que fije cómo verificar la edad en un sitio web, así que lo tratamos como requisito de diseño.</li>
+      <li><b>Mensajes.</b> El artículo 308 de la Ley y el 34 del Reglamento en Materia de Publicidad acotan qué se puede decir y mostrar, por ejemplo imperativos que induzcan al consumo o escenas de consumo. Los textos y las imágenes se trabajan con esos criterios a la vista.</li>
+      <li><b>Permiso.</b> El artículo 79 del Reglamento señala que la publicidad de bebidas alcohólicas requiere permiso de la Secretaría de Salud. Conviene definir con su asesor legal qué piezas lo necesitan.</li>
+      <li><b>Pauta.</b> Meta permite anunciar alcohol a personas de 18 años o más, cumpliendo la ley local. Google incluye a México entre los países donde se puede segmentar este tipo de anuncios, con sus propias restricciones de contenido.</li>
+      <li><b>Venta en línea.</b> Antes de activarla se validan las condiciones de la pasarela de pago, la paquetería y los permisos de venta aplicables.</li>
+    </ul>
+    <p class="fuente">Orientación de marketing, no asesoría legal. Fuentes: Ley General de Salud (última reforma DOF 15-01-2026), Reglamento de la Ley General de Salud en Materia de Publicidad (última reforma DOF 08-09-2022) y políticas publicitarias de Meta y Google consultadas el 2 de noviembre de 2026.</p>
+  </div>
+</section>
+
+<!-- ══════════ INVERSIÓN — isla de papel ══════════ -->
+<section class="seccion papel" id="inversion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Inversión.</h2>
+      <p>El sitio nuevo es la pieza central de esta propuesta. Los complementos son opcionales y se contratan por separado, cuando la marca lo decida.</p>
+    </div>
+    <div class="tabla">
+      <div class="tfila cab">
+        <span class="rotulo">Pieza</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Inversión</span>
+      </div>
+      <div class="tfila total">
+        <span class="buril" aria-hidden="true"></span>
+        <div class="tfase tcol" data-l="Pieza">Sitio nuevo<span class="fnota">Pieza central</span></div>
+        <p class="tcol" data-l="Qué incluye">Desarrollo e-commerce estratégico: todas las piezas y entregables descritos arriba. Pago 60% de anticipo ($12,000) y 40% contra entrega ($8,000).</p>
+        <div class="tprecio tcol" data-l="Inversión">$20,000<span class="tper">MXN + IVA · pago único</span></div>
+      </div>
+    </div>
+    <p class="tnota">No incluye servidor, dominio, fotografía, video ni pauta.</p>
+
+    <div class="tabla-sub">
+      <h3>Complementos opcionales.</h3>
+      <p>Solo los que el análisis justifica. Cada uno se suma cuando tenga sentido y se cotiza aparte del sitio.</p>
+      <div class="tabla">
+        <div class="tfila cab">
+          <span class="rotulo">Módulo</span><span class="rotulo">Qué resuelve</span><span class="rotulo" style="text-align:right">Inversión</span>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Módulo">Administración del sitio<span class="fnota">Mensual</span></div>
+          <p class="tcol" data-l="Qué resuelve">Mantiene vivo el sitio: gráficos para promoción, actualizaciones menores, análisis de estadísticas, tráfico y conversiones. Las reestructuras cotizan aparte.</p>
+          <div class="tprecio tcol" data-l="Inversión">$3,500<span class="tper">MXN + IVA / mes</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Módulo">Sesión fotográfica<span class="fnota">Eventual</span></div>
+          <p class="tcol" data-l="Qué resuelve">Imágenes de producto y origen a la resolución que pide el sitio nuevo. Dos horas, 25 a 30 imágenes con retoque y formatos adaptados.</p>
+          <div class="tprecio tcol" data-l="Inversión">$3,000<span class="tper">MXN + IVA / sesión</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Módulo">Sesión de video<span class="fnota">Eventual</span></div>
+          <p class="tcol" data-l="Qué resuelve">Material para la historia de marca y el proceso. Dos horas de grabación, con edición y entrega de un video de 40 s y cuatro cortos de 12 s.</p>
+          <div class="tprecio tcol" data-l="Inversión">$5,500<span class="tper">MXN + IVA / sesión</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Módulo">Gestión de redes + Meta Ads<span class="fnota">Mensual</span></div>
+          <div class="tcol" data-l="Qué resuelve">
+            <p>Instagram y Facebook con 15 publicaciones al mes en formatos mixtos, para llevar tráfico al sitio una vez publicado.</p>
+            <div class="sub-pauta">
+              <span class="rotulo">+ Pauta Meta</span>
+              <p>Gestión incluida con redes · pauta recomendada de $5,000 a $15,000 MXN al mes, directa a la plataforma, aparte de este honorario</p>
+            </div>
+          </div>
+          <div class="tprecio tcol" data-l="Inversión">$7,500<span class="tper">MXN + IVA / mes</span></div>
+        </div>
+      </div>
+      <p class="tnota">Los complementos son independientes entre sí. La producción de foto y video es eventual y queda fuera de cualquier mensualidad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE — CTA directo, sin formulario ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Contacto</h2>
+      <p>Si quieren revisar este análisis con nosotros o ajustar el alcance del sitio, estamos a un mensaje de distancia.</p>
+
+      <!-- CTA ÚNICO DE CONTACTO -->
+      <a class="boton" id="cta-contacto" href="https://wa.me/5213318046916?text=Hola%2C%20vi%20la%20propuesta%20de%20Tequila%20Sencillo%20y%20me%20gustar%C3%ADa%20platicarla." target="_blank" rel="noopener">Escríbenos por WhatsApp <span class="fl">→</span></a>
+      <p class="alterno">También en <a class="enlace-txt" href="mailto:contacto@sentido.mx?subject=Propuesta%20Tequila%20Sencillo">contacto@sentido.mx</a></p>
+      <!-- /CTA ÚNICO DE CONTACTO -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PIE ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding & Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema, para que cada peso invertido produzca ventas y clientes que regresan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Propuesta</span>
+        <ul>
+          <li><a href="#contexto">Contexto</a></li>
+          <li><a href="#analisis">Análisis</a></li>
+          <li><a href="#sitio">Sitio nuevo</a></li>
+          <li><a href="#inversion">Inversión</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul>
+          <li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li>
+          <li><a href="https://instagram.com/sentido.mx">@sentido.mx</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Sentido</span>
+        <ul>
+          <li><a href="/sitio">Sitio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
