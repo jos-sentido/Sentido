@@ -41,9 +41,9 @@
 
   /* Necesidades: cuatro encargos, numerados porque la secuencia informa */
   .encargos { list-style: none; margin: clamp(30px, 4vw, 48px) 0 0; padding: 0; border-top: 1px solid var(--linea); counter-reset: enc; }
-  .encargos li { counter-increment: enc; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--linea); color: var(--hueso); font-weight: var(--fuerte); font-size: 1.0625rem; letter-spacing: -0.01em; }
-  .encargos li::before { content: '0' counter(enc); font-weight: var(--negra); color: var(--hueso-4); font-size: 0.875rem; letter-spacing: 0.12em; padding-top: 3px; }
-  .encargos li span { display: block; font-weight: var(--media); color: var(--hueso-2); font-size: 0.9375rem; margin-top: 4px; }
+  .encargos li { counter-increment: enc; display: grid; grid-template-columns: 64px minmax(0, 1fr); column-gap: 18px; row-gap: 6px; padding: 20px 0; border-bottom: 1px solid var(--linea); color: var(--hueso); font-weight: var(--fuerte); font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .encargos li::before { content: '0' counter(enc); font-weight: var(--negra); color: var(--hueso-4); font-size: 0.875rem; letter-spacing: 0.12em; padding-top: 3px; grid-row: span 2; }
+  .encargos li span { grid-column: 2; display: block; font-weight: var(--media); color: var(--hueso-2); font-size: 0.9375rem; max-width: 60ch; }
 
   /* El momento: cifra grande con fuente + tres miradas */
   .momento-alto { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: end; margin-bottom: clamp(34px, 4.6vw, 60px); }
