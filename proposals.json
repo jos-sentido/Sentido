@@ -12,25 +12,25 @@
         {
           "id": "redes",
           "nombre": "Gestión de redes sociales",
-          "precio": 22000,
+          "precio": 23000,
           "tipo": "mensual"
         },
         {
           "id": "gads",
           "nombre": "Gestión de Google Ads",
-          "precio": 6000,
+          "precio": 7000,
           "tipo": "mensual"
         },
         {
           "id": "crm",
           "nombre": "CRM y automatización",
-          "precio": 6000,
+          "precio": 7000,
           "tipo": "mensual"
         },
         {
           "id": "ia-operacion",
           "nombre": "Operación mensual agente IA concierge",
-          "precio": 6000,
+          "precio": 10000,
           "tipo": "mensual"
         },
         {
@@ -42,7 +42,7 @@
         {
           "id": "carpeta",
           "nombre": "Carpeta concierge (brochure, guía y fichas)",
-          "precio": 20000,
+          "precio": 18400,
           "tipo": "unico"
         },
         {
@@ -59,13 +59,13 @@
         },
         {
           "id": "sitio",
-          "nombre": "Plataforma web B2B (por cotizar)",
-          "precio": 0,
+          "nombre": "Plataforma web B2B",
+          "precio": 45000,
           "tipo": "unico"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Vendedora: Mel (presenta mié 4 nov 2026). Mensual $40,000 + IVA y único $72,000 + IVA; web por cotizar tras levantamiento. Sin --marca (100% Sentido). Grupo con más torres: oportunidad de replicar.",
+      "notas": "Vendedora: Mel (presenta mié 4 nov 2026). Mensual $47,000 + IVA y único $115,400 + IVA (incluye web $45,000). Sin --marca (100% Sentido). Grupo con más torres: oportunidad de replicar.",
       "proximoPaso": "Presentación de Mel el 4 nov; esperar respuesta vía formulario",
       "fechaSeguimiento": null,
       "bitacora": [],
