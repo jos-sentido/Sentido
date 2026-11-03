@@ -1596,7 +1596,7 @@
       "cliente": "PRUEBA Café Brújula",
       "fecha": "2026-11-02",
       "estatus": "nueva",
-      "trabajo": "produccion",
+      "trabajo": "lista",
       "historial": [],
       "serviciosDisponibles": [
         {
