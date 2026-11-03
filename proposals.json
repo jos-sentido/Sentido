@@ -1596,30 +1596,30 @@
       "cliente": "PRUEBA Café Brújula",
       "fecha": "2026-11-02",
       "estatus": "nueva",
-      "trabajo": "lista",
+      "trabajo": "ajustes",
       "historial": [],
       "serviciosDisponibles": [
         {
           "id": "redes",
           "nombre": "Gestión de Redes Sociales + Meta Ads",
-          "precio": 7500,
+          "precio": 8250,
           "tipo": "mensual"
         },
         {
           "id": "sitio",
           "nombre": "Sitio nuevo (tienda de café y suscripción)",
-          "precio": 25000,
+          "precio": 27500,
           "tipo": "unico"
         },
         {
           "id": "admin-sitio",
           "nombre": "Administración del sitio",
-          "precio": 3500,
+          "precio": 3850,
           "tipo": "mensual"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "CORRIDA DE PRUEBA del agente (prospecto ficticio). Cafetería de especialidad, 2 sucursales; redes + sitio que venda grano y suscripciones. Precios del catálogo (redes $7,500; sitio $25,000 como en Tequila Sencillo) — supuesto por confirmar.",
+      "notas": "CORRIDA DE PRUEBA del agente (prospecto ficticio). Cafetería de especialidad, 2 sucursales; redes + sitio que venda grano y suscripciones. Precios del catálogo (redes $7,500; sitio $25,000 como en Tequila Sencillo) — supuesto por confirmar. · Ajustes v2 (pac de Jos, 3 nov 2026): tarifas +10% → redes $8,250/mes, sitio $27,500, admin del sitio $3,850/mes.",
       "proximoPaso": "Revisión de Jos",
       "fechaSeguimiento": null,
       "bitacora": [],
