@@ -11,7 +11,7 @@
       "serviciosDisponibles": [
         {
           "id": "redes",
-          "nombre": "Gestión de redes sociales + producción mensual foto/video",
+          "nombre": "Gestión de redes sociales",
           "precio": 22000,
           "tipo": "mensual"
         },
@@ -42,13 +42,19 @@
         {
           "id": "carpeta",
           "nombre": "Carpeta concierge (brochure, guía y fichas)",
-          "precio": 12000,
+          "precio": 20000,
           "tipo": "unico"
         },
         {
           "id": "ia-desarrollo",
           "nombre": "Desarrollo agente IA concierge",
-          "precio": 13000,
+          "precio": 20000,
+          "tipo": "unico"
+        },
+        {
+          "id": "crm-setup",
+          "nombre": "Desarrollo y setup del CRM",
+          "precio": 10000,
           "tipo": "unico"
         },
         {
@@ -59,7 +65,7 @@
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Vendedora: Mel (presenta mié 4 nov 2026). Mensual $40,000 + IVA y único $47,000 + IVA; web por cotizar tras levantamiento. Sin --marca (100% Sentido). Grupo con más torres: oportunidad de replicar.",
+      "notas": "Vendedora: Mel (presenta mié 4 nov 2026). Mensual $40,000 + IVA y único $72,000 + IVA; web por cotizar tras levantamiento. Sin --marca (100% Sentido). Grupo con más torres: oportunidad de replicar.",
       "proximoPaso": "Presentación de Mel el 4 nov; esperar respuesta vía formulario",
       "fechaSeguimiento": null,
       "bitacora": [],
