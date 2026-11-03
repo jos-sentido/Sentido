@@ -764,54 +764,17 @@
   </div>
 </section>
 
-<!-- ══════════ CIERRE + FORMULARIO ══════════ -->
+<!-- ══════════ CIERRE + WHATSAPP ══════════ -->
 <section class="seccion" id="contacto">
   <div class="wrap">
     <div class="cierre">
       <span class="buril buril--iris" aria-hidden="true"></span>
       <h2>Contacto.</h2>
-      <p>Lo que funcione en Torre del Ángel puede ser el estándar de cada torre del grupo. Cuéntanos dónde están parados y preparamos el arranque.</p>
-      <form class="forma" id="lead-form" data-webhook="/api/lead" style="margin-top:32px" novalidate>
-        <input type="hidden" name="propuesta" value="torre-del-angel" />
-        <div class="rej-forma">
-          <div class="campo">
-            <label class="etiq" for="nombre">Nombre <span class="req">*</span></label>
-            <input class="ent" id="nombre" name="nombre" type="text" autocomplete="name" required />
-          </div>
-          <div class="campo">
-            <label class="etiq" for="puesto">Puesto</label>
-            <input class="ent" id="puesto" name="puesto" type="text" autocomplete="organization-title" />
-          </div>
-          <div class="campo">
-            <label class="etiq" for="correo">Correo <span class="req">*</span></label>
-            <input class="ent" id="correo" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="campo">
-            <label class="etiq" for="tel">WhatsApp</label>
-            <input class="ent" id="tel" name="whatsapp" type="tel" autocomplete="tel" placeholder="+52 ..." />
-          </div>
-          <div class="campo ancho">
-            <label class="etiq" for="paso">Siguiente paso <span class="req">*</span></label>
-            <select class="sel" id="paso" name="paso" required>
-              <option value="">Selecciona…</option>
-              <option>Avancemos, agendemos el arranque</option>
-              <option>Me interesa, quiero ajustar el alcance</option>
-              <option>Quiero el levantamiento para cotizar la plataforma web</option>
-              <option>Tengo preguntas antes de decidir</option>
-              <option>Necesito un poco más de tiempo</option>
-            </select>
-          </div>
-          <div class="campo ancho">
-            <label class="etiq" for="msg">Mensaje</label>
-            <textarea class="area" id="msg" name="mensaje"></textarea>
-          </div>
-        </div>
-        <div class="pie-forma">
-          <p class="chico apagado">O escríbenos a <a class="enlace-txt" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>.</p>
-          <button class="boton" type="submit">Enviar <span class="fl">→</span></button>
-        </div>
-        <div class="estado" id="lead-estado" role="status" aria-live="polite"></div>
-      </form>
+      <p>Lo que funcione en Torre del Ángel puede ser el estándar de cada torre del grupo. Escríbenos por WhatsApp y preparamos el arranque.</p>
+      <div class="cierre-wa" style="margin-top:32px">
+        <a class="boton" href="https://wa.me/5213326375264?text=Hola%20Mel%2C%20revis%C3%A9%20la%20propuesta%20de%20Sentido%20para%20Torre%20del%20%C3%81ngel%20y%20me%20gustar%C3%ADa%20platicar." target="_blank" rel="noopener">Escríbele a Mel por WhatsApp <span class="fl">→</span></a>
+        <p class="chico apagado" style="margin-top:16px">Mel Cruz · +52 1 33 2637 5264</p>
+      </div>
     </div>
   </div>
 </section>
@@ -836,8 +799,7 @@
       <div class="pie-col">
         <span class="rotulo">Contacto</span>
         <ul>
-          <li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li>
-          <li><a href="#contacto">Formulario</a></li>
+          <li><a href="https://wa.me/5213326375264?text=Hola%20Mel%2C%20revis%C3%A9%20la%20propuesta%20de%20Sentido%20para%20Torre%20del%20%C3%81ngel%20y%20me%20gustar%C3%ADa%20platicar." target="_blank" rel="noopener">WhatsApp · Mel Cruz</a></li>
         </ul>
       </div>
       <div class="pie-col">
@@ -901,44 +863,6 @@
     }
   }
 
-  /* ── Formulario → /api/lead ── */
-  var form = document.getElementById('lead-form');
-  if (!form) return;
-  var estado = document.getElementById('lead-estado');
-  var boton = form.querySelector('button[type="submit"]');
-  var flecha = boton.querySelector('.fl');
-  function aviso(t, err) { estado.textContent = t; estado.classList.add('visible'); estado.classList.toggle('error', !!err); }
-  function v(n) { var el = form.elements[n]; return el && el.value ? el.value.trim() : ''; }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    var correo = v('email');
-    var datos = {
-      Propuesta: v('propuesta'),
-      Nombre: v('nombre'),
-      Puesto: v('puesto') || '—',
-      Email: correo,
-      WhatsApp: v('whatsapp') || '—',
-      'Siguiente paso': v('paso'),
-      Mensaje: v('mensaje') || '—',
-      Fuente: 'propuestas.sentido.mx' + location.pathname,
-      Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
-    };
-    boton.disabled = true; flecha.textContent = '…';
-    aviso('Enviando…', false);
-    fetch(form.dataset.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) })
-      .then(function (r) {
-        if (!r.ok) throw new Error('Webhook ' + r.status);
-        aviso('Recibido. Te contactamos en menos de 24 horas hábiles a ' + correo + '.', false);
-        form.reset(); flecha.textContent = '✓';
-      })
-      .catch(function (err) {
-        console.error(err);
-        aviso('No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx y lo resolvemos.', true);
-        boton.disabled = false; flecha.textContent = '→';
-      });
-  });
 })();
 </script>
 </body>
