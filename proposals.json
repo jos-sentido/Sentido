@@ -1,6 +1,74 @@
 {
   "proposals": [
     {
+      "slug": "torre-del-angel",
+      "tipo": "propuesta",
+      "cliente": "Torre del Ángel",
+      "fecha": "2026-11-03",
+      "estatus": "nueva",
+      "trabajo": "produccion",
+      "historial": [],
+      "serviciosDisponibles": [
+        {
+          "id": "redes",
+          "nombre": "Gestión de redes sociales + producción mensual foto/video",
+          "precio": 22000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "gads",
+          "nombre": "Gestión de Google Ads",
+          "precio": 6000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM y automatización",
+          "precio": 6000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "ia-operacion",
+          "nombre": "Operación mensual agente IA concierge",
+          "precio": 6000,
+          "tipo": "mensual"
+        },
+        {
+          "id": "produccion-oficinas",
+          "nombre": "Producción foto y video oficinas en renta",
+          "precio": 22000,
+          "tipo": "unico"
+        },
+        {
+          "id": "carpeta",
+          "nombre": "Carpeta concierge (brochure, guía y fichas)",
+          "precio": 12000,
+          "tipo": "unico"
+        },
+        {
+          "id": "ia-desarrollo",
+          "nombre": "Desarrollo agente IA concierge",
+          "precio": 13000,
+          "tipo": "unico"
+        },
+        {
+          "id": "sitio",
+          "nombre": "Plataforma web B2B (por cotizar)",
+          "precio": 0,
+          "tipo": "unico"
+        }
+      ],
+      "serviciosSeleccionados": [],
+      "notas": "Vendedora: Mel (presenta mié 4 nov 2026). Mensual $40,000 + IVA y único $47,000 + IVA; web por cotizar tras levantamiento. Sin --marca (100% Sentido). Grupo con más torres: oportunidad de replicar.",
+      "proximoPaso": "Presentación de Mel el 4 nov; esperar respuesta vía formulario",
+      "fechaSeguimiento": null,
+      "bitacora": [],
+      "asana": {
+        "tarea_gid": "1220139452687605",
+        "madre_gid": "1220139452687603"
+      }
+    },
+    {
       "slug": "gte",
       "tipo": "propuesta",
       "cliente": "GTE — Grúas, Trailers y Equipos",

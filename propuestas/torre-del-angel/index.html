@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta · Torre del Ángel</title>
+<meta name="description" content="Propuesta de Sentido para Torre del Ángel: un sistema que promueve sus pisos y salas de juntas, atiende a sus inquilinos con un concierge digital y mide cada contacto, de la búsqueda al contrato." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<link rel="stylesheet" href="/sitio/assets/sentido.css" />
+<link rel="stylesheet" href="/assets/propuesta.css?v=2" />
+<style>
+  /* — Color de marca: sin --marca. Torre del Ángel no tiene una identidad propia
+       publicada con un acento usable, así que la propuesta va 100% Sentido
+       (tinta y hueso), que además sostiene el registro institucional. — */
+
+  /* Logo Sentido: 52/60 en portada, 36 en pie, 28/32 en la barra */
+  .hero-logo { height: 52px; width: auto; opacity: 0.85; margin-bottom: 3rem; }
+  .marca img { height: 28px; opacity: 1; }
+  .pie-marca img { height: 36px; opacity: 0.6; }
+  @media (min-width: 768px) {
+    .hero-logo { height: 60px; margin-bottom: 4.5rem; }
+    .marca img { height: 32px; }
+  }
+
+  .cuerpo + .cuerpo { margin-top: 18px; }
+  .cuerpo a, .dolor a { color: var(--hueso); border-bottom: 1px solid var(--hueso-4); }
+  .sub-bloque { margin-top: clamp(44px, 5.6vw, 72px); }
+  .sub-bloque > h3 { margin-bottom: 8px; }
+  .sub-bloque .lista { margin-top: 20px; }
+
+  /* Bloques de lectura */
+  .dolor { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(26px, 3.4vw, 44px); }
+  .dolor--3 { grid-template-columns: repeat(3, 1fr); }
+  .dolor .rotulo { display: block; margin-bottom: 12px; color: var(--acento); }
+  .dolor h3 { margin-bottom: 10px; }
+  .dolor p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.7; max-width: 58ch; }
+  @media (max-width: 900px) { .dolor--3 { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .dolor { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* Necesidades: cuatro encargos, numerados porque la secuencia informa */
+  .encargos { list-style: none; margin: clamp(30px, 4vw, 48px) 0 0; padding: 0; border-top: 1px solid var(--linea); counter-reset: enc; }
+  .encargos li { counter-increment: enc; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--linea); color: var(--hueso); font-weight: var(--fuerte); font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .encargos li::before { content: '0' counter(enc); font-weight: var(--negra); color: var(--hueso-4); font-size: 0.875rem; letter-spacing: 0.12em; padding-top: 3px; }
+  .encargos li span { display: block; font-weight: var(--media); color: var(--hueso-2); font-size: 0.9375rem; margin-top: 4px; }
+
+  /* El momento: cifra grande con fuente + tres miradas */
+  .momento-alto { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: end; margin-bottom: clamp(34px, 4.6vw, 60px); }
+  .cita-dato { margin: 0; padding-left: clamp(16px, 2vw, 24px); border-left: 3px solid var(--acento-fill); }
+  .cita-dato .cifra { display: block; font-weight: var(--negra); font-size: clamp(3.5rem, 8vw, 6.25rem); line-height: 0.95; letter-spacing: -0.04em; color: var(--acento); margin-bottom: 14px; font-variant-numeric: tabular-nums; }
+  .cita-dato .cifra small { font-size: 0.42em; letter-spacing: -0.02em; }
+  .cita-dato p { font-size: 1.0625rem; line-height: 1.5; font-weight: 600; }
+  .cita-dato cite { display: block; margin-top: 12px; font-size: 0.875rem; font-style: normal; color: var(--hueso-3); }
+  .miradas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(38px, 5vw, 64px); border-top: 1px solid var(--linea); }
+  .mirada { position: relative; padding: 30px clamp(16px, 2.4vw, 32px) 4px; border-left: 1px solid var(--linea); }
+  .mirada:first-child { padding-left: 0; border-left: 0; }
+  .mirada::before { content: ''; position: absolute; top: -6px; left: -6px; width: 11px; height: 11px; background: var(--acento-fill); transform: rotate(45deg); }
+  .mirada:first-child::before { left: 0; }
+  .mirada .rotulo { display: block; margin-bottom: 18px; color: var(--acento); }
+  .mirada h3 { font-size: clamp(1.5rem, 2.3vw, 2.125rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: var(--negra); margin-bottom: 12px; }
+  .mirada p { color: var(--hueso-2); font-size: 0.9875rem; line-height: 1.6; }
+  @media (max-width: 900px) {
+    .momento-alto { grid-template-columns: minmax(0, 1fr); align-items: start; }
+    .miradas { grid-template-columns: minmax(0, 1fr); }
+    .mirada { padding-left: 0; border-left: 0; }
+    .mirada::before { left: 0; }
+    .mirada + .mirada { border-top: 1px solid var(--linea); margin-top: 28px; }
+  }
+
+  /* El ángulo: centrado sobre arco de buril, el mismo patrón del pie */
+  .seccion--angulo { text-align: center; }
+  .seccion--angulo .buril { --foco: 50% 210%; --rx: 260%; --ry: 170%; --paso: 6px; --tono: 0.22; --trazo: var(--acento-trazo); -webkit-mask-image: radial-gradient(ellipse 62% 78% at 50% 50%, rgba(0,0,0,0.3) 30%, #000 100%); mask-image: radial-gradient(ellipse 62% 78% at 50% 50%, rgba(0,0,0,0.3) 30%, #000 100%); }
+  .seccion--angulo > .wrap { position: relative; }
+  .seccion--angulo .cabeza, .seccion--angulo .cuerpo, .seccion--angulo .cabeza p, .seccion--angulo .pleca { margin-left: auto; margin-right: auto; }
+
+  /* Dos recorridos: cada uno, una sola línea de punta a punta */
+  .recorridos { display: grid; gap: clamp(46px, 6vw, 76px); margin-top: clamp(32px, 4vw, 52px); }
+  .recorrido-cab { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-bottom: 4px; }
+  .recorrido-cab h3 { margin: 0; }
+  .recorrido-cab p { color: var(--hueso-3); font-size: 0.9375rem; margin: 0; }
+  .recorrido { --i: 0; list-style: none; position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 2vw, 30px); margin: 18px 0 0; padding: 0; }
+  .recorrido::before { content: ''; position: absolute; left: 0; right: 0; top: 34px; height: 2px; background: var(--acento-fill); transform-origin: left center; transition: transform 1.1s var(--grabar); }
+  .recorrido li { position: relative; padding-top: 62px; transition: opacity 0.5s var(--ease); }
+  .recorrido li::before { content: ''; position: absolute; left: 0; top: 29px; width: 12px; height: 12px; background: var(--acento-fill); box-shadow: 0 0 0 5px var(--tinta-2); transform: rotate(45deg); transition: transform 0.4s var(--ease); }
+  .recorrido li:last-child::before { top: 25px; width: 20px; height: 20px; }
+  .recorrido .rotulo { position: absolute; top: 0; left: 0; }
+  .recorrido h4 { font-size: clamp(1.0625rem, 1.5vw, 1.3125rem); letter-spacing: -0.025em; margin-bottom: 8px; color: var(--hueso); font-weight: var(--negra); }
+  .recorrido p { font-size: 0.9375rem; line-height: 1.5; color: var(--hueso-3); }
+  .recorrido li:nth-child(1) { transition-delay: 0.1s; } .recorrido li:nth-child(1)::before { transition-delay: 0.1s; }
+  .recorrido li:nth-child(2) { transition-delay: 0.32s; } .recorrido li:nth-child(2)::before { transition-delay: 0.32s; }
+  .recorrido li:nth-child(3) { transition-delay: 0.54s; } .recorrido li:nth-child(3)::before { transition-delay: 0.54s; }
+  .recorrido li:nth-child(4) { transition-delay: 0.76s; } .recorrido li:nth-child(4)::before { transition-delay: 0.76s; }
+  .recorrido li:nth-child(5) { transition-delay: 0.98s; } .recorrido li:nth-child(5)::before { transition-delay: 0.98s; }
+  .recorrido--b::before { transition-delay: 0.35s; }
+  .recorrido--espera::before { transform: scaleX(0); }
+  .recorrido--espera li { opacity: 0; }
+  .recorrido--espera li::before { transform: rotate(45deg) scale(0); }
+  @media (max-width: 860px) {
+    .recorrido { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .recorrido::before { left: 5px; right: auto; top: 8px; bottom: 34px; width: 2px; height: auto; transform-origin: center top; }
+    .recorrido li { padding: 0 0 26px 36px; }
+    .recorrido li:last-child { padding-bottom: 0; }
+    .recorrido li::before { top: 4px; }
+    .recorrido li:last-child::before { left: -4px; top: 2px; }
+    .recorrido .rotulo { position: static; display: block; margin-bottom: 6px; }
+    .recorrido--espera::before { transform: scaleY(0); }
+  }
+
+  /* Concierge IA: cuatro módulos con ícono en rombo */
+  .modulos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--linea); margin-top: clamp(34px, 4vw, 52px); }
+  .modulo { padding: 30px clamp(16px, 2vw, 28px) 6px; border-left: 1px solid var(--linea); }
+  .modulo:first-child { padding-left: 0; border-left: 0; }
+  .etapa-ico { display: grid; place-items: center; width: 44px; height: 44px; margin: 8px 8px 26px; background: var(--acento-fill); color: var(--marca-ink, var(--tinta)); transform: rotate(45deg); transition: transform 0.6s var(--grabar), opacity 0.6s var(--ease); }
+  .etapa-ico svg { width: 24px; height: 24px; transform: rotate(-45deg); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .modulo h3 { font-size: clamp(1.125rem, 1.6vw, 1.375rem); margin-bottom: 14px; }
+  .modulo .lista li { color: var(--hueso-2); }
+  .modulo:nth-child(2) .etapa-ico { transition-delay: 0.18s; }
+  .modulo:nth-child(3) .etapa-ico { transition-delay: 0.36s; }
+  .modulo:nth-child(4) .etapa-ico { transition-delay: 0.54s; }
+  .modulos--espera .etapa-ico { transform: rotate(45deg) scale(0.4); opacity: 0; }
+  @media (max-width: 1000px) {
+    .modulos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .modulo:nth-child(3) { padding-left: 0; border-left: 0; }
+    .modulo:nth-child(n+3) { border-top: 1px solid var(--linea); margin-top: 26px; }
+  }
+  @media (max-width: 600px) {
+    .modulos { grid-template-columns: minmax(0, 1fr); }
+    .modulo { padding-left: 0; border-left: 0; }
+    .modulo + .modulo { border-top: 1px solid var(--linea); margin-top: 26px; }
+  }
+
+  /* Servicios: alcance de cada capa */
+  .renglon .rotulo { display: block; margin-bottom: 12px; }
+  .incluye { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 26px; }
+  .incluye li { line-height: 1.45; }
+  .alcance { margin-top: 16px; font-size: 0.875rem; line-height: 1.55; color: var(--hueso-3); }
+  .grupo-servicios + .grupo-servicios { margin-top: clamp(48px, 6vw, 80px); }
+  .grupo-servicios > h3 { margin-bottom: 6px; }
+  .grupo-servicios > p { color: var(--hueso-3); margin-bottom: 18px; }
+  .renglon { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 132px; }
+  .renglon::after { background-image: repeating-conic-gradient(from 0deg at var(--foco-estado, -55% 50%), var(--hueso) 0deg 0.03deg, transparent 0.03deg var(--salto-estado, 0.3deg)); }
+  .renglon:hover::after { opacity: 0.1; }
+  @media (max-width: 900px) { .renglon { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 700px) { .incluye { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Hoja de ruta: línea con nodos en rombo y entregables colgando de cada etapa */
+  .ruta { --hueco: clamp(24px, 3vw, 44px); --nodo: 16px; list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; column-gap: var(--hueco); }
+  .etapa { display: grid; grid-row: span 3; grid-template-rows: subgrid; min-width: 0; }
+  .etapa:nth-child(1) { --paso: 11px; --retardo: 0s; }
+  .etapa:nth-child(2) { --paso: 7px; --retardo: 0.45s; }
+  .etapa:nth-child(3) { --paso: 4px; --retardo: 0.9s; }
+  .etapa:nth-child(4) { --retardo: 1.35s; }
+  .etapa-cab .rotulo { display: block; margin-bottom: 10px; color: var(--acento); }
+  .etapa-cab h4 { margin: 0 0 8px; color: var(--hueso); font-size: clamp(1.125rem, 1.6vw, 1.3125rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+  .etapa-cab p { margin: 0; color: var(--hueso-2); font-size: 0.9375rem; line-height: 1.6; }
+  .nodo { position: relative; display: block; height: 18px; margin: 26px 0 0; }
+  .tramo { position: absolute; top: 2px; left: 0; width: calc(100% + var(--hueco)); height: 14px; background: repeating-linear-gradient(90deg, var(--acento-fill) 0 2px, transparent 2px var(--paso)); transform-origin: left center; transition: transform 0.5s linear var(--retardo); }
+  .nodo::after { content: ''; position: absolute; top: 1px; left: 0; width: var(--nodo); height: var(--nodo); box-sizing: border-box; background: var(--acento-fill); border: 1px solid var(--acento-fill); box-shadow: 0 0 0 5px var(--tinta); transform: rotate(45deg); transition: background 0.3s var(--ease) var(--retardo), transform 0.3s var(--ease) var(--retardo); }
+  .etapa:last-child .nodo::after { --nodo: 22px; top: -2px; }
+  .etapa-sale { list-style: none; margin: 0 0 0 7px; padding: 24px 0 0; border-left: 1px solid color-mix(in srgb, var(--acento-fill) 45%, transparent); transition: opacity 0.5s var(--ease) calc(var(--retardo) + 0.25s); }
+  .etapa-sale .rotulo { display: block; padding-left: 20px; margin-bottom: 12px; color: var(--acento); }
+  .etapa-sale li { position: relative; padding: 0 0 0 20px; color: var(--hueso); font-size: 0.9375rem; line-height: 1.5; }
+  .etapa-sale li + li { margin-top: 12px; }
+  .etapa-sale li::before { content: ''; position: absolute; top: 0.72em; left: 0; width: 12px; height: 1px; background: color-mix(in srgb, var(--acento-fill) 45%, transparent); }
+  .ruta--espera .tramo { transform: scaleX(0); }
+  .ruta--espera .nodo::after { background: var(--tinta); transform: rotate(45deg) scale(0.7); }
+  .ruta--espera .etapa-sale { opacity: 0; }
+  @media (max-width: 860px) {
+    .ruta { display: block; margin-top: 30px; }
+    .etapa { display: grid; grid-template-columns: 34px minmax(0, 1fr); grid-template-rows: auto auto; padding-bottom: 34px; }
+    .etapa:last-child { padding-bottom: 0; }
+    .nodo { grid-column: 1; grid-row: 1 / 3; height: auto; margin: 3px 0 -37px; }
+    .etapa:last-child .nodo { margin-bottom: 0; }
+    .tramo { top: 0; left: 1px; width: 14px; height: 100%; background: repeating-linear-gradient(180deg, var(--acento-fill) 0 2px, transparent 2px var(--paso)); transform-origin: center top; }
+    .etapa:last-child .tramo { display: none; }
+    .etapa:last-child .nodo::after { left: -3px; }
+    .etapa-cab, .etapa-sale { grid-column: 2; }
+    .etapa-sale { margin: 0; padding: 18px 0 0; border-left: 0; }
+    .etapa-sale .rotulo { padding-left: 0; }
+    .etapa-sale li { padding-left: 18px; }
+    .etapa-sale li::before { top: 0.5em; width: 6px; height: 6px; background: var(--acento-fill); transform: rotate(45deg); }
+    .ruta--espera .tramo { transform: scaleY(0); }
+  }
+
+  /* Cotización */
+  .tfila .buril { --peso: 0.4px; }
+  .tfila:hover .buril { --tono: 0.06; }
+  @media (max-width: 760px) { .tcol::before { font-size: 0.6875rem; } }
+
+  /* Formulario: el select usa la clase .sel del sistema */
+  .forma .estado { margin-top: 18px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .recorrido::before, .recorrido li, .recorrido li::before, .etapa-ico, .tramo, .nodo::after, .etapa-sale { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-int">
+    <a class="marca" href="#inicio" aria-label="Sentido"><img src="/assets/logo-sentido-nombre-light.png" alt="Sentido" /></a>
+    <a class="boton" href="#contacto">Contacto <span class="fl">→</span></a>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada" id="inicio">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <img class="hero-logo" src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" />
+    <h1><span class="ligera">La dirección más reconocida de Reforma.</span><br>
+      Un <span class="alta">sistema</span> que la convierte en ocupación, reservas y lealtad.</h1>
+    <p class="sub">Torre del Ángel ya tiene ubicación, respaldo y estatus. Esta propuesta los pone a trabajar: promueve sus pisos y salas de juntas, atiende a sus inquilinos como un hotel atiende a sus huéspedes y mide cada contacto, de la búsqueda al contrato.</p>
+    <div class="acciones">
+      <a class="boton" href="#contacto">Contacto <span class="fl">→</span></a>
+      <a class="enlace" href="#solucion">Ver la propuesta</a>
+    </div>
+    <div class="meta">
+      <div><span class="rotulo">Preparado para</span><span class="val">Torre del Ángel · Paseo de la Reforma</span></div>
+      <div><span class="rotulo">Fecha</span><span class="val">Noviembre 2026</span></div>
+      <div><span class="rotulo">Vigencia</span><span class="val">30 días</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ DECLARACIÓN ══════════ -->
+<section class="declara">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>Una torre AAA se renta por su dirección. <span class="tenue">Se mantiene llena por cómo atiende a quien ya está adentro.</span></p>
+  </div>
+</section>
+
+<!-- ══════════ CONTEXTO — papel: la realidad de la torre, a la luz ══════════ -->
+<section class="seccion papel" id="contexto">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Un edificio con nombre propio sobre el Ángel.</h2>
+    </div>
+    <div class="cols cols-2">
+      <div>
+        <p class="cuerpo">Torre del Ángel ocupa la glorieta más reconocible de la Ciudad de México. Es un corporativo de 21 niveles, de acuerdo con el <a href="https://www.skyscrapercenter.com/building/torre-del-angel/22311" target="_blank" rel="noopener">Skyscraper Center</a>, respaldado por Hines, firma inmobiliaria internacional, y sede de la Embajada Británica.</p>
+        <p class="cuerpo">A eso suma amenidades que pocos edificios del corredor ofrecen juntas: terraza, cafetería y maternity room. Son argumentos de estatus y de calidad de vida laboral, y hoy esperan un canal que los cuente.</p>
+      </div>
+      <div>
+        <p class="cuerpo">El encargo que nos compartieron tiene cuatro frentes, y los cuatro se resuelven mejor como un solo sistema que como acciones sueltas:</p>
+      </div>
+    </div>
+    <ol class="encargos">
+      <li>Promover los pisos de oficinas disponibles<span>Llegar a direcciones generales, de finanzas y de real estate que evalúan mudarse a Reforma.</span></li>
+      <li>Rentar las salas de juntas a externos<span>Abrir un segundo ingreso con empresas que necesitan una sala AAA por hora o por día.</span></li>
+      <li>Ser una torre cercana a sus inquilinos<span>Resolverles el día a día y convertir esa atención en renovaciones.</span></li>
+      <li>Facilitar la reserva de salas y amenidades<span>Que reservar tome minutos, desde el celular, en español o en inglés.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ EL MOMENTO ══════════ -->
+<section class="seccion" id="momento">
+  <div class="wrap">
+    <div class="momento-alto">
+      <div>
+        <span class="pleca"></span>
+        <h2>El mercado se mueve, y la oferta nueva también compite por inquilinos.</h2>
+      </div>
+      <blockquote class="cita-dato">
+        <span class="cifra"><span data-cuenta="213">213</span> <small>mil m²</small></span>
+        <p>de oferta nueva de oficinas esperada en la Ciudad de México durante 2026.</p>
+        <cite>CBRE MarketView 4T 2025, vía <a class="enlace-txt" href="https://www.xataka.com.mx/otros-1/cdmx-tiene-oficinas-equivalentes-a-casi-80-estadios-azteca-demanda-no-deja-crecer" target="_blank" rel="noopener">Xataka México</a></cite>
+      </blockquote>
+    </div>
+    <p class="cuerpo">La demanda acompaña: la absorción neta creció 84% en los primeros nueve meses de 2025 frente al año anterior (<a href="https://elceo.com/mercados/mercado-de-oficinas-en-cdmx-toma-fuerza-demanda-crece-84-al-3t25/" target="_blank" rel="noopener">CBRE vía El CEO</a>) y la desocupación del centro de negocios, que incluye Reforma, cerró 2025 en 11.7%, por debajo del promedio de la ciudad (CBRE 4T 2025). Es buen momento para salir a buscar inquilinos, y quien lo haga con un sistema llegará primero a tres públicos distintos:</p>
+    <div class="miradas">
+      <div class="mirada">
+        <span class="rotulo">La empresa que busca piso</span>
+        <h3>Certeza</h3>
+        <p>Metraje, disponibilidad, planos y un recorrido agendado sin perseguir a nadie.</p>
+      </div>
+      <div class="mirada">
+        <span class="rotulo">El externo que necesita una sala</span>
+        <h3>Inmediatez</h3>
+        <p>Ver horarios, pagar y recibir su acceso en el mismo momento.</p>
+      </div>
+      <div class="mirada">
+        <span class="rotulo">El inquilino que ya está adentro</span>
+        <h3>Atención</h3>
+        <p>Visitas, reservas, mantenimiento y recomendaciones resueltas en un mensaje.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EL ÁNGULO ══════════ -->
+<section class="seccion seccion--placa seccion--angulo" id="angulo">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>La ventaja: una torre que se vive como concierge.</h2>
+      <p>Ubicación, respaldo internacional y protocolos de seguridad al nivel de una embajada ya colocan a Torre del Ángel en la conversación AAA.</p>
+    </div>
+    <p class="cuerpo">Lo que la vuelve memorable es la experiencia: una atención con trato de hotel de lujo, disponible a cualquier hora, que conoce el corredor Reforma mejor que nadie. Sobre esa idea se construye toda la propuesta, desde la carpeta impresa hasta el asistente digital.</p>
+  </div>
+</section>
+
+<!-- ══════════ EL SISTEMA — dos recorridos ══════════ -->
+<section class="seccion seccion--regla" id="sistema">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Dos recorridos, un mismo sistema.</h2>
+      <p>La renta de pisos es una venta consultiva que toma semanas. La renta de salas es una compra de minutos. Cada una tiene su camino, y las dos terminan medidas en el mismo tablero.</p>
+    </div>
+    <div class="recorridos">
+      <div>
+        <div class="recorrido-cab"><h3>Pisos de oficinas</h3><p>Venta B2B, de la búsqueda al contrato.</p></div>
+        <ol class="recorrido recorrido--a" data-anima>
+          <li><span class="rotulo">01</span><h4>Búsqueda</h4><p>Google, redes y la carpeta enviada por WhatsApp.</p></li>
+          <li><span class="rotulo">02</span><h4>Catálogo</h4><p>Ficha del piso con metraje, planos y fotos.</p></li>
+          <li><span class="rotulo">03</span><h4>Recorrido</h4><p>Agendado y confirmado de forma automática.</p></li>
+          <li><span class="rotulo">04</span><h4>Negociación</h4><p>Seguimiento por correo y WhatsApp, con responsable.</p></li>
+          <li><span class="rotulo">05</span><h4>Contrato</h4><p>Origen del lead registrado, de la campaña al cierre.</p></li>
+        </ol>
+      </div>
+      <div>
+        <div class="recorrido-cab"><h3>Salas de juntas</h3><p>Reserva transaccional, abierta a externos.</p></div>
+        <ol class="recorrido recorrido--b" data-anima>
+          <li><span class="rotulo">01</span><h4>Búsqueda</h4><p>«Sala de juntas Reforma» o «sala por hora CDMX».</p></li>
+          <li><span class="rotulo">02</span><h4>Calendario</h4><p>Horarios disponibles en tiempo real.</p></li>
+          <li><span class="rotulo">03</span><h4>Pago</h4><p>En línea para externos; a cuenta para inquilinos.</p></li>
+          <li><span class="rotulo">04</span><h4>Acceso</h4><p>Confirmación y código QR directo a su WhatsApp.</p></li>
+          <li><span class="rotulo">05</span><h4>Regreso</h4><p>Recordatorio y una invitación a volver a reservar.</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONCIERGE IA ══════════ -->
+<section class="seccion seccion--placa" id="concierge">
+  <span class="buril" style="--tono:0.05" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>El concierge que nunca cierra.</h2>
+      <p>Un asistente con inteligencia artificial, desarrollado por Sentido, que centraliza reservaciones, atención a inquilinos y recomendaciones del corredor en una sola conversación, las 24 horas, en español o en inglés.</p>
+    </div>
+    <div class="modulos" data-anima>
+      <article class="modulo">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M9 15l2 2 4-4"/></svg></span>
+        <h3>Reservaciones</h3>
+        <ul class="lista lista--chica">
+          <li>Salas de juntas y amenidades, vinculadas al calendario.</li>
+          <li>Cobro en el chat para externos o cargo a cuenta para inquilinos.</li>
+          <li>Confirmación, QR de acceso y recordatorio por WhatsApp.</li>
+        </ul>
+      </article>
+      <article class="modulo">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="1.5"/><path d="M9 4V3h6v1"/><path d="M8.5 10h7"/><path d="M8.5 14h7"/><path d="M8.5 18h4"/></svg></span>
+        <h3>Día a día</h3>
+        <ul class="lista lista--chica">
+          <li>Registro anticipado de visitas y proveedores para el lobby.</li>
+          <li>Reportes de mantenimiento al equipo de facility management.</li>
+          <li>Reglamentos, horarios y protocolos al instante.</li>
+        </ul>
+      </article>
+      <article class="modulo">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+        <h3>Corredor Reforma</h3>
+        <ul class="lista lista--chica">
+          <li>Restaurantes para cerrar negocios, after-office y café rápido.</li>
+          <li>Ruta a pie con un clic en Google Maps.</li>
+          <li>Alianzas y cortesías con negocios de la zona.</li>
+        </ul>
+      </article>
+      <article class="modulo">
+        <span class="etapa-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8.5 4.5L12 12 3.5 7.5z"/><path d="M3.5 12L12 16.5 20.5 12"/><path d="M3.5 16.5L12 21l8.5-4.5"/></svg></span>
+        <h3>Entrenamiento</h3>
+        <ul class="lista lista--chica">
+          <li>Información de la torre, de Hines, tarifas y directorio curado.</li>
+          <li>Detección de idioma para directivos extranjeros.</li>
+          <li>Conexión con los sistemas del edificio, según el levantamiento.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LA SOLUCIÓN ══════════ -->
+<section class="seccion seccion--regla" id="solucion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>La solución, por capas.</h2>
+      <p>Siete servicios en dos grupos: los que construyen la imagen de la torre y los que convierten esa imagen en contratos, reservas y renovaciones.</p>
+    </div>
+
+    <div class="grupo-servicios">
+      <h3>Imagen y presencia</h3>
+      <p>Lo que se ve de la torre, en redes, en pantalla y sobre la mesa de negociación.</p>
+      <div class="plancha">
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 01</span><h3>Gestión de redes sociales y producción mensual</h3><p class="bajo-titulo">Instagram y Facebook en paralelo, renovados cada mes.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>15 contenidos mensuales</li>
+              <li>6 reels de hasta 15 segundos</li>
+              <li>5 carruseles en feed e historia</li>
+              <li>4 gráficos en feed e historia</li>
+              <li>Administración y programación</li>
+              <li>Reporte mensual de estadísticas</li>
+              <li>Atención a mensajes y comentarios</li>
+              <li>Canalización de quejas con la administración</li>
+            </ul>
+            <p class="alcance">Producción mensual de foto y video: fotografía full frame en alta resolución con corrección de color y perspectiva, 2 videos de hasta 15 segundos, 1 testimonial de hasta 30 segundos y clips verticales para historias. Atención de lunes a viernes en horario intermitente. Gráficos extra, otros perfiles o marcas adicionales se cotizan aparte.</p>
+          </div>
+          <div class="ver">Iguala mensual</div>
+        </article>
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 02</span><h3>Producción de foto y video para oficinas en renta</h3><p class="bajo-titulo">El material que vende los pisos antes del recorrido.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>30 fotografías full frame en alta resolución</li>
+              <li>3 videos para redes de 20 a 30 segundos</li>
+              <li>1 video master horizontal de hasta 1 minuto</li>
+              <li>Equipo Sony Cinema Line FX30</li>
+              <li>Edición corporativa y arquitectónica</li>
+              <li>Narrativa, audio y ritmo</li>
+            </ul>
+            <p class="alcance">Corrección de color, perspectivas y eliminación de ruido visual. Este material alimenta también la carpeta, las campañas y el sitio.</p>
+          </div>
+          <div class="ver">Producción única</div>
+        </article>
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 03</span><h3>Carpeta concierge</h3><p class="bajo-titulo">La presentación de la torre, impresa y en PDF interactivo.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>Brochure corporativo de 8 a 10 páginas</li>
+              <li>Guía concierge de 6 a 8 páginas</li>
+              <li>3 a 4 fichas de pisos en renta</li>
+              <li>4 a 6 fichas de salas de juntas</li>
+            </ul>
+            <p class="alcance">El brochure presenta el respaldo de Hines, los protocolos de seguridad y las amenidades; la guía reúne restaurantes de negocios, hoteles y cafés del corredor Reforma. Las fichas llevan planos, metraje y aforo, como inserto impreso y como PDF de menos de 5 MB para enviar por WhatsApp.</p>
+          </div>
+          <div class="ver">Producción única</div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="grupo-servicios">
+      <h3>Captación y operación</h3>
+      <p>Lo que trae prospectos, los sigue y atiende a quien ya está en la torre.</p>
+      <div class="plancha">
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 04</span><h3>Gestión de Google Ads</h3><p class="bajo-titulo">Intercepta a quien ya busca oficina o sala en Reforma.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>Búsqueda B2B para oficinas</li>
+              <li>Campañas transaccionales para salas</li>
+              <li>Display y YouTube de retargeting</li>
+              <li>Emplazamientos en negocios y finanzas</li>
+              <li>Palabras clave negativas</li>
+              <li>Vinculación con GA4: costo por lead y retorno</li>
+            </ul>
+            <p class="alcance">Palabras de alta intención como «renta oficinas corporativas Reforma» o «renta sala corporativa por hora», con tráfico directo al catálogo y al calendario de reservas.</p>
+            <div class="sub-pauta">
+              <span class="rotulo">+ Pauta Google</span>
+              <p>Separada de la gestión y pagada por Torre del Ángel directo a la plataforma. El monto se define en el arranque, según la meta de leads y reservaciones.</p>
+            </div>
+          </div>
+          <div class="ver">Mensual</div>
+        </article>
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 05</span><h3>CRM y automatización</h3><p class="bajo-titulo">Ningún prospecto corporativo se enfría por falta de seguimiento.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>Pipeline B2B en tiempo real</li>
+              <li>Etapas: contacto, recorrido, negociación, cierre</li>
+              <li>Secuencias por correo y WhatsApp</li>
+              <li>Seguimiento tras descargar la carpeta</li>
+              <li>Dashboards de conversión y origen</li>
+              <li>Costo por lead y retorno del ecosistema</li>
+            </ul>
+          </div>
+          <div class="ver">Mensual</div>
+        </article>
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 06</span><h3>Agente IA concierge</h3><p class="bajo-titulo">Reservas, atención a inquilinos y corredor Reforma, 24/7.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>Desarrollo y entrenamiento</li>
+              <li>Motor de reservaciones</li>
+              <li>Atención operativa a inquilinos</li>
+              <li>Recomendaciones del corredor</li>
+              <li>Español e inglés</li>
+              <li>Operación y mejora mensual</li>
+            </ul>
+            <p class="alcance">Las conexiones con control de accesos, facility management y pasarela de pago dependen de los sistemas que ya usa el edificio; su alcance se confirma en el levantamiento técnico.</p>
+          </div>
+          <div class="ver">Desarrollo + mensual</div>
+        </article>
+
+        <article class="renglon">
+          <span class="buril" aria-hidden="true"></span>
+          <div><span class="marco">Capa 07</span><h3>Desarrollo web: plataforma B2B</h3><p class="bajo-titulo">El centro donde aterriza todo lo anterior.</p></div>
+          <div>
+            <span class="rotulo">Incluye</span>
+            <ul class="lista lista--chica incluye">
+              <li>Home con teaser de pisos y salas</li>
+              <li>Respaldo institucional de Hines</li>
+              <li>Catálogo de oficinas y disponibilidad</li>
+              <li>Reserva de salas con calendario y pago</li>
+              <li>Concierge IA en todas las secciones</li>
+              <li>Contacto, mapa y descargables</li>
+              <li>Formulario calificado B2B</li>
+              <li>Selector español / inglés</li>
+              <li>GA4, Píxel de Meta y de LinkedIn</li>
+              <li>Carga rápida en móvil y páginas legales</li>
+            </ul>
+            <p class="alcance">Cotización a la medida tras un levantamiento con el equipo de la torre: número de pisos y salas en catálogo, reglas de reserva, pasarela de pago y sistemas por integrar.</p>
+          </div>
+          <div class="ver">Por cotizar</div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HOJA DE RUTA ══════════ -->
+<section class="seccion seccion--placa" id="ruta">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Hoja de ruta.</h2>
+      <p>Plazos de referencia que se confirman en la reunión de arranque, según la disponibilidad de la torre para la producción.</p>
+    </div>
+    <ol class="ruta" id="ruta-linea">
+      <li class="etapa">
+        <div class="etapa-cab"><span class="rotulo">Semanas 1 y 2</span><h4>Arranque</h4><p>Reunión de arranque, accesos y levantamiento de pisos, salas y amenidades.</p></div>
+        <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
+        <div>
+          <ul class="etapa-sale">
+            <li>Calendario de producción.</li>
+            <li>Levantamiento técnico del sitio y del agente.</li>
+            <li>Configuración del CRM y de GA4.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-cab"><span class="rotulo">Semanas 2 a 5</span><h4>Imagen</h4><p>Producción en la torre y diseño de la carpeta concierge.</p></div>
+        <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
+        <div>
+          <ul class="etapa-sale">
+            <li>30 fotos, 3 videos y master horizontal.</li>
+            <li>Brochure, guía y fichas en PDF e impreso.</li>
+            <li>Primer mes de redes publicado.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-cab"><span class="rotulo">Mes 2</span><h4>Captación</h4><p>Campañas encendidas y agente IA en operación.</p></div>
+        <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
+        <div>
+          <ul class="etapa-sale">
+            <li>Google Ads para oficinas y salas.</li>
+            <li>Concierge IA activo con reservas.</li>
+            <li>Secuencias de seguimiento automáticas.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-cab"><span class="rotulo">Mes 3 en adelante</span><h4>Lectura y escala</h4><p>Optimización con datos reales y plataforma web según su cotización.</p></div>
+        <span class="nodo" aria-hidden="true"></span>
+        <div>
+          <ul class="etapa-sale">
+            <li>Tablero de leads, recorridos y reservas.</li>
+            <li>Ajuste de inversión por resultado.</li>
+            <li>Modelo documentado para otras torres.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ INVERSIÓN — papel: los números, en claro ══════════ -->
+<section class="seccion papel" id="inversion">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Inversión.</h2>
+      <p>Montos en pesos mexicanos, más IVA. La pauta de Google Ads va aparte y se paga directo a la plataforma.</p>
+    </div>
+
+    <div class="sub-bloque" style="margin-top:0">
+      <h3>Gestión mensual</h3>
+      <div class="tabla" style="margin-top:22px">
+        <div class="tfila cab">
+          <span class="rotulo">Servicio</span><span class="rotulo">Qué incluye</span><span class="rotulo" style="text-align:right">Inversión</span>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Redes sociales y producción mensual</div>
+          <p class="tcol" data-l="Qué incluye">15 contenidos, programación, reporte, atención a mensajes y producción mensual de foto y video. Se integra por gestión ($7,500) y producción mensual ($14,500).</p>
+          <div class="tprecio tcol" data-l="Inversión">$22,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Gestión de Google Ads</div>
+          <div class="tcol" data-l="Qué incluye">
+            <p>Búsqueda B2B, salas de juntas, Display y YouTube de retargeting, negativas y medición en GA4.</p>
+            <div class="sub-pauta">
+              <span class="rotulo">+ Pauta Google</span>
+              <p>Separada de esta gestión y pagada directo a la plataforma. Monto a definir en el arranque.</p>
+            </div>
+          </div>
+          <div class="tprecio tcol" data-l="Inversión">$6,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">CRM y automatización</div>
+          <p class="tcol" data-l="Qué incluye">Pipeline B2B, seguimiento automatizado por correo y WhatsApp, y dashboards de cierre.</p>
+          <div class="tprecio tcol" data-l="Inversión">$6,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Operación del agente IA</div>
+          <p class="tcol" data-l="Qué incluye">Operación, actualización de información y mejora continua del concierge.</p>
+          <div class="tprecio tcol" data-l="Inversión">$6,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+        <div class="tfila total">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Total mensual</div>
+          <p class="tcol" data-l="Qué incluye">Redes, producción, Google Ads, CRM y concierge IA operando como un solo sistema.</p>
+          <div class="tprecio tcol" data-l="Inversión">$40,000<span class="tper">/ mes + IVA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-bloque">
+      <h3>Inversión única</h3>
+      <div class="tabla" style="margin-top:22px">
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Foto y video de oficinas</div>
+          <p class="tcol" data-l="Qué incluye">30 fotografías, 3 videos para redes y 1 master horizontal de hasta 1 minuto.</p>
+          <div class="tprecio tcol" data-l="Inversión">$22,000<span class="tper">+ IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Carpeta concierge</div>
+          <p class="tcol" data-l="Qué incluye">Brochure, guía concierge, fichas de pisos y de salas, en impreso y PDF.</p>
+          <div class="tprecio tcol" data-l="Inversión">$12,000<span class="tper">+ IVA</span></div>
+        </div>
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Desarrollo del agente IA</div>
+          <p class="tcol" data-l="Qué incluye">Diseño de la conversación, entrenamiento con la información de la torre y puesta en marcha.</p>
+          <div class="tprecio tcol" data-l="Inversión">$13,000<span class="tper">+ IVA</span></div>
+        </div>
+        <div class="tfila total">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Total único</div>
+          <p class="tcol" data-l="Qué incluye">Producción, carpeta y desarrollo del agente.</p>
+          <div class="tprecio tcol" data-l="Inversión">$47,000<span class="tper">+ IVA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-bloque">
+      <h3>A la medida</h3>
+      <div class="tabla" style="margin-top:22px">
+        <div class="tfila">
+          <span class="buril" aria-hidden="true"></span>
+          <div class="tfase tcol" data-l="Servicio">Plataforma web B2B</div>
+          <p class="tcol" data-l="Qué incluye">Catálogo de disponibilidad, reserva de salas con calendario y pasarela de pago, concierge IA integrado, bilingüe y con medición completa.</p>
+          <div class="tprecio tcol" data-l="Inversión">Por cotizar<span class="tper">tras levantamiento</span></div>
+        </div>
+      </div>
+      <p class="tnota">Pagos únicos con 50% de anticipo y 50% a la entrega. La gestión mensual se factura al inicio de cada mes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HORIZONTE ══════════ -->
+<section class="seccion" id="horizonte">
+  <div class="wrap">
+    <div class="cabeza">
+      <span class="pleca"></span>
+      <h2>Hacia dónde va.</h2>
+    </div>
+    <div class="dolor dolor--3">
+      <div>
+        <span class="rotulo">A 3 meses</span>
+        <h3>Presencia</h3>
+        <p>Una torre que se ve a la altura de su dirección en redes, en la carpeta y en Google, con cada prospecto registrado y en seguimiento.</p>
+      </div>
+      <div>
+        <span class="rotulo">A 6 meses</span>
+        <h3>Ritmo</h3>
+        <p>Salas de juntas reservadas por externos como un ingreso constante, inquilinos atendidos por el concierge y datos para decidir dónde invertir.</p>
+      </div>
+      <div>
+        <span class="rotulo">A 12 meses</span>
+        <h3>Modelo</h3>
+        <p>Un sistema probado de comercialización y servicio, listo para llevarse a las demás torres del grupo con lo aprendido aquí.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE + FORMULARIO ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="wrap">
+    <div class="cierre">
+      <span class="buril buril--iris" aria-hidden="true"></span>
+      <h2>Contacto.</h2>
+      <p>Lo que funcione en Torre del Ángel puede ser el estándar de cada torre del grupo. Cuéntanos dónde están parados y preparamos el arranque.</p>
+      <form class="forma" id="lead-form" data-webhook="/api/lead" style="margin-top:32px" novalidate>
+        <input type="hidden" name="propuesta" value="torre-del-angel" />
+        <div class="rej-forma">
+          <div class="campo">
+            <label class="etiq" for="nombre">Nombre <span class="req">*</span></label>
+            <input class="ent" id="nombre" name="nombre" type="text" autocomplete="name" required />
+          </div>
+          <div class="campo">
+            <label class="etiq" for="puesto">Puesto</label>
+            <input class="ent" id="puesto" name="puesto" type="text" autocomplete="organization-title" />
+          </div>
+          <div class="campo">
+            <label class="etiq" for="correo">Correo <span class="req">*</span></label>
+            <input class="ent" id="correo" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="campo">
+            <label class="etiq" for="tel">WhatsApp</label>
+            <input class="ent" id="tel" name="whatsapp" type="tel" autocomplete="tel" placeholder="+52 ..." />
+          </div>
+          <div class="campo ancho">
+            <label class="etiq" for="paso">Siguiente paso <span class="req">*</span></label>
+            <select class="sel" id="paso" name="paso" required>
+              <option value="">Selecciona…</option>
+              <option>Avancemos, agendemos el arranque</option>
+              <option>Me interesa, quiero ajustar el alcance</option>
+              <option>Quiero el levantamiento para cotizar la plataforma web</option>
+              <option>Tengo preguntas antes de decidir</option>
+              <option>Necesito un poco más de tiempo</option>
+            </select>
+          </div>
+          <div class="campo ancho">
+            <label class="etiq" for="msg">Mensaje</label>
+            <textarea class="area" id="msg" name="mensaje"></textarea>
+          </div>
+        </div>
+        <div class="pie-forma">
+          <p class="chico apagado">O escríbenos a <a class="enlace-txt" href="mailto:contacto@sentido.mx">contacto@sentido.mx</a>.</p>
+          <button class="boton" type="submit">Enviar <span class="fl">→</span></button>
+        </div>
+        <div class="estado" id="lead-estado" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PIE ══════════ -->
+<footer class="pie">
+  <span class="buril buril--arco" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="pie-alto">
+      <div class="pie-marca">
+        <img src="/assets/logo-sentido-light.png" alt="Sentido · Branding &amp; Advertising" />
+        <p>Marca, pauta, sitio y CRM en un mismo sistema, para que cada peso invertido produzca contratos y clientes que se quedan.</p>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Propuesta</span>
+        <ul>
+          <li><a href="#contexto">Contexto</a></li>
+          <li><a href="#solucion">La solución</a></li>
+          <li><a href="#inversion">Inversión</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Contacto</span>
+        <ul>
+          <li><a href="mailto:contacto@sentido.mx">contacto@sentido.mx</a></li>
+          <li><a href="#contacto">Formulario</a></li>
+        </ul>
+      </div>
+      <div class="pie-col">
+        <span class="rotulo">Sentido</span>
+        <ul>
+          <li><a href="/sitio">Sitio</a></li>
+          <li><a href="https://instagram.com/sentido.mx">@sentido.mx</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-bajo">
+      <p>© 2026 Sentido</p>
+      <p>Branding / Advertising · Desde 2010</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ── Animación de los elementos visuales: una vez, al entrar a pantalla ──
+     El estado de espera lo agrega este script; sin JS o con movimiento
+     reducido todo se ve completo. */
+  var quieto = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!quieto && 'IntersectionObserver' in window) {
+    var piezas = [];
+    document.querySelectorAll('.recorrido').forEach(function (el) { piezas.push([el, 'recorrido--espera']); });
+    var mods = document.querySelector('.modulos'); if (mods) piezas.push([mods, 'modulos--espera']);
+    var ruta = document.getElementById('ruta-linea'); if (ruta) piezas.push([ruta, 'ruta--espera']);
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var clase = e.target.getAttribute('data-espera');
+        // setTimeout y no rAF: en pestaña de fondo rAF no corre
+        setTimeout(function () { e.target.classList.remove(clase); }, 40);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.25 });
+    piezas.forEach(function (p) {
+      p[0].setAttribute('data-espera', p[1]);
+      p[0].classList.add(p[1]);
+      io.observe(p[0]);
+    });
+
+    /* La cifra sube */
+    var c = document.querySelector('[data-cuenta]');
+    if (c) {
+      var meta = +c.getAttribute('data-cuenta');
+      var ioc = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return;
+        ioc.disconnect();
+        var pasos = 24, i = 0;
+        c.textContent = '0';
+        var t = setInterval(function () {
+          i++;
+          var v = 1 - Math.pow(1 - i / pasos, 3);
+          c.textContent = String(Math.round(meta * v));
+          if (i >= pasos) { clearInterval(t); c.textContent = String(meta); }
+        }, 40);
+      }, { threshold: 0.25 });
+      ioc.observe(c);
+    }
+  }
+
+  /* ── Formulario → /api/lead ── */
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+  var estado = document.getElementById('lead-estado');
+  var boton = form.querySelector('button[type="submit"]');
+  var flecha = boton.querySelector('.fl');
+  function aviso(t, err) { estado.textContent = t; estado.classList.add('visible'); estado.classList.toggle('error', !!err); }
+  function v(n) { var el = form.elements[n]; return el && el.value ? el.value.trim() : ''; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var correo = v('email');
+    var datos = {
+      Propuesta: v('propuesta'),
+      Nombre: v('nombre'),
+      Puesto: v('puesto') || '—',
+      Email: correo,
+      WhatsApp: v('whatsapp') || '—',
+      'Siguiente paso': v('paso'),
+      Mensaje: v('mensaje') || '—',
+      Fuente: 'propuestas.sentido.mx' + location.pathname,
+      Enviado: new Date().toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' })
+    };
+    boton.disabled = true; flecha.textContent = '…';
+    aviso('Enviando…', false);
+    fetch(form.dataset.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) })
+      .then(function (r) {
+        if (!r.ok) throw new Error('Webhook ' + r.status);
+        aviso('Recibido. Te contactamos en menos de 24 horas hábiles a ' + correo + '.', false);
+        form.reset(); flecha.textContent = '✓';
+      })
+      .catch(function (err) {
+        console.error(err);
+        aviso('No pudimos enviar tu mensaje. Escríbenos directo a contacto@sentido.mx y lo resolvemos.', true);
+        boton.disabled = false; flecha.textContent = '→';
+      });
+  });
+})();
+</script>
+</body>
+</html>
