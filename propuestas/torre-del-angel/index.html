@@ -182,6 +182,21 @@
     .etapa-sale li::before { top: 0.5em; width: 6px; height: 6px; background: var(--acento-fill); transform: rotate(45deg); }
     .ruta--espera .tramo { transform: scaleY(0); }
   }
+  /* Carril en paralelo: el desarrollo corre bajo Imagen y Captación y cierra donde la captación se enciende */
+  .carril { --hueco: clamp(24px, 3vw, 44px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--hueco); margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(28px, 3.5vw, 40px); border-top: 1px dashed color-mix(in srgb, var(--acento-fill) 30%, transparent); }
+  .carril-tramo { grid-column: 2 / 4; min-width: 0; }
+  .carril-tramo .etapa-cab p { max-width: 52ch; }
+  .carril-barra { position: relative; display: block; height: 14px; margin: 24px 0 0; background: repeating-linear-gradient(90deg, var(--acento-fill) 0 2px, transparent 2px 5px); }
+  .carril-barra::before, .carril-barra::after { content: ''; position: absolute; top: -1px; width: 16px; height: 16px; background: var(--acento-fill); box-shadow: 0 0 0 5px var(--tinta); transform: rotate(45deg); }
+  .carril-barra::before { left: 0; }
+  .carril-barra::after { right: 0; }
+  @media (max-width: 860px) {
+    .carril { display: block; }
+    .carril-barra { margin: 18px 0 0; }
+    .carril-tramo .etapa-sale { border-left: 0; margin-left: 0; padding-top: 18px; }
+    .carril-tramo .etapa-sale li { padding-left: 18px; }
+    .carril-tramo .etapa-sale li::before { top: 0.5em; width: 6px; height: 6px; background: var(--acento-fill); transform: rotate(45deg); }
+  }
 
   /* Cotización */
   .tfila .buril { --peso: 0.4px; }
@@ -547,13 +562,13 @@
   </div>
 </section>
 
-<!-- ══════════ HOJA DE RUTA ══════════ -->
+<!-- ══════════ ETAPAS ══════════ -->
 <section class="seccion seccion--placa" id="ruta">
   <div class="wrap">
     <div class="cabeza">
       <span class="pleca"></span>
-      <h2>Hoja de ruta.</h2>
-      <p>Plazos de referencia que se confirman en la reunión de arranque, según la disponibilidad de la torre para la producción.</p>
+      <h2>Etapas.</h2>
+      <p>Plazos de referencia que se confirman en la reunión de arranque. El desarrollo de la plataforma web y del concierge IA corre en paralelo a la imagen y a la estrategia, para que todo salga a captar al mismo tiempo.</p>
     </div>
     <ol class="ruta" id="ruta-linea">
       <li class="etapa">
@@ -579,18 +594,18 @@
         </div>
       </li>
       <li class="etapa">
-        <div class="etapa-cab"><span class="rotulo">Mes 2</span><h4>Captación</h4><p>Campañas encendidas y agente IA en operación.</p></div>
+        <div class="etapa-cab"><span class="rotulo">Semanas 6 a 9</span><h4>Captación</h4><p>Con la imagen lista se arma la estrategia; las campañas se encienden al cerrar el desarrollo.</p></div>
         <span class="nodo" aria-hidden="true"><span class="tramo"></span></span>
         <div>
           <ul class="etapa-sale">
+            <li>Estrategia y piezas de campaña.</li>
             <li>Google Ads para oficinas y salas.</li>
-            <li>Concierge IA activo con reservas.</li>
             <li>Secuencias de seguimiento automáticas.</li>
           </ul>
         </div>
       </li>
       <li class="etapa">
-        <div class="etapa-cab"><span class="rotulo">Mes 3 en adelante</span><h4>Lectura y escala</h4><p>Optimización con datos reales y plataforma web según su cotización.</p></div>
+        <div class="etapa-cab"><span class="rotulo">Semana 10 en adelante</span><h4>Lectura y escala</h4><p>Sitio, concierge y campañas operando juntos, optimizados con datos reales.</p></div>
         <span class="nodo" aria-hidden="true"></span>
         <div>
           <ul class="etapa-sale">
@@ -601,6 +616,17 @@
         </div>
       </li>
     </ol>
+    <div class="carril" id="ruta-carril">
+      <div class="carril-tramo">
+        <div class="etapa-cab"><span class="rotulo">En paralelo · semanas 2 a 9</span><h4>Desarrollo</h4><p>Plataforma web y concierge IA. Arranca empalmado con la imagen y queda listo para el lanzamiento de la captación.</p></div>
+        <span class="carril-barra" aria-hidden="true"></span>
+        <ul class="etapa-sale">
+          <li>Arquitectura, diseño y contenidos bilingües del sitio.</li>
+          <li>Catálogo de disponibilidad y reservas con pago.</li>
+          <li>Concierge IA entrenado, probado y conectado al sitio.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -622,7 +648,7 @@
         <div class="tfila">
           <span class="buril" aria-hidden="true"></span>
           <div class="tfase tcol" data-l="Servicio">Redes sociales y producción mensual</div>
-          <p class="tcol" data-l="Qué incluye">15 contenidos, programación, reporte, atención a mensajes y producción mensual de foto y video. Se integra por gestión ($7,500) y producción mensual ($14,500).</p>
+          <p class="tcol" data-l="Qué incluye">15 contenidos, programación, reporte, atención a mensajes y producción mensual de foto y video.</p>
           <div class="tprecio tcol" data-l="Inversión">$22,000<span class="tper">/ mes + IVA</span></div>
         </div>
         <div class="tfila">
