@@ -389,7 +389,7 @@
         {
           "id": "web",
           "nombre": "Sitio Web Estratégico (catálogo + captación)",
-          "precio": 20000,
+          "precio": 25000,
           "tipo": "unico"
         },
         {
@@ -406,8 +406,26 @@
         },
         {
           "id": "gbp",
-          "nombre": "Perfil de Negocio de Google (preferente en combo)",
-          "precio": 2500,
+          "nombre": "Perfil de Negocio de Google (sin costo en combo / $4,500 individual)",
+          "precio": 4500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "blog",
+          "nombre": "Blog automatizado con IA · SEO (3 entradas/mes)",
+          "precio": 3500,
+          "tipo": "mensual"
+        },
+        {
+          "id": "crm",
+          "nombre": "CRM a la medida (desarrollo del sistema)",
+          "precio": 25000,
+          "tipo": "unico"
+        },
+        {
+          "id": "crm-gestion",
+          "nombre": "Gestión de CRM (soporte, atención y mejoras)",
+          "precio": 6000,
           "tipo": "mensual"
         }
       ],
@@ -419,6 +437,18 @@
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": [
+        {
+          "fecha": "2026-11-04",
+          "proximoPaso": "",
+          "notas": "- Agregado a la propuesta: CRM a la medida (desarrollo propio con BD en la nube, NO HighLevel): captacion automatica de leads del sitio + asignacion por reglas, funnel por etapas, ficha por prospecto con adjuntos para cotizaciones y cambio de asignado, actividades comerciales, modulo de tareas por usuario, gestion de usuarios/accesos con roles, dashboard con KPIs de conversion del funnel y filtros/agrupaciones para direccion.\n- Precios CRM: desarrollo $25,000 unico (= precio del sitio) + gestion $6,000/mes. Infra (BD/hosting del sistema) por cuenta del cliente.\n- Totales actualizados: unico subtotal $65,000 / -10% / $58,500; mensual $21,000.\n- Pendientes por definir con Jos: contenido IA foto/video para la web (cotizar aparte); patio con ubicacion geo para el Perfil de Negocio.",
+          "creadoEn": "2026-11-04T00:00:00.000Z"
+        },
+        {
+          "fecha": "2026-11-04",
+          "proximoPaso": "",
+          "notas": "- Agregado a la propuesta: CRM a la medida (desarrollo propio con BD en la nube, NO HighLevel): captacion automatica de leads del sitio + asignacion por reglas, funnel por etapas, ficha por prospecto con adjuntos para cotizaciones y cambio de asignado, actividades comerciales, modulo de tareas por usuario, gestion de usuarios/accesos con roles, dashboard con KPIs de conversion del funnel y filtros/agrupaciones para direccion.\n- Precios CRM: desarrollo $25,000 unico (= precio del sitio) + gestion $6,000/mes. Infra (BD/hosting del sistema) por cuenta del cliente.\n- Totales actualizados: unico $65,000 subtotal / -10% / $58,500; mensual $21,000.\n- Pendientes de la bitacora por definir con Jos: contenido IA foto/video para la web (cotizar aparte); patio con ubicacion geo para el Perfil de Negocio.",
+          "creadoEn": "2026-11-04T00:00:00.000Z"
+        },
         {
           "fecha": "2026-10-29",
           "proximoPaso": "ajustar cotizacion",
