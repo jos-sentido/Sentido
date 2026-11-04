@@ -446,6 +446,12 @@
         {
           "fecha": "2026-11-04",
           "proximoPaso": "",
+          "notas": "- Agregado DEMO interactivo del CRM a la medida en /blackrock-maquinaria/crm-demo (boton 'Ver demo interactivo' en la card del CRM). Prototipo clicable con funnel kanban (drag&drop), ficha de prospecto editable con adjuntos/actividades, modulo de tareas por usuario, dashboard con KPIs/charts/filtros y gestion de usuarios. Datos de ejemplo de maquinaria. Etiquetado 'Demo ilustrativo'.",
+          "creadoEn": "2026-11-04T06:00:00.000Z"
+        },
+        {
+          "fecha": "2026-11-04",
+          "proximoPaso": "",
           "notas": "- Descuentos reestructurados en inversion unica: (1) Descuento especial BlackRock 10% FIJO (tarifa preferente, aplica sobre lo que se contrate); (2) +10% adicional SOLO si se contratan los 3 activos unicos juntos (Marca+Sitio+CRM). Con los 3: -20% => subtotal 65,000 -> total 52,000. Si eligen solo algunos, aplica solo el 10% especial sobre lo seleccionado.",
           "creadoEn": "2026-11-04T05:00:00.000Z"
         },

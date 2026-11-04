@@ -19,6 +19,10 @@
       "destination": "/propuestas/massatierra/:sub"
     },
     {
+      "source": "/blackrock-maquinaria/:sub",
+      "destination": "/propuestas/blackrock-maquinaria/:sub"
+    },
+    {
       "source": "/:prospecto",
       "destination": "/propuestas/:prospecto"
     }

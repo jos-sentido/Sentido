@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CRM BlackRock · Demo interactivo</title>
+<meta name="description" content="Demo ilustrativo del CRM a la medida para BlackRock Maquinaria — funnel, prospectos, tareas, dashboard y usuarios." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<style>
+  :root{
+    --bg:#0E0F12; --panel:#16181C; --panel-2:#1C1F25; --panel-3:#23272E;
+    --line:#2A2E36; --line-2:#363B44;
+    --text:#E9EBEE; --dim:#9BA1AB; --dim-2:#6B7079;
+    --accent:#F59E0B; --accent-2:#D97706; --accent-soft:rgba(245,158,11,.12);
+    --green:#34D399; --red:#F87171; --blue:#60A5FA; --purple:#A78BFA;
+    --radius:14px;
+    --font:'Archivo',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow:hidden}
+  button{font-family:inherit;cursor:pointer}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:20px;border:2px solid var(--bg)}
+
+  /* ===== DEMO BANNER ===== */
+  .demo-ribbon{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#1a1206;text-align:center;font-weight:700;font-size:12.5px;letter-spacing:.02em;padding:7px 14px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .demo-ribbon a{color:#1a1206;font-weight:800;text-decoration:underline;text-underline-offset:2px}
+
+  /* ===== APP SHELL ===== */
+  .app{display:grid;grid-template-columns:232px 1fr;grid-template-rows:auto 1fr;height:calc(100vh - 34px);grid-template-areas:"top top" "side main"}
+  @media(max-width:820px){.app{grid-template-columns:1fr;grid-template-areas:"top" "main"} .side{display:none}}
+
+  .top{grid-area:top;display:flex;align-items:center;gap:16px;padding:0 20px;height:62px;border-bottom:1px solid var(--line);background:var(--panel)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;font-size:16px}
+  .brand .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#1a1206;font-weight:900;font-size:15px}
+  .brand .sub{color:var(--dim);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .top .spacer{flex:1}
+  .search{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;color:var(--text);width:260px;max-width:34vw}
+  .search::placeholder{color:var(--dim-2)}
+  .userbox{display:flex;align-items:center;gap:9px}
+  .userbox select{background:var(--panel-2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 10px}
+  .avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12.5px;color:#10131a;flex:none}
+
+  .side{grid-area:side;background:var(--panel);border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:3px;overflow:auto}
+  .nav-group{color:var(--dim-2);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin:12px 10px 6px;font-weight:700}
+  .nav-btn{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;color:var(--dim);padding:10px 11px;border-radius:10px;font-size:13.5px;font-weight:600;transition:.15s}
+  .nav-btn:hover{background:var(--panel-2);color:var(--text)}
+  .nav-btn.on{background:var(--accent-soft);color:var(--accent)}
+  .nav-btn .ico{width:18px;height:18px;flex:none;opacity:.9}
+  .nav-btn .cnt{margin-left:auto;background:var(--panel-3);color:var(--dim);font-size:11px;font-weight:700;padding:1px 8px;border-radius:20px}
+  .side .foot{margin-top:auto;padding:12px 10px;color:var(--dim-2);font-size:11px;line-height:1.5}
+
+  .main{grid-area:main;overflow:auto;padding:24px 26px 60px}
+  .view{display:none;animation:fade .25s ease}
+  .view.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .vhead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+  .vhead h1{font-family:'Archivo Expanded','Archivo';font-size:24px;font-weight:800;letter-spacing:-.01em}
+  .vhead p{color:var(--dim);font-size:13px;margin-top:3px}
+  .btn{background:var(--accent);color:#1a1206;border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13px;transition:.15s;display:inline-flex;gap:7px;align-items:center}
+  .btn:hover{background:var(--accent-2);transform:translateY(-1px)}
+  .btn.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--line)}
+  .btn.ghost:hover{background:var(--panel-3)}
+  .btn.sm{padding:7px 12px;font-size:12px}
+
+  /* ===== KANBAN ===== */
+  .board{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;align-items:flex-start}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);width:256px;flex:none;display:flex;flex-direction:column;max-height:calc(100vh - 210px)}
+  .col-h{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:13px;position:sticky;top:0}
+  .col-h .dot{width:9px;height:9px;border-radius:50%}
+  .col-h .n{margin-left:auto;color:var(--dim);font-size:11.5px;background:var(--panel-2);padding:1px 8px;border-radius:20px}
+  .col-body{padding:10px;display:flex;flex-direction:column;gap:9px;overflow-y:auto;min-height:60px}
+  .col-body.drag-over{background:var(--accent-soft);outline:2px dashed var(--accent);outline-offset:-6px;border-radius:10px}
+  .card{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:12px;cursor:grab;transition:.12s}
+  .card:hover{border-color:var(--line-2);transform:translateY(-1px)}
+  .card.dragging{opacity:.45;cursor:grabbing}
+  .card .co{font-weight:700;font-size:13.5px;margin-bottom:2px}
+  .card .meta{color:var(--dim);font-size:11.5px;display:flex;flex-direction:column;gap:3px;margin-top:6px}
+  .card .row{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+  .chip{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--panel-3);color:var(--dim)}
+  .val{color:var(--accent);font-weight:800;font-size:12.5px}
+
+  /* ===== TABLE ===== */
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  th{text-align:left;color:var(--dim-2);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:13px 16px;border-bottom:1px solid var(--line)}
+  td{padding:13px 16px;border-bottom:1px solid var(--line);font-size:13px}
+  tr:last-child td{border-bottom:none}
+  tbody tr{transition:.12s}
+  tbody tr.clickable:hover{background:var(--panel-2);cursor:pointer}
+  .badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+  .pill-user{display:inline-flex;align-items:center;gap:7px}
+  .pill-user .avatar{width:24px;height:24px;font-size:10px}
+
+  /* ===== STAT CARDS ===== */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 17px}
+  .stat .k{color:var(--dim);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+  .stat .v{font-family:'Archivo Expanded','Archivo';font-size:27px;font-weight:800;margin-top:7px;letter-spacing:-.01em}
+  .stat .d{font-size:11.5px;margin-top:5px;color:var(--green);font-weight:600}
+  .stat .d.down{color:var(--red)}
+  .grid2{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  .chart-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .chart-card h3{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+  .chart-wrap{position:relative;height:230px}
+  .funnel-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .funnel-row .lbl{width:118px;font-size:12px;color:var(--dim);flex:none}
+  .funnel-bar{height:26px;border-radius:7px;background:linear-gradient(90deg,var(--accent-2),var(--accent));display:flex;align-items:center;padding:0 10px;color:#1a1206;font-weight:800;font-size:12px;min-width:44px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .filters select{background:var(--panel-2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px;font-size:12.5px}
+
+  /* ===== TASKS ===== */
+  .task{display:flex;align-items:center;gap:13px;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .task:last-child{border-bottom:none}
+  .task .cb{width:20px;height:20px;border-radius:6px;border:2px solid var(--line-2);flex:none;display:grid;place-items:center;cursor:pointer;transition:.15s}
+  .task .cb.done{background:var(--accent);border-color:var(--accent);color:#1a1206;font-weight:900}
+  .task .tt{flex:1}
+  .task .tt .t1{font-weight:600;font-size:13.5px}
+  .task.done .tt .t1{text-decoration:line-through;color:var(--dim-2)}
+  .task .tt .t2{color:var(--dim);font-size:11.5px;margin-top:2px}
+  .task .due{font-size:11.5px;color:var(--dim);font-weight:600}
+  .task .due.late{color:var(--red)}
+
+  /* ===== MODAL (LEAD DETAIL) ===== */
+  .overlay{position:fixed;inset:0;background:rgba(6,7,9,.66);backdrop-filter:blur(3px);display:none;z-index:50}
+  .overlay.on{display:block}
+  .drawer{position:fixed;top:0;right:0;height:100vh;width:min(560px,96vw);background:var(--panel);border-left:1px solid var(--line);z-index:51;transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+  .drawer.on{transform:none}
+  .drawer-h{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:14px}
+  .drawer-h .co{font-family:'Archivo Expanded','Archivo';font-size:20px;font-weight:800}
+  .drawer-h .x{margin-left:auto;background:var(--panel-2);border:1px solid var(--line);color:var(--dim);width:34px;height:34px;border-radius:9px;font-size:18px;flex:none}
+  .drawer-b{overflow:auto;padding:20px 22px;flex:1}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:18px}
+  .field label{display:block;color:var(--dim-2);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:5px}
+  .field input,.field select{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:9px 11px;font-size:13px}
+  .sec-t{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim-2);font-weight:700;margin:20px 0 11px;display:flex;align-items:center;gap:9px}
+  .sec-t::after{content:"";flex:1;height:1px;background:var(--line)}
+  .act{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .act .ai{width:30px;height:30px;border-radius:8px;background:var(--panel-2);display:grid;place-items:center;flex:none;font-size:14px}
+  .act .a1{font-size:13px;font-weight:600}
+  .act .a2{color:var(--dim);font-size:11.5px;margin-top:2px}
+  .addact{display:flex;gap:8px;margin-top:12px}
+  .addact input{flex:1;background:var(--panel-2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:9px 11px;font-size:13px}
+  .attach{display:flex;align-items:center;gap:11px;background:var(--panel-2);border:1px dashed var(--line-2);border-radius:10px;padding:12px;margin-bottom:9px}
+  .attach .fi{width:34px;height:34px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;flex:none;font-size:11px}
+  .muted{color:var(--dim-2);font-size:12px}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--panel-3);border:1px solid var(--line-2);color:var(--text);padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;opacity:0;transition:.3s;z-index:80;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">
+  🔶 Demo ilustrativo del CRM a la medida — datos de ejemplo. El sistema final se construye según la operación de BlackRock.
+  <a href="/blackrock-maquinaria">← Volver a la propuesta</a>
+</div>
+
+<div class="app">
+  <!-- TOPBAR -->
+  <header class="top">
+    <div class="brand">
+      <div class="logo">B</div>
+      <div>BlackRock CRM<div class="sub">Maquinaria</div></div>
+    </div>
+    <div class="spacer"></div>
+    <input class="search" placeholder="Buscar prospecto, empresa…" oninput="doSearch(this.value)" />
+    <div class="userbox">
+      <select id="actingUser" onchange="switchUser()" title="Ver como"></select>
+      <div class="avatar" id="topAvatar">CM</div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="side">
+    <div class="nav-group">Comercial</div>
+    <button class="nav-btn on" data-view="funnel" onclick="go('funnel')"><span class="ico">▦</span> Funnel <span class="cnt" id="cntFunnel"></span></button>
+    <button class="nav-btn" data-view="prospectos" onclick="go('prospectos')"><span class="ico">☰</span> Prospectos <span class="cnt" id="cntPros"></span></button>
+    <button class="nav-btn" data-view="tareas" onclick="go('tareas')"><span class="ico">✓</span> Tareas <span class="cnt" id="cntTasks"></span></button>
+    <div class="nav-group">Análisis</div>
+    <button class="nav-btn" data-view="dashboard" onclick="go('dashboard')"><span class="ico">◴</span> Dashboard</button>
+    <div class="nav-group">Administración</div>
+    <button class="nav-btn" data-view="usuarios" onclick="go('usuarios')"><span class="ico">⚇</span> Usuarios <span class="cnt" id="cntUsers"></span></button>
+    <div class="foot">Prototipo · Sentido Branding &amp; Advertising<br/>para BlackRock Maquinaria</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- FUNNEL -->
+    <section class="view on" id="view-funnel">
+      <div class="vhead">
+        <div><h1>Funnel comercial</h1><p>Arrastra un prospecto entre etapas. Todo se refleja en el dashboard.</p></div>
+        <button class="btn" onclick="newLead()">+ Nuevo prospecto</button>
+      </div>
+      <div class="board" id="board"></div>
+    </section>
+
+    <!-- PROSPECTOS -->
+    <section class="view" id="view-prospectos">
+      <div class="vhead">
+        <div><h1>Prospectos</h1><p>Abre cualquiera para ver y editar su ficha completa.</p></div>
+        <button class="btn" onclick="newLead()">+ Nuevo prospecto</button>
+      </div>
+      <div class="panel"><table>
+        <thead><tr><th>Empresa</th><th>Contacto</th><th>Equipo de interés</th><th>Tipo</th><th>Etapa</th><th>Valor est.</th><th>Asignado</th></tr></thead>
+        <tbody id="prosBody"></tbody>
+      </table></div>
+    </section>
+
+    <!-- TAREAS -->
+    <section class="view" id="view-tareas">
+      <div class="vhead">
+        <div><h1>Tareas</h1><p>Pendientes comerciales por usuario.</p></div>
+        <div style="display:flex;gap:10px">
+          <select class="filters" id="taskUserFilter" onchange="renderTasks()" style="margin:0"></select>
+          <button class="btn" onclick="newTask()">+ Nueva tarea</button>
+        </div>
+      </div>
+      <div class="panel" id="taskPanel"></div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="view" id="view-dashboard">
+      <div class="vhead">
+        <div><h1>Dashboard</h1><p>Indicadores de conversión del funnel. Vista para dirección.</p></div>
+      </div>
+      <div class="filters">
+        <select id="fUser" onchange="renderDash()"></select>
+        <select id="fTipo" onchange="renderDash()"></select>
+      </div>
+      <div class="stats" id="statCards"></div>
+      <div class="grid2">
+        <div class="chart-card">
+          <h3>Conversión del funnel</h3>
+          <div id="funnelBars"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Pipeline por tipo de cliente</h3>
+          <div class="chart-wrap"><canvas id="chartTipo"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-card" style="margin-top:14px">
+        <h3>Valor en pipeline por vendedor</h3>
+        <div class="chart-wrap" style="height:210px"><canvas id="chartUser"></canvas></div>
+      </div>
+    </section>
+
+    <!-- USUARIOS -->
+    <section class="view" id="view-usuarios">
+      <div class="vhead">
+        <div><h1>Usuarios y accesos</h1><p>Gestión de equipo con roles. El director da de alta y define permisos.</p></div>
+        <button class="btn" onclick="toast('Invitación enviada (demo)')">+ Invitar usuario</button>
+      </div>
+      <div class="panel"><table>
+        <thead><tr><th>Usuario</th><th>Rol</th><th>Prospectos asignados</th><th>Estado</th><th></th></tr></thead>
+        <tbody id="usersBody"></tbody>
+      </table></div>
+    </section>
+  </main>
+</div>
+
+<!-- LEAD DRAWER -->
+<div class="overlay" id="overlay" onclick="closeLead()"></div>
+<aside class="drawer" id="drawer"></aside>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ DATA ============ */
+const ETAPAS = [
+  {id:'nuevo', n:'Nuevo', c:'#60A5FA'},
+  {id:'contactado', n:'Contactado', c:'#A78BFA'},
+  {id:'cotizacion', n:'Cotización', c:'#F59E0B'},
+  {id:'negociacion', n:'Negociación', c:'#FB923C'},
+  {id:'ganado', n:'Ganado', c:'#34D399'},
+  {id:'perdido', n:'Perdido', c:'#F87171'},
+];
+const TIPOS = ['Constructora','Minería','Gobierno','Arrendadora','Agro'];
+const USERS = [
+  {id:'u1', nombre:'Carlos Méndez', rol:'Director', ini:'CM', color:'#F59E0B'},
+  {id:'u2', nombre:'Ana Robles', rol:'Vendedor', ini:'AR', color:'#60A5FA'},
+  {id:'u3', nombre:'Diego Salas', rol:'Vendedor', ini:'DS', color:'#A78BFA'},
+  {id:'u4', nombre:'Marina Ortiz', rol:'Admin', ini:'MO', color:'#34D399'},
+];
+let seq = 100;
+let LEADS = [
+  lead('Constructora del Pacífico','Ing. Luis Prado','Excavadora ZG210H','Constructora','cotizacion',1850000,'u2'),
+  lead('Minera Sonora Norte','Lic. Pat Gómez','Cargador frontal ZL50H','Minería','negociacion',3200000,'u3'),
+  lead('Municipio de Culiacán','Arq. R. Beltrán','Motoconformadora PY220H','Gobierno','contactado',2400000,'u2'),
+  lead('Grupo Terracería GDL','Ing. Toño Vela','Bulldozer GTY220','Constructora','nuevo',2750000,'u3'),
+  lead('Maqui-Renta del Bajío','Sra. Elsa Ruiz','Montacargas (lote de 4)','Arrendadora','cotizacion',1600000,'u2'),
+  lead('Agroindustrias del Valle','Ing. M. Fierro','Retroexcavadora','Agro',   'ganado',980000,'u3'),
+  lead('Pavimentos Peninsulares','Ing. S. Cano','Rodillo + pavimentadora','Constructora','nuevo',2100000,'u2'),
+  lead('Minera Zacatecas Plata','Lic. H. Nava','Camión minero GKM90P','Minería','negociacion',5400000,'u3'),
+  lead('Obras Públicas Jalisco','Arq. V. Lara','Motoconformadora PY180H','Gobierno','contactado',2200000,'u2'),
+  lead('Rentadora Maquinor','Sr. J. Pineda','Excavadora + cargador','Arrendadora','ganado',3100000,'u3'),
+  lead('Constructora Herrera','Ing. P. Herrera','Bulldozer GT100','Constructora','perdido',900000,'u2'),
+  lead('Cañera del Trópico','Ing. L. Mota','Cargadora de patín','Agro','cotizacion',640000,'u3'),
+];
+let TASKS = [
+  task('Llamar a Ing. Prado — cerrar cotización','u2','2026-11-05',false),
+  task('Enviar propuesta a Minera Sonora Norte','u3','2026-11-04',false),
+  task('Visita técnica al patio — Culiacán','u2','2026-11-07',false),
+  task('Seguimiento post-venta Agroindustrias','u3','2026-11-03',true),
+  task('Actualizar precios de lista Q4','u4','2026-11-10',false),
+  task('Preparar demo de equipo para Terracería GDL','u3','2026-11-06',false),
+];
+function lead(empresa,contacto,equipo,tipo,etapa,valor,asignado){
+  return {id:'L'+(seq++),empresa,contacto,tel:'+52 1 33 ····',equipo,tipo,etapa,valor,asignado,
+    actividades:[
+      {t:'Prospecto creado desde el sitio web',f:'Hace 3 días',ic:'✦'},
+      {t:'Primer contacto por WhatsApp',f:'Hace 2 días',ic:'✉'},
+    ],
+    adjuntos: etapa==='cotizacion'||etapa==='negociacion'||etapa==='ganado' ? [{n:'Cotización_'+empresa.split(' ')[0]+'.pdf',s:'248 KB'}] : []
+  };
+}
+function task(t,u,d,done){return {id:'T'+(seq++),t,u,d,done}}
+function userById(id){return USERS.find(u=>u.id===id)}
+function etapaById(id){return ETAPAS.find(e=>e.id===id)}
+const fmt = n => '$'+n.toLocaleString('es-MX');
+
+/* ============ NAV ============ */
+function go(v){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='view-'+v));
+  if(v==='dashboard') renderDash();
+  if(v==='tareas') renderTasks();
+}
+
+/* ============ KANBAN ============ */
+let dragId=null;
+function renderBoard(){
+  const b=document.getElementById('board'); b.innerHTML='';
+  ETAPAS.forEach(e=>{
+    const items=LEADS.filter(l=>l.etapa===e.id);
+    const col=document.createElement('div'); col.className='col';
+    col.innerHTML=`<div class="col-h"><span class="dot" style="background:${e.c}"></span>${e.n}<span class="n">${items.length}</span></div>`;
+    const body=document.createElement('div'); body.className='col-body'; body.dataset.etapa=e.id;
+    items.forEach(l=>{
+      const u=userById(l.asignado);
+      const card=document.createElement('div'); card.className='card'; card.draggable=true; card.dataset.id=l.id;
+      card.innerHTML=`<div class="co">${l.empresa}</div>
+        <div class="meta"><span>${l.contacto}</span><span>🛠 ${l.equipo}</span></div>
+        <div class="row"><span class="val">${fmt(l.valor)}</span>
+          <span class="avatar" style="width:24px;height:24px;font-size:10px;background:${u.color}" title="${u.nombre}">${u.ini}</span></div>`;
+      card.onclick=()=>openLead(l.id);
+      card.addEventListener('dragstart',ev=>{dragId=l.id;card.classList.add('dragging');ev.stopPropagation()});
+      card.addEventListener('dragend',()=>card.classList.remove('dragging'));
+      body.appendChild(card);
+    });
+    body.addEventListener('dragover',ev=>{ev.preventDefault();body.classList.add('drag-over')});
+    body.addEventListener('dragleave',()=>body.classList.remove('drag-over'));
+    body.addEventListener('drop',ev=>{ev.preventDefault();body.classList.remove('drag-over');
+      const l=LEADS.find(x=>x.id===dragId); if(l&&l.etapa!==e.id){l.etapa=e.id;
+        l.actividades.unshift({t:'Movido a etapa: '+e.n,f:'Ahora',ic:'↦'});
+        toast(l.empresa+' → '+e.n); renderAll();}
+    });
+    col.appendChild(body); b.appendChild(col);
+  });
+}
+
+/* ============ PROSPECTOS TABLE ============ */
+function renderPros(filter=''){
+  const tb=document.getElementById('prosBody'); tb.innerHTML='';
+  LEADS.filter(l=>(l.empresa+l.contacto+l.equipo).toLowerCase().includes(filter.toLowerCase())).forEach(l=>{
+    const u=userById(l.asignado), e=etapaById(l.etapa);
+    const tr=document.createElement('tr'); tr.className='clickable'; tr.onclick=()=>openLead(l.id);
+    tr.innerHTML=`<td style="font-weight:700">${l.empresa}</td><td>${l.contacto}</td><td>${l.equipo}</td>
+      <td><span class="chip">${l.tipo}</span></td>
+      <td><span class="badge" style="background:${e.c}22;color:${e.c}">${e.n}</span></td>
+      <td class="val">${fmt(l.valor)}</td>
+      <td><span class="pill-user"><span class="avatar" style="background:${u.color}">${u.ini}</span>${u.nombre.split(' ')[0]}</span></td>`;
+    tb.appendChild(tr);
+  });
+}
+
+/* ============ LEAD DRAWER ============ */
+let openId=null;
+function openLead(id){
+  openId=id; const l=LEADS.find(x=>x.id===id);
+  const d=document.getElementById('drawer');
+  const userOpts=USERS.filter(u=>u.rol!=='Admin').map(u=>`<option value="${u.id}" ${u.id===l.asignado?'selected':''}>${u.nombre}</option>`).join('');
+  const etapaOpts=ETAPAS.map(e=>`<option value="${e.id}" ${e.id===l.etapa?'selected':''}>${e.n}</option>`).join('');
+  const tipoOpts=TIPOS.map(t=>`<option ${t===l.tipo?'selected':''}>${t}</option>`).join('');
+  const adj=l.adjuntos.length?l.adjuntos.map(a=>`<div class="attach"><span class="fi">PDF</span><div><div style="font-weight:600;font-size:13px">${a.n}</div><div class="muted">${a.s}</div></div><button class="btn ghost sm" style="margin-left:auto" onclick="toast('Descarga (demo)')">Ver</button></div>`).join(''):'<div class="muted">Sin adjuntos aún.</div>';
+  const acts=l.actividades.map(a=>`<div class="act"><div class="ai">${a.ic}</div><div><div class="a1">${a.t}</div><div class="a2">${a.f}</div></div></div>`).join('');
+  d.innerHTML=`
+    <div class="drawer-h">
+      <div><div class="co">${l.empresa}</div><div class="muted" style="margin-top:3px">${l.contacto} · ${l.tel}</div></div>
+      <button class="x" onclick="closeLead()">×</button>
+    </div>
+    <div class="drawer-b">
+      <div class="fgrid">
+        <div class="field"><label>Equipo de interés</label><input value="${l.equipo}" onchange="updLead('${id}','equipo',this.value)"></div>
+        <div class="field"><label>Valor estimado (MXN)</label><input value="${l.valor}" onchange="updLead('${id}','valor',+this.value||0)"></div>
+        <div class="field"><label>Tipo de cliente</label><select onchange="updLead('${id}','tipo',this.value)">${tipoOpts}</select></div>
+        <div class="field"><label>Etapa del funnel</label><select onchange="updLead('${id}','etapa',this.value)">${etapaOpts}</select></div>
+        <div class="field"><label>Asignado a</label><select onchange="updLead('${id}','asignado',this.value)">${userOpts}</select></div>
+        <div class="field"><label>Teléfono</label><input value="${l.tel}" onchange="updLead('${id}','tel',this.value)"></div>
+      </div>
+      <div class="sec-t">Cotizaciones y adjuntos</div>
+      ${adj}
+      <button class="btn ghost sm" style="margin-top:6px" onclick="addAttach('${id}')">+ Subir cotización</button>
+      <div class="sec-t">Actividad comercial</div>
+      <div id="actList">${acts}</div>
+      <div class="addact">
+        <input id="newAct" placeholder="Registrar llamada, visita, nota…" onkeydown="if(event.key==='Enter')addAct('${id}')">
+        <button class="btn sm" onclick="addAct('${id}')">Agregar</button>
+      </div>
+    </div>`;
+  document.getElementById('overlay').classList.add('on');
+  d.classList.add('on');
+}
+function closeLead(){document.getElementById('overlay').classList.remove('on');document.getElementById('drawer').classList.remove('on');openId=null}
+function updLead(id,k,v){const l=LEADS.find(x=>x.id===id);l[k]=v;
+  if(k==='etapa')l.actividades.unshift({t:'Etapa actualizada: '+etapaById(v).n,f:'Ahora',ic:'↦'});
+  if(k==='asignado')l.actividades.unshift({t:'Reasignado a '+userById(v).nombre,f:'Ahora',ic:'⇄'});
+  renderAll(); if(openId)openLead(id); toast('Cambios guardados');}
+function addAct(id){const i=document.getElementById('newAct');if(!i.value.trim())return;
+  LEADS.find(x=>x.id===id).actividades.unshift({t:i.value.trim(),f:'Ahora',ic:'✎'});openLead(id);toast('Actividad registrada');}
+function addAttach(id){LEADS.find(x=>x.id===id).adjuntos.push({n:'Cotización_nueva.pdf',s:'—'});openLead(id);toast('Cotización adjuntada (demo)');}
+
+/* ============ TASKS ============ */
+function renderTasks(){
+  const fsel=document.getElementById('taskUserFilter');
+  if(!fsel.dataset.init){fsel.innerHTML='<option value="">Todos los usuarios</option>'+USERS.map(u=>`<option value="${u.id}">${u.nombre}</option>`).join('');fsel.dataset.init=1;}
+  const f=fsel.value;
+  const p=document.getElementById('taskPanel');
+  const list=TASKS.filter(t=>!f||t.u===f);
+  p.innerHTML=list.map(t=>{const u=userById(t.u);const late=!t.done && t.d<'2026-11-04';
+    return `<div class="task ${t.done?'done':''}">
+      <div class="cb ${t.done?'done':''}" onclick="toggleTask('${t.id}')">${t.done?'✓':''}</div>
+      <div class="tt"><div class="t1">${t.t}</div><div class="t2"><span class="pill-user"><span class="avatar" style="width:20px;height:20px;font-size:9px;background:${u.color}">${u.ini}</span>${u.nombre}</span></div></div>
+      <div class="due ${late?'late':''}">${late?'⚠ ':''}${t.d.slice(5)}</div>
+    </div>`}).join('') || '<div style="padding:24px" class="muted">Sin tareas para este usuario.</div>';
+}
+function toggleTask(id){const t=TASKS.find(x=>x.id===id);t.done=!t.done;renderTasks();updateCounts();if(t.done)toast('Tarea completada');}
+function newTask(){const t=prompt('Nueva tarea:');if(t){TASKS.unshift(task(t,document.getElementById('actingUser').value||'u2','2026-11-08',false));renderTasks();updateCounts();toast('Tarea creada');}}
+
+/* ============ DASHBOARD ============ */
+let chTipo,chUser;
+function renderDash(){
+  const fU=document.getElementById('fUser'), fT=document.getElementById('fTipo');
+  if(!fU.dataset.init){fU.innerHTML='<option value="">Todos los vendedores</option>'+USERS.filter(u=>u.rol==='Vendedor').map(u=>`<option value="${u.id}">${u.nombre}</option>`).join('');
+    fT.innerHTML='<option value="">Todos los tipos</option>'+TIPOS.map(t=>`<option>${t}</option>`).join('');fU.dataset.init=1;}
+  const u=fU.value, ti=fT.value;
+  const data=LEADS.filter(l=>(!u||l.asignado===u)&&(!ti||l.tipo===ti));
+  const activos=data.filter(l=>l.etapa!=='perdido');
+  const ganados=data.filter(l=>l.etapa==='ganado');
+  const pipeline=data.filter(l=>!['ganado','perdido'].includes(l.etapa)).reduce((a,l)=>a+l.valor,0);
+  const cerrados=data.filter(l=>['ganado','perdido'].includes(l.etapa)).length;
+  const conv=cerrados?Math.round(ganados.length/cerrados*100):0;
+  document.getElementById('statCards').innerHTML=[
+    ['Prospectos activos',activos.length,'+3 esta semana',''],
+    ['Tasa de conversión',conv+'%','sobre deals cerrados',''],
+    ['Valor en pipeline',fmt(pipeline),'en etapas abiertas',''],
+    ['Ganados',fmt(ganados.reduce((a,l)=>a+l.valor,0)),ganados.length+' operaciones','']
+  ].map(s=>`<div class="stat"><div class="k">${s[0]}</div><div class="v">${s[1]}</div><div class="d">${s[2]}</div></div>`).join('');
+  // funnel bars
+  const max=Math.max(1,...ETAPAS.map(e=>data.filter(l=>l.etapa===e.id).length));
+  document.getElementById('funnelBars').innerHTML=ETAPAS.map(e=>{const n=data.filter(l=>l.etapa===e.id).length;
+    return `<div class="funnel-row"><div class="lbl">${e.n}</div><div class="funnel-bar" style="width:${Math.max(6,n/max*100)}%;background:${e.c}">${n}</div></div>`}).join('');
+  drawCharts(data);
+}
+function drawCharts(data){
+  if(typeof Chart==='undefined'){setTimeout(()=>drawCharts(data),150);return;}
+  Chart.defaults.color='#9BA1AB';Chart.defaults.font.family='Archivo';Chart.defaults.borderColor='#2A2E36';
+  const tipoVals=TIPOS.map(t=>data.filter(l=>l.tipo===t&&!['perdido'].includes(l.etapa)).reduce((a,l)=>a+l.valor,0));
+  const uList=USERS.filter(u=>u.rol==='Vendedor');
+  const userVals=uList.map(u=>data.filter(l=>l.asignado===u.id&&!['ganado','perdido'].includes(l.etapa)).reduce((a,l)=>a+l.valor,0));
+  if(chTipo)chTipo.destroy(); if(chUser)chUser.destroy();
+  chTipo=new Chart(document.getElementById('chartTipo'),{type:'doughnut',
+    data:{labels:TIPOS,datasets:[{data:tipoVals,backgroundColor:['#F59E0B','#60A5FA','#A78BFA','#34D399','#FB923C'],borderWidth:2,borderColor:'#16181C'}]},
+    options:{plugins:{legend:{position:'right',labels:{boxWidth:12,padding:12,font:{size:11}}}},cutout:'62%',responsive:true,maintainAspectRatio:false}});
+  chUser=new Chart(document.getElementById('chartUser'),{type:'bar',
+    data:{labels:uList.map(u=>u.nombre),datasets:[{data:userVals,backgroundColor:'#F59E0B',borderRadius:7,barThickness:46}]},
+    options:{plugins:{legend:{display:false}},responsive:true,maintainAspectRatio:false,
+      scales:{y:{ticks:{callback:v=>'$'+(v/1000000)+'M'},grid:{color:'#23272E'}},x:{grid:{display:false}}}}});
+}
+
+/* ============ USERS ============ */
+function renderUsers(){
+  document.getElementById('usersBody').innerHTML=USERS.map(u=>{
+    const n=LEADS.filter(l=>l.asignado===u.id).length;
+    const rc=u.rol==='Director'?'#F59E0B':u.rol==='Admin'?'#34D399':'#60A5FA';
+    return `<tr><td><span class="pill-user"><span class="avatar" style="background:${u.color}">${u.ini}</span><b>${u.nombre}</b></span></td>
+      <td><span class="badge" style="background:${rc}22;color:${rc}">${u.rol}</span></td>
+      <td>${u.rol==='Vendedor'?n:'—'}</td>
+      <td><span class="badge" style="background:#34D39922;color:#34D399">Activo</span></td>
+      <td><button class="btn ghost sm" onclick="toast('Permisos (demo)')">Gestionar</button></td></tr>`}).join('');
+}
+
+/* ============ SHARED ============ */
+function newLead(){const n=prompt('Empresa del nuevo prospecto:');if(!n)return;
+  LEADS.unshift(lead(n,'Nuevo contacto','Por definir','Constructora','nuevo',0,'u2'));renderAll();toast('Prospecto creado · asignado automáticamente');}
+function doSearch(v){go('prospectos');renderPros(v);}
+function switchUser(){const id=document.getElementById('actingUser').value;const u=userById(id);
+  document.getElementById('topAvatar').textContent=u.ini;document.getElementById('topAvatar').style.background=u.color;toast('Viendo como '+u.nombre+' ('+u.rol+')');}
+function updateCounts(){
+  document.getElementById('cntFunnel').textContent=LEADS.filter(l=>!['ganado','perdido'].includes(l.etapa)).length;
+  document.getElementById('cntPros').textContent=LEADS.length;
+  document.getElementById('cntTasks').textContent=TASKS.filter(t=>!t.done).length;
+  document.getElementById('cntUsers').textContent=USERS.length;
+}
+function renderAll(){renderBoard();renderPros();updateCounts();if(document.getElementById('view-dashboard').classList.contains('on'))renderDash();}
+let toastT;
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2200);}
+
+/* ============ INIT ============ */
+document.getElementById('actingUser').innerHTML=USERS.map(u=>`<option value="${u.id}">${u.nombre} · ${u.rol}</option>`).join('');
+document.getElementById('topAvatar').style.background=USERS[0].color;
+renderBoard();renderPros();renderUsers();renderTasks();updateCounts();
+</script>
+</body>
+</html>
