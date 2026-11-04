@@ -427,6 +427,12 @@
           "nombre": "Gestión de CRM (soporte, atención y mejoras)",
           "precio": 6000,
           "tipo": "mensual"
+        },
+        {
+          "id": "contenido-ia",
+          "nombre": "Contenido IA · Catálogo de modelos (paquete de 10 fichas)",
+          "precio": 3500,
+          "tipo": "paquete"
         }
       ],
       "serviciosSeleccionados": [
@@ -437,6 +443,12 @@
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": [
+        {
+          "fecha": "2026-11-04",
+          "proximoPaso": "",
+          "notas": "- Contenido IA para la web definido: el Sitio Web ($25k) INCLUYE hasta 20 piezas base (hero, encabezados de 7 lineas, institucional). Las fichas de modelo del catalogo se cobran como paquete extra bajo demanda: $3,500 + IVA por cada 10 fichas (~$350/pieza). Video corto IA por pieza.\n- Cliente quiere replicar los MISMOS productos de sinomach.global/es (catalogo dinamico, 12 categorias). Pendiente: contar modelos reales en el sitio para estimar cuantos paquetes de fichas necesitaran.",
+          "creadoEn": "2026-11-04T01:00:00.000Z"
+        },
         {
           "fecha": "2026-11-04",
           "proximoPaso": "",
