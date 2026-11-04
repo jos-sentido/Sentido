@@ -430,9 +430,9 @@
         },
         {
           "id": "contenido-ia",
-          "nombre": "Ambientación IA del catálogo (paquete de 10 piezas)",
-          "precio": 3500,
-          "tipo": "paquete"
+          "nombre": "Ambientación IA del catálogo completo (127 modelos de SINOMACH-HI)",
+          "precio": 10000,
+          "tipo": "unico"
         }
       ],
       "serviciosSeleccionados": [
@@ -443,6 +443,12 @@
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": [
+        {
+          "fecha": "2026-11-04",
+          "proximoPaso": "",
+          "notas": "- CERRADO contenido IA: precio UNICO de $10,000 + IVA por ambientar el CATALOGO COMPLETO (los mismos 127 modelos del sitio oficial de referencia). Sin paquetes de 10. Las 20 piezas base (general, no dependiente del catalogo) siguen INCLUIDAS en el sitio. Costo real validado (Higgsfield ~$1,100 MXN herramienta para todo el catalogo + produccion); precio cercano al costo por decision de Jos.",
+          "creadoEn": "2026-11-04T03:00:00.000Z"
+        },
         {
           "fecha": "2026-11-04",
           "proximoPaso": "definir precio catalogo completo (127)",
