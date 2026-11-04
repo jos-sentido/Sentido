@@ -430,7 +430,7 @@
         },
         {
           "id": "contenido-ia",
-          "nombre": "Contenido IA · Catálogo de modelos (paquete de 10 fichas)",
+          "nombre": "Ambientación IA del catálogo (paquete de 10 piezas)",
           "precio": 3500,
           "tipo": "paquete"
         }
@@ -443,6 +443,12 @@
       "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": [
+        {
+          "fecha": "2026-11-04",
+          "proximoPaso": "definir precio catalogo completo (127)",
+          "notas": "- Metodo de contenido IA definido: NO se generan maquinas desde cero. Se toma la foto OFICIAL de cada equipo de sinomach.global (hoy en fondo blanco, aspecto de maqueta) y se recoloca la MISMA maquina en un fondo/entorno real (obra, mina, patio) con IA. Herramienta interna: Higgsfield (no se nombra al cliente).\n- Catalogo real: 127 modelos en 14 categorias.\n- Cotizacion: $3,500/10 piezas (~$350 c/u); catalogo completo (127) con precio por volumen -> PENDIENTE que Jos defina el monto del paquete de catalogo completo.",
+          "creadoEn": "2026-11-04T02:00:00.000Z"
+        },
         {
           "fecha": "2026-11-04",
           "proximoPaso": "",
