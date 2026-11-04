@@ -78,10 +78,12 @@
       "slug": "gte",
       "tipo": "propuesta",
       "cliente": "GTE — Grúas, Trailers y Equipos",
+      "asana": {
+        "tarea_gid": "1220145820159497",
+        "madre_gid": "1220139452687603"
+      },
       "fecha": "2026-11-02",
-      "estatus": "nueva",
-      "trabajo": "produccion",
-      "historial": [],
+      "estatus": "presentada",
       "serviciosDisponibles": [
         {
           "id": "gads",
@@ -134,13 +136,24 @@
       ],
       "serviciosSeleccionados": [],
       "notas": "Contacto tibio, lo atiende Rodrigo (CTA a su WhatsApp). Base $22,500/mes incluye Fase 0 + sitio $20,000. Dashboard y herramientas a medida por definir tras Fase 0. Google no muestra anuncios del 28 jul al 2 nov 2026; confirmar estado de la cuenta.",
-      "proximoPaso": "Esperando respuesta vía WhatsApp",
+      "proximoPaso": "",
       "fechaSeguimiento": null,
       "bitacora": [],
-      "asana": {
-        "tarea_gid": "1220145820159497",
-        "madre_gid": "1220139452687603"
-      }
+      "trabajo": "lista",
+      "historial": [
+        {
+          "fecha": "2026-11-04T22:42:53.998Z",
+          "campo": "etapa",
+          "de": "nueva",
+          "a": "presentada"
+        },
+        {
+          "fecha": "2026-11-04T22:42:53.998Z",
+          "campo": "trabajo",
+          "de": "produccion",
+          "a": "lista"
+        }
+      ]
     },
     {
       "slug": "tequila-sencillo",
