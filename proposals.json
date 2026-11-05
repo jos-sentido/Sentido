@@ -161,8 +161,15 @@
       "cliente": "Tequila Sencillo",
       "fecha": "2026-11-02",
       "estatus": "nueva",
-      "trabajo": "produccion",
-      "historial": [],
+      "trabajo": "lista",
+      "historial": [
+        {
+          "fecha": "2026-11-05T00:30:16.000Z",
+          "campo": "trabajo",
+          "de": "produccion",
+          "a": "lista"
+        }
+      ],
       "serviciosDisponibles": [
         {
           "id": "sitio",
@@ -201,8 +208,10 @@
       "fechaSeguimiento": null,
       "bitacora": [],
       "asana": {
-        "tarea_gid": "1220145174387904",
-        "madre_gid": "1220139452687603"
+        "tarea_gid": "1220225014109134",
+        "madre_gid": "1220139452687603",
+        "vendedor_tarea_gid": "1220145174387904",
+        "vendedor_gid": "1220224293380577"
       }
     },
     {
