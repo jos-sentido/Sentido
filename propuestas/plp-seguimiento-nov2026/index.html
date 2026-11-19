@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--
+  PLP · Seguimiento de pendientes por desarrollo (19 nov 2026)
+  Fuente: sentido-core/clientes/plp/juntas/2026-11-19/seguimiento-plp.html
+  Documento para cliente existente (Peninsula Lifestyle Properties / PLP). Sistema visual oficial, sin color del cliente.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>PLP · Seguimiento de pendientes · 19 nov 2026</title>
+<meta name="description" content="Estado de cada punto acordado con PLP por desarrollo y lo que sigue, por Sentido." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<style>
+/* Sistema visual Sentido: tinta + hueso, una familia (Archivo), contraste por peso, rombo como viñeta, pleca abre sección. Claro = papel hueso; oscuro = tinta. Estado por relleno, nunca por color. */
+:root{
+  --bg:#F1EADC; --bg2:#E8E0CF; --fg:#0A0A0A; --fg2:#3a3833; --mute:#6f6a60; --line:#B6AE9E;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0A0A0A;--bg2:#161616;--fg:#F1EADC;--fg2:#cfc7b6;--mute:#948C80;--line:#3a3833;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0A0A0A;--bg2:#161616;--fg:#F1EADC;--fg2:#cfc7b6;--mute:#948C80;--line:#3a3833;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-weight:400;font-size:15px;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 80px;display:flex;flex-direction:column;gap:0}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-weight:800;font-size:clamp(30px,5vw,48px);line-height:1.05;letter-spacing:-.01em}
+h2{font-weight:800;font-size:clamp(22px,3.2vw,30px);line-height:1.15}
+h3{font-weight:600;font-size:16px}
+p{margin:0;max-width:68ch}
+b{font-weight:600}
+header{display:grid;gap:18px;padding-block:28px 34px;border-bottom:1px solid var(--line);
+  background-image:repeating-linear-gradient(90deg,transparent 0 5px,color-mix(in srgb,var(--fg) 7%,transparent) 5px 6px);background-size:100% 10px;background-repeat:no-repeat;background-position:bottom}
+.marca{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--mute)}
+.marca strong{font-weight:800;font-size:15px;color:var(--fg);letter-spacing:.02em}
+.eyebrow{font-size:13px;color:var(--mute)}
+.lead{font-weight:300;font-size:18px;color:var(--fg2)}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--mute);align-items:center}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;white-space:nowrap;line-height:1.6}
+.c-ok{background:var(--fg);color:var(--bg);border:1px solid var(--fg)}
+.c-curso{border:1px solid var(--fg);color:var(--fg)}
+.c-pend{border:1px dashed var(--mute);color:var(--mute)}
+.c-prop{font-weight:800;color:var(--fg);padding-left:0;letter-spacing:.04em}
+section{display:flex;flex-direction:column;gap:16px;border-top:2px dotted var(--line);margin-top:48px;padding-top:22px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.dato{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+.tabla{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px;font-variant-numeric:tabular-nums}
+th{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:left;padding:8px 10px;border-bottom:1px solid var(--fg)}
+td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:600;width:22%}
+td:nth-child(2){width:100px}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+li{position:relative;padding-left:18px}
+li::before{content:"";position:absolute;left:2px;top:.6em;width:7px;height:7px;background:var(--fg);transform:rotate(45deg)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 32px}
+.nota{display:flex;flex-direction:column;gap:8px;min-width:0;border-top:1px solid var(--fg);padding-top:12px}
+footer{font-size:13px;color:var(--mute);border-top:2px dotted var(--line);margin-top:48px;padding-top:16px;display:flex;flex-direction:column;gap:6px}
+.marca{align-items:center}.logo{height:32px;width:auto;display:block}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="marca"><picture><source srcset="/assets/logo-sentido-nombre-light.png" media="(prefers-color-scheme: dark)"><img class="logo" src="/assets/logo-sentido-nombre-dark.png" alt="Sentido"></picture><span>PLP · seguimiento de la junta del 11 nov</span></div>
+  <h1>Seguimiento de pendientes por desarrollo</h1>
+  <p class="lead">Corte al 19 de noviembre de 2026. Cada punto de la lista que nos compartieron, con lo que ya se hizo, lo que falta y qué proponemos.</p>
+  <div class="leyenda">
+    <span class="chip c-ok">Hecho</span> se hizo y hay evidencia
+    <span class="chip c-curso">En curso</span> se hizo una parte o está corriendo
+    <span class="chip c-pend">Pendiente</span> no se ha hecho
+    <span class="chip c-prop">Propuesta</span> lo que pondríamos, a validar
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><h2>Tres temas que se repiten en todos</h2></div>
+  <div class="grid2">
+    <div class="nota">
+      <h3>«Aprendizaje limitado» en Meta</h3>
+      <p>Meta pide unos 50 leads por semana en cada conjunto de anuncios para salir de aprendizaje. Con presupuestos de $800 a $1,400 al día y un costo por lead de $500 a $1,000, un conjunto junta entre 7 y 15 leads por semana. En estas cuentas el aviso es lo esperado y no significa que el anuncio falle.</p>
+      <p>Lo que sí podemos mover: <b>menos conjuntos</b> (no repartir el presupuesto en varios), <b>no editar seguido</b> (cada cambio reinicia el aprendizaje) y juzgar cada anuncio por costo por lead y perfilados en el CRM, no por el aviso.</p>
+    </div>
+    <div class="nota">
+      <h3>«Maximizar conversiones» en Google</h3>
+      <p>La conversión del formulario del sitio ya está dada de alta (28 oct a 5 nov). El cambio de puja se hace <b>campaña por campaña</b> cuando cada una junte 15 a 30 conversiones en 30 días. Con menos, Google deja de entregar en lugar de mejorar.</p>
+      <p>Ejemplo: Bolongo lleva 10 en 30 días, así que todavía no. En el corte del 26 nov traemos el conteo de cada campaña y cambiamos las que ya pasen el umbral.</p>
+    </div>
+    <div class="nota">
+      <h3>«Pocas palabras clave relevantes» en Google</h3>
+      <p>Aparece cuando un grupo de anuncios tiene pocas palabras con búsquedas reales, y la campaña no alcanza a gastar su presupuesto. Se corrige agregando palabras de categoría y zona.</p>
+      <p>En Brelia pasamos la campaña a la landing de 1 a 11 palabras el 11 nov: las impresiones se multiplicaron por 32 y ya gasta su presupuesto. Lo mismo aplica a Amancay, Bolongo y Mazatlán.</p>
+    </div>
+    <div class="nota">
+      <h3>Fecha de fin de campañas</h3>
+      <p>Las campañas terminan el «30 nov 00:00», así que el día 30 no corre. Hay que pasarlas a «1 dic 00:00» en Meta y Google antes del 29 nov. En Bolongo se intentó por sistema y no quedó: se hace a mano en el administrador.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Amancay</h2><span class="dato">Landing A (frente al mar): 4 perfilados de 17 leads</span></div>
+  <div class="tabla"><table>
+    <thead><tr><th>Punto de PLP</th><th>Estado</th><th>Qué se hizo</th><th>Qué sigue</th></tr></thead>
+    <tbody>
+    <tr><td>Reporte con optimizaciones para las landings</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>2 nov: doble captura del WhatsApp en el formulario de la landing, para filtrar datos falsos.</li><li>Primera lectura (17 nov): perfilado de la landing de 22% a 30%, sin perder volumen (9 → 10 leads) y primera cita agendada del canal.</li><li>La versión A (frente al mar) perfila mucho mejor que la B (plusvalía): 4 de 17 contra 1 de 8.</li></ul></td>
+      <td><ul><li><span class="chip c-prop">Propuesta</span> Instalar la medición de recorrido (scroll, llegada al formulario, paso en que se sale) como en Bolongo.</li><li>Corregir los nombres de formulario que llegan cruzados al CRM (A manda «Inversionistas», B manda «Usuario Final»).</li><li>Entregar el reporte de optimizaciones con esa medición: 26 nov.</li></ul></td></tr>
+    <tr><td>Evaluar al 15 nov los cambios del 28 oct · Meta en aprendizaje limitado</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>La campaña de formulario (NSE v2) perfiló en octubre (3 de 40) y en noviembre no (0 de 15 en 14 días). La landing sí perfila.</li><li>La lectura del 15 nov no se ha entregado.</li></ul></td>
+      <td><ul><li>Entregar la lectura esta semana: perfilados del formulario contra los de la landing y decidir si el formulario se ajusta o se apaga.</li><li><span class="chip c-prop">Propuesta</span> Si se ajusta: pregunta de presupuesto en el formulario, como en Bolongo (allá no bajó el volumen).</li></ul></td></tr>
+    <tr><td>Google · campaña B sin suficientes palabras clave</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>Sin cambios registrados después del 11 nov.</li></ul></td>
+      <td><ul><li>Ampliar palabras de categoría y zona (Nuevo Vallarta, Riviera Nayarit) y revisar términos de búsqueda con negativas, como en Brelia.</li></ul></td></tr>
+    <tr><td>Cambiar a «Maximizar conversiones»</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>Conversión del sitio registrando desde el 28 oct.</li></ul></td>
+      <td><ul><li>Conteo por campaña en el corte del 26 nov; se cambia la que pase de 15 conversiones en 30 días.</li></ul></td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Bolongo</h2><span class="dato">14 días: 63 prospectos · 2 perfilados</span></div>
+  <div class="tabla"><table>
+    <thead><tr><th>Punto de PLP</th><th>Estado</th><th>Qué se hizo</th><th>Qué sigue</th></tr></thead>
+    <tbody>
+    <tr><td>Cómo optimizar las landings</td><td><span class="chip c-ok">Hecho</span></td>
+      <td><ul><li>5 nov: análisis de las landings contra lo que perfila. Hallazgo: el formulario preguntaba intención pero no presupuesto.</li><li>5 nov: paso de presupuesto en el formulario, imágenes más ligeras (de 2.4 MB a 1.2 MB en celular) y medición del recorrido.</li><li>Recorrido del 12 al 18 nov: 87 visitas, 14 llegan al formulario, 1 deja datos. La gente se cae en la pregunta de presupuesto (6 llegan, 1 pasa).</li><li>19 nov: se reescribió esa pregunta en tono de personalización, mismos rangos.</li></ul></td>
+      <td><ul><li>Leer el efecto de la nueva redacción el 3 dic.</li><li><span class="chip c-prop">Propuesta</span> Sección de amenidades en uso y detalle de producto, sin precios ni tipologías.</li></ul></td></tr>
+    <tr><td>Evaluar al 15 nov · 2 anuncios en aprendizaje limitado, uno a casi $6,000 por lead</td><td><span class="chip c-ok">Hecho</span></td>
+      <td><ul><li>11 nov: análisis de por qué cayó el perfilado. Los anuncios que perfilaron en octubre siguen activos y traen los leads de formulario; el costo por lead de formulario bajó de $1,188 a $1,025.</li><li>El caro es de la campaña a la landing: «LP Inversión · AD 29 jul» gastó $4,242 por 1 lead y se llevaba 75% del presupuesto. Se pausó el 19 nov, junto con «Oct · 10 oct» ($490, 0 leads); entraron los reels del 2 y 6 oct junto al del 12 oct.</li><li>17 nov: formulario de Meta nuevo con pregunta de presupuesto y paso de revisión. En sus 2 primeros días, 8 leads a $358.</li></ul></td>
+      <td><ul><li>No tocar Meta hasta el 2 dic: cualquier cambio ensucia la lectura del formulario nuevo.</li><li>Landing: lectura de los creativos nuevos el 26–27 nov. Si sigue en 1 lead por semana, se suaviza el filtro o se sube su presupuesto.</li><li>Pedir a PLP más rapidez en el primer contacto: solo 6 de 21 leads de formulario contestaron.</li></ul></td></tr>
+    <tr><td>Google · «búsqueda no marca» sin suficientes palabras clave</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>3 nov: marca y no marca separadas, 797 palabras negativas.</li><li>Últimos 7 días: marca $1,457 por 4 conversiones; no marca $5,241 por 1.</li></ul></td>
+      <td><ul><li>Palabras de categoría y zona en concordancia de frase y exacta, y anuncios separados por grupo. Entrega: 26 nov.</li></ul></td></tr>
+    <tr><td>Qué día se presenta la estrategia de la campaña de activación</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>Península Experience («Conócelo sin viajar»): guion del reel, carrusel y gráfico de Bolongo aprobados el 9 nov y en producción.</li></ul></td>
+      <td><ul><li><span class="chip c-prop">Propuesta</span> Presentarla el 26 nov, con piezas, públicos y presupuesto.</li></ul></td></tr>
+    <tr><td>Cambiar a «Maximizar conversiones»</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>10 conversiones en 30 días; el umbral acordado es 15 a 30.</li></ul></td>
+      <td><ul><li>Marca es la primera candidata (4 de las 5 conversiones recientes). Se revisa en el corte del 26 nov.</li></ul></td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Brelia</h2><span class="dato">5 al 18 nov: costo por lead Meta $990 (−69%) · 3 perfilados · 1 cita</span></div>
+  <div class="tabla"><table>
+    <thead><tr><th>Punto de PLP</th><th>Estado</th><th>Qué se hizo</th><th>Qué sigue</th></tr></thead>
+    <tbody>
+    <tr><td>Casi todos los anuncios en aprendizaje limitado</td><td><span class="chip c-ok">Hecho</span></td>
+      <td><ul><li>10 y 11 nov: conjunto con segmentación más abierta y reels nuevos. El costo por lead bajó de $2,673 a $675 y la cuenta entregó los 14 días.</li><li>Tres perfilados en el periodo, uno por cada medio. Es la primera vez en meses que el formulario de Meta perfila; ese perfilado salió del conjunto amplio.</li><li>19 nov: se pausó el conjunto acotado ($630, 0 leads). La campaña queda con un solo conjunto, que es lo que pide Meta para salir de aprendizaje.</li></ul></td>
+      <td><ul><li>Vigilar 7 a 10 días que el conjunto amplio absorba el presupuesto sin encarecer el lead.</li><li>Mantener los reels de noviembre; el del 6 nov trae leads a $248.</li></ul></td></tr>
+    <tr><td>Google (alerta del corte)</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>La cuenta dejó de registrar conversiones (de 3 a 0), aunque el CRM sí anota un perfilado del sitio.</li><li>El saldo está por agotarse.</li></ul></td>
+      <td><ul><li>PLP: recargar el saldo de Google.</li><li>Sentido: revisar y reparar el registro de conversiones.</li></ul></td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Essentia</h2></div>
+  <div class="tabla"><table>
+    <thead><tr><th>Punto de PLP</th><th>Estado</th><th>Qué se hizo</th><th>Qué sigue</th></tr></thead>
+    <tbody>
+    <tr><td>Evaluar campaña de Google para las landings</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>Textos nuevos para los anuncios de búsqueda de diciembre, con precio «desde $6.4 MDP» fijo en el título, para filtrar por presupuesto.</li><li>La landing hoy solo recibe tráfico de Meta: 9 leads desde septiembre, 0 perfilados.</li></ul></td>
+      <td><ul><li><span class="chip c-prop">Propuesta</span> Una campaña de búsqueda a la landing dentro del presupuesto de Google de Essentia, con palabras de categoría y zona (Country Club) y el precio en el título. Antes, medir el recorrido de la landing. Decisión en la junta del 26 nov.</li></ul></td></tr>
+    <tr><td>Muchos anuncios en aprendizaje limitado</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>17 nov: se apagó la campaña que solo tenía el conjunto de esquema de pago y su presupuesto pasó a la campaña de formularios AllOn 3 ($1,000 al día). AllOn 2 quedó en pausa.</li><li>El esquema de pago se duplicó dentro de AllOn 3; sus 2 anuncios siguen en revisión de Meta.</li><li>Se apagaron los anuncios con gasto y sin leads («9 sep», «5 sep»). El que trae el volumen es «PN Ago · 14 ago»: 9 leads a $752.</li><li>De 8 leads de ese conjunto en 14 días, solo 2 se han contactado.</li></ul></td>
+      <td><ul><li>Destrabar la revisión de los 2 anuncios de esquema de pago.</li><li>PLP: contactar los leads pendientes; sin contacto no hay perfilado que leer.</li><li>Volver a medir el perfilado por anuncio en 2 a 3 semanas.</li></ul></td></tr>
+    <tr><td>Cambiar a «Maximizar conversiones»</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>Conversión del sitio registrando desde el 30 oct.</li></ul></td>
+      <td><ul><li>Conteo por campaña en el corte del 26 nov.</li></ul></td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Heredit</h2><span class="dato">Meta, 14 días: 13 leads</span></div>
+  <div class="tabla"><table>
+    <thead><tr><th>Punto de PLP</th><th>Estado</th><th>Qué se hizo</th><th>Qué sigue</th></tr></thead>
+    <tbody>
+    <tr><td>Parar el conjunto de esquema de pago</td><td><span class="chip c-ok">Hecho</span></td>
+      <td><ul><li>10 nov: entraron los reels de octubre (2, 8 y 10 oct) y se pausaron 4 anuncios viejos, entre ellos los 2 reels de esquema de pago.</li><li>11 nov: se pausó el conjunto de esquema de pago. En la semana del 3 al 9 nov esos creativos traían 8 de los 11 leads.</li><li>Por eso bajó el volumen: el conjunto que quedó trajo 4 leads a $1,588 en 14 días.</li></ul></td>
+      <td><ul><li>La apuesta fue cambiar volumen barato por leads que califiquen. Se confirma o se corrige en el corte del 24 nov.</li></ul></td></tr>
+    <tr><td>Evaluar cambios en segmentación · la mitad de los anuncios en aprendizaje limitado · solo 4 leads en la semana</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>Primer perfilado reciente: salió del reel del 8 oct, en el conjunto acotado. En los 30 días previos no había ninguno.</li><li>17 nov: prueba A/B. Se duplicó el conjunto con la segmentación más abierta (mismas zonas, edad 25–65) para recuperar volumen, y se apagaron 3 anuncios con gasto mínimo.</li><li>Los anuncios quedan fijos hasta el corte, para que lo único que cambie sea la segmentación. El conjunto nuevo lleva 2 leads a $505.</li></ul></td>
+      <td><ul><li>Corte del 24 nov: si los perfilados salen del conjunto acotado, la palanca es el público; si salen también del abierto, la palanca fue el creativo. Con eso se deja un solo conjunto y baja el aviso de aprendizaje.</li></ul></td></tr>
+    <tr><td>Renovar formularios</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>Sin cambios en el formulario.</li></ul></td>
+      <td><ul><li><span class="chip c-prop">Propuesta</span> Formulario nuevo con pregunta de presupuesto y el enganche de 30% visible, igual al que se lanzó en Bolongo. Listo para el 25 nov.</li></ul></td></tr>
+    <tr><td>Cambiar a «Maximizar conversiones»</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>Google no está publicando: anuncios rechazados porque Google marca como comprometido el dominio heredit.mx. Hoy la campaña no tiene gasto ni presupuesto.</li></ul></td>
+      <td><ul><li>PLP / proveedor web: limpiar el sitio y pedir revisión en Search Console. Después, apelación en Ads. El cambio de puja va cuando la campaña vuelva a correr.</li></ul></td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Peninsula Mazatlán</h2><span class="dato">Octubre: 8 perfilados de 55 (14.5%)</span></div>
+  <div class="tabla"><table>
+    <thead><tr><th>Punto de PLP</th><th>Estado</th><th>Qué se hizo</th><th>Qué sigue</th></tr></thead>
+    <tbody>
+    <tr><td>Sumar anuncios de octubre</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>Acordado el 11 nov; los creativos de la parrilla de octubre no se han cargado.</li></ul></td>
+      <td><ul><li>Cargarlos dentro del conjunto actual, sin abrir conjuntos nuevos, para no fragmentar el aprendizaje. Esta semana.</li></ul></td></tr>
+    <tr><td>Evaluar dividir Google en marca y no marca</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>Se dejó en puerta: el sitio mejoró de septiembre (1 perfilado) a octubre (4). Del 1 al 9 nov: 4 leads, 0 perfilados.</li></ul></td>
+      <td><ul><li><span class="chip c-prop">Propuesta</span> Hacer la división ya, junto con la ampliación de palabras clave. En Bolongo es lo que permite ver de dónde vienen las conversiones.</li></ul></td></tr>
+    <tr><td>Google sin suficientes palabras clave</td><td><span class="chip c-pend">Pendiente</span></td>
+      <td><ul><li>Desde el 5 nov la campaña ya optimiza a «Enviar formulario».</li></ul></td>
+      <td><ul><li>Agregar palabras de categoría y zona (Mazatlán, departamentos frente al mar) en el grupo de no marca.</li></ul></td></tr>
+    <tr><td>Cambiar a «Maximizar conversiones»</td><td><span class="chip c-curso">En curso</span></td>
+      <td><ul><li>Conversión del formulario registrando desde el 5 nov.</li></ul></td>
+      <td><ul><li>Conteo en el corte del 26 nov; con 3 semanas de datos probablemente no llega todavía al umbral.</li></ul></td></tr>
+    </tbody></table></div>
+</section>
+
+<footer>
+  <span>Fuentes: Meta Ads, Google Ads, CRM Zoho (solo conteos por etapa), la bitácora de pauta en Asana y la medición de las landings, leídos entre el 11 y el 19 de noviembre de 2026.</span>
+  <span>Cada medio se lee contra sí mismo: Meta y Google tienen su presupuesto y su meta, y ningún punto de este reporte mueve dinero de uno al otro.</span>
+</footer>
+</div>
+
+</body>
+</html>
