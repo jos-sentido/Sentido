@@ -65,6 +65,7 @@ body {
   <div>
     <div class="marcador" id="marcador">0</div>
     <div class="record" id="record">Récord 0</div>
+    <div class="record" id="nivel">2 órbitas</div>
   </div>
   <div class="botones">
     <button class="btn-ico" id="btnSonido" type="button" aria-label="Sonido">♪</button>
@@ -74,7 +75,7 @@ body {
 
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
-  <p>Tu punto gira solo. <b>Toca la pantalla</b> para saltar entre la órbita de adentro y la de afuera.</p>
+  <p>Tu punto gira solo. <b>Desliza hacia arriba</b> para salir una órbita y <b>hacia abajo</b> para entrar. Cada tanto aparece una órbita nueva.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
@@ -142,34 +143,49 @@ body {
   // --- estado ---
   let estado = 'inicio'; // inicio | jugando | pausa | fin
   let ang, vel, pista, rAct, puntos, items, sigSpawn, particulas, estela, sacudida, pulso, tAnt;
+  let nPistas, nAnim, libre, aviso;
+  // dificultad: a estos puntos se abre una órbita más
+  const UMBRALES = [[0, 2], [30, 3], [90, 4], [180, 5]];
+  const pistasPara = p => UMBRALES.filter(u => p >= u[0]).pop()[1];
 
   function reiniciar() {
     ang = -Math.PI / 2; vel = 1.5; pista = 1; rAct = 1; puntos = 0;
+    nPistas = 2; nAnim = 2; libre = 1; aviso = 0;
     items = []; sigSpawn = ang + 1.6; particulas = []; estela = []; sacudida = 0; pulso = 0;
-    $('marcador').textContent = '0';
+    $('marcador').textContent = '0'; $('nivel').textContent = '2 órbitas';
   }
-  reiniciar();
 
-  const radio = t => R_INT + (R_EXT - R_INT) * t; // t: 0 interior, 1 exterior
+  // t: índice de órbita (0 = la de adentro); el espaciado se reacomoda suave al abrirse una nueva
+  const radio = t => R_INT + (R_EXT - R_INT) * t / Math.max(1, nAnim - 1);
   const pos = (a, r) => [CX + Math.cos(a) * r, CY + Math.sin(a) * r];
 
   function generar() {
-    // mantén piezas hasta ~1.35 vueltas... sin pasar la cola del jugador
+    // mantén piezas ~1.45 vueltas adelante sin alcanzar la cola del jugador
     while (sigSpawn < ang + Math.PI * 1.45) {
-      const minHueco = vel * 0.42 + 0.22;
-      const tipo = Math.random();
-      const lado = Math.random() < 0.5 ? 0 : 1;
-      if (tipo < 0.42) {
-        items.push({ a: sigSpawn, p: lado, k: 'muro' });
-      } else if (tipo < 0.78) {
-        items.push({ a: sigSpawn, p: lado, k: 'muro' });
-        items.push({ a: sigSpawn, p: 1 - lado, k: 'gema' });
-      } else {
-        items.push({ a: sigSpawn, p: lado, k: 'gema' });
-        if (Math.random() < 0.5) items.push({ a: sigSpawn + 0.16, p: lado, k: 'gema' });
+      // la órbita libre se mueve a lo más una posición por fila: siempre hay camino con un swipe
+      const paso = Math.random() < 0.55 ? (Math.random() < 0.5 ? -1 : 1) : 0;
+      libre = Math.max(0, Math.min(nPistas - 1, libre + paso));
+      const maxMuros = Math.min(nPistas - 1, 1 + Math.floor(puntos / 25));
+      const otras = [...Array(nPistas).keys()].filter(i => i !== libre).sort(() => Math.random() - 0.5);
+      const nMuros = Math.random() < 0.18 ? 0 : 1 + Math.floor(Math.random() * maxMuros);
+      otras.slice(0, nMuros).forEach(i => items.push({ a: sigSpawn, p: i, k: 'muro' }));
+      if (Math.random() < 0.55) {
+        items.push({ a: sigSpawn, p: libre, k: 'gema' });
+        if (nMuros === 0) items.push({ a: sigSpawn + 0.16, p: libre, k: 'gema' });
       }
+      const minHueco = vel * 0.42 + 0.24;
       sigSpawn += minHueco + Math.random() * (0.55 + Math.max(0, 0.5 - puntos * 0.008));
     }
+  }
+
+  function revisarNivel() {
+    const n = pistasPara(puntos);
+    if (n === nPistas) return;
+    nPistas = n; aviso = 2.2;
+    $('nivel').textContent = n + ' órbitas';
+    tono(440, 0.12, 'triangle', 0.1); setTimeout(() => tono(660, 0.12, 'triangle', 0.1), 110);
+    setTimeout(() => tono(990, 0.18, 'triangle', 0.1), 220);
+    vibrar([20, 40, 20]);
   }
 
   function chispas(x, y, color, n, fuerza) {
@@ -179,10 +195,14 @@ body {
     }
   }
 
-  function saltar() {
+  reiniciar();
+
+  function mover(dir) { // +1 afuera, -1 adentro
     if (estado !== 'jugando') return;
-    pista = 1 - pista;
-    tono(pista ? 520 : 390, 0.06, 'triangle', 0.08);
+    const nueva = pista + dir;
+    if (nueva < 0 || nueva > nPistas - 1) { tono(160, 0.05, 'square', 0.04); return; }
+    pista = nueva;
+    tono(360 + pista * 110, 0.06, 'triangle', 0.08);
   }
 
   function morir() {
@@ -211,7 +231,9 @@ body {
     sacudida *= 0.88;
     if (estado !== 'jugando') return;
 
-    vel = Math.min(3.4, 1.5 + puntos * 0.028);
+    aviso = Math.max(0, aviso - dt);
+    nAnim += (nPistas - nAnim) * Math.min(1, dt * 3);
+    vel = Math.min(3.2, 1.5 + puntos * 0.022);
     ang += vel * dt;
     rAct += (pista - rAct) * Math.min(1, dt * 18);
     generar();
@@ -236,6 +258,7 @@ body {
     }
     items = items.filter(it => it.a > ang - 0.8 && !(it.hecho && it.k === 'gema'));
     $('marcador').textContent = puntos;
+    revisarNivel();
   }
 
   function rombo(x, y, s, color) {
@@ -249,8 +272,20 @@ body {
     if (sacudida > 0.3) cx.translate((Math.random() - 0.5) * sacudida, (Math.random() - 0.5) * sacudida);
 
     // pistas
-    cx.lineWidth = 2; cx.strokeStyle = C.pista;
-    for (const r of [R_INT, R_EXT]) { cx.beginPath(); cx.arc(CX, CY, r, 0, Math.PI * 2); cx.stroke(); }
+    cx.lineWidth = 2;
+    for (let i = 0; i < nPistas; i++) {
+      // la órbita recién abierta entra en ámbar y se apaga a gris
+      const nueva = i === nPistas - 1 && aviso > 0;
+      cx.strokeStyle = nueva && Math.floor(aviso * 6) % 2 === 0 ? C.ambar : C.pista;
+      cx.beginPath(); cx.arc(CX, CY, radio(i), 0, Math.PI * 2); cx.stroke();
+    }
+    if (aviso > 0 && estado === 'jugando') {
+      cx.globalAlpha = Math.min(1, aviso);
+      cx.fillStyle = C.ambar; cx.textAlign = 'center';
+      cx.font = '800 15px system-ui, -apple-system, sans-serif';
+      cx.fillText('NUEVA ÓRBITA', CX, CY + R_EXT + 44);
+      cx.globalAlpha = 1;
+    }
 
     // rombo central que late con la velocidad
     const lat = reducido ? 1 : 1 + Math.sin(pulso * (2 + (vel || 1.5))) * 0.05;
@@ -311,11 +346,28 @@ body {
   }
   function seguir() { if (estado === 'pausa') { estado = 'jugando'; $('pausa').hidden = true; tAnt = 0; } }
 
-  cv.addEventListener('pointerdown', e => { e.preventDefault(); saltar(); });
+  // swipe: arriba/derecha = afuera, abajo/izquierda = adentro.
+  // Se dispara en cuanto el dedo recorre el umbral, sin esperar a soltar. Una órbita por swipe.
+  let toque = null;
+  const UMBRAL = 26;
+  cv.addEventListener('pointerdown', e => { e.preventDefault(); toque = { x: e.clientX, y: e.clientY, id: e.pointerId }; });
+  cv.addEventListener('pointermove', e => {
+    if (!toque || toque.usado || e.pointerId !== toque.id) return;
+    const dx = e.clientX - toque.x, dy = e.clientY - toque.y;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < UMBRAL) return;
+    const dir = Math.abs(dy) >= Math.abs(dx) ? (dy < 0 ? 1 : -1) : (dx > 0 ? 1 : -1);
+    mover(dir);
+    toque.usado = true;
+  });
+  const soltar = () => { toque = null; };
+  cv.addEventListener('pointerup', soltar); cv.addEventListener('pointercancel', soltar);
+
   addEventListener('keydown', e => {
-    if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
+    if (e.code === 'ArrowUp' || e.code === 'ArrowRight') { e.preventDefault(); return mover(1); }
+    if (e.code === 'ArrowDown' || e.code === 'ArrowLeft') { e.preventDefault(); return mover(-1); }
+    if (e.code === 'Space') {
       e.preventDefault();
-      if (estado === 'jugando') saltar();
+      if (estado === 'jugando') return;
       else if (estado === 'pausa') seguir();
       else if (!$('fin').hidden || estado === 'inicio') empezar();
     }
