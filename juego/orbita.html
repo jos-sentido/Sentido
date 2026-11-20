@@ -75,7 +75,8 @@ body {
 
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
-  <p>Tu punto gira solo. <b>Desliza hacia arriba</b> para salir una órbita y <b>hacia abajo</b> para entrar. Cada tanto aparece una órbita nueva.</p>
+  <p>Tu punto gira solo. La pista está partida en cuatro: <b>arriba y abajo</b> deslizas vertical, <b>a los lados</b> horizontal. Hacia afuera del círculo sales una órbita, hacia el centro entras.</p>
+  <p>Puedes deslizar en cualquier parte de la pantalla. Cada tanto se abre una órbita nueva.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
@@ -261,6 +262,18 @@ body {
     revisarNivel();
   }
 
+  // sector del cuadrante: centro en 0 (derecha), π/2 (abajo), π (izquierda), -π/2 (arriba)
+  function sector(a) {
+    const k = Math.round(a / (Math.PI / 2));
+    return { centro: k * Math.PI / 2 };
+  }
+  function flecha(x, y, a, color) {
+    const s = R_EXT * 0.055;
+    cx.save(); cx.translate(x, y); cx.rotate(a);
+    cx.beginPath(); cx.moveTo(s * 0.6, 0); cx.lineTo(-s * 0.4, -s * 0.6); cx.lineTo(-s * 0.4, s * 0.6); cx.closePath();
+    cx.fillStyle = color; cx.fill(); cx.restore();
+  }
+
   function rombo(x, y, s, color) {
     cx.beginPath(); cx.moveTo(x, y - s); cx.lineTo(x + s * 0.72, y); cx.lineTo(x, y + s); cx.lineTo(x - s * 0.72, y); cx.closePath();
     cx.fillStyle = color; cx.fill();
@@ -284,6 +297,27 @@ body {
       cx.fillStyle = C.ambar; cx.textAlign = 'center';
       cx.font = '800 15px system-ui, -apple-system, sans-serif';
       cx.fillText('NUEVA ÓRBITA', CX, CY + R_EXT + 44);
+      cx.globalAlpha = 1;
+    }
+
+    // cuadrantes: diagonales tenues y el sector donde va el jugador
+    const rFuera = R_EXT + R_EXT * 0.16, rDentro = R_INT * 0.45;
+    cx.save();
+    cx.setLineDash([3, 7]); cx.lineWidth = 1; cx.strokeStyle = C.pista;
+    for (let k = 0; k < 4; k++) {
+      const d = Math.PI / 4 + k * Math.PI / 2;
+      cx.beginPath(); cx.moveTo(...pos(d, rDentro)); cx.lineTo(...pos(d, rFuera)); cx.stroke();
+    }
+    cx.restore();
+    if (estado === 'jugando' || estado === 'pausa') {
+      const s = sector(ang), c = s.centro;
+      cx.globalAlpha = 0.07; cx.fillStyle = C.hueso;
+      cx.beginPath(); cx.arc(CX, CY, rFuera, c - Math.PI / 4, c + Math.PI / 4);
+      cx.arc(CX, CY, rDentro, c + Math.PI / 4, c - Math.PI / 4, true); cx.closePath(); cx.fill();
+      cx.globalAlpha = 0.85;
+      // flecha afuera (ámbar) y flecha al centro (hueso), en el eje del sector
+      flecha(...pos(c, rFuera - 4), c, C.ambar);
+      flecha(...pos(c, rDentro - 2), c + Math.PI, C.hueso);
       cx.globalAlpha = 1;
     }
 
@@ -346,8 +380,16 @@ body {
   }
   function seguir() { if (estado === 'pausa') { estado = 'jugando'; $('pausa').hidden = true; tAnt = 0; } }
 
-  // swipe: arriba/derecha = afuera, abajo/izquierda = adentro.
+  // swipe por cuadrante: arriba/abajo del círculo se desliza vertical, a los lados horizontal.
+  // Hacia afuera del círculo = salir una órbita; hacia el centro = entrar. Cualquier parte de la pantalla.
+  // Cerca de las diagonales se aceptan los dos ejes, para no castigar el cambio de cuadrante.
   // Se dispara en cuanto el dedo recorre el umbral, sin esperar a soltar. Una órbita por swipe.
+  function swipe(sx, sy) { // sx, sy: dirección cardinal del dedo (-1, 0, 1)
+    if (estado !== 'jugando') return;
+    const d = sx * Math.cos(ang) + sy * Math.sin(ang);
+    if (Math.abs(d) < 0.55) return; // deslizaste a lo largo de la pista: no cuenta
+    mover(d > 0 ? 1 : -1);
+  }
   let toque = null;
   const UMBRAL = 26;
   cv.addEventListener('pointerdown', e => { e.preventDefault(); toque = { x: e.clientX, y: e.clientY, id: e.pointerId }; });
@@ -355,16 +397,15 @@ body {
     if (!toque || toque.usado || e.pointerId !== toque.id) return;
     const dx = e.clientX - toque.x, dy = e.clientY - toque.y;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < UMBRAL) return;
-    const dir = Math.abs(dy) >= Math.abs(dx) ? (dy < 0 ? 1 : -1) : (dx > 0 ? 1 : -1);
-    mover(dir);
+    if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
     toque.usado = true;
   });
   const soltar = () => { toque = null; };
   cv.addEventListener('pointerup', soltar); cv.addEventListener('pointercancel', soltar);
 
   addEventListener('keydown', e => {
-    if (e.code === 'ArrowUp' || e.code === 'ArrowRight') { e.preventDefault(); return mover(1); }
-    if (e.code === 'ArrowDown' || e.code === 'ArrowLeft') { e.preventDefault(); return mover(-1); }
+    const flechas = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
+    if (flechas[e.code]) { e.preventDefault(); return swipe(...flechas[e.code]); }
     if (e.code === 'Space') {
       e.preventDefault();
       if (estado === 'jugando') return;
