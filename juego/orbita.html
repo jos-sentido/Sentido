@@ -1,0 +1,341 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Órbita</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Una sola pantalla de arcade nocturna: pista doble alrededor de un rombo, HUD mínimo arriba. Diseño de un solo tema, a propósito. */
+:root {
+  --noche: #121316;
+  --pista: #3a3d44;
+  --hueso: #efe6d6;
+  --hueso-2: #b9b0a2;
+  --ambar: #f2b33d;
+  --coral: #ff6b57;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--noche); color: var(--hueso); font-family: var(--font);
+  overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent; overscroll-behavior: none;
+}
+#lienzo { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.hud {
+  position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: flex-start;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 14px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  pointer-events: none; font-variant-numeric: tabular-nums;
+}
+.marcador { font-size: 2.6rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+.record { font-size: 0.75rem; color: var(--hueso-2); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+.botones { display: flex; gap: 8px; pointer-events: auto; }
+.btn-ico {
+  width: 44px; height: 44px; border: 1px solid var(--pista); background: transparent; color: var(--hueso);
+  font: 600 0.8rem var(--font); border-radius: 50%; cursor: pointer;
+}
+.btn-ico:focus-visible, .cta:focus-visible { outline: 2px solid var(--ambar); outline-offset: 3px; }
+.capa {
+  position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; text-align: center; background: rgba(18, 19, 22, 0.78);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.capa h1 { margin: 0; font-size: clamp(3rem, 16vw, 5.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; }
+.capa h2 { margin: 0; font-size: 1.1rem; font-weight: 600; color: var(--hueso-2); letter-spacing: 0.1em; text-transform: uppercase; }
+.capa .grande { font-size: 4.5rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.capa p { margin: 0; max-width: 30ch; line-height: 1.5; color: var(--hueso-2); font-size: 1rem; }
+.capa p b { color: var(--hueso); }
+.leyenda { display: flex; gap: 22px; font-size: 0.85rem; color: var(--hueso-2); }
+.leyenda span { display: flex; align-items: center; gap: 8px; }
+.punto { width: 12px; height: 12px; display: inline-block; }
+.punto.gema { background: var(--ambar); transform: rotate(45deg) scale(0.8); }
+.punto.muro { background: var(--coral); border-radius: 2px; width: 16px; height: 8px; }
+.cta {
+  margin-top: 8px; padding: 16px 40px; border: 0; border-radius: 999px; background: var(--hueso); color: var(--noche);
+  font: 800 1.1rem var(--font); letter-spacing: 0.04em; cursor: pointer;
+}
+.nuevo { color: var(--ambar); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) { .cta { transition: none; } }
+</style>
+
+<canvas id="lienzo" aria-label="Pista de juego"></canvas>
+
+<div class="hud">
+  <div>
+    <div class="marcador" id="marcador">0</div>
+    <div class="record" id="record">Récord 0</div>
+  </div>
+  <div class="botones">
+    <button class="btn-ico" id="btnSonido" type="button" aria-label="Sonido">♪</button>
+    <button class="btn-ico" id="btnPausa" type="button" aria-label="Pausa">II</button>
+  </div>
+</div>
+
+<div class="capa" id="inicio">
+  <h1>Órbita</h1>
+  <p>Tu punto gira solo. <b>Toca la pantalla</b> para saltar entre la órbita de adentro y la de afuera.</p>
+  <div class="leyenda">
+    <span><i class="punto gema"></i>junta</span>
+    <span><i class="punto muro"></i>esquiva</span>
+  </div>
+  <button class="cta" id="btnJugar" type="button">Jugar</button>
+</div>
+
+<div class="capa" id="pausa" hidden>
+  <h2>En pausa</h2>
+  <button class="cta" id="btnSeguir" type="button">Seguir</button>
+</div>
+
+<div class="capa" id="fin" hidden>
+  <h2>Puntos</h2>
+  <div class="grande" id="finPuntos">0</div>
+  <div class="nuevo" id="finNuevo" hidden>Nuevo récord</div>
+  <p id="finRecord">Récord 0</p>
+  <button class="cta" id="btnOtra" type="button">Otra vez</button>
+</div>
+
+<script>
+(() => {
+  const C = { noche:'#121316', pista:'#3a3d44', hueso:'#efe6d6', ambar:'#f2b33d', coral:'#ff6b57' };
+  const cv = document.getElementById('lienzo');
+  const cx = cv.getContext('2d');
+  const $ = id => document.getElementById(id);
+  const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- almacenamiento seguro ---
+  const leer = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } };
+  const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+  let record = leer('orbita.record', 0);
+  let sonido = leer('orbita.sonido', true);
+
+  // --- sonido sintetizado (sin archivos, funciona offline) ---
+  let ac = null;
+  function tono(f, dur = 0.08, tipo = 'sine', vol = 0.12, f2) {
+    if (!sonido) return;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === 'suspended') ac.resume();
+      const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime;
+      o.type = tipo; o.frequency.setValueAtTime(f, t);
+      if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+      g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g).connect(ac.destination); o.start(t); o.stop(t + dur + 0.02);
+    } catch {}
+  }
+  const vibrar = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch {} };
+
+  // --- tamaño ---
+  let W, H, dpr, R_EXT, R_INT, CX, CY;
+  function medir() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    W = innerWidth; H = innerHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const m = Math.min(W, H);
+    R_EXT = m * 0.38; R_INT = R_EXT * 0.6;
+    CX = W / 2; CY = H / 2 + Math.min(30, H * 0.03);
+  }
+  addEventListener('resize', medir); medir();
+
+  // --- estado ---
+  let estado = 'inicio'; // inicio | jugando | pausa | fin
+  let ang, vel, pista, rAct, puntos, items, sigSpawn, particulas, estela, sacudida, pulso, tAnt;
+
+  function reiniciar() {
+    ang = -Math.PI / 2; vel = 1.5; pista = 1; rAct = 1; puntos = 0;
+    items = []; sigSpawn = ang + 1.6; particulas = []; estela = []; sacudida = 0; pulso = 0;
+    $('marcador').textContent = '0';
+  }
+  reiniciar();
+
+  const radio = t => R_INT + (R_EXT - R_INT) * t; // t: 0 interior, 1 exterior
+  const pos = (a, r) => [CX + Math.cos(a) * r, CY + Math.sin(a) * r];
+
+  function generar() {
+    // mantén piezas hasta ~1.35 vueltas... sin pasar la cola del jugador
+    while (sigSpawn < ang + Math.PI * 1.45) {
+      const minHueco = vel * 0.42 + 0.22;
+      const tipo = Math.random();
+      const lado = Math.random() < 0.5 ? 0 : 1;
+      if (tipo < 0.42) {
+        items.push({ a: sigSpawn, p: lado, k: 'muro' });
+      } else if (tipo < 0.78) {
+        items.push({ a: sigSpawn, p: lado, k: 'muro' });
+        items.push({ a: sigSpawn, p: 1 - lado, k: 'gema' });
+      } else {
+        items.push({ a: sigSpawn, p: lado, k: 'gema' });
+        if (Math.random() < 0.5) items.push({ a: sigSpawn + 0.16, p: lado, k: 'gema' });
+      }
+      sigSpawn += minHueco + Math.random() * (0.55 + Math.max(0, 0.5 - puntos * 0.008));
+    }
+  }
+
+  function chispas(x, y, color, n, fuerza) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, s = (0.4 + Math.random()) * fuerza;
+      particulas.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, v: 1, c: color });
+    }
+  }
+
+  function saltar() {
+    if (estado !== 'jugando') return;
+    pista = 1 - pista;
+    tono(pista ? 520 : 390, 0.06, 'triangle', 0.08);
+  }
+
+  function morir() {
+    estado = 'fin';
+    const [x, y] = pos(ang, radio(rAct));
+    chispas(x, y, C.coral, 40, 260); chispas(x, y, C.hueso, 16, 180);
+    sacudida = reducido ? 0 : 14;
+    tono(220, 0.45, 'sawtooth', 0.12, 55); vibrar([60, 40, 90]);
+    const nuevo = puntos > record;
+    if (nuevo) { record = puntos; guardar('orbita.record', record); }
+    $('record').textContent = 'Récord ' + record;
+    setTimeout(() => {
+      $('finPuntos').textContent = puntos;
+      $('finNuevo').hidden = !nuevo;
+      $('finRecord').textContent = 'Récord ' + record;
+      $('fin').hidden = false;
+      $('btnOtra').focus({ preventScroll: true });
+    }, 650);
+  }
+
+  function actualizar(dt) {
+    pulso += dt;
+    // partículas siempre se mueven
+    for (const p of particulas) { p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= 0.94; p.vy *= 0.94; p.v -= dt * 1.4; }
+    particulas = particulas.filter(p => p.v > 0);
+    sacudida *= 0.88;
+    if (estado !== 'jugando') return;
+
+    vel = Math.min(3.4, 1.5 + puntos * 0.028);
+    ang += vel * dt;
+    rAct += (pista - rAct) * Math.min(1, dt * 18);
+    generar();
+
+    const r = radio(rAct);
+    const [px, py] = pos(ang, r);
+    estela.push([ang, rAct]); if (estela.length > 14) estela.shift();
+
+    const tam = R_EXT * 0.075;
+    for (const it of items) {
+      if (it.hecho) continue;
+      const [ix, iy] = pos(it.a, radio(it.p));
+      const d = Math.hypot(ix - px, iy - py);
+      if (it.k === 'gema' && d < tam * 1.25) {
+        it.hecho = true; puntos += 2;
+        chispas(ix, iy, C.ambar, 14, 140); tono(880 + Math.min(puntos, 60) * 6, 0.09, 'sine', 0.1);
+        vibrar(8);
+      } else if (it.k === 'muro' && d < tam * 0.95) {
+        morir(); return;
+      }
+      if (it.k === 'muro' && !it.pasado && it.a < ang - 0.12) { it.pasado = true; puntos += 1; }
+    }
+    items = items.filter(it => it.a > ang - 0.8 && !(it.hecho && it.k === 'gema'));
+    $('marcador').textContent = puntos;
+  }
+
+  function rombo(x, y, s, color) {
+    cx.beginPath(); cx.moveTo(x, y - s); cx.lineTo(x + s * 0.72, y); cx.lineTo(x, y + s); cx.lineTo(x - s * 0.72, y); cx.closePath();
+    cx.fillStyle = color; cx.fill();
+  }
+
+  function dibujar() {
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx.fillStyle = C.noche; cx.fillRect(0, 0, W, H);
+    if (sacudida > 0.3) cx.translate((Math.random() - 0.5) * sacudida, (Math.random() - 0.5) * sacudida);
+
+    // pistas
+    cx.lineWidth = 2; cx.strokeStyle = C.pista;
+    for (const r of [R_INT, R_EXT]) { cx.beginPath(); cx.arc(CX, CY, r, 0, Math.PI * 2); cx.stroke(); }
+
+    // rombo central que late con la velocidad
+    const lat = reducido ? 1 : 1 + Math.sin(pulso * (2 + (vel || 1.5))) * 0.05;
+    cx.globalAlpha = 0.9; rombo(CX, CY, R_INT * 0.32 * lat, C.pista); cx.globalAlpha = 1;
+    rombo(CX, CY, R_INT * 0.12 * lat, C.hueso);
+
+    // piezas
+    const tam = R_EXT * 0.075;
+    for (const it of items) {
+      if (it.hecho) continue;
+      const r = radio(it.p);
+      if (it.k === 'muro') {
+        const span = (tam * 1.15) / r;
+        cx.beginPath(); cx.arc(CX, CY, r, it.a - span, it.a + span);
+        cx.strokeStyle = C.coral; cx.lineWidth = tam * 1.15; cx.lineCap = 'butt'; cx.stroke();
+      } else {
+        const [x, y] = pos(it.a, r);
+        rombo(x, y, tam * 0.8, C.ambar);
+      }
+    }
+
+    // estela y jugador
+    if (estado !== 'fin') {
+      estela.forEach(([a, t], i) => {
+        const [x, y] = pos(a, radio(t));
+        cx.globalAlpha = (i / estela.length) * 0.35;
+        cx.beginPath(); cx.arc(x, y, tam * 0.55 * (i / estela.length), 0, Math.PI * 2); cx.fillStyle = C.hueso; cx.fill();
+      });
+      cx.globalAlpha = 1;
+      const [px, py] = pos(ang, radio(rAct));
+      cx.beginPath(); cx.arc(px, py, tam * 0.62, 0, Math.PI * 2); cx.fillStyle = C.hueso; cx.fill();
+    }
+
+    for (const p of particulas) {
+      cx.globalAlpha = Math.max(0, p.v); cx.fillStyle = p.c;
+      cx.fillRect(p.x - 2, p.y - 2, 4, 4);
+    }
+    cx.globalAlpha = 1;
+  }
+
+  function bucle(t) {
+    const dt = Math.min(0.033, ((t - (tAnt || t)) / 1000));
+    tAnt = t;
+    actualizar(dt); dibujar();
+    requestAnimationFrame(bucle);
+  }
+  requestAnimationFrame(bucle);
+
+  // --- controles ---
+  function empezar() {
+    reiniciar(); estado = 'jugando';
+    $('inicio').hidden = true; $('fin').hidden = true; $('pausa').hidden = true;
+    tono(660, 0.08, 'triangle', 0.08); pedirPantalla();
+  }
+  function pausar() {
+    if (estado !== 'jugando') return;
+    estado = 'pausa'; $('pausa').hidden = false;
+  }
+  function seguir() { if (estado === 'pausa') { estado = 'jugando'; $('pausa').hidden = true; tAnt = 0; } }
+
+  cv.addEventListener('pointerdown', e => { e.preventDefault(); saltar(); });
+  addEventListener('keydown', e => {
+    if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
+      e.preventDefault();
+      if (estado === 'jugando') saltar();
+      else if (estado === 'pausa') seguir();
+      else if (!$('fin').hidden || estado === 'inicio') empezar();
+    }
+    if (e.code === 'KeyP' || e.code === 'Escape') estado === 'pausa' ? seguir() : pausar();
+  });
+  $('btnJugar').onclick = empezar;
+  $('btnOtra').onclick = empezar;
+  $('btnSeguir').onclick = seguir;
+  $('btnPausa').onclick = () => estado === 'pausa' ? seguir() : pausar();
+  // tocar el fondo de la capa de fin también reinicia
+  $('fin').addEventListener('pointerdown', e => { if (e.target === $('fin')) { e.preventDefault(); empezar(); } });
+
+  function pintarSonido() { $('btnSonido').style.opacity = sonido ? 1 : 0.4; $('btnSonido').setAttribute('aria-pressed', sonido); }
+  $('btnSonido').onclick = () => { sonido = !sonido; guardar('orbita.sonido', sonido); pintarSonido(); tono(700, 0.06); };
+  pintarSonido();
+  $('record').textContent = 'Récord ' + record;
+
+  document.addEventListener('visibilitychange', () => { if (document.hidden) pausar(); });
+
+  let wake = null;
+  async function pedirPantalla() { try { if (!wake && navigator.wakeLock) { wake = await navigator.wakeLock.request('screen'); wake.addEventListener('release', () => wake = null); } } catch {} }
+})();
+</script>
