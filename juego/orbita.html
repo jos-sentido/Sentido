@@ -212,10 +212,12 @@ body {
       const nMuros = Math.random() < 0.18 ? 0 : 1 + Math.floor(Math.random() * maxMuros);
       otras.slice(0, nMuros).forEach(i => items.push({ a: sigSpawn, p: i, k: 'muro' }));
       const hayPoder = items.some(it => (it.k === 'poder' || it.k === 'escudo') && !it.hecho);
-      if (puntos >= ESC_DESDE && !escudo && esperaEscudo <= 0 && !hayPoder && Math.random() < 0.14) {
+      // regla: un solo poder a la vez. Con uno activo no sale ninguna ficha de poder.
+      const activo = poder > 0 || escudo;
+      if (puntos >= ESC_DESDE && !activo && esperaEscudo <= 0 && !hayPoder && Math.random() < 0.14) {
         items.push({ a: sigSpawn, p: libre, k: 'escudo' });
         esperaEscudo = ESC_ESPERA;
-      } else if (puntos >= PODER_DESDE && poder <= 0 && esperaPoder <= 0 && !hayPoder && Math.random() < 0.18) {
+      } else if (puntos >= PODER_DESDE && !activo && esperaPoder <= 0 && !hayPoder && Math.random() < 0.18) {
         items.push({ a: sigSpawn, p: libre, k: 'poder' });
         esperaPoder = PODER_ESPERA;
       } else if (poder > 0) {
@@ -246,6 +248,14 @@ body {
   }
 
   const tam0 = () => R_EXT * 0.075;
+  // al tomar un poder, cualquier otra ficha de poder que estuviera en la pista se desvanece
+  function quitarFichas() {
+    for (const it of items) if (!it.hecho && (it.k === 'poder' || it.k === 'escudo')) {
+      it.hecho = true;
+      const [x, y] = pos(it.a, radio(it.p));
+      chispas(x, y, it.k === 'poder' ? C.cielo : C.lima, 10, 80);
+    }
+  }
   function romper(it, pts) {
     it.hecho = true; puntos += pts;
     const [x, y] = pos(it.a, radio(it.p));
@@ -359,13 +369,13 @@ body {
           gemasPoder = 0; poder += PODER_EXTRA; avisoPoder = 1.2;
           chispas(px, py, C.cielo, 24, 200); tono(1200, 0.1, 'triangle', 0.1); setTimeout(() => tono(1600, 0.14, 'triangle', 0.1), 90);
         }
-      } else if (it.k === 'poder' && d < tam * 1.4) {
-        it.hecho = true; poder = PODER_DUR; gemasPoder = 0;
+      } else if (it.k === 'poder' && d < tam * 1.4 && !escudo) {
+        it.hecho = true; quitarFichas(); poder = PODER_DUR; gemasPoder = 0;
         chispas(ix, iy, C.cielo, 30, 220);
         tono(520, 0.1, 'triangle', 0.1); setTimeout(() => tono(780, 0.1, 'triangle', 0.1), 80); setTimeout(() => tono(1040, 0.16, 'triangle', 0.1), 160);
         vibrar([15, 30, 15]);
-      } else if (it.k === 'escudo' && d < tam * 1.4) {
-        it.hecho = true; escudo = true; avisoEsc = 1.6;
+      } else if (it.k === 'escudo' && d < tam * 1.4 && poder <= 0) {
+        it.hecho = true; quitarFichas(); escudo = true; avisoEsc = 1.6;
         chispas(ix, iy, C.lima, 34, 240);
         tono(330, 0.12, 'square', 0.06); setTimeout(() => tono(495, 0.12, 'square', 0.06), 90); setTimeout(() => tono(660, 0.22, 'square', 0.06), 180);
         vibrar([25, 30, 25]);
