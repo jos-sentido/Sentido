@@ -51,6 +51,17 @@ body {
   .capa h1 { font-size: 3rem !important; }
   .capa p { font-size: 0.9rem; line-height: 1.4; }
 }
+.modos { display: flex; gap: 10px; }
+.modo {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 128px; padding: 10px 14px;
+  border: 1px solid var(--pista); border-radius: 14px; background: transparent; color: var(--hueso);
+  font: 800 1rem var(--font); cursor: pointer;
+}
+.modo small { font-weight: 500; font-size: 0.75rem; color: var(--hueso-2); }
+.modo[aria-checked="true"] { background: var(--hueso); color: var(--noche); border-color: var(--hueso); }
+.modo[aria-checked="true"] small { color: var(--noche); }
+.modo:focus-visible, .sec:focus-visible { outline: 2px solid var(--ambar); outline-offset: 3px; }
+.sec { border: 0; background: transparent; color: var(--hueso-2); font: 600 0.95rem var(--font); text-decoration: underline; cursor: pointer; padding: 8px; }
 .capa h1 { margin: 0; font-size: clamp(3rem, 16vw, 5.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; }
 .capa h2 { margin: 0; font-size: 1.1rem; font-weight: 600; color: var(--hueso-2); letter-spacing: 0.1em; text-transform: uppercase; }
 .capa .grande { font-size: 4.5rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -96,7 +107,12 @@ body {
 
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
-  <p>Tu punto gira solo. Desliza <b>hacia afuera</b> del círculo para salir de órbita y <b>hacia el centro</b> para entrar: vertical arriba y abajo, horizontal a los lados. Funciona en toda la pantalla o en el control de abajo.</p>
+  <div class="modos" role="radiogroup" aria-label="Modo de juego">
+    <button class="modo" type="button" role="radio" data-modo="clasico">Clásico<small>vista desde arriba</small></button>
+    <button class="modo" type="button" role="radio" data-modo="pov">POV<small>dentro de la bolita</small></button>
+  </div>
+  <p id="ayudaClasico">Tu punto gira solo. Desliza <b>hacia afuera</b> del círculo para salir de órbita y <b>hacia el centro</b> para entrar: vertical arriba y abajo, horizontal a los lados. Funciona en toda la pantalla o en el control de abajo.</p>
+  <p id="ayudaPov" hidden>Vas dentro de la bolita, viendo la órbita hacia adelante. Desliza a la <b>izquierda</b> para salir a la órbita de afuera y a la <b>derecha</b> para entrar. También con el control de abajo.</p>
   <p>El <b>escudo verde</b> te salva de un choque y, mientras dure, <b>tocar el control</b> dispara. Dura 8 s; junta rombos en otras órbitas para alargarlo.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
@@ -121,6 +137,7 @@ body {
   <div class="nuevo" id="finNuevo" hidden>Nuevo récord</div>
   <p id="finRecord">Récord 0</p>
   <button class="cta" id="btnOtra" type="button">Otra vez</button>
+  <button class="sec" id="btnMenu" type="button">Cambiar de modo</button>
 </div>
 
 <script>
@@ -135,7 +152,10 @@ body {
   const leer = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } };
   const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 
-  let record = leer('orbita.record', 0);
+  // modo de juego: 'clasico' (vista desde arriba) o 'pov' (dentro de la bolita). Cada uno lleva su récord.
+  let modo = leer('orbita.modo', 'clasico') === 'pov' ? 'pov' : 'clasico';
+  const claveRecord = () => modo === 'pov' ? 'orbita.record.pov' : 'orbita.record';
+  let record = leer(claveRecord(), 0);
   let sonido = leer('orbita.sonido', true);
 
   // --- sonido sintetizado (sin archivos, funciona offline) ---
@@ -154,6 +174,7 @@ body {
   }
   const vibrar = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch {} };
 
+  const VISTA = { cx: 0, cy: 0, r: 0, hor: 0, focal: 0 }; // ventana de la vista POV
   // --- tamaño ---
   let W, H, dpr, R_EXT, R_INT, CX, CY;
   function medir() {
@@ -173,6 +194,11 @@ body {
     R_EXT = Math.max(60, Math.min(m * 0.38, (abajo - arriba) / 2.32)); // 2.32: el sector sobresale 16 %
     R_INT = R_EXT * 0.6;
     CX = W / 2; CY = Math.max(arriba + R_EXT * 1.16, Math.min(H / 2, abajo - R_EXT * 1.16));
+    // POV: la ventana redonda (el interior de la bolita) ocupa el espacio entre el marcador y el control
+    const vArriba = segArriba + 132, vAbajo = JY - JR - 30;
+    VISTA.r = Math.max(80, Math.min(W / 2 - 12, (vAbajo - vArriba) / 2));
+    VISTA.cx = W / 2; VISTA.cy = (vArriba + vAbajo) / 2;
+    VISTA.hor = VISTA.cy - VISTA.r * 0.2; VISTA.focal = VISTA.r * 1.05;
   }
   let JR, JX, JY;
   addEventListener('resize', medir); medir();
@@ -350,7 +376,7 @@ body {
     sacudida = reducido ? 0 : 14;
     tono(220, 0.45, 'sawtooth', 0.12, 55); vibrar([60, 40, 90]);
     const nuevo = puntos > record;
-    if (nuevo) { record = puntos; guardar('orbita.record', record); }
+    if (nuevo) { record = puntos; guardar(claveRecord(), record); }
     $('record').textContent = 'Récord ' + record;
     setTimeout(() => {
       $('finPuntos').textContent = puntos;
@@ -535,11 +561,80 @@ body {
     cx.fillStyle = color; cx.fill();
   }
 
+  // dibujo de una pieza en (x, y) con tamaño tam. Lo usan la vista de arriba y la POV.
+  // rastro(j) da dónde va el j-ésimo punto de la estela del satélite: [x, y, escala].
+  function pintarPieza(it, x, y, tam, fantasma, rastro) {
+    cx.globalAlpha = (it.k === 'muro' || it.k === 'sat') ? fantasma : 1;
+    if (it.k === 'muro') {
+      asteroide(it, x, y, tam);
+    } else if (it.k === 'sat') {
+      // estela corta detrás, para que se lea que se mueve
+      for (let j = 1; j <= 4; j++) {
+        const [tx, ty, te] = rastro(j);
+        cx.globalAlpha = (0.28 - j * 0.06) * fantasma; cx.fillStyle = C.coral;
+        cx.beginPath(); cx.arc(tx, ty, Math.max(0.5, tam * te * (0.75 - j * 0.1)), 0, Math.PI * 2); cx.fill();
+      }
+      cx.globalAlpha = fantasma;
+      cx.beginPath(); cx.arc(x, y, tam * 0.8, 0, Math.PI * 2); cx.fillStyle = C.coral; cx.fill();
+      cx.beginPath(); cx.arc(x, y, tam * 0.34, 0, Math.PI * 2); cx.fillStyle = C.noche; cx.fill();
+      // dos puntas que giran
+      for (let j = 0; j < 2; j++) {
+        const g = it.giro + j * Math.PI;
+        cx.beginPath(); cx.arc(x + Math.cos(g) * tam * 1.12, y + Math.sin(g) * tam * 1.12, tam * 0.2, 0, Math.PI * 2);
+        cx.fillStyle = C.coral; cx.fill();
+      }
+    } else if (it.k === 'reloj') {
+      const on = reducido || Math.floor(pulso * 5) % 2 === 0;
+      cx.globalAlpha = on ? 1 : 0.4;
+      // aro con flecha que gira hacia atrás y símbolo de retroceso al centro
+      const g = -pulso * 3;
+      cx.beginPath(); cx.arc(x, y, tam * 1.3, g, g + Math.PI * 1.6);
+      cx.strokeStyle = C.lila; cx.lineWidth = 2.5; cx.stroke();
+      const fx = x + Math.cos(g) * tam * 1.3, fy = y + Math.sin(g) * tam * 1.3;
+      flecha(fx, fy, g - Math.PI / 2, C.lila);
+      const s0 = tam * 0.55;
+      cx.fillStyle = C.lila;
+      for (const dx of [0, -s0]) {
+        cx.beginPath(); cx.moveTo(x + dx + s0 * 0.5, y - s0 * 0.7); cx.lineTo(x + dx - s0 * 0.5, y); cx.lineTo(x + dx + s0 * 0.5, y + s0 * 0.7); cx.closePath(); cx.fill();
+      }
+      cx.globalAlpha = 1;
+    } else if (it.k === 'vida') {
+      // late como corazón: dos golpes y pausa
+      const t = (pulso * 1.4) % 1, golpe = reducido ? 0 : (t < 0.12 ? t / 0.12 : t < 0.24 ? 1 - (t - 0.12) / 0.12 : t < 0.36 ? (t - 0.24) / 0.12 * 0.6 : t < 0.48 ? 0.6 - (t - 0.36) / 0.12 * 0.6 : 0);
+      corazon(x, y, tam * (1.05 + golpe * 0.3), C.rosa);
+      cx.globalAlpha = 0.35 + golpe * 0.4;
+      cx.beginPath(); cx.arc(x, y, tam * (1.5 + golpe * 0.5), 0, Math.PI * 2); cx.strokeStyle = C.rosa; cx.lineWidth = 1.5; cx.stroke();
+      cx.globalAlpha = 1;
+    } else if (it.k === 'escudo') {
+      const on = reducido || Math.floor(pulso * 4) % 2 === 0;
+      cx.globalAlpha = on ? 1 : 0.45;
+      hexagono(x, y, tam * 1.3, pulso * 2, C.lima, 2.5);
+      hexagono(x, y, tam * 0.75, -pulso * 3, C.lima, 0, true);
+      cx.beginPath(); cx.arc(x, y, tam * 0.22, 0, Math.PI * 2); cx.fillStyle = C.noche; cx.fill();
+      cx.globalAlpha = 1;
+    } else if (it.k === 'poder') {
+      const on = reducido || Math.floor(pulso * 7) % 2 === 0;
+      cx.globalAlpha = on ? 1 : 0.35;
+      cx.beginPath(); cx.arc(x, y, tam * 1.35, 0, Math.PI * 2);
+      cx.strokeStyle = C.cielo; cx.lineWidth = 2; cx.stroke();
+      rombo(x, y, tam * 0.95, C.cielo);
+      cx.globalAlpha = 1;
+    } else {
+      rombo(x, y, tam * 0.8, C.ambar);
+    }
+    cx.globalAlpha = 1;
+  }
+
   function dibujar() {
     cx.setTransform(dpr, 0, 0, dpr, 0, 0);
     cx.fillStyle = C.noche; cx.fillRect(0, 0, W, H);
     if (sacudida > 0.3) cx.translate((Math.random() - 0.5) * sacudida, (Math.random() - 0.5) * sacudida);
+    if (modo === 'pov') dibujarPOV(); else dibujarArriba();
+    dibujarComun();
+  }
 
+  // --- vista clásica, desde arriba ---
+  function dibujarArriba() {
     // pistas
     cx.lineWidth = 2;
     for (let i = 0; i < nPistas; i++) {
@@ -549,14 +644,6 @@ body {
         : avisoReloj > 0.9 && Math.floor(avisoReloj * 8) % 2 === 0 ? C.lila : C.pista;
       cx.beginPath(); cx.arc(CX, CY, radio(i), 0, Math.PI * 2); cx.stroke();
     }
-    if (aviso > 0 && estado === 'jugando') {
-      cx.globalAlpha = Math.min(1, aviso);
-      cx.fillStyle = C.ambar; cx.textAlign = 'center';
-      cx.font = '800 15px system-ui, -apple-system, sans-serif';
-      cx.fillText(avisoTxt, CX, CY - R_EXT - 26);
-      cx.globalAlpha = 1;
-    }
-
     // cuadrantes: diagonales tenues y el sector donde va el jugador
     const rFuera = R_EXT + R_EXT * 0.16, rDentro = R_INT * 0.45;
     cx.save();
@@ -589,70 +676,7 @@ body {
     for (const it of items) {
       if (it.hecho) continue;
       const r = radio(it.p);
-      cx.globalAlpha = (it.k === 'muro' || it.k === 'sat') ? fantasma : 1;
-      if (it.k === 'muro') {
-        asteroide(it, ...pos(it.a, r), tam);
-      } else if (it.k === 'sat') {
-        const [x, y] = pos(it.a, r);
-        // estela corta detrás, para que se lea que se mueve
-        for (let j = 1; j <= 4; j++) {
-          const [tx, ty] = pos(it.a - j * 0.045, r);
-          cx.globalAlpha = (0.28 - j * 0.06) * fantasma; cx.fillStyle = C.coral;
-          cx.beginPath(); cx.arc(tx, ty, tam * (0.75 - j * 0.1), 0, Math.PI * 2); cx.fill();
-        }
-        cx.globalAlpha = fantasma;
-        cx.beginPath(); cx.arc(x, y, tam * 0.8, 0, Math.PI * 2); cx.fillStyle = C.coral; cx.fill();
-        cx.beginPath(); cx.arc(x, y, tam * 0.34, 0, Math.PI * 2); cx.fillStyle = C.noche; cx.fill();
-        // dos puntas que giran
-        for (let j = 0; j < 2; j++) {
-          const g = it.giro + j * Math.PI;
-          cx.beginPath(); cx.arc(x + Math.cos(g) * tam * 1.12, y + Math.sin(g) * tam * 1.12, tam * 0.2, 0, Math.PI * 2);
-          cx.fillStyle = C.coral; cx.fill();
-        }
-      } else if (it.k === 'reloj') {
-        const [x, y] = pos(it.a, r);
-        const on = reducido || Math.floor(pulso * 5) % 2 === 0;
-        cx.globalAlpha = on ? 1 : 0.4;
-        // aro con flecha que gira hacia atrás y símbolo de retroceso al centro
-        const g = -pulso * 3;
-        cx.beginPath(); cx.arc(x, y, tam * 1.3, g, g + Math.PI * 1.6);
-        cx.strokeStyle = C.lila; cx.lineWidth = 2.5; cx.stroke();
-        const fx = x + Math.cos(g) * tam * 1.3, fy = y + Math.sin(g) * tam * 1.3;
-        flecha(fx, fy, g - Math.PI / 2, C.lila);
-        const s0 = tam * 0.55;
-        cx.fillStyle = C.lila;
-        for (const dx of [0, -s0]) {
-          cx.beginPath(); cx.moveTo(x + dx + s0 * 0.5, y - s0 * 0.7); cx.lineTo(x + dx - s0 * 0.5, y); cx.lineTo(x + dx + s0 * 0.5, y + s0 * 0.7); cx.closePath(); cx.fill();
-        }
-        cx.globalAlpha = 1;
-      } else if (it.k === 'vida') {
-        const [x, y] = pos(it.a, r);
-        // late como corazón: dos golpes y pausa
-        const t = (pulso * 1.4) % 1, golpe = reducido ? 0 : (t < 0.12 ? t / 0.12 : t < 0.24 ? 1 - (t - 0.12) / 0.12 : t < 0.36 ? (t - 0.24) / 0.12 * 0.6 : t < 0.48 ? 0.6 - (t - 0.36) / 0.12 * 0.6 : 0);
-        corazon(x, y, tam * (1.05 + golpe * 0.3), C.rosa);
-        cx.globalAlpha = 0.35 + golpe * 0.4;
-        cx.beginPath(); cx.arc(x, y, tam * (1.5 + golpe * 0.5), 0, Math.PI * 2); cx.strokeStyle = C.rosa; cx.lineWidth = 1.5; cx.stroke();
-        cx.globalAlpha = 1;
-      } else if (it.k === 'escudo') {
-        const [x, y] = pos(it.a, r);
-        const on = reducido || Math.floor(pulso * 4) % 2 === 0;
-        cx.globalAlpha = on ? 1 : 0.45;
-        hexagono(x, y, tam * 1.3, pulso * 2, C.lima, 2.5);
-        hexagono(x, y, tam * 0.75, -pulso * 3, C.lima, 0, true);
-        cx.beginPath(); cx.arc(x, y, tam * 0.22, 0, Math.PI * 2); cx.fillStyle = C.noche; cx.fill();
-        cx.globalAlpha = 1;
-      } else if (it.k === 'poder') {
-        const [x, y] = pos(it.a, r);
-        const on = reducido || Math.floor(pulso * 7) % 2 === 0;
-        cx.globalAlpha = on ? 1 : 0.35;
-        cx.beginPath(); cx.arc(x, y, tam * 1.35, 0, Math.PI * 2);
-        cx.strokeStyle = C.cielo; cx.lineWidth = 2; cx.stroke();
-        rombo(x, y, tam * 0.95, C.cielo);
-        cx.globalAlpha = 1;
-      } else {
-        const [x, y] = pos(it.a, r);
-        rombo(x, y, tam * 0.8, C.ambar);
-      }
+      pintarPieza(it, ...pos(it.a, r), tam, fantasma, j => [...pos(it.a - j * 0.045, r), 1]);
     }
     cx.globalAlpha = 1;
 
@@ -698,6 +722,34 @@ body {
       cx.beginPath(); cx.arc(CX, CY, rb, b.a - 0.09, b.a);
       cx.strokeStyle = C.lima; cx.lineWidth = 4; cx.lineCap = 'round'; cx.stroke(); cx.lineCap = 'butt';
     }
+    // segundos que quedan, escritos junto a la bolita (del lado del centro) para no tener que voltear
+    const tPoder = poder > 0 ? poder : escudo ? escT : 0;
+    if (tPoder > 0 && estado === 'jugando') {
+      const [nx, ny] = pos(ang, radio(rAct) - R_EXT * 0.075 * 3.2);
+      cx.textAlign = 'center'; cx.textBaseline = 'middle';
+      cx.font = '800 14px system-ui, -apple-system, sans-serif';
+      cx.lineWidth = 4; cx.strokeStyle = C.noche; cx.strokeText(tPoder.toFixed(1), nx, ny);
+      cx.fillStyle = poder > 0 ? C.cielo : C.lima; cx.fillText(tPoder.toFixed(1), nx, ny);
+      cx.textBaseline = 'alphabetic';
+    }
+    for (const p of particulas) {
+      cx.globalAlpha = Math.max(0, p.v); cx.fillStyle = p.c;
+      cx.fillRect(p.x - 2, p.y - 2, 4, 4);
+    }
+    cx.globalAlpha = 1;
+  }
+
+  // --- lo que se ve igual en los dos modos: avisos, marcadores de poder y el control ---
+  function dibujarComun() {
+    const yAviso = modo === 'pov' ? VISTA.cy - VISTA.r + 26 : CY - R_EXT - 26;
+    const yMedio = modo === 'pov' ? VISTA.cy - VISTA.r * 0.35 : CY;
+    if (aviso > 0 && estado === 'jugando') {
+      cx.globalAlpha = Math.min(1, aviso);
+      cx.fillStyle = C.ambar; cx.textAlign = 'center';
+      cx.font = '800 15px system-ui, -apple-system, sans-serif';
+      cx.fillText(avisoTxt, CX, yAviso);
+      cx.globalAlpha = 1;
+    }
     if (escudo && estado === 'jugando') {
       cx.textAlign = 'center'; cx.fillStyle = C.lima;
       cx.font = '800 13px system-ui, -apple-system, sans-serif';
@@ -710,27 +762,17 @@ body {
       cx.textAlign = 'center'; cx.fillStyle = C.lila;
       cx.globalAlpha = Math.min(1, avisoReloj);
       cx.font = '800 15px system-ui, -apple-system, sans-serif';
-      cx.fillText('VELOCIDAD REINICIADA', CX, CY - 6 - R_INT * 0.5);
+      cx.fillText('VELOCIDAD REINICIADA', CX, yMedio - 6 - R_INT * 0.5);
       cx.globalAlpha = 1;
     }
     if (avisoVida !== 0 && estado === 'jugando') {
       cx.textAlign = 'center'; cx.fillStyle = C.rosa;
       cx.globalAlpha = Math.min(1, Math.abs(avisoVida));
       cx.font = '800 15px system-ui, -apple-system, sans-serif';
-      cx.fillText(avisoVida > 0 ? '+1 VIDA' : 'VIDA USADA', CX, CY + 6 + R_INT * 0.5);
+      cx.fillText(avisoVida > 0 ? '+1 VIDA' : 'VIDA USADA', CX, yMedio + 6 + R_INT * 0.5);
       cx.globalAlpha = 1;
     }
 
-    // segundos que quedan, escritos junto a la bolita (del lado del centro) para no tener que voltear
-    const tPoder = poder > 0 ? poder : escudo ? escT : 0;
-    if (tPoder > 0 && estado === 'jugando') {
-      const [nx, ny] = pos(ang, radio(rAct) - R_EXT * 0.075 * 3.2);
-      cx.textAlign = 'center'; cx.textBaseline = 'middle';
-      cx.font = '800 14px system-ui, -apple-system, sans-serif';
-      cx.lineWidth = 4; cx.strokeStyle = C.noche; cx.strokeText(tPoder.toFixed(1), nx, ny);
-      cx.fillStyle = poder > 0 ? C.cielo : C.lima; cx.fillText(tPoder.toFixed(1), nx, ny);
-      cx.textBaseline = 'alphabetic';
-    }
     // marcador de Traspasar sobre el control, en el mismo lugar que el del escudo
     if (poder > 0 && estado === 'jugando') {
       cx.textAlign = 'center'; cx.fillStyle = C.cielo;
@@ -739,12 +781,157 @@ body {
         : 'TRASPASAR ' + poder.toFixed(1) + ' s · ' + gemasPoder + '/' + PODER_GEMAS + ' rombos para +' + PODER_EXTRA + ' s', CX, JY - JR - 10);
     }
 
-    for (const p of particulas) {
-      cx.globalAlpha = Math.max(0, p.v); cx.fillStyle = p.c;
-      cx.fillRect(p.x - 2, p.y - 2, 4, 4);
+    dibujarControl();
+  }
+
+  // --- vista POV: cámara dentro de la bolita, mirando hacia adelante por la órbita ---
+  // Todo el juego sigue viviendo en coordenadas de la vista de arriba; aquí solo se proyecta.
+  // Plano del suelo = el plano de la pista; h = altura sobre él. Sin librerías: perspectiva a mano.
+  // La órbita se «desenrolla»: lo que está adelante en ángulo queda adelante en distancia, con una curva
+  // suave hacia el centro para que se sienta que giras. Así se ven venir las piezas desde lejos.
+  const cam = { back: 0, h: 0, rm: 0, curva: 0, rp: 0, cp: 1, sp: 0 };
+  const CAM_PITCH = 0.24;
+  const estrellas = Array.from({ length: 140 }, () => ({ az: Math.random() * Math.PI * 2, el: Math.random(), s: Math.random() < 0.15 ? 1.6 : 1 }));
+  function prepararCamara() {
+    const tam = R_EXT * 0.075;
+    cam.back = tam * 4.5; cam.h = tam * 4; cam.rm = (R_INT + R_EXT) / 2;
+    cam.curva = 1 / (2 * cam.rm * 5); cam.rp = radio(rAct);
+    cam.cp = Math.cos(CAM_PITCH); cam.sp = Math.sin(CAM_PITCH);
+  }
+  // punto de la órbita (ángulo a, radio r) a altura h → [xPantalla, yPantalla, escala, profundidad]
+  function proyA(a, r, h) {
+    const sd = (a - ang) * cam.rm;                 // distancia hacia adelante
+    const x = (cam.rp - r) + sd * sd * cam.curva;  // a la derecha = hacia el centro de la órbita
+    const zc0 = sd + cam.back, dh = h - cam.h;
+    const z = zc0 * cam.cp - dh * cam.sp, yc = dh * cam.cp + zc0 * cam.sp;
+    if (z < 1) return null;
+    const k = VISTA.focal / z;
+    return [VISTA.cx + x * k, VISTA.hor - yc * k, k, z];
+  }
+  // punto de la vista de arriba (las chispas viven ahí) → lo mismo
+  function proy(x, y, h) {
+    const d = Math.atan2(y - CY, x - CX) - ang;
+    const a = ang + (((d % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+    return proyA(a, Math.hypot(x - CX, y - CY), h);
+  }
+  function dibujarPOV() {
+    prepararCamara();
+    const tam = R_EXT * 0.075, V = VISTA, cerca = tam * 0.9;
+    const tPoder = poder > 0 ? poder : escudo ? escT : 0;
+    cx.save();
+    // la vista es el interior de la bolita: todo se ve a través de un círculo
+    cx.beginPath(); cx.arc(V.cx, V.cy, V.r, 0, Math.PI * 2); cx.clip();
+    // estrellas: se deslizan hacia la izquierda conforme giras, para que se sienta la vuelta
+    cx.fillStyle = C.hueso; cx.globalAlpha = 0.5;
+    for (const e of estrellas) {
+      const d = (((e.az - ang * 0.6) % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2) - Math.PI;
+      cx.fillRect(V.cx + d * V.r * 0.9, V.hor - 8 - e.el * V.r * 1.1, e.s, e.s);
     }
     cx.globalAlpha = 1;
-    dibujarControl();
+    // muestras de la órbita hacia adelante
+    const pasos = [];
+    for (let a = ang - cam.back / cam.rm; a < ang + Math.PI * 1.3; a += 0.035) pasos.push(a); // desde la cámara hacia adelante
+    const muestras = i => pasos.map(a => proyA(a, radio(i), 0));
+    // piso de la pista: banda entre la órbita de adentro y la de afuera
+    const pin = muestras(0), pex = muestras(nPistas - 1);
+    cx.fillStyle = C.pista; cx.globalAlpha = 0.18; cx.beginPath();
+    let abierto = false;
+    pex.forEach(q => { if (!q || q[3] < cerca) return; abierto ? cx.lineTo(q[0], q[1]) : (cx.moveTo(q[0], q[1]), abierto = true); });
+    for (let j = pin.length - 1; j >= 0; j--) { const q = pin[j]; if (q && q[3] >= cerca) cx.lineTo(q[0], q[1]); }
+    cx.fill(); cx.globalAlpha = 1;
+    // durmientes: rayas que cruzan la pista en ángulos fijos del mundo, dan la sensación de avance
+    const paso = 0.11;
+    for (let a = Math.ceil((ang - cam.back / cam.rm) / paso) * paso; a < ang + Math.PI * 1.2; a += paso) {
+      const q1 = proyA(a, radio(0) - tam * 0.6, 0), q2 = proyA(a, radio(nPistas - 1) + tam * 0.6, 0);
+      if (!q1 || !q2 || q1[3] < cerca) continue;
+      cx.globalAlpha = Math.max(0, 0.55 - q1[3] / (R_EXT * 7)); cx.strokeStyle = C.pista; cx.lineWidth = Math.min(4, Math.max(1, q1[2] * 1.5));
+      cx.beginPath(); cx.moveTo(q1[0], q1[1]); cx.lineTo(q2[0], q2[1]); cx.stroke();
+    }
+    // líneas de las órbitas; la tuya más clara
+    for (let i = 0; i < nPistas; i++) {
+      const pts = muestras(i), mia = i === Math.round(rAct);
+      const nueva = i === nPistas - 1 && aviso > 0 && Math.floor(aviso * 6) % 2 === 0;
+      const lila = avisoReloj > 0.9 && Math.floor(avisoReloj * 8) % 2 === 0;
+      for (let j = 1; j < pts.length; j++) {
+        const q0 = pts[j - 1], q1 = pts[j];
+        if (!q0 || !q1 || q0[3] < cerca) continue;
+        cx.globalAlpha = Math.max(0.06, 1 - q1[3] / (R_EXT * 7)) * (mia ? 0.9 : 0.75);
+        cx.strokeStyle = nueva ? C.ambar : lila ? C.lila : C.hueso;
+        if (!mia && !nueva && !lila) cx.globalAlpha *= 0.4;
+        cx.lineWidth = Math.min(mia ? 5 : 3.5, Math.max(1, q1[2] * (mia ? 1.6 : 1.2)));
+        cx.beginPath(); cx.moveTo(q0[0], q0[1]); cx.lineTo(q1[0], q1[1]); cx.stroke();
+      }
+    }
+    cx.globalAlpha = 1;
+    // piezas de lejos a cerca
+    const fantasma = poder > 0 ? 0.35 : 1;
+    const vis = [];
+    for (const it of items) {
+      if (it.hecho || it.a < ang - 0.05) continue;
+      const q = proyA(it.a, radio(it.p), tam * 0.9);
+      if (q && q[3] > cerca) vis.push([q, it]);
+    }
+    vis.sort((u, v) => v[0][3] - u[0][3]);
+    for (const [q, it] of vis) {
+      const r = radio(it.p);
+      cx.globalAlpha = Math.min(1, 3.2 - q[3] / (R_EXT * 1.6)); // lo muy lejano entra difuminado
+      if (cx.globalAlpha <= 0) continue;
+      const base = cx.globalAlpha;
+      cx.save(); cx.globalAlpha = base;
+      pintarPieza(it, q[0], q[1], tam * q[2], fantasma, j => { const t = proyA(it.a - j * 0.045, r, tam * 0.9); return t ? [t[0], t[1], t[2] / q[2]] : [q[0], q[1], 0]; });
+      cx.restore();
+    }
+    cx.globalAlpha = 1;
+    // balas
+    for (const b of balas) {
+      const q0 = proyA(b.a - 0.09, radio(b.p), tam * 0.9), q1 = proyA(b.a, radio(b.p), tam * 0.9);
+      if (!q0 || !q1) continue;
+      cx.strokeStyle = C.lima; cx.lineWidth = Math.min(10, Math.max(2, q1[2] * tam * 0.5)); cx.lineCap = 'round';
+      cx.beginPath(); cx.moveTo(q0[0], q0[1]); cx.lineTo(q1[0], q1[1]); cx.stroke(); cx.lineCap = 'butt';
+    }
+    // chispas: viven en la vista de arriba, aquí se proyectan
+    for (const p of particulas) {
+      const q = proy(p.x, p.y, tam * 0.9);
+      if (!q) continue;
+      const s0 = Math.max(2, Math.min(9, q[2] * 4));
+      cx.globalAlpha = Math.max(0, p.v); cx.fillStyle = p.c;
+      cx.fillRect(q[0] - s0 / 2, q[1] - s0 / 2, s0, s0);
+    }
+    cx.globalAlpha = 1;
+    // el poder tiñe el interior de la bolita
+    if (poder > 0 || escudo || gracia > 0) {
+      cx.globalAlpha = poder > 0 ? 0.1 : escudo ? 0.08 : 0.06;
+      cx.fillStyle = poder > 0 ? C.cielo : escudo ? C.lima : C.rosa;
+      cx.fillRect(V.cx - V.r, V.cy - V.r, V.r * 2, V.r * 2);
+      cx.globalAlpha = 1;
+    }
+    cx.restore();
+
+    // borde de la bolita; con un poder activo, su tiempo corre por el borde
+    cx.lineWidth = 2; cx.strokeStyle = C.pista;
+    cx.beginPath(); cx.arc(V.cx, V.cy, V.r, 0, Math.PI * 2); cx.stroke();
+    if (tPoder > 0 && estado === 'jugando') {
+      const color = poder > 0 ? C.cielo : C.lima, dur = poder > 0 ? PODER_DUR : ESC_DUR;
+      const acaba = tPoder < 1.5 && !reducido && Math.floor(pulso * 10) % 2 === 0;
+      if (!acaba) {
+        cx.strokeStyle = color; cx.lineWidth = 5; cx.lineCap = 'round';
+        cx.beginPath(); cx.arc(V.cx, V.cy, V.r, -Math.PI / 2, -Math.PI / 2 + Math.min(1, tPoder / dur) * Math.PI * 2); cx.stroke(); cx.lineCap = 'butt';
+      }
+      cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.font = '800 16px system-ui, -apple-system, sans-serif';
+      cx.lineWidth = 4; cx.strokeStyle = C.noche; cx.strokeText(tPoder.toFixed(1), V.cx, V.cy + V.r - 18);
+      cx.fillStyle = color; cx.fillText(tPoder.toFixed(1), V.cx, V.cy + V.r - 18);
+      cx.textBaseline = 'alphabetic';
+    }
+    // en qué órbita vas: la de afuera a la izquierda, la de adentro a la derecha (como se ven)
+    if (estado === 'jugando' || estado === 'pausa') {
+      const sep = 14, y0 = V.cy + V.r - (tPoder > 0 ? 40 : 16);
+      for (let i = 0; i < nPistas; i++) {
+        const x = V.cx + ((nPistas - 1) / 2 - i) * sep;
+        const mia = i === pista;
+        cx.fillStyle = mia ? C.hueso : C.pista;
+        cx.beginPath(); cx.arc(x, y0, mia ? 4.5 : 3, 0, Math.PI * 2); cx.fill();
+      }
+    }
   }
 
   // --- control tipo joystick: réplica chica de la órbita con un círculo que se arrastra ---
@@ -758,13 +945,16 @@ body {
     cx.globalAlpha = 0.55; cx.fillStyle = C.noche;
     cx.beginPath(); cx.arc(JX, JY, JR, 0, Math.PI * 2); cx.fill();
     cx.globalAlpha = 1; cx.lineWidth = 1.5; cx.strokeStyle = C.pista; cx.stroke();
-    // sector activo, igual que en la pista grande
+    // sector activo, igual que en la pista grande (en POV no aplica: ahí se mueve a los lados)
     const c = sector(ang).centro;
-    cx.globalAlpha = 0.12; cx.fillStyle = C.hueso;
-    cx.beginPath(); cx.arc(JX, JY, JR, c - Math.PI / 4, c + Math.PI / 4); cx.lineTo(JX, JY); cx.closePath(); cx.fill();
-    cx.globalAlpha = 1;
+    if (modo !== 'pov') {
+      cx.globalAlpha = 0.12; cx.fillStyle = C.hueso;
+      cx.beginPath(); cx.arc(JX, JY, JR, c - Math.PI / 4, c + Math.PI / 4); cx.lineTo(JX, JY); cx.closePath(); cx.fill();
+      cx.globalAlpha = 1;
+    }
     // diagonales
-    cx.save(); cx.setLineDash([2, 4]); cx.lineWidth = 1; cx.strokeStyle = C.pista;
+    cx.save();
+    if (modo === 'pov') cx.globalAlpha = 0; cx.setLineDash([2, 4]); cx.lineWidth = 1; cx.strokeStyle = C.pista;
     for (let k = 0; k < 4; k++) {
       const d = Math.PI / 4 + k * Math.PI / 2;
       cx.beginPath(); cx.moveTo(JX + Math.cos(d) * r0 * 0.6, JY + Math.sin(d) * r0 * 0.6);
@@ -783,8 +973,11 @@ body {
     for (const it of items) if (it.k === 'sat') { const rs = rj(it.p); cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3, 0, Math.PI * 2); cx.fill(); }
     const rp = rj(rAct);
     cx.fillStyle = C.ambar; cx.beginPath(); cx.arc(JX + Math.cos(ang) * rp, JY + Math.sin(ang) * rp, 3.5, 0, Math.PI * 2); cx.fill();
-    // flecha afuera en el sector
-    cx.globalAlpha = 0.85; flecha(JX + Math.cos(c) * (JR - 7), JY + Math.sin(c) * (JR - 7), c, C.ambar); cx.globalAlpha = 1;
+    // flecha afuera en el sector; en POV, izquierda = afuera (ámbar) y derecha = adentro
+    cx.globalAlpha = 0.85;
+    if (modo === 'pov') { flecha(JX - JR + 9, JY, Math.PI, C.ambar); flecha(JX + JR - 9, JY, 0, C.hueso); }
+    else flecha(JX + Math.cos(c) * (JR - 7), JY + Math.sin(c) * (JR - 7), c, C.ambar);
+    cx.globalAlpha = 1;
     // círculo que se mueve
     const kr = JR * 0.34;
     cx.globalAlpha = joy.id !== null ? 0.95 : 0.8;
@@ -808,7 +1001,8 @@ body {
     if (n > lim * 0.3) joy.movido = true;
     if (joy.armado && n > lim * 0.6) {
       joy.armado = false;
-      if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
+      if (modo === 'pov') { if (Math.abs(dx) > lim * 0.45) swipe(Math.sign(dx), 0); else joy.armado = true; }
+      else if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
     } else if (!joy.armado && n < lim * 0.3) {
       joy.armado = true; // vuelve al centro: listo para otro movimiento
     }
@@ -847,6 +1041,8 @@ body {
   // Se dispara en cuanto el dedo recorre el umbral, sin esperar a soltar. Una órbita por swipe.
   function swipe(sx, sy) { // sx, sy: dirección cardinal del dedo (-1, 0, 1)
     if (estado !== 'jugando') return;
+    // POV: la órbita de afuera se ve a tu izquierda y la de adentro a tu derecha; solo cuenta lo horizontal
+    if (modo === 'pov') { if (sx) mover(sx < 0 ? 1 : -1); return; }
     const d = sx * Math.cos(ang) + sy * Math.sin(ang);
     if (Math.abs(d) < 0.55) return; // deslizaste a lo largo de la pista: no cuenta
     mover(d > 0 ? 1 : -1);
@@ -866,7 +1062,8 @@ body {
     if (!toque || toque.usado || e.pointerId !== toque.id) return;
     const dx = e.clientX - toque.x, dy = e.clientY - toque.y;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < UMBRAL) return;
-    if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
+    if (modo === 'pov') { if (Math.abs(dx) < UMBRAL) return; swipe(Math.sign(dx), 0); }
+    else if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
     toque.usado = true;
   });
   const soltar = e => { if (e.pointerId === joy.id) return soltarControl(); if (toque && e.pointerId === toque.id) toque = null; };
@@ -883,6 +1080,15 @@ body {
     }
     if (e.code === 'KeyP' || e.code === 'Escape') estado === 'pausa' ? seguir() : pausar();
   });
+  function elegirModo(m) {
+    modo = m === 'pov' ? 'pov' : 'clasico'; guardar('orbita.modo', modo);
+    document.querySelectorAll('.modo').forEach(b => b.setAttribute('aria-checked', b.dataset.modo === modo));
+    $('ayudaClasico').hidden = modo === 'pov'; $('ayudaPov').hidden = modo !== 'pov';
+    record = leer(claveRecord(), 0); $('record').textContent = 'Récord ' + record;
+  }
+  document.querySelectorAll('.modo').forEach(b => b.onclick = () => elegirModo(b.dataset.modo));
+  elegirModo(modo);
+  $('btnMenu').onclick = () => { estado = 'inicio'; $('fin').hidden = true; $('inicio').hidden = false; reiniciar(); };
   $('btnJugar').onclick = empezar;
   $('btnOtra').onclick = empezar;
   $('btnSeguir').onclick = seguir;
