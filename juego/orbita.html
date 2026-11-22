@@ -46,10 +46,11 @@ body {
 .capa .grande { font-size: 4.5rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
 .capa p { margin: 0; max-width: 30ch; line-height: 1.5; color: var(--hueso-2); font-size: 1rem; }
 .capa p b { color: var(--hueso); }
-.leyenda { display: flex; gap: 22px; font-size: 0.85rem; color: var(--hueso-2); }
+.leyenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; font-size: 0.85rem; color: var(--hueso-2); }
 .leyenda span { display: flex; align-items: center; gap: 8px; }
 .punto { width: 12px; height: 12px; display: inline-block; }
 .punto.gema { background: var(--ambar); transform: rotate(45deg) scale(0.8); }
+.punto.sat { background: var(--coral); border-radius: 50%; box-shadow: inset 0 0 0 3px var(--coral), inset 0 0 0 6px var(--noche); }
 .punto.muro { background: var(--coral); border-radius: 2px; width: 16px; height: 8px; }
 .cta {
   margin-top: 8px; padding: 16px 40px; border: 0; border-radius: 999px; background: var(--hueso); color: var(--noche);
@@ -81,6 +82,7 @@ body {
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
+    <span><i class="punto sat"></i>se mueve</span>
   </div>
   <button class="cta" id="btnJugar" type="button">Jugar</button>
 </div>
@@ -155,14 +157,17 @@ body {
   // --- estado ---
   let estado = 'inicio'; // inicio | jugando | pausa | fin
   let ang, vel, pista, rAct, puntos, items, sigSpawn, particulas, estela, sacudida, pulso, tAnt;
-  let nPistas, nAnim, libre, aviso;
+  let nPistas, nAnim, libre, aviso, avisoTxt;
+  // satélites: muros que también giran, más lento que tú. Aparecen al abrirse la 4ª órbita.
+  const SAT_PISTAS = 4, SAT_VEL = 0.45; // fracción de tu velocidad
+  const SAT_K = SAT_VEL / (1 - SAT_VEL);
   // dificultad: a estos puntos se abre una órbita más
   const UMBRALES = [[0, 2], [30, 3], [90, 4], [180, 5]];
   const pistasPara = p => UMBRALES.filter(u => p >= u[0]).pop()[1];
 
   function reiniciar() {
     ang = -Math.PI / 2; vel = 1.5; pista = 1; rAct = 1; puntos = 0;
-    nPistas = 2; nAnim = 2; libre = 1; aviso = 0;
+    nPistas = 2; nAnim = 2; libre = 1; aviso = 0; avisoTxt = '';
     items = []; sigSpawn = ang + 1.6; particulas = []; estela = []; sacudida = 0; pulso = 0;
     $('marcador').textContent = '0'; $('nivel').textContent = '2 órbitas';
   }
@@ -175,6 +180,7 @@ body {
     // mantén piezas ~1.45 vueltas adelante sin alcanzar la cola del jugador
     while (sigSpawn < ang + Math.PI * 1.45) {
       // la órbita libre se mueve a lo más una posición por fila: siempre hay camino con un swipe
+      if (nPistas >= SAT_PISTAS && Math.random() < 0.24) { satelite(); continue; }
       const paso = Math.random() < 0.55 ? (Math.random() < 0.5 ? -1 : 1) : 0;
       libre = Math.max(0, Math.min(nPistas - 1, libre + paso));
       const maxMuros = Math.min(nPistas - 1, 1 + Math.floor(puntos / 25));
@@ -190,10 +196,25 @@ body {
     }
   }
 
+  // fila de satélite: sale antes y más atrás, y te lo encuentras justo en esta fila, que va sin muros.
+  // Te alcanza el punto de encuentro M cuando ang + v·t = a0 + w·t  →  a0 = (M + k·ang) / (1 + k)
+  function satelite() {
+    const hueco = vel * 0.42 + 0.24;
+    sigSpawn += hueco * 0.6;                       // aire extra antes del encuentro
+    const M = sigSpawn;
+    const a0 = (M + SAT_K * ang) / (1 + SAT_K);
+    const otras = [...Array(nPistas).keys()].filter(i => i !== libre);
+    const p = otras[Math.floor(Math.random() * otras.length)];
+    items.push({ a: a0, p, k: 'sat', giro: Math.random() * 6 });
+    if (Math.random() < 0.6) items.push({ a: M, p: libre, k: 'gema' });
+    sigSpawn += hueco * 1.8 + Math.random() * 0.4;  // y aire después
+  }
+
   function revisarNivel() {
     const n = pistasPara(puntos);
     if (n === nPistas) return;
-    nPistas = n; aviso = 2.2;
+    nPistas = n; aviso = n === SAT_PISTAS ? 3 : 2.2;
+    avisoTxt = n === SAT_PISTAS ? 'NUEVA ÓRBITA · SATÉLITES' : 'NUEVA ÓRBITA';
     $('nivel').textContent = n + ' órbitas';
     tono(440, 0.12, 'triangle', 0.1); setTimeout(() => tono(660, 0.12, 'triangle', 0.1), 110);
     setTimeout(() => tono(990, 0.18, 'triangle', 0.1), 220);
@@ -255,6 +276,7 @@ body {
     estela.push([ang, rAct]); if (estela.length > 14) estela.shift();
 
     const tam = R_EXT * 0.075;
+    for (const it of items) if (it.k === 'sat') { it.a += vel * SAT_VEL * dt; it.giro += dt * 5; }
     for (const it of items) {
       if (it.hecho) continue;
       const [ix, iy] = pos(it.a, radio(it.p));
@@ -263,10 +285,11 @@ body {
         it.hecho = true; puntos += 2;
         chispas(ix, iy, C.ambar, 14, 140); tono(880 + Math.min(puntos, 60) * 6, 0.09, 'sine', 0.1);
         vibrar(8);
-      } else if (it.k === 'muro' && d < tam * 0.95) {
+      } else if ((it.k === 'muro' && d < tam * 0.95) || (it.k === 'sat' && d < tam * 1.05)) {
         morir(); return;
       }
       if (it.k === 'muro' && !it.pasado && it.a < ang - 0.12) { it.pasado = true; puntos += 1; }
+      if (it.k === 'sat' && !it.pasado && it.a < ang - 0.12) { it.pasado = true; puntos += 3; tono(300, 0.08, 'triangle', 0.06, 600); }
     }
     items = items.filter(it => it.a > ang - 0.8 && !(it.hecho && it.k === 'gema'));
     $('marcador').textContent = puntos;
@@ -307,7 +330,7 @@ body {
       cx.globalAlpha = Math.min(1, aviso);
       cx.fillStyle = C.ambar; cx.textAlign = 'center';
       cx.font = '800 15px system-ui, -apple-system, sans-serif';
-      cx.fillText('NUEVA ÓRBITA', CX, CY - R_EXT - 26);
+      cx.fillText(avisoTxt, CX, CY - R_EXT - 26);
       cx.globalAlpha = 1;
     }
 
@@ -346,6 +369,23 @@ body {
         const span = (tam * 1.15) / r;
         cx.beginPath(); cx.arc(CX, CY, r, it.a - span, it.a + span);
         cx.strokeStyle = C.coral; cx.lineWidth = tam * 1.15; cx.lineCap = 'butt'; cx.stroke();
+      } else if (it.k === 'sat') {
+        const [x, y] = pos(it.a, r);
+        // estela corta detrás, para que se lea que se mueve
+        for (let j = 1; j <= 4; j++) {
+          const [tx, ty] = pos(it.a - j * 0.045, r);
+          cx.globalAlpha = 0.28 - j * 0.06; cx.fillStyle = C.coral;
+          cx.beginPath(); cx.arc(tx, ty, tam * (0.75 - j * 0.1), 0, Math.PI * 2); cx.fill();
+        }
+        cx.globalAlpha = 1;
+        cx.beginPath(); cx.arc(x, y, tam * 0.8, 0, Math.PI * 2); cx.fillStyle = C.coral; cx.fill();
+        cx.beginPath(); cx.arc(x, y, tam * 0.34, 0, Math.PI * 2); cx.fillStyle = C.noche; cx.fill();
+        // dos puntas que giran
+        for (let j = 0; j < 2; j++) {
+          const g = it.giro + j * Math.PI;
+          cx.beginPath(); cx.arc(x + Math.cos(g) * tam * 1.12, y + Math.sin(g) * tam * 1.12, tam * 0.2, 0, Math.PI * 2);
+          cx.fillStyle = C.coral; cx.fill();
+        }
       } else {
         const [x, y] = pos(it.a, r);
         rombo(x, y, tam * 0.8, C.ambar);
@@ -399,6 +439,8 @@ body {
     // órbitas en miniatura y el punto del jugador
     cx.lineWidth = 1; cx.strokeStyle = C.pista;
     for (let i = 0; i < nPistas; i++) { cx.beginPath(); cx.arc(JX, JY, rj(i), 0, Math.PI * 2); cx.stroke(); }
+    cx.fillStyle = C.coral;
+    for (const it of items) if (it.k === 'sat') { const rs = rj(it.p); cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3, 0, Math.PI * 2); cx.fill(); }
     const rp = rj(rAct);
     cx.fillStyle = C.ambar; cx.beginPath(); cx.arc(JX + Math.cos(ang) * rp, JY + Math.sin(ang) * rp, 3.5, 0, Math.PI * 2); cx.fill();
     // flecha afuera en el sector
