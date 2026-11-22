@@ -12,6 +12,7 @@
   --ambar: #f2b33d;
   --coral: #ff6b57;
   --cielo: #63d2ff;
+  --lima: #8de86f;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: dark;
 }
@@ -40,7 +41,13 @@ body {
 .capa {
   position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 18px; text-align: center; background: rgba(18, 19, 22, 0.78);
+  overflow-y: auto; justify-content: safe center; padding-block: 16px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (max-height: 640px) {
+  .capa { gap: 12px; }
+  .capa h1 { font-size: 3rem !important; }
+  .capa p { font-size: 0.9rem; line-height: 1.4; }
 }
 .capa h1 { margin: 0; font-size: clamp(3rem, 16vw, 5.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; }
 .capa h2 { margin: 0; font-size: 1.1rem; font-weight: 600; color: var(--hueso-2); letter-spacing: 0.1em; text-transform: uppercase; }
@@ -55,7 +62,9 @@ body {
 @keyframes parpadeo { 50% { opacity: 0.25; } }
 @media (prefers-reduced-motion: reduce) { .punto.poder { animation: none; } }
 .punto.sat { background: var(--coral); border-radius: 50%; box-shadow: inset 0 0 0 3px var(--coral), inset 0 0 0 6px var(--noche); }
-.punto.muro { background: var(--coral); border-radius: 2px; width: 16px; height: 8px; }
+.punto.muro { background: var(--coral); width: 16px; height: 16px; clip-path: polygon(50% 0, 64% 28%, 100% 22%, 78% 52%, 96% 86%, 60% 74%, 42% 100%, 32% 70%, 0 78%, 18% 46%, 4% 14%, 36% 24%); }
+.punto.escudo { background: var(--lima); clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%); animation: parpadeo 0.9s steps(2) infinite; }
+@media (prefers-reduced-motion: reduce) { .punto.escudo { animation: none; } }
 .cta {
   margin-top: 8px; padding: 16px 40px; border: 0; border-radius: 999px; background: var(--hueso); color: var(--noche);
   font: 800 1.1rem var(--font); letter-spacing: 0.04em; cursor: pointer;
@@ -81,13 +90,14 @@ body {
 
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
-  <p>Tu punto gira solo. La pista está partida en cuatro: <b>arriba y abajo</b> deslizas vertical, <b>a los lados</b> horizontal. Hacia afuera del círculo sales una órbita, hacia el centro entras.</p>
-  <p>Puedes deslizar en cualquier parte de la pantalla o usar el <b>control de abajo</b>: mueve el círculo del centro con la misma lógica. Cada tanto se abre una órbita nueva.</p>
+  <p>Tu punto gira solo. Desliza <b>hacia afuera</b> del círculo para salir de órbita y <b>hacia el centro</b> para entrar: vertical arriba y abajo, horizontal a los lados. Funciona en toda la pantalla o en el control de abajo.</p>
+  <p>El <b>escudo verde</b> te salva de un choque y, mientras lo tengas, <b>tocar el control</b> dispara.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
     <span><i class="punto sat"></i>se mueve</span>
     <span><i class="punto poder"></i>traspasa todo</span>
+    <span><i class="punto escudo"></i>vida y disparo</span>
   </div>
   <button class="cta" id="btnJugar" type="button">Jugar</button>
 </div>
@@ -107,7 +117,7 @@ body {
 
 <script>
 (() => {
-  const C = { noche:'#121316', pista:'#3a3d44', hueso:'#efe6d6', ambar:'#f2b33d', coral:'#ff6b57', cielo:'#63d2ff' };
+  const C = { noche:'#121316', pista:'#3a3d44', hueso:'#efe6d6', ambar:'#f2b33d', coral:'#ff6b57', cielo:'#63d2ff', lima:'#8de86f', brasa:'#b8402f' };
   const cv = document.getElementById('lienzo');
   const cx = cv.getContext('2d');
   const $ = id => document.getElementById(id);
@@ -169,6 +179,10 @@ body {
   // poder «traspasar»: ficha celeste que parpadea. Dura 5 s; cada 10 rombos juntados con el poder activo suman 3 s.
   const PODER_DUR = 5, PODER_EXTRA = 3, PODER_GEMAS = 10, PODER_DESDE = 12, PODER_ESPERA = 14;
   let poder, gemasPoder, gracia, esperaPoder, avisoPoder;
+  // escudo: ficha verde. Te salva de un choque (y rompe lo que chocaste); mientras lo tienes,
+  // tocar el control dispara hacia adelante por tu órbita y rompe muros y satélites.
+  const ESC_DESDE = 20, ESC_ESPERA = 20, DISPARO_CD = 0.3;
+  let escudo, esperaEscudo, balas, cdDisparo, avisoEsc;
   // dificultad: a estos puntos se abre una órbita más
   const UMBRALES = [[0, 2], [30, 3], [90, 4], [180, 5]];
   const pistasPara = p => UMBRALES.filter(u => p >= u[0]).pop()[1];
@@ -177,6 +191,7 @@ body {
     ang = -Math.PI / 2; vel = 1.5; pista = 1; rAct = 1; puntos = 0;
     nPistas = 2; nAnim = 2; libre = 1; aviso = 0; avisoTxt = '';
     poder = 0; gemasPoder = 0; gracia = 0; esperaPoder = 8; avisoPoder = 0;
+    escudo = false; esperaEscudo = 12; balas = []; cdDisparo = 0; avisoEsc = 0;
     items = []; sigSpawn = ang + 1.6; particulas = []; estela = []; sacudida = 0; pulso = 0;
     $('marcador').textContent = '0'; $('nivel').textContent = '2 órbitas';
   }
@@ -196,8 +211,11 @@ body {
       const otras = [...Array(nPistas).keys()].filter(i => i !== libre).sort(() => Math.random() - 0.5);
       const nMuros = Math.random() < 0.18 ? 0 : 1 + Math.floor(Math.random() * maxMuros);
       otras.slice(0, nMuros).forEach(i => items.push({ a: sigSpawn, p: i, k: 'muro' }));
-      const hayPoder = items.some(it => it.k === 'poder');
-      if (puntos >= PODER_DESDE && poder <= 0 && esperaPoder <= 0 && !hayPoder && Math.random() < 0.18) {
+      const hayPoder = items.some(it => (it.k === 'poder' || it.k === 'escudo') && !it.hecho);
+      if (puntos >= ESC_DESDE && !escudo && esperaEscudo <= 0 && !hayPoder && Math.random() < 0.14) {
+        items.push({ a: sigSpawn, p: libre, k: 'escudo' });
+        esperaEscudo = ESC_ESPERA;
+      } else if (puntos >= PODER_DESDE && poder <= 0 && esperaPoder <= 0 && !hayPoder && Math.random() < 0.18) {
         items.push({ a: sigSpawn, p: libre, k: 'poder' });
         esperaPoder = PODER_ESPERA;
       } else if (poder > 0) {
@@ -225,6 +243,20 @@ body {
     items.push({ a: a0, p, k: 'sat', giro: Math.random() * 6 });
     if (Math.random() < 0.6) items.push({ a: M, p: libre, k: 'gema' });
     sigSpawn += hueco * 1.8 + Math.random() * 0.4;  // y aire después
+  }
+
+  const tam0 = () => R_EXT * 0.075;
+  function romper(it, pts) {
+    it.hecho = true; puntos += pts;
+    const [x, y] = pos(it.a, radio(it.p));
+    chispas(x, y, C.coral, 26, 230); chispas(x, y, C.brasa, 12, 140);
+    tono(140, 0.18, 'square', 0.07, 60);
+  }
+  function disparar() {
+    if (estado !== 'jugando' || !escudo || cdDisparo > 0) return;
+    cdDisparo = DISPARO_CD;
+    balas.push({ a: ang + 0.05, p: pista, vida: 1.1 });
+    tono(1400, 0.07, 'square', 0.05, 500); vibrar(6);
   }
 
   function revisarNivel() {
@@ -289,6 +321,20 @@ body {
       if (poder <= 0) { poder = 0; gracia = 0.5; tono(700, 0.25, 'sine', 0.08, 260); vibrar(30); }
     }
     gracia = Math.max(0, gracia - dt);
+    if (!escudo) esperaEscudo = Math.max(0, esperaEscudo - dt);
+    cdDisparo = Math.max(0, cdDisparo - dt);
+    avisoEsc = Math.max(0, avisoEsc - dt);
+    for (const it of items) if (it.k === 'muro') it.rot = (it.rot || 0) + dt * (it.giroR || 0.6);
+    // balas: avanzan por su órbita más rápido que tú y rompen lo primero que tocan
+    for (const b of balas) {
+      b.a += (vel * 2.4 + 3) * dt; b.vida -= dt;
+      const rb = radio(b.p);
+      for (const it of items) {
+        if (it.hecho || (it.k !== 'muro' && it.k !== 'sat') || it.p !== b.p) continue;
+        if (Math.abs(it.a - b.a) * rb < tam0() * 1.3) { romper(it, 1); b.vida = 0; break; }
+      }
+    }
+    balas = balas.filter(b => b.vida > 0);
     nAnim += (nPistas - nAnim) * Math.min(1, dt * 3);
     vel = Math.min(3.2, 1.5 + puntos * 0.022);
     ang += vel * dt;
@@ -318,13 +364,26 @@ body {
         chispas(ix, iy, C.cielo, 30, 220);
         tono(520, 0.1, 'triangle', 0.1); setTimeout(() => tono(780, 0.1, 'triangle', 0.1), 80); setTimeout(() => tono(1040, 0.16, 'triangle', 0.1), 160);
         vibrar([15, 30, 15]);
+      } else if (it.k === 'escudo' && d < tam * 1.4) {
+        it.hecho = true; escudo = true; avisoEsc = 1.6;
+        chispas(ix, iy, C.lima, 34, 240);
+        tono(330, 0.12, 'square', 0.06); setTimeout(() => tono(495, 0.12, 'square', 0.06), 90); setTimeout(() => tono(660, 0.22, 'square', 0.06), 180);
+        vibrar([25, 30, 25]);
       } else if ((it.k === 'muro' && d < tam * 0.95) || (it.k === 'sat' && d < tam * 1.05)) {
-        if (poder <= 0 && gracia <= 0) { morir(); return; }
+        if (poder <= 0 && gracia <= 0) {
+          if (!escudo) { morir(); return; }
+          // el escudo absorbe el choque: rompe lo que chocaste y se acaba
+          escudo = false; gracia = 0.9; balas = [];
+          romper(it, 0);
+          chispas(px, py, C.lima, 40, 300);
+          sacudida = reducido ? 0 : 9;
+          tono(180, 0.3, 'sawtooth', 0.1, 90); vibrar([40, 30, 60]);
+        }
       }
       if (it.k === 'muro' && !it.pasado && it.a < ang - 0.12) { it.pasado = true; puntos += 1; }
       if (it.k === 'sat' && !it.pasado && it.a < ang - 0.12) { it.pasado = true; puntos += 3; tono(300, 0.08, 'triangle', 0.06, 600); }
     }
-    items = items.filter(it => it.a > ang - 0.8 && !(it.hecho && (it.k === 'gema' || it.k === 'poder')));
+    items = items.filter(it => it.a > ang - 0.8 && !it.hecho);
     $('marcador').textContent = puntos;
     revisarNivel();
   }
@@ -339,6 +398,37 @@ body {
     cx.save(); cx.translate(x, y); cx.rotate(a);
     cx.beginPath(); cx.moveTo(s * 0.6, 0); cx.lineTo(-s * 0.4, -s * 0.6); cx.lineTo(-s * 0.4, s * 0.6); cx.closePath();
     cx.fillStyle = color; cx.fill(); cx.restore();
+  }
+
+  function hexagono(x, y, s, rot, color, linea, relleno) {
+    cx.beginPath();
+    for (let i = 0; i < 6; i++) { const a = rot + i * Math.PI / 3; i ? cx.lineTo(x + Math.cos(a) * s, y + Math.sin(a) * s) : cx.moveTo(x + Math.cos(a) * s, y + Math.sin(a) * s); }
+    cx.closePath();
+    if (relleno) { cx.fillStyle = color; cx.fill(); } else { cx.strokeStyle = color; cx.lineWidth = linea; cx.stroke(); }
+  }
+
+  // asteroide: roca dentada con picos, cráteres y giro propio. La forma se sortea una vez por pieza.
+  function asteroide(it, x, y, tam) {
+    if (!it.forma) {
+      const n = 13; // cuerpo de roca irregular con picos filosos en vértices alternos sueltos
+      it.forma = Array.from({ length: n }, (_, i) => (i % 2 === 0 && Math.random() < 0.75 ? 1.38 + Math.random() * 0.3 : 0.82 + Math.random() * 0.2));
+      it.crat = Array.from({ length: 3 }, () => [Math.random() * 6.28, Math.random() * 0.35, 0.12 + Math.random() * 0.1]);
+      it.giroR = (Math.random() < 0.5 ? -1 : 1) * (0.8 + Math.random() * 1.6);
+    }
+    const R = tam * 0.8, n = it.forma.length, rot = it.rot || 0;
+    cx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const a = rot + i / n * Math.PI * 2, k = it.forma[i];
+      const vx = x + Math.cos(a) * R * k, vy = y + Math.sin(a) * R * k;
+      i ? cx.lineTo(vx, vy) : cx.moveTo(vx, vy);
+    }
+    cx.closePath();
+    cx.fillStyle = C.coral; cx.fill();
+    cx.lineWidth = 2; cx.strokeStyle = C.brasa; cx.lineJoin = 'miter'; cx.stroke();
+    cx.fillStyle = C.brasa;
+    for (const [ca, cr, cs] of it.crat) {
+      cx.beginPath(); cx.arc(x + Math.cos(ca + rot) * R * cr, y + Math.sin(ca + rot) * R * cr, R * cs, 0, Math.PI * 2); cx.fill();
+    }
   }
 
   function rombo(x, y, s, color) {
@@ -401,9 +491,7 @@ body {
       const r = radio(it.p);
       cx.globalAlpha = (it.k === 'muro' || it.k === 'sat') ? fantasma : 1;
       if (it.k === 'muro') {
-        const span = (tam * 1.15) / r;
-        cx.beginPath(); cx.arc(CX, CY, r, it.a - span, it.a + span);
-        cx.strokeStyle = C.coral; cx.lineWidth = tam * 1.15; cx.lineCap = 'butt'; cx.stroke();
+        asteroide(it, ...pos(it.a, r), tam);
       } else if (it.k === 'sat') {
         const [x, y] = pos(it.a, r);
         // estela corta detrás, para que se lea que se mueve
@@ -421,6 +509,14 @@ body {
           cx.beginPath(); cx.arc(x + Math.cos(g) * tam * 1.12, y + Math.sin(g) * tam * 1.12, tam * 0.2, 0, Math.PI * 2);
           cx.fillStyle = C.coral; cx.fill();
         }
+      } else if (it.k === 'escudo') {
+        const [x, y] = pos(it.a, r);
+        const on = reducido || Math.floor(pulso * 4) % 2 === 0;
+        cx.globalAlpha = on ? 1 : 0.45;
+        hexagono(x, y, tam * 1.3, pulso * 2, C.lima, 2.5);
+        hexagono(x, y, tam * 0.75, -pulso * 3, C.lima, 0, true);
+        cx.beginPath(); cx.arc(x, y, tam * 0.22, 0, Math.PI * 2); cx.fillStyle = C.noche; cx.fill();
+        cx.globalAlpha = 1;
       } else if (it.k === 'poder') {
         const [x, y] = pos(it.a, r);
         const on = reducido || Math.floor(pulso * 7) % 2 === 0;
@@ -448,11 +544,33 @@ body {
       const acaba = poder > 0 && poder < 1.5 && !reducido && Math.floor(pulso * 10) % 2 === 0;
       cx.beginPath(); cx.arc(px, py, tam * 0.62, 0, Math.PI * 2);
       cx.fillStyle = poder > 0 && !acaba ? C.cielo : C.hueso; cx.fill();
+      if (escudo) {
+        // escudo: hexágono que gira, un aro que late y tres chispas en órbita
+        const lat = reducido ? 0 : Math.sin(pulso * 6) * 0.12;
+        hexagono(px, py, tam * (1.45 + lat), pulso * 1.6, C.lima, 2.5);
+        cx.globalAlpha = 0.35; hexagono(px, py, tam * (1.85 - lat), -pulso * 1.1, C.lima, 1.5); cx.globalAlpha = 1;
+        for (let j = 0; j < 3; j++) {
+          const g = pulso * 4 + j * Math.PI * 2 / 3;
+          cx.beginPath(); cx.arc(px + Math.cos(g) * tam * 1.65, py + Math.sin(g) * tam * 1.65, 2.2, 0, Math.PI * 2);
+          cx.fillStyle = C.lima; cx.fill();
+        }
+      }
       if (poder > 0) {
         const frac = Math.min(1, poder / PODER_DUR);
         cx.beginPath(); cx.arc(px, py, tam * 1.05, -Math.PI / 2, -Math.PI / 2 + frac * Math.PI * 2);
         cx.strokeStyle = C.cielo; cx.lineWidth = 2.5; cx.lineCap = 'round'; cx.stroke(); cx.lineCap = 'butt';
       }
+    }
+
+    for (const b of balas) {
+      const rb = radio(b.p);
+      cx.beginPath(); cx.arc(CX, CY, rb, b.a - 0.09, b.a);
+      cx.strokeStyle = C.lima; cx.lineWidth = 4; cx.lineCap = 'round'; cx.stroke(); cx.lineCap = 'butt';
+    }
+    if (escudo && estado === 'jugando') {
+      cx.textAlign = 'center'; cx.fillStyle = C.lima;
+      cx.font = '800 13px system-ui, -apple-system, sans-serif';
+      cx.fillText(avisoEsc > 0 ? 'ESCUDO: UNA VIDA EXTRA' : 'ESCUDO · TOCA EL CONTROL PARA DISPARAR', CX, JY - JR - 10);
     }
 
     // marcador del poder: segundos que quedan y rombos hacia la próxima extensión
@@ -473,7 +591,7 @@ body {
   }
 
   // --- control tipo joystick: réplica chica de la órbita con un círculo que se arrastra ---
-  const joy = { id: null, dx: 0, dy: 0, ox: 0, oy: 0, armado: true };
+  const joy = { id: null, dx: 0, dy: 0, ox: 0, oy: 0, armado: true, movido: false, t0: 0 };
   function dibujarControl() {
     if (estado !== 'jugando' && estado !== 'pausa') return;
     cx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -500,6 +618,7 @@ body {
     cx.lineWidth = 1; cx.strokeStyle = C.pista;
     for (let i = 0; i < nPistas; i++) { cx.beginPath(); cx.arc(JX, JY, rj(i), 0, Math.PI * 2); cx.stroke(); }
     cx.fillStyle = C.coral;
+    for (const it of items) if (it.k === 'escudo' && !it.hecho) { const rs = rj(it.p); cx.fillStyle = C.lima; cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3.5, 0, Math.PI * 2); cx.fill(); }
     for (const it of items) if (it.k === 'poder' && !it.hecho) { const rs = rj(it.p); cx.fillStyle = C.cielo; cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3.5, 0, Math.PI * 2); cx.fill(); }
     cx.fillStyle = C.coral;
     for (const it of items) if (it.k === 'sat') { const rs = rj(it.p); cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3, 0, Math.PI * 2); cx.fill(); }
@@ -510,8 +629,14 @@ body {
     // círculo que se mueve
     const kr = JR * 0.34;
     cx.globalAlpha = joy.id !== null ? 0.95 : 0.8;
-    cx.fillStyle = C.hueso; cx.beginPath(); cx.arc(JX + joy.dx, JY + joy.dy, kr, 0, Math.PI * 2); cx.fill();
+    cx.fillStyle = escudo ? C.lima : C.hueso; cx.beginPath(); cx.arc(JX + joy.dx, JY + joy.dy, kr, 0, Math.PI * 2); cx.fill();
     cx.globalAlpha = 1;
+    if (escudo) { // mira: con el escudo, tocar el control dispara
+      const mx = JX + joy.dx, my = JY + joy.dy;
+      cx.strokeStyle = C.noche; cx.lineWidth = 2;
+      cx.beginPath(); cx.arc(mx, my, kr * 0.45, 0, Math.PI * 2); cx.stroke();
+      cx.beginPath(); cx.moveTo(mx - kr * 0.7, my); cx.lineTo(mx + kr * 0.7, my); cx.moveTo(mx, my - kr * 0.7); cx.lineTo(mx, my + kr * 0.7); cx.stroke();
+    }
   }
   const enControl = (x, y) => Math.hypot(x - JX, y - JY) <= JR * 1.25;
   function moverControl(x, y) {
@@ -521,6 +646,7 @@ body {
     if (d > lim) { dx *= lim / d; dy *= lim / d; }
     joy.dx = dx; joy.dy = dy;
     const n = Math.hypot(dx, dy);
+    if (n > lim * 0.3) joy.movido = true;
     if (joy.armado && n > lim * 0.6) {
       joy.armado = false;
       if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
@@ -529,6 +655,8 @@ body {
     }
   }
   function soltarControl() {
+    // un toque corto sin arrastrar es un disparo (solo con escudo)
+    if (!joy.movido && performance.now() - joy.t0 < 350) disparar();
     joy.id = null; joy.armado = true;
     const vuelta = () => { joy.dx *= 0.6; joy.dy *= 0.6; if (Math.hypot(joy.dx, joy.dy) > 0.5 && joy.id === null) requestAnimationFrame(vuelta); else if (joy.id === null) { joy.dx = 0; joy.dy = 0; } };
     requestAnimationFrame(vuelta);
@@ -569,7 +697,8 @@ body {
   cv.addEventListener('pointerdown', e => {
     e.preventDefault();
     if (estado === 'jugando' && joy.id === null && enControl(e.clientX, e.clientY)) {
-      joy.id = e.pointerId; joy.ox = e.clientX - JX; joy.oy = e.clientY - JY; return;
+      joy.id = e.pointerId; joy.ox = e.clientX - JX; joy.oy = e.clientY - JY;
+      joy.movido = false; joy.t0 = performance.now(); return;
     }
     toque = { x: e.clientX, y: e.clientY, id: e.pointerId };
   });
@@ -589,7 +718,7 @@ body {
     if (flechas[e.code]) { e.preventDefault(); return swipe(...flechas[e.code]); }
     if (e.code === 'Space') {
       e.preventDefault();
-      if (estado === 'jugando') return;
+      if (estado === 'jugando') return disparar();
       else if (estado === 'pausa') seguir();
       else if (!$('fin').hidden || estado === 'inicio') empezar();
     }
