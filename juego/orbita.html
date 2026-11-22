@@ -60,7 +60,7 @@ body {
 </style>
 
 <canvas id="lienzo" aria-label="Pista de juego"></canvas>
-<div id="sonda" aria-hidden="true" style="position:fixed;visibility:hidden;pointer-events:none;padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px)"></div>
+<div id="sonda" aria-hidden="true" style="position:fixed;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)"></div>
 
 <div class="hud">
   <div>
@@ -77,7 +77,7 @@ body {
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
   <p>Tu punto gira solo. La pista está partida en cuatro: <b>arriba y abajo</b> deslizas vertical, <b>a los lados</b> horizontal. Hacia afuera del círculo sales una órbita, hacia el centro entras.</p>
-  <p>Puedes deslizar en cualquier parte de la pantalla o usar el <b>control de abajo a la derecha</b>: mueve el círculo del centro con la misma lógica. Cada tanto se abre una órbita nueva.</p>
+  <p>Puedes deslizar en cualquier parte de la pantalla o usar el <b>control de abajo</b>: mueve el círculo del centro con la misma lógica. Cada tanto se abre una órbita nueva.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
@@ -137,13 +137,17 @@ body {
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     cx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const m = Math.min(W, H);
-    R_EXT = m * 0.38; R_INT = R_EXT * 0.6;
-    CX = W / 2; CY = H / 2 + Math.min(30, H * 0.03);
-    // control: abajo a la derecha, respetando los márgenes seguros
     const cs = getComputedStyle(document.getElementById('sonda'));
-    const segDer = parseFloat(cs.paddingRight) || 0, segAbajo = parseFloat(cs.paddingBottom) || 0;
-    JR = Math.max(54, Math.min(78, m * 0.17));
-    JX = W - Math.max(16, segDer) - 8 - JR; JY = H - segAbajo - 20 - JR;
+    const segArriba = parseFloat(cs.paddingTop) || 0, segAbajo = parseFloat(cs.paddingBottom) || 0;
+    // control: centrado abajo, respetando el margen seguro inferior
+    JR = Math.max(64, Math.min(96, m * 0.21));
+    JX = W / 2; JY = H - segAbajo - 18 - JR;
+    // la pista se acomoda en el espacio entre el marcador y el control
+    const arriba = segArriba + 100 + 34;          // marcador + aviso de órbita nueva
+    const abajo = JY - JR - 14;
+    R_EXT = Math.max(60, Math.min(m * 0.38, (abajo - arriba) / 2.32)); // 2.32: el sector sobresale 16 %
+    R_INT = R_EXT * 0.6;
+    CX = W / 2; CY = Math.max(arriba + R_EXT * 1.16, Math.min(H / 2, abajo - R_EXT * 1.16));
   }
   let JR, JX, JY;
   addEventListener('resize', medir); medir();
