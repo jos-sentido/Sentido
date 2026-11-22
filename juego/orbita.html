@@ -14,6 +14,7 @@
   --cielo: #63d2ff;
   --lima: #8de86f;
   --rosa: #ff8fc4;
+  --lila: #b9a0ff;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: dark;
 }
@@ -64,6 +65,7 @@ body {
 @media (prefers-reduced-motion: reduce) { .punto.poder { animation: none; } }
 .punto.sat { background: var(--coral); border-radius: 50%; box-shadow: inset 0 0 0 3px var(--coral), inset 0 0 0 6px var(--noche); }
 .punto.muro { background: var(--coral); width: 16px; height: 16px; clip-path: polygon(50% 0, 64% 28%, 100% 22%, 78% 52%, 96% 86%, 60% 74%, 42% 100%, 32% 70%, 0 78%, 18% 46%, 4% 14%, 36% 24%); }
+.punto.reloj { background: var(--lila); border-radius: 50%; clip-path: polygon(0 50%, 48% 18%, 48% 50%, 100% 18%, 100% 82%, 48% 50%, 48% 82%); }
 .punto.vida { background: var(--rosa); clip-path: path('M7 13 L1.5 7.5 A3.2 3.2 0 0 1 7 3 A3.2 3.2 0 0 1 12.5 7.5 Z'); width: 14px; height: 14px; }
 .vidas { color: var(--rosa); }
 .punto.escudo { background: var(--lima); clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%); animation: parpadeo 0.9s steps(2) infinite; }
@@ -103,6 +105,7 @@ body {
     <span><i class="punto poder"></i>traspasa todo</span>
     <span><i class="punto escudo"></i>escudo y disparo</span>
     <span><i class="punto vida"></i>vida extra</span>
+    <span><i class="punto reloj"></i>baja la velocidad</span>
   </div>
   <button class="cta" id="btnJugar" type="button">Jugar</button>
 </div>
@@ -122,7 +125,7 @@ body {
 
 <script>
 (() => {
-  const C = { noche:'#121316', pista:'#3a3d44', hueso:'#efe6d6', ambar:'#f2b33d', coral:'#ff6b57', cielo:'#63d2ff', lima:'#8de86f', rosa:'#ff8fc4', brasa:'#b8402f' };
+  const C = { noche:'#121316', pista:'#3a3d44', hueso:'#efe6d6', ambar:'#f2b33d', coral:'#ff6b57', cielo:'#63d2ff', lima:'#8de86f', rosa:'#ff8fc4', lila:'#b9a0ff', brasa:'#b8402f' };
   const cv = document.getElementById('lienzo');
   const cx = cv.getContext('2d');
   const $ = id => document.getElementById(id);
@@ -192,6 +195,10 @@ body {
   // No es un poder: se guarda y se gasta sola en el siguiente choque, aunque tengas otro poder.
   const VIDA_INI = 100, VIDA_CADA = 200, VIDA_ANCHO = 50;
   let vidas, rangoVida, avisoVida;
+  // reloj: ficha lila, la más rara. Al tomarla la velocidad vuelve a la inicial y sube otra vez desde ahí.
+  // La velocidad se calcula con los puntos ganados desde el último reinicio (ptsVel).
+  const RELOJ_DESDE = 40, RELOJ_ESPERA = 30, RELOJ_PROB = 0.06;
+  let ptsVel, esperaReloj, avisoReloj;
   const rangoDe = p => { const k = Math.floor((p - VIDA_INI) / VIDA_CADA); return p >= VIDA_INI && p - (VIDA_INI + k * VIDA_CADA) <= VIDA_ANCHO ? k : -1; };
   function pintarVidas() { $('vidas').hidden = vidas <= 0; $('vidas').textContent = '♥ ' + vidas + (vidas === 1 ? ' vida' : ' vidas'); }
   // dificultad: a estos puntos se abre una órbita más
@@ -204,6 +211,7 @@ body {
     poder = 0; gemasPoder = 0; gracia = 0; esperaPoder = 8; avisoPoder = 0;
     escudo = false; esperaEscudo = 12; balas = []; cdDisparo = 0; avisoEsc = 0;
     vidas = 0; rangoVida = -1; avisoVida = 0; pintarVidas();
+    ptsVel = 0; esperaReloj = 20; avisoReloj = 0;
     items = []; sigSpawn = ang + 1.6; particulas = []; estela = []; sacudida = 0; pulso = 0;
     $('marcador').textContent = '0'; $('nivel').textContent = '2 órbitas';
   }
@@ -228,10 +236,13 @@ body {
       if (kVida >= 0 && kVida !== rangoVida && !items.some(it => it.k === 'vida' && !it.hecho) && Math.random() < 0.35) {
         items.push({ a: sigSpawn + 0.32, p: libre, k: 'vida' });
       }
-      const hayPoder = items.some(it => (it.k === 'poder' || it.k === 'escudo') && !it.hecho);
+      const hayPoder = items.some(it => (it.k === 'poder' || it.k === 'escudo' || it.k === 'reloj') && !it.hecho);
       // regla: un solo poder a la vez. Con uno activo no sale ninguna ficha de poder.
       const activo = poder > 0 || escudo;
-      if (puntos >= ESC_DESDE && !activo && esperaEscudo <= 0 && !hayPoder && Math.random() < 0.14) {
+      if (puntos >= RELOJ_DESDE && !activo && esperaReloj <= 0 && !hayPoder && Math.random() < RELOJ_PROB) {
+        items.push({ a: sigSpawn, p: libre, k: 'reloj' });
+        esperaReloj = RELOJ_ESPERA;
+      } else if (puntos >= ESC_DESDE && !activo && esperaEscudo <= 0 && !hayPoder && Math.random() < 0.14) {
         items.push({ a: sigSpawn, p: libre, k: 'escudo' });
         esperaEscudo = ESC_ESPERA;
       } else if (puntos >= PODER_DESDE && !activo && esperaPoder <= 0 && !hayPoder && Math.random() < 0.18) {
@@ -267,10 +278,10 @@ body {
   const tam0 = () => R_EXT * 0.075;
   // al tomar un poder, cualquier otra ficha de poder que estuviera en la pista se desvanece
   function quitarFichas() {
-    for (const it of items) if (!it.hecho && (it.k === 'poder' || it.k === 'escudo')) {
+    for (const it of items) if (!it.hecho && (it.k === 'poder' || it.k === 'escudo' || it.k === 'reloj')) {
       it.hecho = true;
       const [x, y] = pos(it.a, radio(it.p));
-      chispas(x, y, it.k === 'poder' ? C.cielo : C.lima, 10, 80);
+      chispas(x, y, it.k === 'poder' ? C.cielo : it.k === 'reloj' ? C.lila : C.lima, 10, 80);
     }
   }
   function romper(it, pts) {
@@ -364,7 +375,9 @@ body {
     }
     balas = balas.filter(b => b.vida > 0);
     nAnim += (nPistas - nAnim) * Math.min(1, dt * 3);
-    vel = Math.min(3.2, 1.5 + puntos * 0.022);
+    vel = Math.min(3.2, 1.5 + (puntos - ptsVel) * 0.022);
+    if (!(poder > 0 || escudo)) esperaReloj = Math.max(0, esperaReloj - dt);
+    avisoReloj = Math.max(0, avisoReloj - dt);
     ang += vel * dt;
     rAct += (pista - rAct) * Math.min(1, dt * 18);
     generar();
@@ -397,6 +410,12 @@ body {
         chispas(ix, iy, C.lima, 34, 240);
         tono(330, 0.12, 'square', 0.06); setTimeout(() => tono(495, 0.12, 'square', 0.06), 90); setTimeout(() => tono(660, 0.22, 'square', 0.06), 180);
         vibrar([25, 30, 25]);
+      } else if (it.k === 'reloj' && d < tam * 1.4) {
+        // reinicio de velocidad: instantáneo, no se queda activo
+        it.hecho = true; ptsVel = puntos; avisoReloj = 1.8;
+        chispas(ix, iy, C.lila, 36, 260);
+        tono(1400, 0.45, 'sine', 0.1, 220); setTimeout(() => tono(900, 0.3, 'triangle', 0.06, 180), 120);
+        vibrar([10, 20, 10, 20, 40]);
       } else if (it.k === 'vida' && d < tam * 1.4) {
         it.hecho = true; vidas++; avisoVida = 1.6; pintarVidas();
         const kr = rangoDe(puntos); if (kr >= 0) rangoVida = kr;
@@ -494,7 +513,8 @@ body {
     for (let i = 0; i < nPistas; i++) {
       // la órbita recién abierta entra en ámbar y se apaga a gris
       const nueva = i === nPistas - 1 && aviso > 0;
-      cx.strokeStyle = nueva && Math.floor(aviso * 6) % 2 === 0 ? C.ambar : C.pista;
+      cx.strokeStyle = nueva && Math.floor(aviso * 6) % 2 === 0 ? C.ambar
+        : avisoReloj > 0.9 && Math.floor(avisoReloj * 8) % 2 === 0 ? C.lila : C.pista;
       cx.beginPath(); cx.arc(CX, CY, radio(i), 0, Math.PI * 2); cx.stroke();
     }
     if (aviso > 0 && poder <= 0 && estado === 'jugando') {
@@ -557,6 +577,22 @@ body {
           cx.beginPath(); cx.arc(x + Math.cos(g) * tam * 1.12, y + Math.sin(g) * tam * 1.12, tam * 0.2, 0, Math.PI * 2);
           cx.fillStyle = C.coral; cx.fill();
         }
+      } else if (it.k === 'reloj') {
+        const [x, y] = pos(it.a, r);
+        const on = reducido || Math.floor(pulso * 5) % 2 === 0;
+        cx.globalAlpha = on ? 1 : 0.4;
+        // aro con flecha que gira hacia atrás y símbolo de retroceso al centro
+        const g = -pulso * 3;
+        cx.beginPath(); cx.arc(x, y, tam * 1.3, g, g + Math.PI * 1.6);
+        cx.strokeStyle = C.lila; cx.lineWidth = 2.5; cx.stroke();
+        const fx = x + Math.cos(g) * tam * 1.3, fy = y + Math.sin(g) * tam * 1.3;
+        flecha(fx, fy, g - Math.PI / 2, C.lila);
+        const s0 = tam * 0.55;
+        cx.fillStyle = C.lila;
+        for (const dx of [0, -s0]) {
+          cx.beginPath(); cx.moveTo(x + dx + s0 * 0.5, y - s0 * 0.7); cx.lineTo(x + dx - s0 * 0.5, y); cx.lineTo(x + dx + s0 * 0.5, y + s0 * 0.7); cx.closePath(); cx.fill();
+        }
+        cx.globalAlpha = 1;
       } else if (it.k === 'vida') {
         const [x, y] = pos(it.a, r);
         // late como corazón: dos golpes y pausa
@@ -629,6 +665,13 @@ body {
       cx.fillText(avisoEsc > 0 ? 'ESCUDO: UNA VIDA EXTRA' : 'ESCUDO · TOCA EL CONTROL PARA DISPARAR', CX, JY - JR - 10);
     }
 
+    if (avisoReloj > 0 && estado === 'jugando') {
+      cx.textAlign = 'center'; cx.fillStyle = C.lila;
+      cx.globalAlpha = Math.min(1, avisoReloj);
+      cx.font = '800 15px system-ui, -apple-system, sans-serif';
+      cx.fillText('VELOCIDAD REINICIADA', CX, CY - 6 - R_INT * 0.5);
+      cx.globalAlpha = 1;
+    }
     if (avisoVida !== 0 && estado === 'jugando') {
       cx.textAlign = 'center'; cx.fillStyle = C.rosa;
       cx.globalAlpha = Math.min(1, Math.abs(avisoVida));
@@ -682,6 +725,7 @@ body {
     cx.lineWidth = 1; cx.strokeStyle = C.pista;
     for (let i = 0; i < nPistas; i++) { cx.beginPath(); cx.arc(JX, JY, rj(i), 0, Math.PI * 2); cx.stroke(); }
     cx.fillStyle = C.coral;
+    for (const it of items) if (it.k === 'reloj' && !it.hecho) { const rs = rj(it.p); cx.fillStyle = C.lila; cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3.5, 0, Math.PI * 2); cx.fill(); }
     for (const it of items) if (it.k === 'vida' && !it.hecho) { const rs = rj(it.p); cx.fillStyle = C.rosa; cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3.5, 0, Math.PI * 2); cx.fill(); }
     for (const it of items) if (it.k === 'escudo' && !it.hecho) { const rs = rj(it.p); cx.fillStyle = C.lima; cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3.5, 0, Math.PI * 2); cx.fill(); }
     for (const it of items) if (it.k === 'poder' && !it.hecho) { const rs = rj(it.p); cx.fillStyle = C.cielo; cx.beginPath(); cx.arc(JX + Math.cos(it.a) * rs, JY + Math.sin(it.a) * rs, 3.5, 0, Math.PI * 2); cx.fill(); }
