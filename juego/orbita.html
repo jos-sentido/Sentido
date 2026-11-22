@@ -201,6 +201,9 @@ body {
   let ptsVel, esperaReloj, avisoReloj;
   const rangoDe = p => { const k = Math.floor((p - VIDA_INI) / VIDA_CADA); return p >= VIDA_INI && p - (VIDA_INI + k * VIDA_CADA) <= VIDA_ANCHO ? k : -1; };
   function pintarVidas() { $('vidas').hidden = vidas <= 0; $('vidas').textContent = '♥ ' + vidas + (vidas === 1 ? ' vida' : ' vidas'); }
+  // velocidad (rad/s): arranca en VEL_INI y tiende a VEL_MAX; a mayor VEL_CURVA, más lento sube.
+  // Referencia: 30 pts ≈ 1.79 · 60 ≈ 2.03 · 100 ≈ 2.27 · 200 ≈ 2.74. VEL_ACEL limita cuánto puede subir por segundo.
+  const VEL_INI = 1.5, VEL_MAX = 3.0, VEL_CURVA = 140, VEL_ACEL = 0.05;
   // dificultad: a estos puntos se abre una órbita más
   const UMBRALES = [[0, 2], [30, 3], [90, 4], [180, 5]];
   const pistasPara = p => UMBRALES.filter(u => p >= u[0]).pop()[1];
@@ -375,7 +378,10 @@ body {
     }
     balas = balas.filter(b => b.vida > 0);
     nAnim += (nPistas - nAnim) * Math.min(1, dt * 3);
-    vel = Math.min(3.2, 1.5 + (puntos - ptsVel) * 0.022);
+    // velocidad: curva suave que sube rápido al principio y se va aplanando hacia el tope,
+    // y el cambio se reparte en el tiempo (no brinca de golpe al sumar puntos).
+    const velMeta = VEL_INI + (VEL_MAX - VEL_INI) * (1 - Math.exp(-(puntos - ptsVel) / VEL_CURVA));
+    vel = velMeta > vel ? Math.min(velMeta, vel + VEL_ACEL * dt) : Math.max(velMeta, vel - 1.6 * dt);
     if (!(poder > 0 || escudo)) esperaReloj = Math.max(0, esperaReloj - dt);
     avisoReloj = Math.max(0, avisoReloj - dt);
     ang += vel * dt;
