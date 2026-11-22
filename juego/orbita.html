@@ -549,7 +549,7 @@ body {
         : avisoReloj > 0.9 && Math.floor(avisoReloj * 8) % 2 === 0 ? C.lila : C.pista;
       cx.beginPath(); cx.arc(CX, CY, radio(i), 0, Math.PI * 2); cx.stroke();
     }
-    if (aviso > 0 && poder <= 0 && estado === 'jugando') {
+    if (aviso > 0 && estado === 'jugando') {
       cx.globalAlpha = Math.min(1, aviso);
       cx.fillStyle = C.ambar; cx.textAlign = 'center';
       cx.font = '800 15px system-ui, -apple-system, sans-serif';
@@ -682,9 +682,14 @@ body {
         }
       }
       if (poder > 0) {
-        const frac = Math.min(1, poder / PODER_DUR);
-        cx.beginPath(); cx.arc(px, py, tam * 1.05, -Math.PI / 2, -Math.PI / 2 + frac * Math.PI * 2);
-        cx.strokeStyle = C.cielo; cx.lineWidth = 2.5; cx.lineCap = 'round'; cx.stroke(); cx.lineCap = 'butt';
+        // anillo de tiempo pegado a la bolita: se vacía conforme se acaba y parpadea al final
+        if (!acaba) {
+          cx.globalAlpha = 0.25;
+          cx.beginPath(); cx.arc(px, py, tam * 2.1, 0, Math.PI * 2); cx.strokeStyle = C.cielo; cx.lineWidth = 3; cx.stroke();
+          cx.globalAlpha = 1;
+          cx.beginPath(); cx.arc(px, py, tam * 2.1, -Math.PI / 2, -Math.PI / 2 + Math.min(1, poder / PODER_DUR) * Math.PI * 2);
+          cx.strokeStyle = C.cielo; cx.lineWidth = 3; cx.lineCap = 'round'; cx.stroke(); cx.lineCap = 'butt';
+        }
       }
     }
 
@@ -716,13 +721,22 @@ body {
       cx.globalAlpha = 1;
     }
 
-    // marcador del poder: segundos que quedan y rombos hacia la próxima extensión
-    if (poder > 0 && estado !== 'fin') {
+    // segundos que quedan, escritos junto a la bolita (del lado del centro) para no tener que voltear
+    const tPoder = poder > 0 ? poder : escudo ? escT : 0;
+    if (tPoder > 0 && estado === 'jugando') {
+      const [nx, ny] = pos(ang, radio(rAct) - R_EXT * 0.075 * 3.2);
+      cx.textAlign = 'center'; cx.textBaseline = 'middle';
+      cx.font = '800 14px system-ui, -apple-system, sans-serif';
+      cx.lineWidth = 4; cx.strokeStyle = C.noche; cx.strokeText(tPoder.toFixed(1), nx, ny);
+      cx.fillStyle = poder > 0 ? C.cielo : C.lima; cx.fillText(tPoder.toFixed(1), nx, ny);
+      cx.textBaseline = 'alphabetic';
+    }
+    // marcador de Traspasar sobre el control, en el mismo lugar que el del escudo
+    if (poder > 0 && estado === 'jugando') {
       cx.textAlign = 'center'; cx.fillStyle = C.cielo;
-      cx.font = '800 15px system-ui, -apple-system, sans-serif';
-      cx.fillText('TRASPASAR ' + poder.toFixed(1) + ' s', CX, CY - R_EXT - 34);
-      cx.font = '600 13px system-ui, -apple-system, sans-serif';
-      cx.fillText(avisoPoder > 0 ? '+' + PODER_EXTRA + ' s' : gemasPoder + ' / ' + PODER_GEMAS + ' rombos para +' + PODER_EXTRA + ' s', CX, CY - R_EXT - 14);
+      cx.font = '800 13px system-ui, -apple-system, sans-serif';
+      cx.fillText(avisoPoder > 0 ? 'TRASPASAR +' + PODER_EXTRA + ' s'
+        : 'TRASPASAR ' + poder.toFixed(1) + ' s · ' + gemasPoder + '/' + PODER_GEMAS + ' rombos para +' + PODER_EXTRA + ' s', CX, JY - JR - 10);
     }
 
     for (const p of particulas) {
