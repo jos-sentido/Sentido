@@ -294,7 +294,7 @@ body {
         }
       } else if (poder > 0) {
         // con el poder activo hay rombos en casi todas las filas, para que juntar 10 sea alcanzable
-        const g = [...Array(nPistas).keys()].sort(() => Math.random() - 0.5).slice(0, 1 + Math.floor(Math.random() * 2));
+        const g = sinMuro.slice().sort(() => Math.random() - 0.5).slice(0, 1 + Math.floor(Math.random() * 2)); // nunca donde hay asteroide
         g.forEach(i => { items.push({ a: sigSpawn, p: i, k: 'gema' }); items.push({ a: sigSpawn + 0.14, p: i, k: 'gema' }); });
       } else if (Math.random() < 0.55) {
         items.push({ a: sigSpawn, p: libre, k: 'gema' });
@@ -320,6 +320,7 @@ body {
   }
 
   const tam0 = () => R_EXT * 0.075;
+  const RECOLECTABLE = new Set(['gema', 'vida', 'poder', 'escudo', 'reloj']);
   // al tomar un poder, cualquier otra ficha de poder que estuviera en la pista se desvanece
   function quitarFichas() {
     for (const it of items) if (!it.hecho && (it.k === 'poder' || it.k === 'escudo' || it.k === 'reloj')) {
@@ -440,6 +441,19 @@ body {
 
     const tam = R_EXT * 0.075;
     for (const it of items) if (it.k === 'sat') { it.a += vel * SAT_VEL * dt; it.giro += dt * 5; }
+    // ninguna ficha recolectable comparte lugar con un obstáculo: si coinciden en la misma órbita, la ficha se va.
+    // Con asteroides pasa al generarse (lejos, ni se nota); con satélites, cuando el satélite la alcanza.
+    const sep = R_EXT * 0.075 * 1.7;
+    for (const f of items) {
+      if (f.hecho || !RECOLECTABLE.has(f.k)) continue;
+      const rf = radio(f.p);
+      for (const o of items) {
+        if (o.hecho || (o.k !== 'muro' && o.k !== 'sat') || o.p !== f.p || Math.abs(o.a - f.a) * rf > sep) continue;
+        f.hecho = true;
+        if (o.k === 'sat') chispas(...pos(f.a, rf), C.coral, 6, 60);
+        break;
+      }
+    }
     for (const it of items) {
       if (it.hecho) continue;
       const [ix, iy] = pos(it.a, radio(it.p));
