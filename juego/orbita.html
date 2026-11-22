@@ -60,6 +60,7 @@ body {
 </style>
 
 <canvas id="lienzo" aria-label="Pista de juego"></canvas>
+<div id="sonda" aria-hidden="true" style="position:fixed;visibility:hidden;pointer-events:none;padding-left:env(safe-area-inset-left,0px);padding-bottom:env(safe-area-inset-bottom,0px)"></div>
 
 <div class="hud">
   <div>
@@ -76,7 +77,7 @@ body {
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
   <p>Tu punto gira solo. La pista está partida en cuatro: <b>arriba y abajo</b> deslizas vertical, <b>a los lados</b> horizontal. Hacia afuera del círculo sales una órbita, hacia el centro entras.</p>
-  <p>Puedes deslizar en cualquier parte de la pantalla. Cada tanto se abre una órbita nueva.</p>
+  <p>Puedes deslizar en cualquier parte de la pantalla o usar el <b>control de abajo a la izquierda</b>: mueve el círculo del centro con la misma lógica. Cada tanto se abre una órbita nueva.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
@@ -138,7 +139,13 @@ body {
     const m = Math.min(W, H);
     R_EXT = m * 0.38; R_INT = R_EXT * 0.6;
     CX = W / 2; CY = H / 2 + Math.min(30, H * 0.03);
+    // control: abajo a la izquierda, respetando los márgenes seguros
+    const cs = getComputedStyle(document.getElementById('sonda'));
+    const segIzq = parseFloat(cs.paddingLeft) || 0, segAbajo = parseFloat(cs.paddingBottom) || 0;
+    JR = Math.max(54, Math.min(78, m * 0.17));
+    JX = Math.max(16, segIzq) + 8 + JR; JY = H - segAbajo - 20 - JR;
   }
+  let JR, JX, JY;
   addEventListener('resize', medir); medir();
 
   // --- estado ---
@@ -296,7 +303,7 @@ body {
       cx.globalAlpha = Math.min(1, aviso);
       cx.fillStyle = C.ambar; cx.textAlign = 'center';
       cx.font = '800 15px system-ui, -apple-system, sans-serif';
-      cx.fillText('NUEVA ÓRBITA', CX, CY + R_EXT + 44);
+      cx.fillText('NUEVA ÓRBITA', CX, CY - R_EXT - 26);
       cx.globalAlpha = 1;
     }
 
@@ -358,6 +365,65 @@ body {
       cx.fillRect(p.x - 2, p.y - 2, 4, 4);
     }
     cx.globalAlpha = 1;
+    dibujarControl();
+  }
+
+  // --- control tipo joystick: réplica chica de la órbita con un círculo que se arrastra ---
+  const joy = { id: null, dx: 0, dy: 0, ox: 0, oy: 0, armado: true };
+  function dibujarControl() {
+    if (estado !== 'jugando' && estado !== 'pausa') return;
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const r0 = JR * 0.4, r1 = JR * 0.78;
+    const rj = t => r0 + (r1 - r0) * t / Math.max(1, nAnim - 1);
+    // base
+    cx.globalAlpha = 0.55; cx.fillStyle = C.noche;
+    cx.beginPath(); cx.arc(JX, JY, JR, 0, Math.PI * 2); cx.fill();
+    cx.globalAlpha = 1; cx.lineWidth = 1.5; cx.strokeStyle = C.pista; cx.stroke();
+    // sector activo, igual que en la pista grande
+    const c = sector(ang).centro;
+    cx.globalAlpha = 0.12; cx.fillStyle = C.hueso;
+    cx.beginPath(); cx.arc(JX, JY, JR, c - Math.PI / 4, c + Math.PI / 4); cx.lineTo(JX, JY); cx.closePath(); cx.fill();
+    cx.globalAlpha = 1;
+    // diagonales
+    cx.save(); cx.setLineDash([2, 4]); cx.lineWidth = 1; cx.strokeStyle = C.pista;
+    for (let k = 0; k < 4; k++) {
+      const d = Math.PI / 4 + k * Math.PI / 2;
+      cx.beginPath(); cx.moveTo(JX + Math.cos(d) * r0 * 0.6, JY + Math.sin(d) * r0 * 0.6);
+      cx.lineTo(JX + Math.cos(d) * JR, JY + Math.sin(d) * JR); cx.stroke();
+    }
+    cx.restore();
+    // órbitas en miniatura y el punto del jugador
+    cx.lineWidth = 1; cx.strokeStyle = C.pista;
+    for (let i = 0; i < nPistas; i++) { cx.beginPath(); cx.arc(JX, JY, rj(i), 0, Math.PI * 2); cx.stroke(); }
+    const rp = rj(rAct);
+    cx.fillStyle = C.ambar; cx.beginPath(); cx.arc(JX + Math.cos(ang) * rp, JY + Math.sin(ang) * rp, 3.5, 0, Math.PI * 2); cx.fill();
+    // flecha afuera en el sector
+    cx.globalAlpha = 0.85; flecha(JX + Math.cos(c) * (JR - 7), JY + Math.sin(c) * (JR - 7), c, C.ambar); cx.globalAlpha = 1;
+    // círculo que se mueve
+    const kr = JR * 0.34;
+    cx.globalAlpha = joy.id !== null ? 0.95 : 0.8;
+    cx.fillStyle = C.hueso; cx.beginPath(); cx.arc(JX + joy.dx, JY + joy.dy, kr, 0, Math.PI * 2); cx.fill();
+    cx.globalAlpha = 1;
+  }
+  const enControl = (x, y) => Math.hypot(x - JX, y - JY) <= JR * 1.25;
+  function moverControl(x, y) {
+    // se mide desde donde pusiste el dedo: tocar el control de lado no dispara nada
+    let dx = x - JX - joy.ox, dy = y - JY - joy.oy;
+    const d = Math.hypot(dx, dy), lim = JR * 0.62;
+    if (d > lim) { dx *= lim / d; dy *= lim / d; }
+    joy.dx = dx; joy.dy = dy;
+    const n = Math.hypot(dx, dy);
+    if (joy.armado && n > lim * 0.6) {
+      joy.armado = false;
+      if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
+    } else if (!joy.armado && n < lim * 0.3) {
+      joy.armado = true; // vuelve al centro: listo para otro movimiento
+    }
+  }
+  function soltarControl() {
+    joy.id = null; joy.armado = true;
+    const vuelta = () => { joy.dx *= 0.6; joy.dy *= 0.6; if (Math.hypot(joy.dx, joy.dy) > 0.5 && joy.id === null) requestAnimationFrame(vuelta); else if (joy.id === null) { joy.dx = 0; joy.dy = 0; } };
+    requestAnimationFrame(vuelta);
   }
 
   function bucle(t) {
@@ -392,15 +458,22 @@ body {
   }
   let toque = null;
   const UMBRAL = 26;
-  cv.addEventListener('pointerdown', e => { e.preventDefault(); toque = { x: e.clientX, y: e.clientY, id: e.pointerId }; });
+  cv.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    if (estado === 'jugando' && joy.id === null && enControl(e.clientX, e.clientY)) {
+      joy.id = e.pointerId; joy.ox = e.clientX - JX; joy.oy = e.clientY - JY; return;
+    }
+    toque = { x: e.clientX, y: e.clientY, id: e.pointerId };
+  });
   cv.addEventListener('pointermove', e => {
+    if (e.pointerId === joy.id) return moverControl(e.clientX, e.clientY);
     if (!toque || toque.usado || e.pointerId !== toque.id) return;
     const dx = e.clientX - toque.x, dy = e.clientY - toque.y;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < UMBRAL) return;
     if (Math.abs(dy) >= Math.abs(dx)) swipe(0, Math.sign(dy)); else swipe(Math.sign(dx), 0);
     toque.usado = true;
   });
-  const soltar = () => { toque = null; };
+  const soltar = e => { if (e.pointerId === joy.id) return soltarControl(); if (toque && e.pointerId === toque.id) toque = null; };
   cv.addEventListener('pointerup', soltar); cv.addEventListener('pointercancel', soltar);
 
   addEventListener('keydown', e => {
