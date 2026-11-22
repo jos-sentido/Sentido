@@ -939,6 +939,7 @@ body {
   function dibujarControl() {
     if (estado !== 'jugando' && estado !== 'pausa') return;
     cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (modo === 'pov') return dibujarRiel();
     const r0 = JR * 0.4, r1 = JR * 0.78;
     const rj = t => r0 + (r1 - r0) * t / Math.max(1, nAnim - 1);
     // base
@@ -990,10 +991,32 @@ body {
       cx.beginPath(); cx.moveTo(mx - kr * 0.7, my); cx.lineTo(mx + kr * 0.7, my); cx.moveTo(mx, my - kr * 0.7); cx.lineTo(mx, my + kr * 0.7); cx.stroke();
     }
   }
+  // control del POV: un riel horizontal; el círculo solo corre a la izquierda (afuera) o a la derecha (adentro)
+  function dibujarRiel() {
+    const lim = JR * 0.62, kr = JR * 0.34, x0 = JX - lim - kr, w = (lim + kr) * 2, h = kr * 2.3;
+    cx.fillStyle = C.noche; cx.strokeStyle = C.pista; cx.lineWidth = 1.5;
+    cx.beginPath();
+    if (cx.roundRect) cx.roundRect(x0, JY - h / 2, w, h, h / 2); else cx.rect(x0, JY - h / 2, w, h);
+    cx.fill(); cx.stroke();
+    cx.globalAlpha = 0.85;
+    flecha(x0 + 14, JY, Math.PI, C.ambar);      // afuera
+    flecha(x0 + w - 14, JY, 0, C.hueso);        // adentro
+    cx.globalAlpha = 1;
+    const mx = JX + joy.dx, my = JY;
+    cx.globalAlpha = joy.id !== null ? 0.95 : 0.8;
+    cx.fillStyle = escudo ? C.lima : C.hueso; cx.beginPath(); cx.arc(mx, my, kr, 0, Math.PI * 2); cx.fill();
+    cx.globalAlpha = 1;
+    if (escudo) {
+      cx.strokeStyle = C.noche; cx.lineWidth = 2;
+      cx.beginPath(); cx.arc(mx, my, kr * 0.45, 0, Math.PI * 2); cx.stroke();
+      cx.beginPath(); cx.moveTo(mx - kr * 0.7, my); cx.lineTo(mx + kr * 0.7, my); cx.moveTo(mx, my - kr * 0.7); cx.lineTo(mx, my + kr * 0.7); cx.stroke();
+    }
+  }
   const enControl = (x, y) => Math.hypot(x - JX, y - JY) <= JR * 1.25;
   function moverControl(x, y) {
     // se mide desde donde pusiste el dedo: tocar el control de lado no dispara nada
     let dx = x - JX - joy.ox, dy = y - JY - joy.oy;
+    if (modo === 'pov') dy = 0; // en POV el control solo se mueve de lado a lado
     const d = Math.hypot(dx, dy), lim = JR * 0.62;
     if (d > lim) { dx *= lim / d; dy *= lim / d; }
     joy.dx = dx; joy.dy = dy;
