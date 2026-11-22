@@ -97,7 +97,7 @@ body {
 <div class="capa" id="inicio">
   <h1>Órbita</h1>
   <p>Tu punto gira solo. Desliza <b>hacia afuera</b> del círculo para salir de órbita y <b>hacia el centro</b> para entrar: vertical arriba y abajo, horizontal a los lados. Funciona en toda la pantalla o en el control de abajo.</p>
-  <p>El <b>escudo verde</b> te salva de un choque y, mientras lo tengas, <b>tocar el control</b> dispara.</p>
+  <p>El <b>escudo verde</b> te salva de un choque y, mientras dure, <b>tocar el control</b> dispara. Dura 8 s; junta rombos en otras órbitas para alargarlo.</p>
   <div class="leyenda">
     <span><i class="punto gema"></i>junta</span>
     <span><i class="punto muro"></i>esquiva</span>
@@ -190,6 +190,10 @@ body {
   // escudo: ficha verde. Te salva de un choque (y rompe lo que chocaste); mientras lo tienes,
   // tocar el control dispara hacia adelante por tu órbita y rompe muros y satélites.
   const ESC_DESDE = 20, ESC_ESPERA = 20, DISPARO_CD = 0.3;
+  // el escudo ya no es eterno: dura ESC_DUR s y cada ESC_GEMAS rombos suman ESC_EXTRA s.
+  // Mientras está activo, ninguna ficha recolectable sale en la órbita donde vas: hay que moverse para juntar.
+  const ESC_DUR = 8, ESC_GEMAS = 5, ESC_EXTRA = 3;
+  let escT = 0, gemasEsc = 0, avisoEscExtra = 0;
   let escudo, esperaEscudo, balas, cdDisparo, avisoEsc;
   // vida extra: corazón rosa que sale una vez en cada rango de puntos: 100–150, 300–350, 500–550…
   // No es un poder: se guarda y se gasta sola en el siguiente choque, aunque tengas otro poder.
@@ -233,11 +237,16 @@ body {
       const maxMuros = Math.min(nPistas - 1, 1 + Math.floor(puntos / 25));
       const otras = [...Array(nPistas).keys()].filter(i => i !== libre).sort(() => Math.random() - 0.5);
       const nMuros = Math.random() < 0.18 ? 0 : 1 + Math.floor(Math.random() * maxMuros);
-      otras.slice(0, nMuros).forEach(i => items.push({ a: sigSpawn, p: i, k: 'muro' }));
+      const muros = otras.slice(0, nMuros);
+      muros.forEach(i => items.push({ a: sigSpawn, p: i, k: 'muro' }));
+      // órbitas donde puede ir una ficha: sin muro, y con escudo activo nunca la órbita donde vas
+      const sinMuro = [...Array(nPistas).keys()].filter(i => !muros.includes(i));
+      const paraFicha = escudo ? sinMuro.filter(i => i !== pista) : sinMuro;
       // corazón: en el rango vigente, si aún no lo tomaste y no hay otro en pista (si se te pasa, vuelve a salir dentro del rango)
       const kVida = rangoDe(puntos);
       if (kVida >= 0 && kVida !== rangoVida && !items.some(it => it.k === 'vida' && !it.hecho) && Math.random() < 0.35) {
-        items.push({ a: sigSpawn + 0.32, p: libre, k: 'vida' });
+        const pv = paraFicha.includes(libre) ? libre : paraFicha[0];
+        if (pv !== undefined) items.push({ a: sigSpawn + 0.32, p: pv, k: 'vida' });
       }
       const hayPoder = items.some(it => (it.k === 'poder' || it.k === 'escudo' || it.k === 'reloj') && !it.hecho);
       // regla: un solo poder a la vez. Con uno activo no sale ninguna ficha de poder.
@@ -251,6 +260,12 @@ body {
       } else if (puntos >= PODER_DESDE && !activo && esperaPoder <= 0 && !hayPoder && Math.random() < 0.18) {
         items.push({ a: sigSpawn, p: libre, k: 'poder' });
         esperaPoder = PODER_ESPERA;
+      } else if (escudo) {
+        // con escudo: rombos frecuentes, pero solo en órbitas libres que no son la tuya
+        if (paraFicha.length && Math.random() < 0.85) {
+          const i = paraFicha[Math.floor(Math.random() * paraFicha.length)];
+          items.push({ a: sigSpawn, p: i, k: 'gema' }); items.push({ a: sigSpawn + 0.14, p: i, k: 'gema' });
+        }
       } else if (poder > 0) {
         // con el poder activo hay rombos en casi todas las filas, para que juntar 10 sea alcanzable
         const g = [...Array(nPistas).keys()].sort(() => Math.random() - 0.5).slice(0, 1 + Math.floor(Math.random() * 2));
@@ -363,6 +378,11 @@ body {
     }
     gracia = Math.max(0, gracia - dt);
     if (!escudo) esperaEscudo = Math.max(0, esperaEscudo - dt);
+    avisoEscExtra = Math.max(0, avisoEscExtra - dt);
+    if (escudo) {
+      escT -= dt;
+      if (escT <= 0) { escudo = false; escT = 0; balas = []; gracia = Math.max(gracia, 0.5); tono(500, 0.3, 'square', 0.05, 180); vibrar(30); }
+    }
     cdDisparo = Math.max(0, cdDisparo - dt);
     avisoEsc = Math.max(0, avisoEsc - dt);
     avisoVida = avisoVida > 0 ? Math.max(0, avisoVida - dt) : Math.min(0, avisoVida + dt);
@@ -402,6 +422,10 @@ body {
         it.hecho = true; puntos += 2;
         chispas(ix, iy, C.ambar, 14, 140); tono(880 + Math.min(puntos, 60) * 6, 0.09, 'sine', 0.1);
         vibrar(8);
+        if (escudo && ++gemasEsc >= ESC_GEMAS) {
+          gemasEsc = 0; escT += ESC_EXTRA; avisoEscExtra = 1.2;
+          chispas(px, py, C.lima, 24, 200); tono(1000, 0.1, 'square', 0.06); setTimeout(() => tono(1400, 0.14, 'square', 0.06), 90);
+        }
         if (poder > 0 && ++gemasPoder >= PODER_GEMAS) {
           gemasPoder = 0; poder += PODER_EXTRA; avisoPoder = 1.2;
           chispas(px, py, C.cielo, 24, 200); tono(1200, 0.1, 'triangle', 0.1); setTimeout(() => tono(1600, 0.14, 'triangle', 0.1), 90);
@@ -412,7 +436,9 @@ body {
         tono(520, 0.1, 'triangle', 0.1); setTimeout(() => tono(780, 0.1, 'triangle', 0.1), 80); setTimeout(() => tono(1040, 0.16, 'triangle', 0.1), 160);
         vibrar([15, 30, 15]);
       } else if (it.k === 'escudo' && d < tam * 1.4 && poder <= 0) {
-        it.hecho = true; quitarFichas(); escudo = true; avisoEsc = 1.6;
+        it.hecho = true; quitarFichas(); escudo = true; avisoEsc = 1.6; escT = ESC_DUR; gemasEsc = 0;
+        // los rombos que ya estaban en tu órbita se apartan: con escudo hay que ir por ellos a otra
+        for (const g of items) if (g.k === 'gema' && !g.hecho && g.p === pista && g.a > ang) g.hecho = true;
         chispas(ix, iy, C.lima, 34, 240);
         tono(330, 0.12, 'square', 0.06); setTimeout(() => tono(495, 0.12, 'square', 0.06), 90); setTimeout(() => tono(660, 0.22, 'square', 0.06), 180);
         vibrar([25, 30, 25]);
@@ -642,7 +668,9 @@ body {
       const acaba = poder > 0 && poder < 1.5 && !reducido && Math.floor(pulso * 10) % 2 === 0;
       cx.beginPath(); cx.arc(px, py, tam * 0.62, 0, Math.PI * 2);
       cx.fillStyle = poder > 0 && !acaba ? C.cielo : C.hueso; cx.fill();
-      if (escudo) {
+      if (escudo && !(escT < 1.5 && !reducido && Math.floor(pulso * 10) % 2 === 0)) {
+        cx.beginPath(); cx.arc(px, py, tam * 2.1, -Math.PI / 2, -Math.PI / 2 + Math.min(1, escT / ESC_DUR) * Math.PI * 2);
+        cx.strokeStyle = C.lima; cx.lineWidth = 2; cx.lineCap = 'round'; cx.stroke(); cx.lineCap = 'butt';
         // escudo: hexágono que gira, un aro que late y tres chispas en órbita
         const lat = reducido ? 0 : Math.sin(pulso * 6) * 0.12;
         hexagono(px, py, tam * (1.45 + lat), pulso * 1.6, C.lima, 2.5);
@@ -668,7 +696,9 @@ body {
     if (escudo && estado === 'jugando') {
       cx.textAlign = 'center'; cx.fillStyle = C.lima;
       cx.font = '800 13px system-ui, -apple-system, sans-serif';
-      cx.fillText(avisoEsc > 0 ? 'ESCUDO: UNA VIDA EXTRA' : 'ESCUDO · TOCA EL CONTROL PARA DISPARAR', CX, JY - JR - 10);
+      cx.fillText(avisoEsc > 0 ? 'ESCUDO · TOCA EL CONTROL PARA DISPARAR'
+        : avisoEscExtra > 0 ? 'ESCUDO +' + ESC_EXTRA + ' s'
+        : 'ESCUDO ' + escT.toFixed(1) + ' s · ' + gemasEsc + '/' + ESC_GEMAS + ' rombos para +' + ESC_EXTRA + ' s', CX, JY - JR - 10);
     }
 
     if (avisoReloj > 0 && estado === 'jugando') {
