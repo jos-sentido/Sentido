@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sitio Web Massatierra — Estructura</title>
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Estructura del sitio web de Massatierra: mapa del sitio, wireframes y contenido de cada página.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800&display=swap">
+<style>
+  :root{
+    --bg:#f2f4f7; --surface:#ffffff; --ink:#0b1f3a; --navy:#0b1f3a; --slate:#3d4f68; --muted:#66748a; --line:#dde2ea;
+    --wire:#c3cad5; --phbg:#eceff3; --accent:#f26b1d; --accent-ink:#b0470c; --radius:14px;
+    --shadow:0 1px 2px rgba(11,31,58,.05),0 8px 22px rgba(11,31,58,.07);
+    --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#08162a; --surface:#0f2340; --ink:#eef2f7; --slate:#b7c3d4; --muted:#93a1b5; --line:#22385a;
+      --wire:#33496b; --phbg:#132a4b; --accent:#ff8a47; --accent-ink:#ff9d63;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#08162a; --surface:#0f2340; --ink:#eef2f7; --slate:#b7c3d4; --muted:#93a1b5; --line:#22385a;
+    --wire:#33496b; --phbg:#132a4b; --accent:#ff8a47; --accent-ink:#ff9d63;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px; margin-inline:auto; padding-inline:16px; padding-block:40px 72px;}
+  h1,h2,h3{margin:0; text-wrap:balance;}
+  .eyebrow{display:inline-block; font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--slate); padding-bottom:7px; position:relative;}
+  .eyebrow::after{content:""; position:absolute; left:0; bottom:0; width:34px; height:3px; background:var(--accent);}
+
+  .wm{font-weight:800; font-style:italic; letter-spacing:-.02em; font-size:30px; line-height:1; color:var(--ink);}
+  .wm sup{font-size:12px; font-style:normal; font-weight:600; vertical-align:super; margin-left:1px;}
+  .wm small{display:block; font-style:normal; font-weight:500; font-size:11px; letter-spacing:.06em; color:var(--muted); margin-top:6px;}
+
+  header.top{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:22px;}
+  header.top .wm{margin-bottom:22px;}
+  header.top h1{font-size:clamp(28px,5.5vw,44px); font-weight:700; letter-spacing:-.01em; margin-top:10px;}
+  header.top p{color:var(--muted); max-width:68ch; margin:12px 0 0; font-size:14.5px;}
+  header.top p b{color:var(--ink);}
+
+  .banner{display:flex; gap:12px; align-items:flex-start; background:var(--phbg); border:1px dashed var(--wire); border-radius:12px; padding:14px 16px; margin-bottom:30px; font-size:13px; color:var(--muted);}
+  .banner b{color:var(--ink);}
+  .banner .tag{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); white-space:nowrap;}
+
+  .legend{display:flex; flex-wrap:wrap; gap:8px 16px; font-size:12px; color:var(--muted); margin:0 0 14px;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .sw{width:14px; height:14px; border-radius:4px; border:1.5px solid var(--line); background:var(--surface); display:inline-block;}
+  .sw.new{border-color:var(--accent); border-width:2px;}
+  .sw.ph{border-style:dashed; background:var(--phbg); border-color:var(--wire);}
+
+  .page{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; margin-bottom:20px;}
+  .page-head{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
+  .page-head .n{font-family:var(--mono); color:var(--accent-ink); font-size:13px;}
+  .page-head h2{font-size:18px; font-weight:700;}
+  .page-sub{color:var(--muted); font-size:13px; margin:0 0 16px; max-width:80ch;}
+  .page-sub b{color:var(--ink);}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;}
+  .tab{font-family:var(--sans); font-weight:600; font-size:13px; padding:9px 16px; border-radius:10px; border:1.5px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer;}
+  .tab[aria-selected="true"]{border-color:var(--accent); color:var(--ink); background:var(--phbg);}
+  .tab:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  /* ── Mapa (árbol de tarjetas) ── */
+  .treewrap{overflow:hidden; position:relative; height:72vh; max-height:680px; background:var(--phbg); border:1px solid var(--line); border-radius:12px; touch-action:none; cursor:grab; user-select:none; -webkit-user-select:none;}
+  .treewrap.dragging{cursor:grabbing;}
+  .tree{position:absolute; top:0; left:0; display:flex; justify-content:center; min-width:max-content; padding:14px; transform-origin:0 0; will-change:transform;}
+  .tree ul{padding-top:22px; position:relative; display:flex; justify-content:center; margin:0; padding-left:0;}
+  .tree li{display:flex; flex-direction:column; align-items:center; list-style:none; position:relative; padding:22px 6px 0;}
+  .tree li::before,.tree li::after{content:''; position:absolute; top:0; right:50%; border-top:2px solid var(--wire); width:50%; height:22px;}
+  .tree li::after{right:auto; left:50%; border-left:2px solid var(--wire);}
+  .tree li:only-child::after,.tree li:only-child::before{display:none;}
+  .tree li:only-child{padding-top:0;}
+  .tree li:first-child::before,.tree li:last-child::after{border:0 none;}
+  .tree li:last-child::before{border-right:2px solid var(--wire); border-radius:0 6px 0 0;}
+  .tree li:first-child::after{border-radius:6px 0 0 0;}
+  .tree ul ul::before{content:''; position:absolute; top:0; left:50%; border-left:2px solid var(--wire); width:0; height:22px;}
+  .tree ul.v{flex-direction:column; align-items:center; gap:0;}
+  .tree ul.v > li{padding:14px 0 0;}
+  .tree ul.v > li::before{content:""; position:absolute; top:0; left:50%; right:auto; width:0; height:14px; border:0; border-left:2px solid var(--wire); border-radius:0;}
+  .tree ul.v > li::after{display:none;}
+  .tree ul.v > li:first-child{padding-top:0;}
+  .tree ul.v > li:first-child::before{display:none;}
+
+  .pcard{width:192px; border:1.5px solid var(--line); border-radius:12px; background:var(--surface); box-shadow:var(--shadow); overflow:hidden; text-align:left;}
+  .pcard.new{border:2px solid var(--accent);}
+  .pcard.root{border:2px solid var(--ink);}
+  .pcard .hd{display:flex; justify-content:space-between; align-items:center; gap:6px; padding:9px 11px; border-bottom:1px solid var(--line); font-weight:700; font-size:12.5px;}
+  .pcard .hd .r{font-family:var(--mono); font-weight:500; color:var(--muted); font-size:9.5px;}
+  .pcard.new .hd{background:rgba(242,107,29,.09);}
+  .pcard .bd{padding:9px; display:flex; flex-direction:column; gap:5px;}
+  .prow{background:var(--phbg); border:1px solid var(--line); border-radius:6px; padding:6px 8px; font-size:10.5px; line-height:1.28;}
+  .prow.nav,.prow.ft{background:transparent; border-style:dashed; color:var(--muted); font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:.06em;}
+  .prow.cta{border-color:var(--accent); border-width:1.5px; background:transparent; font-weight:600;}
+  .prow.hl{border-color:var(--accent); background:rgba(242,107,29,.10); font-weight:600;}
+
+  .zoombar{display:flex; align-items:center; gap:7px; margin:12px 0 10px; flex-wrap:wrap;}
+  .zoombar button{font-family:var(--sans); font-weight:600; font-size:16px; width:36px; height:36px; border-radius:9px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; line-height:1;}
+  .zoombar button:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .zoombar .zlabel{font-family:var(--mono); font-size:12px; color:var(--muted); min-width:50px; text-align:center;}
+  .zoombar .zfit{width:auto; padding:0 14px; font-size:12.5px;}
+  .zoombar .zhint{font-size:11.5px; color:var(--muted); margin-left:4px;}
+  @media (max-width:640px){ .zoombar .zhint{flex-basis:100%; margin-left:0;} }
+
+  /* ── Wireframes ── */
+  .wfpick{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px;}
+  .wfpick button{font-family:var(--sans); font-size:12.5px; font-weight:600; padding:7px 13px; border-radius:20px; border:1.5px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer;}
+  .wfpick button[aria-pressed="true"]{border-color:var(--ink); color:var(--ink);}
+  .browser{border:1.5px solid var(--wire); border-radius:12px; overflow:hidden; background:var(--surface);}
+  .browser .bar{display:flex; align-items:center; gap:6px; padding:8px 12px; background:var(--phbg); border-bottom:1px solid var(--wire);}
+  .browser .bar i{width:9px; height:9px; border-radius:50%; background:var(--wire); display:inline-block;}
+  .browser .bar .url{margin-left:10px; font-family:var(--mono); font-size:11px; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:3px 10px; flex:1; max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .wf{padding:0; font-size:13px;}
+  .wf section{padding:26px clamp(16px,3vw,34px); border-bottom:1px dashed var(--wire); position:relative;}
+  .wf section:last-child{border-bottom:none;}
+  .wf .sn{position:absolute; top:8px; right:10px; font-family:var(--mono); font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .wf .sn b{color:var(--accent-ink); font-weight:500;}
+  .wf h4{margin:0 0 6px; font-size:clamp(17px,2.4vw,22px); font-weight:700; letter-spacing:-.01em; text-wrap:balance;}
+  .wf h5{margin:0 0 4px; font-size:13.5px; font-weight:700;}
+  .wf p{margin:0; color:var(--muted); font-size:12.5px; max-width:62ch;}
+  .wnav{display:flex; align-items:center; gap:14px; padding:14px clamp(16px,3vw,34px); border-bottom:1px dashed var(--wire); flex-wrap:wrap;}
+  .wnav .wm{font-size:19px;}
+  .wnav .wm sup{font-size:9px;}
+  .wnav .links{display:flex; gap:12px; flex-wrap:wrap; font-size:11.5px; color:var(--muted); flex:1;}
+  .wnav .links .on{color:var(--ink); font-weight:600; border-bottom:2px solid var(--accent);}
+  .btn{display:inline-block; font-size:11.5px; font-weight:600; padding:8px 13px; border-radius:8px; background:var(--ink); color:var(--surface); white-space:nowrap;}
+  .btn.o{background:var(--accent); color:#1a0d05;}
+  .btn.g{background:transparent; color:var(--ink); border:1.5px solid var(--ink);}
+  .ph{background:var(--phbg); border:1.5px dashed var(--wire); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:var(--mono); font-size:10.5px; text-align:center; padding:10px; min-height:70px;}
+  .split{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(16px,3vw,30px); align-items:center;}
+  .row{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
+  .grid{display:grid; gap:10px; margin-top:14px;}
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .g4{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .g5{grid-template-columns:repeat(5,minmax(0,1fr));}
+  .tile{border:1.5px solid var(--line); border-radius:8px; padding:11px; background:var(--surface);}
+  .tile p{font-size:11.5px; margin-top:3px;}
+  .tile .ph{min-height:46px; margin-bottom:8px;}
+  .tile.ac{border-color:var(--accent);}
+  .chain{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; margin-top:14px; border:1.5px solid var(--accent); border-radius:10px; overflow:hidden;}
+  .chain div{padding:12px; border-right:1px solid var(--line); position:relative;}
+  .chain div:last-child{border-right:none;}
+  .chain b{display:block; font-size:13px;}
+  .chain small{display:block; font-size:11px; color:var(--muted); margin-top:2px;}
+  .chain .k{font-family:var(--mono); font-size:10px; color:var(--accent-ink);}
+  .strip{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .strip div{padding:12px 10px; border-right:1px solid var(--line);}
+  .strip div:last-child{border-right:none;}
+  .strip b{display:block; font-size:13.5px;}
+  .strip small{font-size:11px; color:var(--muted);}
+  .dark{background:var(--navy); color:#eef2f7;}
+  .dark p,.dark .sn{color:#aab6c7;}
+  .dark .ph{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.22); color:#aab6c7;}
+  .dark .btn.g{color:#eef2f7; border-color:#eef2f7;}
+  .form{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px;}
+  .fld{border:1.5px solid var(--wire); border-radius:7px; padding:8px 10px; font-size:11px; color:var(--muted); background:var(--surface);}
+  .fld.full{grid-column:1 / -1;}
+  .fld.ac{border-color:var(--accent); color:var(--ink); font-weight:600;}
+  .note{display:inline-block; margin-top:10px; font-size:11px; color:var(--accent-ink); font-family:var(--mono);}
+  .wfoot{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; font-size:11px;}
+  .wfoot b{display:block; font-size:12px; margin-bottom:4px;}
+  .wfoot span{display:block; color:var(--muted);}
+  @media (max-width:760px){
+    .split,.g4,.g5,.g3,.chain,.strip,.wfoot{grid-template-columns:1fr 1fr;}
+    .chain div:nth-child(2){border-right:none;}
+    .chain div:nth-child(-n+2){border-bottom:1px solid var(--line);}
+  }
+  @media (max-width:480px){ .split,.g2,.g3,.g4,.g5,.form,.wfoot{grid-template-columns:1fr;} }
+
+  /* ── Estructura detallada ── */
+  .sitemap{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{border:1.5px solid var(--wire); background:var(--phbg); border-radius:10px; padding:10px 14px; font-weight:600; font-size:13.5px; display:flex; flex-direction:column; gap:2px; flex:1 1 170px;}
+  .chip.new{border-color:var(--accent); background:rgba(242,107,29,.08);}
+  .chip small{font-size:10.5px; font-weight:500; color:var(--muted);}
+  .chip code{font-family:var(--mono); font-size:10px; color:var(--muted); font-weight:500;}
+  .stack{display:flex; flex-direction:column; gap:9px;}
+  .blk{border:1.5px dashed var(--wire); background:var(--phbg); border-radius:10px; padding:11px 14px; display:flex; gap:12px; align-items:flex-start;}
+  .blk .bn{font-family:var(--mono); font-size:12px; color:var(--accent-ink); flex:0 0 auto; margin-top:1px;}
+  .blk b{font-size:14px;}
+  .blk p{margin:3px 0 0; font-size:12.5px; color:var(--muted);}
+  .blk.hero{border-style:solid; background:var(--surface);}
+  .blk.new{border-style:solid; border-color:var(--accent); background:rgba(242,107,29,.07);}
+  .blk.cta{border-style:solid; border-color:var(--ink);}
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;}
+  .cols h3{font-size:14.5px; margin-bottom:8px;}
+  ul.plain{margin:6px 0 0; padding-left:18px; font-size:13px;}
+  ul.plain li{margin:4px 0;}
+  ul.plain li span{color:var(--muted);}
+  .glob{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+  .pill{font-size:11.5px; border:1px solid var(--line); background:var(--phbg); border-radius:20px; padding:5px 12px; color:var(--slate);}
+  .pill.ac{border-color:var(--accent); color:var(--ink);}
+  table.t{width:100%; border-collapse:collapse; font-size:13px;}
+  table.t th{text-align:left; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); padding:8px 10px; border-bottom:1.5px solid var(--ink);}
+  table.t td{padding:10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.t td:first-child{font-weight:600; width:30%;}
+  .tscroll{overflow-x:auto;}
+
+  /* ── Diseño ── */
+  :root{ --cobre:#b8733f; --cobre-2:#e0a06a; }
+  .refs{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px;}
+  .ref{border:1.5px solid var(--line); border-radius:12px; padding:14px; background:var(--surface); display:flex; flex-direction:column; gap:6px;}
+  .ref .who{font-family:var(--mono); font-size:11px; color:var(--muted);}
+  .ref h3{font-size:14.5px;}
+  .ref p{margin:0; font-size:12.5px; color:var(--muted);}
+  .ref a{font-size:12px; color:var(--accent-ink); font-weight:600; text-decoration:none; margin-top:auto;}
+  .ref a:hover{text-decoration:underline;}
+  .el{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:22px; align-items:center;}
+  @media (max-width:820px){ .el{grid-template-columns:1fr;} }
+  .el h3{font-size:16px; margin-bottom:6px;}
+  .el .why{font-size:13px; color:var(--muted); margin:0 0 10px;}
+  .el dl{margin:0; font-size:12.5px; display:grid; grid-template-columns:auto 1fr; gap:6px 12px;}
+  .el dt{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); padding-top:2px;}
+  .el dd{margin:0;}
+  .tag{display:inline-block; font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; padding:3px 8px; border-radius:6px; border:1px solid var(--line); color:var(--slate); margin-right:4px;}
+  .tag.l{border-color:var(--accent); color:var(--accent-ink);}
+  .stage{position:relative; border-radius:12px; overflow:hidden; background:#081428; min-height:300px; border:1px solid var(--line);}
+  .stage .cap{position:absolute; left:12px; bottom:10px; font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:#8fa0b8;}
+  .replay{position:absolute; right:10px; top:10px; font-family:var(--sans); font-size:11.5px; font-weight:600; color:#eef2f7; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:8px; padding:6px 10px; cursor:pointer;}
+  .replay:hover{background:rgba(255,255,255,.16);}
+
+  /* demo 1: descarga */
+  #bolt{min-height:0;}
+  #bolt svg{display:block; width:100%; height:auto;}
+  .bolt-path{stroke:#fff6d6; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; filter:drop-shadow(0 0 6px #ffd27a); stroke-dasharray:260; stroke-dashoffset:260; opacity:0;}
+  .run .bolt-path{animation:bolt .55s ease-out forwards, fade .9s .55s ease-in forwards;}
+  .flow{stroke:var(--accent); stroke-width:4; fill:none; stroke-linecap:round; stroke-dasharray:22 400; stroke-dashoffset:22; opacity:0; filter:drop-shadow(0 0 6px rgba(242,107,29,.9));}
+  .run .flow{animation:flow 1.6s .5s cubic-bezier(.5,0,.3,1) forwards;}
+  .ring{fill:none; stroke:var(--cobre-2); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;}
+  .run .ring{animation:ring 1.6s ease-out forwards;}
+  .run .ring.r1{animation-delay:2.0s;} .run .ring.r2{animation-delay:2.3s;} .run .ring.r3{animation-delay:2.6s;}
+  .lbl{font-family:var(--mono); font-size:10px; fill:#8fa0b8; letter-spacing:.05em;}
+  .lbl.on{fill:#eef2f7;}
+  .flash{fill:#fff; opacity:0;}
+  .run .flash{animation:flash .5s .45s ease-out;}
+  @keyframes bolt{0%{opacity:1; stroke-dashoffset:260} 100%{opacity:1; stroke-dashoffset:0}}
+  @keyframes fade{to{opacity:0}}
+  @keyframes flow{0%{opacity:1; stroke-dashoffset:22} 92%{opacity:1} 100%{opacity:0; stroke-dashoffset:-400}}
+  @keyframes ring{0%{opacity:.9; transform:scale(.3)} 100%{opacity:0; transform:scale(2.4)}}
+  @keyframes flash{0%{opacity:.18} 100%{opacity:0}}
+
+  /* demo 2: CTA */
+  .ctabox{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:300px; padding:24px; background:
+     radial-gradient(120% 80% at 50% 120%, rgba(242,107,29,.18), transparent 60%), #081428;}
+  .cta{position:relative; display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 20px 0 18px; border-radius:12px; border:0; cursor:pointer; background:var(--accent); color:#1a0d05; font-family:var(--sans); font-weight:700; font-size:15px; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease;}
+  .cta:hover,.cta:focus-visible{transform:translateY(-1px); box-shadow:0 10px 26px -8px rgba(242,107,29,.7); outline:none;}
+  .cta .ico{width:18px; height:18px; flex:0 0 auto;}
+  .cta .ico path{fill:#1a0d05;}
+  .cta:hover .ico,.cta:focus-visible .ico{animation:zap .9s ease-in-out infinite;}
+  .cta .txt{position:relative; display:grid; height:20px; overflow:hidden;}
+  .cta .txt span{grid-area:1/1; line-height:20px; transition:transform .28s cubic-bezier(.3,.7,.2,1), opacity .28s;}
+  .cta .txt span+span{transform:translateY(100%); opacity:0;}
+  .cta:hover .txt span:first-child,.cta:focus-visible .txt span:first-child{transform:translateY(-100%); opacity:0;}
+  .cta:hover .txt span+span,.cta:focus-visible .txt span+span{transform:none; opacity:1;}
+  @keyframes zap{0%,100%{transform:translateY(0)} 30%{transform:translateY(2px) scale(1.15)} 45%{transform:translateY(-1px)}}
+  .glass{width:min(320px,90%); border-radius:14px; padding:14px 16px; color:#eef2f7; background:rgba(15,35,64,.55); border:1px solid rgba(255,255,255,.16); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%); font-size:12.5px;}
+  .glass b{display:block; font-size:13.5px; margin-bottom:2px;}
+  .glassbg{position:absolute; inset:0; background:
+     repeating-linear-gradient(115deg, rgba(184,115,63,.35) 0 18px, transparent 18px 46px),
+     radial-gradient(60% 60% at 30% 30%, rgba(242,107,29,.35), transparent 70%), #0b1f3a; opacity:.75;}
+  .ctabox > *{position:relative;}
+
+  /* demo 3: scramble */
+  .scr{min-height:300px; display:flex; flex-direction:column; justify-content:center; gap:10px; padding:26px; background:#081428; color:#eef2f7;}
+  .scr .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#8fa0b8;}
+  .scr .code{font-family:var(--mono); font-size:clamp(20px,3.4vw,30px); font-weight:500; letter-spacing:.02em; color:#fff; min-height:1.3em;}
+  .scr .code.or{color:var(--accent);}
+  .scr p{margin:0; color:#aab6c7; font-size:12.5px; max-width:44ch;}
+
+  /* demo 4: card → página */
+  .vt{min-height:300px; padding:16px 16px 34px; background:var(--phbg);}
+  .vt .cards{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;}
+  .vcard{border:0; text-align:left; cursor:pointer; border-radius:12px; background:var(--surface); padding:0; overflow:hidden; box-shadow:var(--shadow); font-family:var(--sans); color:var(--ink);}
+  .vcard .img{height:110px; background:linear-gradient(135deg,#0b1f3a,#24456f);}
+  .vcard:nth-child(2) .img{background:linear-gradient(135deg,#3a2615,#b8733f);}
+  .vcard:nth-child(3) .img{background:linear-gradient(135deg,#1d2a3a,#f26b1d);}
+  .vcard .t{padding:10px 12px; font-weight:700; font-size:13px;}
+  .vpage{display:none; border-radius:12px; background:var(--surface); overflow:hidden; box-shadow:var(--shadow);}
+  .vpage .img{height:150px;}
+  .vpage .body{padding:14px 16px;}
+  .vpage h4{margin:0 0 6px; font-size:18px;}
+  .vpage p{margin:0 0 12px; font-size:12.5px; color:var(--muted);}
+  .vback{font-family:var(--sans); font-size:12px; font-weight:600; border:1.5px solid var(--ink); background:transparent; color:var(--ink); border-radius:8px; padding:6px 12px; cursor:pointer;}
+  .vt.open .cards{display:none;} .vt.open .vpage{display:block;}
+  @media (max-width:520px){ .vt .cards{grid-template-columns:1fr;} .vcard .img{height:70px;} }
+  ::view-transition-group(*){animation-duration:.24s; animation-timing-function:cubic-bezier(.3,.7,.2,1);}
+
+  .princ{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
+  .pr{border-left:3px solid var(--accent); padding:4px 0 4px 12px;}
+  .pr b{display:block; font-size:13.5px;}
+  .pr span{font-size:12.5px; color:var(--muted);}
+  .no{border-left-color:var(--muted);}
+
+  @media (prefers-reduced-motion:reduce){
+    .run .bolt-path,.run .flow,.run .ring,.run .flash,.cta:hover .ico{animation:none !important;}
+    .bolt-path{opacity:1; stroke-dashoffset:0;}
+    .cta .txt span{transition:none;}
+    ::view-transition-group(*){animation:none;}
+  }
+  ol.open{font-size:13.5px; margin:8px 0 0; padding-left:20px;}
+  ol.open li{margin:9px 0;}
+  ol.open li span{display:block; color:var(--muted); font-size:12.5px;}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-size:11.5px; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="wm">Massatierra<sup>®</sup><small>Tecnología para su tranquilidad</small></div>
+    <div class="eyebrow">Sitio web · Estructura y contenido</div>
+    <h1>Sitio Web Massatierra · Estructura</h1>
+    <p>El mapa del sitio, los wireframes de las páginas clave y el contenido de cada página, en orden. Es la guía para diseñar y programar el sitio nuevo. El objetivo: un sitio que lleve a <b>solicitar un diagnóstico</b> y que sea el destino de quien busca <b>cumplir con la norma</b>.</p>
+  </header>
+
+  <div class="banner">
+    <span class="tag">Propuesta</span>
+    <div>Es una <b>estructura</b>, no el diseño final: los colores y la tipografía son provisionales y los recuadros grises marcan dónde irán fotos e imágenes. Las páginas marcadas con 🚧 necesitan información de Massatierra para escribirse (ver <b>Decisiones por cerrar</b>).</div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Vistas">
+    <button class="tab" role="tab" aria-selected="true" data-panel="map">Mapa del sitio</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="wire">Wireframes</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="design">Elementos de diseño</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="detail">Estructura detallada</button>
+  </div>
+
+  <!-- ═════════════ PANEL: MAPA ═════════════ -->
+  <div id="panel-map">
+    <section class="page">
+      <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · páginas y secciones</h2></div>
+      <p class="page-sub">Cada tarjeta es una página con sus secciones en orden. En naranja, lo <b>nuevo</b> frente al contenido que ya existía: la sección de <b>Cumplimiento normativo</b>, los <b>productos con ficha técnica</b> y el sector <b>Minería</b>.</p>
+      <div class="legend">
+        <span><i class="sw new"></i> Página nueva</span>
+        <span><i class="sw"></i> Página del contenido existente, reorganizada</span>
+        <span>🚧 Falta información de Massatierra</span>
+        <span>❓ Por confirmar si se incluye</span>
+      </div>
+
+      <div class="zoombar" role="group" aria-label="Zoom del mapa">
+        <button type="button" id="zout" aria-label="Alejar">&minus;</button>
+        <span class="zlabel" id="zlabel">100%</span>
+        <button type="button" id="zin" aria-label="Acercar">+</button>
+        <button type="button" class="zfit" id="zfit">Ajustar</button>
+        <span class="zhint">Arrastra para moverte · Ctrl + rueda o pellizca para acercar</span>
+      </div>
+      <div class="treewrap" id="twrap">
+        <div class="tree" id="tree">
+          <ul>
+            <li>
+              <div class="pcard root"><div class="hd"><span>Inicio</span><span class="r">/</span></div><div class="bd">
+                <div class="prow nav">Menú</div>
+                <div class="prow">Hero — Tierras físicas, pararrayos y protección contra sobretensiones</div>
+                <div class="prow">Respaldo: 25 años · patente · garantía · ingeniería</div>
+                <div class="prow hl">Cumplimiento: estudio → instalación → dictamen → garantía</div>
+                <div class="prow">Soluciones que trabajan como un sistema</div>
+                <div class="prow">Encuentre el camino para su proyecto</div>
+                <div class="prow">¿Su instalación presenta estas señales?</div>
+                <div class="prow">Tecnología propia</div>
+                <div class="prow">Sectores</div>
+                <div class="prow">Así trabajamos</div>
+                <div class="prow">Experiencia por sector</div>
+                <div class="prow cta">Solicitar diagnóstico</div>
+                <div class="prow ft">Pie de página</div>
+              </div></div>
+              <ul>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Soluciones</span><span class="r">/soluciones</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Protección eléctrica para su instalación</div>
+                    <div class="prow">Las cinco soluciones</div>
+                    <div class="prow">Obra nueva, ampliación o revisión</div>
+                    <div class="prow cta">Solicitar asesoría técnica</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                  <ul class="v">
+                    <li><div class="pcard"><div class="hd"><span>Puesta a tierra</span><span class="r">/puesta-a-tierra</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Tierras físicas para proteger personas, equipos y operación</div><div class="prow">Una solución diseñada para su instalación</div><div class="prow">Tecnología Massatierra</div><div class="prow">Alcance del servicio</div><div class="prow">¿Ya cuenta con tierra física?</div><div class="prow">Productos relacionados</div><div class="prow cta">Cotizar sistema de puesta a tierra</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Pararrayos</span><span class="r">/pararrayos</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Desde la captación hasta la tierra</div><div class="prow">Los componentes de la protección</div><div class="prow hl">Prueba real: así queda una punta después de recibir descargas</div><div class="prow">Punta MTPP02 · NMX-J549-ANCE-2005</div><div class="prow">Aplicaciones</div><div class="prow">¿Tiene un pararrayos instalado?</div><div class="prow cta">Cotizar sistema de pararrayos</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Supresores ❓</span><span class="r">/supresores</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Protección para equipos sensibles</div><div class="prow">Protección coordinada</div><div class="prow">Aplicaciones</div><div class="prow">¿Daños recurrentes en sus equipos?</div><div class="prow cta">Consultar mi caso</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Estudios y medición</span><span class="r">/estudios</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Conozca las condiciones de su instalación</div><div class="prow">Tipos de estudio</div><div class="prow">¿Cuándo solicitar una evaluación?</div><div class="prow hl">¿Lo necesita para cumplir la NOM-022? →</div><div class="prow cta">Agendar estudio técnico</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Ingeniería e instalación</span><span class="r">/ingenieria</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — De la necesidad a una solución instalada</div><div class="prow">Ingeniería · suministro · instalación · medición · acompañamiento</div><div class="prow">Con quién trabajamos</div><div class="prow cta">Compartir los requerimientos</div><div class="prow ft">Pie de página</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="pcard new"><div class="hd"><span>Cumplimiento</span><span class="r">/cumplimiento</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Cumpla con la norma con un solo responsable</div>
+                    <div class="prow hl">La cadena completa: estudio → instalación → dictamen → garantía</div>
+                    <div class="prow">Qué recibe: un dictamen en regla para Protección Civil y STPS</div>
+                    <div class="prow">Normas que atendemos</div>
+                    <div class="prow">Preguntas de cumplimiento</div>
+                    <div class="prow cta">Formulario corto</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                  <ul class="v">
+                    <li><div class="pcard new"><div class="hd"><span>NOM-022-STPS 🚧</span><span class="r">/nom-022</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Qué exige la norma</div><div class="prow">Qué se mide y cada cuánto</div><div class="prow">Qué le entregamos</div><div class="prow">Preguntas frecuentes</div><div class="prow cta">Solicitar medición</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard new"><div class="hd"><span>Dictamen UVIE 🚧</span><span class="r">/dictamen</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Un dictamen en regla</div><div class="prow">Qué es y quién lo firma</div><div class="prow">Ante quién tiene validez</div><div class="prow">Cómo se integra a su proyecto</div><div class="prow cta">Solicitar dictamen</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard new"><div class="hd"><span>Recibí un levantamiento 🚧</span><span class="r">/levantamiento</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — ¿Le hicieron una observación?</div><div class="prow">Qué hacer ahora</div><div class="prow">Cómo lo resolvemos</div><div class="prow">Lo que necesitamos de usted</div><div class="prow cta">Formulario corto</div><div class="prow ft">Pie de página</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Sectores</span><span class="r">/sectores</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Entendemos lo que su operación necesita proteger</div>
+                    <div class="prow">Los siete sectores</div>
+                    <div class="prow cta">Hablar con un especialista de mi sector</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                  <ul class="v">
+                    <li><div class="pcard"><div class="hd"><span>Página de sector ×7</span><span class="r">plantilla</span></div><div class="bd">
+                      <div class="prow" style="background:transparent">Industria · Hotelería · Salud · Telecom y centros de datos · Construcción · Comercio y servicios · <b style="color:var(--accent-ink)">Minería (nueva)</b></div>
+                      <div class="prow nav">Menú</div><div class="prow">Hero — lo que protege este sector</div><div class="prow">Áreas de aplicación</div><div class="prow">Acompañamiento para su operación</div><div class="prow">Experiencia en el sector</div><div class="prow cta">Solicitar evaluación</div><div class="prow ft">Pie de página</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Tecnología</span><span class="r">/tecnologia</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Tecnología propia, fabricada en México</div>
+                    <div class="prow">Electrodo Magneto Activo · PAT. #285201</div>
+                    <div class="prow">MassLink · sistema unidireccional</div>
+                    <div class="prow">Electrodo estructural · cobre electrolítico</div>
+                    <div class="prow">Avales: NOM · ANCE · NMX · IEEE · ABNT · SEC · IMPI</div>
+                    <div class="prow cta">Solicitar documentación técnica</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                  <ul class="v">
+                    <li><div class="pcard new"><div class="hd"><span>Productos</span><span class="r">/productos</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Electrodos MTK (6 modelos)</div><div class="prow">Punta pararrayos MTPP02</div><div class="prow">Acondicionador MTAT02</div><div class="prow hl">Ficha por modelo + PDF descargable 🚧</div><div class="prow cta">Cotizar</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard new"><div class="hd"><span>Comparativo</span><span class="r">/comparativo</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Massatierra vs. sistema tradicional</div><div class="prow">Tabla comparativa</div><div class="prow">Vida útil: 20 años vs. 3</div><div class="prow cta">Hablar con ingeniería</div><div class="prow ft">Pie de página</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Garantía 🚧</span><span class="r">/garantia</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Nuestro compromiso va por escrito</div><div class="prow">Qué cubre</div><div class="prow">Verificación del sistema</div><div class="prow">Atención durante la vigencia</div><div class="prow cta">Solicitar atención de garantía</div><div class="prow ft">Pie de página</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Proyectos</span><span class="r">/proyectos</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Experiencia en instalaciones que requieren continuidad</div>
+                    <div class="prow">Experiencia por sector</div>
+                    <div class="prow">Caso: centro de telecomunicaciones en Zapopan</div>
+                    <div class="prow cta">Solicitar una solución para mi instalación</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                </li>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Recursos</span><span class="r">/recursos</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Accesos a las cuatro secciones</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                  <ul class="v">
+                    <li><div class="pcard"><div class="hd"><span>Centro de conocimiento</span><span class="r">artículos</span></div><div class="bd">
+                      <div class="prow">¿Qué es una tierra física?</div><div class="prow">¿Por qué fallan equipos si ya hay tierra física?</div><div class="prow">Pararrayos: el sistema completo</div><div class="prow">Qué preparar para cotizar</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Biblioteca técnica</span><span class="r">descargas</span></div><div class="bd">
+                      <div class="prow">Catálogo de soluciones</div><div class="prow">Fichas técnicas 🚧</div><div class="prow">Tecnología patentada</div><div class="prow">Certificaciones</div><div class="prow">Documentos de mi proyecto</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Preguntas frecuentes</span><span class="r">FAQ</span></div><div class="bd">
+                      <div class="prow">Las 11 preguntas del contenido existente</div><div class="prow hl">+ preguntas de cumplimiento</div><div class="prow cta">Hablar con un especialista</div></div></div></li>
+                    <li><div class="pcard"><div class="hd"><span>Capacitación ❓</span><span class="r">/capacitacion</span></div><div class="bd">
+                      <div class="prow">Cursos con validez oficial</div><div class="prow">Temario y modalidad</div><div class="prow cta">Solicitar información</div></div></div></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Empresa</span><span class="r">/empresa</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Tecnología para su tranquilidad</div>
+                    <div class="prow">Quiénes somos</div>
+                    <div class="prow">Misión y visión</div>
+                    <div class="prow">Lo que guía nuestro trabajo</div>
+                    <div class="prow">Compromiso de calidad</div>
+                    <div class="prow">Presencia: México · Chile · Perú</div>
+                    <div class="prow cta">Contactar a Massatierra</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                </li>
+
+                <li>
+                  <div class="pcard"><div class="hd"><span>Contacto</span><span class="r">/contacto</span></div><div class="bd">
+                    <div class="prow nav">Menú</div>
+                    <div class="prow">Hero — Cuéntenos qué necesita proteger</div>
+                    <div class="prow hl">Formulario de diagnóstico (+ pregunta de levantamiento)</div>
+                    <div class="prow">Atención directa: teléfono, WhatsApp, correo, oficina</div>
+                    <div class="prow">Qué pasa después de enviar</div>
+                    <div class="prow ft">Pie de página</div>
+                  </div></div>
+                  <ul class="v">
+                    <li><div class="pcard"><div class="hd"><span>Soporte técnico</span><span class="r">/soporte</span></div><div class="bd">
+                      <div class="prow nav">Menú</div><div class="prow">Hero — Estamos para atender su sistema</div><div class="prow">Formulario de soporte</div><div class="prow">¿Prefiere hablar con nosotros?</div><div class="prow ft">Pie de página</div></div></div></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="page-sub" style="margin-top:16px">En todo el sitio: menú con estas secciones y el botón <b>“Solicitar diagnóstico”</b> siempre visible, acceso a <b>WhatsApp</b> y a <b>Soporte técnico</b>, y pie de página con contacto, <b>Aviso de privacidad</b> y <b>Términos de garantía</b>.</p>
+    </section>
+  </div>
+
+  <!-- ═════════════ PANEL: WIREFRAMES ═════════════ -->
+  <div id="panel-wire" hidden>
+    <section class="page">
+      <div class="page-head"><span class="n">↳</span><h2>Wireframes · cómo se acomoda el contenido</h2></div>
+      <p class="page-sub">Boceto en gris de las dos páginas que más pesan: el <b>Inicio</b> y la sección nueva de <b>Cumplimiento</b>. Los textos vienen del contenido que ya existe y del material de Massatierra; los recuadros punteados son fotos o imágenes por definir.</p>
+      <div class="wfpick" role="group" aria-label="Página">
+        <button type="button" aria-pressed="true" data-wf="wf-home">Inicio</button>
+        <button type="button" aria-pressed="false" data-wf="wf-cumpl">Cumplimiento</button>
+      </div>
+
+      <!-- Wireframe: Inicio -->
+      <div class="browser" id="wf-home">
+        <div class="bar"><i></i><i></i><i></i><span class="url">massatierra.com.mx</span></div>
+        <div class="wf">
+          <div class="wnav">
+            <div class="wm">Massatierra<sup>®</sup></div>
+            <div class="links"><span>Soluciones</span><span>Cumplimiento</span><span>Sectores</span><span>Tecnología</span><span>Proyectos</span><span>Recursos</span><span>Empresa</span></div>
+            <span class="btn o">Solicitar diagnóstico</span>
+          </div>
+
+          <section class="dark">
+            <span class="sn"><b>01</b> · Hero</span>
+            <div class="split">
+              <div>
+                <p style="font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px">Tierras físicas, pararrayos y protección contra sobretensiones</p>
+                <h4 style="font-size:clamp(20px,3.2vw,30px)">Tecnología para proteger lo que mantiene en marcha su empresa</h4>
+                <p style="margin-top:8px">Tecnología patentada, ingeniería especializada e instalación, con garantía de desempeño por escrito.</p>
+                <div class="row"><span class="btn o">Solicitar diagnóstico</span><span class="btn g">Hablar con un especialista</span></div>
+              </div>
+              <div class="ph" style="min-height:190px">Foto de obra / instalación real</div>
+            </div>
+          </section>
+
+          <section style="padding-block:0">
+            <span class="sn"><b>02</b> · Respaldo</span>
+            <div class="strip">
+              <div><b>+25 años</b><small>de experiencia</small></div>
+              <div><b>Tecnología patentada</b><small>PAT. #285201 · IMPI</small></div>
+              <div><b>20 años de garantía</b><small>por escrito 🚧</small></div>
+              <div><b>Ingeniería integral</b><small>del estudio al soporte</small></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>03</b> · Cumplimiento <b>· nuevo</b></span>
+            <h4>¿Tiene que cumplir con la norma? Lo resolvemos de punta a punta</h4>
+            <p>Usted no necesita coordinar a cuatro proveedores: recibe un dictamen en regla para Protección Civil y STPS.</p>
+            <div class="chain">
+              <div><span class="k">01</span><b>Estudio</b><small>Medición y diagnóstico</small></div>
+              <div><span class="k">02</span><b>Instalación</b><small>Tecnología patentada</small></div>
+              <div><span class="k">03</span><b>Dictamen UVIE</b><small>Firma de verificador acreditado</small></div>
+              <div><span class="k">04</span><b>Garantía</b><small>20 años por escrito</small></div>
+            </div>
+            <div class="row"><span class="btn">Ver cómo cumplir la NOM-022</span><span class="btn g">Recibí un levantamiento</span></div>
+          </section>
+
+          <section>
+            <span class="sn"><b>04</b> · Soluciones</span>
+            <h4>Soluciones que trabajan como un sistema</h4>
+            <div class="grid g5">
+              <div class="tile"><div class="ph">ícono</div><h5>Puesta a tierra</h5></div>
+              <div class="tile"><div class="ph">ícono</div><h5>Pararrayos</h5></div>
+              <div class="tile"><div class="ph">ícono</div><h5>Supresores ❓</h5></div>
+              <div class="tile"><div class="ph">ícono</div><h5>Estudios y medición</h5></div>
+              <div class="tile"><div class="ph">ícono</div><h5>Ingeniería e instalación</h5></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>05</b> · Caminos</span>
+            <h4>Encuentre el camino para su proyecto</h4>
+            <div class="grid g4">
+              <div class="tile"><h5>Necesito proteger una instalación</h5><p>→ Encontrar mi solución</p></div>
+              <div class="tile"><h5>Tengo fallas o quiero revisar mi sistema</h5><p>→ Revisar mi instalación</p></div>
+              <div class="tile"><h5>Necesito especificar o cotizar un proyecto</h5><p>→ Consultar con ingeniería</p></div>
+              <div class="tile"><h5>Ya soy cliente y necesito soporte</h5><p>→ Solicitar soporte</p></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>06</b> · Señales</span>
+            <div class="split">
+              <div>
+                <h4>¿Su instalación presenta alguna de estas señales?</h4>
+                <p>Equipos que fallan después de una tormenta · interrupciones en sistemas de control · ruido en audio o telecomunicaciones · descargas de estática · sensación de descarga al tocar equipos.</p>
+                <div class="row"><span class="btn o">Solicitar diagnóstico</span></div>
+              </div>
+              <div class="ph" style="min-height:130px">Foto: tablero / equipo dañado</div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>07</b> · Tecnología</span>
+            <div class="split">
+              <div class="ph" style="min-height:150px">Render: Electrodo Magneto Activo + MassLink</div>
+              <div>
+                <h4>Tecnología propia, aplicada a su operación</h4>
+                <p>Electrodo Magneto Activo patentado: MassLink unidireccional y electrodo estructural de cobre electrolítico. Libre de mantenimiento.</p>
+                <div class="row"><span class="btn g">Conocer la tecnología</span><span class="btn g">Ver comparativo</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>08</b> · Sectores</span>
+            <h4>Especialización para distintos sectores</h4>
+            <div class="grid g4">
+              <div class="tile"><div class="ph">foto</div><h5>Industria</h5></div>
+              <div class="tile"><div class="ph">foto</div><h5>Hotelería</h5></div>
+              <div class="tile"><div class="ph">foto</div><h5>Salud</h5></div>
+              <div class="tile"><div class="ph">foto</div><h5>Telecom y datos</h5></div>
+              <div class="tile"><div class="ph">foto</div><h5>Construcción</h5></div>
+              <div class="tile"><div class="ph">foto</div><h5>Comercio</h5></div>
+              <div class="tile ac"><div class="ph">foto</div><h5>Minería</h5></div>
+              <div class="tile" style="display:flex;align-items:center;justify-content:center"><span class="btn g">Ver todos</span></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>09</b> · Proceso</span>
+            <h4>Así trabajamos</h4>
+            <div class="grid g5">
+              <div class="tile"><h5>1 · Conocemos su necesidad</h5></div>
+              <div class="tile"><h5>2 · Evaluamos y diseñamos</h5></div>
+              <div class="tile"><h5>3 · Presentamos una solución clara</h5></div>
+              <div class="tile"><h5>4 · Instalamos y verificamos</h5></div>
+              <div class="tile"><h5>5 · Entregamos respaldo</h5></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>10</b> · Experiencia</span>
+            <div class="split">
+              <div>
+                <h4>Experiencia en instalaciones que requieren continuidad</h4>
+                <p>Manufactura, hotelería, telecomunicaciones, salud, minería, educación e infraestructura. Casos por sector, sin logotipos hasta tener autorización.</p>
+                <div class="row"><span class="btn g">Conocer nuestros proyectos</span></div>
+              </div>
+              <div class="ph" style="min-height:120px">Foto de proyecto</div>
+            </div>
+          </section>
+
+          <section class="dark">
+            <span class="sn"><b>11</b> · Cierre</span>
+            <h4>Su próximo paso comienza con una conversación</h4>
+            <p>Cuéntenos qué necesita proteger o qué problema presenta su instalación.</p>
+            <div class="row"><span class="btn o">Solicitar diagnóstico</span><span class="btn g">Escribir por WhatsApp</span></div>
+          </section>
+
+          <section>
+            <span class="sn">Pie de página</span>
+            <div class="wfoot">
+              <div><b>Massatierra®</b><span>Tecnología para su tranquilidad</span></div>
+              <div><b>Soluciones</b><span>Puesta a tierra</span><span>Pararrayos</span><span>Estudios</span><span>Cumplimiento</span></div>
+              <div><b>Recursos</b><span>Centro de conocimiento</span><span>Biblioteca técnica</span><span>Preguntas frecuentes</span></div>
+              <div><b>Contacto</b><span>Teléfono · WhatsApp</span><span>Oficina en Zapopan</span><span>Aviso de privacidad</span></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Wireframe: Cumplimiento -->
+      <div class="browser" id="wf-cumpl" hidden>
+        <div class="bar"><i></i><i></i><i></i><span class="url">massatierra.com.mx/cumplimiento</span></div>
+        <div class="wf">
+          <div class="wnav">
+            <div class="wm">Massatierra<sup>®</sup></div>
+            <div class="links"><span>Soluciones</span><span class="on">Cumplimiento</span><span>Sectores</span><span>Tecnología</span><span>Proyectos</span><span>Recursos</span><span>Empresa</span></div>
+            <span class="btn o">Solicitar diagnóstico</span>
+          </div>
+
+          <section class="dark">
+            <span class="sn"><b>01</b> · Hero</span>
+            <div class="split">
+              <div>
+                <p style="font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px">Cumplimiento normativo · NOM-022-STPS</p>
+                <h4 style="font-size:clamp(20px,3.2vw,30px)">Cumpla con la norma con un solo responsable</h4>
+                <p style="margin-top:8px">Estudio, instalación y dictamen con firma de verificador acreditado. Un dictamen en regla para Protección Civil y STPS.</p>
+                <div class="row"><span class="btn o">Recibí un levantamiento</span><span class="btn g">Solicitar estudio</span></div>
+              </div>
+              <div class="ph" style="min-height:170px">Foto: medición en campo / dictamen</div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>02</b> · La cadena</span>
+            <h4>Usted no necesita coordinar a cuatro proveedores</h4>
+            <div class="chain">
+              <div><span class="k">01</span><b>Estudio</b><small>Medición y diagnóstico de su sistema</small></div>
+              <div><span class="k">02</span><b>Instalación</b><small>Correcciones con tecnología patentada</small></div>
+              <div><span class="k">03</span><b>Dictamen UVIE</b><small>Firma de verificador acreditado 🚧</small></div>
+              <div><span class="k">04</span><b>Garantía</b><small>Desempeño por escrito</small></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>03</b> · Para quién</span>
+            <h4>¿Es su caso?</h4>
+            <div class="grid g3">
+              <div class="tile ac"><h5>Recibí un levantamiento</h5><p>Protección Civil o STPS observaron su instalación y necesita resolverlo.</p></div>
+              <div class="tile"><h5>Me toca la medición anual</h5><p>La NOM-022-STPS-2015 pide medir la resistencia a tierra cada año.</p></div>
+              <div class="tile"><h5>Abro o amplío una instalación</h5><p>Necesita el sistema y el dictamen desde el proyecto.</p></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>04</b> · Normas</span>
+            <h4>Normas que atendemos</h4>
+            <div class="grid g3">
+              <div class="tile"><h5>NOM-022-STPS-2015</h5><p>Electricidad estática en centros de trabajo. Medición anual 🚧 texto a validar.</p></div>
+              <div class="tile"><h5>NOM-001-SEDE-2012</h5><p>Instalaciones eléctricas 🚧 texto a validar.</p></div>
+              <div class="tile"><h5>NMX-J549-ANCE-2005</h5><p>Protección contra tormentas eléctricas 🚧 texto a validar.</p></div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>05</b> · Qué recibe</span>
+            <div class="split">
+              <div>
+                <h4>Qué le entregamos</h4>
+                <p>Reporte de medición · proyecto de corrección cuando aplica · dictamen firmado · garantía por escrito. 🚧 Lista exacta con el formato de dictamen de Massatierra.</p>
+              </div>
+              <div class="ph" style="min-height:120px">Imagen: ejemplo de dictamen (datos ocultos)</div>
+            </div>
+          </section>
+
+          <section>
+            <span class="sn"><b>06</b> · Preguntas</span>
+            <h4>Preguntas de cumplimiento</h4>
+            <div class="grid g2">
+              <div class="tile"><h5>¿Quién puede firmar el dictamen?</h5></div>
+              <div class="tile"><h5>¿Cada cuánto se tiene que medir?</h5></div>
+              <div class="tile"><h5>¿Pueden revisar una instalación de otro proveedor?</h5></div>
+              <div class="tile"><h5>¿Cuánto tarda todo el proceso?</h5></div>
+            </div>
+          </section>
+
+          <section class="dark">
+            <span class="sn"><b>07</b> · Formulario corto</span>
+            <h4>Cuéntenos qué le observaron</h4>
+            <div class="form">
+              <div class="fld">Nombre</div>
+              <div class="fld">Empresa</div>
+              <div class="fld">Teléfono o WhatsApp</div>
+              <div class="fld">Ciudad de la instalación</div>
+              <div class="fld full ac">¿Recibió recientemente un levantamiento o dictamen de cumplimiento?  ○ Sí  ○ No</div>
+              <div class="fld full">¿Qué le pidieron? (puede adjuntar la observación)</div>
+            </div>
+            <div class="row"><span class="btn o">Enviar</span><span class="btn g">Continuar por WhatsApp</span></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═════════════ PANEL: DISEÑO ═════════════ -->
+  <div id="panel-design" hidden>
+
+    <section class="page">
+      <div class="page-head"><span class="n">↳</span><h2>Elementos de diseño · cómo se va a sentir el sitio</h2></div>
+      <p class="page-sub">Cuatro recursos de diseño web actual, traducidos a lo que vende Massatierra. Los recuadros oscuros son <b>demos que funcionan</b>: pase el cursor, haga clic o use “Repetir”. No son el diseño final, muestran el tipo de experiencia.</p>
+      <div class="princ">
+        <div class="pr"><b>Que se entienda la física</b><span>El movimiento explica cómo una descarga viaja a tierra; no es decoración.</span></div>
+        <div class="pr"><b>Pensado primero para el celular</b><span>Las escenas se recomponen para pantalla vertical; no se encogen.</span></div>
+        <div class="pr"><b>Rápido y legible</b><span>Efectos ligeros, contraste alto y movimiento reducido para quien lo pide en su dispositivo.</span></div>
+        <div class="pr no"><b>Nada de “plantilla de IA”</b><span>Sin degradados morados ni brillos genéricos: azul Massatierra, naranja, cobre y fotos reales.</span></div>
+      </div>
+    </section>
+
+    <!-- 1 · Descarga -->
+    <section class="page">
+      <div class="page-head"><span class="n">01</span><h2>Escena del recorrido de una descarga</h2></div>
+      <div class="el">
+        <div>
+          <p class="why">La idea más fuerte del sitio: ver cómo el rayo cae en la punta, baja por la conducción y se disipa en el electrodo. Es el «sistema integral punta-bajante-electrodo» del brochure, contado sin palabras.</p>
+          <dl>
+            <dt>Dónde</dt><dd>Hero del Inicio y de Pararrayos; en Tecnología, la misma escena explica el MassLink unidireccional.</dd>
+            <dt>Cómo</dt><dd>Animación ligera (SVG); en una segunda etapa, escena 3D del electrodo con la cámara recompuesta para celular.</dd>
+            <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span> versión 2D · <span class="tag">Fase 2</span> 3D</dd>
+          </dl>
+        </div>
+        <div class="stage" id="bolt">
+          <button class="replay" type="button" data-replay="bolt">↻ Repetir</button>
+          <svg viewBox="0 0 400 300" role="img" aria-label="Animación: un rayo cae en la punta pararrayos, la corriente baja por la conducción y se disipa en el electrodo bajo tierra">
+            <rect class="flash" x="0" y="0" width="400" height="300"/>
+            <!-- terreno -->
+            <rect x="0" y="210" width="400" height="90" fill="#1a1410"/>
+            <rect x="0" y="208" width="400" height="3" fill="#3a2a1d"/>
+            <!-- edificio -->
+            <rect x="150" y="120" width="140" height="90" fill="#12284a" stroke="#24456f"/>
+            <g fill="#24456f"><rect x="165" y="138" width="20" height="14"/><rect x="200" y="138" width="20" height="14"/><rect x="235" y="138" width="20" height="14"/><rect x="165" y="170" width="20" height="14"/><rect x="200" y="170" width="20" height="14"/><rect x="235" y="170" width="20" height="14"/></g>
+            <!-- mástil y punta -->
+            <line x1="270" y1="120" x2="270" y2="72" stroke="#c3cad5" stroke-width="2.5"/>
+            <path d="M270 52 L273 72 L267 72 Z" fill="#e6ebf2"/>
+            <path d="M270 72 l-8 -7 M270 72 l8 -7 M270 74 l0 -9" stroke="#e6ebf2" stroke-width="1.5"/>
+            <rect x="265" y="74" width="10" height="5" fill="#f2c21d"/>
+            <!-- bajante -->
+            <path d="M276 82 L298 82 L298 210" stroke="#b8733f" stroke-width="2.5" fill="none"/>
+            <!-- electrodo -->
+            <path d="M298 210 L298 262" stroke="#b8733f" stroke-width="5"/>
+            <path d="M298 262 l-14 -22 M298 262 l14 -22" stroke="#b8733f" stroke-width="2.5"/>
+            <rect x="292" y="214" width="12" height="10" fill="#2a6fd6"/>
+            <!-- rayo -->
+            <path class="bolt-path" d="M235 0 L250 20 L240 26 L262 44 L256 48 L270 54"/>
+            <!-- corriente -->
+            <path class="flow" d="M270 56 L270 80 L298 82 L298 262"/>
+            <!-- disipación -->
+            <circle class="ring r1" cx="298" cy="258" r="14"/>
+            <circle class="ring r2" cx="298" cy="258" r="14"/>
+            <circle class="ring r3" cx="298" cy="258" r="14"/>
+            <!-- etiquetas -->
+            <text class="lbl on" x="18" y="40">01 · CAPTACIÓN</text><text class="lbl" x="18" y="54">Punta MTPP02</text>
+            <text class="lbl on" x="18" y="150">02 · CONDUCCIÓN</text><text class="lbl" x="18" y="164">Bajante</text>
+            <text class="lbl on" x="18" y="246">03 · PUESTA A TIERRA</text><text class="lbl" x="18" y="260">Electrodo Magneto Activo</text>
+          </svg>
+          <span class="cap">Demo · animación SVG</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · CTA + vidrio -->
+    <section class="page">
+      <div class="page-head"><span class="n">02</span><h2>Microinteracciones y jerarquía</h2></div>
+      <div class="el">
+        <div>
+          <p class="why">El botón principal “se siente como un logro” al pasar el cursor: cambia el texto y el rayo se activa. Los paneles de vidrio esmerilado dejan ver la foto de obra detrás sin perder lectura.</p>
+          <dl>
+            <dt>Dónde</dt><dd>Botón “Solicitar diagnóstico” en todo el sitio; vidrio sobre fotos de obra en hero y sectores.</dd>
+            <dt>Reglas</dt><dd>Una escala tipográfica, un solo estilo de tarjeta, contenido agrupado por relación, especificaciones técnicas en acordeones. El vidrio, con fondo suficiente para leer bien.</dd>
+            <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span></dd>
+          </dl>
+        </div>
+        <div class="stage">
+          <div class="ctabox">
+            <div class="glassbg" aria-hidden="true"></div>
+            <button class="cta" type="button">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+              <span class="txt"><span>Solicitar diagnóstico</span><span>Hablemos de su instalación</span></span>
+            </button>
+            <div class="glass"><b>Panel de vidrio esmerilado</b>La foto de la obra se alcanza a ver detrás del panel, sin restarle lectura al texto.</div>
+          </div>
+          <span class="cap">Demo · pase el cursor por el botón</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · Texto técnico -->
+    <section class="page">
+      <div class="page-head"><span class="n">03</span><h2>Texto técnico que se “decodifica”</h2></div>
+      <div class="el">
+        <div>
+          <p class="why">Los códigos de norma y de producto aparecen como si un equipo de medición los estuviera leyendo. Le da carácter de ingeniería a datos que normalmente se ven secos.</p>
+          <dl>
+            <dt>Dónde</dt><dd>Sección de Cumplimiento (NOM-022-STPS-2015, NMX-J549), fichas de producto (MTK, MTPP02) y la patente.</dd>
+            <dt>Cómo</dt><dd>Componentes de texto animado del tipo de React Bits, que funcionan con la misma tecnología del sitio. Se usan uno o dos efectos, no todos.</dd>
+            <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span></dd>
+          </dl>
+        </div>
+        <div class="stage">
+          <div class="scr">
+            <span class="k">Norma que atendemos</span>
+            <span class="code" data-scramble="NOM-022-STPS-2015">NOM-022-STPS-2015</span>
+            <span class="k" style="margin-top:8px">Patente</span>
+            <span class="code or" data-scramble="PAT. #285201 MR">PAT. #285201 MR</span>
+            <p>Electrodo Magneto Activo, registrado ante el IMPI.</p>
+          </div>
+          <button class="replay" type="button" data-replay="scramble">↻ Repetir</button>
+          <span class="cap">Demo · texto que se decodifica</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · Transición -->
+    <section class="page">
+      <div class="page-head"><span class="n">04</span><h2>Transiciones con sentido de lugar</h2></div>
+      <div class="el">
+        <div>
+          <p class="why">Al tocar una tarjeta, la tarjeta <b>se convierte</b> en la página; “regresar” la devuelve a su lugar. El visitante nunca pierde dónde estaba, y los menús se abren desde su botón.</p>
+          <dl>
+            <dt>Dónde</dt><dd>Tarjetas de sector → página de sector; productos → ficha técnica; casos → proyecto.</dd>
+            <dt>Reglas</dt><dd>Duración menor a un cuarto de segundo; se desactiva si el dispositivo pide menos movimiento.</dd>
+            <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span></dd>
+          </dl>
+        </div>
+        <div class="stage" style="background:var(--phbg)">
+          <div class="vt" id="vt">
+            <div class="cards">
+              <button class="vcard" type="button" data-i="0"><div class="img"></div><div class="t">Industria</div></button>
+              <button class="vcard" type="button" data-i="1"><div class="img"></div><div class="t">Minería</div></button>
+              <button class="vcard" type="button" data-i="2"><div class="img"></div><div class="t">Telecom y datos</div></button>
+            </div>
+            <div class="vpage" aria-live="polite">
+              <div class="img"></div>
+              <div class="body"><h4>Sector</h4><p>La tarjeta se convirtió en la página: misma imagen, mismo título, ahora en grande.</p><button class="vback" type="button">← Regresar</button></div>
+            </div>
+          </div>
+          <span class="cap" style="color:var(--muted)">Demo · haga clic en una tarjeta</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">05</span><h2>Las referencias</h2></div>
+      <p class="page-sub">De dónde sale cada idea.</p>
+      <div class="refs">
+        <div class="ref"><span class="who">@textura.eu</span><h3>Escenas 3D recompuestas para celular</h3><p>El hero en 3D no se encoge para el celular: se vuelve a encuadrar. La cámara se acerca, el objeto llena la pantalla vertical y la interacción pasa al tacto.</p><a href="https://www.instagram.com/reel/DfK9uklOWJ_/" target="_blank" rel="noopener">Ver referencia →</a></div>
+        <div class="ref"><span class="who">@buildwithomar</span><h3>De diseño genérico a producto</h3><p>Escala tipográfica real, un solo estilo de tarjeta, jerarquía agrupada, un botón que se siente como un logro, vidrio esmerilado y acordeones para lo secundario.</p><a href="https://www.instagram.com/reel/DfqWmHCmU9p/" target="_blank" rel="noopener">Ver referencia →</a></div>
+        <div class="ref"><span class="who">@aartstock</span><h3>React Bits: texto y efectos animados</h3><p>Librería de componentes animados para React: texto que se decodifica o se arma con partículas, galerías que se expanden y fondos interactivos, todos ajustables.</p><a href="https://www.instagram.com/reel/DfxBT6yqW5E/" target="_blank" rel="noopener">Ver referencia →</a></div>
+        <div class="ref"><span class="who">@theglidestudio</span><h3>No cortar: llevar</h3><p>La tarjeta se convierte en la página, “regresar” regresa y los menús nacen de su botón. Un sitio con sentido de lugar.</p><a href="https://www.instagram.com/reel/DfwhC1riuuO/" target="_blank" rel="noopener">Ver referencia →</a></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═════════════ PANEL: DETALLE ═════════════ -->
+  <div id="panel-detail" hidden>
+
+    <section class="page">
+      <div class="page-head"><span class="n">01</span><h2>Mapa del sitio</h2></div>
+      <p class="page-sub">Las secciones del menú y lo que agrupa cada una. Alrededor de 35 páginas; las de sector y las fichas de producto usan una misma plantilla.</p>
+      <div class="sitemap">
+        <div class="chip">Inicio<small>Presentación, respaldo y caminos</small><code>/</code></div>
+        <div class="chip">Soluciones<small>Puesta a tierra · Pararrayos · Supresores ❓ · Estudios · Ingeniería</small><code>/soluciones</code></div>
+        <div class="chip new">Cumplimiento<small>NOM-022 · Dictamen UVIE · Recibí un levantamiento</small><code>/cumplimiento</code></div>
+        <div class="chip">Sectores<small>7 sectores, Minería nueva</small><code>/sectores</code></div>
+        <div class="chip">Tecnología<small>Productos con ficha · Comparativo · Garantía</small><code>/tecnologia</code></div>
+        <div class="chip">Proyectos<small>Experiencia por sector</small><code>/proyectos</code></div>
+        <div class="chip">Recursos<small>Conocimiento · Biblioteca · FAQ · Capacitación ❓</small><code>/recursos</code></div>
+        <div class="chip">Empresa<small>Quiénes somos, calidad, presencia</small><code>/empresa</code></div>
+        <div class="chip">Contacto<small>Diagnóstico y cotización · Soporte</small><code>/contacto</code></div>
+      </div>
+      <div class="glob" style="margin-top:14px">
+        <span class="pill ac">Botón “Solicitar diagnóstico” siempre visible</span>
+        <span class="pill">WhatsApp y Soporte técnico en todo el sitio</span>
+        <span class="pill">Pie: contacto · Aviso de privacidad · Términos de garantía</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">02</span><h2>Qué cambia frente al contenido actual</h2></div>
+      <p class="page-sub">El contenido que ya existe está bien escrito y se aprovecha casi completo. Estos son los ajustes.</p>
+      <div class="tscroll"><table class="t">
+        <thead><tr><th>Cambio</th><th>Por qué</th></tr></thead>
+        <tbody>
+          <tr><td>➕ Sección de Cumplimiento normativo</td><td>Quien recibe un levantamiento de Protección Civil o STPS busca un <b>dictamen en regla</b>. Massatierra es de las pocas empresas que puede entregar la cadena completa, y el contenido actual no lo dice en ningún lado.</td></tr>
+          <tr><td>➕ Productos con ficha técnica</td><td>El contenido actual no nombra ningún modelo. Quien especifica un proyecto necesita la ficha del MTK, la MTPP02 o el MTAT02.</td></tr>
+          <tr><td>➕ Comparativo vs. sistema tradicional</td><td>Ya existe en el brochure y es el argumento más claro para quien compara opciones.</td></tr>
+          <tr><td>➕ Evidencia real: punta MTPP02 usada</td><td>Una punta que ya recibió descargas muestra el desgaste en la punta y el cuerpo íntegro. Es una prueba que ningún render sustituye y que respalda «ultra resistente a descargas de alta intensidad» del brochure.</td></tr>
+          <tr><td>➕ Sector Minería</td><td>Hay experiencia documentada en minería y no tenía página propia.</td></tr>
+          <tr><td>➕ Pregunta de origen en el formulario</td><td>Separa a quien llega por una obligación normativa de quien llega a cotizar, para atender a cada uno como necesita.</td></tr>
+          <tr><td>✏️ Presencia en México, Chile y Perú</td><td>El contenido actual solo dice «México y el extranjero».</td></tr>
+          <tr><td>⏸️ Academia «Próximamente»</td><td>Se sustituye por una página real de capacitación, si se confirma la oferta. Una página vacía resta.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">03</span><h2>Inicio — en orden</h2></div>
+      <p class="page-sub">Recorrido: llega desde Google → entiende qué resolvemos → encuentra su camino → ve el respaldo → solicita diagnóstico.</p>
+      <div class="stack">
+        <div class="blk hero"><span class="bn">01</span><div><b>Hero</b><p>Tierras físicas, pararrayos y protección contra sobretensiones. Botones: Solicitar diagnóstico · Hablar con un especialista.</p></div></div>
+        <div class="blk"><span class="bn">02</span><div><b>Respaldo</b><p>+25 años · tecnología patentada · garantía de desempeño por escrito · ingeniería integral.</p></div></div>
+        <div class="blk new"><span class="bn">03</span><div><b>Cumplimiento: la cadena completa</b><p>Estudio → instalación → dictamen UVIE → garantía. Accesos a NOM-022 y a «Recibí un levantamiento».</p></div></div>
+        <div class="blk"><span class="bn">04</span><div><b>Soluciones que trabajan como un sistema</b><p>Tarjeta por solución.</p></div></div>
+        <div class="blk"><span class="bn">05</span><div><b>Encuentre el camino para su proyecto</b><p>Proteger una instalación · tengo fallas · especificar o cotizar · ya soy cliente.</p></div></div>
+        <div class="blk"><span class="bn">06</span><div><b>¿Su instalación presenta estas señales?</b><p>Síntomas que justifican una revisión.</p></div></div>
+        <div class="blk"><span class="bn">07</span><div><b>Tecnología propia</b><p>Electrodo Magneto Activo, MassLink, electrodo estructural. Accesos a tecnología y comparativo.</p></div></div>
+        <div class="blk"><span class="bn">08</span><div><b>Sectores</b><p>Los siete sectores.</p></div></div>
+        <div class="blk"><span class="bn">09</span><div><b>Así trabajamos</b><p>Cinco pasos, de la necesidad al respaldo.</p></div></div>
+        <div class="blk"><span class="bn">10</span><div><b>Experiencia por sector</b><p>Sin logotipos de clientes hasta tener autorización.</p></div></div>
+        <div class="blk cta"><span class="bn">11</span><div><b>Cierre</b><p>Su próximo paso comienza con una conversación. Solicitar diagnóstico · WhatsApp.</p></div></div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">04</span><h2>Plantillas que se repiten</h2></div>
+      <div class="cols">
+        <div>
+          <h3>Página de solución</h3>
+          <div class="stack">
+            <div class="blk"><span class="bn">1</span><div><b>Qué es y para qué sirve</b></div></div>
+            <div class="blk"><span class="bn">2</span><div><b>Aplicaciones</b></div></div>
+            <div class="blk"><span class="bn">3</span><div><b>Tecnología y productos relacionados</b></div></div>
+            <div class="blk"><span class="bn">4</span><div><b>«¿Ya tiene un sistema?» → revisión</b></div></div>
+            <div class="blk cta"><span class="bn">5</span><div><b>Cotizar esta solución</b></div></div>
+          </div>
+        </div>
+        <div>
+          <h3>Página de sector</h3>
+          <div class="stack">
+            <div class="blk"><span class="bn">1</span><div><b>Lo que protege este sector</b></div></div>
+            <div class="blk"><span class="bn">2</span><div><b>Áreas de aplicación</b></div></div>
+            <div class="blk"><span class="bn">3</span><div><b>Acompañamiento</b></div></div>
+            <div class="blk"><span class="bn">4</span><div><b>Experiencia en el sector</b></div></div>
+            <div class="blk cta"><span class="bn">5</span><div><b>Solicitar evaluación</b></div></div>
+          </div>
+        </div>
+        <div>
+          <h3>Ficha de producto</h3>
+          <div class="stack">
+            <div class="blk"><span class="bn">1</span><div><b>Modelo, foto o render</b></div></div>
+            <div class="blk"><span class="bn">2</span><div><b>Especificaciones</b><p>🚧 Con las fichas técnicas de Massatierra.</p></div></div>
+            <div class="blk"><span class="bn">3</span><div><b>Aplicaciones</b></div></div>
+            <div class="blk new"><span class="bn">4</span><div><b>Descargar ficha en PDF</b></div></div>
+            <div class="blk cta"><span class="bn">5</span><div><b>Cotizar</b></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">05</span><h2>Formularios y lo que se mide</h2></div>
+      <div class="cols">
+        <div>
+          <h3>Formulario de diagnóstico</h3>
+          <ul class="plain">
+            <li>Nombre · empresa · teléfono o WhatsApp · correo · ciudad de la instalación</li>
+            <li>¿Qué necesita? <span>(puesta a tierra, pararrayos, estudio, ingeniería, orientación)</span></li>
+            <li><b>¿Recibió recientemente un levantamiento o dictamen de cumplimiento?</b></li>
+            <li>Cuéntenos sobre su proyecto</li>
+            <li>Autorización de contacto y Aviso de privacidad</li>
+          </ul>
+          <p class="page-sub" style="margin-top:10px">Cada solicitud queda registrada, y el formulario queda listo para conectarse al cotizador.</p>
+        </div>
+        <div>
+          <h3>Formulario de soporte</h3>
+          <ul class="plain">
+            <li>Contacto, empresa y ubicación de la instalación</li>
+            <li>Número de proyecto o referencia</li>
+            <li>Tipo: consulta técnica · revisión · medición · garantía · documentación</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Lo que se mide desde el lanzamiento</h3>
+          <div class="glob">
+            <span class="pill">Solicitudes de diagnóstico</span><span class="pill">Llamadas</span>
+            <span class="pill">Clics a WhatsApp</span><span class="pill">Descargas de ficha técnica</span>
+            <span class="pill">Formularios abandonados</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">06</span><h2>Posicionamiento en Google</h2></div>
+      <p class="page-sub">Cada página responde a búsquedas concretas. Las de cumplimiento son las de mayor intención: quien las busca ya tiene una obligación.</p>
+      <div class="glob">
+        <span class="pill ac">nom 022 stps tierras físicas</span><span class="pill ac">estudio de tierras físicas</span>
+        <span class="pill ac">medición de tierra física</span><span class="pill ac">certificado de tierra física</span>
+        <span class="pill ac">cómo cumplir la nom 022</span><span class="pill ac">quién certifica tierras físicas</span>
+        <span class="pill">sistema de puesta a tierra</span><span class="pill">pararrayos industrial</span>
+        <span class="pill">electrodo para tierra física</span><span class="pill">nmx-j-549-ance</span>
+        <span class="pill">valores permitidos resistencia a tierra</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">07</span><h2>Decisiones por cerrar con Massatierra</h2></div>
+      <p class="page-sub">Massatierra garantiza valores por escrito, así que el sitio no puede ser impreciso con un solo número. Estas respuestas definen lo que se publica.</p>
+      <ol class="open">
+        <li><b>Las cifras de trayectoria.</b><span>El currículum y el brochure dan números distintos de proyectos, electrodos y países. ¿Cuál es la versión vigente?</span></li>
+        <li><b>La redacción exacta de la garantía de 2 Ω.</b><span>El material comercial dice «2 Ω garantizados por escrito»; el contenido web anterior dice «objetivo de diseño menor a 2 Ω». Debe coincidir con el contrato de garantía.</span></li>
+        <li><b>El dictamen UVIE.</b><span>¿La unidad verificadora es de Massatierra o aliada? ¿Qué normas cubre el dictamen? Nos ayudaría mucho un ejemplo del formato.</span></li>
+        <li><b>Supresores de pico.</b><span>Aparecen en el contenido web, pero no en el brochure ni en el currículum. ¿Se ofrecen?</span></li>
+        <li><b>Tiempo de respuesta que se publica.</b><span>El contenido anterior promete contacto en menos de dos horas y diagnóstico gratuito. ¿Es un compromiso que se puede sostener hoy?</span></li>
+        <li><b>Razón social</b> para el aviso de privacidad y los términos de garantía.</li>
+        <li><b>Dominio principal.</b><span>Hoy el sitio vive en massatierra.net, pero todo el material impreso dice massatierra.com.mx.</span></li>
+        <li><b>Logotipos de clientes.</b><span>¿Cuáles tienen autorización para publicarse? Mientras tanto, los casos van por sector.</span></li>
+        <li><b>Capacitaciones con validez oficial.</b><span>¿Qué cursos hay y cómo se contratan?</span></li>
+      </ol>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">08</span><h2>Lo que necesitamos para construir</h2></div>
+      <div class="glob">
+        <span class="pill">Logotipo en vector (AI / SVG)</span><span class="pill">Tipografías del deck nuevo</span>
+        <span class="pill">Fotos en alta: obra, instalaciones, producto, equipo</span><span class="pill">Foto o render por modelo MTK</span>
+        <span class="pill">Fichas técnicas en PDF</span><span class="pill">Patente y certificados</span>
+        <span class="pill ac">Formato de dictamen + ejemplos de levantamientos</span>
+        <span class="pill">Accesos: dominio, hosting, correo, Analytics</span>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Estructura del sitio web · Massatierra · elaborado por Sentido · noviembre 2026.
+  </footer>
+
+</div>
+<script>
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var panels = { map: document.getElementById('panel-map'), wire: document.getElementById('panel-wire'), design: document.getElementById('panel-design'), detail: document.getElementById('panel-detail') };
+  var twrap = document.getElementById('twrap'), tree = document.getElementById('tree'), zlabel = document.getElementById('zlabel');
+  var z = 1, tx = 0, ty = 0, natW = 0, natH = 0, ZMIN = 0.08, ZMAX = 2.5;
+
+  function measure(){ natW = tree.offsetWidth; natH = tree.offsetHeight; }
+  function clampZ(v){ return Math.max(ZMIN, Math.min(ZMAX, v)); }
+  function clampPan(){
+    var vw = twrap.clientWidth, vh = twrap.clientHeight, cw = natW*z, ch = natH*z;
+    var minX = cw <= vw ? 0 : vw - cw, maxX = cw <= vw ? vw - cw : 0;
+    var minY = ch <= vh ? 0 : vh - ch, maxY = ch <= vh ? vh - ch : 0;
+    tx = Math.min(maxX, Math.max(minX, tx)); ty = Math.min(maxY, Math.max(minY, ty));
+  }
+  function apply(){ tree.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + z + ')'; zlabel.textContent = Math.round(z*100) + '%'; }
+  function zoomAt(nz, vx, vy){ nz = clampZ(nz); var cx = (vx - tx)/z, cy = (vy - ty)/z; z = nz; tx = vx - cx*z; ty = vy - cy*z; clampPan(); apply(); }
+  function zoomCenter(nz){ zoomAt(nz, twrap.clientWidth/2, twrap.clientHeight/2); }
+  function fit(){
+    if (panels.map.hidden) return;
+    measure(); if(!natW) return;
+    var vw = twrap.clientWidth, vh = twrap.clientHeight;
+    z = clampZ(Math.min(vw/natW, 1));
+    tx = (vw - natW*z)/2; ty = 0; apply();
+  }
+  document.getElementById('zin').addEventListener('click', function(){ zoomCenter(z*1.25); });
+  document.getElementById('zout').addEventListener('click', function(){ zoomCenter(z/1.25); });
+  document.getElementById('zfit').addEventListener('click', fit);
+
+  twrap.addEventListener('wheel', function(e){
+    var r = twrap.getBoundingClientRect();
+    if (e.ctrlKey || e.metaKey) { e.preventDefault(); zoomAt(z * (e.deltaY < 0 ? 1.12 : 0.89), e.clientX - r.left, e.clientY - r.top); }
+  }, { passive:false });
+
+  // arrastre con mouse
+  var drag = false, mx0 = 0, my0 = 0;
+  twrap.addEventListener('mousedown', function(e){ drag = true; mx0 = e.clientX; my0 = e.clientY; twrap.classList.add('dragging'); });
+  window.addEventListener('mousemove', function(e){ if(!drag) return; tx += e.clientX - mx0; ty += e.clientY - my0; mx0 = e.clientX; my0 = e.clientY; clampPan(); apply(); });
+  window.addEventListener('mouseup', function(){ drag = false; twrap.classList.remove('dragging'); });
+
+  // táctil: arrastre y pellizco
+  var mode = null, d0 = 0, z0 = 1, aCx = 0, aCy = 0, lx = 0, ly = 0;
+  function dist(t){ return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+  function begin(e){
+    var r = twrap.getBoundingClientRect(); z0 = z; d0 = dist(e.touches) || 1;
+    var px = (e.touches[0].clientX + e.touches[1].clientX)/2 - r.left, py = (e.touches[0].clientY + e.touches[1].clientY)/2 - r.top;
+    aCx = (px - tx)/z; aCy = (py - ty)/z; mode = 'pinch';
+  }
+  twrap.addEventListener('touchstart', function(e){
+    if (e.touches.length >= 2) { begin(e); e.preventDefault(); }
+    else if (e.touches.length === 1) { mode = 'pan'; lx = e.touches[0].clientX; ly = e.touches[0].clientY; }
+  }, { passive:false });
+  twrap.addEventListener('touchmove', function(e){
+    if (mode === 'pinch' && e.touches.length >= 2) {
+      e.preventDefault(); var r = twrap.getBoundingClientRect(), d = dist(e.touches) || 1;
+      var px = (e.touches[0].clientX + e.touches[1].clientX)/2 - r.left, py = (e.touches[0].clientY + e.touches[1].clientY)/2 - r.top;
+      z = clampZ(z0 * d/d0); tx = px - aCx*z; ty = py - aCy*z; clampPan(); apply();
+    } else if (mode === 'pan' && e.touches.length === 1) {
+      e.preventDefault(); var t = e.touches[0]; tx += t.clientX - lx; ty += t.clientY - ly; lx = t.clientX; ly = t.clientY; clampPan(); apply();
+    }
+  }, { passive:false });
+  twrap.addEventListener('touchend', function(e){
+    if (e.touches.length === 0) mode = null;
+    else if (e.touches.length === 1) { mode = 'pan'; lx = e.touches[0].clientX; ly = e.touches[0].clientY; }
+    else begin(e);
+  });
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
+      Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== t.dataset.panel); });
+      if (t.dataset.panel === 'map') fit();
+      if (t.dataset.panel === 'design') { runBolt(); runScramble(); }
+    });
+  });
+
+  /* ── demos de diseño ── */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bolt = document.getElementById('bolt');
+  function runBolt(){ bolt.classList.remove('run'); void bolt.offsetWidth; bolt.classList.add('run'); }
+
+  var CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#-./';
+  function scramble(el){
+    var target = el.dataset.scramble;
+    if (reduce) { el.textContent = target; return; }
+    var frame = 0, total = 26;
+    clearInterval(el._t);
+    el._t = setInterval(function(){
+      frame++;
+      var out = '';
+      for (var i = 0; i < target.length; i++) {
+        var lock = Math.floor(frame * target.length / total);
+        out += (i < lock || target[i] === ' ') ? target[i] : CH[Math.floor(Math.random() * CH.length)];
+      }
+      el.textContent = out;
+      if (frame >= total) { clearInterval(el._t); el.textContent = target; }
+    }, 40);
+  }
+  function runScramble(){ document.querySelectorAll('[data-scramble]').forEach(function(el, i){ setTimeout(function(){ scramble(el); }, i * 350); }); }
+  document.querySelectorAll('[data-scramble]').forEach(function(el){ el.addEventListener('mouseenter', function(){ scramble(el); }); });
+
+  document.querySelectorAll('[data-replay]').forEach(function(b){
+    b.addEventListener('click', function(){ if (b.dataset.replay === 'bolt') runBolt(); else runScramble(); });
+  });
+
+  var vt = document.getElementById('vt');
+  var vpage = vt.querySelector('.vpage');
+  var grads = ['linear-gradient(135deg,#0b1f3a,#24456f)','linear-gradient(135deg,#3a2615,#b8733f)','linear-gradient(135deg,#1d2a3a,#f26b1d)'];
+  function swap(fn){ if (document.startViewTransition && !reduce) document.startViewTransition(fn); else fn(); }
+  vt.querySelectorAll('.vcard').forEach(function(c){
+    c.addEventListener('click', function(){
+      var i = +c.dataset.i, name = c.querySelector('.t').textContent;
+      c.querySelector('.img').style.viewTransitionName = 'vimg';
+      c.querySelector('.t').style.viewTransitionName = 'vtit';
+      swap(function(){
+        c.querySelector('.img').style.viewTransitionName = '';
+        c.querySelector('.t').style.viewTransitionName = '';
+        vpage.querySelector('.img').style.background = grads[i];
+        vpage.querySelector('.img').style.viewTransitionName = 'vimg';
+        vpage.querySelector('h4').textContent = name;
+        vpage.querySelector('h4').style.viewTransitionName = 'vtit';
+        vt.classList.add('open'); vt.dataset.cur = i;
+      });
+    });
+  });
+  vpage.querySelector('.vback').addEventListener('click', function(){
+    var c = vt.querySelectorAll('.vcard')[+vt.dataset.cur || 0];
+    swap(function(){
+      vpage.querySelector('.img').style.viewTransitionName = '';
+      vpage.querySelector('h4').style.viewTransitionName = '';
+      c.querySelector('.img').style.viewTransitionName = 'vimg';
+      c.querySelector('.t').style.viewTransitionName = 'vtit';
+      vt.classList.remove('open');
+    });
+    setTimeout(function(){ c.querySelector('.img').style.viewTransitionName = ''; c.querySelector('.t').style.viewTransitionName = ''; }, 400);
+  });
+
+  var wfb = [].slice.call(document.querySelectorAll('.wfpick button'));
+  wfb.forEach(function(b){
+    b.addEventListener('click', function(){
+      wfb.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); document.getElementById(x.dataset.wf).hidden = (x !== b); });
+    });
+  });
+
+  window.addEventListener('load', fit);
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
+})();
+</script>
+</body>
+</html>
