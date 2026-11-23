@@ -252,6 +252,8 @@
   .ctabox{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:300px; padding:24px; background:
      radial-gradient(120% 80% at 50% 120%, rgba(242,107,29,.18), transparent 60%), #081428;}
   .cta{position:relative; display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 20px 0 18px; border-radius:12px; border:0; cursor:pointer; background:var(--accent); color:#1a0d05; font-family:var(--sans); font-weight:700; font-size:15px; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease;}
+  .cta:active{transform:scale(.97);}
+  .cta:focus-visible{outline:2px solid #fff !important; outline-offset:3px;}
   .cta:hover,.cta:focus-visible{transform:translateY(-1px); box-shadow:0 10px 26px -8px rgba(242,107,29,.7); outline:none;}
   .cta .ico{width:18px; height:18px; flex:0 0 auto;}
   .cta .ico path{fill:#1a0d05;}
@@ -294,6 +296,28 @@
   @media (max-width:520px){ .vt .cards{grid-template-columns:1fr;} .vcard .img{height:70px;} }
   ::view-transition-group(*){animation-duration:.24s; animation-timing-function:cubic-bezier(.3,.7,.2,1);}
 
+  .heromock{position:relative; border-radius:14px; overflow:hidden; background:#081428; aspect-ratio:16/9; border:1px solid var(--line);}
+  .heromock img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+  .heromock .shade{position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,13,28,.88) 0%, rgba(5,13,28,.62) 34%, rgba(5,13,28,0) 62%);}
+  .heromock .copy{position:absolute; left:clamp(16px,4vw,44px); top:50%; transform:translateY(-50%); width:min(46%,420px); color:#fff;}
+  .heromock .copy .k{font-family:var(--mono); font-size:clamp(8px,1vw,11px); letter-spacing:.1em; text-transform:uppercase; color:#c9d3e0;}
+  .heromock .copy h3{font-size:clamp(15px,2.9vw,32px); line-height:1.12; letter-spacing:-.01em; margin:8px 0 10px; color:#fff;}
+  .heromock .copy p{margin:0 0 14px; font-size:clamp(10px,1.2vw,13.5px); color:#dbe3ee;}
+  .heromock .copy .btn{font-size:clamp(10px,1.1vw,12.5px);}
+  .heromock .tagc{position:absolute; right:10px; bottom:10px; font-family:var(--mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#eef2f7; background:rgba(5,13,28,.6); border-radius:6px; padding:4px 8px;}
+  @media (max-width:560px){ .heromock{aspect-ratio:4/5;} .heromock img{object-position:68% 50%;} .heromock .shade{background:linear-gradient(180deg, rgba(5,13,28,.15) 0%, rgba(5,13,28,.9) 62%);} .heromock .copy{top:auto; bottom:38px; transform:none; width:auto; right:16px;} .heromock .copy h3{font-size:19px;} .heromock .copy p{font-size:12px;} }
+  .shots{display:grid; grid-template-columns:1.78fr 1fr; gap:12px; margin-top:12px; align-items:start;}
+  @media (max-width:640px){ .shots{grid-template-columns:1fr;} }
+  .shot{margin:0;}
+  .shot img{display:block; width:100%; height:auto; border-radius:12px; border:1px solid var(--line);}
+  .shot figcaption{font-size:12px; color:var(--muted); margin-top:6px;}
+  .shot figcaption b{color:var(--ink);}
+  .beats{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-top:14px;}
+  .beat{border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; font-size:12.5px; color:var(--muted);}
+  .beat b{display:block; color:var(--ink); font-size:13px;}
+  .beat .k{font-family:var(--mono); font-size:10px; color:var(--accent-ink);}
+  .aviso{margin-top:14px; border-left:3px solid var(--accent); padding:8px 12px; font-size:12.5px; color:var(--muted); background:var(--phbg); border-radius:0 8px 8px 0;}
+  .aviso b{color:var(--ink);}
   .princ{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
   .pr{border-left:3px solid var(--accent); padding:4px 0 4px 12px;}
   .pr b{display:block; font-size:13.5px;}
@@ -762,15 +786,13 @@
           <section class="dark">
             <span class="sn"><b>07</b> · Formulario corto</span>
             <h4>Cuéntenos qué le observaron</h4>
+            <p>Paso 1 de 2 · tres datos para empezar. La empresa, la ciudad y la observación se piden en el segundo paso.</p>
             <div class="form">
               <div class="fld">Nombre</div>
-              <div class="fld">Empresa</div>
               <div class="fld">Teléfono o WhatsApp</div>
-              <div class="fld">Ciudad de la instalación</div>
               <div class="fld full ac">¿Recibió recientemente un levantamiento o dictamen de cumplimiento?  ○ Sí  ○ No</div>
-              <div class="fld full">¿Qué le pidieron? (puede adjuntar la observación)</div>
             </div>
-            <div class="row"><span class="btn o">Enviar</span><span class="btn g">Continuar por WhatsApp</span></div>
+            <div class="row"><span class="btn o">Continuar</span><span class="btn g">Continuar por WhatsApp</span></div>
           </section>
         </div>
       </div>
@@ -782,25 +804,63 @@
 
     <section class="page">
       <div class="page-head"><span class="n">↳</span><h2>Elementos de diseño · cómo se va a sentir el sitio</h2></div>
-      <p class="page-sub">Cuatro recursos de diseño web actual, traducidos a lo que vende Massatierra. Los recuadros oscuros son <b>demos que funcionan</b>: pase el cursor, haga clic o use “Repetir”. No son el diseño final, muestran el tipo de experiencia.</p>
+      <p class="page-sub">Cinco recursos de diseño web actual, traducidos a lo que vende Massatierra. Los recuadros oscuros son <b>demos que funcionan</b>: pase el cursor, haga clic o use “Repetir”. No son el diseño final, muestran el tipo de experiencia.</p>
       <div class="princ">
         <div class="pr"><b>Que se entienda la física</b><span>El movimiento explica cómo una descarga viaja a tierra; no es decoración.</span></div>
         <div class="pr"><b>Pensado primero para el celular</b><span>Las escenas se recomponen para pantalla vertical; no se encogen.</span></div>
-        <div class="pr"><b>Rápido y legible</b><span>Efectos ligeros, contraste alto y movimiento reducido para quien lo pide en su dispositivo.</span></div>
+        <div class="pr"><b>Imponente, pero controlado</b><span>La fuerza del rayo y la calma del sistema: esa es la imagen de la marca.</span></div>
         <div class="pr no"><b>Nada de “plantilla de IA”</b><span>Sin degradados morados ni brillos genéricos: azul Massatierra, naranja, cobre y fotos reales.</span></div>
       </div>
     </section>
 
+    <!-- 0 · Hero en video -->
+    <section class="page">
+      <div class="page-head"><span class="n">01</span><h2>Hero en video: el sistema manejando una descarga</h2></div>
+      <p class="page-sub">La primera pantalla del sitio: un video corto en el que el rayo entra por la punta, la energía baja por la conducción y el electrodo la disipa en el terreno. Estas son <b>imágenes conceptuales generadas con IA</b> a partir del render del brochure; son el punto de partida del video.</p>
+
+      <div class="heromock">
+        <img src="img/hero-recorrido.jpg" alt="Imagen conceptual: un rayo cae en la punta pararrayos sobre una nave industrial; la energía baja por la conducción y se disipa en anillos alrededor del electrodo de cobre bajo tierra" width="1800" height="1018">
+        <div class="shade" aria-hidden="true"></div>
+        <div class="copy">
+          <span class="k">Tierras físicas y pararrayos</span>
+          <h3>Tecnología para proteger lo que mantiene en marcha su empresa</h3>
+          <p>Tecnología patentada, ingeniería e instalación, con garantía por escrito.</p>
+          <span class="btn o">Solicitar diagnóstico</span>
+        </div>
+        <span class="tagc">Maqueta del hero · imagen conceptual</span>
+      </div>
+
+      <div class="shots">
+        <figure class="shot"><img loading="lazy" src="img/hero-punta.jpg" alt="Imagen conceptual: acercamiento a la punta pararrayos de acero con tres laterales y collar amarillo en el instante en que recibe un rayo" width="1800" height="1018"><figcaption><b>Toma de impacto.</b> Acercamiento a la punta en el instante de la descarga. Sirve como apertura del video y para la página de Pararrayos.</figcaption></figure>
+        <figure class="shot"><img loading="lazy" src="img/hero-vertical.jpg" alt="Imagen conceptual en formato vertical: el recorrido completo de la descarga, de la punta al electrodo, con corrientes del subsuelo detenidas en la cabeza del electrodo" width="1500" height="2653"><figcaption><b>Versión para celular.</b> La misma escena recompuesta en vertical. Incluye las corrientes del subsuelo que no regresan: el sistema unidireccional.</figcaption></figure>
+      </div>
+
+      <div class="beats">
+        <div class="beat"><span class="k">0–2 s</span><b>Tormenta</b>La nave industrial en calma, la punta en primer plano.</div>
+        <div class="beat"><span class="k">2–3 s</span><b>Impacto</b>El rayo cae en la punta.</div>
+        <div class="beat"><span class="k">3–5 s</span><b>Conducción</b>La energía baja, controlada, por la bajante.</div>
+        <div class="beat"><span class="k">5–7 s</span><b>Disipación</b>El electrodo la entrega al terreno; lo que viene del subsuelo no regresa.</div>
+        <div class="beat"><span class="k">7–8 s</span><b>Calma</b>La planta sigue operando. El video se repite.</div>
+      </div>
+
+      <div class="aviso"><b>Antes de producir el video:</b> ingeniería de Massatierra valida que la escena represente bien el sistema (montaje de la punta, recorrido de la bajante, modelo de electrodo y la forma de mostrar el flujo unidireccional). Es una ilustración del concepto, no una foto de una instalación.</div>
+
+      <dl class="el" style="display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin-top:14px; font-size:12.5px;">
+        <dt style="font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)">Reglas</dt><dd style="margin:0">Video sin sonido de 6 a 8 segundos, ligero; se pausa cuando sale de pantalla. Quien pide menos movimiento en su dispositivo, o tiene conexión lenta, ve la imagen fija. El titular y el botón no dependen del video para leerse.</dd>
+        <dt style="font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)">Etapa</dt><dd style="margin:0"><span class="tag l">Lanzamiento</span> con imagen fija o video · la animación ligera de abajo queda como respaldo y para la página de Tecnología</dd>
+      </dl>
+    </section>
+
     <!-- 1 · Descarga -->
     <section class="page">
-      <div class="page-head"><span class="n">01</span><h2>Escena del recorrido de una descarga</h2></div>
+      <div class="page-head"><span class="n">02</span><h2>Animación ligera del recorrido</h2></div>
       <div class="el">
         <div>
-          <p class="why">La idea más fuerte del sitio: ver cómo el rayo cae en la punta, baja por la conducción y se disipa en el electrodo. Es el «sistema integral punta-bajante-electrodo» del brochure, contado sin palabras.</p>
+          <p class="why">La misma historia del hero, en versión esquemática: pesa casi nada, carga al instante y permite etiquetar cada parte. Es el «sistema integral punta-bajante-electrodo» del brochure, paso a paso.</p>
           <dl>
-            <dt>Dónde</dt><dd>Hero del Inicio y de Pararrayos; en Tecnología, la misma escena explica el MassLink unidireccional.</dd>
-            <dt>Cómo</dt><dd>Animación ligera (SVG); en una segunda etapa, escena 3D del electrodo con la cámara recompuesta para celular.</dd>
-            <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span> versión 2D · <span class="tag">Fase 2</span> 3D</dd>
+            <dt>Dónde</dt><dd>Página de Tecnología y de Pararrayos, para explicar cada componente; respaldo del hero cuando el video no carga.</dd>
+            <dt>Cómo</dt><dd>Animación vectorial; en una segunda etapa, escena 3D del electrodo que el visitante puede girar.</dd>
+            <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span> animación · <span class="tag">Fase 2</span> 3D</dd>
           </dl>
         </div>
         <div class="stage" id="bolt">
@@ -844,13 +904,13 @@
 
     <!-- 2 · CTA + vidrio -->
     <section class="page">
-      <div class="page-head"><span class="n">02</span><h2>Microinteracciones y jerarquía</h2></div>
+      <div class="page-head"><span class="n">03</span><h2>Microinteracciones y jerarquía</h2></div>
       <div class="el">
         <div>
-          <p class="why">El botón principal “se siente como un logro” al pasar el cursor: cambia el texto y el rayo se activa. Los paneles de vidrio esmerilado dejan ver la foto de obra detrás sin perder lectura.</p>
+          <p class="why">El botón principal “se siente como un logro” al pasar el cursor: cambia el texto y el rayo se activa. En celular, donde no hay cursor, responde al toque. El vidrio esmerilado se reserva para lo que flota sobre una imagen.</p>
           <dl>
-            <dt>Dónde</dt><dd>Botón “Solicitar diagnóstico” en todo el sitio; vidrio sobre fotos de obra en hero y sectores.</dd>
-            <dt>Reglas</dt><dd>Una escala tipográfica, un solo estilo de tarjeta, contenido agrupado por relación, especificaciones técnicas en acordeones. El vidrio, con fondo suficiente para leer bien.</dd>
+            <dt>Dónde</dt><dd>Botón “Solicitar diagnóstico” en todo el sitio. Vidrio solo en el menú sobre el hero y en paneles encima de fotos; las tarjetas de contenido van sólidas.</dd>
+            <dt>Reglas</dt><dd>Una escala tipográfica, un solo estilo de tarjeta, contenido agrupado por relación, especificaciones técnicas en acordeones. Un solo botón principal por pantalla.</dd>
             <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span></dd>
           </dl>
         </div>
@@ -870,22 +930,22 @@
 
     <!-- 3 · Texto técnico -->
     <section class="page">
-      <div class="page-head"><span class="n">03</span><h2>Texto técnico que se “decodifica”</h2></div>
+      <div class="page-head"><span class="n">04</span><h2>Texto técnico que se “decodifica”</h2></div>
       <div class="el">
         <div>
           <p class="why">Los códigos de norma y de producto aparecen como si un equipo de medición los estuviera leyendo. Le da carácter de ingeniería a datos que normalmente se ven secos.</p>
           <dl>
             <dt>Dónde</dt><dd>Sección de Cumplimiento (NOM-022-STPS-2015, NMX-J549), fichas de producto (MTK, MTPP02) y la patente.</dd>
-            <dt>Cómo</dt><dd>Componentes de texto animado del tipo de React Bits, que funcionan con la misma tecnología del sitio. Se usan uno o dos efectos, no todos.</dd>
+            <dt>Cómo</dt><dd>Componentes de texto animado del tipo de React Bits, que funcionan con la misma tecnología del sitio. El efecto corre una sola vez al aparecer, y los lectores de pantalla leen el código correcto desde el inicio.</dd>
             <dt>Etapa</dt><dd><span class="tag l">Lanzamiento</span></dd>
           </dl>
         </div>
         <div class="stage">
           <div class="scr">
             <span class="k">Norma que atendemos</span>
-            <span class="code" data-scramble="NOM-022-STPS-2015">NOM-022-STPS-2015</span>
+            <span class="code" aria-label="NOM-022-STPS-2015" data-scramble="NOM-022-STPS-2015">NOM-022-STPS-2015</span>
             <span class="k" style="margin-top:8px">Patente</span>
-            <span class="code or" data-scramble="PAT. #285201 MR">PAT. #285201 MR</span>
+            <span class="code or" aria-label="Patente 285201 MR" data-scramble="PAT. #285201 MR">PAT. #285201 MR</span>
             <p>Electrodo Magneto Activo, registrado ante el IMPI.</p>
           </div>
           <button class="replay" type="button" data-replay="scramble">↻ Repetir</button>
@@ -896,7 +956,7 @@
 
     <!-- 4 · Transición -->
     <section class="page">
-      <div class="page-head"><span class="n">04</span><h2>Transiciones con sentido de lugar</h2></div>
+      <div class="page-head"><span class="n">05</span><h2>Transiciones con sentido de lugar</h2></div>
       <div class="el">
         <div>
           <p class="why">Al tocar una tarjeta, la tarjeta <b>se convierte</b> en la página; “regresar” la devuelve a su lugar. El visitante nunca pierde dónde estaba, y los menús se abren desde su botón.</p>
@@ -924,7 +984,22 @@
     </section>
 
     <section class="page">
-      <div class="page-head"><span class="n">05</span><h2>Las referencias</h2></div>
+      <div class="page-head"><span class="n">06</span><h2>Reglas de calidad que aplican a todo</h2></div>
+      <p class="page-sub">La propuesta se revisó contra una lista de buenas prácticas de diseño de interfaces. Estilo recomendado para este tipo de empresa: <b>confianza y autoridad</b> (credenciales a la vista, comparativos, evidencia real).</p>
+      <div class="princ">
+        <div class="pr"><b>Uno o dos movimientos por pantalla</b><span>El hero se mueve; lo demás acompaña. Nada de animar todo.</span></div>
+        <div class="pr"><b>Credenciales a la vista</b><span>Patente, normas y garantía en la primera pantalla y en cada página de solución.</span></div>
+        <div class="pr"><b>Evidencia real junto a la ilustración</b><span>La punta usada y las fotos de obra pesan más que cualquier imagen generada.</span></div>
+        <div class="pr"><b>Formularios cortos</b><span>Tres campos para empezar; el detalle se pide en un segundo paso.</span></div>
+        <div class="pr"><b>Legible para todos</b><span>Contraste alto, texto de 16 px en celular, foco visible con teclado y botones de al menos 44 px.</span></div>
+        <div class="pr"><b>Rápido</b><span>Imágenes en formatos ligeros, video que no bloquea la carga y espacio reservado para que nada brinque.</span></div>
+        <div class="pr"><b>Iconos propios</b><span>Un solo juego de iconos vectoriales; sin emojis en el sitio.</span></div>
+        <div class="pr no"><b>Lo que se evita</b><span>Degradados morados, brillos genéricos, vidrio como adorno y efectos que solo funcionan con cursor.</span></div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="page-head"><span class="n">07</span><h2>Las referencias</h2></div>
       <p class="page-sub">De dónde sale cada idea.</p>
       <div class="refs">
         <div class="ref"><span class="who">@textura.eu</span><h3>Escenas 3D recompuestas para celular</h3><p>El hero en 3D no se encoge para el celular: se vuelve a encuadrar. La cámara se acerca, el objeto llena la pantalla vertical y la interacción pasa al tacto.</p><a href="https://www.instagram.com/reel/DfK9uklOWJ_/" target="_blank" rel="noopener">Ver referencia →</a></div>
@@ -1211,7 +1286,6 @@
     }, 40);
   }
   function runScramble(){ document.querySelectorAll('[data-scramble]').forEach(function(el, i){ setTimeout(function(){ scramble(el); }, i * 350); }); }
-  document.querySelectorAll('[data-scramble]').forEach(function(el){ el.addEventListener('mouseenter', function(){ scramble(el); }); });
 
   document.querySelectorAll('[data-replay]').forEach(function(b){
     b.addEventListener('click', function(){ if (b.dataset.replay === 'bolt') runBolt(); else runScramble(); });
