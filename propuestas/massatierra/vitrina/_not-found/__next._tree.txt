@@ -1,4 +1,4 @@
-:HL["/propuestas/massatierra/vitrina/_next/static/chunks/20vge-lozq2yj.css","style"]
+:HL["/propuestas/massatierra/vitrina/_next/static/chunks/1bng4b5vdt9j3.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"LUo818vxWAe0fUgQybv7S","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"9psVJFRjoEmbiIT-lsSrh","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
