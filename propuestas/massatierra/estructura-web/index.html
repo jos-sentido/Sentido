@@ -318,8 +318,17 @@
   .beat .k{font-family:var(--mono); font-size:10px; color:var(--accent-ink);}
   .aviso{margin-top:14px; border-left:3px solid var(--accent); padding:8px 12px; font-size:12.5px; color:var(--muted); background:var(--phbg); border-radius:0 8px 8px 0;}
   .aviso b{color:var(--ink);}
-  .vitrina{border:1.5px solid var(--wire); border-radius:12px; overflow:hidden; background:#050d1c;}
-  .vitrina iframe{display:block; width:100%; height:min(78vh,760px); border:0;}
+  .vistas{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:0 0 10px;}
+  .vistas button{display:inline-flex; align-items:center; gap:7px; min-height:40px; padding:0 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--surface); color:var(--muted); font-family:var(--sans); font-weight:600; font-size:13px; cursor:pointer;}
+  .vistas button svg{width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .vistas button[aria-pressed="true"]{border-color:var(--accent); color:var(--ink); background:var(--phbg);}
+  .vistas button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .vistas-nota{font-size:12px; color:var(--muted);}
+  .vitrina{border:1.5px solid var(--wire); border-radius:12px; overflow:hidden; background:#050d1c; position:relative;}
+  .vitrina-marco{transform-origin:0 0;}
+  .vitrina iframe{display:block; border:0; background:#050d1c;}
+  .vitrina[data-vista="movil"]{background:var(--phbg); padding:18px 0; display:flex; justify-content:center;}
+  .vitrina[data-vista="movil"] .vitrina-marco{border:8px solid #101a2c; border-radius:34px; overflow:hidden; box-shadow:var(--shadow);}
   table.t td:nth-child(2){width:36%;}
   .princ{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
   .pr{border-left:3px solid var(--accent); padding:4px 0 4px 12px;}
@@ -819,8 +828,13 @@
     <!-- Vitrina en vivo -->
     <section class="page">
       <div class="page-head"><span class="n">01</span><h2>Vitrina en vivo: así se va a sentir el sitio</h2></div>
-      <p class="page-sub">Una muestra construida con <b>la misma tecnología y los mismos componentes del sitio</b>, con textos del material de Massatierra. Se puede usar: mueva el cursor, <b>haga clic en el cielo del hero</b> y vea cómo el rayo se canaliza a la punta, baja por la conducción y se dispersa en el electrodo. El hero es un dibujo técnico animado del sistema completo: punta, bajante y electrodo, con sus anotaciones. <a href="/propuestas/massatierra/vitrina/lab" target="_blank" rel="noopener" style="color:var(--accent-ink); font-weight:600">Abrir en pantalla completa →</a></p>
-      <div class="vitrina"><iframe src="/propuestas/massatierra/vitrina/lab" title="Vitrina de diseño de Massatierra" loading="lazy"></iframe></div>
+      <p class="page-sub">Una muestra construida con <b>la misma tecnología y los mismos componentes del sitio</b>, con textos del material de Massatierra. Se puede usar: mueva el cursor, <b>haga clic en el cielo del hero</b> y vea cómo el rayo se canaliza a la punta, baja por la conducción y se dispersa en el electrodo. El hero es un dibujo técnico animado del sistema completo: punta, bajante y electrodo, con sus anotaciones. Incluye el menú y el pie de página. Con el selector de abajo se cambia entre la vista de escritorio y la de celular. <a href="/propuestas/massatierra/vitrina/lab" target="_blank" rel="noopener" style="color:var(--accent-ink); font-weight:600">Abrir en pantalla completa →</a></p>
+      <div class="vistas" role="group" aria-label="Vista de la vitrina">
+        <button type="button" data-vista="escritorio" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v11H3z M9 20h6 M12 16v4"/></svg>Escritorio</button>
+        <button type="button" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z M11 18h2"/></svg>Móvil</button>
+        <span class="vistas-nota" id="vistas-nota"></span>
+      </div>
+      <div class="vitrina" id="vitrina" data-vista="escritorio"><div class="vitrina-marco" id="vitrina-marco"><iframe id="vitrina-frame" src="/propuestas/massatierra/vitrina/lab" title="Vitrina de diseño de Massatierra" loading="lazy"></iframe></div></div>
       <p class="page-sub" style="margin:10px 0 0">Es una muestra del lenguaje visual, no una página terminada: el acomodo, las fotos y los textos finales se definen en el diseño.</p>
     </section>
 
@@ -841,6 +855,8 @@
           <tr><td>Cifras que cuentan</td><td>Trayectoria y garantía, dichas con peso.</td><td>Franja de respaldo del Inicio y página de Garantía.</td></tr>
           <tr><td>Cinta continua de avales</td><td>Normas y organismos que respaldan el sistema.</td><td>Inicio, Tecnología y Cumplimiento.</td></tr>
           <tr><td>Paneles de sector conectados a tierra</td><td>Cada instalación protegida, con su pararrayos; al abrir un panel, la energía viaja por su bajante y por la barra común hasta el electrodo.</td><td>Sectores, en el Inicio y en la página de Sectores.</td></tr>
+          <tr><td>Menú con paneles de plano</td><td>Transparente sobre el hero y sólido al bajar. Cada sección abre un panel con sus páginas como derivaciones de una barra de cobre; un conductor marca la sección abierta. En celular es una hoja a pantalla completa.</td><td>Todo el sitio, con «Solicitar diagnóstico» siempre visible.</td></tr>
+          <tr><td>Pie de página como subsuelo</td><td>Arranca con la línea de terreno y su achurado; debajo, los estratos. Lleva la navegación completa, el contacto y la franja legal como cuadro de datos de plano.</td><td>Todo el sitio.</td></tr>
           <tr><td>Hoja de solicitud</td><td>El formulario como una hoja de plano: opciones con símbolo eléctrico, la pregunta del levantamiento y casillas que se energizan al escribir.</td><td>Diagnóstico, Cumplimiento y Soporte.</td></tr>
           <tr><td>Titulares que entran palabra por palabra</td><td>Ritmo y jerarquía: lo importante llega primero.</td><td>Primera pantalla de cada página.</td></tr>
           <tr><td>Visor 3D del producto</td><td>El electrodo y la punta, para girarlos y verlos por dentro.</td><td>Tecnología y fichas de producto. 🚧 Requiere el modelo 3D de cada pieza.</td></tr>
@@ -1137,6 +1153,39 @@
       wfb.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); document.getElementById(x.dataset.wf).hidden = (x !== b); });
     });
   });
+
+  /* ── Vitrina: vista de escritorio o móvil ── */
+  var vit = document.getElementById('vitrina'), marco = document.getElementById('vitrina-marco'), vframe = document.getElementById('vitrina-frame');
+  var vnota = document.getElementById('vistas-nota');
+  var vbtn = [].slice.call(document.querySelectorAll('[data-vista]')).filter(function(b){ return b.tagName === 'BUTTON'; });
+  var ESC_W = 1280, ESC_H = 760, MOV_W = 390, MOV_H = 780;
+  var vista = window.matchMedia('(max-width: 767px)').matches ? 'movil' : 'escritorio';
+  function pintarVista(){
+    if (!vit || panels.design.hidden) return;
+    vit.dataset.vista = vista;
+    vbtn.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.vista === vista ? 'true' : 'false'); });
+    marco.style.transform = ''; vit.style.height = '';
+    if (vista === 'movil') {
+      var disponible = vit.clientWidth - 16;
+      var w = Math.min(MOV_W, disponible - 16), h = Math.min(MOV_H, Math.round(window.innerHeight * 0.82));
+      vframe.style.width = w + 'px'; vframe.style.height = h + 'px';
+      vnota.textContent = 'Como se ve en un celular.';
+    } else {
+      var cw = vit.clientWidth;
+      if (cw >= ESC_W) { vframe.style.width = '100%'; vframe.style.height = Math.min(ESC_H, Math.round(window.innerHeight * 0.8)) + 'px'; vnota.textContent = 'Como se ve en una computadora.'; }
+      else {
+        // Pantalla angosta: se dibuja a ancho de escritorio y se reduce para que quepa.
+        var k = cw / ESC_W;
+        vframe.style.width = ESC_W + 'px'; vframe.style.height = ESC_H + 'px';
+        marco.style.transform = 'scale(' + k + ')';
+        vit.style.height = Math.round(ESC_H * k) + 'px';
+        vnota.textContent = 'Vista de escritorio reducida al ' + Math.round(k * 100) + '% para que quepa en esta pantalla.';
+      }
+    }
+  }
+  vbtn.forEach(function(b){ b.addEventListener('click', function(){ vista = b.dataset.vista; pintarVista(); }); });
+  window.addEventListener('resize', pintarVista);
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ if (t.dataset.panel === 'design') pintarVista(); }); });
 
   window.addEventListener('load', fit);
   window.addEventListener('resize', fit);
