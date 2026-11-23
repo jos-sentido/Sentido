@@ -807,7 +807,7 @@
 
     <section class="page">
       <div class="page-head"><span class="n">↳</span><h2>Elementos de diseño · cómo se va a sentir el sitio</h2></div>
-      <p class="page-sub">El concepto visual del sitio: <b>energía bajo control</b>. Abajo está el hero en video, una vitrina en vivo hecha con los componentes reales del sitio y la lista de recursos con lo que representa cada uno.</p>
+      <p class="page-sub">El concepto visual del sitio: <b>energía bajo control</b>. Abajo está una vitrina en vivo hecha con los componentes reales del sitio y la lista de recursos con lo que representa cada uno.</p>
       <div class="princ">
         <div class="pr"><b>Que se entienda la física</b><span>El movimiento explica cómo una descarga viaja a tierra; no es decoración.</span></div>
         <div class="pr"><b>Pensado primero para el celular</b><span>Las escenas se recomponen para pantalla vertical; no se encogen.</span></div>
@@ -816,109 +816,22 @@
       </div>
     </section>
 
-    <!-- 0 · Hero en video -->
-    <section class="page">
-      <div class="page-head"><span class="n">01</span><h2>Hero en video: el sistema manejando una descarga</h2></div>
-      <p class="page-sub">La primera pantalla del sitio: un video corto en el que el rayo entra por la punta, la energía baja por la conducción y el electrodo la disipa en el terreno. Es un <b>video conceptual generado con IA</b> a partir del render del brochure: la energía entra por la punta, viaja por el sistema y se dispersa en el terreno, siempre bajo control.</p>
-
-      <div class="heromock">
-        <video src="/propuestas/massatierra/estructura-web/img/hero.mp4" poster="/propuestas/massatierra/estructura-web/img/hero-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video conceptual: un rayo cae en la punta pararrayos; la energía baja por la conducción y se disipa en anillos alrededor del electrodo de cobre bajo tierra"></video>
-        <div class="shade" aria-hidden="true"></div>
-        <div class="copy">
-          <span class="k">Tierras físicas y pararrayos</span>
-          <h3>Tecnología para proteger lo que mantiene en marcha su empresa</h3>
-          <p>Tecnología patentada, ingeniería e instalación, con garantía por escrito.</p>
-          <span class="btn o">Solicitar diagnóstico</span>
-        </div>
-        <span class="tagc">Maqueta del hero · video conceptual</span>
-      </div>
-
-      <div class="shots">
-        <figure class="shot"><img loading="lazy" src="/propuestas/massatierra/estructura-web/img/hero-punta.jpg" alt="Imagen conceptual: acercamiento a la punta pararrayos de acero con tres laterales y collar amarillo en el instante en que recibe un rayo" width="1800" height="1018"><figcaption><b>Toma de impacto.</b> Acercamiento a la punta en el instante de la descarga. Sirve como apertura del video y para la página de Pararrayos.</figcaption></figure>
-        <figure class="shot"><video src="/propuestas/massatierra/estructura-web/img/hero-vertical.mp4" poster="/propuestas/massatierra/estructura-web/img/hero-vertical-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video conceptual en formato vertical: el recorrido completo de la descarga, de la punta al electrodo, con corrientes del subsuelo detenidas en la cabeza del electrodo"></video><figcaption><b>Versión para celular.</b> El mismo video recompuesto en vertical. Incluye las corrientes del subsuelo que no regresan: el sistema unidireccional.</figcaption></figure>
-      </div>
-
-      <div class="beats">
-        <div class="beat"><span class="k">0–2 s</span><b>Tormenta</b>La nave industrial en calma, la punta en primer plano.</div>
-        <div class="beat"><span class="k">2–3 s</span><b>Impacto</b>El rayo cae en la punta.</div>
-        <div class="beat"><span class="k">3–5 s</span><b>Conducción</b>La energía baja, controlada, por la bajante.</div>
-        <div class="beat"><span class="k">5–7 s</span><b>Disipación</b>El electrodo la entrega al terreno; lo que viene del subsuelo no regresa.</div>
-        <div class="beat"><span class="k">7–8 s</span><b>Calma</b>La planta sigue operando. El video se repite.</div>
-      </div>
-
-      <div class="aviso"><b>Antes de dar el video por definitivo:</b> ingeniería de Massatierra valida que la escena represente bien el sistema (montaje de la punta, recorrido de la bajante, modelo de electrodo y la forma de mostrar el flujo unidireccional). Es una ilustración del concepto, no una foto de una instalación.</div>
-
-      <dl class="el" style="display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin-top:14px; font-size:12.5px;">
-        <dt style="font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)">Reglas</dt><dd style="margin:0">Video sin sonido de 6 a 8 segundos, ligero; se pausa cuando sale de pantalla. Quien pide menos movimiento en su dispositivo, o tiene conexión lenta, ve la imagen fija. El titular y el botón no dependen del video para leerse.</dd>
-      </dl>
-    </section>
-
-    <!-- 1 · Descarga -->
-    <section class="page">
-      <div class="page-head"><span class="n">02</span><h2>Animación ligera del recorrido</h2></div>
-      <div class="el">
-        <div>
-          <p class="why">La misma historia del hero, en versión esquemática: pesa casi nada, carga al instante y permite etiquetar cada parte. Es el «sistema integral punta-bajante-electrodo» del brochure, paso a paso.</p>
-          <dl>
-            <dt>Dónde</dt><dd>Página de Tecnología y de Pararrayos, para explicar cada componente con la escena 3D del electrodo.</dd>
-            <dt>Cómo</dt><dd>Animación vectorial, más una escena 3D del electrodo que el visitante puede girar.</dd>
-          </dl>
-        </div>
-        <div class="stage" id="bolt">
-          <button class="replay" type="button" data-replay="bolt">↻ Repetir</button>
-          <svg viewBox="0 0 400 300" role="img" aria-label="Animación: un rayo cae en la punta pararrayos, la corriente baja por la conducción y se disipa en el electrodo bajo tierra">
-            <rect class="flash" x="0" y="0" width="400" height="300"/>
-            <!-- terreno -->
-            <rect x="0" y="210" width="400" height="90" fill="#1a1410"/>
-            <rect x="0" y="208" width="400" height="3" fill="#3a2a1d"/>
-            <!-- edificio -->
-            <rect x="150" y="120" width="140" height="90" fill="#12284a" stroke="#24456f"/>
-            <g fill="#24456f"><rect x="165" y="138" width="20" height="14"/><rect x="200" y="138" width="20" height="14"/><rect x="235" y="138" width="20" height="14"/><rect x="165" y="170" width="20" height="14"/><rect x="200" y="170" width="20" height="14"/><rect x="235" y="170" width="20" height="14"/></g>
-            <!-- mástil y punta -->
-            <line x1="270" y1="120" x2="270" y2="72" stroke="#c3cad5" stroke-width="2.5"/>
-            <path d="M270 52 L273 72 L267 72 Z" fill="#e6ebf2"/>
-            <path d="M270 72 l-8 -7 M270 72 l8 -7 M270 74 l0 -9" stroke="#e6ebf2" stroke-width="1.5"/>
-            <rect x="265" y="74" width="10" height="5" fill="#f2c21d"/>
-            <!-- bajante -->
-            <path d="M276 82 L298 82 L298 210" stroke="#b8733f" stroke-width="2.5" fill="none"/>
-            <!-- electrodo -->
-            <path d="M298 210 L298 262" stroke="#b8733f" stroke-width="5"/>
-            <path d="M298 262 l-14 -22 M298 262 l14 -22" stroke="#b8733f" stroke-width="2.5"/>
-            <rect x="292" y="214" width="12" height="10" fill="#2a6fd6"/>
-            <!-- rayo -->
-            <path class="bolt-path" d="M235 0 L250 20 L240 26 L262 44 L256 48 L270 54"/>
-            <!-- corriente -->
-            <path class="flow" d="M270 56 L270 80 L298 82 L298 262"/>
-            <!-- disipación -->
-            <circle class="ring r1" cx="298" cy="258" r="14"/>
-            <circle class="ring r2" cx="298" cy="258" r="14"/>
-            <circle class="ring r3" cx="298" cy="258" r="14"/>
-            <!-- etiquetas -->
-            <text class="lbl on" x="18" y="40">01 · CAPTACIÓN</text><text class="lbl" x="18" y="54">Punta MTPP02</text>
-            <text class="lbl on" x="18" y="150">02 · CONDUCCIÓN</text><text class="lbl" x="18" y="164">Bajante</text>
-            <text class="lbl on" x="18" y="246">03 · PUESTA A TIERRA</text><text class="lbl" x="18" y="260">Electrodo Magneto Activo</text>
-          </svg>
-          <span class="cap">Demo · animación SVG</span>
-        </div>
-      </div>
-    </section>
-
     <!-- Vitrina en vivo -->
     <section class="page">
-      <div class="page-head"><span class="n">03</span><h2>Vitrina en vivo: así se va a sentir el sitio</h2></div>
-      <p class="page-sub">Una muestra construida con <b>la misma tecnología y los mismos componentes del sitio</b>, con textos del material de Massatierra. Se puede usar: mueva el cursor, <b>haga clic en el cielo del hero</b> y vea cómo el rayo se canaliza a la punta, baja por la conducción y se dispersa en el electrodo. <a href="/propuestas/massatierra/vitrina/lab" target="_blank" rel="noopener" style="color:var(--accent-ink); font-weight:600">Abrir en pantalla completa →</a></p>
+      <div class="page-head"><span class="n">01</span><h2>Vitrina en vivo: así se va a sentir el sitio</h2></div>
+      <p class="page-sub">Una muestra construida con <b>la misma tecnología y los mismos componentes del sitio</b>, con textos del material de Massatierra. Se puede usar: mueva el cursor, <b>haga clic en el cielo del hero</b> y vea cómo el rayo se canaliza a la punta, baja por la conducción y se dispersa en el electrodo. El hero es un dibujo técnico animado del sistema completo: punta, bajante y electrodo, con sus anotaciones. <a href="/propuestas/massatierra/vitrina/lab" target="_blank" rel="noopener" style="color:var(--accent-ink); font-weight:600">Abrir en pantalla completa →</a></p>
       <div class="vitrina"><iframe src="/propuestas/massatierra/vitrina/lab" title="Vitrina de diseño de Massatierra" loading="lazy"></iframe></div>
       <p class="page-sub" style="margin:10px 0 0">Es una muestra del lenguaje visual, no una página terminada: el acomodo, las fotos y los textos finales se definen en el diseño.</p>
     </section>
 
     <section class="page">
-      <div class="page-head"><span class="n">04</span><h2>El concepto: energía bajo control</h2></div>
+      <div class="page-head"><span class="n">02</span><h2>El concepto: energía bajo control</h2></div>
       <p class="page-sub">Cada recurso se eligió por lo que representa en el mundo de Massatierra: <b>el rayo, el campo, el cobre, el terreno y la medición</b>. Nada está por adorno.</p>
       <div class="tscroll"><table class="t">
         <thead><tr><th>Recurso</th><th>Qué representa</th><th>Dónde va</th></tr></thead>
         <tbody>
-          <tr><td>Video del recorrido de la descarga</td><td>La energía que entra por la punta, baja por la conducción y se dispersa en el electrodo: siempre dentro del sistema.</td><td>Hero del Inicio; variantes para Pararrayos y Tecnología.</td></tr>
-          <tr><td>Rayo que el visitante provoca con un clic</td><td>Caiga donde caiga, la descarga termina en la punta y sigue el camino del sistema. Es la promesa de la marca, hecha interacción.</td><td>Hero del Inicio y de Pararrayos, sobre el video.</td></tr>
+          <tr><td>Hero en dibujo técnico animado</td><td>El sistema completo en línea fina de cobre: punta, bajante y electrodo. La descarga llega azul y, al entrar al sistema, se vuelve naranja: energía bajo control.</td><td>Hero del Inicio; variantes para Pararrayos y Tecnología.</td></tr>
+          <tr><td>Rayo que el visitante provoca con un clic</td><td>Caiga donde caiga, la descarga termina en la punta y sigue el camino del sistema. Es la promesa de la marca, hecha interacción.</td><td>Hero del Inicio y de Pararrayos.</td></tr>
           <tr><td>Borde con corriente eléctrica</td><td>La energía conducida y contenida: recorre el borde sin salirse.</td><td>Botón principal «Solicitar diagnóstico» y tarjeta destacada de Cumplimiento.</td></tr>
           <tr><td>Líneas de campo magnético</td><td>El Electrodo Magneto Activo y el flujo unidireccional de MassLink.</td><td>Página de Tecnología y fichas de electrodos MTK.</td></tr>
           <tr><td>Terreno en curvas de nivel</td><td>El suelo que se estudia: resistividad y medición de resistencia a tierra.</td><td>Estudios y medición, NOM-022 y fondo de la sección de Cumplimiento.</td></tr>
@@ -936,10 +849,10 @@
     </section>
 
     <section class="page">
-      <div class="page-head"><span class="n">05</span><h2>Reglas de calidad que aplican a todo</h2></div>
+      <div class="page-head"><span class="n">03</span><h2>Reglas de calidad que aplican a todo</h2></div>
       <p class="page-sub">La propuesta se revisó contra una lista de buenas prácticas de diseño de interfaces. Estilo recomendado para este tipo de empresa: <b>confianza y autoridad</b> (credenciales a la vista, comparativos, evidencia real).</p>
       <div class="princ">
-        <div class="pr"><b>Uno o dos movimientos por pantalla</b><span>El hero se mueve; lo demás acompaña. Nada de animar todo.</span></div>
+        <div class="pr"><b>Un solo lenguaje visual</b><span>Línea fina, cobre y azul en todo el sitio; las fotos reales entran donde aportan evidencia.</span></div>
         <div class="pr"><b>Credenciales a la vista</b><span>Patente, normas y garantía en la primera pantalla y en cada página de solución.</span></div>
         <div class="pr"><b>Evidencia real junto a la ilustración</b><span>La punta usada y las fotos de obra pesan más que cualquier imagen generada.</span></div>
         <div class="pr"><b>Formularios cortos</b><span>Tres campos para empezar; el detalle se pide en un segundo paso.</span></div>
@@ -951,7 +864,7 @@
     </section>
 
     <section class="page">
-      <div class="page-head"><span class="n">06</span><h2>Las referencias</h2></div>
+      <div class="page-head"><span class="n">04</span><h2>Las referencias</h2></div>
       <p class="page-sub">De dónde sale cada idea.</p>
       <div class="refs">
         <div class="ref"><span class="who">@textura.eu</span><h3>Escenas 3D recompuestas para celular</h3><p>El hero en 3D no se encoge para el celular: se vuelve a encuadrar. La cámara se acerca, el objeto llena la pantalla vertical y la interacción pasa al tacto.</p><a href="https://www.instagram.com/reel/DfK9uklOWJ_/" target="_blank" rel="noopener">Ver referencia →</a></div>
@@ -1211,18 +1124,11 @@
       tabs.forEach(function(x){ x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
       Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== t.dataset.panel); });
       if (t.dataset.panel === 'map') fit();
-      if (t.dataset.panel === 'design') { runBolt(); }
     });
   });
 
   /* ── demos de diseño ── */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) document.querySelectorAll('video').forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); });
-  var bolt = document.getElementById('bolt');
-  function runBolt(){ bolt.classList.remove('run'); void bolt.offsetWidth; bolt.classList.add('run'); }
-
-  document.querySelectorAll('[data-replay]').forEach(function(b){ b.addEventListener('click', runBolt); });
-
   var wfb = [].slice.call(document.querySelectorAll('.wfpick button'));
   wfb.forEach(function(b){
     b.addEventListener('click', function(){
