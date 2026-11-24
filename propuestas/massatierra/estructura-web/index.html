@@ -239,6 +239,66 @@
   ol.open li span { display:block; color:var(--hueso-3); font-size:.9375rem; margin-top:4px; line-height:1.6; }
 
   @media (prefers-reduced-motion:reduce){ .tab, .zoombar button { transition:none; } }
+  /* ── Fuente única: mapa ↔ wireframes ── */
+  .sw.hl { border-color:var(--marca); background:color-mix(in srgb, var(--marca) 22%, var(--tinta)); }
+  .sw.vit { background:var(--tinta-3); box-shadow:inset 0 -3px 0 var(--hueso-3); }
+  .prow.vit { box-shadow:inset 0 -2px 0 var(--hueso-4); }
+  .prow.vit::after { content:'vitrina'; display:block; margin-top:3px; font-size:.5rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--hueso-4); }
+  .prow.plant { background:transparent; border-style:dashed; color:var(--hueso-3); font-size:.625rem; }
+  .pcard[role="button"] { cursor:pointer; transition:border-color .2s var(--ease); }
+  .pcard[role="button"]:hover, .pcard[role="button"]:focus-visible { border-color:var(--hueso); outline:none; }
+  .pcard.new[role="button"]:hover { border-color:var(--marca); box-shadow:inset 0 3px 0 var(--marca), 0 0 0 1px var(--marca); }
+  .pcard.sin { border-style:dashed; }
+  .pcard .hd .m-falta, .pcard .hd .m-duda { width:6px; height:6px; margin-left:6px; }
+
+  .wsel { display:flex; flex-direction:column; gap:10px; margin:0 0 22px; }
+  .wsel-g, .wsel-p { display:flex; flex-wrap:wrap; gap:6px; }
+  .wsel button, .wnext button { font-weight:600; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; padding:10px 14px;
+    border:1px solid var(--linea-2); background:none; color:var(--hueso-3); cursor:pointer; transition:border-color .2s var(--ease), color .2s var(--ease); }
+  .wsel button:hover, .wnext button:hover { color:var(--hueso); border-color:var(--hueso-4); }
+  .wsel-g button[aria-pressed="true"] { border-color:var(--hueso); color:var(--hueso); }
+  .wsel-p { padding-left:14px; border-left:2px solid var(--marca); }
+  .wsel-p button { letter-spacing:.08em; text-transform:none; font-size:.8125rem; }
+  .wsel-p button[aria-pressed="true"] { border-color:var(--marca); color:var(--hueso); }
+  .wfhead { margin:0 0 16px; }
+  .wfhead h3 { font-size:clamp(1.25rem,2vw,1.625rem); margin:8px 0 8px; display:flex; align-items:center; gap:4px; }
+  .wfhead p { font-size:.9375rem; color:var(--hueso-3); max-width:80ch; }
+  .wfhead p b { color:var(--hueso); font-weight:600; }
+  .wnotas { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--linea); border:1px solid var(--linea); margin-top:18px; }
+  .wnotas > div { background:var(--tinta-2); padding:18px 20px; }
+  .wnotas .rotulo { display:block; margin-bottom:10px; }
+  .wnotas p { font-size:.9375rem; line-height:1.65; color:var(--hueso-2); margin:0; }
+  .wnotas p b { color:var(--hueso); font-weight:600; }
+  .wnext { display:flex; justify-content:space-between; gap:10px; margin-top:18px; }
+  .wnext button[hidden] { display:none; }
+  .wnext #wnext { margin-left:auto; }
+
+  .wf .wk { font-size:.625rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px; color:var(--hueso-3); }
+  .wf h4.big { font-size:clamp(1.25rem,3vw,1.875rem); line-height:1.08; margin-bottom:10px; }
+  .wf .sn em.vit { font-style:normal; color:var(--marca-ink); background:var(--hueso-3); padding:1px 6px; margin-left:6px; }
+  .wf .wrec { margin-top:14px; font-size:.5625rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--acento); max-width:none; }
+  .wf .wnota { margin-top:10px; font-size:.75rem; color:var(--hueso-4); }
+  .wf ul.wl { list-style:none; margin:12px 0 0; padding:0; }
+  .wf ul.wl li { font-size:.75rem; color:var(--hueso-2); padding:7px 0; border-bottom:1px solid var(--linea-2); }
+  .wf .tile .k { display:block; font-size:.5625rem; font-weight:700; letter-spacing:.12em; color:var(--acento); margin-bottom:4px; }
+  .wf .tile.faq h5::before { content:'+'; color:var(--acento); margin-right:8px; }
+  .wf .grid { grid-template-columns:repeat(var(--c,3),minmax(0,1fr)); }
+  .wf .strip { grid-template-columns:repeat(var(--n,4),minmax(0,1fr)); }
+  .wf .split.rev { grid-template-columns:.9fr 1.1fr; }
+  .wf table.wt { width:100%; border-collapse:collapse; margin-top:12px; font-size:.75rem; }
+  .wf table.wt th { text-align:left; font-size:.5625rem; letter-spacing:.14em; text-transform:uppercase; color:var(--hueso-4); padding:6px 8px 6px 0; border-bottom:1px solid var(--hueso-4); }
+  .wf table.wt td { padding:8px 8px 8px 0; border-bottom:1px solid var(--linea-2); color:var(--hueso-2); }
+  .wf table.wt td:first-child { color:var(--hueso); font-weight:600; }
+  .wf .cinta-w { display:flex; gap:28px; overflow:hidden; white-space:nowrap; padding:4px 0; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .wf .cinta-w span { font-size:.875rem; font-weight:800; letter-spacing:.08em; color:var(--hueso-3); }
+  .wf section.pie-w { background:var(--tinta-3); }
+  @media (max-width:760px){
+    .wf .grid { grid-template-columns:repeat(min(var(--c,3),2),minmax(0,1fr)); }
+    .wf .strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .wf .split, .wf .split.rev { grid-template-columns:1fr; }
+    .wf .split.rev > .ph { order:2; }
+  }
+  @media (max-width:480px){ .wf .grid, .wf .strip { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -258,454 +318,72 @@
 
   <div class="banner">
     <span class="tag">Propuesta</span>
-    <div>Los wireframes son una <strong>estructura</strong>, no el diseño final: marcan el orden del contenido y los recuadros rayados indican dónde irán fotos e imágenes. El lenguaje visual del sitio está en <strong>Elementos de diseño</strong>. Lo marcado con <i class="m-falta"></i> necesita información de Massatierra para escribirse (ver <strong>Decisiones por cerrar</strong>).</div>
+    <div>Los wireframes son una <strong>estructura</strong>, no el diseño final: marcan el orden del contenido y los recuadros rayados indican dónde irán fotos e imágenes. El lenguaje visual del sitio está en <strong>Elementos de diseño</strong>. Lo marcado con <i class="m-falta"></i> necesita información de Massatierra para escribirse (ver <strong>Por cerrar</strong>).</div>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Vistas">
     <button class="tab" role="tab" aria-selected="true" data-panel="map">Mapa del sitio</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="wire">Wireframes</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="design">Elementos de diseño</button>
-    <button class="tab" role="tab" aria-selected="false" data-panel="detail">Estructura detallada</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="cerrar">Por cerrar</button>
   </div>
 
   <!-- ═════════════ PANEL: MAPA ═════════════ -->
   <div id="panel-map">
     <section class="page">
-      <div class="page-head"><span class="n">↳</span><h2>Mapa del sitio · páginas y secciones</h2></div>
-      <p class="page-sub">Cada tarjeta es una página con sus secciones en orden. Con borde de color, lo <b>nuevo</b> frente al contenido que ya existía: la sección de <b>Cumplimiento normativo</b>, los <b>productos con ficha técnica</b> y el sector <b>Minería</b>.</p>
+      <div class="page-head"><span class="n">01</span><h2>Mapa del sitio · páginas y secciones</h2></div>
+      <p class="page-sub">Cada tarjeta es una página con sus secciones en orden. Las que se repiten (soluciones, sectores, fichas de producto) usan una plantilla: son <b id="nwf">22</b> diseños de página que cubren unas <b id="npag">40</b> páginas. <b>Haga clic en una tarjeta para ver su wireframe.</b></p>
       <div class="legend">
         <span><i class="sw new"></i> Página nueva</span>
-        <span><i class="sw"></i> Página del contenido existente, reorganizada</span>
+        <span><i class="sw hl"></i> Sección nueva</span>
+        <span><i class="sw vit"></i> Se ve en la vitrina</span>
         <span><i class="m-falta"></i> Falta información de Massatierra</span>
         <span><i class="m-duda"></i> Por confirmar si se incluye</span>
       </div>
-
       <div class="zoombar" role="group" aria-label="Zoom del mapa">
         <button type="button" id="zout" aria-label="Alejar">&minus;</button>
         <span class="zlabel" id="zlabel">100%</span>
         <button type="button" id="zin" aria-label="Acercar">+</button>
         <button type="button" class="zfit" id="zfit">Ajustar</button>
-        <span class="zhint">Arrastra para moverte · Ctrl + rueda o pellizca para acercar</span>
+        <span class="zhint">Arrastre para moverse · Ctrl + rueda o pellizque para acercar</span>
       </div>
-      <div class="treewrap" id="twrap">
-        <div class="tree" id="tree">
-          <ul>
-            <li>
-              <div class="pcard root"><div class="hd"><span>Inicio</span><span class="r">/</span></div><div class="bd">
-                <div class="prow menu">Menú</div>
-                <div class="prow">Hero — Tierras físicas, pararrayos y protección contra sobretensiones</div>
-                <div class="prow">Respaldo: 25 años · patente · garantía · ingeniería</div>
-                <div class="prow hl">Cumplimiento: estudio → instalación → dictamen → garantía</div>
-                <div class="prow">Soluciones que trabajan como un sistema</div>
-                <div class="prow">Encuentre el camino para su proyecto</div>
-                <div class="prow">¿Su instalación presenta estas señales?</div>
-                <div class="prow">Tecnología propia</div>
-                <div class="prow">Sectores</div>
-                <div class="prow">Así trabajamos</div>
-                <div class="prow">Experiencia por sector</div>
-                <div class="prow cta">Solicitar diagnóstico</div>
-                <div class="prow ft">Pie de página</div>
-              </div></div>
-              <ul>
+      <div class="treewrap" id="twrap"><div class="tree" id="tree"></div></div>
+      <p class="page-sub" style="margin-top:16px">En todo el sitio: el menú con el botón <b>«Solicitar diagnóstico»</b> siempre visible, acceso a <b>WhatsApp</b> y a <b>Soporte técnico</b>, y el pie de página con contacto, <b>Aviso de privacidad</b> y <b>Términos de garantía</b>.</p>
+    </section>
 
-                <li>
-                  <div class="pcard"><div class="hd"><span>Soluciones</span><span class="r">/soluciones</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Protección eléctrica para su instalación</div>
-                    <div class="prow">Las cinco soluciones</div>
-                    <div class="prow">Obra nueva, ampliación o revisión</div>
-                    <div class="prow cta">Solicitar asesoría técnica</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                  <ul class="v">
-                    <li><div class="pcard"><div class="hd"><span>Puesta a tierra</span><span class="r">/puesta-a-tierra</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Tierras físicas para proteger personas, equipos y operación</div><div class="prow">Una solución diseñada para su instalación</div><div class="prow">Tecnología Massatierra</div><div class="prow">Alcance del servicio</div><div class="prow">¿Ya cuenta con tierra física?</div><div class="prow">Productos relacionados</div><div class="prow cta">Cotizar sistema de puesta a tierra</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Pararrayos</span><span class="r">/pararrayos</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Desde la captación hasta la tierra</div><div class="prow">Los componentes de la protección</div><div class="prow hl">Prueba real: así queda una punta después de recibir descargas</div><div class="prow">Punta MTPP02 · NMX-J549-ANCE-2005</div><div class="prow">Aplicaciones</div><div class="prow">¿Tiene un pararrayos instalado?</div><div class="prow cta">Cotizar sistema de pararrayos</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Supresores<i class="m-duda" title="Por confirmar si se incluye"></i></span><span class="r">/supresores</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Protección para equipos sensibles</div><div class="prow">Protección coordinada</div><div class="prow">Aplicaciones</div><div class="prow">¿Daños recurrentes en sus equipos?</div><div class="prow cta">Consultar mi caso</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Estudios y medición</span><span class="r">/estudios</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Conozca las condiciones de su instalación</div><div class="prow">Tipos de estudio</div><div class="prow">¿Cuándo solicitar una evaluación?</div><div class="prow hl">¿Lo necesita para cumplir la NOM-022? →</div><div class="prow cta">Agendar estudio técnico</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Ingeniería e instalación</span><span class="r">/ingenieria</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — De la necesidad a una solución instalada</div><div class="prow">Ingeniería · suministro · instalación · medición · acompañamiento</div><div class="prow">Con quién trabajamos</div><div class="prow cta">Compartir los requerimientos</div><div class="prow ft">Pie de página</div></div></div></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div class="pcard new"><div class="hd"><span>Cumplimiento</span><span class="r">/cumplimiento</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Cumpla con la norma con un solo responsable</div>
-                    <div class="prow hl">La cadena completa: estudio → instalación → dictamen → garantía</div>
-                    <div class="prow">Qué recibe: un dictamen en regla para Protección Civil y STPS</div>
-                    <div class="prow">Normas que atendemos</div>
-                    <div class="prow">Preguntas de cumplimiento</div>
-                    <div class="prow cta">Formulario corto</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                  <ul class="v">
-                    <li><div class="pcard new"><div class="hd"><span>NOM-022-STPS<i class="m-falta" title="Falta información de Massatierra"></i></span><span class="r">/nom-022</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Qué exige la norma</div><div class="prow">Qué se mide y cada cuánto</div><div class="prow">Qué le entregamos</div><div class="prow">Preguntas frecuentes</div><div class="prow cta">Solicitar medición</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard new"><div class="hd"><span>Dictamen UVIE<i class="m-falta" title="Falta información de Massatierra"></i></span><span class="r">/dictamen</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Un dictamen en regla</div><div class="prow">Qué es y quién lo firma</div><div class="prow">Ante quién tiene validez</div><div class="prow">Cómo se integra a su proyecto</div><div class="prow cta">Solicitar dictamen</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard new"><div class="hd"><span>Recibí un levantamiento<i class="m-falta" title="Falta información de Massatierra"></i></span><span class="r">/levantamiento</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — ¿Le hicieron una observación?</div><div class="prow">Qué hacer ahora</div><div class="prow">Cómo lo resolvemos</div><div class="prow">Lo que necesitamos de usted</div><div class="prow cta">Formulario corto</div><div class="prow ft">Pie de página</div></div></div></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div class="pcard"><div class="hd"><span>Sectores</span><span class="r">/sectores</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Entendemos lo que su operación necesita proteger</div>
-                    <div class="prow">Los siete sectores</div>
-                    <div class="prow cta">Hablar con un especialista de mi sector</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                  <ul class="v">
-                    <li><div class="pcard"><div class="hd"><span>Página de sector ×7</span><span class="r">plantilla</span></div><div class="bd">
-                      <div class="prow" style="background:transparent">Industria · Hotelería · Salud · Telecom y centros de datos · Construcción · Comercio y servicios · <b >Minería (nueva)</b></div>
-                      <div class="prow menu">Menú</div><div class="prow">Hero — lo que protege este sector</div><div class="prow">Áreas de aplicación</div><div class="prow">Acompañamiento para su operación</div><div class="prow">Experiencia en el sector</div><div class="prow cta">Solicitar evaluación</div><div class="prow ft">Pie de página</div></div></div></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div class="pcard"><div class="hd"><span>Tecnología</span><span class="r">/tecnologia</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Tecnología propia, fabricada en México</div>
-                    <div class="prow">Electrodo Magneto Activo · PAT. #285201</div>
-                    <div class="prow">MassLink · sistema unidireccional</div>
-                    <div class="prow">Electrodo estructural · cobre electrolítico</div>
-                    <div class="prow">Avales: NOM · ANCE · NMX · IEEE · ABNT · SEC · IMPI</div>
-                    <div class="prow cta">Solicitar documentación técnica</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                  <ul class="v">
-                    <li><div class="pcard new"><div class="hd"><span>Productos</span><span class="r">/productos</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Electrodos MTK (6 modelos)</div><div class="prow">Punta pararrayos MTPP02</div><div class="prow">Acondicionador MTAT02</div><div class="prow hl">Ficha por modelo + PDF descargable<i class="m-falta" title="Falta información de Massatierra"></i></div><div class="prow cta">Cotizar</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard new"><div class="hd"><span>Comparativo</span><span class="r">/comparativo</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Massatierra vs. sistema tradicional</div><div class="prow">Tabla comparativa</div><div class="prow">Vida útil: 20 años vs. 3</div><div class="prow cta">Hablar con ingeniería</div><div class="prow ft">Pie de página</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Garantía<i class="m-falta" title="Falta información de Massatierra"></i></span><span class="r">/garantia</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Nuestro compromiso va por escrito</div><div class="prow">Qué cubre</div><div class="prow">Verificación del sistema</div><div class="prow">Atención durante la vigencia</div><div class="prow cta">Solicitar atención de garantía</div><div class="prow ft">Pie de página</div></div></div></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div class="pcard"><div class="hd"><span>Proyectos</span><span class="r">/proyectos</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Experiencia en instalaciones que requieren continuidad</div>
-                    <div class="prow">Experiencia por sector</div>
-                    <div class="prow">Caso: centro de telecomunicaciones en Zapopan</div>
-                    <div class="prow cta">Solicitar una solución para mi instalación</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                </li>
-
-                <li>
-                  <div class="pcard"><div class="hd"><span>Recursos</span><span class="r">/recursos</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Accesos a las cuatro secciones</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                  <ul class="v">
-                    <li><div class="pcard"><div class="hd"><span>Centro de conocimiento</span><span class="r">artículos</span></div><div class="bd">
-                      <div class="prow">¿Qué es una tierra física?</div><div class="prow">¿Por qué fallan equipos si ya hay tierra física?</div><div class="prow">Pararrayos: el sistema completo</div><div class="prow">Qué preparar para cotizar</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Biblioteca técnica</span><span class="r">descargas</span></div><div class="bd">
-                      <div class="prow">Catálogo de soluciones</div><div class="prow">Fichas técnicas<i class="m-falta" title="Falta información de Massatierra"></i></div><div class="prow">Tecnología patentada</div><div class="prow">Certificaciones</div><div class="prow">Documentos de mi proyecto</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Preguntas frecuentes</span><span class="r">FAQ</span></div><div class="bd">
-                      <div class="prow">Las 11 preguntas del contenido existente</div><div class="prow hl">+ preguntas de cumplimiento</div><div class="prow cta">Hablar con un especialista</div></div></div></li>
-                    <li><div class="pcard"><div class="hd"><span>Capacitación<i class="m-duda" title="Por confirmar si se incluye"></i></span><span class="r">/capacitacion</span></div><div class="bd">
-                      <div class="prow">Cursos con validez oficial</div><div class="prow">Temario y modalidad</div><div class="prow cta">Solicitar información</div></div></div></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div class="pcard"><div class="hd"><span>Empresa</span><span class="r">/empresa</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Tecnología para su tranquilidad</div>
-                    <div class="prow">Quiénes somos</div>
-                    <div class="prow">Misión y visión</div>
-                    <div class="prow">Lo que guía nuestro trabajo</div>
-                    <div class="prow">Compromiso de calidad</div>
-                    <div class="prow">Presencia: México · Chile · Perú</div>
-                    <div class="prow cta">Contactar a Massatierra</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                </li>
-
-                <li>
-                  <div class="pcard"><div class="hd"><span>Contacto</span><span class="r">/contacto</span></div><div class="bd">
-                    <div class="prow menu">Menú</div>
-                    <div class="prow">Hero — Cuéntenos qué necesita proteger</div>
-                    <div class="prow hl">Formulario de diagnóstico (+ pregunta de levantamiento)</div>
-                    <div class="prow">Atención directa: teléfono, WhatsApp, correo, oficina</div>
-                    <div class="prow">Qué pasa después de enviar</div>
-                    <div class="prow ft">Pie de página</div>
-                  </div></div>
-                  <ul class="v">
-                    <li><div class="pcard"><div class="hd"><span>Soporte técnico</span><span class="r">/soporte</span></div><div class="bd">
-                      <div class="prow menu">Menú</div><div class="prow">Hero — Estamos para atender su sistema</div><div class="prow">Formulario de soporte</div><div class="prow">¿Prefiere hablar con nosotros?</div><div class="prow ft">Pie de página</div></div></div></li>
-                  </ul>
-                </li>
-
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="page-sub" style="margin-top:16px">En todo el sitio: menú con estas secciones y el botón <b>“Solicitar diagnóstico”</b> siempre visible, acceso a <b>WhatsApp</b> y a <b>Soporte técnico</b>, y pie de página con contacto, <b>Aviso de privacidad</b> y <b>Términos de garantía</b>.</p>
+    <section class="page">
+      <div class="page-head"><span class="n">02</span><h2>Qué cambia frente al contenido actual</h2></div>
+      <p class="page-sub">El contenido que ya existe está bien escrito y se aprovecha casi completo. Estos son los ajustes.</p>
+      <div class="tscroll"><table class="t">
+        <thead><tr><th>Cambio</th><th>Por qué</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk ajuste">Ajuste</span>Inicio: de 11 a 9 secciones, en el orden de la vitrina</td><td>Se suman <b>Tecnología</b> y <b>Estudios y medición</b> tal como se ven en la vitrina. «¿Su instalación presenta estas señales?» pasa a Estudios y medición, «Experiencia por sector» se une a Sectores y el cierre es la hoja de solicitud. Sale «Encuentre el camino para su proyecto»: sus cuatro destinos ya están en el hero, Soluciones, Estudios y el acceso a Soporte del menú.</td></tr>
+          <tr><td><span class="mk nuevo">Nuevo</span>Sección de Cumplimiento normativo</td><td>Quien recibe un levantamiento de Protección Civil o STPS busca un <b>dictamen en regla</b>. Massatierra es de las pocas empresas que puede entregar la cadena completa, y el contenido actual no lo dice en ningún lado.</td></tr>
+          <tr><td><span class="mk nuevo">Nuevo</span>Productos con ficha técnica</td><td>El contenido actual no nombra ningún modelo. Quien especifica un proyecto necesita la ficha del MTK, la MTPP02 o el MTAT02.</td></tr>
+          <tr><td><span class="mk nuevo">Nuevo</span>Comparativo vs. sistema tradicional</td><td>Ya existe en el brochure y es el argumento más claro para quien compara opciones.</td></tr>
+          <tr><td><span class="mk nuevo">Nuevo</span>Evidencia real: punta MTPP02 usada</td><td>Una punta que ya recibió descargas muestra el desgaste en la punta y el cuerpo íntegro. Es una prueba que ningún render sustituye y que respalda «ultra resistente a descargas de alta intensidad» del brochure.</td></tr>
+          <tr><td><span class="mk nuevo">Nuevo</span>Sector Minería</td><td>Hay experiencia documentada en minería y no tenía página propia.</td></tr>
+          <tr><td><span class="mk nuevo">Nuevo</span>Pregunta de origen en el formulario</td><td>Separa a quien llega por una obligación normativa de quien llega a cotizar, para atender a cada uno como necesita.</td></tr>
+          <tr><td><span class="mk ajuste">Ajuste</span>Presencia en México, Chile y Perú</td><td>El contenido actual solo dice «México y el extranjero».</td></tr>
+          <tr><td><span class="mk ajuste">Ajuste</span>Academia → Capacitación</td><td>En lugar de un «Próximamente», una página real con los cursos con validez oficial, su temario y cómo contratarlos.</td></tr>
+        </tbody>
+      </table></div>
     </section>
   </div>
 
   <!-- ═════════════ PANEL: WIREFRAMES ═════════════ -->
   <div id="panel-wire" hidden>
     <section class="page">
-      <div class="page-head"><span class="n">↳</span><h2>Wireframes · cómo se acomoda el contenido</h2></div>
-      <p class="page-sub">Boceto de las dos páginas que más pesan: el <b>Inicio</b> y la sección nueva de <b>Cumplimiento</b>. Los textos vienen del contenido que ya existe y del material de Massatierra; los recuadros rayados son fotos o imágenes por definir.</p>
-      <div class="wfpick" role="group" aria-label="Página">
-        <button type="button" aria-pressed="true" data-wf="wf-home">Inicio</button>
-        <button type="button" aria-pressed="false" data-wf="wf-cumpl">Cumplimiento</button>
+      <div class="page-head"><span class="n">01</span><h2>Wireframes · cómo se acomoda el contenido</h2></div>
+      <p class="page-sub">Un boceto por cada uno de los <b id="nwf2">22</b> diseños de página del mapa, con las mismas secciones y en el mismo orden. Lo marcado <b>«en la vitrina»</b> ya se puede ver funcionando en Elementos de diseño, y la línea <b>«Diseño ·»</b> indica qué recurso visual usa cada sección. Los recuadros rayados son fotos o imágenes por definir.</p>
+      <div class="wsel">
+        <div class="wsel-g" id="wselg" role="group" aria-label="Sección del sitio"></div>
+        <div class="wsel-p" id="wselp" role="group" aria-label="Página"></div>
       </div>
-
-      <!-- Wireframe: Inicio -->
-      <div class="browser" id="wf-home">
-        <div class="bar"><i></i><i></i><i></i><span class="url">massatierra.com.mx</span></div>
-        <div class="wf">
-          <div class="wnav">
-            <div class="wm">Massatierra<sup>®</sup></div>
-            <div class="links"><span>Soluciones</span><span>Cumplimiento</span><span>Sectores</span><span>Tecnología</span><span>Proyectos</span><span>Recursos</span><span>Empresa</span></div>
-            <span class="btn o">Solicitar diagnóstico</span>
-          </div>
-
-          <section class="dark">
-            <span class="sn"><b>01</b> · Hero</span>
-            <div class="split">
-              <div>
-                <p style="font-size:.625rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px">Tierras físicas, pararrayos y protección contra sobretensiones</p>
-                <h4 style="font-size:clamp(20px,3.2vw,30px)">Tecnología para proteger lo que mantiene en marcha su empresa</h4>
-                <p style="margin-top:8px">Tecnología patentada, ingeniería especializada e instalación, con garantía de desempeño por escrito.</p>
-                <div class="row"><span class="btn o">Solicitar diagnóstico</span><span class="btn g">Hablar con un especialista</span></div>
-              </div>
-              <div class="ph" style="min-height:190px">Foto de obra / instalación real</div>
-            </div>
-          </section>
-
-          <section style="padding-block:0">
-            <span class="sn"><b>02</b> · Respaldo</span>
-            <div class="strip">
-              <div><b>+25 años</b><small>de experiencia</small></div>
-              <div><b>Tecnología patentada</b><small>PAT. #285201 · IMPI</small></div>
-              <div><b>20 años de garantía</b><small>por escrito<i class="m-falta" title="Falta información de Massatierra"></i></small></div>
-              <div><b>Ingeniería integral</b><small>del estudio al soporte</small></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>03</b> · Cumplimiento <b>· nuevo</b></span>
-            <h4>¿Tiene que cumplir con la norma? Lo resolvemos de punta a punta</h4>
-            <p>Usted no necesita coordinar a cuatro proveedores: recibe un dictamen en regla para Protección Civil y STPS.</p>
-            <div class="chain">
-              <div><span class="k">01</span><b>Estudio</b><small>Medición y diagnóstico</small></div>
-              <div><span class="k">02</span><b>Instalación</b><small>Tecnología patentada</small></div>
-              <div><span class="k">03</span><b>Dictamen UVIE</b><small>Firma de verificador acreditado</small></div>
-              <div><span class="k">04</span><b>Garantía</b><small>20 años por escrito</small></div>
-            </div>
-            <div class="row"><span class="btn">Ver cómo cumplir la NOM-022</span><span class="btn g">Recibí un levantamiento</span></div>
-          </section>
-
-          <section>
-            <span class="sn"><b>04</b> · Soluciones</span>
-            <h4>Soluciones que trabajan como un sistema</h4>
-            <div class="grid g5">
-              <div class="tile"><div class="ph">ícono</div><h5>Puesta a tierra</h5></div>
-              <div class="tile"><div class="ph">ícono</div><h5>Pararrayos</h5></div>
-              <div class="tile"><div class="ph">ícono</div><h5>Supresores<i class="m-duda" title="Por confirmar si se incluye"></i></h5></div>
-              <div class="tile"><div class="ph">ícono</div><h5>Estudios y medición</h5></div>
-              <div class="tile"><div class="ph">ícono</div><h5>Ingeniería e instalación</h5></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>05</b> · Caminos</span>
-            <h4>Encuentre el camino para su proyecto</h4>
-            <div class="grid g4">
-              <div class="tile"><h5>Necesito proteger una instalación</h5><p>→ Encontrar mi solución</p></div>
-              <div class="tile"><h5>Tengo fallas o quiero revisar mi sistema</h5><p>→ Revisar mi instalación</p></div>
-              <div class="tile"><h5>Necesito especificar o cotizar un proyecto</h5><p>→ Consultar con ingeniería</p></div>
-              <div class="tile"><h5>Ya soy cliente y necesito soporte</h5><p>→ Solicitar soporte</p></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>06</b> · Señales</span>
-            <div class="split">
-              <div>
-                <h4>¿Su instalación presenta alguna de estas señales?</h4>
-                <p>Equipos que fallan después de una tormenta · interrupciones en sistemas de control · ruido en audio o telecomunicaciones · descargas de estática · sensación de descarga al tocar equipos.</p>
-                <div class="row"><span class="btn o">Solicitar diagnóstico</span></div>
-              </div>
-              <div class="ph" style="min-height:130px">Foto: tablero / equipo dañado</div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>07</b> · Tecnología</span>
-            <div class="split">
-              <div class="ph" style="min-height:150px">Render: Electrodo Magneto Activo + MassLink</div>
-              <div>
-                <h4>Tecnología propia, aplicada a su operación</h4>
-                <p>Electrodo Magneto Activo patentado: MassLink unidireccional y electrodo estructural de cobre electrolítico. Libre de mantenimiento.</p>
-                <div class="row"><span class="btn g">Conocer la tecnología</span><span class="btn g">Ver comparativo</span></div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>08</b> · Sectores</span>
-            <h4>Especialización para distintos sectores</h4>
-            <div class="grid g4">
-              <div class="tile"><div class="ph">foto</div><h5>Industria</h5></div>
-              <div class="tile"><div class="ph">foto</div><h5>Hotelería</h5></div>
-              <div class="tile"><div class="ph">foto</div><h5>Salud</h5></div>
-              <div class="tile"><div class="ph">foto</div><h5>Telecom y datos</h5></div>
-              <div class="tile"><div class="ph">foto</div><h5>Construcción</h5></div>
-              <div class="tile"><div class="ph">foto</div><h5>Comercio</h5></div>
-              <div class="tile ac"><div class="ph">foto</div><h5>Minería</h5></div>
-              <div class="tile" style="display:flex;align-items:center;justify-content:center"><span class="btn g">Ver todos</span></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>09</b> · Proceso</span>
-            <h4>Así trabajamos</h4>
-            <div class="grid g5">
-              <div class="tile"><h5>1 · Conocemos su necesidad</h5></div>
-              <div class="tile"><h5>2 · Evaluamos y diseñamos</h5></div>
-              <div class="tile"><h5>3 · Presentamos una solución clara</h5></div>
-              <div class="tile"><h5>4 · Instalamos y verificamos</h5></div>
-              <div class="tile"><h5>5 · Entregamos respaldo</h5></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>10</b> · Experiencia</span>
-            <div class="split">
-              <div>
-                <h4>Experiencia en instalaciones que requieren continuidad</h4>
-                <p>Manufactura, hotelería, telecomunicaciones, salud, minería, educación e infraestructura. Casos por sector, sin logotipos hasta tener autorización.</p>
-                <div class="row"><span class="btn g">Conocer nuestros proyectos</span></div>
-              </div>
-              <div class="ph" style="min-height:120px">Foto de proyecto</div>
-            </div>
-          </section>
-
-          <section class="dark">
-            <span class="sn"><b>11</b> · Cierre</span>
-            <h4>Su próximo paso comienza con una conversación</h4>
-            <p>Cuéntenos qué necesita proteger o qué problema presenta su instalación.</p>
-            <div class="row"><span class="btn o">Solicitar diagnóstico</span><span class="btn g">Escribir por WhatsApp</span></div>
-          </section>
-
-          <section>
-            <span class="sn">Pie de página</span>
-            <div class="wfoot">
-              <div><b>Massatierra®</b><span>Tecnología para su tranquilidad</span></div>
-              <div><b>Soluciones</b><span>Puesta a tierra</span><span>Pararrayos</span><span>Estudios</span><span>Cumplimiento</span></div>
-              <div><b>Recursos</b><span>Centro de conocimiento</span><span>Biblioteca técnica</span><span>Preguntas frecuentes</span></div>
-              <div><b>Contacto</b><span>Teléfono · WhatsApp</span><span>Oficina en Zapopan</span><span>Aviso de privacidad</span></div>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      <!-- Wireframe: Cumplimiento -->
-      <div class="browser" id="wf-cumpl" hidden>
-        <div class="bar"><i></i><i></i><i></i><span class="url">massatierra.com.mx/cumplimiento</span></div>
-        <div class="wf">
-          <div class="wnav">
-            <div class="wm">Massatierra<sup>®</sup></div>
-            <div class="links"><span>Soluciones</span><span class="on">Cumplimiento</span><span>Sectores</span><span>Tecnología</span><span>Proyectos</span><span>Recursos</span><span>Empresa</span></div>
-            <span class="btn o">Solicitar diagnóstico</span>
-          </div>
-
-          <section class="dark">
-            <span class="sn"><b>01</b> · Hero</span>
-            <div class="split">
-              <div>
-                <p style="font-size:.625rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px">Cumplimiento normativo · NOM-022-STPS</p>
-                <h4 style="font-size:clamp(20px,3.2vw,30px)">Cumpla con la norma con un solo responsable</h4>
-                <p style="margin-top:8px">Estudio, instalación y dictamen con firma de verificador acreditado. Un dictamen en regla para Protección Civil y STPS.</p>
-                <div class="row"><span class="btn o">Recibí un levantamiento</span><span class="btn g">Solicitar estudio</span></div>
-              </div>
-              <div class="ph" style="min-height:170px">Foto: medición en campo / dictamen</div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>02</b> · La cadena</span>
-            <h4>Usted no necesita coordinar a cuatro proveedores</h4>
-            <div class="chain">
-              <div><span class="k">01</span><b>Estudio</b><small>Medición y diagnóstico de su sistema</small></div>
-              <div><span class="k">02</span><b>Instalación</b><small>Correcciones con tecnología patentada</small></div>
-              <div><span class="k">03</span><b>Dictamen UVIE</b><small>Firma de verificador acreditado<i class="m-falta" title="Falta información de Massatierra"></i></small></div>
-              <div><span class="k">04</span><b>Garantía</b><small>Desempeño por escrito</small></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>03</b> · Para quién</span>
-            <h4>¿Es su caso?</h4>
-            <div class="grid g3">
-              <div class="tile ac"><h5>Recibí un levantamiento</h5><p>Protección Civil o STPS observaron su instalación y necesita resolverlo.</p></div>
-              <div class="tile"><h5>Me toca la medición anual</h5><p>La NOM-022-STPS-2015 pide medir la resistencia a tierra cada año.</p></div>
-              <div class="tile"><h5>Abro o amplío una instalación</h5><p>Necesita el sistema y el dictamen desde el proyecto.</p></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>04</b> · Normas</span>
-            <h4>Normas que atendemos</h4>
-            <div class="grid g3">
-              <div class="tile"><h5>NOM-022-STPS-2015</h5><p>Electricidad estática en centros de trabajo. Medición anual<i class="m-falta" title="Falta información de Massatierra"></i> texto a validar.</p></div>
-              <div class="tile"><h5>NOM-001-SEDE-2012</h5><p>Instalaciones eléctricas<i class="m-falta" title="Falta información de Massatierra"></i> texto a validar.</p></div>
-              <div class="tile"><h5>NMX-J549-ANCE-2005</h5><p>Protección contra tormentas eléctricas<i class="m-falta" title="Falta información de Massatierra"></i> texto a validar.</p></div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>05</b> · Qué recibe</span>
-            <div class="split">
-              <div>
-                <h4>Qué le entregamos</h4>
-                <p>Reporte de medición · proyecto de corrección cuando aplica · dictamen firmado · garantía por escrito.<i class="m-falta" title="Falta información de Massatierra"></i> Lista exacta con el formato de dictamen de Massatierra.</p>
-              </div>
-              <div class="ph" style="min-height:120px">Imagen: ejemplo de dictamen (datos ocultos)</div>
-            </div>
-          </section>
-
-          <section>
-            <span class="sn"><b>06</b> · Preguntas</span>
-            <h4>Preguntas de cumplimiento</h4>
-            <div class="grid g2">
-              <div class="tile"><h5>¿Quién puede firmar el dictamen?</h5></div>
-              <div class="tile"><h5>¿Cada cuánto se tiene que medir?</h5></div>
-              <div class="tile"><h5>¿Pueden revisar una instalación de otro proveedor?</h5></div>
-              <div class="tile"><h5>¿Cuánto tarda todo el proceso?</h5></div>
-            </div>
-          </section>
-
-          <section class="dark">
-            <span class="sn"><b>07</b> · Formulario corto</span>
-            <h4>Cuéntenos qué le observaron</h4>
-            <p>Paso 1 de 2 · tres datos para empezar. La empresa, la ciudad y la observación se piden en el segundo paso.</p>
-            <div class="form">
-              <div class="fld">Nombre</div>
-              <div class="fld">Teléfono o WhatsApp</div>
-              <div class="fld full ac">¿Recibió recientemente un levantamiento o dictamen de cumplimiento?  ○ Sí  ○ No</div>
-            </div>
-            <div class="row"><span class="btn o">Continuar</span><span class="btn g">Continuar por WhatsApp</span></div>
-          </section>
-        </div>
-      </div>
+      <div class="wfhead" id="wfhead"></div>
+      <div id="wfcanvas"></div>
+      <div class="wnotas" id="wnotas"></div>
+      <div class="wnext"><button type="button" id="wprev"></button><button type="button" id="wnext"></button></div>
     </section>
   </div>
 
@@ -782,151 +460,11 @@
 
   </div>
 
-  <!-- ═════════════ PANEL: DETALLE ═════════════ -->
-  <div id="panel-detail" hidden>
-
+  <!-- ═════════════ PANEL: POR CERRAR ═════════════ -->
+  <div id="panel-cerrar" hidden>
     <section class="page">
-      <div class="page-head"><span class="n">01</span><h2>Mapa del sitio</h2></div>
-      <p class="page-sub">Las secciones del menú y lo que agrupa cada una. Alrededor de 35 páginas; las de sector y las fichas de producto usan una misma plantilla.</p>
-      <div class="sitemap">
-        <div class="chip">Inicio<small>Presentación, respaldo y caminos</small><code>/</code></div>
-        <div class="chip">Soluciones<small>Puesta a tierra · Pararrayos · Supresores<i class="m-duda" title="Por confirmar si se incluye"></i> · Estudios · Ingeniería</small><code>/soluciones</code></div>
-        <div class="chip new">Cumplimiento<small>NOM-022 · Dictamen UVIE · Recibí un levantamiento</small><code>/cumplimiento</code></div>
-        <div class="chip">Sectores<small>7 sectores, Minería nueva</small><code>/sectores</code></div>
-        <div class="chip">Tecnología<small>Productos con ficha · Comparativo · Garantía</small><code>/tecnologia</code></div>
-        <div class="chip">Proyectos<small>Experiencia por sector</small><code>/proyectos</code></div>
-        <div class="chip">Recursos<small>Conocimiento · Biblioteca · FAQ · Capacitación<i class="m-duda" title="Por confirmar si se incluye"></i></small><code>/recursos</code></div>
-        <div class="chip">Empresa<small>Quiénes somos, calidad, presencia</small><code>/empresa</code></div>
-        <div class="chip">Contacto<small>Diagnóstico y cotización · Soporte</small><code>/contacto</code></div>
-      </div>
-      <div class="glob" style="margin-top:14px">
-        <span class="pill ac">Botón “Solicitar diagnóstico” siempre visible</span>
-        <span class="pill">WhatsApp y Soporte técnico en todo el sitio</span>
-        <span class="pill">Pie: contacto · Aviso de privacidad · Términos de garantía</span>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="page-head"><span class="n">02</span><h2>Qué cambia frente al contenido actual</h2></div>
-      <p class="page-sub">El contenido que ya existe está bien escrito y se aprovecha casi completo. Estos son los ajustes.</p>
-      <div class="tscroll"><table class="t">
-        <thead><tr><th>Cambio</th><th>Por qué</th></tr></thead>
-        <tbody>
-          <tr><td><span class="mk nuevo">Nuevo</span>Sección de Cumplimiento normativo</td><td>Quien recibe un levantamiento de Protección Civil o STPS busca un <b>dictamen en regla</b>. Massatierra es de las pocas empresas que puede entregar la cadena completa, y el contenido actual no lo dice en ningún lado.</td></tr>
-          <tr><td><span class="mk nuevo">Nuevo</span>Productos con ficha técnica</td><td>El contenido actual no nombra ningún modelo. Quien especifica un proyecto necesita la ficha del MTK, la MTPP02 o el MTAT02.</td></tr>
-          <tr><td><span class="mk nuevo">Nuevo</span>Comparativo vs. sistema tradicional</td><td>Ya existe en el brochure y es el argumento más claro para quien compara opciones.</td></tr>
-          <tr><td><span class="mk nuevo">Nuevo</span>Evidencia real: punta MTPP02 usada</td><td>Una punta que ya recibió descargas muestra el desgaste en la punta y el cuerpo íntegro. Es una prueba que ningún render sustituye y que respalda «ultra resistente a descargas de alta intensidad» del brochure.</td></tr>
-          <tr><td><span class="mk nuevo">Nuevo</span>Sector Minería</td><td>Hay experiencia documentada en minería y no tenía página propia.</td></tr>
-          <tr><td><span class="mk nuevo">Nuevo</span>Pregunta de origen en el formulario</td><td>Separa a quien llega por una obligación normativa de quien llega a cotizar, para atender a cada uno como necesita.</td></tr>
-          <tr><td><span class="mk ajuste">Ajuste</span>Presencia en México, Chile y Perú</td><td>El contenido actual solo dice «México y el extranjero».</td></tr>
-          <tr><td><span class="mk ajuste">Ajuste</span>Academia → Capacitación</td><td>En lugar de un «Próximamente», una página real con los cursos con validez oficial, su temario y cómo contratarlos.</td></tr>
-        </tbody>
-      </table></div>
-    </section>
-
-    <section class="page">
-      <div class="page-head"><span class="n">03</span><h2>Inicio — en orden</h2></div>
-      <p class="page-sub">Recorrido: llega desde Google → entiende qué resolvemos → encuentra su camino → ve el respaldo → solicita diagnóstico.</p>
-      <div class="stack">
-        <div class="blk hero"><span class="bn">01</span><div><b>Hero</b><p>Tierras físicas, pararrayos y protección contra sobretensiones. Botones: Solicitar diagnóstico · Hablar con un especialista.</p></div></div>
-        <div class="blk"><span class="bn">02</span><div><b>Respaldo</b><p>+25 años · tecnología patentada · garantía de desempeño por escrito · ingeniería integral.</p></div></div>
-        <div class="blk new"><span class="bn">03</span><div><b>Cumplimiento: la cadena completa</b><p>Estudio → instalación → dictamen UVIE → garantía. Accesos a NOM-022 y a «Recibí un levantamiento».</p></div></div>
-        <div class="blk"><span class="bn">04</span><div><b>Soluciones que trabajan como un sistema</b><p>Tarjeta por solución.</p></div></div>
-        <div class="blk"><span class="bn">05</span><div><b>Encuentre el camino para su proyecto</b><p>Proteger una instalación · tengo fallas · especificar o cotizar · ya soy cliente.</p></div></div>
-        <div class="blk"><span class="bn">06</span><div><b>¿Su instalación presenta estas señales?</b><p>Síntomas que justifican una revisión.</p></div></div>
-        <div class="blk"><span class="bn">07</span><div><b>Tecnología propia</b><p>Electrodo Magneto Activo, MassLink, electrodo estructural. Accesos a tecnología y comparativo.</p></div></div>
-        <div class="blk"><span class="bn">08</span><div><b>Sectores</b><p>Los siete sectores.</p></div></div>
-        <div class="blk"><span class="bn">09</span><div><b>Así trabajamos</b><p>Cinco pasos, de la necesidad al respaldo.</p></div></div>
-        <div class="blk"><span class="bn">10</span><div><b>Experiencia por sector</b><p>Sin logotipos de clientes hasta tener autorización.</p></div></div>
-        <div class="blk cta"><span class="bn">11</span><div><b>Cierre</b><p>Su próximo paso comienza con una conversación. Solicitar diagnóstico · WhatsApp.</p></div></div>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="page-head"><span class="n">04</span><h2>Plantillas que se repiten</h2></div>
-      <div class="cols">
-        <div>
-          <h3>Página de solución</h3>
-          <div class="stack">
-            <div class="blk"><span class="bn">1</span><div><b>Qué es y para qué sirve</b></div></div>
-            <div class="blk"><span class="bn">2</span><div><b>Aplicaciones</b></div></div>
-            <div class="blk"><span class="bn">3</span><div><b>Tecnología y productos relacionados</b></div></div>
-            <div class="blk"><span class="bn">4</span><div><b>«¿Ya tiene un sistema?» → revisión</b></div></div>
-            <div class="blk cta"><span class="bn">5</span><div><b>Cotizar esta solución</b></div></div>
-          </div>
-        </div>
-        <div>
-          <h3>Página de sector</h3>
-          <div class="stack">
-            <div class="blk"><span class="bn">1</span><div><b>Lo que protege este sector</b></div></div>
-            <div class="blk"><span class="bn">2</span><div><b>Áreas de aplicación</b></div></div>
-            <div class="blk"><span class="bn">3</span><div><b>Acompañamiento</b></div></div>
-            <div class="blk"><span class="bn">4</span><div><b>Experiencia en el sector</b></div></div>
-            <div class="blk cta"><span class="bn">5</span><div><b>Solicitar evaluación</b></div></div>
-          </div>
-        </div>
-        <div>
-          <h3>Ficha de producto</h3>
-          <div class="stack">
-            <div class="blk"><span class="bn">1</span><div><b>Modelo, foto o render</b></div></div>
-            <div class="blk"><span class="bn">2</span><div><b>Especificaciones</b><p><i class="m-falta" title="Falta información de Massatierra"></i> Con las fichas técnicas de Massatierra.</p></div></div>
-            <div class="blk"><span class="bn">3</span><div><b>Aplicaciones</b></div></div>
-            <div class="blk new"><span class="bn">4</span><div><b>Descargar ficha en PDF</b></div></div>
-            <div class="blk cta"><span class="bn">5</span><div><b>Cotizar</b></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="page-head"><span class="n">05</span><h2>Formularios y lo que se mide</h2></div>
-      <div class="cols">
-        <div>
-          <h3>Formulario de diagnóstico</h3>
-          <ul class="plain">
-            <li>Nombre · empresa · teléfono o WhatsApp · correo · ciudad de la instalación</li>
-            <li>¿Qué necesita? <span>(puesta a tierra, pararrayos, estudio, ingeniería, orientación)</span></li>
-            <li><b>¿Recibió recientemente un levantamiento o dictamen de cumplimiento?</b></li>
-            <li>Cuéntenos sobre su proyecto</li>
-            <li>Autorización de contacto y Aviso de privacidad</li>
-          </ul>
-          <p class="page-sub" style="margin-top:10px">Cada solicitud queda registrada, y el formulario queda listo para conectarse al cotizador.</p>
-        </div>
-        <div>
-          <h3>Formulario de soporte</h3>
-          <ul class="plain">
-            <li>Contacto, empresa y ubicación de la instalación</li>
-            <li>Número de proyecto o referencia</li>
-            <li>Tipo: consulta técnica · revisión · medición · garantía · documentación</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Lo que se mide</h3>
-          <div class="glob">
-            <span class="pill">Solicitudes de diagnóstico</span><span class="pill">Llamadas</span>
-            <span class="pill">Clics a WhatsApp</span><span class="pill">Descargas de ficha técnica</span>
-            <span class="pill">Formularios abandonados</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="page-head"><span class="n">06</span><h2>Posicionamiento en Google</h2></div>
-      <p class="page-sub">Cada página responde a búsquedas concretas. Las de cumplimiento son las de mayor intención: quien las busca ya tiene una obligación.</p>
-      <div class="glob">
-        <span class="pill ac">nom 022 stps tierras físicas</span><span class="pill ac">estudio de tierras físicas</span>
-        <span class="pill ac">medición de tierra física</span><span class="pill ac">certificado de tierra física</span>
-        <span class="pill ac">cómo cumplir la nom 022</span><span class="pill ac">quién certifica tierras físicas</span>
-        <span class="pill">sistema de puesta a tierra</span><span class="pill">pararrayos industrial</span>
-        <span class="pill">electrodo para tierra física</span><span class="pill">nmx-j-549-ance</span>
-        <span class="pill">valores permitidos resistencia a tierra</span>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="page-head"><span class="n">07</span><h2>Decisiones por cerrar con Massatierra</h2></div>
-      <p class="page-sub">Massatierra garantiza valores por escrito, así que el sitio no puede ser impreciso con un solo número. Estas respuestas definen lo que se publica.</p>
+      <div class="page-head"><span class="n">01</span><h2>Decisiones por cerrar con Massatierra</h2></div>
+      <p class="page-sub">Massatierra garantiza valores por escrito, así que el sitio no puede ser impreciso con un solo número. Estas respuestas definen lo que se publica; en el mapa y en los wireframes están marcadas con <i class="m-falta"></i> y <i class="m-duda"></i>.</p>
       <ol class="open">
         <li><b>Las cifras de trayectoria.</b><span>El currículum y el brochure dan números distintos de proyectos, electrodos y países. ¿Cuál es la versión vigente?</span></li>
         <li><b>La redacción exacta de la garantía de 2 Ω.</b><span>El material comercial dice «2 Ω garantizados por escrito»; el contenido web anterior dice «objetivo de diseño menor a 2 Ω». Debe coincidir con el contrato de garantía.</span></li>
@@ -941,7 +479,7 @@
     </section>
 
     <section class="page">
-      <div class="page-head"><span class="n">08</span><h2>Lo que necesitamos para construir</h2></div>
+      <div class="page-head"><span class="n">02</span><h2>Lo que necesitamos para construir</h2></div>
       <div class="glob">
         <span class="pill">Logotipo en vector (AI / SVG)</span><span class="pill">Tipografías del deck nuevo</span>
         <span class="pill">Fotos en alta: obra, instalaciones, producto, equipo</span><span class="pill">Foto o render por modelo MTK</span>
@@ -950,7 +488,6 @@
         <span class="pill">Accesos: dominio, hosting, correo, Analytics</span>
       </div>
     </section>
-
   </div>
 
 </div>
@@ -967,12 +504,340 @@
 </footer>
 
 <script>
+/* ═══════════ UNA SOLA FUENTE ═══════════
+   Cada página se define una vez aquí. El mapa del sitio y los wireframes
+   se dibujan de estos mismos datos, así que no pueden contradecirse.
+   vit: la sección se puede ver funcionando en la vitrina.
+   rec: recurso de la pestaña «Elementos de diseño» que usa la sección.
+   {falta}: falta información de Massatierra · {duda}: por confirmar.   */
+var CIERRE = { t:'cta', k:'Cierre', h:'Su próximo paso comienza con una conversación', p:'Cuéntenos qué necesita proteger o qué problema presenta su instalación.', btns:['o:Solicitar diagnóstico','g:Escribir por WhatsApp'] };
+function cierre(h, b){ return { t:'cta', k:'Cierre', h:h, p:CIERRE.p, btns:[ 'o:' + b, 'g:Escribir por WhatsApp' ] }; }
+
+var PAGINAS = {
+  inicio: { n:'Inicio', r:'/', menu:'', corto:'Inicio', s:[
+    { t:'hero', k:'Hero', vit:1, rec:'Hero en dibujo técnico animado · rayo que el visitante provoca', eyebrow:'Tierras físicas, pararrayos y protección contra sobretensiones', h:'Tecnología para proteger lo que mantiene en marcha su empresa', p:'Tecnología patentada, ingeniería especializada e instalación, con garantía de desempeño por escrito.', btns:['o:Solicitar diagnóstico','g:Hablar con un especialista'], ph:'Dibujo técnico animado: punta, bajante y electrodo' },
+    { t:'strip', k:'Respaldo', vit:1, rec:'Cifras que cuentan · código que se decodifica · cinta de avales', items:[['+25 años','de experiencia'],['20 años de garantía','por escrito {falta}'],['PAT. #285201','Electrodo Magneto Activo · IMPI'],['Avales','NOM · ANCE · NMX · IEEE · ABNT · SEC · IMPI']] },
+    { t:'chain', k:'Cumplimiento: la cadena completa', nuevo:1, rec:'Borde con corriente eléctrica', h:'¿Tiene que cumplir con la norma? Lo resolvemos de punta a punta', p:'Usted no necesita coordinar a cuatro proveedores: recibe un dictamen en regla para Protección Civil y STPS.', items:[['Estudio','Medición y diagnóstico'],['Instalación','Tecnología patentada'],['Dictamen UVIE','Firma de verificador acreditado {falta}'],['Garantía','Desempeño por escrito']], btns:['h:Ver cómo cumplir la NOM-022','g:Recibí un levantamiento'] },
+    { t:'grid', k:'Soluciones', h:'Soluciones que trabajan como un sistema', p:'La protección eléctrica requiere que sus componentes funcionen de manera coordinada.', cols:4, ph:'ícono', items:[['Puesta a tierra'],['Pararrayos'],['Estudios y medición'],['Ingeniería e instalación']], nota:'Supresores de pico entra como quinta tarjeta solo si se confirma. {duda}' },
+    { t:'split', k:'Tecnología propia', vit:1, rec:'Líneas de campo magnético · renglones de ficha técnica', rev:1, eyebrow:'Tecnología', h:'Electrodo Magneto Activo', p:'MassLink es un sistema unidireccional: solo permite el drenado de corrientes no deseadas a tierra y evita que regresen del subsuelo.', list:['Impedancia · baja','Mantenimiento · libre de mantenimiento','Material · 100% cobre electrolítico'], ph:'Campo magnético que responde al cursor', btns:['g:Conocer la tecnología','g:Ver comparativo'] },
+    { t:'split', k:'Estudios y medición', vit:1, rec:'Terreno en curvas de nivel · código que se decodifica', eyebrow:'Estudios y medición', h:'Conozca las condiciones de su terreno antes de decidir', p:'Medición de resistividad del terreno y de resistencia a tierra para diseñar el sistema y documentar el cumplimiento. ¿Su instalación presenta alguna de estas señales?', list:['Equipos que fallan después de una tormenta','Interrupciones en control o ruido en telecomunicaciones','Descargas al tocar equipos o estructuras'], ph:'Terreno topográfico que se levanta bajo el cursor', btns:['o:Agendar estudio técnico'] },
+    { t:'grid', k:'Sectores', vit:1, rec:'Paneles de sector conectados a tierra', h:'Especialización para distintos sectores', p:'Cada instalación es distinta; todas terminan conectadas a la misma tierra.', cols:4, ph:'foto', items:[['Industria y manufactura'],['Hotelería'],['Hospitales y clínicas'],['Telecom y centros de datos'],['Construcción e infraestructura'],['Comercio y servicios'],['Minería','Nueva',1]], btns:['g:Ver proyectos por sector'] },
+    { t:'steps', k:'Así trabajamos', h:'Así trabajamos', items:['Conocemos su necesidad','Evaluamos y diseñamos','Presentamos una solución clara','Instalamos y verificamos','Entregamos respaldo'] },
+    { t:'form', k:'Diagnóstico', vit:1, rec:'Hoja de solicitud', dark:1, eyebrow:'Diagnóstico', h:'Cuéntenos qué necesita proteger', p:'Paso 1 de 2. Un especialista le ayudará a identificar cómo comenzar.', fields:[['¿Qué necesita? Puesta a tierra · Pararrayos · Estudios · Ingeniería · Orientación',1],['¿Ya le entregaron un levantamiento o dictamen de su instalación?  ○ Sí  ○ No',1,1]], aside:['Conmutador +52 33 3627 3226','WhatsApp +52 33 1043 3045','Lunes a viernes, 9:00 a 18:00'], btns:['o:Continuar'] }
+  ], mide:['Solicitudes de diagnóstico','Clics a WhatsApp','Llamadas'] },
+
+  soluciones: { n:'Soluciones', r:'/soluciones', menu:'Soluciones', corto:'Soluciones', s:[
+    { t:'hero', k:'Hero', eyebrow:'Soluciones', h:'Protección eléctrica para las necesidades de su instalación', p:'Sistemas de puesta a tierra, pararrayos y protección contra sobretensiones, con estudios, ingeniería e instalación.', btns:['o:Solicitar asesoría técnica'], ph:'Dibujo técnico del sistema completo' },
+    { t:'grid', k:'Las soluciones', h:'Cuatro soluciones, un solo sistema', cols:2, items:[['Sistemas de puesta a tierra','Tierras físicas adecuadas a las características de su instalación.'],['Sistemas de pararrayos','Componentes coordinados desde la captación hasta la puesta a tierra.'],['Estudios y medición','Información técnica para conocer el estado de su sistema.'],['Ingeniería e instalación','De la definición del alcance a la entrega.']], nota:'Supresores de pico se agrega solo si se confirma. {duda}' },
+    { t:'grid', k:'Obra nueva, ampliación o revisión', h:'Obra nueva, ampliación o revisión', p:'Nuestro trabajo comienza por entender su operación y definir una solución acorde con sus requerimientos.', cols:3, items:[['Proyecto nuevo'],['Ampliación'],['Revisión de una instalación existente']] },
+    cierre('¿No sabe qué solución necesita?', 'Solicitar diagnóstico')
+  ] },
+
+  sol: { n:'Página de solución', r:'/soluciones/…', menu:'Soluciones', corto:'Página de solución', plantilla:'Puesta a tierra · Pararrayos · Estudios y medición · Ingeniería e instalación', cuenta:4, ejemplo:'Puesta a tierra', s:[
+    { t:'hero', k:'Hero', eyebrow:'Soluciones · Puesta a tierra', h:'Tierras físicas para proteger a las personas, los equipos y la operación', p:'Para instalaciones nuevas y existentes, con tecnología propia, ingeniería especializada y verificación mediante mediciones.', btns:['o:Cotizar sistema de puesta a tierra','g:Hablar con ingeniería'], ph:'Dibujo técnico: variante de la solución' },
+    { t:'grid', k:'Aplicaciones', h:'Una solución diseñada para su instalación', cols:3, items:[['Subestaciones y cuartos eléctricos'],['Líneas de producción y automatización'],['Telecom y centros de datos'],['Equipos electrónicos sensibles'],['Hoteles, hospitales y comercio'],['Infraestructura y desarrollos']] },
+    { t:'split', k:'Tecnología y productos', rec:'Renglones de ficha técnica', h:'Tecnología Massatierra', p:'Electrodos estructurales de cobre electrolítico y componentes MassLink, según la ingeniería del proyecto.', list:['Resistencia a tierra · 2 Ω {falta}','Productos relacionados → su ficha'], ph:'Producto relacionado', btns:['g:Ver productos'] },
+    { t:'steps', k:'Alcance del servicio', h:'Alcance del servicio', items:['Evaluación inicial','Estudios y mediciones','Diseño de ingeniería','Suministro e instalación','Verificación final'] },
+    { t:'banda', k:'¿Ya tiene un sistema?', h:'¿Ya cuenta con tierra física?', p:'Revisamos su sistema actual y determinamos si requiere corrección, ampliación o actualización.', btns:['g:Solicitar revisión de mi sistema'] },
+    cierre('Cotice esta solución', 'Cotizar sistema de puesta a tierra')
+  ], variaciones:'<b>Pararrayos</b> suma «Los componentes de la protección» (captación, conducción, puesta a tierra, coordinación) y la prueba real de la punta MTPP02 usada, con el antes y después deslizable {falta}. <b>Estudios y medición</b> suma el acceso «¿Lo necesita para cumplir la NOM-022?» y el terreno en curvas de nivel. <b>Supresores de pico</b> usaría esta misma plantilla si se confirma {duda}.',
+     seo:['sistema de puesta a tierra','electrodo para tierra física','pararrayos industrial','nmx-j-549-ance','estudio de tierras físicas','valores permitidos resistencia a tierra'] },
+
+  cumplimiento: { n:'Cumplimiento', r:'/cumplimiento', menu:'Cumplimiento', corto:'Cumplimiento', nuevo:1, s:[
+    { t:'hero', k:'Hero', rec:'Terreno en curvas de nivel (fondo)', eyebrow:'Cumplimiento normativo · NOM-022-STPS', h:'Cumpla con la norma con un solo responsable', p:'Estudio, instalación y dictamen con firma de verificador acreditado. Un dictamen en regla para Protección Civil y STPS.', btns:['o:Recibí un levantamiento','g:Solicitar estudio'], ph:'Foto: medición en campo / dictamen' },
+    { t:'chain', k:'La cadena completa', rec:'Borde con corriente eléctrica', h:'Usted no necesita coordinar a cuatro proveedores', items:[['Estudio','Medición y diagnóstico de su sistema'],['Instalación','Correcciones con tecnología patentada'],['Dictamen UVIE','Firma de verificador acreditado {falta}'],['Garantía','Desempeño por escrito']] },
+    { t:'grid', k:'¿Es su caso?', h:'¿Es su caso?', cols:3, items:[['Recibí un levantamiento','Protección Civil o STPS observaron su instalación y necesita resolverlo.',1],['Me toca la medición anual','La NOM-022-STPS-2015 pide medir la resistencia a tierra cada año.'],['Abro o amplío una instalación','Necesita el sistema y el dictamen desde el proyecto.']] },
+    { t:'grid', k:'Normas que atendemos', rec:'Código que se decodifica · cinta de avales', h:'Normas que atendemos', cols:3, items:[['NOM-022-STPS-2015','Electricidad estática en centros de trabajo. {falta}'],['NOM-001-SEDE-2012','Instalaciones eléctricas. {falta}'],['NMX-J549-ANCE-2005','Protección contra tormentas eléctricas. {falta}']], nota:'Los textos de cada norma se validan con ingeniería de Massatierra; no se parafrasean de memoria.' },
+    { t:'split', k:'Qué le entregamos', h:'Qué le entregamos', p:'Reporte de medición · proyecto de corrección cuando aplica · dictamen firmado · garantía por escrito. {falta}', ph:'Ejemplo de dictamen (datos ocultos)' },
+    { t:'faq', k:'Preguntas de cumplimiento', h:'Preguntas de cumplimiento', items:['¿Quién puede firmar el dictamen?','¿Cada cuánto se tiene que medir?','¿Pueden revisar una instalación de otro proveedor?','¿Cuánto tarda todo el proceso?'] },
+    { t:'form', k:'Formulario corto', rec:'Hoja de solicitud', dark:1, h:'Cuéntenos qué le observaron', p:'Paso 1 de 2: tres datos para empezar. La empresa, la ciudad y la observación se piden en el segundo paso.', fields:[['Nombre'],['Teléfono o WhatsApp'],['¿Recibió recientemente un levantamiento o dictamen de cumplimiento?  ○ Sí  ○ No',1,1]], btns:['o:Continuar','g:Continuar por WhatsApp'] }
+  ], seo:['nom 022 stps tierras físicas','cómo cumplir la nom 022','certificado de tierra física','quién certifica tierras físicas'], mide:['Solicitudes con levantamiento','Formularios abandonados'] },
+
+  cumpl: { n:'Página de cumplimiento', r:'/cumplimiento/…', menu:'Cumplimiento', corto:'Página de cumplimiento', nuevo:1, falta:1, plantilla:'NOM-022-STPS · Dictamen UVIE · Recibí un levantamiento', cuenta:3, ejemplo:'NOM-022-STPS', s:[
+    { t:'hero', k:'Hero', rec:'Terreno en curvas de nivel', eyebrow:'Cumplimiento · NOM-022-STPS-2015', h:'Qué exige la norma y cómo se cumple', p:'Texto revisado contra la norma y con ingeniería de Massatierra. {falta}', btns:['o:Solicitar medición'], ph:'Foto: medición de resistencia a tierra' },
+    { t:'banda', k:'Qué se mide y cada cuánto', h:'Qué se mide y cada cuánto', p:'Resistencia a tierra, con medición anual. {falta}' },
+    { t:'grid', k:'Qué le entregamos', h:'Qué le entregamos', cols:4, items:[['Reporte de medición'],['Proyecto de corrección','cuando aplica'],['Dictamen firmado'],['Garantía por escrito']], nota:'Lista exacta con el formato de dictamen de Massatierra. {falta}' },
+    { t:'faq', k:'Preguntas frecuentes', h:'Preguntas frecuentes', items:['¿Cada cuánto se tiene que medir?','¿Qué pasa si el valor no cumple?','¿Pueden revisar una instalación de otro proveedor?','¿El dictamen sirve ante Protección Civil?'] },
+    { t:'form', k:'Formulario corto', rec:'Hoja de solicitud', dark:1, h:'Solicite su medición', p:'Paso 1 de 2.', fields:[['Nombre'],['Teléfono o WhatsApp'],['¿Recibió recientemente un levantamiento o dictamen de cumplimiento?  ○ Sí  ○ No',1,1]], btns:['o:Continuar'] }
+  ], variaciones:'<b>Dictamen UVIE:</b> qué es, quién lo firma y ante quién tiene validez; depende de si la unidad verificadora es propia o aliada {falta}. <b>Recibí un levantamiento:</b> qué hacer ahora, cómo lo resolvemos y lo que necesitamos de usted; requiere el formato de dictamen y ejemplos reales de observaciones {falta}. No se publican montos de multas.',
+     seo:['nom 022 stps tierras físicas','medición de tierra física','certificado de tierra física','quién certifica tierras físicas'] },
+
+  sectores: { n:'Sectores', r:'/sectores', menu:'Sectores', corto:'Sectores', s:[
+    { t:'hero', k:'Hero', eyebrow:'Sectores', h:'Entendemos lo que su operación necesita proteger', p:'Cada sector tiene equipos, instalaciones y prioridades diferentes.', btns:['o:Hablar con un especialista de mi sector'], ph:'Foto de instalación' },
+    { t:'grid', k:'Los siete sectores', vit:1, rec:'Paneles de sector conectados a tierra', h:'Siete sectores, una misma tierra', cols:4, ph:'foto', items:[['Industria y manufactura','Líneas de producción, automatización y control.'],['Hotelería','Lo que sostiene la experiencia del huésped.'],['Hospitales y clínicas','Equipos sensibles para la atención médica.'],['Telecom y centros de datos','Servidores, redes y transmisión.'],['Construcción e infraestructura','Obra nueva, ampliación y modernización.'],['Comercio y servicios','Equipos esenciales para atender clientes.'],['Minería','Nueva.',1]] },
+    cierre('Hable con un especialista de su sector', 'Solicitar diagnóstico')
+  ] },
+
+  sector: { n:'Página de sector', r:'/sectores/…', menu:'Sectores', corto:'Página de sector', plantilla:'Industria · Hotelería · Hospitales y clínicas · Telecom y centros de datos · Construcción · Comercio y servicios · Minería', cuenta:7, ejemplo:'Industria y manufactura', s:[
+    { t:'hero', k:'Hero', eyebrow:'Sectores · Industria y manufactura', h:'Protección para la infraestructura que sostiene su producción', p:'Tableros, sistemas de control y automatización que deben operar de manera confiable.', btns:['o:Solicitar diagnóstico de planta'], ph:'Foto del sector' },
+    { t:'grid', k:'Áreas de aplicación', h:'Áreas de aplicación', cols:3, items:[['Subestaciones'],['Cuartos eléctricos'],['Líneas de producción'],['PLC y variadores'],['Almacenes'],['Áreas de mantenimiento']] },
+    { t:'banda', k:'Acompañamiento', h:'Acompañamiento para su planta', p:'Evaluamos instalaciones existentes y participamos en ampliaciones o nueva construcción, coordinados con su operación.' },
+    { t:'split', k:'Experiencia en el sector', h:'Experiencia en el sector', p:'Casos del sector, sin logotipos hasta tener autorización. {falta}', ph:'Foto de proyecto', btns:['g:Ver proyectos'] },
+    cierre('Solicite una evaluación', 'Solicitar evaluación')
+  ], variaciones:'Cada sector cambia el hero, las áreas de aplicación y el botón (p. ej. «Solicitar evaluación para mi hotel»). <b>Minería</b> es nueva: se escribe con la experiencia documentada en minería {falta}. En <b>Hotelería</b> rinde el material del deck de hotelería.' },
+
+  tecnologia: { n:'Tecnología', r:'/tecnologia', menu:'Tecnología', corto:'Tecnología', s:[
+    { t:'hero', k:'Hero', rec:'Visor 3D del producto', eyebrow:'Tecnología', h:'Tecnología propia, fabricada en México', p:'Desarrollamos y fabricamos en México componentes para sistemas de puesta a tierra.', btns:['o:Solicitar documentación técnica','g:Consultar con ingeniería'], ph:'Visor 3D del electrodo {falta}' },
+    { t:'split', k:'Electrodo Magneto Activo', vit:1, rec:'Líneas de campo magnético · código que se decodifica', rev:1, h:'Electrodo Magneto Activo', p:'Patentado: PAT. #285201 ante el IMPI.', list:['Impedancia · baja','Mantenimiento · libre de mantenimiento','Material · 100% cobre electrolítico'], ph:'Campo magnético que responde al cursor' },
+    { t:'split', k:'MassLink', h:'MassLink, sistema unidireccional', p:'Solo permite el drenado de corrientes no deseadas a tierra y evita que regresen del subsuelo a las aplicaciones.', ph:'Esquema del flujo unidireccional' },
+    { t:'split', k:'Electrodo estructural', rev:1, h:'Electrodo estructural', p:'Fabricado en cobre electrolítico; su configuración da superficie de contacto con el terreno para disipar la corriente.', ph:'Render del electrodo' },
+    { t:'cinta', k:'Avales', vit:1, rec:'Cinta continua de avales', items:['NOM','ANCE','NMX','IEEE','ABNT','SEC','IMPI'] },
+    { t:'grid', k:'Productos, comparativo y garantía', h:'Conozca el detalle', cols:3, items:[['Productos','Electrodos MTK, punta MTPP02 y acondicionador MTAT02.'],['Comparativo','Frente al sistema tradicional.'],['Garantía','Desempeño por escrito.']] },
+    cierre('Solicite la documentación técnica', 'Solicitar documentación')
+  ] },
+
+  productos: { n:'Productos', r:'/tecnologia/productos', menu:'Tecnología', corto:'Productos', nuevo:1, s:[
+    { t:'hero', k:'Hero', eyebrow:'Tecnología · Productos', h:'Productos Massatierra', p:'Electrodos MTK, punta pararrayos MTPP02 y acondicionador MTAT02.', btns:['o:Cotizar'] },
+    { t:'grid', k:'Electrodos MTK (6 modelos)', h:'Electrodos MTK', cols:3, ph:'render', items:[['MTK · modelo'],['MTK · modelo'],['MTK · modelo'],['MTK · modelo'],['MTK · modelo'],['MTK · modelo']], nota:'Qué distingue a cada modelo sale de las fichas técnicas. {falta}' },
+    { t:'grid', k:'Punta MTPP02 y acondicionador MTAT02', h:'Pararrayos y acondicionamiento', cols:2, ph:'render', items:[['Punta pararrayos MTPP02','NMX-J549-ANCE-2005'],['Acondicionador MTAT02','']] },
+    { t:'banda', k:'Biblioteca técnica', h:'Fichas, patente y certificados', p:'Toda la documentación descargable está en la biblioteca técnica.', btns:['g:Ir a la biblioteca técnica'] },
+    cierre('Cotice para su proyecto', 'Cotizar')
+  ], seo:['electrodo para tierra física','punta pararrayos'] },
+
+  ficha: { n:'Ficha de producto', r:'/tecnologia/productos/…', menu:'Tecnología', corto:'Ficha de producto', nuevo:1, falta:1, plantilla:'Una por modelo: MTK ×6 · MTPP02 · MTAT02', cuenta:8, ejemplo:'un electrodo MTK', s:[
+    { t:'split', k:'Modelo y render', rec:'Visor 3D del producto', eyebrow:'Productos · Electrodos MTK', h:'Electrodo MTK · modelo', p:'Descripción del modelo. {falta}', ph:'Render o visor 3D {falta}', btns:['o:Cotizar','g:Descargar ficha en PDF'] },
+    { t:'table', k:'Especificaciones', rec:'Renglones de ficha técnica', h:'Especificaciones', rows:[['Material','{falta}'],['Aplicación','{falta}'],['Norma','{falta}'],['Garantía','{falta}']], nota:'Con las fichas técnicas de Massatierra.' },
+    { t:'grid', k:'Aplicaciones', h:'Aplicaciones', cols:3, items:[['Aplicación'],['Aplicación'],['Aplicación']] },
+    { t:'banda', k:'Descarga de la ficha', nuevo:1, h:'Descargue la ficha técnica', p:'PDF con las especificaciones completas del modelo.', btns:['h:Descargar ficha en PDF'] },
+    cierre('Cotice este modelo', 'Cotizar')
+  ], mide:['Descargas de ficha técnica'] },
+
+  comparativo: { n:'Comparativo', r:'/tecnologia/comparativo', menu:'Tecnología', corto:'Comparativo', nuevo:1, s:[
+    { t:'hero', k:'Hero', eyebrow:'Tecnología · Comparativo', h:'Massatierra frente al sistema tradicional', p:'El argumento más claro para quien compara opciones, tomado del brochure.', btns:['o:Hablar con ingeniería'] },
+    { t:'strip', k:'Vida útil: 20 años vs. 3', rec:'Cifras que cuentan', items:[['20 años','vida útil · Massatierra'],['3 años','vida útil · sistema tradicional']] },
+    { t:'table', k:'Tabla comparativa', h:'Punto por punto', head:['','Massatierra','Sistema tradicional'], rows:[['Vida útil','20 años','3 años'],['Demás renglones','{falta}','{falta}']], nota:'Los renglones salen del comparativo del brochure.' },
+    cierre('¿Está comparando opciones?', 'Hablar con ingeniería')
+  ], seo:['electrodo para tierra física'] },
+
+  garantia: { n:'Garantía', r:'/tecnologia/garantia', menu:'Tecnología', corto:'Garantía', falta:1, s:[
+    { t:'hero', k:'Hero', rec:'Cifras que cuentan', eyebrow:'Tecnología · Garantía', h:'Nuestro compromiso va por escrito', p:'Garantía de desempeño de 20 años, conforme al documento correspondiente. {falta}', btns:['o:Consultar condiciones de garantía'] },
+    { t:'grid', k:'Qué cubre', h:'Qué cubre', cols:3, items:[['Un compromiso definido','Sistema, alcance y valores comprometidos por escrito.'],['Verificación del sistema','Mediciones y reportes de entrega.'],['Atención durante la vigencia','Consultas sobre el sistema y su garantía.']] },
+    { t:'banda', k:'¿Ya es cliente?', h:'¿Ya es cliente?', p:'Tenga a la mano el nombre de su empresa, la ubicación de la instalación y la información del proyecto.', btns:['o:Solicitar atención de garantía'] }
+  ], variaciones:'La redacción de la garantía de 2 Ω tiene que coincidir con el contrato de garantía {falta}.' },
+
+  proyectos: { n:'Proyectos', r:'/proyectos', menu:'Proyectos', corto:'Proyectos', falta:1, s:[
+    { t:'hero', k:'Hero', eyebrow:'Proyectos', h:'Experiencia en instalaciones que requieren continuidad', p:'Más de 25 años en proyectos de puesta a tierra y pararrayos, en México y el extranjero.', ph:'Foto de obra' },
+    { t:'grid', k:'Experiencia por sector', h:'Experiencia por sector', cols:3, ph:'foto', items:[['Industria y energía'],['Hotelería y desarrollos'],['Telecomunicaciones'],['Salud y educación'],['Minería y otras aplicaciones']], nota:'Sin logotipos de clientes hasta tener autorización. {falta}' },
+    { t:'split', k:'Caso destacado', rev:1, h:'Centro de telecomunicaciones en Zapopan', p:'Puesta a tierra y pararrayos para transformadores, tableros, plantas de emergencia, baterías e inversores y centro de datos.', ph:'Foto del proyecto', btns:['g:Ver el caso'] },
+    cierre('Su proyecto también comienza con una necesidad concreta', 'Solicitar una solución')
+  ] },
+
+  caso: { n:'Caso', r:'/proyectos/…', menu:'Proyectos', corto:'Caso', falta:1, plantilla:'Hoy existe uno: telecomunicaciones en Zapopan', cuenta:1, ejemplo:'telecomunicaciones en Zapopan', s:[
+    { t:'split', k:'Ficha del caso', rec:'Renglones de ficha técnica', eyebrow:'Proyecto', h:'Puesta a tierra y pararrayos para un centro de telecomunicaciones', list:['Ubicación · Zapopan, Jalisco','Sector · Telecomunicaciones','Solución · Puesta a tierra y pararrayos'], ph:'Foto del proyecto' },
+    { t:'grid', k:'La necesidad y la intervención', h:'La necesidad y la intervención', cols:2, items:[['La necesidad','Un centro de operaciones de internet, televisión y telefonía requería protección para sus áreas críticas.'],['La intervención','Sistema de pararrayos integrado con la solución de puesta a tierra Massatierra.']] },
+    { t:'grid', k:'Áreas atendidas', h:'Áreas atendidas', cols:5, items:[['Transformadores'],['Tableros'],['Plantas de emergencia'],['Baterías e inversores'],['Centro de datos']] },
+    cierre('Su proyecto también comienza con una necesidad concreta', 'Solicitar una solución')
+  ], variaciones:'Los demás casos dependen de qué proyectos se pueden contar con sector, ciudad y alcance {falta}.' },
+
+  recursos: { n:'Recursos', r:'/recursos', menu:'Recursos', corto:'Recursos', s:[
+    { t:'hero', k:'Hero', eyebrow:'Recursos', h:'Entienda su instalación y decida con información', p:'Explicaciones claras para comenzar y documentación técnica para profundizar.' },
+    { t:'grid', k:'Las cuatro secciones', h:'Por dónde empezar', cols:4, items:[['Centro de conocimiento','Artículos'],['Biblioteca técnica','Descargas'],['Preguntas frecuentes',''],['Capacitación','Cursos {duda}']] },
+    cierre('¿Prefiere preguntarle a un especialista?', 'Hablar con un especialista')
+  ] },
+
+  centro: { n:'Centro de conocimiento', r:'/recursos/centro-de-conocimiento', menu:'Recursos', corto:'Centro de conocimiento', s:[
+    { t:'hero', k:'Hero', eyebrow:'Recursos · Centro de conocimiento', h:'Lo esencial de tierras físicas, pararrayos y protección eléctrica' },
+    { t:'grid', k:'Por perfil', h:'Para quién', cols:3, items:[['Para comenzar','Conceptos esenciales y señales que justifican una revisión.'],['Para responsables de instalaciones','Planear evaluaciones y comparar alcances.'],['Para ingeniería y especificación','Fichas y documentación de consulta.']] },
+    { t:'grid', k:'Artículos', h:'Artículos', cols:2, items:[['¿Qué es una tierra física?'],['¿Por qué fallan equipos si ya hay tierra física?'],['Pararrayos: el sistema completo'],['Qué preparar para solicitar una cotización'],['Artículos de normativa','Alimentan la sección de Cumplimiento. {falta}',1]] },
+    cierre('¿Tiene un caso concreto?', 'Solicitar diagnóstico')
+  ], variaciones:'Los cuatro artículos ya están escritos en el contenido existente. Los de normativa son nuevos: se define si entran al alcance del sitio {falta}.' },
+
+  biblioteca: { n:'Biblioteca técnica', r:'/recursos/biblioteca-tecnica', menu:'Recursos', corto:'Biblioteca técnica', s:[
+    { t:'hero', k:'Hero', eyebrow:'Recursos · Biblioteca técnica', h:'Documentación para conocer, especificar y evaluar' },
+    { t:'grid', k:'Documentos', h:'Documentos', cols:3, items:[['Catálogo de soluciones','Descargar'],['Fichas técnicas','Descargar {falta}'],['Tecnología patentada','Descargar'],['Certificaciones y homologaciones','Descargar'],['Documentos de mi proyecto','Para clientes: se solicitan']] },
+    cierre('¿No encuentra un documento?', 'Solicitar documentación')
+  ], mide:['Descargas de ficha técnica'] },
+
+  faq: { n:'Preguntas frecuentes', r:'/recursos/preguntas-frecuentes', menu:'Recursos', corto:'Preguntas frecuentes', s:[
+    { t:'hero', k:'Hero', eyebrow:'Recursos · Preguntas frecuentes', h:'Respuestas para dar el siguiente paso' },
+    { t:'faq', k:'Las 11 del contenido existente', h:'Sobre su instalación', items:['¿Tierras físicas y puesta a tierra son lo mismo?','¿Cómo sé qué sistema necesita mi instalación?','¿Un pararrayos protege todos mis equipos?','¿Puedo contratar únicamente un estudio?','… y 7 más'] },
+    { t:'faq', k:'Preguntas de cumplimiento', nuevo:1, h:'Sobre cumplimiento', items:['¿Quién puede firmar el dictamen?','¿Cada cuánto se tiene que medir?'] },
+    cierre('¿Su pregunta no está aquí?', 'Hablar con un especialista')
+  ] },
+
+  capacitacion: { n:'Capacitación', r:'/recursos/capacitacion', menu:'Recursos', corto:'Capacitación', duda:1, falta:1, s:[
+    { t:'hero', k:'Hero', eyebrow:'Recursos · Capacitación', h:'Capacitación con validez oficial', p:'Para ingenieros, técnicos, instaladores y responsables de mantenimiento. {falta}' },
+    { t:'grid', k:'Cursos y temario', h:'Temas', cols:3, items:[['Fundamentos de tierras físicas'],['Diseño de sistemas de puesta a tierra'],['Protección contra descargas atmosféricas'],['Medición de resistividad y resistencia'],['Inspección y mantenimiento'],['Análisis de casos']], nota:'Cursos reales, registro oficial y modalidad. {falta}' },
+    { t:'form', k:'Solicitar información', dark:1, h:'Solicite información', fields:[['Nombre'],['Correo'],['Empresa'],['Curso de interés']], btns:['o:Solicitar información'] }
+  ], variaciones:'Sustituye a «Academia Massatierra · Próximamente». Se construye solo si los cursos existen hoy {duda}.' },
+
+  empresa: { n:'Empresa', r:'/empresa', menu:'Empresa', corto:'Empresa', s:[
+    { t:'hero', k:'Hero', eyebrow:'Empresa', h:'Massatierra: tecnología para su tranquilidad', p:'Especialistas en sistemas de puesta a tierra y pararrayos, con más de 25 años de experiencia.', ph:'Foto del equipo' },
+    { t:'split', k:'Quiénes somos', h:'Quiénes somos', p:'Fabricamos componentes en México e integramos tecnología propia con estudios, ingeniería, instalación y soporte.', ph:'Foto de planta u oficina' },
+    { t:'grid', k:'Misión y visión', h:'Misión y visión', cols:2, items:[['Misión','Proteger a las personas, los equipos y las operaciones con soluciones integrales.'],['Visión','Ser líderes en protección eléctrica en Latinoamérica.']] },
+    { t:'grid', k:'Lo que guía nuestro trabajo', h:'Lo que guía nuestro trabajo', cols:5, items:[['Servicio'],['Innovación'],['Responsabilidad'],['Confiabilidad'],['Eficiencia']] },
+    { t:'banda', k:'Compromiso de calidad', h:'Compromiso de calidad', p:'Comprender los requerimientos del cliente, mejorar los procesos y responder al alcance contratado.' },
+    { t:'grid', k:'Presencia', h:'Presencia', cols:3, items:[['México','Oficina matriz en Zapopan, Jalisco'],['Chile',''],['Perú','']] },
+    cierre('Hablemos de su instalación', 'Contactar a Massatierra')
+  ] },
+
+  contacto: { n:'Contacto', r:'/contacto', menu:'', corto:'Contacto', s:[
+    { t:'hero', k:'Hero', eyebrow:'Diagnóstico y cotización', h:'Cuéntenos qué necesita proteger', p:'Comparta las características de su instalación o proyecto. Un especialista le ayudará a identificar cómo comenzar.' },
+    { t:'form', k:'Formulario de diagnóstico', vit:1, rec:'Hoja de solicitud', h:'Hoja de solicitud', p:'En dos pasos: primero qué necesita, después sus datos.', fields:[['¿Qué necesita? Puesta a tierra · Pararrayos · Estudios · Ingeniería · Orientación',1],['¿Recibió recientemente un levantamiento o dictamen de cumplimiento?  ○ Sí  ○ No',1,1],['Nombre'],['Empresa'],['Teléfono o WhatsApp'],['Correo'],['Ciudad y país de la instalación'],['Cuéntenos sobre su proyecto'],['Autorización de contacto y Aviso de privacidad',1]], btns:['o:Enviar solicitud'] },
+    { t:'grid', k:'Atención directa', h:'Atención directa', cols:4, items:[['Conmutador','+52 33 3627 3226'],['WhatsApp','+52 33 1043 3045'],['Correo','contacto@massatierra.com.mx'],['Oficina matriz','Zapopan, Jalisco']] },
+    { t:'steps', k:'Qué pasa después de enviar', h:'Qué pasa después de enviar', items:['Recibimos su solicitud','Un especialista le contacta {falta}','Definimos si hace falta visita o estudio'] }
+  ], variaciones:'No se publica «menos de dos horas» ni «gratuito» mientras no se confirme {falta}. Cada solicitud queda registrada y lista para conectarse al cotizador.', mide:['Solicitudes de diagnóstico','Llamadas','Clics a WhatsApp','Formularios abandonados'] },
+
+  soporte: { n:'Soporte técnico', r:'/contacto/soporte', menu:'', corto:'Soporte técnico', s:[
+    { t:'hero', k:'Hero', eyebrow:'Soporte técnico', h:'Estamos para atender su sistema', p:'Para clientes con un sistema Massatierra instalado.' },
+    { t:'form', k:'Formulario de soporte', h:'Solicitud de soporte', fields:[['Nombre y empresa'],['Ubicación de la instalación'],['Número de proyecto o referencia'],['Tipo: consulta técnica · revisión · medición · garantía · documentación',1]], btns:['o:Enviar'] },
+    { t:'banda', k:'¿Prefiere hablar con nosotros?', h:'¿Prefiere hablar con nosotros?', p:'Conmutador +52 33 3627 3226 · WhatsApp +52 33 1043 3045.', btns:['g:Escribir por WhatsApp'] }
+  ] },
+
+  legales: { n:'Páginas legales', r:'texto legal', corto:'Legales', falta:1, sinWire:1, filas:['Aviso de privacidad {falta}','Términos de garantía {falta}'], cuenta:2 }
+};
+
+/* Árbol: cómo cuelgan las páginas. Grupos: cómo se eligen en Wireframes. */
+var ARBOL = [['soluciones',['sol']],['cumplimiento',['cumpl']],['sectores',['sector']],['tecnologia',['productos','ficha','comparativo','garantia']],['proyectos',['caso']],['recursos',['centro','biblioteca','faq','capacitacion']],['empresa',[]],['contacto',['soporte']],['legales',[]]];
+var GRUPOS = [['Inicio',['inicio']],['Soluciones',['soluciones','sol']],['Cumplimiento',['cumplimiento','cumpl']],['Sectores',['sectores','sector']],['Tecnología',['tecnologia','productos','ficha','comparativo','garantia']],['Proyectos',['proyectos','caso']],['Recursos',['recursos','centro','biblioteca','faq','capacitacion']],['Empresa',['empresa']],['Contacto',['contacto','soporte']]];
+var MENU = ['Soluciones','Cumplimiento','Sectores','Tecnología','Proyectos','Recursos','Empresa'];
+
+/* ═══════════ DIBUJO: mapa y wireframes desde PAGINAS ═══════════ */
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmt(s){ return esc(s).replace(/\{falta\}/g,'<i class="m-falta" title="Falta información de Massatierra"></i>').replace(/\{duda\}/g,'<i class="m-duda" title="Por confirmar"></i>'); }
+function html(s){ return String(s||'').replace(/\{falta\}/g,'<i class="m-falta" title="Falta información de Massatierra"></i>').replace(/\{duda\}/g,'<i class="m-duda" title="Por confirmar"></i>'); }
+function dos(n){ return (n < 10 ? '0' : '') + n; }
+function botones(bs){
+  if (!bs || !bs.length) return '';
+  return '<div class="row">' + bs.map(function(b){
+    var tipo = b.slice(0,2), txt = b.slice(2), c = tipo === 'o:' ? 'btn o' : tipo === 'g:' ? 'btn g' : 'btn';
+    return '<span class="' + c + '">' + fmt(txt) + '</span>';
+  }).join('') + '</div>';
+}
+function marco(x, cuerpo, i){
+  var cls = (x.dark || x.t === 'hero' || x.t === 'cta') ? ' class="dark"' : '';
+  var sn = '<span class="sn"><b>' + dos(i + 1) + '</b> · ' + esc(x.k) + (x.nuevo ? ' <b>· nuevo</b>' : '') + (x.vit ? ' <em class="vit">en la vitrina</em>' : '') + '</span>';
+  var rec = x.rec ? '<p class="wrec">Diseño · ' + esc(x.rec) + '</p>' : '';
+  return '<section' + cls + '>' + sn + cuerpo + rec + '</section>';
+}
+function cab(x){ return (x.eyebrow ? '<p class="wk">' + fmt(x.eyebrow) + '</p>' : '') + (x.h ? '<h4>' + fmt(x.h) + '</h4>' : '') + (x.p ? '<p>' + fmt(x.p) + '</p>' : ''); }
+function lista(l){ return l ? '<ul class="wl">' + l.map(function(t){ return '<li>' + fmt(t) + '</li>'; }).join('') + '</ul>' : ''; }
+function nota(x){ return x.nota ? '<p class="wnota">' + fmt(x.nota) + '</p>' : ''; }
+
+var DIBUJA = {
+  hero: function(x){
+    var txt = '<div>' + cab(x).replace('<h4>','<h4 class="big">') + botones(x.btns) + '</div>';
+    return x.ph ? '<div class="split">' + txt + '<div class="ph" style="min-height:180px">' + fmt(x.ph) + '</div></div>' : txt;
+  },
+  strip: function(x){ return '<div class="strip" style="--n:' + x.items.length + '">' + x.items.map(function(it){ return '<div><b>' + fmt(it[0]) + '</b><small>' + fmt(it[1]) + '</small></div>'; }).join('') + '</div>'; },
+  chain: function(x){ return cab(x) + '<div class="chain">' + x.items.map(function(it, j){ return '<div><span class="k">' + dos(j + 1) + '</span><b>' + fmt(it[0]) + '</b><small>' + fmt(it[1]) + '</small></div>'; }).join('') + '</div>' + botones(x.btns); },
+  grid: function(x){
+    return cab(x) + '<div class="grid" style="--c:' + (x.cols || 3) + '">' + x.items.map(function(it){
+      return '<div class="tile' + (it[2] ? ' ac' : '') + '">' + (x.ph ? '<div class="ph">' + esc(x.ph) + '</div>' : '') + '<h5>' + fmt(it[0]) + '</h5>' + (it[1] ? '<p>' + fmt(it[1]) + '</p>' : '') + '</div>';
+    }).join('') + '</div>' + nota(x) + botones(x.btns);
+  },
+  split: function(x){
+    var txt = '<div>' + cab(x) + lista(x.list) + botones(x.btns) + '</div>', ph = '<div class="ph" style="min-height:150px">' + fmt(x.ph || 'imagen') + '</div>';
+    return '<div class="split' + (x.rev ? ' rev' : '') + '">' + (x.rev ? ph + txt : txt + ph) + '</div>';
+  },
+  steps: function(x){ return cab(x) + '<div class="grid" style="--c:' + x.items.length + '">' + x.items.map(function(t, j){ return '<div class="tile"><span class="k">' + dos(j + 1) + '</span><h5>' + fmt(t) + '</h5></div>'; }).join('') + '</div>'; },
+  form: function(x){
+    var f = '<div class="form">' + x.fields.map(function(c){ return '<div class="fld' + (c[1] ? ' full' : '') + (c[2] ? ' ac' : '') + '">' + fmt(c[0]) + '</div>'; }).join('') + '</div>';
+    var a = x.aside ? '<ul class="wl">' + x.aside.map(function(t){ return '<li>' + fmt(t) + '</li>'; }).join('') + '</ul>' : '';
+    return x.aside ? '<div class="split"><div>' + cab(x) + a + '</div><div>' + f + botones(x.btns) + '</div></div>' : cab(x) + f + botones(x.btns);
+  },
+  faq: function(x){ return cab(x) + '<div class="grid" style="--c:2">' + x.items.map(function(q){ return '<div class="tile faq"><h5>' + fmt(q) + '</h5></div>'; }).join('') + '</div>'; },
+  table: function(x){
+    var h = x.head ? '<tr>' + x.head.map(function(c){ return '<th>' + fmt(c) + '</th>'; }).join('') + '</tr>' : '';
+    return cab(x) + '<table class="wt">' + h + x.rows.map(function(r){ return '<tr>' + r.map(function(c){ return '<td>' + fmt(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</table>' + nota(x);
+  },
+  cinta: function(x){ return '<div class="cinta-w">' + x.items.concat(x.items).map(function(t){ return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'; },
+  banda: function(x){ return cab(x) + botones(x.btns); },
+  cta: function(x){ return cab(x) + botones(x.btns); }
+};
+
+function wireframe(id){
+  var P = PAGINAS[id];
+  var nav = '<div class="wnav"><div class="wm">Massatierra<sup>®</sup></div><div class="links">' + MENU.map(function(m){ return '<span' + (m === P.menu ? ' class="on"' : '') + '>' + m + '</span>'; }).join('') + '</div><span class="btn o">Solicitar diagnóstico</span></div>';
+  var secs = P.s.map(function(x, i){ return marco(x, DIBUJA[x.t](x), i); }).join('');
+  var pie = '<section class="pie-w"><span class="sn">Pie de página <em class="vit">en la vitrina</em></span><div class="wfoot"><div><b>Massatierra®</b><span>Tecnología para su tranquilidad</span></div><div><b>Soluciones</b><span>Puesta a tierra · Pararrayos</span><span>Estudios · Cumplimiento</span></div><div><b>Recursos</b><span>Conocimiento · Biblioteca</span><span>Preguntas frecuentes</span></div><div><b>Contacto</b><span>Conmutador · WhatsApp</span><span>Aviso de privacidad · Términos de garantía</span></div></div><p class="wrec">Diseño · Pie de página como subsuelo</p></section>';
+  var url = 'massatierra.com.mx' + (P.r === '/' ? '' : P.r);
+  return '<div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">' + esc(url) + '</span></div><div class="wf">' + nav + secs + pie + '</div></div>';
+}
+
+/* ── Mapa ── */
+function filaArbol(x){
+  var c = 'prow' + (x.nuevo ? ' hl' : '') + (x.t === 'cta' || x.t === 'form' ? ' cta' : '') + (x.vit ? ' vit' : '');
+  return '<div class="' + c + '">' + fmt(x.k) + '</div>';
+}
+function tarjeta(id){
+  var P = PAGINAS[id];
+  var c = 'pcard' + (P.nuevo ? ' new' : '') + (id === 'inicio' ? ' root' : '') + (P.sinWire ? ' sin' : '');
+  var marcas = (P.falta ? '<i class="m-falta"></i>' : '') + (P.duda ? '<i class="m-duda"></i>' : '');
+  var cuerpo = '';
+  if (P.plantilla) cuerpo += '<div class="prow plant">' + fmt('×' + P.cuenta + ' · ' + P.plantilla) + '</div>';
+  if (P.filas) cuerpo += P.filas.map(function(f){ return '<div class="prow">' + fmt(f) + '</div>'; }).join('');
+  if (P.s) cuerpo += '<div class="prow menu">Menú</div>' + P.s.map(filaArbol).join('') + '<div class="prow ft">Pie de página</div>';
+  return '<div class="' + c + '" data-pag="' + id + '"' + (P.sinWire ? '' : ' role="button" tabindex="0" aria-label="Ver wireframe de ' + esc(P.n) + '"') + '><div class="hd"><span>' + esc(P.n) + marcas + '</span><span class="r">' + esc(P.r) + '</span></div><div class="bd">' + cuerpo + '</div></div>';
+}
+function arbol(){
+  var h = '<ul><li>' + tarjeta('inicio') + '<ul>';
+  ARBOL.forEach(function(rama){
+    h += '<li>' + tarjeta(rama[0]);
+    if (rama[1].length) h += '<ul class="v">' + rama[1].map(function(id){ return '<li>' + tarjeta(id) + '</li>'; }).join('') + '</ul>';
+    h += '</li>';
+  });
+  return h + '</ul></li></ul>';
+}
+
+/* ═══════════ CONTROL DE LA PÁGINA ═══════════ */
 (function(){
   var tabs = [].slice.call(document.querySelectorAll('.tab'));
-  var panels = { map: document.getElementById('panel-map'), wire: document.getElementById('panel-wire'), design: document.getElementById('panel-design'), detail: document.getElementById('panel-detail') };
+  var panels = { map: document.getElementById('panel-map'), wire: document.getElementById('panel-wire'), design: document.getElementById('panel-design'), cerrar: document.getElementById('panel-cerrar') };
   var twrap = document.getElementById('twrap'), tree = document.getElementById('tree'), zlabel = document.getElementById('zlabel');
-  var z = 1, tx = 0, ty = 0, natW = 0, natH = 0, ZMIN = 0.08, ZMAX = 2.5;
 
+  /* conteos: diseños de página y páginas reales */
+  var ids = Object.keys(PAGINAS), nWire = ids.filter(function(k){ return !PAGINAS[k].sinWire; }).length;
+  var nPag = ids.reduce(function(a, k){ return a + (PAGINAS[k].cuenta || 1); }, 0);
+  document.getElementById('nwf').textContent = nWire; document.getElementById('npag').textContent = nPag;
+  document.getElementById('nwf2').textContent = nWire;
+
+  tree.innerHTML = arbol();
+
+  /* ── pestañas ── */
+  function mostrar(panel){
+    tabs.forEach(function(x){ x.setAttribute('aria-selected', x.dataset.panel === panel ? 'true' : 'false'); });
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== panel); });
+    if (panel === 'map') fit();
+    if (panel === 'design') pintarVista();
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ mostrar(t.dataset.panel); }); });
+
+  /* ── selector de wireframes ── */
+  var ORDEN = [].concat.apply([], GRUPOS.map(function(g){ return g[1]; }));
+  var selG = document.getElementById('wselg'), selP = document.getElementById('wselp');
+  var actual = 'inicio';
+  function grupoDe(id){ for (var i = 0; i < GRUPOS.length; i++) if (GRUPOS[i][1].indexOf(id) > -1) return GRUPOS[i]; }
+  selG.innerHTML = GRUPOS.map(function(g){ return '<button type="button" data-g="' + g[1][0] + '">' + g[0] + '</button>'; }).join('');
+  function elegir(id){
+    actual = id; var P = PAGINAS[id], g = grupoDe(id);
+    [].forEach.call(selG.children, function(b){ b.setAttribute('aria-pressed', g[1].indexOf(b.dataset.g) === 0 && b.dataset.g === g[1][0] ? 'true' : 'false'); });
+    selP.innerHTML = g[1].length > 1 ? g[1].map(function(k){ return '<button type="button" data-p="' + k + '" aria-pressed="' + (k === id) + '">' + esc(PAGINAS[k].corto) + '</button>'; }).join('') : '';
+    selP.hidden = g[1].length < 2;
+    var info = '<span class="rotulo">' + esc(P.r) + '</span><h3>' + esc(P.n) + (P.falta ? '<i class="m-falta"></i>' : '') + (P.duda ? '<i class="m-duda"></i>' : '') + '</h3>';
+    if (P.plantilla) info += '<p>Plantilla para <b>' + P.cuenta + (P.cuenta === 1 ? ' página' : ' páginas') + '</b>: ' + fmt(P.plantilla) + '. El boceto usa como ejemplo <b>' + esc(P.ejemplo) + '</b>.</p>';
+    document.getElementById('wfhead').innerHTML = info;
+    document.getElementById('wfcanvas').innerHTML = wireframe(id);
+    var n = '';
+    if (P.variaciones) n += '<div><span class="rotulo">Qué cambia entre páginas</span><p>' + html(P.variaciones) + '</p></div>';
+    if (P.seo) n += '<div><span class="rotulo">Búsquedas que atiende</span><p class="glob">' + P.seo.map(function(s){ return '<span class="pill">' + esc(s) + '</span>'; }).join('') + '</p></div>';
+    if (P.mide) n += '<div><span class="rotulo">Qué se mide aquí</span><p class="glob">' + P.mide.map(function(s){ return '<span class="pill">' + esc(s) + '</span>'; }).join('') + '</p></div>';
+    var notas = document.getElementById('wnotas'); notas.innerHTML = n; notas.hidden = !n;
+    var i = ORDEN.indexOf(id);
+    var prev = document.getElementById('wprev'), next = document.getElementById('wnext');
+    prev.hidden = i === 0; next.hidden = i === ORDEN.length - 1;
+    if (i > 0) prev.innerHTML = '← ' + esc(PAGINAS[ORDEN[i-1]].corto);
+    if (i < ORDEN.length - 1) next.innerHTML = esc(PAGINAS[ORDEN[i+1]].corto) + ' →';
+  }
+  selG.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) elegir(b.dataset.g); });
+  selP.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) elegir(b.dataset.p); });
+  function irA(id){ elegir(id); var top = document.getElementById('panel-wire').getBoundingClientRect().top + window.scrollY - 70; window.scrollTo({ top: top }); }
+  document.getElementById('wprev').addEventListener('click', function(){ irA(ORDEN[ORDEN.indexOf(actual) - 1]); });
+  document.getElementById('wnext').addEventListener('click', function(){ irA(ORDEN[ORDEN.indexOf(actual) + 1]); });
+  elegir('inicio');
+
+  /* ── mapa: zoom y arrastre ── */
+  var z = 1, tx = 0, ty = 0, natW = 0, natH = 0, ZMIN = 0.08, ZMAX = 2.5, movido = 0;
   function measure(){ natW = tree.offsetWidth; natH = tree.offsetHeight; }
   function clampZ(v){ return Math.max(ZMIN, Math.min(ZMAX, v)); }
   function clampPan(){
@@ -986,27 +851,21 @@
   function zoomCenter(nz){ zoomAt(nz, twrap.clientWidth/2, twrap.clientHeight/2); }
   function fit(){
     if (panels.map.hidden) return;
-    measure(); if(!natW) return;
-    var vw = twrap.clientWidth, vh = twrap.clientHeight;
-    z = clampZ(Math.min(vw/natW, 1));
-    tx = (vw - natW*z)/2; ty = 0; apply();
+    measure(); if (!natW) return;
+    var vw = twrap.clientWidth;
+    z = clampZ(Math.min(vw/natW, 1)); tx = (vw - natW*z)/2; ty = 0; apply();
   }
   document.getElementById('zin').addEventListener('click', function(){ zoomCenter(z*1.25); });
   document.getElementById('zout').addEventListener('click', function(){ zoomCenter(z/1.25); });
   document.getElementById('zfit').addEventListener('click', fit);
-
   twrap.addEventListener('wheel', function(e){
     var r = twrap.getBoundingClientRect();
     if (e.ctrlKey || e.metaKey) { e.preventDefault(); zoomAt(z * (e.deltaY < 0 ? 1.12 : 0.89), e.clientX - r.left, e.clientY - r.top); }
   }, { passive:false });
-
-  // arrastre con mouse
   var drag = false, mx0 = 0, my0 = 0;
-  twrap.addEventListener('mousedown', function(e){ drag = true; mx0 = e.clientX; my0 = e.clientY; twrap.classList.add('dragging'); });
-  window.addEventListener('mousemove', function(e){ if(!drag) return; tx += e.clientX - mx0; ty += e.clientY - my0; mx0 = e.clientX; my0 = e.clientY; clampPan(); apply(); });
+  twrap.addEventListener('mousedown', function(e){ drag = true; movido = 0; mx0 = e.clientX; my0 = e.clientY; twrap.classList.add('dragging'); });
+  window.addEventListener('mousemove', function(e){ if (!drag) return; var dx = e.clientX - mx0, dy = e.clientY - my0; movido += Math.abs(dx) + Math.abs(dy); tx += dx; ty += dy; mx0 = e.clientX; my0 = e.clientY; clampPan(); apply(); });
   window.addEventListener('mouseup', function(){ drag = false; twrap.classList.remove('dragging'); });
-
-  // táctil: arrastre y pellizco
   var mode = null, d0 = 0, z0 = 1, aCx = 0, aCy = 0, lx = 0, ly = 0;
   function dist(t){ return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
   function begin(e){
@@ -1015,6 +874,7 @@
     aCx = (px - tx)/z; aCy = (py - ty)/z; mode = 'pinch';
   }
   twrap.addEventListener('touchstart', function(e){
+    movido = 0;
     if (e.touches.length >= 2) { begin(e); e.preventDefault(); }
     else if (e.touches.length === 1) { mode = 'pan'; lx = e.touches[0].clientX; ly = e.touches[0].clientY; }
   }, { passive:false });
@@ -1022,9 +882,9 @@
     if (mode === 'pinch' && e.touches.length >= 2) {
       e.preventDefault(); var r = twrap.getBoundingClientRect(), d = dist(e.touches) || 1;
       var px = (e.touches[0].clientX + e.touches[1].clientX)/2 - r.left, py = (e.touches[0].clientY + e.touches[1].clientY)/2 - r.top;
-      z = clampZ(z0 * d/d0); tx = px - aCx*z; ty = py - aCy*z; clampPan(); apply();
+      z = clampZ(z0 * d/d0); tx = px - aCx*z; ty = py - aCy*z; movido = 99; clampPan(); apply();
     } else if (mode === 'pan' && e.touches.length === 1) {
-      e.preventDefault(); var t = e.touches[0]; tx += t.clientX - lx; ty += t.clientY - ly; lx = t.clientX; ly = t.clientY; clampPan(); apply();
+      e.preventDefault(); var t = e.touches[0]; movido += Math.abs(t.clientX - lx) + Math.abs(t.clientY - ly); tx += t.clientX - lx; ty += t.clientY - ly; lx = t.clientX; ly = t.clientY; clampPan(); apply();
     }
   }, { passive:false });
   twrap.addEventListener('touchend', function(e){
@@ -1032,35 +892,25 @@
     else if (e.touches.length === 1) { mode = 'pan'; lx = e.touches[0].clientX; ly = e.touches[0].clientY; }
     else begin(e);
   });
-
-  tabs.forEach(function(t){
-    t.addEventListener('click', function(){
-      tabs.forEach(function(x){ x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
-      Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== t.dataset.panel); });
-      if (t.dataset.panel === 'map') fit();
-    });
-  });
-
-  /* ── demos de diseño ── */
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var wfb = [].slice.call(document.querySelectorAll('.wfpick button'));
-  wfb.forEach(function(b){
-    b.addEventListener('click', function(){
-      wfb.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); document.getElementById(x.dataset.wf).hidden = (x !== b); });
-    });
-  });
+  /* clic en una tarjeta → su wireframe (si no fue arrastre) */
+  function abrirTarjeta(card){
+    if (!card || PAGINAS[card.dataset.pag].sinWire) return;
+    mostrar('wire'); irA(card.dataset.pag);
+  }
+  tree.addEventListener('click', function(e){ if (movido > 6) return; abrirTarjeta(e.target.closest('.pcard')); });
+  tree.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirTarjeta(e.target.closest('.pcard')); } });
 
   /* ── Vitrina: vista de escritorio o móvil ── */
-  var vit = document.getElementById('vitrina'), marco = document.getElementById('vitrina-marco'), vframe = document.getElementById('vitrina-frame');
+  var vit = document.getElementById('vitrina'), marcoV = document.getElementById('vitrina-marco'), vframe = document.getElementById('vitrina-frame');
   var vnota = document.getElementById('vistas-nota');
-  var vbtn = [].slice.call(document.querySelectorAll('[data-vista]')).filter(function(b){ return b.tagName === 'BUTTON'; });
+  var vbtn = [].slice.call(document.querySelectorAll('.vistas [data-vista]'));
   var ESC_W = 1280, ESC_H = 760, MOV_W = 390, MOV_H = 780;
   var vista = window.matchMedia('(max-width: 767px)').matches ? 'movil' : 'escritorio';
   function pintarVista(){
     if (!vit || panels.design.hidden) return;
     vit.dataset.vista = vista;
     vbtn.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.vista === vista ? 'true' : 'false'); });
-    marco.style.transform = ''; vit.style.height = '';
+    marcoV.style.transform = ''; vit.style.height = '';
     if (vista === 'movil') {
       var disponible = vit.clientWidth - 16;
       var w = Math.min(MOV_W, disponible - 16), h = Math.min(MOV_H, Math.round(window.innerHeight * 0.82));
@@ -1070,24 +920,21 @@
       var cw = vit.clientWidth;
       if (cw >= ESC_W) { vframe.style.width = '100%'; vframe.style.height = Math.min(ESC_H, Math.round(window.innerHeight * 0.8)) + 'px'; vnota.textContent = 'Como se ve en una computadora.'; }
       else {
-        // Pantalla angosta: se dibuja a ancho de escritorio y se reduce para que quepa.
         var k = cw / ESC_W;
         vframe.style.width = ESC_W + 'px'; vframe.style.height = ESC_H + 'px';
-        marco.style.transform = 'scale(' + k + ')';
+        marcoV.style.transform = 'scale(' + k + ')';
         vit.style.height = Math.round(ESC_H * k) + 'px';
         vnota.textContent = 'Vista de escritorio reducida al ' + Math.round(k * 100) + '% para que quepa en esta pantalla.';
       }
     }
   }
   vbtn.forEach(function(b){ b.addEventListener('click', function(){ vista = b.dataset.vista; pintarVista(); }); });
-  window.addEventListener('resize', pintarVista);
-  tabs.forEach(function(t){ t.addEventListener('click', function(){ if (t.dataset.panel === 'design') pintarVista(); }); });
-
+  window.addEventListener('resize', function(){ pintarVista(); fit(); });
   window.addEventListener('load', fit);
-  window.addEventListener('resize', fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   fit();
 })();
+
 </script>
 </body>
 </html>
