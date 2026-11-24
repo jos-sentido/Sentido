@@ -299,6 +299,11 @@
     .wf .split.rev > .ph { order:2; }
   }
   @media (max-width:480px){ .wf .grid, .wf .strip { grid-template-columns:1fr; } }
+  .vitrina-carga { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:12px; background:#050d1c;
+    font-size:.6875rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#8fa0b8; transition:opacity .4s var(--ease); }
+  .vitrina-carga .rombo { animation:latido 1.2s ease-in-out infinite; }
+  .vitrina.lista .vitrina-carga { opacity:0; pointer-events:none; }
+  @keyframes latido { 50% { opacity:.25; } }
 </style>
 </head>
 <body>
@@ -410,7 +415,7 @@
         <button type="button" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z M11 18h2"/></svg>Móvil</button>
         <span class="vistas-nota" id="vistas-nota"></span>
       </div>
-      <div class="vitrina" id="vitrina" data-vista="escritorio"><div class="vitrina-marco" id="vitrina-marco"><iframe id="vitrina-frame" src="/propuestas/massatierra/vitrina/lab" title="Vitrina de diseño de Massatierra" loading="lazy"></iframe></div></div>
+      <div class="vitrina" id="vitrina" data-vista="escritorio"><div class="vitrina-marco" id="vitrina-marco"><iframe id="vitrina-frame" data-src="/propuestas/massatierra/vitrina/lab" title="Vitrina de diseño de Massatierra"></iframe></div><div class="vitrina-carga" id="vitrina-carga"><span class="rombo rombo--lleno"></span>Cargando la vitrina…</div></div>
       <p class="page-sub" style="margin:10px 0 0">Es una muestra del lenguaje visual, no una página terminada: el acomodo, las fotos y los textos finales se definen en el diseño.</p>
     </section>
 
@@ -904,26 +909,61 @@ function arbol(){
   var vit = document.getElementById('vitrina'), marcoV = document.getElementById('vitrina-marco'), vframe = document.getElementById('vitrina-frame');
   var vnota = document.getElementById('vistas-nota');
   var vbtn = [].slice.call(document.querySelectorAll('.vistas [data-vista]'));
-  var ESC_W = 1280, ESC_H = 760, MOV_W = 390, MOV_H = 780;
+  var ESC_MIN = 1024, ESC_MAX_H = 760, MOV_W = 390, MOV_H = 780;
   var vista = window.matchMedia('(max-width: 767px)').matches ? 'movil' : 'escritorio';
+
+  /* Carga anticipada: la vitrina se descarga en cuanto la página termina de
+     cargar (en segundo plano), no hasta abrir la pestaña. Mientras está oculta
+     sus animaciones se quedan en pausa solas, así que no consume nada. */
+  function cargarVitrina(){
+    if (vframe.getAttribute('src')) return;
+    vframe.setAttribute('src', vframe.dataset.src);
+  }
+  vframe.addEventListener('load', function(){
+    vit.classList.add('lista');
+    try {
+      // Que la rueda no se escape a la página de afuera al llegar al final de
+      // la vitrina: si la vitrina sale de la vista, sus efectos se pausan.
+      var st = vframe.contentDocument.createElement('style');
+      st.textContent = 'html,body{overscroll-behavior:contain}';
+      vframe.contentDocument.head.appendChild(st);
+    } catch (e) {}
+  });
+  if (document.readyState === 'complete') setTimeout(cargarVitrina, 300);
+  else window.addEventListener('load', function(){
+    if (window.requestIdleCallback) requestIdleCallback(cargarVitrina, { timeout: 1500 });
+    else setTimeout(cargarVitrina, 300);
+  });
+
+  /* Alto que cabe completo en la pantalla, debajo de las pestañas fijas:
+     si una parte queda fuera de la vista, sus animaciones se detienen. */
+  function altoUtil(max){
+    var tabsH = document.querySelector('.tabs').offsetHeight || 50;
+    return Math.max(420, Math.min(max, window.innerHeight - tabsH - 32));
+  }
   function pintarVista(){
     if (!vit || panels.design.hidden) return;
+    cargarVitrina();
     vit.dataset.vista = vista;
     vbtn.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.vista === vista ? 'true' : 'false'); });
     marcoV.style.transform = ''; vit.style.height = '';
     if (vista === 'movil') {
-      var disponible = vit.clientWidth - 16;
-      var w = Math.min(MOV_W, disponible - 16), h = Math.min(MOV_H, Math.round(window.innerHeight * 0.82));
+      var w = Math.min(MOV_W, vit.clientWidth - 32), h = altoUtil(MOV_H) - 36;
       vframe.style.width = w + 'px'; vframe.style.height = h + 'px';
       vnota.textContent = 'Como se ve en un celular.';
     } else {
-      var cw = vit.clientWidth;
-      if (cw >= ESC_W) { vframe.style.width = '100%'; vframe.style.height = Math.min(ESC_H, Math.round(window.innerHeight * 0.8)) + 'px'; vnota.textContent = 'Como se ve en una computadora.'; }
-      else {
-        var k = cw / ESC_W;
-        vframe.style.width = ESC_W + 'px'; vframe.style.height = ESC_H + 'px';
+      var cw = vit.clientWidth, h2 = altoUtil(ESC_MAX_H);
+      if (cw >= ESC_MIN) {
+        // Tamaño real, sin escalar: escalar el marco obliga al navegador a
+        // recomponer cada cuadro de las animaciones y las vuelve lentas.
+        vframe.style.width = '100%'; vframe.style.height = h2 + 'px';
+        vnota.textContent = 'Como se ve en una computadora.';
+      } else {
+        // Solo en pantallas angostas: se dibuja a ancho de escritorio y se reduce.
+        var k = cw / ESC_MIN;
+        vframe.style.width = ESC_MIN + 'px'; vframe.style.height = Math.round(h2 / k) + 'px';
         marcoV.style.transform = 'scale(' + k + ')';
-        vit.style.height = Math.round(ESC_H * k) + 'px';
+        vit.style.height = h2 + 'px';
         vnota.textContent = 'Vista de escritorio reducida al ' + Math.round(k * 100) + '% para que quepa en esta pantalla.';
       }
     }
