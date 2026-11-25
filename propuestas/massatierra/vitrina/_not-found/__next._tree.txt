@@ -1,4 +1,4 @@
 :HL["/propuestas/massatierra/vitrina/_next/static/chunks/3eddgyjqvqz9d.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"eT5XFJhypuhQ9mSUHEExO","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"4pdPUfJCfzjsQe1CC7Mr5","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

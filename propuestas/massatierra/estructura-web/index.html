@@ -802,8 +802,17 @@ function arbol(){
 
   tree.innerHTML = arbol();
 
-  /* ── pestañas ── */
-  function mostrar(panel){
+  /* ── pestañas, con dirección propia para compartir (#mapa, #wireframes, #diseno, #por-cerrar) ── */
+  var SLUG = { map:'mapa', wire:'wireframes', design:'diseno', cerrar:'por-cerrar' };
+  var panelActual = 'map';
+  function direccion(){ return '#' + SLUG[panelActual] + (panelActual === 'wire' && actual && actual !== 'inicio' ? '/' + actual : ''); }
+  function anotar(nueva){
+    var h = direccion(); if (location.hash === h) return;
+    try { history[nueva ? 'pushState' : 'replaceState'](null, '', h); } catch (e) { location.hash = h; }
+  }
+  function mostrar(panel, sinAnotar){
+    panelActual = panel;
+    if (!sinAnotar) anotar(true);
     tabs.forEach(function(x){ x.setAttribute('aria-selected', x.dataset.panel === panel ? 'true' : 'false'); });
     Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== panel); });
     if (panel === 'map') fit();
@@ -836,6 +845,7 @@ function arbol(){
     prev.hidden = i === 0; next.hidden = i === ORDEN.length - 1;
     if (i > 0) prev.innerHTML = '← ' + esc(PAGINAS[ORDEN[i-1]].corto);
     if (i < ORDEN.length - 1) next.innerHTML = esc(PAGINAS[ORDEN[i+1]].corto) + ' →';
+    if (panelActual === 'wire') anotar(false);
   }
   selG.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) elegir(b.dataset.g); });
   selP.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) elegir(b.dataset.p); });
@@ -976,6 +986,19 @@ function arbol(){
   window.addEventListener('load', fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   fit();
+
+  /* Abrir la pestaña (y el wireframe) que diga la dirección: #wireframes/sectores */
+  function desdeDireccion(){
+    var partes = decodeURIComponent(location.hash.slice(1)).split('/');
+    var panel = Object.keys(SLUG).filter(function(k){ return SLUG[k] === partes[0]; })[0];
+    if (!panel) return;
+    if (panel === 'wire' && partes[1] && PAGINAS[partes[1]] && !PAGINAS[partes[1]].sinWire) elegir(partes[1]);
+    else if (panel === 'wire') elegir('inicio');
+    mostrar(panel, true);
+  }
+  window.addEventListener('popstate', desdeDireccion);
+  window.addEventListener('hashchange', desdeDireccion);
+  desdeDireccion();
 })();
 
 </script>
