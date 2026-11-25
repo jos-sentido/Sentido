@@ -368,6 +368,8 @@
           <tr><td><span class="mk nuevo">Nuevo</span>Comparativo vs. sistema tradicional</td><td>Ya existe en el brochure y es el argumento más claro para quien compara opciones.</td></tr>
           <tr><td><span class="mk nuevo">Nuevo</span>Evidencia real: punta MTPP02 usada</td><td>Una punta que ya recibió descargas muestra el desgaste en la punta y el cuerpo íntegro. Es una prueba que ningún render sustituye y que respalda «ultra resistente a descargas de alta intensidad» del brochure.</td></tr>
           <tr><td><span class="mk nuevo">Nuevo</span>Sector Minería</td><td>Hay experiencia documentada en minería y no tenía página propia.</td></tr>
+           <tr><td><span class="mk nuevo">Nuevo</span>Sector Residencial</td><td>Lo pidió Massatierra en la reunión del 24 de noviembre.</td></tr>
+           <tr><td><span class="mk nuevo">Nuevo</span>Documentación a solicitud</td><td>Fichas, patente y certificados se entregan después del contacto, no como descarga libre, para no exponer la tecnología a la competencia.</td></tr>
           <tr><td><span class="mk nuevo">Nuevo</span>Pregunta de origen en el formulario</td><td>Separa a quien llega por una obligación normativa de quien llega a cotizar, para atender a cada uno como necesita.</td></tr>
           <tr><td><span class="mk ajuste">Ajuste</span>Presencia en México, Chile y Perú</td><td>El contenido actual solo dice «México y el extranjero».</td></tr>
           <tr><td><span class="mk ajuste">Ajuste</span>Academia → Capacitación</td><td>En lugar de un «Próximamente», una página real con los cursos con validez oficial, su temario y cómo contratarlos.</td></tr>
@@ -527,7 +529,7 @@ var PAGINAS = {
     { t:'grid', k:'Soluciones', h:'Soluciones que trabajan como un sistema', p:'La protección eléctrica requiere que sus componentes funcionen de manera coordinada.', cols:4, ph:'ícono', items:[['Puesta a tierra'],['Pararrayos'],['Estudios y medición'],['Ingeniería e instalación']], nota:'Supresores de pico entra como quinta tarjeta solo si se confirma. {duda}' },
     { t:'split', k:'Tecnología propia', vit:1, rec:'Líneas de campo magnético · renglones de ficha técnica', rev:1, eyebrow:'Tecnología', h:'Electrodo Magneto Activo', p:'MassLink es un sistema unidireccional: solo permite el drenado de corrientes no deseadas a tierra y evita que regresen del subsuelo.', list:['Impedancia · baja','Mantenimiento · libre de mantenimiento','Material · 100% cobre electrolítico'], ph:'Campo magnético que responde al cursor', btns:['g:Conocer la tecnología','g:Ver comparativo'] },
     { t:'split', k:'Estudios y medición', vit:1, rec:'Terreno en curvas de nivel · código que se decodifica', eyebrow:'Estudios y medición', h:'Conozca las condiciones de su terreno antes de decidir', p:'Medición de resistividad del terreno y de resistencia a tierra para diseñar el sistema y documentar el cumplimiento. ¿Su instalación presenta alguna de estas señales?', list:['Equipos que fallan después de una tormenta','Interrupciones en control o ruido en telecomunicaciones','Descargas al tocar equipos o estructuras'], ph:'Terreno topográfico que se levanta bajo el cursor', btns:['o:Agendar estudio técnico'] },
-    { t:'grid', k:'Sectores', vit:1, rec:'Paneles de sector conectados a tierra', h:'Especialización para distintos sectores', p:'Cada instalación es distinta; todas terminan conectadas a la misma tierra.', cols:4, ph:'foto', items:[['Industria y manufactura'],['Hotelería'],['Hospitales y clínicas'],['Telecom y centros de datos'],['Construcción e infraestructura'],['Comercio y servicios'],['Minería','Nueva',1]], btns:['g:Ver proyectos por sector'] },
+    { t:'grid', k:'Sectores', vit:1, rec:'Paneles de sector conectados a tierra', h:'Especialización para distintos sectores', p:'Cada instalación es distinta; todas terminan conectadas a la misma tierra.', cols:4, ph:'foto', items:[['Industria y manufactura'],['Hotelería'],['Hospitales y clínicas'],['Telecom y centros de datos'],['Construcción e infraestructura'],['Comercio y servicios'],['Residencial','Nueva',1],['Minería','Nueva',1]], btns:['g:Ver proyectos por sector'] },
     { t:'steps', k:'Así trabajamos', h:'Así trabajamos', items:['Conocemos su necesidad','Evaluamos y diseñamos','Presentamos una solución clara','Instalamos y verificamos','Entregamos respaldo'] },
     { t:'form', k:'Diagnóstico', vit:1, rec:'Solicitud guiada · hoja de solicitud', dark:1, eyebrow:'Diagnóstico · Guiada | Formulario', h:'Cuéntenos qué necesita proteger', p:'En formato guiado (una pregunta a la vez, por omisión) o como formulario completo. Un especialista le ayudará a identificar cómo comenzar.', fields:[['¿Qué necesita? (puede elegir varias) Puesta a tierra · Pararrayos · Estudios · Ingeniería · Orientación',1],['¿Ya le entregaron un levantamiento o dictamen de su instalación?  ○ Sí  ○ No  ○ No estoy seguro',1,1]], aside:['Conmutador +52 33 3627 3226','WhatsApp +52 33 1043 3045','Lunes a viernes, 9:00 a 18:00'], btns:['o:Continuar'] }
   ], mide:['Solicitudes de diagnóstico','Pregunta en la que se abandona la guiada','Clics a WhatsApp','Llamadas'] },
@@ -570,17 +572,17 @@ var PAGINAS = {
 
   sectores: { n:'Sectores', r:'/sectores', menu:'Sectores', corto:'Sectores', s:[
     { t:'hero', k:'Hero', eyebrow:'Sectores', h:'Entendemos lo que su operación necesita proteger', p:'Cada sector tiene equipos, instalaciones y prioridades diferentes.', btns:['o:Hablar con un especialista de mi sector'], ph:'Foto de instalación' },
-    { t:'grid', k:'Los siete sectores', vit:1, rec:'Paneles de sector conectados a tierra', h:'Siete sectores, una misma tierra', cols:4, ph:'foto', items:[['Industria y manufactura','Líneas de producción, automatización y control.'],['Hotelería','Lo que sostiene la experiencia del huésped.'],['Hospitales y clínicas','Equipos sensibles para la atención médica.'],['Telecom y centros de datos','Servidores, redes y transmisión.'],['Construcción e infraestructura','Obra nueva, ampliación y modernización.'],['Comercio y servicios','Equipos esenciales para atender clientes.'],['Minería','Nueva.',1]] },
+    { t:'grid', k:'Los ocho sectores', vit:1, rec:'Paneles de sector conectados a tierra', h:'Ocho sectores, una misma tierra', cols:4, ph:'foto', items:[['Industria y manufactura','Líneas de producción, automatización y control.'],['Hotelería','Lo que sostiene la experiencia del huésped.'],['Hospitales y clínicas','Equipos sensibles para la atención médica.'],['Telecom y centros de datos','Servidores, redes y transmisión.'],['Construcción e infraestructura','Obra nueva, ampliación y modernización.'],['Comercio y servicios','Equipos esenciales para atender clientes.'],['Residencial','Casas y residencias: la familia y los equipos del hogar.',1],['Minería','Nueva.',1]] },
     cierre('Hable con un especialista de su sector', 'Solicitar diagnóstico')
   ] },
 
-  sector: { n:'Página de sector', r:'/sectores/…', menu:'Sectores', corto:'Página de sector', plantilla:'Industria · Hotelería · Hospitales y clínicas · Telecom y centros de datos · Construcción · Comercio y servicios · Minería', cuenta:7, ejemplo:'Industria y manufactura', s:[
+  sector: { n:'Página de sector', r:'/sectores/…', menu:'Sectores', corto:'Página de sector', plantilla:'Industria · Hotelería · Hospitales y clínicas · Telecom y centros de datos · Construcción · Comercio y servicios · Residencial · Minería', cuenta:8, ejemplo:'Industria y manufactura', s:[
     { t:'hero', k:'Hero', eyebrow:'Sectores · Industria y manufactura', h:'Protección para la infraestructura que sostiene su producción', p:'Tableros, sistemas de control y automatización que deben operar de manera confiable.', btns:['o:Solicitar diagnóstico de planta'], ph:'Foto del sector' },
     { t:'grid', k:'Áreas de aplicación', h:'Áreas de aplicación', cols:3, items:[['Subestaciones'],['Cuartos eléctricos'],['Líneas de producción'],['PLC y variadores'],['Almacenes'],['Áreas de mantenimiento']] },
     { t:'banda', k:'Acompañamiento', h:'Acompañamiento para su planta', p:'Evaluamos instalaciones existentes y participamos en ampliaciones o nueva construcción, coordinados con su operación.' },
     { t:'split', k:'Experiencia en el sector', h:'Experiencia en el sector', p:'Casos del sector, sin logotipos hasta tener autorización. {falta}', ph:'Foto de proyecto', btns:['g:Ver proyectos'] },
     cierre('Solicite una evaluación', 'Solicitar evaluación')
-  ], variaciones:'Cada sector cambia el hero, las áreas de aplicación y el botón (p. ej. «Solicitar evaluación para mi hotel»). <b>Minería</b> es nueva: se escribe con la experiencia documentada en minería {falta}. En <b>Hotelería</b> rinde el material del deck de hotelería.' },
+  ], variaciones:'Cada sector cambia el hero, las áreas de aplicación y el botón (p. ej. «Solicitar evaluación para mi hotel»). <b>Residencial</b> es nueva: la pidió Massatierra en la reunión del 24 de noviembre. <b>Minería</b> es nueva: se escribe con la experiencia documentada en minería {falta}. En <b>Hotelería</b> rinde el material del deck de hotelería.' },
 
   tecnologia: { n:'Tecnología', r:'/tecnologia', menu:'Tecnología', corto:'Tecnología', s:[
     { t:'hero', k:'Hero', rec:'Visor 3D del producto', eyebrow:'Tecnología', h:'Tecnología propia, fabricada en México', p:'Desarrollamos y fabricamos en México componentes para sistemas de puesta a tierra.', btns:['o:Solicitar documentación técnica','g:Consultar con ingeniería'], ph:'Visor 3D del electrodo {falta}' },
@@ -596,19 +598,19 @@ var PAGINAS = {
     { t:'hero', k:'Hero', eyebrow:'Tecnología · Productos', h:'Productos Massatierra', p:'Electrodos MTK, punta pararrayos MTPP02 y acondicionador MTAT02.', btns:['o:Cotizar'] },
     { t:'grid', k:'Electrodos MTK (6 modelos)', h:'Electrodos MTK', cols:3, ph:'render', items:[['MTK · modelo'],['MTK · modelo'],['MTK · modelo'],['MTK · modelo'],['MTK · modelo'],['MTK · modelo']], nota:'Qué distingue a cada modelo sale de las fichas técnicas. {falta}' },
     { t:'grid', k:'Punta MTPP02 y acondicionador MTAT02', h:'Pararrayos y acondicionamiento', cols:2, ph:'render', items:[['Punta pararrayos MTPP02','NMX-J549-ANCE-2005'],['Acondicionador MTAT02','']] },
-    { t:'banda', k:'Biblioteca técnica', h:'Fichas, patente y certificados', p:'Toda la documentación descargable está en la biblioteca técnica.', btns:['g:Ir a la biblioteca técnica'] },
+    { t:'banda', k:'Biblioteca técnica', h:'Fichas, patente y certificados', p:'La documentación técnica se entrega a solicitud, no como descarga libre.', btns:['g:Solicitar documentación'] },
     cierre('Cotice para su proyecto', 'Cotizar')
   ], seo:['electrodo para tierra física','punta pararrayos'] },
 
   ficha: { n:'Ficha de producto', r:'/tecnologia/productos/…', menu:'Tecnología', corto:'Ficha de producto', nuevo:1, falta:1, plantilla:'Una por modelo: MTK ×6 · MTPP02 · MTAT02', cuenta:8, ejemplo:'un electrodo MTK', s:[
-    { t:'split', k:'Modelo y render', rec:'Visor 3D del producto', eyebrow:'Productos · Electrodos MTK', h:'Electrodo MTK · modelo', p:'Descripción del modelo. {falta}', ph:'Render o visor 3D {falta}', btns:['o:Cotizar','g:Descargar ficha en PDF'] },
+    { t:'split', k:'Modelo y render', rec:'Visor 3D del producto', eyebrow:'Productos · Electrodos MTK', h:'Electrodo MTK · modelo', p:'Descripción del modelo. {falta}', ph:'Render o visor 3D {falta}', btns:['o:Cotizar','g:Solicitar ficha técnica'] },
     { t:'table', k:'Especificaciones', rec:'Renglones de ficha técnica', h:'Especificaciones', rows:[['Material','{falta}'],['Aplicación','{falta}'],['Norma','{falta}'],['Garantía','{falta}']], nota:'Con las fichas técnicas de Massatierra.' },
     { t:'grid', k:'Aplicaciones', h:'Aplicaciones', cols:3, items:[['Aplicación'],['Aplicación'],['Aplicación']] },
-    { t:'banda', k:'Descarga de la ficha', nuevo:1, h:'Descargue la ficha técnica', p:'PDF con las especificaciones completas del modelo.', btns:['h:Descargar ficha en PDF'] },
+    { t:'banda', k:'Solicitud de la ficha', nuevo:1, h:'Solicite la ficha técnica', p:'Se envía después de conocer su proyecto. La documentación técnica no se publica para descarga libre.', btns:['h:Solicitar ficha técnica'] },
     cierre('Cotice este modelo', 'Cotizar')
-  ], mide:['Descargas de ficha técnica'] },
+  ], mide:['Solicitudes de ficha técnica'] },
 
-  comparativo: { n:'Comparativo', r:'/tecnologia/comparativo', menu:'Tecnología', corto:'Comparativo', nuevo:1, s:[
+  comparativo: { n:'Comparativo', r:'/tecnologia/comparativo', menu:'Tecnología', corto:'Comparativo', nuevo:1, duda:1, s:[
     { t:'hero', k:'Hero', eyebrow:'Tecnología · Comparativo', h:'Massatierra frente al sistema tradicional', p:'El argumento más claro para quien compara opciones, tomado del brochure.', btns:['o:Hablar con ingeniería'] },
     { t:'strip', k:'Vida útil: 20 años vs. 3', rec:'Cifras que cuentan', items:[['20 años','vida útil · Massatierra'],['3 años','vida útil · sistema tradicional']] },
     { t:'table', k:'Tabla comparativa', h:'Punto por punto', head:['','Massatierra','Sistema tradicional'], rows:[['Vida útil','20 años','3 años'],['Demás renglones','{falta}','{falta}']], nota:'Los renglones salen del comparativo del brochure.' },
@@ -637,7 +639,7 @@ var PAGINAS = {
 
   recursos: { n:'Recursos', r:'/recursos', menu:'Recursos', corto:'Recursos', s:[
     { t:'hero', k:'Hero', eyebrow:'Recursos', h:'Entienda su instalación y decida con información', p:'Explicaciones claras para comenzar y documentación técnica para profundizar.' },
-    { t:'grid', k:'Las cuatro secciones', h:'Por dónde empezar', cols:4, items:[['Centro de conocimiento','Artículos'],['Biblioteca técnica','Descargas'],['Preguntas frecuentes',''],['Capacitación','Cursos {duda}']] },
+    { t:'grid', k:'Las cuatro secciones', h:'Por dónde empezar', cols:4, items:[['Centro de conocimiento','Artículos'],['Biblioteca técnica','A solicitud'],['Preguntas frecuentes',''],['Capacitación','Cursos {duda}']] },
     cierre('¿Prefiere preguntarle a un especialista?', 'Hablar con un especialista')
   ] },
 
@@ -650,9 +652,9 @@ var PAGINAS = {
 
   biblioteca: { n:'Biblioteca técnica', r:'/recursos/biblioteca-tecnica', menu:'Recursos', corto:'Biblioteca técnica', s:[
     { t:'hero', k:'Hero', eyebrow:'Recursos · Biblioteca técnica', h:'Documentación para conocer, especificar y evaluar' },
-    { t:'grid', k:'Documentos', h:'Documentos', cols:3, items:[['Catálogo de soluciones','Descargar'],['Fichas técnicas','Descargar {falta}'],['Tecnología patentada','Descargar'],['Certificaciones y homologaciones','Descargar'],['Documentos de mi proyecto','Para clientes: se solicitan']] },
+    { t:'grid', k:'Documentos', h:'Documentos', cols:3, items:[['Catálogo de soluciones','Se solicita'],['Fichas técnicas','Se solicita {falta}'],['Tecnología patentada','Se solicita'],['Certificaciones y homologaciones','Se solicita'],['Documentos de mi proyecto','Para clientes: se solicitan']], nota:'Nada se publica para descarga libre: cada documento se entrega después del contacto. Qué entra aquí se define con Massatierra. {duda}' },
     cierre('¿No encuentra un documento?', 'Solicitar documentación')
-  ], mide:['Descargas de ficha técnica'] },
+  ], mide:['Solicitudes de ficha técnica'] },
 
   faq: { n:'Preguntas frecuentes', r:'/recursos/preguntas-frecuentes', menu:'Recursos', corto:'Preguntas frecuentes', s:[
     { t:'hero', k:'Hero', eyebrow:'Recursos · Preguntas frecuentes', h:'Respuestas para dar el siguiente paso' },
