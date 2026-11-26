@@ -1723,22 +1723,6 @@
         "vendedor_tarea_gid": "1220146178181040",
         "vendedor_gid": "29910024506284"
       }
-    },
-    {
-      "slug": "torobox-ajustes-google-ads-nov2026",
-      "tipo": "cliente",
-      "cliente": "Torobox — Ajustes de Google Ads (19 nov – 18 dic)",
-      "fecha": "2026-11-26",
-      "estatus": "activa",
-      "serviciosDisponibles": [],
-      "serviciosSeleccionados": [],
-      "notas": "CLIENTE activo (Mini Bodegas Torobox). Lista de ajustes a la cuenta de Google Ads con lectura de 30 días (27 oct – 26 nov) vía Metricool y bitácora de la cuenta. No es propuesta de venta.",
-      "proximoPaso": "Aplicar ajustes 1–3 esta semana; lectura 3 dic",
-      "fechaSeguimiento": "2026-12-03",
-      "bitacora": [],
-      "asana": {
-        "tarea_gid": "1220183888429305"
-      }
     }
   ]
 }
