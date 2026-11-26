@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--
+  Torobox · Ajustes de Google Ads · periodo 19 nov – 18 dic 2026
+  Fuente: Google Ads vía Metricool (marca «Mini Bodegas Torobox»), leído el 26 nov 2026.
+  Documento para cliente existente. Sistema visual oficial (misma base que plp-seguimiento-nov2026).
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Torobox · Ajustes de Google Ads · 26 nov 2026</title>
+<meta name="description" content="Lectura de las campañas de Google Ads de Torobox y la lista de ajustes a aplicar en la cuenta, por Sentido." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+<link rel="stylesheet" href="/sitio/assets/fonts.css" />
+<style>
+/* Sistema visual Sentido: tinta + hueso, una familia (Archivo), contraste por peso, rombo como viñeta. Estado por relleno, nunca por color. */
+:root{
+  --bg:#F1EADC; --bg2:#E8E0CF; --fg:#0A0A0A; --fg2:#3a3833; --mute:#5f5a51; --line:#B6AE9E;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0A0A0A;--bg2:#161616;--fg:#F1EADC;--fg2:#cfc7b6;--mute:#a39b8e;--line:#3a3833;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0A0A0A;--bg2:#161616;--fg:#F1EADC;--fg2:#cfc7b6;--mute:#a39b8e;--line:#3a3833;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-weight:400;font-size:15px;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 80px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-weight:800;font-size:clamp(30px,5vw,48px);line-height:1.05;letter-spacing:-.01em}
+h2{font-weight:800;font-size:clamp(22px,3.2vw,30px);line-height:1.15}
+h3{font-weight:600;font-size:16px}
+p{margin:0;max-width:68ch}
+b{font-weight:600}
+header{display:grid;gap:18px;padding-block:28px 34px;border-bottom:1px solid var(--line)}
+.marca{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--mute);flex-wrap:wrap}
+.logo{height:32px;width:auto;display:block}
+.lead{font-weight:300;font-size:18px;color:var(--fg2)}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--mute);align-items:center}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;white-space:nowrap;line-height:1.6}
+.c-ya{background:var(--fg);color:var(--bg);border:1px solid var(--fg)}
+.c-sem{border:1px solid var(--fg);color:var(--fg)}
+.c-dato{border:1px dashed var(--mute);color:var(--mute)}
+section{display:flex;flex-direction:column;gap:16px;border-top:2px dotted var(--line);margin-top:48px;padding-top:22px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.dato{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+.tabla{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+.tabla.ancha table{min-width:760px}
+th{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:left;padding:8px 10px;border-bottom:1px solid var(--fg)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:600;border-bottom:1px solid var(--fg)}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+li{position:relative;padding-left:18px;max-width:68ch}
+li::before{content:"";position:absolute;left:2px;top:.6em;width:7px;height:7px;background:var(--fg);transform:rotate(45deg)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 32px}
+.nota{display:flex;flex-direction:column;gap:8px;min-width:0;border-top:1px solid var(--fg);padding-top:12px}
+.ajuste{display:grid;grid-template-columns:56px 1fr;gap:4px 18px;border-top:1px solid var(--fg);padding-top:14px}
+.ajuste .num{font-weight:800;font-size:28px;line-height:1}
+.ajuste .cuerpo{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ajuste .cab{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.campo{display:grid;grid-template-columns:110px 1fr;gap:4px 14px}
+.campo dt{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-top:2px}
+.campo dd{margin:0;max-width:68ch}
+dl{margin:0;display:grid;gap:8px}
+.bitacora td:first-child{white-space:nowrap;font-weight:600;width:120px}
+footer{font-size:13px;color:var(--mute);border-top:2px dotted var(--line);margin-top:48px;padding-top:24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+footer .txt{display:flex;flex-direction:column;gap:6px}
+footer .txt span{max-width:68ch}
+.ojo{width:88px;height:auto;display:block;opacity:.9}
+@media (max-width:640px){
+  .ajuste{grid-template-columns:1fr}
+  .campo{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr}
+  .ojo{width:64px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="marca"><picture><source srcset="/assets/logo-sentido-nombre-light.png" media="(prefers-color-scheme: dark)"><img class="logo" src="/assets/logo-sentido-nombre-dark.png" alt="Sentido"></picture><span>Torobox · Google Ads · periodo 19 nov – 18 dic</span></div>
+  <h1>Ajustes a la cuenta de Google Ads</h1>
+  <p class="lead">Corte al 26 de noviembre de 2026, con los últimos 30 días de la cuenta. Primero la lectura, luego los ajustes en el orden en que hay que aplicarlos.</p>
+  <div class="leyenda">
+    <span class="chip c-ya">Ya</span> aplicar esta semana
+    <span class="chip c-sem">Siguiente</span> después de confirmar lo anterior
+    <span class="chip c-dato">Falta dato</span> necesita el export de términos de búsqueda
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><h2>La lectura en cuatro datos</h2><span class="dato">27 oct – 26 nov · 22 días con anuncios</span></div>
+  <div class="grid2">
+    <div class="nota">
+      <h3>Las conversiones volvieron a contarse</h3>
+      <p>19 en 30 días, todas de C1. De julio a octubre la cuenta registró entre 0 y 9 al mes. Falta confirmar qué acción cuenta como conversión antes de compararla con los $235 por lead de abril–mayo.</p>
+    </div>
+    <div class="nota">
+      <h3>El clic cuesta casi 8 veces más que en abril</h3>
+      <p>El CPC pasó de $3.04 (abr–may) a $23.26. Del 20 al 25 nov el gasto subió a unos $980 al día, contra $660 antes de la pausa, y el CPC subió en lugar de bajar.</p>
+    </div>
+    <div class="nota">
+      <h3>Bucerías gasta sin convertir</h3>
+      <p>$3,369 en 30 días, 48 clics a $70 cada uno y ninguna conversión. «alquiler de bodegas» se llevó $2,539 de ese gasto con 38 clics.</p>
+    </div>
+    <div class="nota">
+      <h3>Ocho días sin anuncios</h3>
+      <p>Sin entrega del 11 al 28 oct y del 16 al 19 nov; el 29 oct y el 15 nov se cortó a medio día. El segundo hueco coincide con el arranque del periodo y la subtarea «Pago google ads»: hay que confirmar la causa en la cuenta.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Por campaña</h2><span class="dato">27 oct – 26 nov 2026</span></div>
+  <div class="tabla ancha"><table>
+    <thead><tr><th>Campaña</th><th class="n">Inversión</th><th class="n">Clics</th><th class="n">CPC</th><th class="n">CTR</th><th class="n">Conv.</th><th class="n">Costo / conv.</th></tr></thead>
+    <tbody>
+      <tr><td>TB — C1 Intención GDL</td><td class="n">$13,099</td><td class="n">660</td><td class="n">$19.85</td><td class="n">17.4%</td><td class="n">19</td><td class="n">$689</td></tr>
+      <tr><td>TB - C2 - Bucerias Search</td><td class="n">$3,369</td><td class="n">48</td><td class="n">$70.18</td><td class="n">13.3%</td><td class="n">0</td><td class="n">—</td></tr>
+      <tr class="total"><td>Cuenta</td><td class="n">$16,468</td><td class="n">708</td><td class="n">$23.26</td><td class="n">17.0%</td><td class="n">19</td><td class="n">$867</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Palabras clave con más gasto</h3>
+  <div class="tabla ancha"><table>
+    <thead><tr><th>Palabra clave</th><th>Campaña</th><th class="n">Inversión</th><th class="n">Clics</th><th class="n">CPC</th><th class="n">Conv.</th></tr></thead>
+    <tbody>
+      <tr><td>bodegas en renta</td><td>C1</td><td class="n">$8,609</td><td class="n">437</td><td class="n">$19.70</td><td class="n">13</td></tr>
+      <tr><td>alquiler de bodegas</td><td>C2</td><td class="n">$2,539</td><td class="n">38</td><td class="n">$66.83</td><td class="n">0</td></tr>
+      <tr><td>mini bodegas</td><td>C1</td><td class="n">$1,657</td><td class="n">94</td><td class="n">$17.63</td><td class="n">2</td></tr>
+      <tr><td>renta de bodegas</td><td>C1</td><td class="n">$728</td><td class="n">29</td><td class="n">$25.11</td><td class="n">1</td></tr>
+      <tr><td>mini bodegas en renta guadalajara</td><td>C1</td><td class="n">$598</td><td class="n">23</td><td class="n">$26.01</td><td class="n">0</td></tr>
+      <tr><td>renta minibodegas</td><td>C2</td><td class="n">$498</td><td class="n">5</td><td class="n">$99.67</td><td class="n">0</td></tr>
+      <tr><td>bodegas de almacenamiento</td><td>C1</td><td class="n">$362</td><td class="n">16</td><td class="n">$22.65</td><td class="n">1</td></tr>
+      <tr><td>mini bodegas en renta</td><td>C1</td><td class="n">$362</td><td class="n">16</td><td class="n">$22.63</td><td class="n">1</td></tr>
+      <tr><td>bodegas renta</td><td>C2</td><td class="n">$331</td><td class="n">5</td><td class="n">$66.20</td><td class="n">0</td></tr>
+      <tr><td>torobox minibodegas</td><td>C1</td><td class="n">$120</td><td class="n">11</td><td class="n">$10.95</td><td class="n">1</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Ajustes a aplicar</h2><span class="dato">En orden de prioridad</span></div>
+
+  <div class="ajuste">
+    <div class="num">1</div>
+    <div class="cuerpo">
+      <div class="cab"><h3>Detener el gasto de Bucerías y rehacer su segmentación</h3><span class="chip c-ya">Ya</span></div>
+      <dl class="campo">
+        <dt>Por qué</dt><dd>$3,369 sin conversiones y el CPC más alto de la cuenta. Un CPC de $67 a $100 en términos genéricos indica que la campaña compite fuera de Bucerías o en concordancia amplia.</dd>
+        <dt>Qué hacer</dt><dd><ul>
+          <li>Pausar «alquiler de bodegas», «renta minibodegas» y «bodegas renta» en C2.</li>
+          <li>Revisar la ubicación: radio alrededor de la sucursal y la opción «Presencia» (personas que están en la zona), no «Presencia o interés».</li>
+          <li>Reabrir con palabras de categoría más zona en frase o exacta: «minibodegas bucerías», «bodegas en renta bucerías», «bodegas en renta nuevo vallarta».</li>
+          <li>Poner un límite de CPC cercano al de C1 (unos $25) mientras junta datos.</li>
+        </ul></dd>
+        <dt>Lectura</dt><dd>3 dic: CPC por debajo de $30 y primeras conversiones. Si al 10 dic sigue en cero, se pausa la campaña y su presupuesto se mueve a C1.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="ajuste">
+    <div class="num">2</div>
+    <div class="cuerpo">
+      <div class="cab"><h3>Confirmar qué cuenta como conversión</h3><span class="chip c-ya">Ya</span></div>
+      <dl class="campo">
+        <dt>Por qué</dt><dd>Las 19 de noviembre son la base de todas las decisiones de puja. En junio la cuenta registró 50 conversiones con fracciones (4.5, 10.5), señal de una acción mal configurada. En abr–may el lead se contaba como formulario con sucursal, tamaño y plazo.</dd>
+        <dt>Qué hacer</dt><dd><ul>
+          <li>En Objetivos › Conversiones, dejar como principal solo el envío del formulario; llamadas, clics a WhatsApp o visitas, como secundarias.</li>
+          <li>Cruzar las 19 conversiones con los leads de Google Ads en el CRM del mismo periodo (UTM <code>intencion_gdl</code>).</li>
+        </ul></dd>
+        <dt>Lectura</dt><dd>Esta semana. Si el CRM tiene menos leads que conversiones, el costo real por lead es mayor que $689 y el ajuste 5 espera.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="ajuste">
+    <div class="num">3</div>
+    <div class="cuerpo">
+      <div class="cab"><h3>Asegurar que la cuenta no se detenga</h3><span class="chip c-ya">Ya</span></div>
+      <dl class="campo">
+        <dt>Por qué</dt><dd>Ocho días completos sin anuncios en 30, y cada pausa reinicia lo que la campaña aprendió. El hueco del 16 al 19 nov cae justo antes del arranque del periodo.</dd>
+        <dt>Qué hacer</dt><dd><ul>
+          <li>Revisar en Facturación › Transacciones si los cortes fueron por saldo, pago rechazado o pausa manual.</li>
+          <li>Hacer el pago del siguiente periodo antes del 15 dic, no el 18 o 19.</li>
+          <li>Confirmar el presupuesto diario contra lo pagado: a $980 al día, 30 días suman unos $29,400.</li>
+        </ul></dd>
+        <dt>Lectura</dt><dd>Al cierre del periodo (18 dic): cero días sin entrega.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="ajuste">
+    <div class="num">4</div>
+    <div class="cuerpo">
+      <div class="cab"><h3>Ponerle límite a «bodegas en renta» y negativas a C1</h3><span class="chip c-dato">Falta dato</span></div>
+      <dl class="campo">
+        <dt>Por qué</dt><dd>Esta palabra se lleva el 66% del gasto de C1 y trae 13 de las 19 conversiones, a $662 cada una. Funciona, pero es amplia: puede estar atrayendo búsquedas de bodegas industriales o comerciales, que no son el negocio.</dd>
+        <dt>Qué hacer</dt><dd><ul>
+          <li>Bajar el export de términos de búsqueda de los últimos 30 días.</li>
+          <li>Agregar como negativas lo que no sea minibodega: nave, industrial, comercial, local, terreno, empleo, vacante, en venta.</li>
+          <li>Pasar «bodegas en renta» de concordancia amplia a frase si el export muestra muchas búsquedas ajenas.</li>
+        </ul></dd>
+        <dt>Lectura</dt><dd>10 dic: CPC de C1 por debajo de $18 con las mismas conversiones o más.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="ajuste">
+    <div class="num">5</div>
+    <div class="cuerpo">
+      <div class="cab"><h3>Pasar C1 a «Maximizar conversiones»</h3><span class="chip c-sem">Siguiente</span></div>
+      <dl class="campo">
+        <dt>Por qué</dt><dd>C1 tiene 19 conversiones en 30 días, arriba del umbral de 15 con el que Google puede optimizar sin dejar de entregar. Con la puja actual el gasto sube y el CPC también, sin que suban las conversiones.</dd>
+        <dt>Qué hacer</dt><dd><ul>
+          <li>Hacer el cambio solo en C1 y solo si el ajuste 2 confirma que las conversiones son formularios reales.</li>
+          <li>No tocar C1 en los 7 días siguientes: cada edición reinicia el aprendizaje.</li>
+          <li>C2 se queda con su puja actual y el límite de CPC del ajuste 1 hasta que junte conversiones.</li>
+        </ul></dd>
+        <dt>Lectura</dt><dd>Dos semanas después del cambio: costo por conversión de C1 por debajo de $689.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="ajuste">
+    <div class="num">6</div>
+    <div class="cuerpo">
+      <div class="cab"><h3>Darle peso a las búsquedas con ciudad</h3><span class="chip c-sem">Siguiente</span></div>
+      <dl class="campo">
+        <dt>Por qué</dt><dd>«mini bodegas en renta guadalajara», «… zapopan», «mini bodegas guadalajara» y «cerca de mi» suman menos de $1,100 en 30 días. Son las búsquedas con la intención más clara y hoy casi no reciben tráfico.</dd>
+        <dt>Qué hacer</dt><dd><ul>
+          <li>Moverlas a un grupo de anuncios propio, en frase y exacta, con anuncios que mencionen la zona.</li>
+          <li>Separar la marca («torobox minibodegas») en su propio grupo, para leer aparte lo que trae la búsqueda genérica.</li>
+        </ul></dd>
+        <dt>Lectura</dt><dd>Al cierre del periodo: que estas palabras pasen del 7% a por lo menos el 20% de los clics de C1.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Bitácora de la cuenta</h2><span class="dato">Registrado en Google Ads, leído vía Metricool</span></div>
+  <div class="tabla"><table class="bitacora">
+    <thead><tr><th>Fecha</th><th>Qué pasó</th></tr></thead>
+    <tbody>
+      <tr><td>14 abr</td><td>Se crea «TB — C1 Intención GDL»; entrega desde el 23 abr.</td></tr>
+      <tr><td>19 may</td><td>Se crea «TB - C2 - Bucerias Search».</td></tr>
+      <tr><td>14–23 jun</td><td>Sin entrega.</td></tr>
+      <tr><td>25 jun – 1 jul</td><td>57 conversiones con fracciones en una semana: medición atípica.</td></tr>
+      <tr><td>Julio</td><td>El CPC pasa de ~$5 a $20.49; el gasto diario sube a $394.</td></tr>
+      <tr><td>17 ago – 1 sep</td><td>Sin entrega.</td></tr>
+      <tr><td>1–10 oct</td><td>Mejor tramo desde mayo: CPC de $7.31 y CTR de 26%.</td></tr>
+      <tr><td>11–28 oct</td><td>Sin entrega.</td></tr>
+      <tr><td>29 oct – 14 nov</td><td>Vuelve a correr: $10,563, 15 conversiones, ~$660 al día.</td></tr>
+      <tr><td>15–19 nov</td><td>Corte a medio día el 15 y sin entrega del 16 al 19.</td></tr>
+      <tr><td>20–25 nov</td><td>Arranca el periodo: ~$980 al día, CPC de $24.77, 4 conversiones.</td></tr>
+      <tr><td>26 nov</td><td>Revisión de la cuenta y esta lista de ajustes.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <div class="txt">
+    <span>Fuente: Google Ads de Torobox a través de Metricool, leído el 26 de noviembre de 2026. Montos en MXN, como los reporta la cuenta.</span>
+    <span>Metricool no muestra términos de búsqueda, concordancias, estrategia de puja ni el estado de las campañas; el ajuste 4 depende del export desde Google Ads.</span>
+  </div>
+  <picture><source srcset="/assets/isotipo-sentido-light.png" media="(prefers-color-scheme: dark)"><img class="ojo" src="/assets/isotipo-sentido.png" alt=""></picture>
+</footer>
+</div>
+</body>
+</html>
