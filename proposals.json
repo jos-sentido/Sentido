@@ -6,25 +6,25 @@
       "cliente": "IA HAZBOOM — Video comercial",
       "fecha": "2026-11-27",
       "estatus": "nueva",
-      "trabajo": "produccion",
+      "trabajo": "ajustes",
       "historial": [],
       "serviciosDisponibles": [
         {
           "id": "video-principal",
           "nombre": "Video principal 90–120 s (guion, app, terminal, animación, locución, 3 formatos)",
-          "precio": 28000,
+          "precio": 30800,
           "tipo": "unico"
         },
         {
           "id": "cortes",
           "nombre": "Cortes para pauta 15 s y 30 s (9:16 y 4:5)",
-          "precio": 7000,
+          "precio": 7700,
           "tipo": "unico"
         }
       ],
       "serviciosSeleccionados": [],
-      "notas": "Borrador v1 del agente (solicitud de Mel, 26 nov 2026). Video comercial/explicativo de IA HAZBOOM para mandar por WhatsApp, redes y YouTube + cortes de 15 y 30 s. $35,000 + IVA único (principal $28,000 + cortes $7,000), 50/50, 5 rondas de revisión en el principal. Precios propuestos por el agente sin catálogo: confirmar con Jos. CTA a WhatsApp de Mel + formulario.",
-      "proximoPaso": "Revisión de Jos (lpc) y luego Mel la comparte",
+      "notas": "Ajustes v2 (pac de Mel, 27 nov 2026): tarifas +10%. $38,500 + IVA único (principal $30,800 + cortes $7,700), 50/50, 5 rondas de revisión en el principal. Mel indica 20% de comisión como en el resto de la cuenta (interno, no se publica). CTA a WhatsApp de Mel + formulario.",
+      "proximoPaso": "Revisión de Jos de la v2 (lpc) y luego Mel la comparte",
       "fechaSeguimiento": null,
       "bitacora": [],
       "asana": {
